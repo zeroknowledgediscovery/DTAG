@@ -1,0 +1,76 @@
+INFO: Ideology tracking disabled: --no_ideology was set
+TIMING (init)
+------------------------------------------------------------------------
+load_qnet: 41.589s
+load_map: 0.027s
+load_polar_vectors: 0.000s
+possible_cache: 0.977s
+prep_persona_allowed: 0.010s
+llm_persona_init: 3.867s
+forced_assignments: 0.000s
+ideology_init: 0.000s
+
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[1;95mMODEL[0m
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[95m/home/ishanu/Dropbox/ZED/Research/DTAG/models/afrobarometer/LSM_merged_r5_data.gz[0m
+
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[1;96mPERSONA[0m
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[96m35 year old urban male in Nigeria, regular news consumer, politically attentive, moderate
+Region context: Africa
+Country context: Nigeria[0m
+
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[1;36mPERSONA ASSIGNMENTS (CURRENT STATE)[0m
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[36mCOUNTRY_ALPHA = Nigeria
+URBRUR = Urban
+THISINT = Male
+Q1 = 35.0
+Q14 = Somewhat i
+COUNTRY.BY.REGION.NO = Nigeria
+COUNTRY.BY.REGION = West Afric
+Q65A = Fairly Wel
+Q63PT1 = Unemployme
+Q63PT2 = Water supp
+Q63PT3 = No further
+Q7 = Going in t[0m
+
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[1;94mSELECTED VARIABLES[0m
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[94mQ65A,Q63PT1,Q63PT2,Q63PT3,Q7[0m
+
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[1;90mSELECTION RATIONALE[0m
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[90mThe user question 'what do u think about global economy' is best matched by variables related to perceptions of the economy and its management. Q65A directly asks about how well the government is handling the economy, which is a direct match. Q63PT1, Q63PT2, and Q63PT3 capture the most important problems identified by respondents, including management of the economy, which complements the understanding of economic concerns. Q7 captures the overall direction of the country, which often relates to economic conditions and perceptions. Other variables are less directly relevant to the user's question about the global economy.[0m
+
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[1;93mRESPONSES (ANCHORS)[0m
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[93mQ65A -> Fairly Wel
+Q63PT1 -> Unemployme
+Q63PT2 -> Water supp
+Q63PT3 -> No further
+Q7 -> Going in t[0m
+
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[1;92mRESPONDENT ANSWER[0m
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[92mI think the global economy is quite challenging right now, and I see it reflected in Nigeria as well. Our government is handling the economy fairly well, but unemployment remains a major problem that needs urgent attention. Access to water supply is also a big issue that affects economic development. Despite these challenges, I believe the country is generally going in the right direction, and with continued effort, we can improve the situation.[0m
+
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[1;37mTIMING[0m
+[90m----------------------------------------------------------------------------------------------------------------[0m
+[37mprefilters: 0.012s
+llm_select: 2.982s
+qnet_predict: 0.822s
+draw: 0.000s
+state_update: 0.000s
+ideology: 0.000s
+llm_final: 1.937s
+total: 5.752s[0m
+
