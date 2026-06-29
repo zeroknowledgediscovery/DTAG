@@ -1,0 +1,1013 @@
+variable,dta_variable_label,question_text,codebook_page,question_text_filled
+abany,abortion if woman wants for any reason,,,abortion if woman wants for any reason
+abdefect,strong chance of serious defect,,,strong chance of serious defect
+abhlth,woman's health seriously endangered,,,woman's health seriously endangered
+abnomore,married--wants no more children,,,married--wants no more children
+abpoor,low income--cant afford more children,,,low income--cant afford more children
+abrape,pregnant as result of rape,,,pregnant as result of rape
+absingle,not married,,,not married
+acqntsex,r had sex with acquaintance last year,,,r had sex with acquaintance last year
+adforjob,advertised for a job in newspaper's,,,advertised for a job in newspaper's
+adults,household members 18 yrs and older (household roster),,,household members 18 yrs and older (household roster)
+advfront,sci rsch is necessary and should be supported by federal govt,,,sci rsch is necessary and should be supported by federal govt
+advsched,how far in advance do you schedule work,,,how far in advance do you schedule work
+affrmact,favor preference in hiring black people,,,favor preference in hiring black people
+age,age of respondent,,,age of respondent
+aged,should aged live with their children,,,should aged live with their children
+agedchld,should grown children live with parents,,,should grown children live with parents
+agedpar,should aged live with their children,,,should aged live with their children
+agekdbrn,r's age when 1st child born,,,r's age when 1st child born
+agekdbrn_9422,r's age when 1st child born,,,r's age when 1st child born
+aidcol,gov. should assist low-income college student,,,gov. should assist low-income college student
+aidhouse,gov. should provide housing to poor,,,gov. should provide housing to poor
+aidindus,govts resp: assist industrial growth,,,govts resp: assist industrial growth
+aidold,govts resp: provide for the elderly,,,govts resp: provide for the elderly
+aidunemp,govts resp: provide for the unemployed,,,govts resp: provide for the unemployed
+appemps,applied directly to employers,,,applied directly to employers
+artatt,attended exhibit alone or with others,,,attended exhibit alone or with others
+artatt1,attended with spouse or partner,,,attended with spouse or partner
+artatt2,attended with child,,,attended with child
+artatt3,attended with friend,,,attended with friend
+artatt4,attended with relative,,,attended with relative
+artatt5,attended with other,,,attended with other
+artcost,did not go due to cost,,,did not go due to cost
+artexbt,did r go to an art exhibit in last 12 months,,,did r go to an art exhibit in last 12 months
+artfree,was exhibit attended free,,,was exhibit attended free
+artgst,did not go because couldn't find anyone to go with,,,did not go because couldn't find anyone to go with
+artint,did not go since not of interest,,,did not go since not of interest
+artloc,did not want to go to that location,,,did not want to go to that location
+artmostoth,most imp factor in not attending art exhibit,,,most imp factor in not attending art exhibit
+artothr,other reason why did not go,,,other reason why did not go
+arttime,did not go due to lack of time,,,did not go due to lack of time
+arttrvl,did not go because too dificult to get there,,,did not go because too dificult to get there
+artwhy1,imp of low cost in decision to attend exhibit,,,imp of low cost in decision to attend exhibit
+artwhy2,imp of wanting to experience high quality art in decision to attend exhibit,,,imp of wanting to experience high quality art in decision to attend exhibit
+artwhy3,imp of wanting to socialize with friends or fam in decision to attend exhibit,,,imp of wanting to socialize with friends or fam in decision to attend exhibit
+artwhy4,imp of wanting to celebrate cultural heritage in decision to attend exhibit,,,imp of wanting to celebrate cultural heritage in decision to attend exhibit
+artwhy5,imp of wanting to support community in decision to attend exhibit,,,imp of wanting to support community in decision to attend exhibit
+artwhy6,imp of wanting to learn in decision to attend exhibit,,,imp of wanting to learn in decision to attend exhibit
+artwhy7,imp of location in decision to attend exhibit,,,imp of location in decision to attend exhibit
+artwhy8,was there another major reason in decision to attend exhibit,,,was there another major reason in decision to attend exhibit
+artwhy9,other major reason in decision to attend,,,other major reason in decision to attend
+askhelp,asked relatives friends colleagues to help,,,asked relatives friends colleagues to help
+astrolgy,ever read a horoscope or personal astrology report,,,ever read a horoscope or personal astrology report
+astrosci,astrology is scientific,,,astrology is scientific
+attend,how often r attends religious services,,,how often r attends religious services
+away1,is 1st person staying somewhere else now?,,,is 1st person staying somewhere else now?
+away10,is 10th person staying somewhere else now?,,,is 10th person staying somewhere else now?
+away11,is 11th person (visitor) staying elsewhere now?,,,is 11th person (visitor) staying elsewhere now?
+away12,is 12th person (visitor) staying elsewhere now?,,,is 12th person (visitor) staying elsewhere now?
+away13,is 13th person (visitor) staying elsewhere now?,,,is 13th person (visitor) staying elsewhere now?
+away14,is 14th person (visitor) staying elsewhere now?,,,is 14th person (visitor) staying elsewhere now?
+away2,is 2nd person staying somewhere else now?,,,is 2nd person staying somewhere else now?
+away3,is 3rd person staying somewhere else now?,,,is 3rd person staying somewhere else now?
+away4,is 4th person staying somewhere else now?,,,is 4th person staying somewhere else now?
+away5,is 5th person staying somewhere else now?,,,is 5th person staying somewhere else now?
+away6,is 6th person staying somewhere else now?,,,is 6th person staying somewhere else now?
+away7,is 7th person staying somewhere else now?,,,is 7th person staying somewhere else now?
+away8,is 8th person staying somewhere else now?,,,is 8th person staying somewhere else now?
+away9,is 9th person staying somewhere else now?,,,is 9th person staying somewhere else now?
+babies,household members less than 6 yrs old,,,household members less than 6 yrs old
+babies_7222,household members less than 6 yrs old,,,household members less than 6 yrs old
+ballot,ballot used for interview,,,ballot used for interview
+ballotformwt,,,,
+ballotformwtnr,,,,
+balneg,sci research is strongly in favor of harmful results,,,sci research is strongly in favor of harmful results
+balpos,sci research is strongly in favor of benefits,,,sci research is strongly in favor of benefits
+barate,rate of ba degree earning in college respondent attended,,,rate of ba degree earning in college respondent attended
+betrlang,which language r speaks more fluent,,,which language r speaks more fluent
+bible,feelings about the bible,,,feelings about the bible
+bigbang,sci knowledge: the universe began with a huge explosion,,,sci knowledge: the universe began with a huge explosion
+bigbang1,universe began with a big explosion: true or false,,,universe began with a big explosion: true or false
+bigbang2,universe expanding since it began: true or false,,,universe expanding since it began: true or false
+bored,how often does r have extra time,,,how often does r have extra time
+born,was r born in this country,,,was r born in this country
+bossemps,quality of mgmnt-employee rels: r's firm,,,quality of mgmnt-employee rels: r's firm
+boyorgrl,sci knowledge: father gene decides sex of baby,,,sci knowledge: father gene decides sex of baby
+bribe,does r see public official asking for a bribe in last five years,,,does r see public official asking for a bribe in last five years
+brlawfl,do private companies comply with regulations,,,do private companies comply with regulations
+brnotax,do private companies avoid taxes,,,do private companies avoid taxes
+cappun,favor or oppose death penalty for murder,,,favor or oppose death penalty for murder
+cctv,civil liberties - video surveillance,,,civil liberties - video surveillance
+cesd1,how much time felt depressed in past wk,,,how much time felt depressed in past wk
+cesd2,how much time sleep was restless in past wk,,,how much time sleep was restless in past wk
+cesd3,how much time felt happy in past wk,,,how much time felt happy in past wk
+cesd4,how much time felt lonely in past wk,,,how much time felt lonely in past wk
+cesd5,how much time felt sad in past wk,,,how much time felt sad in past wk
+chemgen,pesticides danger to envir,,,pesticides danger to envir
+childs,number of children,,,number of children
+chldidel,ideal number of children,,,ideal number of children
+chngewrk,i would change my work for something different,,,i would change my work for something different
+class,subjective class identification,,,subjective class identification
+closeblk,how close r feels to black people,,,how close r feels to black people
+closewht,how close feel to whites,,,how close feel to whites
+clssmtes,use clssmtes,,,use clssmtes
+cobarate,rate of ba degree earning at college partner attended,,,rate of ba degree earning at college partner attended
+codeg,partner's highest degree,,,partner's highest degree
+coden,partner's denomination,,,partner's denomination
+coden_1222,partner's denomination,,,partner's denomination
+codipged,"partner diploma, ged, or other",,,"partner diploma, ged, or other"
+coeduc,"highest year school completed, partner",,,"highest year school completed, partner"
+coeftotlt,total number of students enrolled at college partner attended,,,total number of students enrolled at college partner attended
+coevwork,partner ever work as long as a year,,,partner ever work as long as a year
+cofund,how fundamentalist is partner's current religion,,,how fundamentalist is partner's current religion
+cogradtounder,ratio of graduate to undergraduate students at college partner attended,,,ratio of graduate to undergraduate students at college partner attended
+cohort,year of birth,,,year of birth
+cohrs1,number of hours partner worked last week,,,number of hours partner worked last week
+cohrs2,no. of hours partner usually works a week,,,no. of hours partner usually works a week
+coind10,partner's industry code (2010),,,partner's industry code (2010)
+coisco08,"partner's occupation, 2010 census & 2008 isco code",,,"partner's occupation, 2010 census & 2008 isco code"
+cojew,what sort of jew is r's partner currently,,,what sort of jew is r's partner currently
+colath,allow anti-religionist to teach,,,allow anti-religionist to teach
+colcom,should communist teacher be fired,,,should communist teacher be fired
+coldeg1,the highest degree r have earned,,,the highest degree r have earned
+colhomo,allow homosexual to teach,,,allow homosexual to teach
+colmil,allow militarist to teach,,,allow militarist to teach
+colmslm,allow anti-american muslim clergymen teaching in college,,,allow anti-american muslim clergymen teaching in college
+colrac,allow racist to teach,,,allow racist to teach
+colsci,r has taken any college-level sci course,,,r has taken any college-level sci course
+colscinm,number of college-level sci courses r have taken,,,number of college-level sci courses r have taken
+comprend,r's understanding of questions,,,r's understanding of questions
+compuse,r use computer,,,r use computer
+conarmy,confidence in military,,,confidence in military
+conbus,confidence in major companies,,,confidence in major companies
+conclerg,confidence in organized religion,,,confidence in organized religion
+condom,used condom last time,,,used condom last time
+condrift,sci knowledge: the continents have been moving,,,sci knowledge: the continents have been moving
+coneduc,confidence in education,,,confidence in education
+confed,confid. in exec branch of fed govt,,,confid. in exec branch of fed govt
+confinan,confid in banks & financial institutions,,,confid in banks & financial institutions
+coninc,family income in constant dollars,,,family income in constant dollars
+conjudge,confid. in united states supreme court,,,confid. in united states supreme court
+conlabor,confidence in organized labor,,,confidence in organized labor
+conlegis,confidence in congress,,,confidence in congress
+conmedic,confidence in medicine,,,confidence in medicine
+conpress,confidence in press,,,confidence in press
+conrinc,respondent income in constant dollars,,,respondent income in constant dollars
+consci,confidence in scientific community,,,confidence in scientific community
+consent,participation/recording consent,,,participation/recording consent
+contv,confidence in television,,,confidence in television
+coocc10,partner's census occupation code (2010),,,partner's census occupation code (2010)
+coop,r's attitude toward interview,,,r's attitude toward interview
+coother,other protestant denominations,,,other protestant denominations
+copres10,partner's occupational prestige score (2010),,,partner's occupational prestige score (2010)
+copres105plus,partner's occupational prestige score using threshold method (2010),,,partner's occupational prestige score using threshold method (2010)
+corel,partner's religious preference,,,partner's religious preference
+corrupt1,opinion of corruption by politician,,,opinion of corruption by politician
+corrupt2,opinion of corruption by government administrators,,,opinion of corruption by government administrators
+cosector,type of college partner attended,,,type of college partner attended
+cosei10,partner's socioeconomic index (2010),,,partner's socioeconomic index (2010)
+cosei10educ,percentage of some college educ in coocc10 based on acs 2010,,,percentage of some college educ in coocc10 based on acs 2010
+cosei10inc,percentage of $45k+ earners in coocc10 based on acs 2010,,,percentage of $45k+ earners in coocc10 based on acs 2010
+courts,courts dealing with criminals,,,courts dealing with criminals
+cowrkers,quality of rels among workers: r's firm,,,quality of rels among workers: r's firm
+cowrkslf,partner self-emp. or works for somebody else,,,partner self-emp. or works for somebody else
+cowrksta,partner's labor force status,,,partner's labor force status
+crack30,r last use crack cocaine,,,r last use crack cocaine
+cutgovt,cuts in govt spending,,,cuts in govt spending
+cuthours,reduction in length of work week,,,reduction in length of work week
+dailywrk,how r's daily work is organized,,,how r's daily work is organized
+dateintv,date of interview,,,date of interview
+decidwrk,how are your working hours decided,,,how are your working hours decided
+degree,r's highest degree,,,r's highest degree
+denom,specific denomination,,,specific denomination
+denom16,denomination in which r was raised,,,denomination in which r was raised
+denom16_7322,denomination in which r was raised,,,denomination in which r was raised
+denom_7222,specific denomination,,,specific denomination
+dipged,"diploma, ged, or other",,,"diploma, ged, or other"
+dipged_1222,"diploma, ged, or other",,,"diploma, ged, or other"
+discaff,whites hurt by aff. action,,,whites hurt by aff. action
+discaffm,a man won't get a job or promotion,,,a man won't get a job or promotion
+discaffw,a woman won't get a job or promotion,,,a woman won't get a job or promotion
+discwk5,discrimination at work in past 5 yrs,,,discrimination at work in past 5 yrs
+divlaw,divorce laws,,,divorce laws
+divorce,ever been divorced or separated,,,ever been divorced or separated
+dwelling,type of structure,,,type of structure
+dwellpre,type of structure in which the respondent lives,,,type of structure in which the respondent lives
+dwelown,does r own or rent home?,,,does r own or rent home?
+earnrs,how many in family earned money?,,,how many in family earned money?
+earnrs_7222,how many in family earned money?,,,how many in family earned money?
+earthsun,sci knowledge: the earth goes around the sun,,,sci knowledge: the earth goes around the sun
+econsup1,main source of economic support,,,main source of economic support
+educ,highest year of school completed,,,highest year of school completed
+eftotlt,total number of students enrolled in college respondent attended,,,total number of students enrolled in college respondent attended
+electron,sci knowledge: electrons are smaller than atoms,,,sci knowledge: electrons are smaller than atoms
+emailhr,email hours per week,,,email hours per week
+emailmin,email minutes per week,,,email minutes per week
+emonitor,civil liberties - monitor emails,,,civil liberties - monitor emails
+equalize,govts resp: reduce income differences,,,govts resp: reduce income differences
+eqwlth,should govt reduce income differences,,,should govt reduce income differences
+eth1,1st mentioned country of origin,,,1st mentioned country of origin
+eth2,2nd mentioned country of origin,,,2nd mentioned country of origin
+eth3,3rd mentioned country of origin,,,3rd mentioned country of origin
+ethnic,country of family origin,,,country of family origin
+ethnum,type of response about ethnicity:r,,,type of response about ethnicity:r
+evbrkdwn,ever felt going to have a nervous breakdown?,,,ever felt going to have a nervous breakdown?
+evcrack,r ever use crack cocaine,,,r ever use crack cocaine
+evidu,r ever inject drugs,,,r ever inject drugs
+evjob,have you ever had a paid job for 1 year or+,,,have you ever had a paid job for 1 year or+
+evolved,sci knowledge: human beings developed from animals,,,sci knowledge: human beings developed from animals
+evolved2,elephants evolved from earlier species: true or false,,,elephants evolved from earlier species: true or false
+evpaidsx,ever have sex paid for or being paid since 18,,,ever have sex paid for or being paid since 18
+evstray,have sex other than spouse while married,,,have sex other than spouse while married
+evwork,ever work as long as one year,,,ever work as long as one year
+exjobsat,satisfaction with past job,,,satisfaction with past job
+expdesgn,better way to test drug btw control and non-control,,,better way to test drug btw control and non-control
+exptext,why is it better to test drug this way,,,why is it better to test drug this way
+extraern,how much earned from additional jobs in past yr,,,how much earned from additional jobs in past yr
+extrawrk,did you work multiple jobs in past yr,,,did you work multiple jobs in past yr
+facebook,use facebook,,,use facebook
+fair,people fair or try to take advantage,,,people fair or try to take advantage
+famdif16,reason not living with parents,,,reason not living with parents
+famgen,number of family generations in household,,,number of family generations in household
+famgen_7522,number of family generations in household,,,number of family generations in household
+family16,living with parents when 16 yrs old,,,living with parents when 16 yrs old
+famintjb,how often r felt: demand of family life interfere with job,,,how often r felt: demand of family life interfere with job
+famorjob,would you sacrifice job opportunities for family,,,would you sacrifice job opportunities for family
+fbaccess,permission to access r's facebook account,,,permission to access r's facebook account
+fear,afraid to walk at night in neighborhood,,,afraid to walk at night in neighborhood
+fechld,mother working doesn't hurt children,,,mother working doesn't hurt children
+feelevel,amount of fees paid,,,amount of fees paid
+feeused,fee given to get case,,,fee given to get case
+fefam,"better for man to work, woman tend home",,,"better for man to work, woman tend home"
+fehire,should hire and promote women,,,should hire and promote women
+fejobaff,for or against preferential hiring of women,,,for or against preferential hiring of women
+fepol,women not suited for politics,,,women not suited for politics
+fepresch,preschool kids suffer if mother works,,,preschool kids suffer if mother works
+fileversion,gss data file version,,,gss data file version
+finalter,change in financial situation,,,change in financial situation
+finrela,opinion of family income,,,opinion of family income
+flexhrs1,importance of flexible hrs. at work,,,importance of flexible hrs. at work
+flickr,use flickr,,,use flickr
+form,form of split questionnaire asked,,,form of split questionnaire asked
+frndsex,r had sex with friend last year,,,r had sex with friend last year
+fucitzn,is r planning/appling for us citizenship or not,,,is r planning/appling for us citizenship or not
+fund,how fundamentalist is r currently,,,how fundamentalist is r currently
+fund16,how fundamentalist was r at age 16,,,how fundamentalist was r at age 16
+gender1,gender of 1st person,,,gender of 1st person
+gender10,gender of 10th person,,,gender of 10th person
+gender11,gender of 11th person (visitor),,,gender of 11th person (visitor)
+gender12,gender of 12th person (visitor),,,gender of 12th person (visitor)
+gender13,gender of 13th person (visitor),,,gender of 13th person (visitor)
+gender14,gender of 14th person (visitor),,,gender of 14th person (visitor)
+gender2,gender of 2nd person,,,gender of 2nd person
+gender3,gender of 3rd person,,,gender of 3rd person
+gender4,gender of 4th person,,,gender of 4th person
+gender5,gender of 5th person,,,gender of 5th person
+gender6,gender of 6th person,,,gender of 6th person
+gender7,gender of 7th person,,,gender of 7th person
+gender8,gender of 8th person,,,gender of 8th person
+gender9,gender of 9th person,,,gender of 9th person
+gendereq,gov resp to promote equality,,,gov resp to promote equality
+genegen,how dangerous modifying genes in crops,,,how dangerous modifying genes in crops
+getahead,opinion of how people get ahead,,,opinion of how people get ahead
+getjob,how likely you would find a job,,,how likely you would find a job
+givinffor,should govt collect foreigner info without knowledge,,,should govt collect foreigner info without knowledge
+givinfusa,should govt collect citizen info without knowledge,,,should govt collect citizen info without knowledge
+god,r's confidence in the existence of god,,,r's confidence in the existence of god
+goodlife,standard of living of r will improve,,,standard of living of r will improve
+googlesn,use googlesn,,,use googlesn
+govtinfo,should govt info be public,,,should govt info be public
+gradtounder,ratio of graduate students to undergraduate students in college respondent atten,,,ratio of graduate students to undergraduate students in college respondent atten
+granborn,how many grandparents born outside u.s.,,,how many grandparents born outside u.s.
+grass,should marijuana be made legal,,,should marijuana be made legal
+grnlaws,gov resp tomake industry less damaging,,,gov resp tomake industry less damaging
+gunlaw,favor or oppose gun permits,,,favor or oppose gun permits
+gvinflu1,what peo or org have most inf,,,what peo or org have most inf
+gvinflu2,what peo or org have 2nd most inf,,,what peo or org have 2nd most inf
+hapcohab,happiness of relt with partner,,,happiness of relt with partner
+hapmar,happiness of marriage,,,happiness of marriage
+happy,general happiness,,,general happiness
+harass5,harassment at work in past 5 yrs,,,harassment at work in past 5 yrs
+health,condition of health,,,condition of health
+hefinfo,number of hef informant,,,number of hef informant
+helpblk,should govt aid black people?,,,should govt aid black people?
+helpful,people helpful or looking out for selves,,,people helpful or looking out for selves
+helpnot,should govt do more or less?,,,should govt do more or less?
+helporg1,willing to work harder for the firm,,,willing to work harder for the firm
+helpoth,to help others,,,to help others
+helppoor,should govt improve standard of living?,,,should govt improve standard of living?
+helpsick,should govt help pay for medical care?,,,should govt help pay for medical care?
+hhrace,race of household,,,race of household
+hhtype,household type,,,household type
+hhtype1,household type (condensed),,,household type (condensed)
+hiinc,importance of high pr income in a job,,,importance of high pr income in a job
+hispanic,r hispanic specific,,,r hispanic specific
+hispanic_0022,r hispanic specific,,,r hispanic specific
+hivtest,have you ever been tested for hiv,,,have you ever been tested for hiv
+hivtest1,in what year was your last hiv test,,,in what year was your last hiv test
+hivtest1_0622,in what month and year was your last hiv test,,,in what month and year was your last hiv test
+hivtest2,where did you have your last hiv test,,,where did you have your last hiv test
+hivtest2_0622,where did you have your last hiv test,,,where did you have your last hiv test
+hlphitec,govt support for new products and tech,,,govt support for new products and tech
+hlpoths,importance of helping others in a job,,,importance of helping others in a job
+hlpsoc,importance of social usefulness in a job,,,importance of social usefulness in a job
+hlthcare,govts resp: provide hlth care for sick,,,govts resp: provide hlth care for sick
+hlthstrt,"would you say the respondent? health in general is excellent, good, fair, or poo",,,"would you say the respondent? health in general is excellent, good, fair, or poo"
+homosex,homosexual sex relations,,,homosexual sex relations
+hompop,number of persons in household,,,number of persons in household
+hompop_7222,number of persons in household,,,number of persons in household
+hope1,i could get out of a jam,,,i could get out of a jam
+hope2,i am energetically pursuing my goals,,,i am energetically pursuing my goals
+hope3,there are many ways around problems i face,,,there are many ways around problems i face
+hope4,i see myself as successful,,,i see myself as successful
+hope5,i can think of many ways to reach my current goals,,,i can think of many ways to reach my current goals
+hope6,i am meeting my current goals,,,i am meeting my current goals
+hotcore,sci knowledge: the center of earth is very hot,,,sci knowledge: the center of earth is very hot
+hrs1,number of hours worked last week,,,number of hours worked last week
+hrs2,number of hours usually work a week,,,number of hours usually work a week
+hrsmoney,r preference re: work hrs and money,,,r preference re: work hrs and money
+hsbio,r ever took a high school biology course,,,r ever took a high school biology course
+hschem,r ever took a high school chemistry course,,,r ever took a high school chemistry course
+hsmath,the highest level of math r completed in high school,,,the highest level of math r completed in high school
+hsphys,r ever took a high school physics course,,,r ever took a high school physics course
+huadd,housing unit (hu) at address?,,,housing unit (hu) at address?
+huaddwhy,why there is no hu at this address,,,why there is no hu at this address
+huclean,r hu interior cleanliness rating,,,r hu interior cleanliness rating
+hunt,does r or spouse hunt,,,does r or spouse hunt
+hunt1,does r or spouse or partner hunt,,,does r or spouse or partner hunt
+id,respondent id number,,,respondent id number
+idu30,r inject drugs in past 30 days,,,r inject drugs in past 30 days
+if12who,who would r have voted for in 2012 election,,,who would r have voted for in 2012 election
+incom16,r's family income when 16 yrs old,,,r's family income when 16 yrs old
+income,total family income,,,total family income
+income16,total family income,,,total family income
+incuspop,estimated income status of housing unit,,,estimated income status of housing unit
+indus10,r's industry code (naics 2007),,,r's industry code (naics 2007)
+indusgen,indust air pollution danger to envir,,,indust air pollution danger to envir
+instagrm,use instagrm,,,use instagrm
+intage,age of interviewer,,,age of interviewer
+intecon,interested in economic issues,,,interested in economic issues
+inteduc,interested in local school issues,,,interested in local school issues
+intenvir,interested in environmental issues,,,interested in environmental issues
+intethn,race of interviewer,,,race of interviewer
+intfarm,interested in farm issues,,,interested in farm issues
+inthisp,"is interviewer spanish, hispanic or latino",,,"is interviewer spanish, hispanic or latino"
+intid,interviewer id,,,interviewer id
+intintl,interested in international issues,,,interested in international issues
+intjob,importance of interesting work in a job,,,importance of interesting work in a job
+intlblks,unintelligent - intelligent,,,unintelligent - intelligent
+intlwhts,unintelligent -intelligent,,,unintelligent -intelligent
+intmbile,use internet/apps from phone or tablet,,,use internet/apps from phone or tablet
+intmed,interested in medical discoveries,,,interested in medical discoveries
+intmil,interested in military policy,,,interested in military policy
+intrace1,interviewer s race1,,,interviewer s race1
+intrace2,interviewer s race2,,,interviewer s race2
+intrace3,interviewer s race3,,,interviewer s race3
+intrecnt,used internet/apps yesterday,,,used internet/apps yesterday
+intsci,interested in new scientific discoveries,,,interested in new scientific discoveries
+intsex,sex of interviewer,,,sex of interviewer
+intspace,interested in space exploration,,,interested in space exploration
+intstart,year starting to use internet/apps,,,year starting to use internet/apps
+inttech,interested in technologies,,,interested in technologies
+intuse,use internet/apps more than occassionally,,,use internet/apps more than occassionally
+intwkdyh,hours of internet use on weekdays,,,hours of internet use on weekdays
+intwkdym,minutes of internet use on weekdays,,,minutes of internet use on weekdays
+intwkenh,hours of internet use on weekends,,,hours of internet use on weekends
+intwkenm,minutes of internet use on weekends,,,minutes of internet use on weekends
+intyrs,years of service as an interviewer at norc,,,years of service as an interviewer at norc
+isco08,"respondent's occupation, 2010 census & 2008 isco code",,,"respondent's occupation, 2010 census & 2008 isco code"
+isco88,"respondent's occupation, 1980 census & 1988 isco code",,,"respondent's occupation, 1980 census & 1988 isco code"
+issp,filter for issp cases,,,filter for issp cases
+jbendmo,month last paid job ended,,,month last paid job ended
+jbendyr,year last paid job ended,,,year last paid job ended
+jbintfam,how often r felt: demand of job interfere with family life,,,how often r felt: demand of job interfere with family life
+jbtrain,did r have any training to improve job skill past 12 months,,,did r have any training to improve job skill past 12 months
+jew,what sort of jew r is,,,what sort of jew r is
+jew16,what sort of jew r was at age 16,,,what sort of jew r was at age 16
+jobeasy,how easy if r find a job as good as current one,,,how easy if r find a job as good as current one
+jobfind,could r find equally good job,,,could r find equally good job
+joblose,is r likely to lose job,,,is r likely to lose job
+joborfam,would you remain in unsatisfying job for family,,,would you remain in unsatisfying job for family
+jobsall,govts resp: provide jobs for all,,,govts resp: provide jobs for all
+jobsat,how satisfied is r with his/her job,,,how satisfied is r with his/her job
+kidsinhh,does interviewer believe that there are children under the age of 15 present at,,,does interviewer believe that there are children under the age of 15 present at
+kidssol,r's kids living standard compared to r,,,r's kids living standard compared to r
+kish,kish,,,kish
+lasers,sci knowledge: lasers work by focusing sound waves,,,sci knowledge: lasers work by focusing sound waves
+leasthrs,fewest hrs/week worked in past month,,,fewest hrs/week worked in past month
+leavejob,how likely will try to find another firm,,,how likely will try to find another firm
+lessreg,less govt regulation of business,,,less govt regulation of business
+letdie1,allow incurable patients to die,,,allow incurable patients to die
+letin1a,number of immigrants nowadays should be,,,number of immigrants nowadays should be
+libath,allow anti-religious book in library,,,allow anti-religious book in library
+libcom,allow communists book in library,,,allow communists book in library
+libhomo,allow homosexuals book in library,,,allow homosexuals book in library
+libmil,allow militarists book in library,,,allow militarists book in library
+libmslm,allow anti-american muslim clergymen's books in library,,,allow anti-american muslim clergymen's books in library
+librac,allow racists book in library,,,allow racists book in library
+life,is life exciting or dull,,,is life exciting or dull
+linkedin,use linkedin,,,use linkedin
+liveblks,neighborhood half black,,,neighborhood half black
+livewhts,r favors living in half white neighborhood,,,r favors living in half white neighborhood
+lngthinv,how long was interview,,,how long was interview
+localnum,number of employees: r's work site,,,number of employees: r's work site
+lookjob,are you looking for a job,,,are you looking for a job
+lotr1,in uncertain times i usually expect best,,,in uncertain times i usually expect best
+lotr2,if something can go wrong for me it will,,,if something can go wrong for me it will
+lotr3,i'm always optimistic about my future,,,i'm always optimistic about my future
+lotr4,i hardly ever expect things to go my way,,,i hardly ever expect things to go my way
+lotr5,i rarely count on good things happening to me,,,i rarely count on good things happening to me
+lotr6,i expect more good things to happen to me than bad,,,i expect more good things to happen to me than bad
+lowpay,i would accept job for lower pay,,,i would accept job for lower pay
+madeg,mother's (or youngest same-sex parent's) highest degree,,,mother's (or youngest same-sex parent's) highest degree
+maeduc,"highest year school completed, mother (or youngest same-sex parent)",,,"highest year school completed, mother (or youngest same-sex parent)"
+maind10,mother's (or youngest same-sex parent's) industry code (naics 2007),,,mother's (or youngest same-sex parent's) industry code (naics 2007)
+maisco08,"r's spouse's occupation, 2010 census & 2008 isco code",,,"r's spouse's occupation, 2010 census & 2008 isco code"
+maisco88,"r's mothers occupation, 1980 census & 1988 isco code",,,"r's mothers occupation, 1980 census & 1988 isco code"
+major1,college major 1,,,college major 1
+major1_1222,college major 1,,,college major 1
+major2,college major 2,,,college major 2
+major2_1222,college major 2,,,college major 2
+majorcol,the field of degree r earned,,,the field of degree r earned
+makejobs,govt create new jobs,,,govt create new jobs
+maocc10,mother's (or youngest same-sex parent's) occupatoin code (2010),,,mother's (or youngest same-sex parent's) occupatoin code (2010)
+mapres10,mother's (or youngest same-sex parent's) occupational prestige score (2010),,,mother's (or youngest same-sex parent's) occupational prestige score (2010)
+mapres105plus,mother's (or youngest same-sex parent's) occupational prestige score using thres,,,mother's (or youngest same-sex parent's) occupational prestige score using thres
+mar1,marital status of 1st person,,,marital status of 1st person
+mar10,marital status of 10th person,,,marital status of 10th person
+mar11,marital status of 11th person (visitor),,,marital status of 11th person (visitor)
+mar12,marital status of 12th person (visitor),,,marital status of 12th person (visitor)
+mar13,marital status of 13th person (visitor),,,marital status of 13th person (visitor)
+mar14,marital status of 14th person (visitor),,,marital status of 14th person (visitor)
+mar2,marital status of 2nd person,,,marital status of 2nd person
+mar3,marital status of 3rd person,,,marital status of 3rd person
+mar4,marital status of 4th person,,,marital status of 4th person
+mar5,marital status of 5th person,,,marital status of 5th person
+mar6,marital status of 6th person,,,marital status of 6th person
+mar7,marital status of 7th person,,,marital status of 7th person
+mar8,marital status of 8th person,,,marital status of 8th person
+mar9,marital status of 9th person,,,marital status of 9th person
+marasian,close relative marry asian,,,close relative marry asian
+marblk,close relative marry black person,,,close relative marry black person
+marcohab,cohabitation status,,,cohabitation status
+marhisp,close relative marry hispanic,,,close relative marry hispanic
+marital,marital status,,,marital status
+marsame1,homosexual couples have right to marry,,,homosexual couples have right to marry
+martype,marital type,,,marital type
+marwht,r favor close relative marrying white person,,,r favor close relative marrying white person
+masei10,r's mother's (or youngest same-sex parent's) socioeconomic index (2010),,,r's mother's (or youngest same-sex parent's) socioeconomic index (2010)
+masei10educ,percentage of some college educ in maocc10 based on acs 2010,,,percentage of some college educ in maocc10 based on acs 2010
+masei10inc,percentage of $45k+ earners in maocc10 based on acs 2010,,,percentage of $45k+ earners in maocc10 based on acs 2010
+matesex,was 1 of r's partner's spouse or regular,,,was 1 of r's partner's spouse or regular
+mawrkgrw,did mother (or youngest same-sex parent) ever work for pay for as long as a year,,,did mother (or youngest same-sex parent) ever work for pay for as long as a year
+mawrkslf,mother (or youngest same-sex parent) self-emp. or worked for somebody,,,mother (or youngest same-sex parent) self-emp. or worked for somebody
+meovrwrk,men hurt family when focus on work too much,,,men hurt family when focus on work too much
+mntlhlth,days of poor mental health past 30 days,,,days of poor mental health past 30 days
+mobile16,geographic mobility since age 16,,,geographic mobility since age 16
+mode,interview done in-person or over the phone,,,interview done in-person or over the phone
+mortravl,i would accept a longer commute,,,i would accept a longer commute
+mosthrs,most hrs/week worked in past month,,,most hrs/week worked in past month
+moveaway,i would move outside the usa for work,,,i would move outside the usa for work
+moveinus,i would move within the usa for work,,,i would move within the usa for work
+nanoben,balance will be strongly in favor of the benefits or slightly,,,balance will be strongly in favor of the benefits or slightly
+nanoharm,balance will be strongly in favor of the benefits or slightly,,,balance will be strongly in favor of the benefits or slightly
+nanowill,benefit of nanotechnology outweigh harmful results,,,benefit of nanotechnology outweigh harmful results
+nataid,foreign aid,,,foreign aid
+nataidy,assistance to other countries:ver y,,,assistance to other countries:ver y
+natarms,"military, armaments, and defense",,,"military, armaments, and defense"
+natarmsy,national defense:version y,,,national defense:version y
+natchld,assistance for childcare,,,assistance for childcare
+natcity,solving problems of big cities,,,solving problems of big cities
+natcityy,assistance to big cities:version y,,,assistance to big cities:version y
+natcrime,halting rising crime rate,,,halting rising crime rate
+natcrimy,law enforcement:version y,,,law enforcement:version y
+natdrug,dealing with drug addiction,,,dealing with drug addiction
+natdrugy,drug rehabilitation:version y,,,drug rehabilitation:version y
+nateduc,improving nations education system,,,improving nations education system
+nateducy,education:version y,,,education:version y
+natenrgy,developing alternative energy sources,,,developing alternative energy sources
+natenvir,improving & protecting environment,,,improving & protecting environment
+natenviy,the environment:version y,,,the environment:version y
+natfare,welfare,,,welfare
+natfarey,assistance to the poor:version y,,,assistance to the poor:version y
+natheal,improving & protecting nations health,,,improving & protecting nations health
+nathealy,health:version y,,,health:version y
+natmass,mass transportation,,,mass transportation
+natpark,parks and recreation,,,parks and recreation
+natrace,improving the conditions of black people,,,improving the conditions of black people
+natracey,assistance to black people: version y,,,assistance to black people: version y
+natroad,highways and bridges,,,highways and bridges
+natsci,supporting scientific research,,,supporting scientific research
+natsoc,social security,,,social security
+natspac,space exploration program,,,space exploration program
+natspacy,space exploration:version y,,,space exploration:version y
+neisafe,how safe interviewer thinks neighborhood is,,,how safe interviewer thinks neighborhood is
+news,how often does r read newspaper,,,how often does r read newspaper
+newsfrom,main source of information about events in the news,,,main source of information about events in the news
+newskill,i would accept job that requires new skills,,,i would accept job that requires new skills
+nextgen,science & tech. give more opportunities to next generation,,,science & tech. give more opportunities to next generation
+nogo,perf or exhibit r wanted to go to in past 12 months but did not,,,perf or exhibit r wanted to go to in past 12 months but did not
+nogo1,performance or exhibit,,,performance or exhibit
+nounemp1,r would accept job requiring new skill to avoid unemployment,,,r would accept job requiring new skill to avoid unemployment
+nounemp2,r would accept position with lower pay to avoid unemployment,,,r would accept position with lower pay to avoid unemployment
+nounemp3,r would accept temporary employment to avoid unemployment,,,r would accept temporary employment to avoid unemployment
+nounemp4,r would accept travel longer to work to avoid unemployment,,,r would accept travel longer to work to avoid unemployment
+nounemp5,i would move within the usa for work,,,i would move within the usa for work
+nounemp6,i would move outside the usa for work,,,i would move outside the usa for work
+nukegen,nuke power danger to envir,,,nuke power danger to envir
+numemps,"if self employed, number of other employees",,,"if self employed, number of other employees"
+numemps_0422,"if self employed, number of other employees",,,"if self employed, number of other employees"
+nummen,number of male sex partner's since 18,,,number of male sex partner's since 18
+numwomen,number of female sex partner's since 18,,,number of female sex partner's since 18
+obey,to obey,,,to obey
+obeylaw,should people obey laws without exceptn?,,,should people obey laws without exceptn?
+occ10,r's census occupation code (2010),,,r's census occupation code (2010)
+odds1,test of knowledge about probablity1,,,test of knowledge about probablity1
+odds2,test of knowledge about probablity2,,,test of knowledge about probablity2
+old1,age of 1st person,,,age of 1st person
+old10,age of 1oth person,,,age of 1oth person
+old11,age of 11th person (visitor),,,age of 11th person (visitor)
+old12,age of 12th person (visitor),,,age of 12th person (visitor)
+old13,age of 13th person (visitor),,,age of 13th person (visitor)
+old14,age of 14th person (visitor),,,age of 14th person (visitor)
+old2,age of 2nd person,,,age of 2nd person
+old3,age of 3rd person,,,age of 3rd person
+old4,age of 4th person,,,age of 4th person
+old5,age of 5th person,,,age of 5th person
+old6,age of 6th person,,,age of 6th person
+old7,age of 7th person,,,age of 7th person
+old8,age of 8th person,,,age of 8th person
+old9,age of 9th person,,,age of 9th person
+oth16,other protestant denominations,,,other protestant denominations
+other,other protestant denominations,,,other protestant denominations
+othersex,r had sex with some other last year,,,r had sex with some other last year
+othlang,can r speak language other than english/spanish,,,can r speak language other than english/spanish
+othlang1,what other languages does r speak,,,what other languages does r speak
+othlang1_0022,what other languages does r speak,,,what other languages does r speak
+othlang2,what other languages does r speak,,,what other languages does r speak
+othlang2_0022,what other languages does r speak,,,what other languages does r speak
+oversamp,weights for black oversamples,,,weights for black oversamples
+owngun,have gun in home,,,have gun in home
+padeg,father's (or oldest same-sex parent's) highest degree,,,father's (or oldest same-sex parent's) highest degree
+paeduc,"highest year school completed, father (or oldest same-sex parent)",,,"highest year school completed, father (or oldest same-sex parent)"
+paidhow,how are you paid,,,how are you paid
+paidsex,r had sex for pay last year,,,r had sex for pay last year
+paind10,father's (or oldest same-sex parent's) industry code (naics 2007),,,father's (or oldest same-sex parent's) industry code (naics 2007)
+paisco08,"r's father's occupation, 2010 census & 2008 isco code",,,"r's father's occupation, 2010 census & 2008 isco code"
+paisco88,"r's father's occupation, 1980 census & 1988 isco code",,,"r's father's occupation, 1980 census & 1988 isco code"
+paocc10,father's (or oldest same-sex parent's) occupatoin code (2010),,,father's (or oldest same-sex parent's) occupatoin code (2010)
+papres10,father's (or oldest same-sex parent's) occupational prestige score (2010),,,father's (or oldest same-sex parent's) occupational prestige score (2010)
+papres105plus,father's (or oldest same-sex parent's) occupational prestige score using thresho,,,father's (or oldest same-sex parent's) occupational prestige score using thresho
+parborn,were r's parents born in this country,,,were r's parents born in this country
+parsol,r's living standard compared to parents,,,r's living standard compared to parents
+partfull,was r's work part-time or full-time?,,,was r's work part-time or full-time?
+partners,how many sex partner's r had in last year,,,how many sex partner's r had in last year
+partners_8822,how many sex partner's r had in last year,,,how many sex partner's r had in last year
+partnrs5,how many sex partner's r had in last 5 years,,,how many sex partner's r had in last 5 years
+partyid,political party affiliation,,,political party affiliation
+pasei10,r's father's (or oldest same-sex parent's) socioeconomic index (2010),,,r's father's (or oldest same-sex parent's) socioeconomic index (2010)
+pasei10educ,percentage of some college educ in paocc10 based on acs 2010,,,percentage of some college educ in paocc10 based on acs 2010
+pasei10inc,percentage of $45k+ earners in paocc10 based on acs 2010,,,percentage of $45k+ earners in paocc10 based on acs 2010
+pawrkslf,father (or oldest same-sex parent) self-emp. or worked for somebody,,,father (or oldest same-sex parent) self-emp. or worked for somebody
+phase,subsampling: two-phase design.,,,subsampling: two-phase design.
+phone,does r have telephone,,,does r have telephone
+pikupsex,r had sex with casual date last year,,,r had sex with casual date last year
+pillok,birth control to teenagers 14-16,,,birth control to teenagers 14-16
+pinterst,use pinterest,,,use pinterest
+pistol,pistol or revolver in home,,,pistol or revolver in home
+polabuse,citizen said vulgar or obscene things,,,citizen said vulgar or obscene things
+polattak,citizen attacking policeman with fists,,,citizen attacking policeman with fists
+poleff11,don't have any say about what the government does,,,don't have any say about what the government does
+poleff13,have a pretty good understanding of issues,,,have a pretty good understanding of issues
+poleff16,people elected to congress try to keep promises,,,people elected to congress try to keep promises
+poleff17,most government administrator's can be trusted,,,most government administrator's can be trusted
+polescap,citizen attempting to escape custody,,,citizen attempting to escape custody
+polgbeco,what is your view on politics in us & world,,,what is your view on politics in us & world
+polhitok,ever approve of police striking citizen,,,ever approve of police striking citizen
+polint,your interest in politics,,,your interest in politics
+polmurdr,citizen questioned as murder suspect,,,citizen questioned as murder suspect
+polviews,think of self as liberal or conservative,,,think of self as liberal or conservative
+popespks,pope is infallible on matter's of faith or morals,,,pope is infallible on matter's of faith or morals
+popular,to be well liked or popular,,,to be well liked or popular
+pornlaw,feelings about pornography laws,,,feelings about pornography laws
+posslq,does r have marital partner,,,does r have marital partner
+posslqy,relationship status and cohabitation or not,,,relationship status and cohabitation or not
+postlife,belief in life after death,,,belief in life after death
+pray,how often does r pray,,,how often does r pray
+prayer,bible prayer in public schools,,,bible prayer in public schools
+premarsx,sex before marriage,,,sex before marriage
+pres12,vote obama or romney,,,vote obama or romney
+prestg10,r's occupational prestige score (2010),,,r's occupational prestige score (2010)
+prestg105plus,r's occupational prestige score using threshold method (2010),,,r's occupational prestige score using threshold method (2010)
+preteen,household members 6 thru 12 yrs old,,,household members 6 thru 12 yrs old
+preteen_7222,household members 6 thru 12 yrs old,,,household members 6 thru 12 yrs old
+prfmatt,did r attend alone or with others,,,did r attend alone or with others
+prfmatt1,attended with spouse or partner,,,attended with spouse or partner
+prfmatt2,attended with child,,,attended with child
+prfmatt3,attended with friend,,,attended with friend
+prfmatt4,attended with relative,,,attended with relative
+prfmatt5,attended with other,,,attended with other
+prfmcost,did not go due to cost,,,did not go due to cost
+prfmdan,was it a dance performance,,,was it a dance performance
+prfmfree,was performance attended free,,,was performance attended free
+prfmgst,did not go because couldn't find anyone to go with,,,did not go because couldn't find anyone to go with
+prfmint,did not go since not of interest,,,did not go since not of interest
+prfmloc,did not want to go to that location,,,did not want to go to that location
+prfmmostoth,most imp factor in not attending performance,,,most imp factor in not attending performance
+prfmmus,was it a music performance,,,was it a music performance
+prfmnce,did r go to a performance in last 12 months,,,did r go to a performance in last 12 months
+prfmothr,other reason why did not go,,,other reason why did not go
+prfmothr1,other reason why did not go,,,other reason why did not go
+prfmthe,was it a theater performance,,,was it a theater performance
+prfmtime,did not go due to lack of time,,,did not go due to lack of time
+prfmtrvl,did not go because too dificult to get there,,,did not go because too dificult to get there
+prfmwhy0,other major reason in decision to attend perf,,,other major reason in decision to attend perf
+prfmwhy1,imp of low cost in decision to attend performance,,,imp of low cost in decision to attend performance
+prfmwhy2,imp of wanting to experience high quality art in decision to attend perf,,,imp of wanting to experience high quality art in decision to attend perf
+prfmwhy3,imp of wanting to socialize with friends or fam in decision to attend perf,,,imp of wanting to socialize with friends or fam in decision to attend perf
+prfmwhy4,imp of wanting to celebrate cultural heritage in decision to attend perf,,,imp of wanting to celebrate cultural heritage in decision to attend perf
+prfmwhy5,imp of wanting to support community in decision to attend perf,,,imp of wanting to support community in decision to attend perf
+prfmwhy6,imp of wanting to learn in decision to attend perf,,,imp of wanting to learn in decision to attend perf
+prfmwhy7,imp of location in decision to attend perf,,,imp of location in decision to attend perf
+prfmwhy8,imp of specific individ performer in decision to attend perf,,,imp of specific individ performer in decision to attend perf
+prfmwhy9,was there another major reason in decision to attend perf,,,was there another major reason in decision to attend perf
+priagncy,registered at a private employment agency,,,registered at a private employment agency
+pricecon,govts resp: keep prices under control,,,govts resp: keep prices under control
+prideorg,i am proud working for my firm,,,i am proud working for my firm
+promotn,importance of advancement in a job,,,importance of advancement in a job
+protest1,allow public meetings protesting govt,,,allow public meetings protesting govt
+protest3,allow demonstrations protesting govt,,,allow demonstrations protesting govt
+proudwrk,i am proud of the type of work i do,,,i am proud of the type of work i do
+prvdhlth,who provides for sick people,,,who provides for sick people
+prvdold,who provides for old people,,,who provides for old people
+prvdschl,who provides school educ,,,who provides school educ
+pubagncy,registered at a public employment agency,,,registered at a public employment agency
+racdif1,differences due to discrimination,,,differences due to discrimination
+racdif2,differences due to in-born learning ability,,,differences due to in-born learning ability
+racdif3,differences due to lack of education,,,differences due to lack of education
+racdif4,differences due to lack of will,,,differences due to lack of will
+race,race of respondent,,,race of respondent
+raceacs14,native hawaiian or other pacific islander,,,native hawaiian or other pacific islander
+racecen1,"what is r's race, first mention",,,"what is r's race, first mention"
+racecen1_0022,"what is r's race, first mention",,,"what is r's race, first mention"
+racecen2,"what is r's race, second mention",,,"what is r's race, second mention"
+racecen2_0022,"what is r's race, second mention",,,"what is r's race, second mention"
+racecen3,"what is r's race, third mention",,,"what is r's race, third mention"
+racecen3_0022,"what is r's race, third mention",,,"what is r's race, third mention"
+racethas,points assigned to asian american,,,points assigned to asian american
+racethbl,points assigned to black/african american,,,points assigned to black/african american
+racethhi,points assigned to hispanic/latino,,,points assigned to hispanic/latino
+racethmn,specify other in racethot,,,specify other in racethot
+racethna,points assigned to native american/american indian,,,points assigned to native american/american indian
+racethot,points assigned to other,,,points assigned to other
+racethwh,points assigned to white,,,points assigned to white
+raclive,any opp. race in neighborhood,,,any opp. race in neighborhood
+racopen,vote on open housing law,,,vote on open housing law
+racwork,racial makeup of workplace,,,racial makeup of workplace
+radioact,sci knowledge: the center of earth is very hot,,,sci knowledge: the center of earth is very hot
+random,randomization variable for form x,,,randomization variable for form x
+rank,r's self ranking of social position,,,r's self ranking of social position
+ratetone,r's facial coloring by interviewer,,,r's facial coloring by interviewer
+rcontact,do you have personal contact at work,,,do you have personal contact at work
+realinc,family income in constant $,,,family income in constant $
+realrinc,r's income in constant $,,,r's income in constant $
+reborn,has r ever had a 'born again' experience,,,has r ever had a 'born again' experience
+reg16,"region of residence, age 16",,,"region of residence, age 16"
+reg16_7222,"region of residence, age 16",,,"region of residence, age 16"
+region,region of interview,,,region of interview
+region_7222,region of interview,,,region of interview
+relactiv,how often does r take part in relig activities,,,how often does r take part in relig activities
+relate1,relationship of 1st person to household head,,,relationship of 1st person to household head
+relate10,relationship of 10th person to household head,,,relationship of 10th person to household head
+relate11,relation of 11th person (visitor) to head,,,relation of 11th person (visitor) to head
+relate12,relation of 12th person (visitor) to head,,,relation of 12th person (visitor) to head
+relate13,relation of 13th person (visitor) to head,,,relation of 13th person (visitor) to head
+relate14,relation of 14th person (visitor) to head,,,relation of 14th person (visitor) to head
+relate2,relationship of 2nd person to household head,,,relationship of 2nd person to household head
+relate3,relationship of 3rd person to household head,,,relationship of 3rd person to household head
+relate4,relationship of 4th person to household head,,,relationship of 4th person to household head
+relate5,relationship of 5th person to household head,,,relationship of 5th person to household head
+relate6,relationship of 6th person to household head,,,relationship of 6th person to household head
+relate7,relationship of 7th person to household head,,,relationship of 7th person to household head
+relate8,relationship of 8th person to household head,,,relationship of 8th person to household head
+relate9,relationship of 9th person to household head,,,relationship of 9th person to household head
+relatsex,relation to last sex partner,,,relation to last sex partner
+relhh1,relationship of person 1 to head of household,,,relationship of person 1 to head of household
+relhh10,relationship of person 10 to head of household,,,relationship of person 10 to head of household
+relhh11,relationship of person 11 to head of household,,,relationship of person 11 to head of household
+relhh12,relationship of person 12 to head of household,,,relationship of person 12 to head of household
+relhh13,relationship of person 13 to head of household,,,relationship of person 13 to head of household
+relhh14,relationship of person 14 to head of household,,,relationship of person 14 to head of household
+relhh2,relationship of person 2 to head of household,,,relationship of person 2 to head of household
+relhh3,relationship of person 3 to head of household,,,relationship of person 3 to head of household
+relhh4,relationship of person 4 to head of household,,,relationship of person 4 to head of household
+relhh5,relationship of person 5 to head of household,,,relationship of person 5 to head of household
+relhh6,relationship of person 6 to head of household,,,relationship of person 6 to head of household
+relhh7,relationship of person 7 to head of household,,,relationship of person 7 to head of household
+relhh8,relationship of person 8 to head of household,,,relationship of person 8 to head of household
+relhh9,relationship of person 9 to head of household,,,relationship of person 9 to head of household
+relhhd1,relation of 1st person to household head,,,relation of 1st person to household head
+relhhd10,relation of 1oth person to household head,,,relation of 1oth person to household head
+relhhd11,relation of 11th person (visitor) to head,,,relation of 11th person (visitor) to head
+relhhd12,relation of 12th person (visitor) to head,,,relation of 12th person (visitor) to head
+relhhd13,relation of 13th person (visitor) to head,,,relation of 13th person (visitor) to head
+relhhd14,relation of 14th person (visitor) to head,,,relation of 14th person (visitor) to head
+relhhd2,relation of 2nd person to household head,,,relation of 2nd person to household head
+relhhd3,relation of 3rd person to household head,,,relation of 3rd person to household head
+relhhd4,relation of 4th person to household head,,,relation of 4th person to household head
+relhhd5,relation of 5th person to household head,,,relation of 5th person to household head
+relhhd6,relation of 6th person to household head,,,relation of 6th person to household head
+relhhd7,relation of 7th person to household head,,,relation of 7th person to household head
+relhhd8,relation of 8th person to household head,,,relation of 8th person to household head
+relhhd9,relation of 9th person to household head,,,relation of 9th person to household head
+relig,r's religious preference,,,r's religious preference
+relig16,religion in which raised,,,religion in which raised
+reliten,strength of affiliation,,,strength of affiliation
+relpersn,r consider self a religious person,,,r consider self a religious person
+relsp1,relationship of person 1 to spouse of househol,,,relationship of person 1 to spouse of househol
+relsp10,relationship of person 10 to spouse of househo,,,relationship of person 10 to spouse of househo
+relsp11,relationship of person 11 to spouse of househo,,,relationship of person 11 to spouse of househo
+relsp12,relationship of person 12 to spouse of househo,,,relationship of person 12 to spouse of househo
+relsp13,relationship of person 13 to spouse of househo,,,relationship of person 13 to spouse of househo
+relsp14,relationship of person 14 to spouse of househo,,,relationship of person 14 to spouse of househo
+relsp2,relationship of person 2 to spouse of househol,,,relationship of person 2 to spouse of househol
+relsp3,relationship of person 3 to spouse of househol,,,relationship of person 3 to spouse of househol
+relsp4,relationship of person 4 to spouse of househol,,,relationship of person 4 to spouse of househol
+relsp5,relationship of person 5 to spouse of househol,,,relationship of person 5 to spouse of househol
+relsp6,relationship of person 6 to spouse of househol,,,relationship of person 6 to spouse of househol
+relsp7,relationship of person 7 to spouse of househol,,,relationship of person 7 to spouse of househol
+relsp8,relationship of person 8 to spouse of househol,,,relationship of person 8 to spouse of househol
+relsp9,relationship of person 9 to spouse of househol,,,relationship of person 9 to spouse of househol
+reltrad,religious tradition,,,religious tradition
+res16,type of place lived in when 16 yrs old,,,type of place lived in when 16 yrs old
+respnum,number in family of r,,,number in family of r
+respond,estimate of the probability that this household will respond to the survey,,,estimate of the probability that this household will respond to the survey
+revpub,allow revolutionaries to publish books,,,allow revolutionaries to publish books
+revspeak,allow revolutionary public meetings,,,allow revolutionary public meetings
+rgroomed,r grooming rating,,,r grooming rating
+rhiinc,r's income is high,,,r's income is high
+rhlpoths,r helps others in job,,,r helps others in job
+rhlpsoc,r's job is useful to society,,,r's job is useful to society
+rhlthend,r health rating,,,r health rating
+richwork,"if rich, continue or stop working",,,"if rich, continue or stop working"
+rifle,rifle in home,,,rifle in home
+rincom16,respondents income,,,respondents income
+rincome,respondents income,,,respondents income
+rintjob,r's job is interesting,,,r's job is interesting
+rlooks,r physical attractiveness rating,,,r physical attractiveness rating
+rowngun,does gun belong to r,,,does gun belong to r
+rplace,r's relationship to household head,,,r's relationship to household head
+rplace_7522,r's relationship to household head,,,r's relationship to household head
+rpromotn,r has opportunity to advance,,,r has opportunity to advance
+rsecjob,r's job is secure,,,r's job is secure
+rushed,how often r feels rushed,,,how often r feels rushed
+rvisitor,is r a visitor?,,,is r a visitor?
+rweight,r weight rating,,,r weight rating
+rwrkindp,r can work independently,,,r can work independently
+sampcode,sampling error code,,,sampling error code
+sample,sampling frame and method,,,sampling frame and method
+satfin,satisfaction with financial situation,,,satisfaction with financial situation
+satjob,work satisfaction,,,work satisfaction
+satjobhv,job satisfaction,,,job satisfaction
+savejobs,govt support for declining industries,,,govt support for declining industries
+savesoul,tried to convince others to accept jesus,,,tried to convince others to accept jesus
+scibnfts,benefits of sci research outweigh harmful results,,,benefits of sci research outweigh harmful results
+scientbe,scientists want to make life better for avg person,,,scientists want to make life better for avg person
+scientgo,scientists work for good of humanity,,,scientists work for good of humanity
+scienthe,scientists help solve prob,,,scientists help solve prob
+scientod,scientists odd and peculiar,,,scientists odd and peculiar
+scifrom,main source of information about science and technology,,,main source of information about science and technology
+scinews1,newspaper printed or online,,,newspaper printed or online
+scinews2,magazine printed or online,,,magazine printed or online
+scinews3,where online get info,,,where online get info
+scistudy,r has clear understanding of scientific study,,,r has clear understanding of scientific study
+scitext,what it means to r to study scientifically,,,what it means to r to study scientifically
+secjob,importance of job security in a job,,,importance of job security in a job
+sector,type of college respondent attended,,,type of college respondent attended
+seeksci,probable source of information about scientific issues,,,probable source of information about scientific issues
+sei10,r's socioeconomic index (2010),,,r's socioeconomic index (2010)
+sei10educ,percentage of some college educ in occ10 based on acs 2010,,,percentage of some college educ in occ10 based on acs 2010
+sei10inc,percentage of $45k+ earners in occ10 based on acs 2010,,,percentage of $45k+ earners in occ10 based on acs 2010
+sethrs,how are your working hours decided,,,how are your working hours decided
+sex,respondents sex,,,respondents sex
+sexeduc,sex education in public schools,,,sex education in public schools
+sexfreq,frequency of sex during last year,,,frequency of sex during last year
+sexornt,sexual orientation,,,sexual orientation
+sexsex,sex of sex partner's in last year,,,sex of sex partner's in last year
+sexsex5,sex of sex partner's last five years,,,sex of sex partner's last five years
+shotgun,shotgun in home,,,shotgun in home
+sibs,number of siblings (including step- and adopted),,,number of siblings (including step- and adopted)
+sibs_7222,number of siblings (including step- and adopted),,,number of siblings (including step- and adopted)
+size,size of place in 1000s,,,size of place in 1000s
+skltrain,r had job skill training in thepast 12 months,,,r had job skill training in thepast 12 months
+snapchat,use snapchat,,,use snapchat
+snsmfrst,which social network did you join first,,,which social network did you join first
+snsmnew,which social network did you join most recently,,,which social network did you join most recently
+snsmot2a,first other social network,,,first other social network
+snsmot2b,second other social network,,,second other social network
+snsmot2c,third other social network,,,third other social network
+snsmoth1,do you use any other social networks,,,do you use any other social networks
+snsmyear,year first joined sns,,,year first joined sns
+socbar,spend evening at bar,,,spend evening at bar
+socfrend,spend evening with friends,,,spend evening with friends
+socommun,spend evening with neighbor,,,spend evening with neighbor
+socrel,spend evening with relatives,,,spend evening with relatives
+solarrev,sci knowledge: how long the earth goes around the sun,,,sci knowledge: how long the earth goes around the sun
+spaneng,interviews conducted in spanish or english,,,interviews conducted in spanish or english
+spanint,"if no spanish, r could have been interviewed in english",,,"if no spanish, r could have been interviewed in english"
+spanking,favor spanking to discipline child,,,favor spanking to discipline child
+spanself,"if this interview had only been available in english, would you...",,,"if this interview had only been available in english, would you..."
+sparms,govt spending on defense,,,govt spending on defense
+sparts,govt spending on culture and the arts,,,govt spending on culture and the arts
+spbarate,rate of ba degree earning in college spouse attended,,,rate of ba degree earning in college spouse attended
+spdeg,spouse's highest degree,,,spouse's highest degree
+spden,"specific denomination, spouse",,,"specific denomination, spouse"
+spden_7322,"specific denomination, spouse",,,"specific denomination, spouse"
+spdipged,"spouse diploma, ged, or other",,,"spouse diploma, ged, or other"
+speduc,"highest year school completed, spouse",,,"highest year school completed, spouse"
+speftotlt,total number of students enrolled in college spouse attended,,,total number of students enrolled in college spouse attended
+spenviro,govt spending on environment,,,govt spending on environment
+spevwork,spouse ever work as long as a year,,,spouse ever work as long as a year
+spfund,how fundamentalist is spouse currently,,,how fundamentalist is spouse currently
+spgradtounder,ratio of graduate students to undergraduate students in college spouse attended,,,ratio of graduate students to undergraduate students in college spouse attended
+sphlth,govt spending on health,,,govt spending on health
+sphrs1,number of hrs spouse worked last week,,,number of hrs spouse worked last week
+sphrs2,no. of hrs spouse usually works a week,,,no. of hrs spouse usually works a week
+spind10,spouse's industry code (naics 2007),,,spouse's industry code (naics 2007)
+spisco08,"r's mothers occupation, 2010 census & 2008 isco code",,,"r's mothers occupation, 2010 census & 2008 isco code"
+spisco88,"r's spouse's occupation, 1980 census & 1988 isco code",,,"r's spouse's occupation, 1980 census & 1988 isco code"
+spjew,what sort of jew is r's spouse currently,,,what sort of jew is r's spouse currently
+spkath,allow anti-religionist to speak,,,allow anti-religionist to speak
+spkcom,allow communist to speak,,,allow communist to speak
+spkhomo,allow homosexual to speak,,,allow homosexual to speak
+spklang,how well does r speak other language,,,how well does r speak other language
+spkmil,allow militarist to speak,,,allow militarist to speak
+spkmslm,allow muslim clergymen preaching hatred of the us,,,allow muslim clergymen preaching hatred of the us
+spkrac,allow racist to speak,,,allow racist to speak
+spocc10,spouse census occupation code (2010),,,spouse census occupation code (2010)
+spother,other protestant denominations,,,other protestant denominations
+sppolice,govt spending on law enforcement,,,govt spending on law enforcement
+sppres10,spouse occupational prestige score (2010),,,spouse occupational prestige score (2010)
+sppres105plus,spouse occupational prestige score using threshold method (2010),,,spouse occupational prestige score using threshold method (2010)
+sprel,spouse's religious preference,,,spouse's religious preference
+spretire,govt spending on retirement benefits,,,govt spending on retirement benefits
+sprtprsn,r consider self a spiritual person,,,r consider self a spiritual person
+spschool,govt spending on education,,,govt spending on education
+spsector,type of college spouse attended,,,type of college spouse attended
+spsei10,r's spouse's socioeconomic index (2010),,,r's spouse's socioeconomic index (2010)
+spsei10educ,percentage of some college educ in spocc10 based on acs 2010,,,percentage of some college educ in spocc10 based on acs 2010
+spsei10inc,percentage of $45k+ earners in spocc10 based on acs 2010,,,percentage of $45k+ earners in spocc10 based on acs 2010
+spunemp,govt spending on unemployment benefits,,,govt spending on unemployment benefits
+spwrkslf,spouse self-emp. or works for somebody,,,spouse self-emp. or works for somebody
+spwrksta,spouse labor force status,,,spouse labor force status
+srcbelt,src beltcode,,,src beltcode
+stayorg3,i would turn down job offering more pay,,,i would turn down job offering more pay
+stoprndm,should authorities have right to search ppl in the street,,,should authorities have right to search ppl in the street
+stress,how often does r find work stressful,,,how often does r find work stressful
+stresswk,stress in past 2 wks,,,stress in past 2 wks
+strngun,strong unions needed to protect workers,,,strong unions needed to protect workers
+subsamprate,subsampling rate corresponding to two-phase design,,,subsampling rate corresponding to two-phase design
+suicide1,suicide if incurable disease,,,suicide if incurable disease
+suicide2,suicide if bankrupt,,,suicide if bankrupt
+suicide3,suicide if dishonored family,,,suicide if dishonored family
+suicide4,suicide if tired of living,,,suicide if tired of living
+suiclse1,how close were you to closest suicide victim,,,how close were you to closest suicide victim
+suiclse2,how close wereyou to 2nd closest suicide victim,,,how close wereyou to 2nd closest suicide victim
+suimths1,how many months since closest suicide,,,how many months since closest suicide
+suimths2,how many months since 2nd closest suicide,,,how many months since 2nd closest suicide
+suineg1,did closest suicide negatively impact you,,,did closest suicide negatively impact you
+suineg2,did 2nd closest suicide negatively impact you,,,did 2nd closest suicide negatively impact you
+suinum,people r knows suicide over lifetime,,,people r knows suicide over lifetime
+suinum1,people r knows suicide over lifetime,,,people r knows suicide over lifetime
+suirel1,r's relationship to closest suicide,,,r's relationship to closest suicide
+suirel2,r's relationship to 2nd closest suicide,,,r's relationship to 2nd closest suicide
+suitime1,how many years and months since closest suicide,,,how many years and months since closest suicide
+suitime2,how many years and months since 2nd closest suicide,,,how many years and months since 2nd closest suicide
+suiyrs1,how many years since closest suicide,,,how many years since closest suicide
+suiyrs2,how many years since 2nd closest suicide,,,how many years since 2nd closest suicide
+tapphone,should authorities have right to tap phone conver'sation,,,should authorities have right to tap phone conver'sation
+tax,r's federal income tax,,,r's federal income tax
+taxbylaw,do authorities tax legally,,,do authorities tax legally
+taxmid,taxes on middle income people too high,,,taxes on middle income people too high
+taxpaid,do authorities ensure taxes are paid,,,do authorities ensure taxes are paid
+taxpoor,taxes on low income people too high,,,taxes on low income people too high
+taxrich,taxes on high income people too high,,,taxes on high income people too high
+teens,household members 13 thru 17 yrs old,,,household members 13 thru 17 yrs old
+teens_7222,household members 13 thru 17 yrs old,,,household members 13 thru 17 yrs old
+teensex,sex before marriage:teens 14-16,,,sex before marriage:teens 14-16
+tempgen,greenhouse effect danger to envir,,,greenhouse effect danger to envir
+tempwork,i would accept temporary employment,,,i would accept temporary employment
+thnkself,to think for ones self,,,to think for ones self
+timeoff,how difficult r takes an hour off during working hours,,,how difficult r takes an hour off during working hours
+toofast,science makes our way of life change too fast,,,science makes our way of life change too fast
+trust,can people be trusted,,,can people be trusted
+tumblr,use tumblr,,,use tumblr
+tvhours,hours per day watching tv,,,hours per day watching tv
+twitter,use twitter,,,use twitter
+unemp,ever unemployed in last ten yrs,,,ever unemployed in last ten yrs
+union,does r or spouse belong to union,,,does r or spouse belong to union
+union1,does r or spouse or partner belong to union,,,does r or spouse or partner belong to union
+unionsbd,strong trade unions are bad for us economy,,,strong trade unions are bad for us economy
+unrelat,number in household not related,,,number in household not related
+unrelat_7222,number in household not related,,,number in household not related
+uscitzn,"if not born in us, is r a us citizen",,,"if not born in us, is r a us citizen"
+uscitzn_0822,"if not born in us, is r a us citizen",,,"if not born in us, is r a us citizen"
+useskill,how much past skills can you make use in present,,,how much past skills can you make use in present
+usewww,r use www other than email,,,r use www other than email
+usualhrs,how many hrs/week do you usually work,,,how many hrs/week do you usually work
+uswar,expect u.s. in war within 10 years,,,expect u.s. in war within 10 years
+uswary,expect u.s. in world war in 10 years,,,expect u.s. in world war in 10 years
+verdict,worse type of judicial mistake,,,worse type of judicial mistake
+version,version of questionnaire,,,version of questionnaire
+vetyears,years in armed forces,,,years in armed forces
+vietdraft,born on date with a vietnam war draft lottery number,,,born on date with a vietnam war draft lottery number
+vine,use vine,,,use vine
+viruses,sci knowledge: antibiotics kill viruses as well as bacteria,,,sci knowledge: antibiotics kill viruses as well as bacteria
+visitors,number of visitor's in household,,,number of visitor's in household
+visnhist,how often r visited natural history museum last year,,,how often r visited natural history museum last year
+vissci,how often r visited science museum,,,how often r visited science museum
+viszoo,how often r visited zoo last year,,,how often r visited zoo last year
+voedcol,non-college postsecondary education (voednme1),,,non-college postsecondary education (voednme1)
+voedncol,non-college postsecondary education (voednme2),,,non-college postsecondary education (voednme2)
+voednme1,postsecondary institution attended for credit,,,postsecondary institution attended for credit
+voednme2,postsecondary institution attended for credit,,,postsecondary institution attended for credit
+vote12,did r vote in 2012 election,,,did r vote in 2012 election
+vpsu,variance primary sampling unit,,,variance primary sampling unit
+vstrat,variance stratum,,,variance stratum
+wantads,answered advertisements for jobs,,,answered advertisements for jobs
+wantjob1,which job would you prefer,,,which job would you prefer
+wantjob2,would like to have a job now or in the future,,,would like to have a job now or in the future
+watergen,water pollution danger to envir,,,water pollution danger to envir
+webmob,r uses home internet through mobile device,,,r uses home internet through mobile device
+weekswrk,weeks r worked last year,,,weeks r worked last year
+whatsapp,use whatsapp,,,use whatsapp
+whencol,when received college degree,,,when received college degree
+whenhs,when received hs degree,,,when received hs degree
+where1,where is 1st person staying?,,,where is 1st person staying?
+where10,where is 1oth person staying?,,,where is 1oth person staying?
+where11,where is 11th person (visitor) staying?,,,where is 11th person (visitor) staying?
+where12,where is 12th person (visitor) staying?,,,where is 12th person (visitor) staying?
+where13,where is 13th person (visitor) staying?,,,where is 13th person (visitor) staying?
+where14,where is 14th person (visitor) staying?,,,where is 14th person (visitor) staying?
+where2,where is 2nd person staying?,,,where is 2nd person staying?
+where3,where is 3rd person staying?,,,where is 3rd person staying?
+where4,where is 4th person staying?,,,where is 4th person staying?
+where5,where is 5th person staying?,,,where is 5th person staying?
+where6,where is 6th person staying?,,,where is 6th person staying?
+where7,where is 7th person staying?,,,where is 7th person staying?
+where8,where is 8th person staying?,,,where is 8th person staying?
+where9,where is 9th person staying?,,,where is 9th person staying?
+whoelse1,presence of others: children under six,,,presence of others: children under six
+whoelse2,presence of others: older children,,,presence of others: older children
+whoelse3,presence of others: spouse partner,,,presence of others: spouse partner
+whoelse4,presence of others: other relatives,,,presence of others: other relatives
+whoelse5,presence of others: other adults,,,presence of others: other adults
+whoelse6,presence of others: no one,,,presence of others: no one
+whydisc5,why were you discriminated against,,,why were you discriminated against
+whyjbend,main reason your job end,,,main reason your job end
+widowed,ever been widowed,,,ever been widowed
+wkathome,how often do you work from home,,,how often do you work from home
+wkpersnl,importance of personal contact at work,,,importance of personal contact at work
+wksub,does r or spouse have supervisor,,,does r or spouse have supervisor
+wksub1,does r or spouse or partner have a supervisor,,,does r or spouse or partner have a supervisor
+wksubs,does supervisor have supervisor,,,does supervisor have supervisor
+wksubs1,does supervisor have supervisor,,,does supervisor have supervisor
+wksup,does r or spouse supervise anyone,,,does r or spouse supervise anyone
+wksup1,does r or spouse or partner supervise anyone,,,does r or spouse or partner supervise anyone
+wksups,does subordinate supervise anyone,,,does subordinate supervise anyone
+wksups1,does subordinant supervise anyone,,,does subordinant supervise anyone
+wkwkends,do you work weekends,,,do you work weekends
+wlthblks,rich - poor,,,rich - poor
+wlthwhts,rich - poor,,,rich - poor
+worda,word a,,,word a
+wordb,word b,,,word b
+wordc,word c,,,word c
+wordd,word d,,,word d
+worde,word e,,,word e
+wordf,word f,,,word f
+wordg,word g,,,word g
+wordh,word h,,,word h
+wordi,word i,,,word i
+wordj,word j,,,word j
+wordsum,number words correct in vocabulary test,,,number words correct in vocabulary test
+worecsup,do you worry about losing economic support,,,do you worry about losing economic support
+workblks,hard working - lazy,,,hard working - lazy
+workhard,to work hard,,,to work hard
+worknow,are you currently working for pay,,,are you currently working for pay
+workwhts,hard working - lazy,,,hard working - lazy
+wornojob,do you worry about not finding job,,,do you worry about not finding job
+worryjob,do you worry about losing job,,,do you worry about losing job
+wotrial,should authorities have right to detain the suspected,,,should authorities have right to detain the suspected
+wrkearn,job is just a way to earn money,,,job is just a way to earn money
+wrkenjoy,enjoy job even if $ not needed,,,enjoy job even if $ not needed
+wrkgovt,govt or private employee,,,govt or private employee
+wrkindp,importance of independent work in a job,,,importance of independent work in a job
+wrkshift,what is your working schedule,,,what is your working schedule
+wrkslf,r self-emp or works for somebody,,,r self-emp or works for somebody
+wrkstat,labor force status,,,labor force status
+wrkwayup,black people overcome prejudice without favors,,,black people overcome prejudice without favors
+wtss,weight variable,,,weight variable
+wtssall,weight variable,,,weight variable
+wtssnr,weight variable,,,weight variable
+wtssnrps,"person post-stratification weight, nonrespondents adjusted",,,"person post-stratification weight, nonrespondents adjusted"
+wtssps,person post-stratification weight,,,person post-stratification weight
+wwwhr,www hours per week,,,www hours per week
+wwwmin,www minutes per week,,,www minutes per week
+xhaustn,how often does work exhaust r,,,how often does work exhaust r
+xmarsex,sex with person other than spouse,,,sex with person other than spouse
+xmovie,seen x-rated movie in last year,,,seen x-rated movie in last year
+xnorcsiz,expanded norc size code,,,expanded norc size code
+year,gss year for this respondent,,,gss year for this respondent
+yrsfirm,importance of tenure to pay,,,importance of tenure to pay
+zodiac,respondents astrological sign,,,respondents astrological sign

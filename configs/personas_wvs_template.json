@@ -1,0 +1,16 @@
+[
+  {
+    "id": "WF_US_2017_WVS",
+    "qnet": "models/wvs/wvs7.pkl.gz",
+    "persona": "22 year old white female without children, regular news consumer, working in retail, highly progressive",
+    "year": 2017,
+    "country": "United States"
+  },
+  {
+    "id": "CM_US_2017_WVS",
+    "qnet": "models/wvs/wvs7.pkl.gz",
+    "persona": "45 year old white male with children, regular news consumer, working in farming, veteran, conservative",
+    "year": 2017,
+    "country": "United States"
+  }
+]

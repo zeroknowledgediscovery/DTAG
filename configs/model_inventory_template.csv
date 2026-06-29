@@ -1,0 +1,4 @@
+family,year,sex,path,map,notes
+gss,2022,female,models/gss/gss_2022female.pkl.gz,maps/map2022.csv,Year and sex are encoded by the model filename; do not force --year unless A_YEAR exists.
+gss,2022,male,models/gss/gss_2022male.pkl.gz,maps/map2022.csv,Year and sex are encoded by the model filename; do not force --year unless A_YEAR exists.
+wvs,7,pooled,models/wvs/wvs7.pkl.gz,maps/wvs7_variable_question_map.csv,WVS-style model may expose A_YEAR and O1/O2 coordinates for hard conditioning.

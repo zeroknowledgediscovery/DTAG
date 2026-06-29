@@ -1,0 +1,20 @@
+python3 run_dtag_experiment_grid_iloc.py \
+  --pipeline ./pipeline6iloc.py \
+  --question_dir ./assets/dtag_divergence_question_sets \
+  --question_glob "*.csv" \
+  --outdir ./dtag_batch_divergence \
+  --map maps/map2022.csv \
+  --polar_vectors assets/polar_vectors.csv \
+  --personas_json dtag_personas_gss_example.json \
+  --runs_per_condition 6 \
+  --parallel 12 \
+  --variants forward,reverse,shuffle \
+  --shuffle_orders 5 \
+  --state_keep 500 \
+  --k 50 \
+  --prefilter 200 \
+  --max_assign 50 \
+  --assign_prefilter 500 \
+  --resp_mode draw \
+  --openai_model gpt-4.1 \
+  --timing

@@ -1,0 +1,303 @@
+variable,question_text
+country,Country
+respno,Respondent number
+backchk,Household back-checked?
+urbrur,Urban or Rural Primary Sampling Unit | PSU/EA
+region,Province or Region | Region
+district,District
+hholdse1,Reason for Unsuccessful Call 1 | Reasons for unsuccessful calls – Household 1
+hholdse2,Reason for Unsuccessful Call 2 | Reasons for unsuccessful calls – Household 2
+hholdse3,Reason for Unsuccessful Call 3 | Reasons for unsuccessful calls – Household 3
+hholdse4,Reason for Unsuccessful Call 4 | Reasons for unsuccessful calls – Household 4
+hholdse5,Reason for Unsuccessful Call 5 | Reasons for unsuccessful calls – Household 5
+hholdse6,Reason for Unsuccessful Call 6 | Reasons for unsuccessful calls – Household 6
+hholdse7,Reason for Unsuccessful Call 7 | Reasons for unsuccessful calls – Household 7
+prevint,"Previous interview, gender | Previous interview was with a:"
+currint,"This interview, gender | This interview must be with a:"
+calls,Number of calls | Interviewer: How many calls were made to the household where the interview actually took place?
+dateintr,Date of interview
+strtime,Time interview started
+q1,Age | How old are you?
+q2,Head of household | Are you the head of the household?
+q3,Language of respondent | Which [Ghanaian/Kenyan/etc.] language is your home language?
+q4a,"Country’s present economic condition | In general, how would you describe: The present economic conditions of this country?"
+q4b,"Your present living conditions | In general, how would you describe: Your own present living conditions?"
+q5,"Your living conditions vs. others | In general, how do you rate: Your living conditions compared to those of other [Ghanaians/Kenyans/etc.]?"
+q6a,"Country’s economic condition 12 months ago | Looking back, how do you rate the following compared to twelve months ago: Economic conditions in this country?"
+q6b,"Your living conditions 12 months ago | Looking back, how do you rate the following compared to twelve months ago: Your living conditions?"
+q7a,"Country’s economic condition in 12 months | Looking ahead, do you expect the following to be better or worse: Economic conditions in this country in twelve months time?"
+q7b,"Your living conditions in 12 months | Looking ahead, do you expect the following to be better or worse: Your living conditions in twelve months time?"
+q8a,"How often gone without food | Over the past year, how often, if ever, have you or anyone in your family gone without: Enough food to eat?"
+q8b,"How often gone without water | Over the past year, how often, if ever, have you or anyone in your family gone without: Enough clean water for home use?"
+q8c,"How often gone without medical care | Over the past year, how often, if ever, have you or anyone in your family gone without: Medicines or medical treatment?"
+q8d,"How often gone without cooking fuel | Over the past year, how often, if ever, have you or anyone in your family gone without: Enough fuel to cook your food?"
+q8e,"How often gone without cash income | Over the past year, how often, if ever, have you or anyone in your family gone without: A cash income?"
+q8f,"How often gone without school expenses | Over the past year, how often, if ever, have you or anyone in your family gone without: School expenses for your children (like fees, uniforms or books)?"
+q9a,"How often feared crime in home | Over the past year, how often (if ever) have you or anyone in your family: Feared crime in your own home?"
+q9b,"How often something stolen from house | Over the past year, how often (if ever) have you or anyone in your family: Had something stolen from your house?"
+q9c,"How often physically attacked | Over the past year, how often (if ever) have you or anyone in your family: Been physically attacked?"
+q10,"Free schooling vs. user fees | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: It is better to have free schooling for our children, even if the quality of education is low. B: It is better to raise educational standards, even if we have to pay school fees."
+q11,"Civil servants keep jobs vs. lay offs to reduce costs | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: All civil servants should keep their jobs, even if paying their salaries is costly to the country. B: The government cannot afford so many public employees and should lay some of them off."
+q12,"Abandon economic reforms vs. accept hardships | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: The costs of reforming the economy are too high; the government should therefore abandon its current economic policies. B: In order for the economy to get better in the future, it is necessary for us to accept some hardships now."
+q13,Economic policies helped most vs. hurt most | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: The government’s economic policies have helped most people; only a few have suffered. B: The government’s economic policies have hurt most people and only benefited a few.
+q14a,"Present vs. past: Availability of goods | Please tell me whether each of the following aspects of our economic situation in this country are better or worse than they were a few years ago, or whether they have remained the same: The availability of consumer goods?"
+q14b,"Present vs. past: Job opportunities | Please tell me whether each of the following aspects of our economic situation in this country are better or worse than they were a few years ago, or whether they have remained the same: The availability of job opportunities?"
+q14c,"Present vs. past: Gap between rich and poor | Please tell me whether each of the following aspects of our economic situation in this country are better or worse than they were a few years ago, or whether they have remained the same: The gap between the rich and the poor?"
+q15a,Radio news | How often do you get news from the following sources: Radio?
+q15b,Television news | How often do you get news from the following sources: Television?
+q15c,Newspaper news | How often do you get news from the following sources: Newspapers?
+q16,Interest in public affairs | How interested would you say you are in public affairs?
+q17,"Discuss politics | When you get together with your friends or family, would you say you discuss political matters:"
+q18a,Politics and government too complicated | Do you agree or disagree with the following statements: Politics and government sometimes seem so complicated that you can’t really understand what’s going on?
+q18b,"Others don’t listen to you | Do you agree or disagree with the following statements: As far as politics is concerned, friends and neighbors do not listen to you?"
+q19,People responsible for well-being vs. government | Lets talk for a moment about the kind of society we would like to have in this country. Which of the following statements is closest to your view? Choose Statement A or Statement B. A: People should look after themselves and be responsible for their own success in life. B: The government should bear the main responsibility for the well-being of people.
+q20,"Question actions of leaders vs. respect authority | Let’s talk for a moment about the kind of society we would like to have in this country. Which of the following statements is closest to your view? Choose Statement A or Statement B. A: As citizens, we should be more active in questioning the actions of our leaders. B: In our country these days, we should show more respect for authority."
+q21,"Leaders treat all equally vs. help own community | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Since leaders represent everyone, leaders should not favour their own family or group. B: Once in office, leaders are obliged to help their home community."
+q22,"All vote vs. only educated vote | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: All people should be permitted to vote, even if they do not fully understand all the issues in an election. B: Only those who are sufficiently well educated should be allowed to choose our leaders."
+q23,"Women have equal rights vs. subject to traditional laws | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: In our country, women should have equal rights and receive the same treatment as men do. B: Women have always been subject to traditional laws and customs, and should remain so."
+q24,"Women leaders vs. men only as leaders | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Women should have the same chance of being elected to political office as men. B: Men make better political leaders than women, and should be elected rather than women."
+q25,"Government bans organization vs. join any | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Government should be able to ban any organization that goes against its policies. B: We should be able to join any organization, whether or not the government approves of it."
+q26,Government close newspapers vs. free to publish | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Government should close newspapers that print false stories or misinformation. B: The news media should be free to publish any story that they see fit without fear of being shut down.
+q27,"Government suppress expression vs. people speak minds | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Government should not allow the expression of political views that are fundamentally different from the views of the majority. B: People should be able to speak their minds about politics free of government influence, no matter how unpopular their views may be."
+q28a,"Member of religious group | Let’s turn to your role in the community. Now I am going to read out a list of groups that people join or attend. For each one, could you tell me whether you are an official leader, an active member, an inactive member, or not a member: A religious group (e.g. church, mosque)?"
+q28b,"Member of trade union or farmers association | Now I am going to read out a list of groups that people join or attend. For each one, could you tell me whether you are an official leader, an active member, an inactive member, or not a member: A trade union or farmers association?"
+q28c,"Member of professional or business association | Now I am going to read out a list of groups that people join or attend. For each one, could you tell me whether you are an official leader, an active member, an inactive member, or not a member: A professional or business association?"
+q28d,"Member of community development association | Now I am going to read out a list of groups that people join or attend. For each one, could you tell me whether you are an official leader, an active member, an inactive member, or not a member: A community development or self-help association?"
+q29,"Registered to vote | Understanding that some [Ghanaians/Kenyans/etc.] were not able to register as voters for the [20xx] elections, which statement is true for you?"
+q30,"Voted last election | With regard to the most recent, [20xx] national elections, which statement is true for you?"
+q31a,"Attend a community meeting | Here is a list of actions that people sometimes take as citizens. For each of these, please tell me whether you, personally, have done any of these things during the past year. If not, would you do this if you had the chance: Attended a community meeting?"
+q31b,"Join others to raise an issue | Here is a list of actions that people sometimes take as citizens. For each of these, please tell me whether you, personally, have done any of these things during the past year. If not, would you do this if you had the chance: Got together with others to raise an issue?"
+q31c,"Attend a demonstration or protest march | Here is a list of actions that people sometimes take as citizens. For each of these, please tell me whether you, personally, have done any of these things during the past year. If not, would you do this if you had the chance: Attended a demonstration or protest march?"
+q32a,"Contact Local government councillor | During the past year, how often have you contacted any of the following persons for help to solve a problem or to give them your views: A Local Government Councillor?"
+q32b,"Contact MP | During the past year, how often have you contacted any of the following persons for help to solve a problem or to give them your views: A Member of Parliament/National Assembly Representative?"
+q32c,"Contact official of a government ministry | During the past year, how often have you contacted any of the following persons for help to solve a problem or to give them your views: An official of a government ministry?"
+q32d,"Contact political party official | During the past year, how often have you contacted any of the following persons for help to solve a problem or to give them your views: A political party official?"
+q32e,"Contact religious leader | During the past year, how often have you contacted any of the following persons for help to solve a problem or to give them your views: A religious leader?"
+q32f,"Contact traditional ruler | During the past year, how often have you contacted any of the following persons for help to solve a problem or to give them your views: A traditional ruler?"
+q32g,"Contact some other influential person | During the past year, how often have you contacted any of the following persons for help to solve a problem or to give them your views: Some other influential person?"
+q33,Why contact | Think of the last time you contacted any of the above leaders. Was the main reason to:
+q34,Understand democracy | What if anything does democracy mean to you?
+q35a,Meaning of democracy-first verbatim response | What if anything does democracy mean to you?
+q35pt1,First meaning of democracy (code) | What if anything does democracy mean to you?
+q35b,Meaning of democracy-second verbatim response | What if anything does democracy mean to you?
+q35pt2,Second meaning of democracy (code) | What if anything does democracy mean to you?
+q35c,Meaning of democracy-third verbatim response | What if anything does democracy mean to you?
+q35pt3,Third meaning of democracy (code) | What if anything does democracy mean to you?
+q36a,Reject one-party rule | There are many ways to govern a country. Would you disapprove or approve of the following alternatives: Only one political party is allowed to stand for election and hold office?
+q36b,Reject military rule | There are many ways to govern a country. Would you disapprove or approve of the following alternatives: The army comes in to govern the country?
+q36c,Reject one-man rule | There are many ways to govern a country. Would you disapprove or approve of the following alternatives: Elections and Parliament/National Assembly are abolished so that the President/Prime Minister can decide everything?
+q37,"Support for democracy | Which of these three statements is closest to your own opinion? A: Democracy is preferable to any other kind of government. B: In some circumstances, a non-democratic government can be preferable. C: For someone like me, it doesn’t matter what kind of government we have."
+q38,"Choose leaders through elections vs. other methods | Let’s change the subject. I would like to hear your views about how this country is governed. Which of the following statements is closest to your view? Choose Statement A or Statement B. A: We should choose our leaders in this country through regular, open and honest elections. B: Since elections sometimes produce bad results, we should adopt other methods for choosing this country’s leaders."
+q39,Political parties divisive vs. many parties needed | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Political parties create division and confusion; it is therefore unnecessary to have many political parties in [Ghana/Kenya/etc.]. B: Many political parties are needed to make sure that [Ghanaians/Kenyans/etc.] have real choices in who governs them.
+q40,"Parliament makes laws vs. president does | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: The members of Parliament/National Assembly represent the people; therefore they should make laws for this country, even if the President/Prime Minister does not agree. B: Since the President/Prime Minister represents all of us, he should pass laws without worrying about what the Parliament/National Assembly thinks."
+q41,"President free to act vs. obey the laws and courts | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Since the President/Prime Minister was elected to lead the country, he should not be bound by laws or court decisions that he thinks are wrong. B: The President/Prime Minister must always obey the laws and the courts, even if he thinks they are wrong."
+q42,"Time to deal with problems vs. try another form | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Our present system of elected government should be given more time to deal with inherited problems. B: If our present system cannot produce results soon, we should try another form of government."
+q43a1,Q43a1. Identify MP (verbatim)
+q43a2,Q43a2. Identify MP (code)
+q43b1,Q43b1. Identify Local Govt. Councilor (verbatim)
+q43b2,Q43b2. Identify local government councilor (code)
+q43c1,Q43c1. Identify Deputy President (verbatim)
+q43c2,Q43c2. Identify deputy president (code)
+q44a1,Q44a1. Know: Political party w/most seats (verbatim)
+q44a2,Q44a2. Know: Political party w/most seats (code)
+q44b1,Q44b1. Know: Presidential term limits (verbatim)
+q44b2,Q44b2. Know: Presidential term limits (code)
+q44c1,Q44c1. Know: Determine constitutionality (verbatim)
+q44c2,Q44c2. Know: Determine constitutionality (code)
+q45,"Elections free and fair | On the whole, how would you rate the freeness and fairness of the last national election, held in [20xx]. Was it:"
+q46,Extent of democracy | In your opinion how much of a democracy is [Ghana/Kenya/etc.] today?
+q47,"Satisfaction with democracy | Overall, how satisfied are you with the way democracy works in [Ghana/Kenya/etc.]? Are you:"
+q48,"Future of democracy | In your opinion, how likely is it that [Ghana/Kenya, etc.] will remain a democratic country?"
+q49,Obey government always vs. only if vote for it | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: It is important to obey the government in power no matter who you voted for. 22 B: It is not necessary to obey the laws of a government that I did not vote for.
+q50,Lawful vs. immediate solutions to problems | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: It is better to find lawful solutions to problems even if it takes longer. B: It is sometimes better to ignore the law and solve problems immediately using other means
+q51,"Violence never justified vs. sometimes necessary | Which of the following statements is closest to your view. Choose Statement A or Statement B. A: The use of violence is never justified in [Ghanaian/Kenyan/etc.] politics. B: In this country, it is sometimes necessary to use violence in support of a just cause."
+q52a,"Constitution expresses values and hopes | For each of the following statements, please tell me whether you disagree or agree: Our constitution expresses the values and hopes of the [Ghanaian/Kenyan/etc.] people."
+q52b,"Courts make binding decisions | For each of the following statements, please tell me whether you disagree or agree: The courts have the right to make decisions that people always have to abide by."
+q52c,"People must obey the law | For each of the following statements, please tell me whether you disagree or agree: The police always have the right to make people obey the law."
+q52d,"People must pay taxes | For each of the following statements, please tell me whether you disagree or agree: The tax department always has the right to make people pay taxes."
+q53a,"Careful about what you say | In this country, how often: Do people have to be careful of what they say about politics?"
+q53b,"Party competition leads to conflict | In this country, how often: Does competition between political parties lead to conflict?"
+q53c,"President ignores the constitution | In this country, how often: Does the President/Prime Minister ignore the constitution?"
+q53d,"People are treated unequally | In this country, how often: Are people treated unequally under the law?"
+q54a,"Present vs. past: Free to say what you think | Please tell me if the following things are worse or better now than they were a few years ago, or are they about the same: Freedom to say what you think?"
+q54b,"Present vs. past: Free to join any organization | Please tell me if the following things are worse or better now than they were a few years ago, or are they about the same: Freedom to join any political organization you want?"
+q54c,"Present vs. past: Fear of unjust arrest | Please tell me if the following things are worse or better now than they were a few years ago, or are they about the same: Freedom from being arrested when you are innocent?"
+q54d,"Present vs. past: Voting freedom | Please tell me if the following things are worse or better now than they were a few years ago, or are they about the same: Freedom to choose who to vote for without feeling pressured?"
+q54e,"Present vs. past: Ability to influence government | Please tell me if the following things are worse or better now than they were a few years ago, or are they about the same: The ability of ordinary people to influence what government does?"
+q54f,"Present vs. past: Safety from crime and violence | Please tell me if the following things are worse or better now than they were a few years ago, or are they about the same: Safety from crime and violence?"
+q54g,"Present vs. past: Equal treatment for all | Please tell me if the following things are worse or better now than they were a few years ago, or are they about the same: Equal and fair treatment for all people by government?"
+q55a,"Trust the President | How much do you trust each of the following, or haven’t you heard enough about them to say: The President/Prime Minister?"
+q55b,"Trust Parliament/National Assembly | How much do you trust each of the following, or haven’t you heard enough about them to say: The Parliament/National Assembly?"
+q55c,"Trust the Electoral Commission | How much do you trust each of the following, or haven’t you heard enough about them to say: The Electoral Commission?"
+q55d,"Trust your local council | How much do you trust each of the following, or haven’t you heard enough about them to say: Your Elected Local Government Council?"
+q55e,"Trust the Ruling Party | How much do you trust each of the following, or haven’t you heard enough about them to say: The Ruling Party?"
+q55f,"Trust opposition political parties | How much do you trust each of the following, or haven’t you heard enough about them to say: Opposition Political Parties?"
+q55g,"Trust the military | How much do you trust each of the following, or haven’t you heard enough about them to say: The Army? 26"
+q55h,"Trust the police | How much do you trust each of the following, or haven’t you heard enough about them to say: The Police?"
+q55i,"Trust courts of law | How much do you trust each of the following, or haven’t you heard enough about them to say: Courts of Law?"
+q55j,"Trust government broadcasting service | How much do you trust each of the following, or haven’t you heard enough about them to say: Government broadcasting service (GBC TV or radio)?"
+q55k,"Trust independent broadcasting services | How much do you trust each of the following, or haven’t you heard enough about them to say: Independent broadcasting services (e.g. TV3 , FM radio)?"
+q55l,"Trust government newspapers | How much do you trust each of the following, or haven’t you heard enough about them to say: Government newspapers (Graphic)?"
+q55m,"Trust independent newspapers | How much do you trust each of the following, or haven’t you heard enough about them to say: Independent newspapers (e.g. Ghanaian Chronicle, Independent)? 27"
+q56a,"Corruption: Office of the Presidency | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: The President/Prime Minister and Officials in his Office?"
+q56b,"Corruption: Members of Parliament | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: Members of Parliament/National Assembly Representatives?"
+q56c,"Corruption: local government councilors | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: elected local government councilors?"
+q56d,"Corruption: National government officials | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: National government officials?"
+q56e,"Corruption: Local government officials | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: Local government officials?"
+q56f,"Corruption: Police | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: Police?"
+q56g,"Corruption: Tax Officials | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: Tax Officials (e.g. VATS/IRS officials)"
+q56h,"Corruption: Judges and Magistrates | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: Judges and Magistrates?"
+q56i,"Corruption: Health Workers | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: Health workers?"
+q56j,"Corruption: Teachers and school administrators | How many of the following people do you think are involved in corruption, or haven’t you heard enough about them to say: Teachers and school administrators?"
+q57a,"Pay bribe for: Document or permit | In the past year, how often (if ever) have you had to pay a bribe, give a gift, or do a favor to government officials in order to: Get a document or a permit?"
+q57b,"Pay bribe for: School placement | In the past year, how often (if ever) have you had to pay a bribe, give a gift, or do a favor to government officials in order to: Get a child into school?"
+q57c,"Pay bribe for: household service | In the past year, how often (if ever) have you had to pay a bribe, give a gift, or do a favor to government officials in order to: Get a household service (like piped water, electricity, or phone)?"
+q57d,"Pay bribe for: get medicine or medical attention | In the past year, how often (if ever) have you had to pay a bribe, give a gift, or do a favor to government officials in order to: Get medicine or medical attention?"
+q57e,"Pay bribe for: Avoid problem with police | In the past year, how often (if ever) have you had to pay a bribe, give a gift, or do a favor to government officials in order to: Avoid a problem with the police (like passing a checkpoint or avoiding a fine or arrest)?"
+q57f,"Election incentives offered | And during the [20xx] election, how often (if ever) did a candidate or someone from a political party offer you something, like food or a gift, in return for your vote?"
+q58a,"Right or wrong: job for relative | For each of the following please indicate whether you think the act is not wrong at all, wrong but understandable, or wrong and punishable: A government official gives a job to someone from his family who does not have adequate qualifications."
+q58b,"Right or wrong: favor for service | For each of the following please indicate whether you think the act is not wrong at all, wrong but understandable, or wrong and punishable: A government official demands a favour or an additional payment for some service that is part of his job."
+q58c,"Right or wrong: development for supporters | For each of the following please indicate whether you think the act is not wrong at all, wrong but understandable, or wrong and punishable: A public official decides to locate a development project in an area where his friends and supporters lived."
+q59,Elected leaders listen vs. follow own ideas | Which of the following statements is closest to your view? Choose Statement A or Statement B. A: Our elected officials should listen to constituents’ views and do what they demand. B: Our elected leaders should follow their own ideas in deciding what is best for the country.
+q60,Time MP should spend | How much time should your Member of Parliament/National Assembly Representative spend in this constituency to visit the community and its citizens?
+q61,Time MP does spend | How much time does your Member of Parliament/National Assembly Representative spend in this constituency?
+q62a,MPs listen | How much of the time do think the following try their best to listen to what people like you have to say: Members of Parliament/National Assembly Representatives? 31
+q62b,Local government councilors listen | How much of the time do think the following try their best to listen to what people like you have to say: Elected Local Government Councilors?
+q63pt1,"Most important problems – 1st response | In your opinion, what are the most important problems facing this country that government should address?"
+q63pt2,"Most important problems – 2nd response | In your opinion, what are the most important problems facing this country that government should address?"
+q63pt3,"Most important problems – 3rd response | In your opinion, what are the most important problems facing this country that government should address?"
+q64,"Government solve MIP | Taking the Problem you mentioned first, how likely is it that the government will solve your most important problem within the next few years?"
+q65a,"Handling managing the economy | Now let’s speak about the present government of this country. How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Managing the economy?"
+q65b,"Handling creating jobs | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Creating jobs?"
+q65c,"Handling keeping prices stable | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Keeping prices stable?"
+q65d,"Handling narrowing income gaps | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Narrowing gaps between rich and poor?"
+q65e,"Handling reducing crime | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Reducing crime?"
+q65f,"Handling improving basic health services | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Improving basic health services?"
+q65g,"Handling addressing educational needs | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Addressing educational needs?"
+q65h,"Handling delivering household water | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Delivering household water?"
+q65i,"Handling ensuring enough to eat | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Ensuring everyone has enough to eat?"
+q65j,"Handling fighting corruption | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Fighting corruption in government?"
+q65k,"Handling combating HIV/AIDS | How well or badly would you say the current government is handling the following matters, or haven’t you heard enough about them to say: Combating HIV/AIDS?"
+q66,"Resources to combat AIDS vs. other problems | Which of these statements is closest to your view? Choose Statement A or Statement B. A: The government should devote many more resources to combating AIDS, even if this means that less money is spent on things like education. B: There are many other problems facing this country beside AIDS; even if people are dying in large numbers, the government needs to keep its focus on solving other problems."
+q67a,"Local govt. handling maintaining roads | What about local government? How well or badly would you say your local government is handling the following matters, or haven’t you heard enough about them to say: Maintaining our roads?"
+q67b,"Local govt. handling keeping community clean | What about local government? How well or badly would you say your local government is handling the following matters, or haven’t you heard enough about them to say: Keeping our community clean?"
+q67c,"Local govt. handling collecting local taxes | What about local government? How well or badly would you say your local government is handling the following matters, or haven’t you heard enough about them to say: Collecting Local Taxes?"
+q67d,"Local govt. handling spending decisions | What about local government? How well or badly would you say your local government is handling the following matters, or haven’t you heard enough about them to say: Deciding how to spend local revenues? 35"
+q68a,"Performance: President | Do you approve or disapprove of the way the following people have performed their jobs over the past twelve months, or haven’t you heard enough about them to say: [President/Prime Minister’s name]?"
+q68b,"Performance: MP/National Assembly Rep. | Do you approve or disapprove of the way the following people have performed their jobs over the past twelve months, or haven’t you heard enough about them to say: Your Members of Parliament/National Assembly Representative?"
+q68c,"Performance: local government councilor | Do you approve or disapprove of the way the following people have performed their jobs over the past twelve months, or haven’t you heard enough about them to say: Your Assembly Man/Woman/Local Government Councilor?"
+q69a,"Policy knowledge: Free primary education. | Can you tell me whether the [Ghanaian/Kenyan/etc.] government has a policy to provide: Free primary education, that is, parents do not have to pay school fees?"
+q69b,"Policy knowledge: Free health care | Can you tell me whether the [Ghanaian/Kenyan/etc.] government has a policy to provide: Free health care at public clinics, that is, no fees for visits or medicine?"
+q70a,Enforce law: Top official commits serious crime | How likely do you think it would be that the authorities could enforce the law if a top government official committed a serious crime?
+q70b,Enforce law: You commit serious crime | How likely do you think it would be that the authorities could enforce the law if a person like you committed a serious crime?
+q70c,Enforce law: Top official doesn’t pay tax | How likely do you think it would be that the authorities could enforce the law if a top official did not pay a tax on some of the income they earned?
+q70d,Enforce law: You don’t pay tax | How likely do you think it would be that the authorities could enforce the law if a person like you did not pay a tax on some of the income you earned?
+q71a,"Difficulty to obtain identity document | Based on your experience, how easy or difficult is to obtain the following services? Or do you never try and get these services from government: An identity document (such as a birth certificate, driver’s license, passport or voter card)?"
+q71b,"Difficulty to obtain household services | Based on your experience, how easy or difficult is to obtain the following services? Or do you never try and get these services from government: Household services (like piped water, electricity or telephone)?"
+q71c,"Difficulty to obtain help from the police | Based on your experience, how easy or difficult is to obtain the following services? Or do you never try and get these services from government: Help from the police when you need it?"
+q71d,"Difficulty to obtain primary school placement | Based on your experience, how easy or difficult is to obtain the following services? Or do you never try and get these services from government: A place in primary school for a child?"
+q71e,"Difficulty to obtain medical treatment | Based on your experience, how easy or difficult is to obtain the following services? Or do you never try and get these services from government: Medical treatment at a nearby clinic?"
+q72a,Why not try to get: identity document | Why do you never try to get: An identity document?
+q72b,Why not try to get: household services. | Why do you never try to get: Household services?
+q72c,Why not try to get: Help from police | Why do you never try to get: Help from the police when you need it?
+q73a,Problems with schools: too expensive. | Have you encountered any of these problems with your local public schools during the past 12 months: Services are too expensive / Unable to pay?
+q73b,Problems with schools: textbooks and supplies. | Have you encountered any of these problems with your local public schools during the past 12 months: Lack of textbooks or other supplies?
+q73c,Problems with schools: poor teaching. | Have you encountered any of these problems with your local public schools during the past 12 months: Poor teaching?
+q73d,Problems with schools: Absent teachers. | Have you encountered any of these problems with your local public schools during the past 12 months: Absent teachers?
+q73e,Problems with schools: overcrowded classes. | Have you encountered any of these problems with your local public schools during the past 12 months: Overcrowded classrooms?
+q73f,Problems with schools: poor facilities. | Have you encountered any of these problems with your local public schools during the past 12 months: Poor conditions of facilities? 39
+q73g,Problems with schools: illegal payments. | Have you encountered any of these problems with your local public schools during the past 12 months: Demands for illegal payments?
+q74a,Problems with public clinic: too expensive. | Have you encountered any of these problems with your local public clinic or hospital during the past 12 months: Services are too expensive / Unable to pay?
+q74b,Problems with public clinic: Lack of medicines/supplies. | Have you encountered any of these problems with your local public clinic or hospital during the past 12 months: Lack of medicines or other supplies?
+q74c,Problems with public clinic: Lack of attention/respect. | Have you encountered any of these problems with your local public clinic or hospital during the past 12 months: Lack of attention or respect from staff?
+q74d,Problems with public clinic: Absent doctors. | Have you encountered any of these problems with your local public clinic or hospital during the past 12 months: Absent doctors?
+q74e,Problems with public clinic: Long waiting time. | Have you encountered any of these problems with your local public clinic or hospital during the past 12 months: Long waiting time?
+q74f,Problems with public clinic: Dirty facilities. | Have you encountered any of these problems with your local public clinic or hospital during the past 12 months: Dirty facilities?
+q74g,Problems with public clinic: illegal payments. | Have you encountered any of these problems with your local public clinic or hospital during the past 12 months: Demands for illegal payments?
+q75a,"What do: Waiting for permit. | What, if anything, would you do to try and resolve each of the following situations: You were waiting for a government permit or license, but kept encountering delays?"
+q75b,"What do: Name missing. | What, if anything, would you do to try and resolve each of the following situations: Election officials left your name off the voters roll?"
+q75c,"What do: Suspect school official. | What, if anything, would you do to try and resolve each of the following situations: You suspected a school or clinic official of stealing?"
+q75d,"What do: Wrongful arrest. | What, if anything, would you do to try and resolve each of the following situations: The police wrongly arrested someone in your family?"
+q75e,"What do: Land seized. | What, if anything, would you do to try and resolve each of the following situations: Someone wrongly seized your family’s land?"
+q76a,"Who responsible: MPs do jobs | Who should be responsible for making sure that, once elected, Members of Parliament/National Assembly Representatives do their jobs?"
+q76b,"Who responsible: Local councilors do jobs | Who should be responsible for making sure that, once elected, Local Government Councilors do their jobs?"
+q77a,Elections ensure parliament reflects voters. | Think about how elections work in practice in this country. How well do elections ensure that the Members of Parliament/Nation Assembly Representatives reflect the views of voters?
+q77b,Elections enable voters to remove leaders. | Think about how elections work in practice in this country. How well do elections enable voters to remove from office leaders who do not do what the people want?
+q78a,"Politicians make promises to get elected | In your opinion, how often do politicians do each of the following: Make promises simply to get elected?"
+q78b,"Politicians give gifts in campaigns. | In your opinion, how often do politicians do each of the following: Offer gifts to voters during election campaigns?"
+q78c,"Politicians keep campaign promises | In your opinion, how often do politicians do each of the following: Keep their campaign promises after elections?"
+q78d,"Politicians deliver development. | In your opinion, how often do politicians do each of the following: Do their best to deliver development after elections?"
+q79,"Tribe or ethnic group | What is your tribe? You know, your ethnic or cultural group."
+q80a,"Ethnic group’s economic conditions | Think about the condition of ____________ [respondent’s identity group] Are their economic conditions worse, the same as, or better than other groups in this country?"
+q80b,"Ethnic group’s political influence | Think about the condition of ____________ [respondent’s identity group] Do they have less, the same, or more influence in politics than other groups in this country?"
+q81,Ethnic group treated unfairly | How often are ___________s [respondent’s identity group] treated unfairly by the government?
+q82,Ethnic or national identity | Let us suppose that you had to choose between being a [Ghanaian/Kenyan/etc.] and being a ________ [respondent’s identity group]. Which of these two groups do you feel most strongly attached to?
+q83,"Most people can be trusted | Generally speaking, would you say that most people can be trusted or that you must be very careful in dealing with people?"
+q84a,Trust relatives | How much do you trust each of the following types of people: Your relatives?
+q84b,Trust neighbors | How much do you trust each of the following types of people: Your neighbors?
+q84c,Trust people from your ethnic group | How much do you trust each of the following types of people: People from your own ethnic group?.
+q84d,Trust people from other ethnic groups | How much do you trust each of the following types of people: [Ghanaian/Kenyan/etc.] from other ethnic groups?
+q85,Close to political party | Do you feel close to any particular political party?
+q86,Which party | Which party is that?
+q87,"How close to this political party | Do you feel very close to this party, somewhat close, or not very close?"
+q90,Education of respondent | What is the highest level of education you have completed?
+q91,"Religion of respondent | What is your religion, if any?"
+q92,"How often attend religious services | Excluding weddings and funerals, how often do you attend religious services? 47"
+q93a,"Own book. | Which of these things do you personally own? Book, you know, a reading book."
+q93b,Own radio. | Which of these things do you personally own? Radio.
+q93c,Own television. | Which of these things do you personally own? Television.
+q93d,Own bicycle. | Which of these things do you personally own? Bicycle.
+q93e,Own motorcycle. | Which of these things do you personally own? Motorcycle.
+q93f,Own Motor vehicle or car. | Which of these things do you personally own? Motor vehicle / car.
+q94,Employment status. | Do you have a job that pays a cash income? Is it full-time or part-time? And are you presently looking for a job (even if you are presently working)?
+q95,"Main occupation | What is your main occupation? (If unemployed, retired, or disabled, what was your last main occupation?)"
+q96a,"Physical health | In the last month, how much of the time: Has your physical health reduced the amount of work you would normally do inside or outside your home?"
+q96b,"Mental health | In the last month, how much of the time: Have you been so worried or anxious that you have felt tired, worn out, or exhausted?"
+q97,Know died of AIDS | Do you know a close friend or relative who has died of AIDS?
+q98,How many died of AIDS | How many close friends or relatives do you know who have died of AIDS?
+q99,"Vote for which party | If a presidential election were held tomorrow, which party’s candidate would you vote for? 49"
+q100,Perceived survey sponsor | Who do you think sent us to do this interview?
+endtime,Time interview ended
+length,Length of interview
+q101,Gender of respondent | Respondent’s gender
+q102,Race of respondent | Respondent’s race
+q103,Language of interview | Which languages was the interview conducted in?
+q104,Others present | Were there any other people immediately present who might be listening during the interview?
+q105a,Check with others | Did the respondent check with others for information to answer any question?
+q105b,Influence by others | Do you think that anyone influenced the respondent’s answers during the interview?
+q105c,Approached by community/ party representatives | Were you approached by community and/or political party representatives?
+q105d,Feel threatened | Did you feel threatened during the interview?
+q105e,Physically threatened | Were you physically threatened during the interview?
+q106,Proportion difficulty answering | What proportion of the questions do you feel the respondent had difficulty answering?
+q107a,Trouble answering- first response | Which questions did the respondent have trouble answering?
+q107b,Trouble answering- second response | Which questions did the respondent have trouble answering?
+q107c,Trouble answering- third response | Which questions did the respondent have trouble answering?
+q108a,"Respondent friendly | What was the respondent’s attitude toward you during the interview? Was he or she: friendly, in between, or hostile?"
+q108b,"Respondent interested | What was the respondent’s attitude toward you during the interview? Was he or she: interested, in between, or bored?"
+q108c,"Respondent cooperative | What was the respondent’s attitude toward you during the interview? Was he or she: cooperative, in between, or uncooperative?"
+q108d,"Respondent patient | What was the respondent’s attitude toward you during the interview? Was he or she: patient, in between, or impatient?"
+q108e,"Respondent at ease | What was the respondent’s attitude toward you during the interview? Was he or she: at ease, in between, or suspicious?"
+q108f,"Respondent honest | What was the respondent’s attitude toward you during the interview? Was he or she: honest, in between, or misleading?"
+q110,Interviewer’s number
+q111,Interviewer’s age | Interviewer’s age 54
+q112,Interviewer’s gender
+q113,Interviewer urban or rural | Do you come from a rural or urban area?
+q114,Interviewer’s home language
+q115,Interviewer’s education | Interviewer’s highest level of education
+q116a,Post-office in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Post-office?
+q116b,School in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: School?
+q116c,Police station in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Police station?
+q116d,Electricity grid in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Electricity grid that most houses could access?
+q116e,Piped water system in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Piped water system that most houses could access?
+q116f,Sewage system in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Sewage system that most houses could access?
+q116g,Health clinic in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Health clinic?
+q116h,"Recreational facilities in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Recreational facilities, e.g., a sports field?"
+q116i,"Places of worship in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Any churches, mosques, temples or other places of worship?"
+q116j,Community buildings in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Any town halls or community buildings that can be used for meetings?
+q116k,Market stalls in the PSU/EA | Were the following services present in the primary sampling unit/enumeration area: Market stalls (selling groceries and/or clothing)?
+q117a,"Police in the PSU/EA | In the PSU/EA, did you (or any of your colleagues) see: Any policemen or police vehicles?"
+q117b,"Soldiers/army in the PSU/EA | In the PSU/EA, did you (or any of your colleagues) see: Any soldiers or army vehicles? 57"
+q118,Tarred/Paved road | Thinking of your journey here: Was the road at the start point in the PSU/EA paved/ tarred/ concrete?
+withinwt,Within country weight
+acrosswt,Across country weight (N=1200 for all)
+combinwt,Combined weight (withinwt*acrosswt)

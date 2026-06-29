@@ -1,0 +1,12 @@
+[
+  {
+    "id": "WF_US_2022",
+    "qnet": "models/gss/gss_2022female.pkl.gz",
+    "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive"
+  },
+  {
+    "id": "CM_US_2022",
+    "qnet": "models/gss/gss_2022male.pkl.gz",
+    "persona": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative"
+  }
+]

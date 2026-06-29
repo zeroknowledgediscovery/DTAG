@@ -1,0 +1,330 @@
+models:
+  gss_2022_female: models/gss/gss_2022female.pkl.gz
+  gss_2022_male: models/gss/gss_2022male.pkl.gz
+  gss_2024_female: models/gss/gss_2024female.pkl.gz
+  gss_2024_male: models/gss/gss_2024male.pkl.gz
+  wvs7_pooled: models/wvs/LSM60K.gz
+  wvs7_lsm60k: models/wvs/LSM60K.gz
+  afrobarometer_r1: models/afrobarometer/LSM_merged_r1_data.gz
+  afrobarometer_r2: models/afrobarometer/LSM_merged_r2_data.gz
+  afrobarometer_r3: models/afrobarometer/LSM_merged_r3_data.gz
+  afrobarometer_r4: models/afrobarometer/LSM_merged_r4_data.gz
+  afrobarometer_r5: models/afrobarometer/LSM_merged_r5_data.gz
+  afrobarometer_r6: models/afrobarometer/merged_r6_data.gz
+  afrobarometer_r7: models/afrobarometer/merged_r7_data.gz
+  afrobarometer_r8: models/afrobarometer/merged_r8_data.gz
+  afrobarometer_r9: models/afrobarometer/merged_r9_data.gz
+maps:
+  gss_2022: maps/map2022.csv
+  gss_2016_2020: maps/map20162020.csv
+  wvs7: maps/wvs7_variable_question_map.csv
+  afrobarometer_r1: maps/afromap/afrobarometer_r1_map.csv
+  afrobarometer_r2: maps/afromap/afrobarometer_r2_map.csv
+  afrobarometer_r3: maps/afromap/afrobarometer_r3_map.csv
+  afrobarometer_r4: maps/afromap/afrobarometer_r4_map.csv
+  afrobarometer_r5: maps/afromap/afrobarometer_r5_map.csv
+  afrobarometer_r6: maps/afromap/afrobarometer_r6_map.csv
+  afrobarometer_r7: maps/afromap/afrobarometer_r7_map.csv
+  afrobarometer_r8: maps/afromap/afrobarometer_r8_map.csv
+  afrobarometer_r9: maps/afromap/afrobarometer_r9_map.csv
+question_sets:
+  original:
+    dir: assets/question_sets/original
+    glob: '*.csv'
+  divergence:
+    dir: assets/question_sets/divergence
+    glob: diverge_set_*.csv
+  all_clean:
+    dir: assets/question_sets/master
+    glob: '*.csv'
+  master:
+    dir: assets/question_sets/master
+    glob: '*.csv'
+defaults:
+  pipeline: scripts/pipeline.py
+  run_grid: scripts/run_grid.py
+  postprocess_script: scripts/postprocess.py
+  polar_vectors: assets/polar_vectors/polar_vectors.csv
+  run:
+    python: python3
+    runs_per_condition: 6
+    parallel: 4
+    variants: forward,reverse,shuffle
+    shuffle_orders: 5
+    seed_base: 1000
+    state_keep: 500
+    k: 50
+    prefilter: 200
+    min_map_score: 1.0
+    semantic_fallback: answer_only
+    semantic_k: 6
+    semantic_prefilter: 80
+    semantic_min_confidence: 0.35
+    semantic_embedding_model: text-embedding-3-small
+    semantic_resp_mode: max
+    max_assign: 50
+    assign_prefilter: 500
+    resp_mode: draw
+    openai_model: gpt-4.1-mini
+    timing: true
+    overwrite: true
+  postprocess:
+    python: python3
+    center_mode: zero
+    center: 0.0
+    effect_threshold: 0.005
+    min_reps: 2
+    bootstrap: 2000
+    make_plots: true
+    quadrant_plot: true
+    plot_variant: forward
+    quadrant_variant: forward
+    plot_ci: 0.95
+    plot_dpi: 220
+    label_map_csv: assets/label_maps/question_set_interpretive_name_map_master.csv
+    pdf: true
+    zip_plots: true
+    dark: false
+    transparent: false
+  assets_dir: assets
+  interactive:
+    python: python3
+    state_keep: 500
+    k: 6
+    prefilter: 200
+    min_map_score: 1.0
+    semantic_fallback: answer_only
+    semantic_k: 6
+    semantic_prefilter: 80
+    semantic_min_confidence: 0.35
+    semantic_embedding_model: text-embedding-3-small
+    semantic_resp_mode: max
+    max_assign: 50
+    assign_prefilter: 500
+    resp_mode: max
+    openai_model: gpt-4.1-mini
+    seed: 1000
+    timing: true
+experiments:
+  gss2022_divergence:
+    description: GSS 2022 WF/CM personas on divergence-probe question sets.
+    map: gss_2022
+    question_set: divergence
+    outdir: outputs/dtag_gss2022_divergence
+    personas: &id001
+    - id: WF_US_2022
+      qnet: gss_2022_female
+      persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly
+        progressive
+      year: 2022
+      country: United States
+    - id: CM_US_2022
+      qnet: gss_2022_male
+      persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran,
+        conservative
+      year: 2022
+      country: United States
+  gss2022_original:
+    description: GSS 2022 WF/CM personas on the original question sets.
+    map: gss_2022
+    question_set: original
+    outdir: outputs/dtag_gss2022_original
+    personas:
+    - id: WF_US_2022
+      qnet: gss_2022_female
+      persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly
+        progressive
+      year: 2022
+      country: United States
+    - id: CM_US_2022
+      qnet: gss_2022_male
+      persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran,
+        conservative
+      year: 2022
+      country: United States
+  gss2024_divergence_template:
+    description: Template for rerunning the same divergence probes on 2024 GSS models.
+    map: gss_2022
+    question_set: divergence
+    outdir: outputs/dtag_gss2024_divergence
+    personas:
+    - id: WF_US_2024
+      qnet: gss_2024_female
+      persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly
+        progressive
+      year: 2024
+      country: United States
+    - id: CM_US_2024
+      qnet: gss_2024_male
+      persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran,
+        conservative
+      year: 2024
+      country: United States
+  gss2022_master:
+    description: 'GSS 2022 WF/CM personas on the combined master question set: renamed original probes plus divergence probes.'
+    map: gss_2022
+    question_set: master
+    outdir: outputs/dtag_gss2022_master
+    personas: *id001
+  gss2024_master_template:
+    description: Template for rerunning the combined master question set on 2024 GSS models.
+    map: gss_2022
+    question_set: master
+    outdir: outputs/dtag_gss2024_master
+    personas:
+    - id: WF_US_2024
+      qnet: gss_2024_female
+      persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly
+        progressive
+      year: 2024
+      country: United States
+    - id: CM_US_2024
+      qnet: gss_2024_male
+      persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran,
+        conservative
+      year: 2024
+      country: United States
+  wvs7_us_india_master_template:
+    description: Template for WVS7 pooled model with country/year conditioning. Ideology disabled unless WVS-specific polar
+      vectors are supplied.
+    map: wvs7
+    question_set: master
+    outdir: outputs/dtag_wvs7_us_india_master
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+      semantic_fallback: answer_only
+    personas:
+    - id: WVS7_US_2017_CM
+      qnet: wvs7_pooled
+      persona: 45 year old male with children, regular news consumer, working in farming, veteran, conservative
+      year: 2017
+      country: United States
+      continent: North America
+    - id: WVS7_India_2017_UM
+      qnet: wvs7_pooled
+      persona: 35 year old male, urban, college educated, regular news consumer, politically moderate
+      year: 2017
+      country: India
+      continent: Asia
+  afrobarometer_r5_nigeria_master_template:
+    description: Afrobarometer R5 Nigeria persona on the master question set; ideology disabled unless Afrobarometer polar
+      vectors are supplied.
+    map: afrobarometer_r5
+    question_set: master
+    outdir: outputs/dtag_afrobarometer_r5_nigeria_master
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+      semantic_fallback: answer_only
+      runs_per_condition: 3
+      parallel: 3
+      variants: forward
+      k: 6
+    personas:
+    - id: Afro_R5_Nigeria_UM
+      qnet: afrobarometer_r5
+      persona: 35 year old urban male in Nigeria, regular news consumer, politically attentive, moderate
+      country: Nigeria
+      continent: Africa
+  wvs7_iran_india_master_template:
+    description: WVS7 pooled model, Iran and India country/year-conditioned personas on the master question set; ideology
+      disabled by default.
+    map: wvs7
+    question_set: master
+    outdir: outputs/dtag_wvs7_iran_india_master
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+      semantic_fallback: answer_only
+      runs_per_condition: 3
+      parallel: 3
+      variants: forward
+      k: 6
+    personas:
+    - id: WVS7_Iran_2017_UM
+      qnet: wvs7_lsm60k
+      persona: 35 year old male, urban, college educated, regular news consumer, politically moderate
+      year: 2017
+      country: Iran
+      continent: Asia
+    - id: WVS7_India_2017_UM
+      qnet: wvs7_lsm60k
+      persona: 35 year old male, urban, college educated, regular news consumer, politically moderate
+      year: 2017
+      country: India
+      continent: Asia
+interactive_profiles:
+  afrobarometer_r5_nigeria:
+    description: Afrobarometer Round 5, Nigeria persona, interactive loop; ideology disabled by default.
+    qnet: afrobarometer_r5
+    map: afrobarometer_r5
+    persona: 35 year old urban male in Nigeria, regular news consumer, politically attentive, moderate
+    logs_dir: outputs/afrobarometer_r5_Nigeria_interactive
+    tag: Afrobarometer_R5_Nigeria_interactive
+    country: Nigeria
+    continent: Africa
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+  wvs7_iran_2017:
+    description: WVS7 pooled model, Iran 2017 persona, interactive loop; ideology disabled by default.
+    qnet: wvs7_lsm60k
+    map: wvs7
+    persona: 35 year old male, urban, college educated, regular news consumer, politically moderate
+    logs_dir: outputs/interactive_wvs7_Iran_2017
+    tag: WVS7_Iran_2017_interactive
+    year: 2017
+    country: Iran
+    continent: Asia
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+  wvs7_india_2017:
+    description: WVS7 pooled model, India 2017 persona, interactive loop; ideology disabled by default.
+    qnet: wvs7_lsm60k
+    map: wvs7
+    persona: 35 year old male, urban, college educated, regular news consumer, politically moderate
+    logs_dir: outputs/interactive_wvs7_India_2017
+    tag: WVS7_India_2017_interactive
+    year: 2017
+    country: India
+    continent: Asia
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+  gss2022_wf:
+    description: GSS 2022 white/progressive female persona with ideology tracking enabled.
+    qnet: gss_2022_female
+    map: gss_2022
+    persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly
+      progressive
+    logs_dir: outputs/interactive_WF
+    tag: WF_interactive
+    year: 2022
+    country: United States
+    polar_vectors: assets/polar_vectors/polar_vectors.csv
+    run:
+      no_ideology: false
+      require_polar_vectors: true
+      resp_mode: max
+  gss2022_cm:
+    description: GSS 2022 conservative male persona with ideology tracking enabled.
+    qnet: gss_2022_male
+    map: gss_2022
+    persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative
+    logs_dir: outputs/interactive_CM
+    tag: CM_interactive
+    year: 2022
+    country: United States
+    polar_vectors: assets/polar_vectors/polar_vectors.csv
+    run:
+      no_ideology: false
+      require_polar_vectors: true
+      resp_mode: max
