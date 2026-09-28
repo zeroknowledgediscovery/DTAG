@@ -134,3 +134,14 @@ DTAG is research software. This release candidate is intended to make the curren
 - [Configuration profiles](CONFIG_PROFILES.md)
 - [Complete runnable examples](DTAG_EXAMPLES_FULL.md)
 - [RC1 scope](docs/RC1_SCOPE.md)
+
+
+## Native LSM development branch
+
+Native C++ LSM integration is being developed on `dev/native-lsm-dtag`
+without replacing the validated RC1 Quasinet profiles.
+
+The first validation models are pooled GSS 2018, 2022, and 2024 and are placed
+under `models/lsm/gss/`. See
+[Native LSM DTAG development](docs/NATIVE_LSM_DEV.md) for training, runtime,
+validation, and merge-gate instructions.
