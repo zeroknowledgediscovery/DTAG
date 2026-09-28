@@ -127,3 +127,10 @@ The survey models in RC1 predate the newest manifest-based LSM training pipeline
 ## Research status
 
 DTAG is research software. This release candidate is intended to make the current simulator reproducible and usable outside the development group while model coverage, validation, automatic survey routing, and additional survey families continue to expand.
+
+
+## More documentation
+
+- [Configuration profiles](CONFIG_PROFILES.md)
+- [Complete runnable examples](DTAG_EXAMPLES_FULL.md)
+- [RC1 scope](docs/RC1_SCOPE.md)
