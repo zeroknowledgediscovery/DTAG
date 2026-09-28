@@ -1,0 +1,329 @@
+#!/usr/bin/env python3
+"""Backend-neutral model interface for DTAG.
+
+DTAG historically consumed Python Quasinet .gz models.  The native LSM trainer
+produces a model directory containing source_maps/ and trees/binary/.  This
+module presents both formats through the same small runtime interface so that
+the DTAG scientific pipeline does not need two implementations.
+
+Native LSM bindings expected on PYTHONPATH:
+    predict_distribution
+    qdistance
+    qsample (optional for DTAG; imported only by callers that need it)
+
+Set LSM_BINDINGS_DIR=/path/to/lsm/bin to make the bindings discoverable without
+modifying the shell PYTHONPATH.
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+import re
+import sys
+from pathlib import Path
+from typing import Dict, Iterable, List, Optional, Sequence
+
+import numpy as np
+
+
+def _add_lsm_bindings_dir() -> None:
+    p = os.environ.get("LSM_BINDINGS_DIR", "").strip()
+    if p and p not in sys.path:
+        sys.path.insert(0, p)
+
+
+def _native_root(path: str | Path) -> Path:
+    p = Path(path).expanduser().resolve()
+    if (p / "trees" / "binary").is_dir() and (p / "source_maps").is_dir():
+        return p
+    if p.name == "binary" and p.parent.name == "trees":
+        root = p.parent.parent
+        if (root / "source_maps").is_dir():
+            return root
+    raise ValueError(
+        f"Not a native LSM model directory: {p}. Expected source_maps/ and trees/binary/."
+    )
+
+
+def detect_backend(path: str | Path) -> str:
+    p = Path(path).expanduser()
+    if p.is_dir():
+        try:
+            _native_root(p)
+            return "native_lsm"
+        except Exception:
+            pass
+    return "quasinet"
+
+
+def _discover_tree_ids(root: Path) -> List[int]:
+    out: List[int] = []
+    for p in (root / "trees" / "binary").glob("tree_*.bin"):
+        m = re.fullmatch(r"tree_(\d+)\.bin", p.name)
+        if m:
+            out.append(int(m.group(1)))
+    return sorted(set(out))
+
+
+def _read_native_columns(root: Path) -> tuple[List[str], Dict[int, List[str]]]:
+    """Read column headers and categorical alphabets from native source maps."""
+    records: Dict[int, dict] = {}
+    shard_dir = root / "source_maps" / "json_shards"
+    if not shard_dir.is_dir():
+        raise FileNotFoundError(f"Missing native LSM source-map directory: {shard_dir}")
+
+    for path in sorted(shard_dir.glob("*.json")):
+        try:
+            obj = json.loads(path.read_text(encoding="utf-8"))
+        except Exception as e:
+            raise RuntimeError(f"Could not read source-map shard {path}: {e}") from e
+
+        if not isinstance(obj, dict):
+            continue
+
+        # Shards normally contain {"0": {...}, "1": {...}}.  Per-column files
+        # are also accepted for compatibility with earlier native snapshots.
+        if "column_header" in obj or "column_strings_map" in obj or "to_str" in obj:
+            try:
+                col = int(path.stem)
+            except ValueError:
+                continue
+            records[col] = obj
+            continue
+
+        for key, node in obj.items():
+            if not isinstance(node, dict):
+                continue
+            try:
+                col = int(key)
+            except Exception:
+                continue
+            records[col] = node
+
+    if not records:
+        raise RuntimeError(f"No column records found in {shard_dir}")
+
+    max_col = max(records)
+    names = [""] * (max_col + 1)
+    values: Dict[int, List[str]] = {}
+
+    for col, node in records.items():
+        name = str(node.get("column_header", "")).strip()
+        names[col] = name or f"COL_{col}"
+
+        labels: List[str] = []
+        arr = node.get("column_strings_map")
+        if isinstance(arr, list):
+            for x in arr:
+                if x is None:
+                    continue
+                s = str(x)
+                if s != "":
+                    labels.append(s)
+        elif isinstance(node.get("to_str"), dict):
+            pairs = []
+            for k, v in node["to_str"].items():
+                try:
+                    pairs.append((int(k), str(v)))
+                except Exception:
+                    continue
+            for _, s in sorted(pairs):
+                if s != "":
+                    labels.append(s)
+        values[col] = list(dict.fromkeys(labels))
+
+    # A complete native model should have a source-map entry for every original
+    # input column.  Fail rather than silently shifting column IDs.
+    missing = [i for i, name in enumerate(names) if not name]
+    if missing:
+        raise RuntimeError(
+            f"Native LSM source maps have missing column IDs: {missing[:20]}"
+            + (" ..." if len(missing) > 20 else "")
+        )
+    return names, values
+
+
+class QuasinetBackend:
+    backend_name = "quasinet"
+
+    def __init__(self, path: str | Path):
+        from quasinet.qnet import load_qnet, qdistance as quasinet_qdistance  # type: ignore
+
+        self.path = str(Path(path).expanduser().resolve())
+        self._qdistance = quasinet_qdistance
+        self._model = load_qnet(self.path)
+        self.feature_names = [str(x) for x in self._model.feature_names]
+
+    @property
+    def tree_ids(self) -> List[int]:
+        return list(range(len(self.feature_names)))
+
+    def possible_values(self) -> Dict[str, List[str]]:
+        null = np.array([""] * len(self.feature_names)).astype("U100")
+        resp = self._model.predict_distributions(null)
+        out: Dict[str, List[str]] = {}
+        for i, name in enumerate(self.feature_names):
+            try:
+                out[name] = [str(x) for x in resp[i].keys()]
+            except Exception:
+                out[name] = []
+        return out
+
+    def predict_distributions(
+        self,
+        row: Sequence[str] | np.ndarray,
+        target_names: Optional[Sequence[str]] = None,
+    ) -> Dict[str, Dict[str, float]]:
+        arr = np.asarray(row).astype("U100")
+        resp = self._model.predict_distributions(arr)
+        wanted = set(map(str, target_names)) if target_names else None
+        out: Dict[str, Dict[str, float]] = {}
+        for i, name in enumerate(self.feature_names):
+            if wanted is not None and name not in wanted:
+                continue
+            try:
+                out[name] = {str(k): float(v) for k, v in resp[i].items()}
+            except Exception:
+                out[name] = {}
+        return out
+
+    def qdistance(self, a: Sequence[str] | np.ndarray, b: Sequence[str] | np.ndarray) -> float:
+        aa = np.asarray(a).astype("U100")
+        bb = np.asarray(b).astype("U100")
+        return float(self._qdistance(aa, bb, self._model, self._model))
+
+    def cache_signature(self) -> str:
+        p = Path(self.path)
+        st = p.stat()
+        return f"{p}|{st.st_size}|{st.st_mtime_ns}|quasinet"
+
+
+class NativeLSMBackend:
+    backend_name = "native_lsm"
+
+    def __init__(self, path: str | Path, cols_per_shard: int = 50000):
+        _add_lsm_bindings_dir()
+        try:
+            import predict_distribution  # type: ignore
+            import qdistance  # type: ignore
+        except Exception as e:
+            hint = os.environ.get("LSM_BINDINGS_DIR", "")
+            raise ImportError(
+                "Native LSM Python bindings are not importable. Build the LSM "
+                "bindings and either add lsm/bin to PYTHONPATH or set "
+                "LSM_BINDINGS_DIR=/path/to/lsm/bin."
+                + (f" Current LSM_BINDINGS_DIR={hint!r}." if hint else "")
+            ) from e
+
+        self.root = _native_root(path)
+        self.path = str(self.root)
+        self.trees_dir = str(self.root / "trees" / "binary")
+        self.cols_per_shard = int(cols_per_shard)
+        self._predict = predict_distribution
+        self._qdistance = qdistance
+
+        self.feature_names, self._values_by_col = _read_native_columns(self.root)
+        self._idx = {name: i for i, name in enumerate(self.feature_names)}
+        self._tree_ids = _discover_tree_ids(self.root)
+        if not self._tree_ids:
+            raise RuntimeError(f"No tree_*.bin files found in {self.trees_dir}")
+
+    @property
+    def tree_ids(self) -> List[int]:
+        return list(self._tree_ids)
+
+    def possible_values(self) -> Dict[str, List[str]]:
+        return {
+            self.feature_names[i]: list(self._values_by_col.get(i, []))
+            for i in range(len(self.feature_names))
+        }
+
+    def _as_raw_row(self, row: Sequence[str] | np.ndarray) -> np.ndarray:
+        vals = ["" if x is None else str(x) for x in list(row)]
+        if len(vals) != len(self.feature_names):
+            raise ValueError(
+                f"State vector has {len(vals)} columns but model has {len(self.feature_names)}"
+            )
+        return np.asarray(vals, dtype=object)
+
+    def predict_distributions(
+        self,
+        row: Sequence[str] | np.ndarray,
+        target_names: Optional[Sequence[str]] = None,
+    ) -> Dict[str, Dict[str, float]]:
+        raw = self._as_raw_row(row)
+        if target_names:
+            tree_ids = [
+                self._idx[str(name)]
+                for name in target_names
+                if str(name) in self._idx and self._idx[str(name)] in self._tree_ids
+            ]
+        else:
+            tree_ids = self._tree_ids
+        if not tree_ids:
+            return {}
+
+        result = self._predict.predict_distributions(
+            self.trees_dir,
+            raw,
+            True,
+            self.path,
+            self.cols_per_shard,
+            tree_ids,
+        )
+
+        out: Dict[str, Dict[str, float]] = {}
+        for tid in tree_ids:
+            name = self.feature_names[tid]
+            d = result[tid] if tid < len(result) else None
+            if d is None:
+                out[name] = {}
+            else:
+                out[name] = {str(k): float(v) for k, v in dict(d).items() if str(k) != ""}
+        return out
+
+    def qdistance(self, a: Sequence[str] | np.ndarray, b: Sequence[str] | np.ndarray) -> float:
+        aa = ["" if x is None else str(x) for x in list(a)]
+        bb = ["" if x is None else str(x) for x in list(b)]
+        result = self._qdistance.qdistance(
+            self.trees_dir,
+            aa,
+            bb,
+            self.path,
+            self.cols_per_shard,
+            self._tree_ids,
+            False,
+        )
+        return float(result["qdistance_bits"])
+
+    def cache_signature(self) -> str:
+        h = hashlib.sha1()
+        h.update(str(self.root).encode())
+        for rel in ("meta.txt", "manifest.json", "training_manifest.json"):
+            p = self.root / rel
+            if p.exists():
+                st = p.stat()
+                h.update(f"{rel}|{st.st_size}|{st.st_mtime_ns}".encode())
+        tree_dir = self.root / "trees" / "binary"
+        tree_stats = sorted(
+            (p.name, p.stat().st_size, p.stat().st_mtime_ns)
+            for p in tree_dir.glob("tree_*.bin")
+        )
+        h.update(repr(tree_stats).encode())
+        return f"{self.root}|{h.hexdigest()}|native_lsm"
+
+
+def load_model(path: str | Path, backend: str = "auto"):
+    name = str(backend or "auto").strip().lower()
+    if name == "auto":
+        name = detect_backend(path)
+    if name in {"quasinet", "qnet", "legacy"}:
+        return QuasinetBackend(path)
+    if name in {"native_lsm", "lsm", "native"}:
+        return NativeLSMBackend(path)
+    raise ValueError(f"Unknown DTAG model backend: {backend!r}")
+
+
+def model_feature_names(path: str | Path, backend: str = "auto") -> List[str]:
+    return list(load_model(path, backend=backend).feature_names)
