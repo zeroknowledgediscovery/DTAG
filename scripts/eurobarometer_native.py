@@ -20,8 +20,15 @@ from __future__ import annotations
 import argparse
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 from typing import List
+
+from eurobarometer_dates import (
+    load_registry,
+    resolve_exact_date,
+    waves_in_year,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -120,6 +127,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--list", action="store_true", help="list discovered ZA models/maps")
     ap.add_argument("--za", default="", help="Eurobarometer ZA identifier")
+    ap.add_argument("--date", default="", help="Resolve ZA from exact fieldwork date YYYY-MM-DD")
+    ap.add_argument("--dates-file", default="configs/eurodates.csv", help="two-column ZA/date registry")
     ap.add_argument("--map", default="", help="explicit map CSV; otherwise conservative ZA discovery")
     ap.add_argument(
         "--persona",
@@ -127,7 +136,7 @@ def main() -> None:
     )
     ap.add_argument("--country", default="")
     ap.add_argument("--continent", default="Europe")
-    ap.add_argument("--year", type=int, default=None, help="context/conditioning only; does NOT choose the ZA model")
+    ap.add_argument("--year", type=int, default=None, help="context/conditioning; if no --za/--date is given, list candidate waves in that year")
     ap.add_argument("--question", default="")
     ap.add_argument("--logs-dir", default="")
     ap.add_argument("--tag", default="")
@@ -161,9 +170,47 @@ def main() -> None:
                     print(f"    {m.relative_to(ROOT)}")
         return
 
-    za = normalize_za(args.za)
-    if not za:
-        raise SystemExit("--za is required unless --list is used")
+    dates_path = Path(args.dates_file).expanduser()
+    if not dates_path.is_absolute():
+        dates_path = (ROOT / dates_path).resolve()
+
+    za = ""
+    if args.za:
+        za = normalize_za(args.za)
+    elif args.date:
+        try:
+            when = date.fromisoformat(args.date)
+        except ValueError:
+            raise SystemExit("--date must use YYYY-MM-DD")
+        try:
+            waves = load_registry(dates_path)
+            wave = resolve_exact_date(waves, when)
+        except Exception as e:
+            raise SystemExit(str(e))
+        za = wave.za_id
+        print(
+            f"DATE RESOLUTION: {when.isoformat()} -> {wave.za_id} "
+            f"[{wave.start_date} .. {wave.end_date}]"
+        )
+    elif args.year is not None:
+        try:
+            waves = load_registry(dates_path)
+            candidates = waves_in_year(waves, args.year)
+        except Exception as e:
+            raise SystemExit(str(e))
+        if not candidates:
+            raise SystemExit(f"No Eurobarometer fieldwork rows overlap {args.year}")
+        print(f"Eurobarometer waves overlapping {args.year}:")
+        for w in candidates:
+            installed = resolve_model(w.za_id) if (MODEL_ROOT / w.za_id).exists() else None
+            suffix = " [model installed]" if installed else ""
+            print(f"  {w.za_id}: {w.start_date} .. {w.end_date}{suffix}")
+        raise SystemExit(
+            "Year alone is not sufficient to select one Eurobarometer wave. "
+            "Use --date YYYY-MM-DD or --za ZAxxxx."
+        )
+    else:
+        raise SystemExit("--za or --date is required unless --list is used")
 
     model = resolve_model(za)
     if not valid_native_model(model):
@@ -212,7 +259,10 @@ def main() -> None:
     else:
         cmd += ["--loop"]
 
-    print("ZA model selection is explicit; --year does not select the Eurobarometer wave.")
+    if args.date:
+        print("ZA model selected from exact fieldwork-date coverage.")
+    else:
+        print("ZA model selection is explicit; --year alone never selects a Eurobarometer wave.")
     print("MODEL:", model)
     print("MAP:  ", map_path)
     print("CMD:  ", " ".join(map(str, cmd)))
