@@ -101,6 +101,16 @@ def build_command(
     if not qnet or not map_path or not persona:
         raise SystemExit(f'Profile {profile_name!r} must define qnet, map, and persona')
 
+    qnet_check = Path(qnet).expanduser()
+    if not qnet_check.is_absolute():
+        qnet_check = root / qnet_check
+    if not qnet_check.exists():
+        raise SystemExit(
+            f"Profile {profile_name!r} model is not available yet: {qnet_check}. "
+            "For native-LSM development profiles, train it with "
+            "scripts/train_native_lsm_models.py first."
+        )
+
     logs_dir = args.logs_dir or str(profile.get('logs_dir', f'outputs/interactive_{profile_name}'))
     tag = args.tag or str(profile.get('tag', profile_name))
 
@@ -170,9 +180,20 @@ def main() -> None:
 
     if args.list:
         print('Available interactive profiles:')
+        root = config_path.parent.parent if config_path.parent.name == 'configs' else config_path.parent
         for name in sorted(profiles):
-            desc = str((profiles[name] or {}).get('description', '')).strip()
-            print(f'  {name}' + (f' - {desc}' if desc else ''))
+            spec = profiles[name] or {}
+            desc = str(spec.get('description', '')).strip()
+            qkey = str(spec.get('qnet', ''))
+            qpath = resolve_named(cfg, 'models', qkey) if qkey else ''
+            status = ''
+            if qpath:
+                p = Path(qpath).expanduser()
+                if not p.is_absolute():
+                    p = root / p
+                if not p.exists():
+                    status = ' [model not trained]'
+            print(f'  {name}{status}' + (f' - {desc}' if desc else ''))
         return
 
     if not args.profile:
