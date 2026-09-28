@@ -11,7 +11,7 @@ import argparse
 from pathlib import Path
 
 import numpy as np
-from quasinet.qnet import load_qnet
+from model_backend import load_model
 
 import pipeline as core
 import pipeline_localized as localized
@@ -26,12 +26,17 @@ def main() -> None:
         '--qnet',
         default=str(DTAG_ROOT / 'models/afrobarometer/LSM_merged_r5_data.gz'),
     )
+    ap.add_argument(
+        '--model-backend',
+        choices=['auto', 'quasinet', 'native_lsm'],
+        default='auto',
+    )
     ap.add_argument('--country-a', default='Nigeria')
     ap.add_argument('--country-b', default='Ghana')
     ap.add_argument('--assets-dir', default=str(DTAG_ROOT / 'assets'))
     args = ap.parse_args()
 
-    model = load_qnet(args.qnet)
+    model = load_model(args.qnet, backend=args.model_backend)
     feat = set(map(str, model.feature_names))
     idx_map = {str(v): i for i, v in enumerate(model.feature_names)}
     possible = core.get_possible_responses_cached(
