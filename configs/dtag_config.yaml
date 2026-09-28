@@ -29,6 +29,7 @@ development:
 
 maps:
   gss_2016_2020: maps/map20162020.csv
+  gss_2018: maps/gss/gss_2018_map.csv
   gss_2022: maps/map2022.csv
   gss_2024: maps/map2024.csv
   wvs7: maps/wvs7_variable_question_map.csv
@@ -193,7 +194,7 @@ interactive_profiles:
       resp_mode: max
   gss2018_native_wf:
     description: "[DEV] Native-LSM pooled GSS 2018 with progressive urban female persona."
-    map: gss_2016_2020
+    map: gss_2018
     qnet: gss_2018_native
     persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive
     year: 2018
