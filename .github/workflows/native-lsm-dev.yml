@@ -1,0 +1,86 @@
+name: Native LSM DTAG dev checks
+
+on:
+  push:
+    branches:
+      - dev/native-lsm-dtag
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  static-and-preprocess:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install lightweight test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy pyyaml
+
+      - name: Compile Python sources
+        run: |
+          python -m py_compile scripts/*.py
+
+      - name: Parse DTAG configs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          for p in [
+              Path("configs/dtag_config.yaml"),
+              Path("configs/native_lsm_catalog.yaml"),
+          ]:
+              obj = yaml.safe_load(p.read_text())
+              assert isinstance(obj, dict), p
+              print("OK", p)
+          PY
+
+      - name: List profiles
+        run: |
+          python scripts/interactive.py --config configs/dtag_config.yaml --list
+
+      - name: Test native preprocessing contract
+        run: |
+          mkdir -p /tmp/dtag-native-fixture
+          cat > /tmp/dtag-native-fixture/gss_2024.csv <<'CSV'
+          RESPONDENT_ID,sex,age,empty_after_sample,opinion
+          a,female,22,,support
+          b,male,45,,oppose
+          c,female,31,,support
+          d,male,60,,neutral
+          CSV
+
+          python scripts/train_native_lsm_models.py /tmp/dtag-native-fixture             --model gss_2024             --sample-size 3             --seed 42             --prepare-only             --force
+
+          test -f outputs/native_lsm_training/gss/gss_2024/prepared.csv
+          test -f outputs/native_lsm_training/gss/gss_2024/training_index.json.gz
+          test -f models/lsm/gss/gss_2024/training_manifest.json
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import pandas as pd
+
+          prepared = pd.read_csv(
+              "outputs/native_lsm_training/gss/gss_2024/prepared.csv",
+              dtype=str,
+              keep_default_na=False,
+          )
+          assert "RESPONDENT_ID" not in prepared.columns
+          assert "empty_after_sample" not in prepared.columns
+          assert list(prepared.columns) == ["sex", "age", "opinion"]
+
+          m = json.loads(
+              Path("models/lsm/gss/gss_2024/training_manifest.json").read_text()
+          )
+          assert m["index_column"] == "RESPONDENT_ID"
+          assert m["training_rows"] == 3
+          assert "empty_after_sample" in m["dropped_all_empty_columns"]
+          print("PASS native preprocessing contract")
+          PY
