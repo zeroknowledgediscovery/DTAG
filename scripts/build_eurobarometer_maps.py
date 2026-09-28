@@ -155,7 +155,6 @@ def _extract_question(block_lines: Sequence[str], variable: str) -> Tuple[str, s
         if (
             len(compact) <= 24
             and QUESTION_CODE_RE.fullmatch(compact)
-            and compact.lower() != variable.lower()
         ):
             qnum = line
             start = i + 1
@@ -350,6 +349,8 @@ def main() -> None:
     ap.add_argument("--out", default="")
     ap.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR))
     ap.add_argument("--min-question-coverage", type=float, default=0.0)
+    ap.add_argument("--inspect-variable", action="append", default=[],
+                    help="print selected output rows after building; repeatable")
     args = ap.parse_args()
 
     codebook_dir = Path(args.codebook_dir).expanduser().resolve()
@@ -423,6 +424,20 @@ def main() -> None:
         print(f"with variable labels:    {stats['with_variable_label']}")
         print(f"with question text:      {stats['with_question_text']} "
               f"({stats['question_text_coverage']:.3f})")
+
+        if args.inspect_variable:
+            built = pd.read_csv(out_path, dtype=str, keep_default_na=False)
+            for requested in args.inspect_variable:
+                x = built[built["variable"].str.lower() == str(requested).lower()]
+                print(f"\nINSPECT {requested}:")
+                if x.empty:
+                    print("  NOT FOUND IN MODEL/MAP")
+                else:
+                    cols = [
+                        "variable", "question_number", "variable_label",
+                        "question_text", "question_text_filled", "source_page"
+                    ]
+                    print(x[cols].to_string(index=False))
 
         if stats["question_text_coverage"] < args.min_question_coverage:
             failures += 1
