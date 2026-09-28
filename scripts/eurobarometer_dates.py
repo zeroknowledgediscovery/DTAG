@@ -223,3 +223,66 @@ def resolve_exact_date(
         f"No Eurobarometer fieldwork interval covers {when.isoformat()}{suffix}. "
         "Specify --za explicitly rather than silently using a nearest wave."
     )
+
+
+def main() -> None:
+    import argparse
+
+    ap = argparse.ArgumentParser(description="Resolve Eurobarometer ZA studies from fieldwork dates")
+    ap.add_argument("--dates-file", default="configs/eurodates.csv")
+    ap.add_argument("--date", default="", help="full calendar date YYYY-MM-DD")
+    ap.add_argument("--year", type=int, default=None, help="list all waves overlapping a year")
+    ap.add_argument("--za", default="", help="show one ZA registry row")
+    args = ap.parse_args()
+
+    root = Path(__file__).resolve().parents[1]
+    p = Path(args.dates_file).expanduser()
+    if not p.is_absolute():
+        p = (root / p).resolve()
+
+    waves = load_registry(p)
+
+    if args.za:
+        za = normalize_za(args.za)
+        hits = [w for w in waves if w.za_id == za]
+        if not hits:
+            raise SystemExit(f"{za} not found in {p}")
+        w = hits[0]
+        print(
+            f"{w.za_id}: {w.start_date} .. {w.end_date} "
+            f"raw={w.raw_fieldwork!r} auto_select={w.auto_select}"
+        )
+        return
+
+    if args.date:
+        try:
+            when = date.fromisoformat(args.date)
+        except ValueError:
+            raise SystemExit("--date must use YYYY-MM-DD")
+        try:
+            w = resolve_exact_date(waves, when)
+        except ValueError as e:
+            raise SystemExit(str(e))
+        print(
+            f"{when.isoformat()} -> {w.za_id} "
+            f"[{w.start_date} .. {w.end_date}]"
+        )
+        return
+
+    if args.year is not None:
+        hits = waves_in_year(waves, args.year)
+        for w in hits:
+            print(f"{w.za_id}: {w.start_date} .. {w.end_date}")
+        print(f"{len(hits)} wave(s) overlap {args.year}")
+        return
+
+    print(f"Loaded {len(waves)} Eurobarometer fieldwork rows from {p}")
+    broad = [w for w in waves if not w.auto_select]
+    if broad:
+        print("Excluded from automatic date selection:")
+        for w in broad:
+            print(f"  {w.za_id}: {w.start_date} .. {w.end_date}")
+
+
+if __name__ == "__main__":
+    main()
