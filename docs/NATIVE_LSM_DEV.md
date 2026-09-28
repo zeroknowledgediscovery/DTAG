@@ -278,6 +278,58 @@ Everything above the model backend remains the same DTAG pipeline: map
 selection, persona assignment, geographic conditioning, state evolution,
 semantic fallback, answer generation, logging, and ideology calculation.
 
+## Eurobarometer date routing
+
+Place the supplied two-column Eurobarometer fieldwork table at:
+
+```text
+configs/eurodates.csv
+```
+
+The file format is:
+
+```text
+0078,31.01.1962 - 03.03.1962
+7575,09.05.2019 - 25.05.2019
+...
+```
+
+No header is required. Partial dates such as `02.1970 - 03.1970` are
+supported.
+
+Date routing is deliberately conservative. An exact calendar date is used only
+when exactly one ordinary fieldwork interval covers it:
+
+```bash
+python3 scripts/eurobarometer_native.py \
+  --date 2019-05-15 \
+  --country France \
+  --question "How satisfied are you with democracy?"
+```
+
+For the supplied registry this resolves to `ZA7575`, whose fieldwork interval
+is 2019-05-09 through 2019-05-25.
+
+If multiple waves overlap the requested date, DTAG reports the candidate ZA
+IDs and requires `--za`. If no interval covers the date, it reports the
+previous and next waves but does not silently substitute the nearest model.
+
+A year alone is not treated as a unique Eurobarometer identifier:
+
+```bash
+python3 scripts/eurobarometer_native.py --year 2019
+```
+
+This lists the waves overlapping 2019 and asks for either a full `--date` or
+an explicit `--za`.
+
+Two broad cumulative/longitudinal rows in the supplied table (ZA3521 and
+ZA4669) span many years. They remain usable by explicit ZA ID but are excluded
+from automatic date selection.
+
+Country coverage is not yet used to disambiguate overlapping waves. That is
+the next metadata layer after basic native runtime validation.
+
 ## No-LLM native deployment test
 
 After one or more models have been trained:
