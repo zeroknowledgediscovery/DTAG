@@ -202,7 +202,7 @@ def main() -> None:
             raise SystemExit(f"No Eurobarometer fieldwork rows overlap {args.year}")
         print(f"Eurobarometer waves overlapping {args.year}:")
         for w in candidates:
-            installed = resolve_model(w.za_id) if (MODEL_ROOT / w.za_id).exists() else None
+            installed = any(p.name.upper().startswith(w.za_id) for p in model_dirs())
             suffix = " [model installed]" if installed else ""
             print(f"  {w.za_id}: {w.start_date} .. {w.end_date}{suffix}")
         raise SystemExit(
