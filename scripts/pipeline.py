@@ -1348,61 +1348,6 @@ def make_report_base(tag: str, run_id: str) -> str:
     return f"dtag6iloc_{_safe_tag(tag)}_{_timestamp()}_{run_id}"
 
 
-
-def _canon_country_value(s: str) -> str:
-    s = str(s or "").lower().replace("\u2019", "'")
-    s = re.sub(r"[^a-z0-9]+", "", s)
-    return s
-
-
-def _match_allowed_country_value(requested_country: str, allowed: List[str]) -> Optional[str]:
-    """Return the qnet-supported country label closest to a requested country name.
-
-    Afrobarometer country labels are often stored directly as strings, sometimes
-    truncated to about 10 characters (e.g., 'South Afri', 'Burkina Fa').  We do
-    exact canonical matching first, then prefix matching in either direction.
-    """
-    req = _canon_country_value(requested_country)
-    if not req:
-        return None
-    alias = COUNTRY_ALIASES.get(_canonicalize_place_name(requested_country), "")
-    req_alias = _canon_country_value(alias) if alias else ""
-    targets = [x for x in [req, req_alias] if x]
-    scored = []
-    for raw in allowed:
-        val = str(raw)
-        c = _canon_country_value(val)
-        if not c:
-            continue
-        for t in targets:
-            if c == t:
-                return val
-            # Handles truncated Afrobarometer labels and common long-form names.
-            if len(c) >= 4 and (t.startswith(c) or c.startswith(t[: min(len(t), len(c))])):
-                scored.append((abs(len(t) - len(c)), val))
-    if scored:
-        scored.sort(key=lambda x: (x[0], str(x[1])))
-        return scored[0][1]
-    return None
-
-
-def _afro_region_for_country(country: str) -> Optional[str]:
-    key = _canonicalize_place_name(country)
-    # Coarse Afrobarometer region labels, matched to qnet support when present.
-    west = {"benin", "burkina faso", "cape verde", "cote d ivoire", "ghana", "guinea", "liberia", "mali", "niger", "nigeria", "senegal", "sierra leone", "togo"}
-    east = {"burundi", "kenya", "madagascar", "mauritius", "tanzania", "uganda"}
-    south = {"botswana", "lesotho", "malawi", "mozambique", "namibia", "south africa", "swaziland", "zambia", "zimbabwe"}
-    north = {"algeria", "egypt", "morocco", "sudan", "tunisia"}
-    if key in west:
-        return "West Afric"
-    if key in east:
-        return "East Afric"
-    if key in south:
-        return "Southern A"
-    if key in north:
-        return "North Afri"
-    return None
-
 # -----------------------------
 # Geography forcing
 # -----------------------------
@@ -1425,7 +1370,6 @@ def build_forced_assignments(
         "target_latitude": None,
         "snapped_O1_LONGITUDE": None,
         "snapped_O2_LATITUDE": None,
-        "forced_country_variables": {},
     }
 
     if year is not None:
@@ -1453,32 +1397,6 @@ def build_forced_assignments(
         geo_meta["resolved_country_key"] = ck
         target_lon = clon
         target_lat = clat
-
-        # Afrobarometer-style hard country conditioning.  Prefer direct country
-        # features when present; WVS-style models usually lack these and instead
-        # use longitude/latitude below.
-        forced_country_vars: Dict[str, str] = {}
-        for cvar in ("COUNTRY_ALPHA", "COUNTRY", "country"):
-            if cvar in feat:
-                matched = _match_allowed_country_value(country, possible.get(cvar, []))
-                if matched is not None:
-                    forced[cvar] = str(matched)
-                    forced_country_vars[cvar] = str(matched)
-        # Some Afrobarometer qnets include this country-name duplicate.
-        if "COUNTRY.BY.REGION.NO" in feat:
-            matched = _match_allowed_country_value(country, possible.get("COUNTRY.BY.REGION.NO", []))
-            if matched is not None:
-                forced["COUNTRY.BY.REGION.NO"] = str(matched)
-                forced_country_vars["COUNTRY.BY.REGION.NO"] = str(matched)
-        # Coarse Afrobarometer region, if available.
-        if "COUNTRY.BY.REGION" in feat:
-            region = _afro_region_for_country(country)
-            allowed_region = possible.get("COUNTRY.BY.REGION", [])
-            if region and region in allowed_region:
-                forced["COUNTRY.BY.REGION"] = region
-                forced_country_vars["COUNTRY.BY.REGION"] = region
-        if forced_country_vars:
-            geo_meta["forced_country_variables"] = forced_country_vars
 
     if target_lon is not None or target_lat is not None:
         if "O1_LONGITUDE" not in feat or "O2_LATITUDE" not in feat:

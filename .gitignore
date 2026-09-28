@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+
+# Editor / OS
+.DS_Store
+*~
+
+# Generated DTAG outputs
+outputs/*
+!outputs/.gitkeep
+
+# Generated runtime caches
+assets/*.possible.*.json
+assets/*.semantic_embeddings.*.json
+assets/**/*.possible.*.json
+assets/**/*.semantic_embeddings.*.json
+
+# Raw / merged survey data are not release artifacts
+data/raw/*
+models/afrobarometer/merged_r*_data.gz
+models/afrobarometer/tmp
+models/afrobarometer/tmp2
+
+# Logs
+*.log

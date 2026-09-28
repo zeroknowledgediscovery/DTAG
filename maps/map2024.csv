@@ -1,0 +1,798 @@
+variable,dta_variable_label,question_text,codebook_page,question_text_filled
+abany,abortion if woman wants for any reason,,,abortion if woman wants for any reason
+abanyg,abortion if woman wants for any reason (grid on web),,,abortion if woman wants for any reason (grid on web)
+abdefect,strong chance of serious defect,,,strong chance of serious defect
+abdefectg,strong chance of serious defect (grid on web),,,strong chance of serious defect (grid on web)
+abhlth,woman's health seriously endangered,,,woman's health seriously endangered
+abhlthg,woman's health seriously endangered (grid on web),,,woman's health seriously endangered (grid on web)
+abnomore,married--wants no more children,,,married--wants no more children
+abnomoreg,married--wants no more children (grid on web),,,married--wants no more children (grid on web)
+abpoor,low income--cant afford more children,,,low income--cant afford more children
+abpoorg,low income--cant afford more children (grid on web),,,low income--cant afford more children (grid on web)
+abrape,pregnant as result of rape,,,pregnant as result of rape
+abrapeg,pregnant as result of rape (grid on web),,,pregnant as result of rape (grid on web)
+absingle,not married,,,not married
+absingleg,not married (grid on web),,,not married (grid on web)
+acpttg,accepting people,,,accepting people
+adcoumed,would r have child on med by counselor's advice,,,would r have child on med by counselor's advice
+addoc,would go to a medical doctor if he was r's child,,,would go to a medical doctor if he was r's child
+adfam,would r get advice from family if child was r's,,,would r get advice from family if child was r's
+adoptus,immigrants living in us should adopt us culture,,,immigrants living in us should adopt us culture
+adpsy,would r go to a psychiatrist if child was r's,,,would r go to a psychiatrist if child was r's
+adtch,would r get advice from teachers child if was r's,,,would r get advice from teachers child if was r's
+adults,household members 18 yrs and older (household roster),,,household members 18 yrs and older (household roster)
+adults_exp,adults 18+ in hh(experimental version),,,adults 18+ in hh(experimental version)
+adultsinhh,total adults in hh (household composition version),,,total adults in hh (household composition version)
+affrmact,favor preference in hiring black people,,,favor preference in hiring black people
+afraidof,people act as if they are afraid of r,,,people act as if they are afraid of r
+age,age of respondent,,,age of respondent
+agekdbrn,r's age when 1st child born,,,r's age when 1st child born
+agetech,are older or younger people benefiting more from digital tech,,,are older or younger people benefiting more from digital tech
+aidrive,r's comfort with driverless car,,,r's comfort with driverless car
+aimed,r's comfort with medical operation by robot,,,r's comfort with medical operation by robot
+aiworry,r worried that ai will take over many jobs done by humans,,,r worried that ai will take over many jobs done by humans
+allergic,situation caused by food or chemical allergies,,,situation caused by food or chemical allergies
+amancstr,how important to have american ancestry,,,how important to have american ancestry
+ambetter,agree america is a better country,,,agree america is a better country
+ambornin,how important to have been born in america,,,how important to have been born in america
+amchrstn,how important to be a christian,,,how important to be a christian
+amcit,how important to have american citizenship,,,how important to have american citizenship
+amcitizn,agree i would rather be a citizen of america,,,agree i would rather be a citizen of america
+amfeel,how important to feel american,,,how important to feel american
+amgovt,how important to respect america's laws etc,,,how important to respect america's laws etc
+amownway,america should follow its own interests,,,america should follow its own interests
+amshamed,agree there are things make me ashamed,,,agree there are things make me ashamed
+amtv,tv should give preference to american films,,,tv should give preference to american films
+attend,how often r attends religious services,,,how often r attends religious services
+babies,household members less than 6 yrs old,,,household members less than 6 yrs old
+babies_exp,kids 0-6 in hh(experimental version),,,kids 0-6 in hh(experimental version)
+badchar,situation caused by own bad character,,,situation caused by own bad character
+ballot,ballot used for interview,,,ballot used for interview
+befair,how often do you think people take advantage,,,how often do you think people take advantage
+belikeus,agree better if people were more like americans,,,agree better if people were more like americans
+biasnews,news coverage about politics in america is biased,,,news coverage about politics in america is biased
+bible,feelings about the bible,,,feelings about the bible
+biblenv,feelings about the bible (no volunteered response on web),,,feelings about the bible (no volunteered response on web)
+biblev,feelings about the bible (with volunteered response on web),,,feelings about the bible (with volunteered response on web)
+bizmoney,business leaders make money at expense of ordinary people,,,business leaders make money at expense of ordinary people
+born,was r born in this country,,,was r born in this country
+breakdwn,how likely x is experiencing nervous breakdown,,,how likely x is experiencing nervous breakdown
+brneffrt,possible to become american if born elsewhere,,,possible to become american if born elsewhere
+broadband,household has access to internet using broadband internet service,,,household has access to internet using broadband internet service
+bullied,situation caused by having been bullied,,,situation caused by having been bullied
+bullpeer,would x bully peers,,,would x bully peers
+cantrust,people can be trusted or cant be too careful,,,people can be trusted or cant be too careful
+cappun,favor or oppose death penalty for murder,,,favor or oppose death penalty for murder
+cctv,civil liberties - video surveillance,,,civil liberties - video surveillance
+charactr,how likely x s situation caused by bad character,,,how likely x s situation caused by bad character
+chembal,situation by a chemical imbalance in the brain,,,situation by a chemical imbalance in the brain
+childs,number of children,,,number of children
+childs_exp,total children under 18 in hh (experimental verison),,,total children under 18 in hh (experimental verison)
+childsinhh,total children in hh (household composition version),,,total children in hh (household composition version)
+chldadlt_asn,"percent of adults you knew (friends, care takers, neighbors) during childhood wh",,,"percent of adults you knew (friends, care takers, neighbors) during childhood wh"
+chldadlt_blk,"percent of adults you knew (friends, care takers, neighbors) during childhood wh",,,"percent of adults you knew (friends, care takers, neighbors) during childhood wh"
+chldadlt_hisp,"percent of adults you knew (friends, care takers, neighbors) during childhood wh",,,"percent of adults you knew (friends, care takers, neighbors) during childhood wh"
+chldadlt_oth,"percent of adults you knew (friends, care takers, neighbors) during childhood wh",,,"percent of adults you knew (friends, care takers, neighbors) during childhood wh"
+chldadlt_wht,"percent of adults you knew (friends, care takers, neighbors) during childhood wh",,,"percent of adults you knew (friends, care takers, neighbors) during childhood wh"
+chldchld_asn,"percent of children you knew (friends, classmates) during childhood who were asi",,,"percent of children you knew (friends, classmates) during childhood who were asi"
+chldchld_blk,"percent of children you knew (friends, classmates) during childhood who were bla",,,"percent of children you knew (friends, classmates) during childhood who were bla"
+chldchld_hisp,"percent of children you knew (friends, classmates) during childhood who were lat",,,"percent of children you knew (friends, classmates) during childhood who were lat"
+chldchld_oth,"percent of children you knew (friends, classmates) during childhood who were som",,,"percent of children you knew (friends, classmates) during childhood who were som"
+chldchld_wht,"percent of children you knew (friends, classmates) during childhood who were whi",,,"percent of children you knew (friends, classmates) during childhood who were whi"
+chldfam_asn,percent of family during childhood who were asian,,,percent of family during childhood who were asian
+chldfam_blk,percent of family during childhood who were black,,,percent of family during childhood who were black
+chldfam_hisp,percent of family during childhood who were latino,,,percent of family during childhood who were latino
+chldfam_oth,percent of family during childhood who were some other race,,,percent of family during childhood who were some other race
+chldfam_wht,percent of family during childhood who were white,,,percent of family during childhood who were white
+chldfrnd,how willing r have children make friends with ch,,,how willing r have children make friends with ch
+chldidel,ideal number of children,,,ideal number of children
+chldprob,how serious r consider his or her problem,,,how serious r consider his or her problem
+chldsch,how willing r have child in same class of r's ch,,,how willing r have child in same class of r's ch
+chldshop_asn,percent of people who shopped at the supermarket during childhood who were asian,,,percent of people who shopped at the supermarket during childhood who were asian
+chldshop_blk,percent of people who shopped at the supermarket during childhood who were black,,,percent of people who shopped at the supermarket during childhood who were black
+chldshop_hisp,percent of people who shopped at the supermarket during childhood who were latin,,,percent of people who shopped at the supermarket during childhood who were latin
+chldshop_oth,percent of people who shopped at the supermarket during childhood who were some,,,percent of people who shopped at the supermarket during childhood who were some
+chldshop_wht,percent of people who shopped at the supermarket during childhood who were white,,,percent of people who shopped at the supermarket during childhood who were white
+chldvig,vignette asked,,,vignette asked
+chngdocs,changing official documents,,,changing official documents
+citizen,are you a citizen of america?,,,are you a citizen of america?
+class,subjective class identification,,,subjective class identification
+classtech,are poor or rich benefiting more from digital tech,,,are poor or rich benefiting more from digital tech
+codeg,partner's highest degree,,,partner's highest degree
+coden,partner's denomination,,,partner's denomination
+coeduc,"highest year school completed, partner",,,"highest year school completed, partner"
+coevwork,partner ever work as long as a year,,,partner ever work as long as a year
+cofund,how fundamentalist is partner's current religion,,,how fundamentalist is partner's current religion
+cohort,year of birth,,,year of birth
+cohrs1,number of hours partner worked last week,,,number of hours partner worked last week
+cohrs2,no. of hours partner usually works a week,,,no. of hours partner usually works a week
+coind10,partner's industry code (2010),,,partner's industry code (2010)
+colath,allow anti-religionist to teach,,,allow anti-religionist to teach
+colcom,should communist teacher be fired,,,should communist teacher be fired
+colcomy,should communist teacher be fired y,,,should communist teacher be fired y
+colmslm,allow anti-american muslim clergymen teaching in college,,,allow anti-american muslim clergymen teaching in college
+colrac,allow racist to teach,,,allow racist to teach
+compuse,r use computer,,,r use computer
+conarmy,confidence in military,,,confidence in military
+conbus,confidence in major companies,,,confidence in major companies
+conclerg,confidence in organized religion,,,confidence in organized religion
+coneduc,confidence in education,,,confidence in education
+confed,confid. in exec branch of fed govt,,,confid. in exec branch of fed govt
+confinan,confid in banks & financial institutions,,,confid in banks & financial institutions
+coninc,family income in constant dollars,,,family income in constant dollars
+conjudge,confid. in united states supreme court,,,confid. in united states supreme court
+conlabor,confidence in organized labor,,,confidence in organized labor
+conlabory,confidence in labor unions,,,confidence in labor unions
+conlegis,confidence in congress,,,confidence in congress
+conmedic,confidence in medicine,,,confidence in medicine
+conorelgsp,partner no religion,,,partner no religion
+conpow,conflict between ordinary people and those in power,,,conflict between ordinary people and those in power
+conpress,confidence in press,,,confidence in press
+conrinc,respondent income in constant dollars,,,respondent income in constant dollars
+consci,confidence in scientific community,,,confidence in scientific community
+conscrp,importance of military service,,,importance of military service
+contv,confidence in television,,,confidence in television
+coocc10,partner's census occupation code (2010),,,partner's census occupation code (2010)
+copres10,partner's occupational prestige score (2010),,,partner's occupational prestige score (2010)
+copres105plus,partner's occupational prestige score using threshold method (2010),,,partner's occupational prestige score using threshold method (2010)
+corel,partner's religious preference,,,partner's religious preference
+corruptn,how widespread corruption is in pub service in america,,,how widespread corruption is in pub service in america
+cosei10,partner's socioeconomic index (2010),,,partner's socioeconomic index (2010)
+cosei10educ,percentage of some college educ in coocc10 based on acs 2010,,,percentage of some college educ in coocc10 based on acs 2010
+cosei10inc,percentage of $45k+ earners in coocc10 based on acs 2010,,,percentage of $45k+ earners in coocc10 based on acs 2010
+courts,courts dealing with criminals,,,courts dealing with criminals
+courtsnv,courts dealing with criminals (no volunteered response on web),,,courts dealing with criminals (no volunteered response on web)
+courtsv,courts dealing with criminals (with volunteered response on web),,,courts dealing with criminals (with volunteered response on web)
+cowksup,does partner supervise anyone,,,does partner supervise anyone
+cowrkslf,partner self-emp. or works for somebody else,,,partner self-emp. or works for somebody else
+cowrkslf2,"partner self-employed, with employees, or work for someone else",,,"partner self-employed, with employees, or work for someone else"
+cowrkslffam,partner work at family business or on family farm,,,partner work at family business or on family farm
+cowrksta,partner's labor force status,,,partner's labor force status
+cutself,would x intentionally cut self,,,would x intentionally cut self
+dangroth,x should be admitted to be hospitalized for treatment if dangerous to others,,,x should be admitted to be hospitalized for treatment if dangerous to others
+dangrslf,x should be admitted to be hospitalized for treatment if dangerous to x,,,x should be admitted to be hospitalized for treatment if dangerous to x
+dataprot,responsibility for internet data protection,,,responsibility for internet data protection
+dateintv,date of interview,,,date of interview
+decmoney,how able is x to decide managing own money,,,how able is x to decide managing own money
+dectreat,how able is x to decide receive treatment,,,how able is x to decide receive treatment
+degree,r's highest degree,,,r's highest degree
+dem10fut,how well will democracy work in america in ten yrs,,,how well will democracy work in america in ten yrs
+dem10pst,how well did democracy work in america ten yrs ago,,,how well did democracy work in america ten yrs ago
+demtoday,how well democracy work in america,,,how well democracy work in america
+denom,specific denomination,,,specific denomination
+denom16,denomination in which r was raised,,,denomination in which r was raised
+devtype,are you taking this survey on a...,,,are you taking this survey on a...
+diagnosd,r ever diagnosed with mh problem,,,r ever diagnosed with mh problem
+dipged,"diploma, ged, or other",,,"diploma, ged, or other"
+discaff,whites hurt by aff. action,,,whites hurt by aff. action
+discaffm,a man won't get a job or promotion,,,a man won't get a job or promotion
+discaffw,a woman won't get a job or promotion,,,a woman won't get a job or promotion
+discaffwnv,a woman won't get a job or promotion (no volunteered response on web),,,a woman won't get a job or promotion (no volunteered response on web)
+discaffwv,a woman won't get a job or promotion (with volunteered response on web),,,a woman won't get a job or promotion (with volunteered response on web)
+discipln,situation caused by lacking discipline in the,,,situation caused by lacking discipline in the
+disrspct,r is treated with less courtesy or respect than others,,,r is treated with less courtesy or respect than others
+divlaw,divorce laws,,,divorce laws
+divlawnv,divorce laws (no volunteered response on web),,,divorce laws (no volunteered response on web)
+divlawv,divorce laws (with volunteered response on web),,,divorce laws (with volunteered response on web)
+divorce,ever been divorced or separated,,,ever been divorced or separated
+dofirst,here are the things you said {#secl_name} should do... interviewer: read list,,,here are the things you said {#secl_name} should do... interviewer: read list
+dsndntpay,reparations for descendants of slaves,,,reparations for descendants of slaves
+dwelown,does r own or rent home?,,,does r own or rent home?
+dwelown16,did rs family own or rent home when r was age 16,,,did rs family own or rent home when r was age 16
+earnrs,how many in family earned money?,,,how many in family earned money?
+econstat,what do you think about the state of the economy these days in the united states,,,what do you think about the state of the economy these days in the united states
+educ,highest year of school completed,,,highest year of school completed
+eductech,are educated or uneducated benefiting more from digital tech,,,are educated or uneducated benefiting more from digital tech
+emonitor1,should government be able to monitor online communication,,,should government be able to monitor online communication
+eqwlth,should govt reduce income differences,,,should govt reduce income differences
+eth1,1st mentioned country of origin,,,1st mentioned country of origin
+ethnic,country of family origin,,,country of family origin
+ethworld1,from what part of the world did your ancestors come? europe,,,from what part of the world did your ancestors come? europe
+ethworld2,from what part of the world did your ancestors come? africa,,,from what part of the world did your ancestors come? africa
+ethworld3,from what part of the world did your ancestors come? asia,,,from what part of the world did your ancestors come? asia
+ethworld4,from what part of the world did your ancestors come? middle east,,,from what part of the world did your ancestors come? middle east
+ethworld5,from what part of the world did your ancestors come? south america,,,from what part of the world did your ancestors come? south america
+ethworld6,from what part of the world did your ancestors come? central america,,,from what part of the world did your ancestors come? central america
+ethworld7,from what part of the world did your ancestors come? north america,,,from what part of the world did your ancestors come? north america
+ethworld8,from what part of the world did your ancestors come? caribbean,,,from what part of the world did your ancestors come? caribbean
+ethworld9,from what part of the world did your ancestors come? oceania,,,from what part of the world did your ancestors come? oceania
+evwork,ever work as long as one year,,,ever work as long as one year
+experts,better to rely on opinions of experts than ordinary people,,,better to rely on opinions of experts than ordinary people
+fair,people fair or try to take advantage,,,people fair or try to take advantage
+fairnv,people fair or try to take advantage (no volunteered response on web),,,people fair or try to take advantage (no volunteered response on web)
+fairv,people fair or try to take advantage (with volunteered resposne on web),,,people fair or try to take advantage (with volunteered resposne on web)
+famdif16,reason not living with parents,,,reason not living with parents
+famdif16y,which of the following best describes your situation?,,,which of the following best describes your situation?
+famgen,number of family generations in household,,,number of family generations in household
+famgen_exp,number of family generations in household (experimental version),,,number of family generations in household (experimental version)
+family16,living with parents when 16 yrs old,,,living with parents when 16 yrs old
+family16sex,sex of two parents living with when 16 yrs old,,,sex of two parents living with when 16 yrs old
+fammhneg,r's family's negative attitudes about mh problems,,,r's family's negative attitudes about mh problems
+fear,afraid to walk at night in neighborhood,,,afraid to walk at night in neighborhood
+fechld,mother working doesn't hurt children,,,mother working doesn't hurt children
+fefam,"better for man to work, woman tend home",,,"better for man to work, woman tend home"
+fehire,should hire and promote women,,,should hire and promote women
+fejobaff,for or against preferential hiring of women,,,for or against preferential hiring of women
+femsee1,how feminine others see r (0 to 6 scale),,,how feminine others see r (0 to 6 scale)
+femself1,how feminine r sees self (0 to 6 scale),,,how feminine r sees self (0 to 6 scale)
+feovrwrk,family life suffers when women work,,,family life suffers when women work
+fepol,women not suited for politics,,,women not suited for politics
+fepolnv,women not suited for politics (no volunteered response on web),,,women not suited for politics (no volunteered response on web)
+fepolv,women not suited for politics (with volunteered response on web),,,women not suited for politics (with volunteered response on web)
+fepresch,preschool kids suffer if mother works,,,preschool kids suffer if mother works
+fighpeer,would x get into fights with peers,,,would x get into fights with peers
+fileversion,gss data file version,,,gss data file version
+finalter,change in financial situation,,,change in financial situation
+finrela,opinion of family income,,,opinion of family income
+foodalc,would x engage in excessive and uncontrolled food or alcohol consumption,,,would x engage in excessive and uncontrolled food or alcohol consumption
+forland,foreigner's should not be allowed to buy land,,,foreigner's should not be allowed to buy land
+form,form of split questionnaire asked,,,form of split questionnaire asked
+ftruse,likelihood r uses internet in next 12 months,,,likelihood r uses internet in next 12 months
+fulldem,"the people, not politicians, should make important decisions",,,"the people, not politicians, should make important decisions"
+fund,how fundamentalist is r currently,,,how fundamentalist is r currently
+fund16,how fundamentalist was r at age 16,,,how fundamentalist was r at age 16
+gendtech,are women or men benefiting more from digital tech,,,are women or men benefiting more from digital tech
+geneprob,situation caused by a genetic or inherited problem,,,situation caused by a genetic or inherited problem
+genetics,how likely x s situation caused by genetic problem,,,how likely x s situation caused by genetic problem
+getahead,opinion of how people get ahead,,,opinion of how people get ahead
+getaheadnv,opinion of how people get ahead (no volunteered response on web),,,opinion of how people get ahead (no volunteered response on web)
+getaheadv,opinion of how people get ahead (with volunteered response on web),,,opinion of how people get ahead (with volunteered response on web)
+god,r's confidence in the existence of god,,,r's confidence in the existence of god
+godswill,how likely x s situation caused by god s will,,,how likely x s situation caused by god s will
+goodlife,standard of living of r will improve,,,standard of living of r will improve
+granborn,how many grandparents born outside u.s.,,,how many grandparents born outside u.s.
+grass,should marijuana be made legal,,,should marijuana be made legal
+grassnv,should marijuana be made legal (no volunteered response on web),,,should marijuana be made legal (no volunteered response on web)
+grassv,should marijuana be made legal (with volunteered response on web),,,should marijuana be made legal (with volunteered response on web)
+grwingup,is child experiencing normal ups and downs,,,is child experiencing normal ups and downs
+gunlaw,favor or oppose gun permits,,,favor or oppose gun permits
+hapcohab,happiness of relt with partner,,,happiness of relt with partner
+hapmar,happiness of marriage,,,happiness of marriage
+happy,general happiness,,,general happiness
+harmgood1,does technology do more harm than good?,,,does technology do more harm than good?
+health,condition of health,,,condition of health
+helpblk,should govt aid black people?,,,should govt aid black people?
+helpful,people helpful or looking out for selves,,,people helpful or looking out for selves
+helpfulnv,people helpful or looking out for selves (no volunteered response on web),,,people helpful or looking out for selves (no volunteered response on web)
+helpfulv,people helpful or looking out for selves (with volunteered response on web),,,people helpful or looking out for selves (with volunteered response on web)
+helpnot,should govt do more or less?,,,should govt do more or less?
+helpoth,to help others,,,to help others
+helppoor,should govt improve standard of living?,,,should govt improve standard of living?
+helpsick,should govt help pay for medical care?,,,should govt help pay for medical care?
+helpusa,how important to help worse off ppl in america,,,how important to help worse off ppl in america
+hhtype1,household type (condensed),,,household type (condensed)
+hhtype1_exp,household type (condensed) (experimental version),,,household type (condensed) (experimental version)
+hispanic,r hispanic specific,,,r hispanic specific
+hivafraid,afraid to be around a person with hiv,,,afraid to be around a person with hiv
+hivdscrm,there is a lot of discrimination against people with hiv,,,there is a lot of discrimination against people with hiv
+hivimmrl,people with hiv have participated in immoral activities,,,people with hiv have participated in immoral activities
+hivtest,have you ever been tested for hiv,,,have you ever been tested for hiv
+hivtest1,in what year was your last hiv test,,,in what year was your last hiv test
+hivtest2,where did you have your last hiv test,,,where did you have your last hiv test
+homosex,homosexual sex relations,,,homosexual sex relations
+hompop,number of persons in household,,,number of persons in household
+hompop_exp,total people in hh (experimental version),,,total people in hh (experimental version)
+hrs1,number of hours worked last week,,,number of hours worked last week
+hrs2,number of hours usually work a week,,,number of hours usually work a week
+hunt,does r or spouse hunt,,,does r or spouse hunt
+hunt1,does r or spouse or partner hunt,,,does r or spouse or partner hunt
+hurtoth,how likely x violent toward other people,,,how likely x violent toward other people
+hurtself,how likely x violent toward oneself,,,how likely x violent toward oneself
+id,respondent id number,,,respondent id number
+if16who,who you would have voted for,,,who you would have voted for
+if20who,who you would have voted for in 2020,,,who you would have voted for in 2020
+ifwrong,agree people should support their country,,,agree people should support their country
+imbalnce,how likely x s situation caused by imbalance in brain,,,how likely x s situation caused by imbalance in brain
+immameco,immigrants good for america,,,immigrants good for america
+immassim,what statement about immigrants matches view,,,what statement about immigrants matches view
+immcrime,immigrants increase crime rates,,,immigrants increase crime rates
+immcrime1,immigrants increase crime rates,,,immigrants increase crime rates
+immfate,fate of illegal immigrants,,,fate of illegal immigrants
+immideas1,immigrants bring new ideas and cultures,,,immigrants bring new ideas and cultures
+immjobs,immigrants take jobs away,,,immigrants take jobs away
+immjobs1,immigrants take jobs away,,,immigrants take jobs away
+immwlfare,people born in america should be given preference over immigrants when it comes,,,people born in america should be given preference over immigrants when it comes
+imports,america should limit the import,,,america should limit the import
+imprvdis,situation will improve with strict discipline,,,situation will improve with strict discipline
+imprveat,situation will improve with some changes in diet,,,situation will improve with some changes in diet
+imprvmed,situation will improve with medical treatment,,,situation will improve with medical treatment
+imprvown,how likely x s situation will improve on its own,,,how likely x s situation will improve on its own
+imprvown1,how likely child x situation will improve on its own,,,how likely child x situation will improve on its own
+imprvtrt,how likely x s situation will improve with treatment,,,how likely x s situation will improve with treatment
+incgap1,government's responsibility to reduce economic inequality,,,government's responsibility to reduce economic inequality
+incom16,r's family income when 16 yrs old,,,r's family income when 16 yrs old
+income,total family income,,,total family income
+income16,total family income,,,total family income
+indus10,r's industry code (naics 2007),,,r's industry code (naics 2007)
+infodeal,"would r provide info for discounts, free products",,,"would r provide info for discounts, free products"
+infoprofit,would r provide info companies could profit from,,,would r provide info companies could profit from
+intaccprxy,how often r asked someone to use the internet on their behalf,,,how often r asked someone to use the internet on their behalf
+intapps,r's skill at learning new software,,,r's skill at learning new software
+intbhlf,frequency r was asked to use internet for someone else,,,frequency r was asked to use internet for someone else
+intcnfrm,how often r tries to confirm information with other sources,,,how often r tries to confirm information with other sources
+intcomm,how often r uses internet for communication,,,how often r uses internet for communication
+intfncl,how often r uses internet for financial transactions,,,how often r uses internet for financial transactions
+intgame,how often r uses internet for video games,,,how often r uses internet for video games
+inthome,frequency r has home internet access,,,frequency r has home internet access
+inthrss,has r or someone they know been harassed online,,,has r or someone they know been harassed online
+intlincs,large intl company damage to local business,,,large intl company damage to local business
+intliteracy,r's knowledge of online information discretion,,,r's knowledge of online information discretion
+intlnly,r would feel lonely without internet?,,,r would feel lonely without internet?
+intmeet,r more comfortable meeting people online?,,,r more comfortable meeting people online?
+intnews,how often r accesses non-routine political news sources,,,how often r accesses non-routine political news sources
+intoppo,trend of online contact with politically different,,,trend of online contact with politically different
+intpolview,trend of online contact with politically similar,,,trend of online contact with politically similar
+intprfssnl,frequency r has work/school internet access,,,frequency r has work/school internet access
+intpub,frequency r has internet access in public,,,frequency r has internet access in public
+intrnetuse,frequency of internet use over past 12 months,,,frequency of internet use over past 12 months
+intrust,how much r trusts people they've only met online,,,how much r trusts people they've only met online
+intscam,has r or someone they know been a victim of online scam,,,has r or someone they know been a victim of online scam
+intsearch,how often r uses internet for search,,,how often r uses internet for search
+intshare,how often r uses internet for sharing photos/videos,,,how often r uses internet for sharing photos/videos
+intskill,r's skill at using the internet,,,r's skill at using the internet
+intstream,how often r uses internet for music/video,,,how often r uses internet for music/video
+intsurf,r's skill at online searches,,,r's skill at online searches
+inttrig,how often r reads political opinions they disagree with online,,,how often r reads political opinions they disagree with online
+intviews,how often r talks about politics online,,,how often r talks about politics online
+issp,filter for issp cases,,,filter for issp cases
+jobfind,could r find equally good job,,,could r find equally good job
+joblose,is r likely to lose job,,,is r likely to lose job
+kidssol,r's kids living standard compared to r,,,r's kids living standard compared to r
+kidssolnv,r's kids living standard compared to r (no volunteered response on web),,,r's kids living standard compared to r (no volunteered response on web)
+kidssolv,r's kids living standard compared to r (with volunteered response on web),,,r's kids living standard compared to r (with volunteered response on web)
+kish,kish,,,kish
+knwmhosp,know anyone who was in a hospital,,,know anyone who was in a hospital
+knwpatnt,known anyone seeing a psychologist etc?,,,known anyone seeing a psychologist etc?
+leftrght,how left or right in politics,,,how left or right in politics
+leftrght1,how left or right in politics,,,how left or right in politics
+letdie1,allow incurable patients to die,,,allow incurable patients to die
+letdie1y,allow incurable patients to die (form 2),,,allow incurable patients to die (form 2)
+letin1,number of immigrants to america nowadays should be,,,number of immigrants to america nowadays should be
+letin1a,number of immigrants nowadays should be,,,number of immigrants nowadays should be
+letinasn,immigration from asia should be increased,,,immigration from asia should be increased
+letinhsp,immigration from latin america should be increased,,,immigration from latin america should be increased
+libath,allow anti-religious book in library,,,allow anti-religious book in library
+libathy,allow anti-religionist to teach y,,,allow anti-religionist to teach y
+libcom,allow communists book in library,,,allow communists book in library
+libcomy,allow communists book in library y,,,allow communists book in library y
+libmslm,allow anti-american muslim clergymen's books in library,,,allow anti-american muslim clergymen's books in library
+libmslmy,allow anti-american muslim clergymen's books in library y,,,allow anti-american muslim clergymen's books in library y
+librac,allow racists book in library,,,allow racists book in library
+libracy,allow racists book in library y,,,allow racists book in library y
+life,is life exciting or dull,,,is life exciting or dull
+liveblks,neighborhood half black,,,neighborhood half black
+lkelyvot,likelihood to vote in 2024 election,,,likelihood to vote in 2024 election
+localnum,number of employees: r's work site,,,number of employees: r's work site
+maborn,was r's mother (or youngest same-sex parent) born in this country?,,,was r's mother (or youngest same-sex parent) born in this country?
+madeg,mother's (or youngest same-sex parent's) highest degree,,,mother's (or youngest same-sex parent's) highest degree
+maeduc,"highest year school completed, mother (or youngest same-sex parent)",,,"highest year school completed, mother (or youngest same-sex parent)"
+maind10,mother's (or youngest same-sex parent's) industry code (naics 2007),,,mother's (or youngest same-sex parent's) industry code (naics 2007)
+major1,college major 1,,,college major 1
+major2,college major 2,,,college major 2
+maocc10,mother's (or youngest same-sex parent's) occupatoin code (2010),,,mother's (or youngest same-sex parent's) occupatoin code (2010)
+mapres10,mother's (or youngest same-sex parent's) occupational prestige score (2010),,,mother's (or youngest same-sex parent's) occupational prestige score (2010)
+mapres105plus,mother's (or youngest same-sex parent's) occupational prestige score using thres,,,mother's (or youngest same-sex parent's) occupational prestige score using thres
+marasian,close relative marry asian,,,close relative marry asian
+marblk,close relative marry black person,,,close relative marry black person
+marcohab,cohabitation status,,,cohabitation status
+marhisp,close relative marry hispanic,,,close relative marry hispanic
+marital,marital status,,,marital status
+marsame,homosexual couples should have the right to marry one another,,,homosexual couples should have the right to marry one another
+marsamey,same-sex couples should have the right to marry one another,,,same-sex couples should have the right to marry one another
+martype,marital type,,,marital type
+marwht,r favor close relative marrying white person,,,r favor close relative marrying white person
+mascsee1,how masculine others see r (0 to 6 scale),,,how masculine others see r (0 to 6 scale)
+mascself1,how masculine r sees self (0 to 6 scale),,,how masculine r sees self (0 to 6 scale)
+masei10,r's mother's (or youngest same-sex parent's) socioeconomic index (2010),,,r's mother's (or youngest same-sex parent's) socioeconomic index (2010)
+masei10educ,percentage of some college educ in maocc10 based on acs 2010,,,percentage of some college educ in maocc10 based on acs 2010
+masei10inc,percentage of $45k+ earners in maocc10 based on acs 2010,,,percentage of $45k+ earners in maocc10 based on acs 2010
+mawrkgrw,did mother (or youngest same-sex parent) ever work for pay for as long as a year,,,did mother (or youngest same-sex parent) ever work for pay for as long as a year
+mawrkslf,mother (or youngest same-sex parent) self-emp. or worked for somebody,,,mother (or youngest same-sex parent) self-emp. or worked for somebody
+mawrkslf2,"at this job, was mother (or youngest same-sex parent) an employee, self-employed",,,"at this job, was mother (or youngest same-sex parent) an employee, self-employed"
+mawrkslffam,mother (or youngest same-sex parent) owned family business or farm,,,mother (or youngest same-sex parent) owned family business or farm
+meddoc,x should go to general medical doctor for help,,,x should go to general medical doctor for help
+mentldoc,x should go to psychiatrist for help,,,x should go to psychiatrist for help
+mentlhos,x should check into a mental hospital,,,x should check into a mental hospital
+mentlill,how likely x is experiencing mental illness,,,how likely x is experiencing mental illness
+mentloth,x should go to other mental health professional for help,,,x should go to other mental health professional for help
+meovrwrk,men hurt family when focus on work too much,,,men hurt family when focus on work too much
+mhtreatd,r ever treated for mh problem,,,r ever treated for mh problem
+mhtrtot2,r knows someone who received treatment for mental health,,,r knows someone who received treatment for mental health
+mhunsure,people like x are unpredictable,,,people like x are unpredictable
+mntlill,is child experiencing a mental illness,,,is child experiencing a mental illness
+mobile16,geographic mobility since age 16,,,geographic mobility since age 16
+mobiledata,household has access to internet using cellular data plan,,,household has access to internet using cellular data plan
+mode,interview done in-person or over the phone,,,interview done in-person or over the phone
+modelobby,has r contacted a politician in last 12 months,,,has r contacted a politician in last 12 months
+modeorg,has r belonged to an activist group in last 12 months,,,has r belonged to an activist group in last 12 months
+modeorgprot,has r organized a protest in last 12 months,,,has r organized a protest in last 12 months
+modepet,has r signed a petition in last 12 months,,,has r signed a petition in last 12 months
+modeprot,has r participated in a protest in last 12 months,,,has r participated in a protest in last 12 months
+modesequence,initial mode of contact for respondent,,,initial mode of contact for respondent
+morextrm,everyone is like x but x's case is just a bit more extreme and ongoing,,,everyone is like x but x's case is just a bit more extreme and ongoing
+mustdoc,x should be forced to be examined at a clinic by law,,,x should be forced to be examined at a clinic by law
+mustdoc1,x's parents should be forced by law to have x examined at a clinic,,,x's parents should be forced by law to have x examined at a clinic
+musthosp,x should be admitted to be hospitalized for treatment by law,,,x should be admitted to be hospitalized for treatment by law
+musthosp1,x's parents should be forced by law to admit x to be hospitalized for treatment,,,x's parents should be forced by law to admit x to be hospitalized for treatment
+mustmed,x should be forced to take prescribed medication by law,,,x should be forced to take prescribed medication by law
+mustmed1,x's parents should be forced by law to have x take prescribed medication,,,x's parents should be forced by law to have x take prescribed medication
+nataid,foreign aid,,,foreign aid
+nataidy,assistance to other countries:ver y,,,assistance to other countries:ver y
+natarms,"military, armaments, and defense",,,"military, armaments, and defense"
+natarmsy,national defense:version y,,,national defense:version y
+natchld,assistance for childcare,,,assistance for childcare
+natcity,solving problems of big cities,,,solving problems of big cities
+natcityy,assistance to big cities:version y,,,assistance to big cities:version y
+natcrime,halting rising crime rate,,,halting rising crime rate
+natcrimy,law enforcement:version y,,,law enforcement:version y
+natdrug,dealing with drug addiction,,,dealing with drug addiction
+natdrugy,drug rehabilitation:version y,,,drug rehabilitation:version y
+nateduc,improving nations education system,,,improving nations education system
+nateducy,education:version y,,,education:version y
+natenrgy,developing alternative energy sources,,,developing alternative energy sources
+natenvir,improving & protecting environment,,,improving & protecting environment
+natenviy,the environment:version y,,,the environment:version y
+natfare,welfare,,,welfare
+natfarey,assistance to the poor:version y,,,assistance to the poor:version y
+natheal,improving & protecting nations health,,,improving & protecting nations health
+nathealy,health:version y,,,health:version y
+natrace,improving the conditions of black people,,,improving the conditions of black people
+natracey,assistance to black people: version y,,,assistance to black people: version y
+natroad,highways and bridges,,,highways and bridges
+natsci,supporting scientific research,,,supporting scientific research
+natsoc,social security,,,social security
+natspac,space exploration program,,,space exploration program
+natspacy,space exploration:version y,,,space exploration:version y
+negself,would x intentionally neglect own health,,,would x intentionally neglect own health
+news,how often does r read newspaper,,,how often does r read newspaper
+nextdoor,how willing r move next door to child's family,,,how willing r move next door to child's family
+nextgen1,does technology provide more opportunities?,,,does technology provide more opportunities?
+noathome,miss a family occasion or holiday?,,,miss a family occasion or holiday?
+nocondom,had vaginal or anal sex without a condom in past 12 months,,,had vaginal or anal sex without a condom in past 12 months
+nodocidu,ever injected any drugs other than those prescribed for you,,,ever injected any drugs other than those prescribed for you
+nonurse,unable to care for a sick child-relative?,,,unable to care for a sick child-relative?
+norelgsp,is r atheist or agnostic,,,is r atheist or agnostic
+norelgsp16,r no religion age 16,,,r no religion age 16
+notsmart,people act as if they think r is not smart,,,people act as if they think r is not smart
+nouseint1,no internet use over past 12 months due to unavaliblity,,,no internet use over past 12 months due to unavaliblity
+nouseint10,no internet use over past 12 months due to lack of time,,,no internet use over past 12 months due to lack of time
+nouseint11,no internet use over past 12 months due to government restriction,,,no internet use over past 12 months due to government restriction
+nouseint12,no internet use over past 12 months due to other reasons,,,no internet use over past 12 months due to other reasons
+nouseint2,no internet use over past 12 months due to poor quality of connection,,,no internet use over past 12 months due to poor quality of connection
+nouseint3,no internet use over past 12 months due to cost,,,no internet use over past 12 months due to cost
+nouseint4,no internet use over past 12 months due to security and privacy,,,no internet use over past 12 months due to security and privacy
+nouseint5,no internet use over past 12 months due to lack of utility/importance,,,no internet use over past 12 months due to lack of utility/importance
+nouseint6,no internet use over past 12 months due to age,,,no internet use over past 12 months due to age
+nouseint7,no internet use over past 12 months due to usability,,,no internet use over past 12 months due to usability
+nouseint8,no internet use over past 12 months due to lack of desire,,,no internet use over past 12 months due to lack of desire
+nouseint9,no internet use over past 12 months due to literacy,,,no internet use over past 12 months due to literacy
+numemps,"if self employed, number of other employees",,,"if self employed, number of other employees"
+obey,to obey,,,to obey
+obeylaws,how important always to obey laws,,,how important always to obey laws
+occ10,r's census occupation code (2010),,,r's census occupation code (2010)
+oppsegov,how important: citizen engage in acts of civil disobeyed,,,how important: citizen engage in acts of civil disobeyed
+otcmed,x should take non-prescription medication,,,x should take non-prescription medication
+othlang,can r speak language other than english/spanish,,,can r speak language other than english/spanish
+othlang1,what other languages does r speak,,,what other languages does r speak
+othlang2,what other languages does r speak,,,what other languages does r speak
+othmhneg,r's other acquaintences negative attitudes about mh problems,,,r's other acquaintences negative attitudes about mh problems
+owndecns,best if every nation had its own country,,,best if every nation had its own country
+owngun,have gun in home,,,have gun in home
+paborn,was r's father (or oldest same-sex parent) born in this country?,,,was r's father (or oldest same-sex parent) born in this country?
+padeg,father's (or oldest same-sex parent's) highest degree,,,father's (or oldest same-sex parent's) highest degree
+paeduc,"highest year school completed, father (or oldest same-sex parent)",,,"highest year school completed, father (or oldest same-sex parent)"
+paind10,father's (or oldest same-sex parent's) industry code (naics 2007),,,father's (or oldest same-sex parent's) industry code (naics 2007)
+paocc10,father's (or oldest same-sex parent's) occupatoin code (2010),,,father's (or oldest same-sex parent's) occupatoin code (2010)
+papernews,reliability of newspapers,,,reliability of newspapers
+papres10,father's (or oldest same-sex parent's) occupational prestige score (2010),,,father's (or oldest same-sex parent's) occupational prestige score (2010)
+papres105plus,father's (or oldest same-sex parent's) occupational prestige score using thresho,,,father's (or oldest same-sex parent's) occupational prestige score using thresho
+parborn,were r's parents born in this country,,,were r's parents born in this country
+parsol,r's living standard compared to parents,,,r's living standard compared to parents
+partfull,was r's work part-time or full-time?,,,was r's work part-time or full-time?
+partners,how many sex partner's r had in last year,,,how many sex partner's r had in last year
+partyid,political party affiliation,,,political party affiliation
+pasei10,r's father's (or oldest same-sex parent's) socioeconomic index (2010),,,r's father's (or oldest same-sex parent's) socioeconomic index (2010)
+pasei10educ,percentage of some college educ in paocc10 based on acs 2010,,,percentage of some college educ in paocc10 based on acs 2010
+pasei10inc,percentage of $45k+ earners in paocc10 based on acs 2010,,,percentage of $45k+ earners in paocc10 based on acs 2010
+pawrkgrw,did father (or oldest same-sex parent) ever work for pay for as long as a year w,,,did father (or oldest same-sex parent) ever work for pay for as long as a year w
+pawrkslf,father (or oldest same-sex parent) self-emp. or worked for somebody,,,father (or oldest same-sex parent) self-emp. or worked for somebody
+pawrkslf2,"at this job, was father (or oldest same-sex parent) an employee, self-employed w",,,"at this job, was father (or oldest same-sex parent) an employee, self-employed w"
+pawrkslffam,father (or oldest same-sex parent) owned family business or farm,,,father (or oldest same-sex parent) owned family business or farm
+paytaxes,how important never to try to evade taxes,,,how important never to try to evade taxes
+phase,subsampling: two-phase design.,,,subsampling: two-phase design.
+phone,does r have telephone,,,does r have telephone
+physill,how likely x is experiencing physical illness,,,how likely x is experiencing physical illness
+physill1,how likely child x is experiencing physical illness,,,how likely child x is experiencing physical illness
+pillok,birth control to teenagers 14-16,,,birth control to teenagers 14-16
+pistol,pistol or revolver in home,,,pistol or revolver in home
+polabuse,citizen said vulgar or obscene things,,,citizen said vulgar or obscene things
+polabusey,citizen said vulgar or obscene things y,,,citizen said vulgar or obscene things y
+polattak,citizen attacking policeman with fists,,,citizen attacking policeman with fists
+polattaky,citizen attacking policeman with fists y,,,citizen attacking policeman with fists y
+poleff11,don't have any say about what the government does,,,don't have any say about what the government does
+poleff18,govt do not care much what ppl like r think,,,govt do not care much what ppl like r think
+polescap,citizen attempting to escape custody,,,citizen attempting to escape custody
+polhitok,ever approve of police striking citizen,,,ever approve of police striking citizen
+polhitoky,ever approve of police striking citizen y,,,ever approve of police striking citizen y
+polint,your interest in politics,,,your interest in politics
+polintrst,interested in campaigns this year,,,interested in campaigns this year
+polmurdr,citizen questioned as murder suspect,,,citizen questioned as murder suspect
+polnews,how often use media to get political news,,,how often use media to get political news
+polnewsfrom,where r gets political news,,,where r gets political news
+polopts,how important: ppl given chance to participate in decsns,,,how important: ppl given chance to participate in decsns
+poltalk,politicians talk too much and don't take action,,,politicians talk too much and don't take action
+polviews,think of self as liberal or conservative,,,think of self as liberal or conservative
+poorserv,r recieves poorer service in restaurants or stores,,,r recieves poorer service in restaurants or stores
+popular,to be well liked or popular,,,to be well liked or popular
+pornlaw,feelings about pornography laws,,,feelings about pornography laws
+posslq,does r have marital partner,,,does r have marital partner
+posslqy,relationship status and cohabitation or not,,,relationship status and cohabitation or not
+postlife,belief in life after death,,,belief in life after death
+postlifenv,belief in life after death (no volunteered response on web),,,belief in life after death (no volunteered response on web)
+postlifev,belief in life after death (with volunteered response on web),,,belief in life after death (with volunteered response on web)
+pray,how often does r pray,,,how often does r pray
+prayer,bible prayer in public schools,,,bible prayer in public schools
+prayernv,bible prayer in public schools (no volunteered response on web),,,bible prayer in public schools (no volunteered response on web)
+prayerv,bible prayer in public schools (with volunteered response on web),,,bible prayer in public schools (with volunteered response on web)
+premarsx,sex before marriage,,,sex before marriage
+pres16,vote clinton or trump,,,vote clinton or trump
+pres20,voted trump or biden,,,voted trump or biden
+prestg10,r's occupational prestige score (2010),,,r's occupational prestige score (2010)
+prestg105plus,r's occupational prestige score using threshold method (2010),,,r's occupational prestige score using threshold method (2010)
+preteen,household members 6 thru 12 yrs old,,,household members 6 thru 12 yrs old
+preteen_exp,kids 7-12 in hh(experimental version),,,kids 7-12 in hh(experimental version)
+prnt,r is a parent in some capacity in hh,,,r is a parent in some capacity in hh
+proudart,how proud its achievements in the arts & lit.,,,how proud its achievements in the arts & lit.
+prouddem,how proud the way democracy works,,,how proud the way democracy works
+proudeco,how proud america's economic achievements,,,how proud america's economic achievements
+proudhis,how proud its history,,,how proud its history
+proudpol,how proud its political influence in the world,,,how proud its political influence in the world
+proudspt,how proud its achievements in sports,,,how proud its achievements in sports
+prxyuse,likelihood r ask someone to use the internet on their behalf in near future,,,likelihood r ask someone to use the internet on their behalf in near future
+ptnrornt,recent partner's sexual orientation,,,recent partner's sexual orientation
+ptnrsxbrth,recent partner's sex at birth,,,recent partner's sex at birth
+ptnrsxnow1,recent partner's sex now (3 category),,,recent partner's sex now (3 category)
+racdif1,differences due to discrimination,,,differences due to discrimination
+racdif1x,differences due to discrimination (longer intro),,,differences due to discrimination (longer intro)
+racdif2,differences due to in-born learning ability,,,differences due to in-born learning ability
+racdif2x,differences due to in-born learning ability,,,differences due to in-born learning ability
+racdif3,differences due to lack of education,,,differences due to lack of education
+racdif3x,differences due to lack of education,,,differences due to lack of education
+racdif4,differences due to lack of will,,,differences due to lack of will
+racdif4x,differences due to lack of will,,,differences due to lack of will
+racdif5,differences due mainly to unbringing,,,differences due mainly to unbringing
+racdif5x,differences due mainly to upbringing (longer intro),,,differences due mainly to upbringing (longer intro)
+race,race of respondent,,,race of respondent
+raceacs1,white,,,white
+raceacs10,other asian,,,other asian
+raceacs14,native hawaiian or other pacific islander,,,native hawaiian or other pacific islander
+raceacs15,some other race,,,some other race
+raceacs16,hispanic,,,hispanic
+raceacs2,black,,,black
+raceacs3,american indian or alaska native,,,american indian or alaska native
+raceacs4,asian indian,,,asian indian
+raceacs5,chinese,,,chinese
+raceacs6,filipino,,,filipino
+raceacs7,japanese,,,japanese
+raceacs8,korean,,,korean
+raceacs9,vietnamese,,,vietnamese
+racecen1,"what is r's race, first mention",,,"what is r's race, first mention"
+racecen2,"what is r's race, second mention",,,"what is r's race, second mention"
+racecen3,"what is r's race, third mention",,,"what is r's race, third mention"
+racerank1,first race selected,,,first race selected
+racerank2,second race selected,,,second race selected
+racerank3,third race selected,,,third race selected
+raclive,any opp. race in neighborhood,,,any opp. race in neighborhood
+racopen,vote on open housing law,,,vote on open housing law
+racopennv,vote on open housing law (no volunteered response on web),,,vote on open housing law (no volunteered response on web)
+racopenv,vote on open housing law (with volunteered response on web),,,vote on open housing law (with volunteered response on web)
+racwork,racial makeup of workplace,,,racial makeup of workplace
+radionews,"reliability of news on podcasts, radio",,,"reliability of news on podcasts, radio"
+raised,situation caused by the way he or she was raised,,,situation caused by the way he or she was raised
+rank,r's self ranking of social position,,,r's self ranking of social position
+ratechall124,rating of donald trump,,,rating of donald trump
+ratechall1ts,rating of presidential challenger 1 - time series,,,rating of presidential challenger 1 - time series
+ratechall224,rating of kamala harris,,,rating of kamala harris
+ratechall2ts,rating of presidential challenger 2 - time series,,,rating of presidential challenger 2 - time series
+ratechall324,rating of nikki haley,,,rating of nikki haley
+ratechall3ts,rating of presidential challenger 3 - time series,,,rating of presidential challenger 3 - time series
+ratedemp,rating of democratic party,,,rating of democratic party
+rateincumb24,rating of joe biden,,,rating of joe biden
+rateincumbts,rating of incumbent president - time series,,,rating of incumbent president - time series
+ratemaga,rating of maga republicans,,,rating of maga republicans
+raterepp,rating of republican party,,,rating of republican party
+realinc,family income in constant $,,,family income in constant $
+realrinc,r's income in constant $,,,r's income in constant $
+reborn,has r ever had a 'born again' experience,,,has r ever had a 'born again' experience
+refmorwk,take on additional paid work?,,,take on additional paid work?
+refpromo,refuse a job promotion?,,,refuse a job promotion?
+reg16,"region of residence, age 16",,,"region of residence, age 16"
+region,region of interview,,,region of interview
+relactiv,how often does r take part in relig activities,,,how often does r take part in relig activities
+relig,r's religious preference,,,r's religious preference
+relig16,religion in which raised,,,religion in which raised
+religinf,the u.s. would be a better country if religion had less influence,,,the u.s. would be a better country if religion had less influence
+reliten,strength of affiliation,,,strength of affiliation
+relitennv,strength of affiliation (no volunteered response on web),,,strength of affiliation (no volunteered response on web)
+relitenv,strength of affiliation (with volunteered response on web),,,strength of affiliation (with volunteered response on web)
+relpersn,r consider self a religious person,,,r consider self a religious person
+reltrad,religious tradition,,,religious tradition
+res16,type of place lived in when 16 yrs old,,,type of place lived in when 16 yrs old
+rghtsmin,how important: govt protect right of minorities,,,how important: govt protect right of minorities
+richwork,"if rich, continue or stop working",,,"if rich, continue or stop working"
+rifle,rifle in home,,,rifle in home
+rincom16,respondents income,,,respondents income
+rincome,respondents income,,,respondents income
+risklife,would x at risk for taking their own life,,,would x at risk for taking their own life
+rowngun,does gun belong to r,,,does gun belong to r
+rplace,r's relationship to household head,,,r's relationship to household head
+rumopeer,would x spread rumors about peers,,,would x spread rumors about peers
+rxmed,x should take prescription medication,,,x should take prescription medication
+sampcode,sampling error code,,,sampling error code
+sample,sampling frame and method,,,sampling frame and method
+satdemoc,r satisfied with way democracy works in america,,,r satisfied with way democracy works in america
+satfin,satisfaction with financial situation,,,satisfaction with financial situation
+satjob,work satisfaction,,,work satisfaction
+schshoot,would x carry out a school shooting,,,would x carry out a school shooting
+sei10,r's socioeconomic index (2010),,,r's socioeconomic index (2010)
+sei10educ,percentage of some college educ in occ10 based on acs 2010,,,percentage of some college educ in occ10 based on acs 2010
+sei10inc,percentage of $45k+ earners in occ10 based on acs 2010,,,percentage of $45k+ earners in occ10 based on acs 2010
+selfhelp,x should join a self-group with similar problem,,,x should join a self-group with similar problem
+seriousp,how serious x s situation is,,,how serious x s situation is
+servpub,how much the public service serves people,,,how much the public service serves people
+sex,respondents sex,,,respondents sex
+sexbirth1,r's sex assigned at birth (2021),,,r's sex assigned at birth (2021)
+sexeduc,sex education in public schools,,,sex education in public schools
+sexfreq,frequency of sex during last year,,,frequency of sex during last year
+sexnow2,r's sex now (3 category),,,r's sex now (3 category)
+sexornt,sexual orientation,,,sexual orientation
+sexornt1,"sexual orientation (reask, self-administered)",,,"sexual orientation (reask, self-administered)"
+sexpaid,ever had sex with a person you paid or who paid you for sex,,,ever had sex with a person you paid or who paid you for sex
+sexsex,sex of sex partner's in last year,,,sex of sex partner's in last year
+shotgun,shotgun in home,,,shotgun in home
+sibs,number of siblings (including step- and adopted),,,number of siblings (including step- and adopted)
+smedia,situation caused by exposure to social media,,,situation caused by exposure to social media
+smnews,reliability of news on social media,,,reliability of news on social media
+socbar,spend evening at bar,,,spend evening at bar
+socfrend,spend evening with friends,,,spend evening with friends
+socommun,spend evening with neighbor,,,spend evening with neighbor
+socrel,spend evening with relatives,,,spend evening with relatives
+solok,how important: citizens have adequate standard of living,,,how important: citizens have adequate standard of living
+spaneng,interviews conducted in spanish or english,,,interviews conducted in spanish or english
+spanking,favor spanking to discipline child,,,favor spanking to discipline child
+spanself,"if this interview had only been available in english, would you...",,,"if this interview had only been available in english, would you..."
+spdeg,spouse's highest degree,,,spouse's highest degree
+spden,"specific denomination, spouse",,,"specific denomination, spouse"
+speduc,"highest year school completed, spouse",,,"highest year school completed, spouse"
+spendeve,how willing r spend evening with child's family,,,how willing r spend evening with child's family
+spevwork,spouse ever work as long as a year,,,spouse ever work as long as a year
+spfund,how fundamentalist is spouse currently,,,how fundamentalist is spouse currently
+sphealer,x should go to spiritual healer for help,,,x should go to spiritual healer for help
+sphrs1,number of hrs spouse worked last week,,,number of hrs spouse worked last week
+sphrs2,no. of hrs spouse usually works a week,,,no. of hrs spouse usually works a week
+spind10,spouse's industry code (naics 2007),,,spouse's industry code (naics 2007)
+spkath,allow anti-religionist to speak,,,allow anti-religionist to speak
+spkathy,allow anti-religionist to speak y,,,allow anti-religionist to speak y
+spkcom,allow communist to speak,,,allow communist to speak
+spkcomy,allow communist to speak y,,,allow communist to speak y
+spklang,how well does r speak other language,,,how well does r speak other language
+spkmslm,allow muslim clergymen preaching hatred of the us,,,allow muslim clergymen preaching hatred of the us
+spkmslmy,allow muslim clergymen preaching hatred of the us y,,,allow muslim clergymen preaching hatred of the us y
+spkrac,allow racist to speak,,,allow racist to speak
+spkracy,allow racist to speak y,,,allow racist to speak y
+spnorelgsp,spouse no religion,,,spouse no religion
+spocc10,spouse census occupation code (2010),,,spouse census occupation code (2010)
+sppres10,spouse occupational prestige score (2010),,,spouse occupational prestige score (2010)
+sppres105plus,spouse occupational prestige score using threshold method (2010),,,spouse occupational prestige score using threshold method (2010)
+sprel,spouse's religious preference,,,spouse's religious preference
+sprtprsn,r consider self a spiritual person,,,r consider self a spiritual person
+spsei10,r's spouse's socioeconomic index (2010),,,r's spouse's socioeconomic index (2010)
+spsei10educ,percentage of some college educ in spocc10 based on acs 2010,,,percentage of some college educ in spocc10 based on acs 2010
+spsei10inc,percentage of $45k+ earners in spocc10 based on acs 2010,,,percentage of $45k+ earners in spocc10 based on acs 2010
+spwksup,does spouse supervise anyone,,,does spouse supervise anyone
+spwrkslf,spouse self-emp. or works for somebody,,,spouse self-emp. or works for somebody
+spwrkslf2,"spouse self-employed, with employees, or work for someone else",,,"spouse self-employed, with employees, or work for someone else"
+spwrkslffam,spouse work at family business or on family farm,,,spouse work at family business or on family farm
+spwrksta,spouse labor force status,,,spouse labor force status
+stresses,how likely x s situation caused by stress,,,how likely x s situation caused by stress
+stressfl,situation caused by stressful circumstances,,,situation caused by stressful circumstances
+subsamprate,subsampling rate corresponding to two-phase design,,,subsampling rate corresponding to two-phase design
+suicide1,suicide if incurable disease,,,suicide if incurable disease
+suicide1g,suicide if incurable disease,,,suicide if incurable disease
+suicide2,suicide if bankrupt,,,suicide if bankrupt
+suicide2g,suicide if bankrupt,,,suicide if bankrupt
+suicide4,suicide if tired of living,,,suicide if tired of living
+suicide4g,suicide if tired of living,,,suicide if tired of living
+svyenjoy,enjoy taking surveys,,,enjoy taking surveys
+svyid1,willingness to use video chat,,,willingness to use video chat
+svyid2,willingnes for in-person survey,,,willingnes for in-person survey
+takelife,would x actually take own life,,,would x actually take own life
+tax,r's federal income tax,,,r's federal income tax
+techesy,does technology make our lives easier?,,,does technology make our lives easier?
+teens,household members 13 thru 17 yrs old,,,household members 13 thru 17 yrs old
+teens_exp,kids 13-17 in hh(experimental version),,,kids 13-17 in hh(experimental version)
+teensex,sex before marriage:teens 14-16,,,sex before marriage:teens 14-16
+thnkself,to think for ones self,,,to think for ones self
+threaten,r is threatened or harassed,,,r is threatened or harassed
+tlkclrgy,x should talk to religious leader,,,x should talk to religious leader
+tlkfam,x should talk to family and friends,,,x should talk to family and friends
+trcong,"trust in congress, 10 point scale",,,"trust in congress, 10 point scale"
+trcourts,how much trust r has in american courts,,,how much trust r has in american courts
+trppl,"trust in others, 10 point scale",,,"trust in others, 10 point scale"
+trust,can people be trusted,,,can people be trusted
+trustnv,can people be trusted (no volunteered response on web),,,can people be trusted (no volunteered response on web)
+trustv,can people be trusted (with volunteered response on web),,,can people be trusted (with volunteered response on web)
+tvhours,hours per day watching tv,,,hours per day watching tv
+tvnews1,reliability of news on tv,,,reliability of news on tv
+unemp,ever unemployed in last ten yrs,,,ever unemployed in last ten yrs
+union,does r or spouse belong to union,,,does r or spouse belong to union
+union1,does r or spouse or partner belong to union,,,does r or spouse or partner belong to union
+unplgrsn,reason r reduced time spent on internet,,,reason r reduced time spent on internet
+unplug,amount r reduced time spent on internet in last 12 months,,,amount r reduced time spent on internet in last 12 months
+unrelat,number in household not related,,,number in household not related
+upsdowns,how likely x is experiencing normal ups-and-downs of life,,,how likely x is experiencing normal ups-and-downs of life
+urbantech,are cities or countryside benefiting more from digital tech,,,are cities or countryside benefiting more from digital tech
+uscitzn,"if not born in us, is r a us citizen",,,"if not born in us, is r a us citizen"
+usmca1,r's familiarity with usmca,,,r's familiarity with usmca
+usmca2,does the us benefit from usmca,,,does the us benefit from usmca
+vetyears,years in armed forces,,,years in armed forces
+vigfrnd,how willing r would make friends with x,,,how willing r would make friends with x
+viggrp,how willing r would have a group home for x,,,how willing r would have a group home for x
+viglabel,how likely x is experiencing vignettes,,,how likely x is experiencing vignettes
+vigmar,how willing r would have x marry in r's family,,,how willing r would have x marry in r's family
+vignei,how willing r would have x as a neighbor,,,how willing r would have x as a neighbor
+vigsoc,how willing r would spend time socializing with x,,,how willing r would spend time socializing with x
+vigversn,vignette version number,,,vignette version number
+vigwork,how willing r would work closely with x on a job,,,how willing r would work closely with x on a job
+violpeop,would child do something violent toward other,,,would child do something violent toward other
+violself,would child do something violent to own self,,,would child do something violent to own self
+violtv,situation caused by watching violent tv,,,situation caused by watching violent tv
+visitors,number of visitor's in household,,,number of visitor's in household
+vote16,remember if voted in 2016 election,,,remember if voted in 2016 election
+vote20,remember if voted in 2020 election,,,remember if voted in 2020 election
+voteprob,voting problem in us elections,,,voting problem in us elections
+vpsu,variance primary sampling unit,,,variance primary sampling unit
+vstrat,variance stratum,,,variance stratum
+watchgov,how important to keep watch on action of govt,,,how important to keep watch on action of govt
+wayraise,how likely x s situation caused by the way raised,,,how likely x s situation caused by the way raised
+webmob,r uses home internet through mobile device,,,r uses home internet through mobile device
+webnews,reliability of news on web,,,reliability of news on web
+weekswrk,weeks r worked last year,,,weeks r worked last year
+whatco2,classify place where partners works,,,classify place where partners works
+whatma2,how would you classify the place where mother (or youngest same-sex parent) work,,,how would you classify the place where mother (or youngest same-sex parent) work
+whatpa2,how would you classify the place where father (or oldest same-sex parent) worked,,,how would you classify the place where father (or oldest same-sex parent) worked
+whatslf2,how would you classify the place where you {#whatslf2fill}? was this mainly...?,,,how would you classify the place where you {#whatslf2fill}? was this mainly...?
+whatsp2,classify place where spouse works,,,classify place where spouse works
+whovote24,voting intention in 2024 election (pre july 25 2024),,,voting intention in 2024 election (pre july 25 2024)
+whovote24a,voting intention in 2024 election (post july 25 2024),,,voting intention in 2024 election (post july 25 2024)
+whovotets,voting intention - time series,,,voting intention - time series
+widowed,ever been widowed,,,ever been widowed
+wksub,does r or spouse have supervisor,,,does r or spouse have supervisor
+wksub1,does r or spouse or partner have a supervisor,,,does r or spouse or partner have a supervisor
+wksubs,does supervisor have supervisor,,,does supervisor have supervisor
+wksubs1,does supervisor have supervisor,,,does supervisor have supervisor
+wksup,does r or spouse supervise anyone,,,does r or spouse supervise anyone
+wksup1,does r or spouse or partner supervise anyone,,,does r or spouse or partner supervise anyone
+wksups,does subordinate supervise anyone,,,does subordinate supervise anyone
+wksups1,does subordinant supervise anyone,,,does subordinant supervise anyone
+wordsum,number words correct in vocabulary test,,,number words correct in vocabulary test
+workblks,hard working - lazy,,,hard working - lazy
+workhard,to work hard,,,to work hard
+workhsps,hard working -lazy,,,hard working -lazy
+workless,cut back on your work?,,,cut back on your work?
+workwhts,hard working - lazy,,,hard working - lazy
+wrkgovt1,govt employee,,,govt employee
+wrkgovt2,private employee,,,private employee
+wrkslf,r self-emp or works for somebody,,,r self-emp or works for somebody
+wrkslffam,does r work in family business or farm,,,does r work in family business or farm
+wrkstat,labor force status,,,labor force status
+wrkwayup,black people overcome prejudice without favors,,,black people overcome prejudice without favors
+wrldgovt,international bodies should enforce environment,,,international bodies should enforce environment
+wtssnrps,"person post-stratification weight, nonrespondents adjusted",,,"person post-stratification weight, nonrespondents adjusted"
+wtssps,person post-stratification weight,,,person post-stratification weight
+xmarsex,sex with person other than spouse,,,sex with person other than spouse
+xmovie,seen x-rated movie in last year,,,seen x-rated movie in last year
+xmoviey,seen pornography in past year,,,seen pornography in past year
+xnorcsiz,expanded norc size code,,,expanded norc size code
+year,gss year for this respondent,,,gss year for this respondent
+yousup,how many people do you supervise directly,,,how many people do you supervise directly
