@@ -1,4 +1,5 @@
 models:
+  # Legacy Quasinet models retained for A/B validation.
   gss_2022_female: models/gss/gss_2022female.pkl.gz
   gss_2022_male: models/gss/gss_2022male.pkl.gz
   gss_2024: models/gss/gss_2024.gz
@@ -8,6 +9,24 @@ models:
   afrobarometer_r3: models/afrobarometer/LSM_merged_r3_data.gz
   afrobarometer_r4: models/afrobarometer/LSM_merged_r4_data.gz
   afrobarometer_r5: models/afrobarometer/LSM_merged_r5_data.gz
+
+  # Native LSM development models. These are optional until trained by
+  # scripts/train_native_lsm_models.py and are never substituted silently for
+  # legacy models.
+  gss_2022_female_native: models/lsm/gss/gss_2022_female
+  gss_2022_male_native: models/lsm/gss/gss_2022_male
+  gss_2024_native: models/lsm/gss/gss_2024
+  wvs7_pooled_native: models/lsm/wvs/wvs7_pooled
+  afrobarometer_r5_native: models/lsm/afrobarometer/r5
+
+development:
+  optional_models:
+    - gss_2022_female_native
+    - gss_2022_male_native
+    - gss_2024_native
+    - wvs7_pooled_native
+    - afrobarometer_r5_native
+
 maps:
   gss_2016_2020: maps/map20162020.csv
   gss_2022: maps/map2022.csv
@@ -172,6 +191,105 @@ interactive_profiles:
     run:
       require_polar_vectors: true
       resp_mode: max
+  gss2022_native_wf:
+    description: "[DEV] Native-LSM GSS 2022 female profile; same persona/map as gss2022_wf."
+    map: gss_2022
+    qnet: gss_2022_female_native
+    persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive
+    year: 2022
+    country: United States
+    logs_dir: outputs/interactive_gss2022_native_wf
+    tag: GSS2022_native_WF
+    polar_vectors: assets/polar_vectors/polar_vectors.csv
+    run:
+      require_polar_vectors: true
+      resp_mode: max
+
+  gss2022_native_cm:
+    description: "[DEV] Native-LSM GSS 2022 male profile; same persona/map as gss2022_cm."
+    map: gss_2022
+    qnet: gss_2022_male_native
+    persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative
+    year: 2022
+    country: United States
+    logs_dir: outputs/interactive_gss2022_native_cm
+    tag: GSS2022_native_CM
+    polar_vectors: assets/polar_vectors/polar_vectors.csv
+    run:
+      require_polar_vectors: true
+      resp_mode: max
+
+  gss2024_native_wf:
+    description: "[DEV] Native-LSM pooled GSS 2024 progressive urban female profile."
+    map: gss_2024
+    qnet: gss_2024_native
+    persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive
+    year: 2024
+    country: United States
+    logs_dir: outputs/interactive_gss2024_native_wf
+    tag: GSS2024_native_WF
+    polar_vectors: assets/polar_vectors/polar_vectors.csv
+    run:
+      require_polar_vectors: true
+      resp_mode: max
+
+  gss2024_native_cm:
+    description: "[DEV] Native-LSM pooled GSS 2024 conservative rural male profile."
+    map: gss_2024
+    qnet: gss_2024_native
+    persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative
+    year: 2024
+    country: United States
+    logs_dir: outputs/interactive_gss2024_native_cm
+    tag: GSS2024_native_CM
+    polar_vectors: assets/polar_vectors/polar_vectors.csv
+    run:
+      require_polar_vectors: true
+      resp_mode: max
+
+  wvs7_native_india_2017:
+    description: "[DEV] Native-LSM WVS7 pooled model localized to India in 2017."
+    map: wvs7
+    qnet: wvs7_pooled_native
+    persona: 35 year old male, urban, college educated, regular news consumer, politically moderate
+    year: 2017
+    country: India
+    continent: Asia
+    logs_dir: outputs/interactive_wvs7_native_india_2017
+    tag: WVS7_native_India_2017
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+
+  afrobarometer_r5_native_nigeria:
+    description: "[DEV] Native-LSM Afrobarometer R5 localized to Nigeria."
+    map: afrobarometer_r5
+    qnet: afrobarometer_r5_native
+    persona: 35 year old urban male, regular news consumer, politically attentive, moderate
+    country: Nigeria
+    continent: Africa
+    logs_dir: outputs/interactive_afrobarometer_r5_native_nigeria
+    tag: Afrobarometer_R5_native_Nigeria
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+
+  afrobarometer_r5_native_ghana:
+    description: "[DEV] Native-LSM Afrobarometer R5 localized to Ghana."
+    map: afrobarometer_r5
+    qnet: afrobarometer_r5_native
+    persona: 35 year old urban male, regular news consumer, politically attentive, moderate
+    country: Ghana
+    continent: Africa
+    logs_dir: outputs/interactive_afrobarometer_r5_native_ghana
+    tag: Afrobarometer_R5_native_Ghana
+    polar_vectors: ''
+    run:
+      no_ideology: true
+      resp_mode: max
+
 experiments:
   gss2022_divergence:
     description: GSS 2022 WF/CM personas on divergence-probe question sets.
