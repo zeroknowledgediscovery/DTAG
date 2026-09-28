@@ -310,6 +310,32 @@ def catalog_jobs(
         item["family"] = family
         item["source"] = source
         jobs.append(item)
+
+    # Planned survey families can be populated directly from a directory even
+    # before every wave has an explicit catalog entry.  This is especially
+    # useful for Eurobarometer, where each ZA wave becomes its own native LSM.
+    if family_filter and not selected:
+        planned = (catalog.get("planned_families", {}) or {}).get(family_filter)
+        if isinstance(planned, dict):
+            source_glob = str(planned.get("source_glob", "*.csv"))
+            output_template = str(
+                planned.get("output_template", f"models/lsm/{family_filter}/{{stem}}")
+            )
+            existing_sources = {Path(j["source"]).resolve() for j in jobs}
+            for source in sorted(source_dir.glob(source_glob)):
+                if not source.is_file() or source.suffix.lower() != ".csv":
+                    continue
+                source = source.resolve()
+                if source in existing_sources:
+                    continue
+                stem = source.stem
+                item = {
+                    "name": stem,
+                    "family": family_filter,
+                    "source": source,
+                    "output": output_template.format(stem=stem, ZA=stem.upper()),
+                }
+                jobs.append(item)
     return jobs
 
 
