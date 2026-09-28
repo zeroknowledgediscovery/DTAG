@@ -50,7 +50,7 @@ from collections import OrderedDict
 import numpy as np
 import pandas as pd
 from openai import OpenAI
-from quasinet.qnet import load_qnet, qdistance
+from model_backend import load_model
 
 
 # -----------------------------
@@ -1088,6 +1088,12 @@ def llm_craft_semantic_bridge_answer(
 # -----------------------------
 
 def get_possible_responses_from_model(model) -> Dict[str, List[str]]:
+    """Return each model variable's original categorical support."""
+    if hasattr(model, "possible_values"):
+        return {
+            str(k): [str(x) for x in v]
+            for k, v in model.possible_values().items()
+        }
     NULL = np.array([""] * len(model.feature_names)).astype("U100")
     resp = model.predict_distributions(NULL)
     out: Dict[str, List[str]] = {}
@@ -1100,7 +1106,12 @@ def get_possible_responses_from_model(model) -> Dict[str, List[str]]:
     return out
 
 
-def _model_sig_for_possible(qnet_path: str) -> str:
+def _model_sig_for_possible(qnet_path: str, model=None) -> str:
+    if model is not None and hasattr(model, "cache_signature"):
+        try:
+            return str(model.cache_signature())
+        except Exception:
+            pass
     p = Path(qnet_path)
     try:
         st = os.stat(p)
@@ -1110,17 +1121,17 @@ def _model_sig_for_possible(qnet_path: str) -> str:
     return sig
 
 
-def _possible_cache_path(qnet_path: str, assets_dir: str) -> str:
+def _possible_cache_path(qnet_path: str, assets_dir: str, model=None) -> str:
     assets_dir = _ensure_dir(assets_dir)
     p = Path(qnet_path)
-    sig = _model_sig_for_possible(qnet_path)
+    sig = _model_sig_for_possible(qnet_path, model=model)
     h = hashlib.sha1(sig.encode("utf-8")).hexdigest()[:12]
     base = p.name
     return str(Path(assets_dir) / f"{base}.possible.{h}.json")
 
 
 def get_possible_responses_cached(model, qnet_path: str, assets_dir: str) -> Dict[str, List[str]]:
-    cache_path = _possible_cache_path(qnet_path, assets_dir)
+    cache_path = _possible_cache_path(qnet_path, assets_dir, model=model)
     if os.path.exists(cache_path):
         try:
             with open(cache_path, "r", encoding="utf-8") as f:
@@ -1153,9 +1164,24 @@ def build_NULL_with_assignments(model, assigns: Dict[str, str], idx_map: Dict[st
     return NULL
 
 
-def qnet_conditional_distributions(model, NULL_cond: np.ndarray) -> Dict[str, Dict[str, float]]:
+def qnet_conditional_distributions(
+    model,
+    NULL_cond: np.ndarray,
+    target_vars: Optional[List[str]] = None,
+) -> Dict[str, Dict[str, float]]:
+    """Backend-neutral conditional distributions.
+
+    Native LSM can restrict inference to the selected target trees, avoiding a
+    full all-column inference pass for each interactive question.
+    """
+    if hasattr(model, "backend_name"):
+        return model.predict_distributions(NULL_cond, target_names=target_vars)
     resp = model.predict_distributions(NULL_cond)
-    return {model.feature_names[i]: resp[i] for i in range(len(resp))}
+    out = {model.feature_names[i]: resp[i] for i in range(len(resp))}
+    if target_vars is not None:
+        wanted = set(target_vars)
+        out = {k: v for k, v in out.items() if k in wanted}
+    return out
 
 
 def _normalize_probs(dist: Dict[str, float]) -> Tuple[List[str], np.ndarray]:
@@ -1304,8 +1330,8 @@ def build_pole_vector(model, pole_map: Dict[str, str], idx_map: Dict[str, int]) 
 def ideology_index_from_vectors(s: np.ndarray, sL: np.ndarray, sR: np.ndarray, model, dLR: float) -> float:
     if not np.isfinite(dLR) or dLR <= 0:
         return 0.0
-    dL = qdistance(sL, s, model, model)
-    dR = qdistance(sR, s, model, model)
+    dL = model.qdistance(sL, s)
+    dR = model.qdistance(sR, s)
     if not np.isfinite(dL) or not np.isfinite(dR):
         return 0.0
     return float((dL - dR) / dLR)
@@ -1429,7 +1455,9 @@ def build_forced_assignments(
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--map", required=True, help="CSV mapping file (variable -> question text)")
-    ap.add_argument("--qnet", required=True, help="Qnet model path (e.g., gss_2024.gz)")
+    ap.add_argument("--qnet", required=True, help="Model path: legacy Quasinet file or native LSM model directory")
+    ap.add_argument("--model_backend", choices=["auto", "quasinet", "native_lsm"], default="auto",
+                    help="Model runtime backend. auto detects native LSM directories; otherwise uses Quasinet.")
     ap.add_argument("--persona", required=True, help="Free-text description of an individual")
 
     ap.add_argument("--question", default="", help="User plain text question (ignored if --loop or --autoplay_csv)")
@@ -1583,15 +1611,17 @@ def main() -> None:
                 "polar_vectors": str(args.polar_vectors or ""),
                 "no_ideology": bool(args.no_ideology),
                 "require_polar_vectors": bool(args.require_polar_vectors),
+                "model_backend": args.model_backend,
             },
             "persona": args.persona,
         }
 
-        # Load model once
-        model = load_qnet(args.qnet)
-        timings_init["load_qnet"] = time.time() - t0
+        # Load model once through the backend-neutral runtime adapter.
+        model = load_model(args.qnet, backend=args.model_backend)
+        timings_init["load_model"] = time.time() - t0
         feat = set(model.feature_names)
         idx_map = {model.feature_names[i]: i for i in range(len(model.feature_names))}
+        meta["model_backend"] = getattr(model, "backend_name", args.model_backend)
 
         # Load map and restrict to model features
         t1 = time.time()
@@ -1630,7 +1660,7 @@ def main() -> None:
                 else:
                     sL = build_pole_vector(model, left_map, idx_map)
                     sR = build_pole_vector(model, right_map, idx_map)
-                    dLR = qdistance(sL, sR, model, model)
+                    dLR = model.qdistance(sL, sR)
                     if np.isfinite(dLR) and dLR > 0:
                         ideology_enabled = True
                     else:
@@ -1660,7 +1690,7 @@ def main() -> None:
         t2 = time.time()
         possible = get_possible_responses_cached(model, args.qnet, assets_dir=assets_dir)
         timings_init["possible_cache"] = time.time() - t2
-        meta["paths"]["possible_cache_path"] = _abspath(_possible_cache_path(args.qnet, assets_dir=assets_dir))
+        meta["paths"]["possible_cache_path"] = _abspath(_possible_cache_path(args.qnet, assets_dir=assets_dir, model=model))
         meta["paths"]["semantic_embedding_cache_path"] = _abspath(_embedding_cache_path(args.map, assets_dir=assets_dir, embedding_model=args.semantic_embedding_model))
         meta["timings_init"] = dict(timings_init)
 
@@ -1945,7 +1975,7 @@ def main() -> None:
 
             t = time.time()
             NULL_cond = build_NULL_with_assignments(model, dict(state), idx_map)
-            dists_cond = qnet_conditional_distributions(model, NULL_cond)
+            dists_cond = qnet_conditional_distributions(model, NULL_cond, target_vars=bridge_vars)
             bridge_vars = [v for v in bridge_vars if v in dists_cond]
             bridge_items_for_answer = [x for x in bridge_items_for_answer if str(x.get("variable", "")) in bridge_vars]
             timings_q["semantic_qnet_predict"] = time.time() - t
@@ -2125,7 +2155,7 @@ def main() -> None:
             # Condition Qnet on current cumulative state
             t = time.time()
             NULL_cond = build_NULL_with_assignments(model, dict(state), idx_map)
-            dists_cond = qnet_conditional_distributions(model, NULL_cond)
+            dists_cond = qnet_conditional_distributions(model, NULL_cond, target_vars=var_set)
             timings_q["qnet_predict"] = time.time() - t
 
             # Keep only selected vars for which Qnet returned a distribution
