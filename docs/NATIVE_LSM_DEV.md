@@ -158,6 +158,30 @@ python3 scripts/train_native_lsm_models.py /path/to/gss \
   --dry-run
 ```
 
+## Bulk survey-family training
+
+For survey families with many wave CSVs, the same driver can discover the files
+from the `planned_families` section of the catalog.
+
+Eurobarometer example:
+
+```bash
+python3 scripts/train_native_lsm_models.py /path/to/eurobarometer \
+  --family eurobarometer \
+  --lsm-bin "$LSM_BIN" \
+  --threads 120
+```
+
+This discovers `ZA*.csv` and writes one model per wave under:
+
+```text
+models/lsm/eurobarometer/<CSV-stem>/
+```
+
+The same pattern is reserved for ANES, CES, ESS, Latinobarómetro, and Arab
+Barometer. Those families should be bulk-trained only after their canonical
+prepared CSV and DTAG-map conventions are fixed.
+
 ## Runtime architecture
 
 `scripts/model_backend.py` provides the compatibility layer.
