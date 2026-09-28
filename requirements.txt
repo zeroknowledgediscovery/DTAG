@@ -6,3 +6,8 @@ quasinet
 pyreadstat
 pdfplumber
 pyyaml>=6.0
+
+
+# Native LSM runtime modules (predict_distribution, qdistance, qsample) are
+# compiled from zeroknowledgediscovery/lsm rather than installed from PyPI.
+# Set LSM_BINDINGS_DIR=/path/to/lsm/bin or add that directory to PYTHONPATH.
