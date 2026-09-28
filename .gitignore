@@ -28,3 +28,8 @@ models/afrobarometer/tmp2
 
 # Logs
 *.log
+
+# Native LSM development artifacts can contain hundreds/thousands of tree files.
+# Keep them local until we choose the release packaging mechanism.
+models/lsm/**/*
+!models/lsm/README.md
