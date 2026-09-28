@@ -308,6 +308,33 @@ python3 scripts/test_native_lsm_dtag.py \
   --profile gss2024_native_cm
 ```
 
+## Legacy-versus-native comparison
+
+After a native GSS model exists, quantify the migration rather than relying only
+on a successful smoke test. For example:
+
+```bash
+python3 scripts/compare_native_legacy.py \
+  --legacy models/gss/gss_2024.gz \
+  --native models/lsm/gss/gss_2024 \
+  --states 12 \
+  --targets 20 \
+  --assignments 12 \
+  --distance-pairs 8 \
+  --polar-vectors assets/polar_vectors/polar_vectors.csv \
+  --out outputs/native_lsm_training/gss2024_legacy_vs_native.json
+```
+
+The diagnostic reports shared feature/support counts, conditional
+Jensen-Shannon divergence, argmax agreement, qdistance geometry correlation,
+and—when compatible polar vectors are supplied—ideology-index correlation,
+absolute error, and sign agreement.
+
+Because the new GSS models are pooled while the older GSS 2022 models are
+sex-specific, the strongest algorithm-parity comparison is GSS 2024 pooled
+legacy versus GSS 2024 pooled native. The 2022 comparison is still useful as a
+DTAG behavior comparison but is not an apples-to-apples training design.
+
 ## Next model sequence
 
 After GSS 2018/2022/2024:
