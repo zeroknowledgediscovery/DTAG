@@ -27,7 +27,7 @@ Examples:
     --codebook_pdf afrobarometer_merged_data/merged_r1_codebook2.pdf \
     --out maps/afrobarometer/merged_r1_map.csv
 
-Optional qnet alignment:
+Optional model alignment (Quasinet or native LSM):
   python getmap_dtag.py \
     --data merged_r9_data.sav \
     --codebook_pdf merged_r9_codebook.pdf \
@@ -173,15 +173,14 @@ def read_data_metadata(data_path: Optional[Path]) -> Tuple[List[str], Dict[str, 
     raise RuntimeError(f"Could not read metadata from {data_path}: {last_err}")
 
 
-def read_qnet_features(qnet_path: Optional[Path]) -> List[str]:
-    if qnet_path is None:
+def read_model_features(model_path: Optional[Path], backend: str = "auto") -> List[str]:
+    if model_path is None:
         return []
     try:
-        from quasinet.qnet import load_qnet
+        from model_backend import model_feature_names
     except Exception as e:
-        raise RuntimeError("quasinet is required for --qnet feature alignment") from e
-    model = load_qnet(str(qnet_path))
-    return [str(x) for x in model.feature_names]
+        raise RuntimeError("Could not import DTAG model_backend for feature alignment") from e
+    return [str(x) for x in model_feature_names(str(model_path), backend=backend)]
 
 
 # -----------------------------
@@ -477,7 +476,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Build a DTAG-ready Afrobarometer variable -> question_text map")
     ap.add_argument("--data", type=Path, default=None, help="Optional .sav, .dta, or .csv survey data file for exact variables/labels")
     ap.add_argument("--codebook_pdf", type=Path, nargs="+", required=True, help="One or more Afrobarometer codebook PDFs")
-    ap.add_argument("--qnet", type=Path, default=None, help="Optional qnet model; restrict output to exact qnet feature names")
+    ap.add_argument("--qnet", "--model", dest="model", type=Path, default=None, help="Optional legacy Quasinet file or native LSM directory; restrict output to exact model feature names")
+    ap.add_argument("--model-backend", choices=["auto", "quasinet", "native_lsm"], default="auto")
     ap.add_argument("--out", type=Path, required=True, help="Output DTAG map CSV with variable,question_text")
     ap.add_argument("--audit_out", type=Path, default=None, help="Optional audit CSV; default: <out_stem>_audit.csv")
     ap.add_argument("--text-mode", choices=["combined", "best"], default="combined", help="combined keeps label + all wording; best keeps one best wording")
@@ -485,7 +485,7 @@ def main() -> None:
     args = ap.parse_args()
 
     data_vars, data_labels = read_data_metadata(args.data)
-    qnet_features = read_qnet_features(args.qnet)
+    qnet_features = read_model_features(args.model, backend=args.model_backend)
 
     pdf_frames = [parse_codebook_pdf(p) for p in args.codebook_pdf]
     pdf_rows = pd.concat(pdf_frames, ignore_index=True) if pdf_frames else pd.DataFrame()
@@ -512,8 +512,8 @@ def main() -> None:
     print(f"With PDF text  : {(audit['n_codebook_question_texts'].fillna(0).astype(int) > 0).sum() if not audit.empty else 0}")
     if args.data:
         print(f"Data variables : {len(data_vars)}")
-    if args.qnet:
-        print(f"Qnet features  : {len(qnet_features)}")
+    if args.model:
+        print(f"Model features : {len(qnet_features)}")
 
 
 if __name__ == "__main__":
