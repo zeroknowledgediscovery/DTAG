@@ -240,6 +240,8 @@ bin/interactive_config.sh --list
 includes development profiles such as:
 
 ```text
+gss2018_native_wf
+gss2018_native_cm
 gss2022_native_wf
 gss2022_native_cm
 gss2024_native_wf
