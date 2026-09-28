@@ -1,0 +1,160 @@
+# Native LSM model catalog for DTAG development.
+#
+# This file does not make a model "supported" merely by listing it.  A model is
+# runnable only after its native LSM directory exists and passes DTAG readiness.
+#
+# First validation targets:
+#   1. GSS 2024 pooled
+#   2. GSS 2022 female
+#   3. GSS 2022 male
+#
+# Model directories live under models/lsm/ so legacy Quasinet artifacts can
+# remain untouched during A/B validation.
+
+models:
+  gss_2024:
+    family: gss
+    stage: first_validation
+    source_globs:
+      - "*2024*.csv"
+      - "*GSS2024*.csv"
+      - "*gss2024*.csv"
+    output: models/lsm/gss/gss_2024
+    map: maps/map2024.csv
+    index_column: auto
+    alpha: 0.1
+    subset_mode: auto
+    max_exact_levels: 20
+    fast_levels: 16
+
+  gss_2022_female:
+    family: gss
+    stage: first_validation
+    source_globs:
+      - "*2022*female*.csv"
+      - "*2022*Female*.csv"
+      - "*gss_2022female*.csv"
+      - "*gss2022female*.csv"
+    output: models/lsm/gss/gss_2022_female
+    map: maps/map2022.csv
+    index_column: auto
+    alpha: 0.1
+    subset_mode: auto
+    max_exact_levels: 20
+    fast_levels: 16
+
+  gss_2022_male:
+    family: gss
+    stage: first_validation
+    source_globs:
+      - "*2022*male*.csv"
+      - "*2022*Male*.csv"
+      - "*gss_2022male*.csv"
+      - "*gss2022male*.csv"
+    output: models/lsm/gss/gss_2022_male
+    map: maps/map2022.csv
+    index_column: auto
+    alpha: 0.1
+    subset_mode: auto
+    max_exact_levels: 20
+    fast_levels: 16
+
+  wvs7_pooled:
+    family: wvs
+    stage: next_validation
+    source_globs:
+      - "*WVS*7*.csv"
+      - "*wvs*7*.csv"
+      - "*WVS7*.csv"
+    output: models/lsm/wvs/wvs7_pooled
+    map: maps/wvs7_variable_question_map.csv
+    index_column: auto
+    alpha: 0.1
+    subset_mode: auto
+    max_exact_levels: 20
+    fast_levels: 16
+
+  afrobarometer_r1:
+    family: afrobarometer
+    stage: planned
+    source_globs: ["*r1*.csv", "*R1*.csv"]
+    output: models/lsm/afrobarometer/r1
+    map: maps/afromap/afrobarometer_r1_map.csv
+  afrobarometer_r2:
+    family: afrobarometer
+    stage: planned
+    source_globs: ["*r2*.csv", "*R2*.csv"]
+    output: models/lsm/afrobarometer/r2
+    map: maps/afromap/afrobarometer_r2_map.csv
+  afrobarometer_r3:
+    family: afrobarometer
+    stage: planned
+    source_globs: ["*r3*.csv", "*R3*.csv"]
+    output: models/lsm/afrobarometer/r3
+    map: maps/afromap/afrobarometer_r3_map.csv
+  afrobarometer_r4:
+    family: afrobarometer
+    stage: planned
+    source_globs: ["*r4*.csv", "*R4*.csv"]
+    output: models/lsm/afrobarometer/r4
+    map: maps/afromap/afrobarometer_r4_map.csv
+  afrobarometer_r5:
+    family: afrobarometer
+    stage: next_validation
+    source_globs: ["*r5*.csv", "*R5*.csv"]
+    output: models/lsm/afrobarometer/r5
+    map: maps/afromap/afrobarometer_r5_map.csv
+  afrobarometer_r6:
+    family: afrobarometer
+    stage: planned
+    source_globs: ["*r6*.csv", "*R6*.csv"]
+    output: models/lsm/afrobarometer/r6
+  afrobarometer_r7:
+    family: afrobarometer
+    stage: planned
+    source_globs: ["*r7*.csv", "*R7*.csv"]
+    output: models/lsm/afrobarometer/r7
+  afrobarometer_r8:
+    family: afrobarometer
+    stage: planned
+    source_globs: ["*r8*.csv", "*R8*.csv"]
+    output: models/lsm/afrobarometer/r8
+  afrobarometer_r9:
+    family: afrobarometer
+    stage: planned
+    source_globs: ["*r9*.csv", "*R9*.csv"]
+    output: models/lsm/afrobarometer/r9
+
+# Families below are development targets.  Their individual wave/model entries
+# should be added here once the canonical CSV and DTAG map naming are fixed.
+planned_families:
+  eurobarometer:
+    source_glob: "ZA*.csv"
+    output_template: "models/lsm/eurobarometer/{stem}"
+    map_template: "maps/euromap/eurobarometer_{ZA}_map.csv"
+    strategy: one_native_lsm_per_ZA_wave
+
+  anes:
+    source_glob: "*.csv"
+    output_template: "models/lsm/anes/{stem}"
+    strategy: one_native_lsm_per_harmonized_wave_or_pooled_file
+
+  ces:
+    source_glob: "*.csv"
+    output_template: "models/lsm/ces/{stem}"
+    strategy: one_native_lsm_per_harmonized_wave_or_pooled_file
+
+  ess:
+    source_glob: "*.csv"
+    output_template: "models/lsm/ess/{stem}"
+    strategy: one_native_lsm_per_round_or_pooled_file
+
+  latinobarometro:
+    source_glob: "*.csv"
+    output_template: "models/lsm/latinobarometro/{stem}"
+    strategy: one_native_lsm_per_wave_or_pooled_file
+
+  arab_barometer:
+    source_glob: "*.csv"
+    output_template: "models/lsm/arab_barometer/{stem}"
+    strategy: one_native_lsm_per_wave_or_pooled_file
