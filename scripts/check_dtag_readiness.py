@@ -234,20 +234,40 @@ def check_config_paths(report: Report, root: Path, cfg: Dict[str, Any]) -> None:
         report.fail("config.maps", "maps is not a mapping")
         maps = {}
 
+    dev = cfg.get("development", {}) or {}
+    optional_models = set(map(str, dev.get("optional_models", []) or []))
+
     for key, val in sorted(models.items()):
         p = resolve_path(root, val)
         if p.exists():
-            report.ok(f"config model {key}", rel(root, p))
+            if p.is_dir() and (p / "source_maps").is_dir() and (p / "trees" / "binary").is_dir():
+                ntree = len(list((p / "trees" / "binary").glob("tree_*.bin")))
+                manifest = p / "training_manifest.json"
+                detail = f"{rel(root, p)}; native_lsm trees={ntree}"
+                if manifest.exists():
+                    detail += "; training_manifest=yes"
+                else:
+                    detail += "; training_manifest=missing"
+                report.ok(f"config model {key}", detail)
+            else:
+                report.ok(f"config model {key}", rel(root, p))
         else:
             fix = ""
-            s = str(val)
+            sval = str(val)
             if key.startswith("wvs") and (root / "models/wvs/LSM60K.gz").exists():
                 fix = "Change this config entry to: models/wvs/LSM60K.gz"
             elif "gss_2024" in key and (root / "models/gss/gss_2024.gz").exists():
-                fix = "Config points to sex-specific 2024 models; only models/gss/gss_2024.gz was found. Either create sex-specific 2024 models or change personas to use gss_2024.gz."
+                fix = "Train the optional native model, or continue using models/gss/gss_2024.gz for the legacy profile."
             elif "euro" in key.lower():
-                fix = "Place model at models/eurobarometer/LSM_ZAxxxx.gz, or update configs/dtag_config.yaml to the actual path."
-            report.fail(f"config model {key}", f"Missing {s}", fix)
+                fix = "Train/copy the corresponding model, or update configs/dtag_config.yaml to the actual path."
+            if key in optional_models:
+                report.warn(
+                    f"config model {key}",
+                    f"Optional development model not trained yet: {sval}",
+                    "Run scripts/train_native_lsm_models.py for this model when its source CSV is available.",
+                )
+            else:
+                report.fail(f"config model {key}", f"Missing {sval}", fix)
 
     for key, val in sorted(maps.items()):
         p = resolve_path(root, val)
@@ -549,6 +569,25 @@ def get_experiment_pairs(root: Path, cfg: Dict[str, Any]) -> List[Tuple[str, Pat
             qnet_path = resolve_path(root, qval)
             label = f"{exp_name}:{p.get('id', qkey)}"
             pairs.append((label, qnet_path, map_path))
+    # Interactive profiles can point at development/native models even when no
+    # batch experiment has been defined yet.
+    profiles = cfg.get("interactive_profiles", {}) or {}
+    if isinstance(profiles, dict):
+        for prof_name, prof in profiles.items():
+            if not isinstance(prof, dict):
+                continue
+            map_key = str(prof.get("map", ""))
+            qkey = str(prof.get("qnet", ""))
+            if not map_key or not qkey:
+                continue
+            map_val = maps.get(map_key, map_key)
+            qval = models.get(qkey, qkey)
+            pairs.append((
+                f"profile:{prof_name}",
+                resolve_path(root, qval),
+                resolve_path(root, map_val),
+            ))
+
     # unique by path pair
     seen = set()
     out = []
@@ -562,9 +601,9 @@ def get_experiment_pairs(root: Path, cfg: Dict[str, Any]) -> List[Tuple[str, Pat
 
 def check_overlap(report: Report, root: Path, cfg: Dict[str, Any]) -> None:
     try:
-        from quasinet.qnet import load_qnet  # type: ignore
+        from model_backend import load_model  # type: ignore
     except Exception as e:
-        report.warn("qnet/map overlap", f"Cannot import quasinet.qnet.load_qnet: {e}", "pip install quasinet")
+        report.warn("model/map overlap", f"Cannot import DTAG model backend: {e}")
         return
     try:
         import pandas as pd
@@ -590,7 +629,7 @@ def check_overlap(report: Report, root: Path, cfg: Dict[str, Any]) -> None:
         if not qnet_path.exists() or not map_path.exists():
             continue
         try:
-            m = load_qnet(str(qnet_path))
+            m = load_model(str(qnet_path), backend="auto")
             qvars = set(map(str, getattr(m, "feature_names")))
             df = pd.read_csv(map_path, dtype=str).fillna("")
             map_vars = set(df["variable"].astype(str)) if "variable" in df.columns else set()
@@ -598,7 +637,7 @@ def check_overlap(report: Report, root: Path, cfg: Dict[str, Any]) -> None:
             frac = len(inter) / max(1, len(qvars))
             detail = f"qnet={len(qvars)} map={len(map_vars)} overlap={len(inter)} frac_qnet={frac:.3f}"
             if frac >= 0.80:
-                report.ok(f"overlap {label}", detail)
+                report.ok(f"overlap {label}", detail + f" backend={getattr(m, 'backend_name', 'unknown')}")
             elif frac >= 0.50:
                 report.warn(f"overlap {label}", detail, "Acceptable for quick tests but inspect qnet-only variables before paper runs")
             else:
