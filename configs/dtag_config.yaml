@@ -13,16 +13,16 @@ models:
   # Native LSM development models. These are optional until trained by
   # scripts/train_native_lsm_models.py and are never substituted silently for
   # legacy models.
-  gss_2022_female_native: models/lsm/gss/gss_2022_female
-  gss_2022_male_native: models/lsm/gss/gss_2022_male
+  gss_2018_native: models/lsm/gss/gss_2018
+  gss_2022_native: models/lsm/gss/gss_2022
   gss_2024_native: models/lsm/gss/gss_2024
   wvs7_pooled_native: models/lsm/wvs/wvs7_pooled
   afrobarometer_r5_native: models/lsm/afrobarometer/r5
 
 development:
   optional_models:
-    - gss_2022_female_native
-    - gss_2022_male_native
+    - gss_2018_native
+    - gss_2022_native
     - gss_2024_native
     - wvs7_pooled_native
     - afrobarometer_r5_native
@@ -192,9 +192,9 @@ interactive_profiles:
       require_polar_vectors: true
       resp_mode: max
   gss2022_native_wf:
-    description: "[DEV] Native-LSM GSS 2022 female profile; same persona/map as gss2022_wf."
+    description: "[DEV] Native-LSM pooled GSS 2022 with progressive urban female persona."
     map: gss_2022
-    qnet: gss_2022_female_native
+    qnet: gss_2022_native
     persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive
     year: 2022
     country: United States
@@ -206,9 +206,9 @@ interactive_profiles:
       resp_mode: max
 
   gss2022_native_cm:
-    description: "[DEV] Native-LSM GSS 2022 male profile; same persona/map as gss2022_cm."
+    description: "[DEV] Native-LSM pooled GSS 2022 with conservative rural male persona."
     map: gss_2022
-    qnet: gss_2022_male_native
+    qnet: gss_2022_native
     persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative
     year: 2022
     country: United States
