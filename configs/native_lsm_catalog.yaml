@@ -4,55 +4,57 @@
 # runnable only after its native LSM directory exists and passes DTAG readiness.
 #
 # First validation targets:
-#   1. GSS 2024 pooled
-#   2. GSS 2022 female
-#   3. GSS 2022 male
+#   1. GSS 2018 pooled
+#   2. GSS 2022 pooled
+#   3. GSS 2024 pooled
+#
+# These match the canonical MAGICS survey files gss_2018.csv,
+# gss_2022.csv, and gss_2024.csv.  Persona sex/age/etc. are conditioned
+# inside the pooled LSM rather than selecting a sex-specific model.
 #
 # Model directories live under models/lsm/ so legacy Quasinet artifacts can
 # remain untouched during A/B validation.
 
 models:
+  gss_2018:
+    family: gss
+    stage: first_validation
+    source_globs:
+      - "gss_2018.csv"
+      - "*gss*2018*.csv"
+      - "*GSS*2018*.csv"
+    output: models/lsm/gss/gss_2018
+    map: maps/map20162020.csv
+    index_column: auto
+    alpha: 0.1
+    subset_mode: auto
+    max_exact_levels: 20
+    fast_levels: 16
+
+  gss_2022:
+    family: gss
+    stage: first_validation
+    source_globs:
+      - "gss_2022.csv"
+      - "*gss*2022*.csv"
+      - "*GSS*2022*.csv"
+    output: models/lsm/gss/gss_2022
+    map: maps/map2022.csv
+    index_column: auto
+    alpha: 0.1
+    subset_mode: auto
+    max_exact_levels: 20
+    fast_levels: 16
+
   gss_2024:
     family: gss
     stage: first_validation
     source_globs:
-      - "*2024*.csv"
-      - "*GSS2024*.csv"
-      - "*gss2024*.csv"
+      - "gss_2024.csv"
+      - "*gss*2024*.csv"
+      - "*GSS*2024*.csv"
     output: models/lsm/gss/gss_2024
     map: maps/map2024.csv
-    index_column: auto
-    alpha: 0.1
-    subset_mode: auto
-    max_exact_levels: 20
-    fast_levels: 16
-
-  gss_2022_female:
-    family: gss
-    stage: first_validation
-    source_globs:
-      - "*2022*female*.csv"
-      - "*2022*Female*.csv"
-      - "*gss_2022female*.csv"
-      - "*gss2022female*.csv"
-    output: models/lsm/gss/gss_2022_female
-    map: maps/map2022.csv
-    index_column: auto
-    alpha: 0.1
-    subset_mode: auto
-    max_exact_levels: 20
-    fast_levels: 16
-
-  gss_2022_male:
-    family: gss
-    stage: first_validation
-    source_globs:
-      - "*2022*male*.csv"
-      - "*2022*Male*.csv"
-      - "*gss_2022male*.csv"
-      - "*gss2022male*.csv"
-    output: models/lsm/gss/gss_2022_male
-    map: maps/map2022.csv
     index_column: auto
     alpha: 0.1
     subset_mode: auto
