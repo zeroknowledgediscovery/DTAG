@@ -1,49 +1,42 @@
-# Config-driven DTAG runs
+# DTAG configuration profiles
 
-This package now has two config-driven entry points:
+DTAG's release-candidate interface is config-driven. The canonical configuration is:
 
-```bash
-python3 scripts/interactive.py --config configs/dtag_config.yaml --profile <profile> --loop
-python3 scripts/run.py         --config configs/dtag_config.yaml --experiment <experiment>
+```text
+configs/dtag_config.yaml
 ```
 
-Use `interactive.py` for manual question-by-question sessions, single questions, or a single autoplay CSV. Use `run.py` for batch experiments over all question sets, personas, order variants, and replicates.
+For normal interactive use, prefer the profile launcher instead of writing a full `pipeline_localized.py` command.
 
-## List available profiles and experiments
-
-```bash
-python3 scripts/interactive.py --config configs/dtag_config.yaml --list
-python3 scripts/run.py --config configs/dtag_config.yaml --list
-```
-
-or via the wrapper:
+## List available profiles
 
 ```bash
 bin/interactive_config.sh --list
-bin/list_experiments.sh
 ```
 
-## Interactive examples
+RC1 exposes:
 
-Afrobarometer R5, Nigeria:
+```text
+gss2022_wf
+gss2022_cm
+gss2024_wf
+gss2024_cm
+wvs7_india_2017
+afrobarometer_r5_nigeria
+afrobarometer_r5_ghana
+```
+
+## Interactive sessions
+
+If neither `--question` nor `--autoplay_csv` is supplied, the launcher enters a persistent loop automatically:
 
 ```bash
-bin/interactive_config.sh --profile afrobarometer_r5_nigeria --loop
+bin/interactive_config.sh --profile gss2024_cm
 ```
 
-WVS7, Iran 2017:
+Type one question per line. Type `exit` or `quit` to stop.
 
-```bash
-bin/interactive_config.sh --profile wvs7_iran_2017 --loop
-```
-
-WVS7, India 2017:
-
-```bash
-bin/interactive_config.sh --profile wvs7_india_2017 --loop
-```
-
-GSS 2022, progressive white female persona, single question:
+One question:
 
 ```bash
 bin/interactive_config.sh \
@@ -51,124 +44,156 @@ bin/interactive_config.sh \
   --question "What do you think about immigration?"
 ```
 
-Show the fully expanded command without running it:
+Autoplay:
 
 ```bash
-bin/interactive_config.sh --profile wvs7_india_2017 --loop --print-command
+bin/interactive_config.sh \
+  --profile afrobarometer_r5_nigeria \
+  --autoplay_csv assets/question_sets/smoke/long_gss_smoke.csv
 ```
 
-## Batch examples
-
-Afrobarometer R5 Nigeria over the master DTAG question set:
+Print the expanded command without running it:
 
 ```bash
-python3 scripts/run.py \
-  --config configs/dtag_config.yaml \
-  --experiment afrobarometer_r5_nigeria_master_template
+bin/interactive_config.sh \
+  --profile wvs7_india_2017 \
+  --print-command
 ```
 
-WVS7 Iran/India comparison over the master DTAG question set:
+## Profile overrides
+
+A profile supplies its model, map, persona, geography, outputs, and run defaults. For one-off experiments you can override the persona, country, continent, year, output path/tag, or semantic fallback mode.
+
+Example:
 
 ```bash
-python3 scripts/run.py \
-  --config configs/dtag_config.yaml \
-  --experiment wvs7_iran_india_master_template
+bin/interactive_config.sh \
+  --profile gss2024_cm \
+  --persona "55 year old male, suburban, college educated, conservative" \
+  --question "What do you think about immigration?"
 ```
 
-GSS 2022 master comparison:
-
-```bash
-python3 scripts/run.py \
-  --config configs/dtag_config.yaml \
-  --experiment gss2022_master
-```
-
-## Where defaults live
-
-Edit `configs/dtag_config.yaml`.
-
-Global interactive defaults live under:
-
-```yaml
-defaults:
-  interactive:
-    k: 6
-    resp_mode: max
-    semantic_fallback: answer_only
-    no_ideology: true  # set per profile, not globally, when needed
-```
-
-Batch defaults live under:
-
-```yaml
-defaults:
-  run:
-    runs_per_condition: 6
-    variants: forward,reverse,shuffle
-    resp_mode: draw
-```
-
-Interactive profiles live under:
-
-```yaml
-interactive_profiles:
-  wvs7_india_2017:
-    qnet: wvs7_lsm60k
-    map: wvs7
-    country: India
-    year: 2017
-```
-
-Batch experiments live under:
-
-```yaml
-experiments:
-  wvs7_iran_india_master_template:
-    map: wvs7
-    question_set: master
-    personas:
-      - id: WVS7_Iran_2017_UM
-```
-
-## Survey map rule
-
-Use one map per model/wave:
+Semantic fallback choices are:
 
 ```text
-maps/afromap/afrobarometer_r1_map.csv
-maps/afromap/afrobarometer_r2_map.csv
-...
-maps/afromap/afrobarometer_r9_map.csv
+off
+answer_only
+update_state
 ```
 
-For WVS use `maps/wvs7_variable_question_map.csv`. For GSS 2022 use `maps/map2022.csv`.
+`answer_only` is the RC1 default. It can use broader semantic anchors without modifying respondent state. `update_state` is experimental.
 
-## Ideology/polar-vector rule
+## GSS
 
-GSS profiles can use `assets/polar_vectors/polar_vectors.csv` and set `require_polar_vectors: true`.
-
-WVS and Afrobarometer profiles should normally set:
-
-```yaml
-polar_vectors: ""
-run:
-  no_ideology: true
-```
-
-until survey-specific polar vectors are created.
-
-## Country conditioning behavior
-
-WVS-style pooled models are hard-conditioned through `A_YEAR`, `O1_LONGITUDE`, and `O2_LATITUDE` when those features exist.
-
-Afrobarometer-style models are hard-conditioned through direct country fields when available, in this order:
+GSS 2022 uses separate sex-specific LSMs:
 
 ```text
-COUNTRY_ALPHA
-COUNTRY
-country
-COUNTRY.BY.REGION.NO
-COUNTRY.BY.REGION
+gss2022_wf -> models/gss/gss_2022female.pkl.gz
+gss2022_cm -> models/gss/gss_2022male.pkl.gz
 ```
 
-For example, the Round 5 qnet includes `COUNTRY_ALPHA`, `COUNTRY.BY.REGION.NO`, and `COUNTRY.BY.REGION`, so `country: Nigeria` is forced as part of the initial respondent state. The run metadata records these values under `forced_country_variables`.
+GSS 2024 currently uses one pooled LSM for both standard personas:
+
+```text
+gss2024_wf -> models/gss/gss_2024.gz
+gss2024_cm -> models/gss/gss_2024.gz
+```
+
+Both families use survey-specific maps, and GSS profiles enable the bundled polar vectors for ideology tracking when compatible.
+
+## WVS7
+
+`wvs7_india_2017` uses:
+
+```text
+models/wvs/LSM60K.gz
+maps/wvs7_variable_question_map.csv
+```
+
+with year/country context:
+
+```text
+year      = 2017
+country   = India
+continent = Asia
+```
+
+When the pooled model exposes `A_YEAR`, `O1_LONGITUDE`, and `O2_LATITUDE`, DTAG uses them for hard year/location conditioning. Ideology is disabled by default.
+
+## Afrobarometer
+
+Both RC1 Afrobarometer demos use Round 5:
+
+```text
+models/afrobarometer/LSM_merged_r5_data.gz
+maps/afromap/afrobarometer_r5_map.csv
+```
+
+The Nigeria and Ghana profiles are otherwise matched. The localized pipeline first looks for a categorical country variable; the validated R5 model resolves country through `COUNTRY_ALPHA`.
+
+Regression test:
+
+```bash
+python3 scripts/test_country_conditioning.py
+```
+
+End-to-end paired smoke test:
+
+```bash
+bin/smoke_country_pair.sh
+```
+
+## Batch experiments
+
+List configured experiments:
+
+```bash
+bin/list_experiments.sh
+```
+
+Current RC1 experiments include:
+
+```text
+gss2022_divergence
+gss2022_original
+gss2022_master
+gss2024_divergence_template
+gss2024_master_template
+wvs7_us_india_master_template
+```
+
+Run one:
+
+```bash
+bin/run_config.sh gss2022_divergence
+```
+
+Dry-run:
+
+```bash
+python3 scripts/run.py \
+  --config configs/dtag_config.yaml \
+  --experiment gss2022_divergence \
+  --dry-run
+```
+
+## Canonical runtime
+
+The RC1 configuration points to:
+
+```text
+scripts/pipeline_localized.py
+```
+
+This wraps the core `pipeline.py` engine and adds deterministic geographic conditioning.
+
+## RC1 scope
+
+RC1 advertises the currently available trained models only:
+
+- GSS 2022
+- pooled GSS 2024
+- pooled WVS7
+- Afrobarometer R1-R5
+
+Afrobarometer R6-R9 and Eurobarometer are not part of the supported RC1 runtime surface. See `docs/RC1_SCOPE.md`.
