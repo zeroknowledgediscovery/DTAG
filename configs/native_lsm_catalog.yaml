@@ -130,6 +130,11 @@ models:
 # Families below are development targets.  Their individual wave/model entries
 # should be added here once the canonical CSV and DTAG map naming are fixed.
 planned_families:
+  gss:
+    source_glob: "gss_*.csv"
+    output_template: "models/lsm/gss/{stem}"
+    strategy: one_native_lsm_per_GSS_wave
+
   eurobarometer:
     source_glob: "ZA*.csv"
     output_template: "models/lsm/eurobarometer/{stem}"
