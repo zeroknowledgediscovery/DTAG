@@ -160,6 +160,19 @@ python3 scripts/train_native_lsm_models.py /path/to/gss \
 
 ## Bulk survey-family training
 
+After the three-wave validation set, all canonical GSS wave CSVs in a directory
+can be trained with:
+
+```bash
+python3 scripts/train_native_lsm_models.py /path/to/gss \
+  --family gss \
+  --lsm-bin "$LSM_BIN" \
+  --threads 12
+```
+
+Explicit catalog entries for 2018/2022/2024 are reused; other `gss_*.csv`
+files are discovered automatically and written under `models/lsm/gss/`.
+
 For survey families with many wave CSVs, the same driver can discover the files
 from the `planned_families` section of the catalog.
 
