@@ -254,6 +254,12 @@ TREND_VAR_RE = re.compile(
     re.I,
 )
 
+TREND_VARIABLE_ALIASES = {
+    # ZA4669 codebook/model naming mismatches.
+    "info_sport": "info_sports",
+    "heriditary_disease": "hereditary_disease",
+}
+
 
 def _extract_trend_question(block_lines: Sequence[str]) -> Tuple[str, str]:
     """Extract semantic prose from ZA4669-style harmonized trend-file blocks."""
@@ -416,6 +422,7 @@ def parse_trend_file_report(
 
             if m:
                 key = m.group(2).strip().lower()
+                key = TREND_VARIABLE_ALIASES.get(key, key)
                 if key in exact_lower:
                     flush()
                     current_var = exact_lower[key]
