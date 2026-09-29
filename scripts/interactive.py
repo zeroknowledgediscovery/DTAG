@@ -20,6 +20,8 @@ from typing import Any, Dict, List
 
 import yaml
 
+from dtag_paths import resolve_repo_path
+
 
 VALUE_FLAGS = {
     'state_keep': '--state_keep',
@@ -101,9 +103,7 @@ def build_command(
     if not qnet or not map_path or not persona:
         raise SystemExit(f'Profile {profile_name!r} must define qnet, map, and persona')
 
-    qnet_check = Path(qnet).expanduser()
-    if not qnet_check.is_absolute():
-        qnet_check = root / qnet_check
+    qnet_check = resolve_repo_path(qnet, root)
     if not qnet_check.exists():
         raise SystemExit(
             f"Profile {profile_name!r} model is not available yet: {qnet_check}. "
