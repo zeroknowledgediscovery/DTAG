@@ -140,9 +140,9 @@ a single C++ `dtag_lsm.Runtime` object for the lifetime of that interactive
 session. Per-question predictions and ideology distances reuse the same
 in-memory model rather than reopening the model files.
 
-The previous external `predict_distribution` / `qdistance` modules are kept
-only as a temporary fallback for installations that have not built the bundled
-extension yet.
+The clean native branch does not use external inference bindings. If the
+bundled extension has not been built, DTAG exits with the build command rather
+than silently loading code from another repository.
 
 ## Python environment
 
