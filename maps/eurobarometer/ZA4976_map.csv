@@ -1,0 +1,565 @@
+variable,question_number,variable_label,question_text,question_text_filled,source,source_page,za_id
+v4,v4,EUROBAROMETER NUMBER,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,31,ZA4976
+v6,,NATION - ALL SAMPLES,,NATION - ALL SAMPLES,GESIS Variable Report,33,ZA4976
+v9,page 10,NATION - UNITED KINGDOM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,37,ZA4976
+v11,page 13,NATION - UNITED GERMANY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,40,ZA4976
+v13,page 16,NATION GROUP EU6,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,43,ZA4976
+v15,page 19,NATION GROUP EU9,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,46,ZA4976
+v17,page 22,NATION GROUP EU10,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,49,ZA4976
+v19,page 25,NATION GROUP EU12,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,52,ZA4976
+v21,page 28,NATION GROUP EU12+,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,55,ZA4976
+v23,page 31,NATION GROUP EU NMS 3,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,58,ZA4976
+v25,page 34,NATION GROUP EU15,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,61,ZA4976
+v27,page 37,NATION GROUP EU NMS 10,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,64,ZA4976
+v29,page 40,NATION GROUP EU25,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,67,ZA4976
+v31,page 43,NATION GROUP AC (BG RO),Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,70,ZA4976
+v33,page 46,NATION GROUP EU27,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,73,ZA4976
+v35,page 49,NATION GROUP EU NMS 12,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,76,ZA4976
+v37,page 52,NATION GROUP EURO ZONE 2009,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,79,ZA4976
+v39,page 55,NATION GROUP NON EURO ZONE 2009,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,82,ZA4976
+v42,page 59,Q1 NATIONALITY BELGIUM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,86,ZA4976
+v43,page 61,Q1 NATIONALITY DENMARK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,88,ZA4976
+v44,page 63,Q1 NATIONALITY GERMANY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,90,ZA4976
+v45,page 65,Q1 NATIONALITY GREECE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,92,ZA4976
+v46,page 67,Q1 NATIONALITY SPAIN,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,94,ZA4976
+v47,page 69,Q1 NATIONALITY FRANCE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,96,ZA4976
+v48,page 71,Q1 NATIONALITY IRELAND,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,98,ZA4976
+v49,page 73,Q1 NATIONALITY ITALY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,100,ZA4976
+v50,page 75,Q1 NATIONALITY LUXEMBOURG,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,102,ZA4976
+v51,page 77,Q1 NATIONALITY NETHERLANDS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,104,ZA4976
+v52,page 79,Q1 NATIONALITY PORTUGAL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,106,ZA4976
+v53,page 81,Q1 NATIONALITY UNITED KINGDOM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,108,ZA4976
+v54,page 83,Q1 NATIONALITY AUSTRIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,110,ZA4976
+v55,page 85,Q1 NATIONALITY SWEDEN,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,112,ZA4976
+v56,page 87,Q1 NATIONALITY FINLAND,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,114,ZA4976
+v57,page 89,Q1 NATIONALITY CYPRUS (REPUBLIC),Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,116,ZA4976
+v58,page 91,Q1 NATIONALITY CZECH REPUBLIC,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,118,ZA4976
+v59,page 93,Q1 NATIONALITY ESTONIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,120,ZA4976
+v60,page 95,Q1 NATIONALITY HUNGARY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,122,ZA4976
+v61,page 97,Q1 NATIONALITY LATVIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,124,ZA4976
+v62,page 99,Q1 NATIONALITY LITHUANIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,126,ZA4976
+v63,page 101,Q1 NATIONALITY MALTA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,128,ZA4976
+v64,page 103,Q1 NATIONALITY POLAND,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,130,ZA4976
+v65,page 105,Q1 NATIONALITY SLOVAKIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,132,ZA4976
+v66,page 107,Q1 NATIONALITY SLOVENIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,134,ZA4976
+v67,page 109,Q1 NATIONALITY BULGARIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,136,ZA4976
+v68,page 111,Q1 NATIONALITY ROMANIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,138,ZA4976
+v69,page 113,Q1 NATIONALITY OTHER COUNTRIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,140,ZA4976
+v70,page 115,QA1 NUCLEAR POWER - ADVANTAGES VS RISK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,142,ZA4976
+v71,page 117,QA2 NUCLEAR POWER PLANT: EVER VISITED,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,144,ZA4976
+v72,page 119,QA2 NUCLEAR POWER PLANT: LIVED CLOSE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,146,ZA4976
+v73,page 121,QA2 NUCLEAR POWER PLANT: WORKED/KNOWN SOMEBODY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,148,ZA4976
+v74,page 123,QA3 NUCLEAR ENERGY INFO: TELEVISION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,150,ZA4976
+v75,page 125,QA3 NUCLEAR ENERGY INFO: RADIO,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,152,ZA4976
+v76,page 127,QA3 NUCLEAR ENERGY INFO: INTERNET,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,154,ZA4976
+v77,page 129,QA3 NUCLEAR ENERGY INFO: NEWSPAPERS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,156,ZA4976
+v78,page 131,QA3 NUCLEAR ENERGY INFO: MAGAZINES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,158,ZA4976
+v79,page 133,QA3 NUCLEAR ENERGY INFO: FRIENDS/FAMILY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,160,ZA4976
+v80,page 135,QA3 NUCLEAR ENERGY INFO: SCHOOL/UNIVERSITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,162,ZA4976
+v81,page 137,QA3 NUCLEAR ENERGY INFO: OTHER SOURCES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,164,ZA4976
+v82,page 139,QA3 NUCLEAR ENERGY INFO: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,166,ZA4976
+v83,page 141,QA3 NUCLEAR ENERGY INFO: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,168,ZA4976
+v84,page 143,QA4 NUCLEAR POWER KNOWL: PLANTS IN EU,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,170,ZA4976
+v85,page 145,QA4 NUCLEAR POWER KNOWL: RADIOACTIVE WASTE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,172,ZA4976
+v86,page 147,QA4 NUCLEAR POWER KNOWL: EU ELECTRICITY SHARE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,174,ZA4976
+v87,page 149,QA4 NUCLEAR POWER KNOWL: NEW PLANTS IN COUNTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,176,ZA4976
+v88,page 151,QA5 NUCLEAR POWER PLANT SAFETY - INFO,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,178,ZA4976
+v89,page 153,QA6 NUCLEAR SAFETY INFO TRUST: GOVERNMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,180,ZA4976
+v90,page 155,QA6 NUCLEAR SAFETY INFO TRUST: NAT AUTHORITIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,182,ZA4976
+v91,page 157,QA6 NUCLEAR SAFETY INFO TRUST: REG AUTHORITIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,184,ZA4976
+v92,page 159,QA6 NUCLEAR SAFETY INFO TRUST: COMPANIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,186,ZA4976
+v93,page 161,QA6 NUCLEAR SAFETY INFO TRUST: SCHOOLS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,188,ZA4976
+v94,page 163,QA6 NUCLEAR SAFETY INFO TRUST: EU,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,190,ZA4976
+v95,page 165,QA6 NUCLEAR SAFETY INFO TRUST: SCIENTISTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,192,ZA4976
+v96,page 167,QA6 NUCLEAR SAFETY INFO TRUST: NON-GOV ORG,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,194,ZA4976
+v97,page 169,QA6 NUCLEAR SAFETY INFO TRUST: INTERNAT ORG,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,196,ZA4976
+v98,page 171,QA6 NUCLEAR SAFETY INFO TRUST: JOURNALISTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,198,ZA4976
+v99,page 173,QA6 NUCLEAR SAFETY INFO TRUST: FRIENDS/FAMILY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,200,ZA4976
+v100,page 175,QA6 NUCLEAR SAFETY INFO TRUST: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,202,ZA4976
+v101,page 177,QA6 NUCLEAR SAFETY INFO TRUST: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,204,ZA4976
+v102,page 179,QA6 NUCLEAR SAFETY INFO TRUST: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,206,ZA4976
+v103,page 181,QA7 NUCLEAR ENERGY INFO AT SCHOOLS - SUFFICIENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,208,ZA4976
+v104,page 183,QA8 NUCLEAR ENERGY INFO IN MEDIA - SUFFICIENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,210,ZA4976
+v105,page 185,QA9 NUCLEAR POWER PLANTS - PERSONAL RISK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,212,ZA4976
+v106,page 187,QA10 NUCLEAR INCIDENT RISKS - COMPARED,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,214,ZA4976
+v107,page 189,QA11 NUCL SAFETY: OPERATE POWER PLANTS SAFELY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,216,ZA4976
+v108,page 191,QA11 NUCL SAFETY: LEGISLATION ENSURES SUFFIC,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,218,ZA4976
+v109,,QA11 NUCL SAFETY: AUTHORITY ENSURES SUFFIC,,QA11 NUCL SAFETY: AUTHORITY ENSURES SUFFIC,GESIS Variable Report,220,ZA4976
+v110,page 195,QA11 NUCL SAFETY: TRUST OPERATING COMPANIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,222,ZA4976
+v111,page 197,QA11 NUCL SAFETY: RADIOACTIVE WASTE DISPOSAL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,224,ZA4976
+v112,page 199,QA11 NUCL SAFETY: SECURED AGAINST TERRORISM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,226,ZA4976
+v113,page 201,QA11 NUCL SAFETY: MAT PROTECTED AGAINST MISUSE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,228,ZA4976
+v114,page 203,QA12 NUCL ENERGY VALUE: LIMIT CLIMATE CHANGE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,230,ZA4976
+v115,page 205,QA12 NUCL ENERGY VALUE: LESS FUEL IMPORTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,232,ZA4976
+v116,page 207,QA12 NUCL ENERGY VALUE: LOWER/STABLE PRICES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,234,ZA4976
+v117,page 209,QA13 NUCL PL LIFET EXT PRO: COMPETITIVE COSTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,236,ZA4976
+v118,page 211,QA13 NUCL PL LIFET EXT PRO: DEVELOP ALTERNATIVES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,238,ZA4976
+v119,page 213,QA13 NUCL PL LIFET EXT PRO: SAFETY REQUIREMENTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,240,ZA4976
+v120,page 215,QA13 NUCL PL LIFET EXT PRO: OTHER ARGUMENTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,242,ZA4976
+v121,page 217,QA13 NUCL PL LIFET EXT PRO: NONE/OPPOSED,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,244,ZA4976
+v122,page 219,QA13 NUCL PL LIFET EXT PRO: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,246,ZA4976
+v123,page 221,QA14 NUCL PL LIFET EXT CONTRA: NO CITIZEN BENEFITS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,248,ZA4976
+v124,page 223,QA14 NUCL PL LIFET EXT CONTRA: DISADV ALTERNATIVES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,250,ZA4976
+v125,page 225,QA14 NUCL PL LIFET EXT CONTRA: PREFER NEW PLANTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,252,ZA4976
+v126,page 227,QA14 NUCL PL LIFET EXT CONTRA: NO ADEQUATE SAFETY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,254,ZA4976
+v127,page 229,QA14 NUCL PL LIFET EXT CONTRA: OTHER ARGUMENTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,256,ZA4976
+v128,page 231,QA14 NUCL PL LIFET EXT CONTRA: NONE/IN FAVOUR,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,258,ZA4976
+v129,page 233,QA14 NUCL PL LIFET EXT CONTRA: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,260,ZA4976
+v130,page 235,QA15 NUCLEAR ENERGY SHARE - PREFERENCE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,262,ZA4976
+v131,page 237,QA16 NUCLEAR WASTE EU LEGISLATION - COUNTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,264,ZA4976
+v132,page 239,QA16 NUCLEAR WASTE EU LEGISLATION - EU,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,266,ZA4976
+v133,page 241,QA17 NUCLEAR POWER PLANT LOCATION - PREFERENCE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,268,ZA4976
+v134,,QA18 NAT ENERGY STRATEGY DEVELOPM - PREFERENCE,,QA18 NAT ENERGY STRATEGY DEVELOPM - PREFERENCE,GESIS Variable Report,270,ZA4976
+v135,,QA19 NUCLEAR SAFETY KNOWLEDGE - INTERESTS,,QA19 NUCLEAR SAFETY KNOWLEDGE - INTERESTS,GESIS Variable Report,272,ZA4976
+v136,page 247,QA20 NUCLEAR ENERGY - PERSONAL ASSESSMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,274,ZA4976
+v137,,QB1 CORRUPTION: MAJOR PROBLEM IN COUNTRY,,QB1 CORRUPTION: MAJOR PROBLEM IN COUNTRY,GESIS Variable Report,276,ZA4976
+v138,,QB1 CORRUPTION: IN LOCAL INSTITUTIONS,,QB1 CORRUPTION: IN LOCAL INSTITUTIONS,GESIS Variable Report,278,ZA4976
+v139,,QB1 CORRUPTION: IN REGIONAL INSTITUTIONS,,QB1 CORRUPTION: IN REGIONAL INSTITUTIONS,GESIS Variable Report,280,ZA4976
+v140,,QB1 CORRUPTION: IN NATIONAL INSTITUTIONS,,QB1 CORRUPTION: IN NATIONAL INSTITUTIONS,GESIS Variable Report,282,ZA4976
+v141,,QB1 CORRUPTION: WITHIN EU INSTITUTIONS,,QB1 CORRUPTION: WITHIN EU INSTITUTIONS,GESIS Variable Report,284,ZA4976
+v142,,QB1 CORRUPTION: ENOUGH PROSECUTIONS,,QB1 CORRUPTION: ENOUGH PROSECUTIONS,GESIS Variable Report,286,ZA4976
+v143,page 261,QB2 CORRUPTION CNTRY: POLICE SERVICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,288,ZA4976
+v144,page 263,QB2 CORRUPTION CNTRY: CUSTOMS SERVICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,290,ZA4976
+v145,page 265,QB2 CORRUPTION CNTRY: JUDICIAL SERVICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,292,ZA4976
+v146,page 267,QB2 CORRUPTION CNTRY: POLITICIANS NAT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,294,ZA4976
+v147,page 269,QB2 CORRUPTION CNTRY: POLITICIANS REG,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,296,ZA4976
+v148,page 271,QB2 CORRUPTION CNTRY: POLITICIANS LOC,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,298,ZA4976
+v149,page 273,QB2 CORRUPTION CNTRY: OFFIC AWRD TENDERS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,300,ZA4976
+v150,page 275,QB2 CORRUPTION CNTRY: OFFIC BUILDNG PERM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,302,ZA4976
+v151,page 277,QB2 CORRUPTION CNTRY: OFFIC BUSINES PERM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,304,ZA4976
+v152,page 279,QB2 CORRUPTION CNTRY: PUBL HEALTH SECTOR,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,306,ZA4976
+v153,page 281,QB2 CORRUPTION CNTRY: PUBL EDUCAT SECTOR,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,308,ZA4976
+v154,page 283,QB2 CORRUPTION CNTRY: INSPECTORS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,310,ZA4976
+v155,page 285,QB2 CORRUPTION CNTRY: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,312,ZA4976
+v156,page 287,QB2 CORRUPTION CNTRY: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,314,ZA4976
+v157,page 289,QB2 CORRUPTION CNTRY: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,316,ZA4976
+v158,page 291,QB3 CORRUPTION EXPER: NOBODY DID,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,318,ZA4976
+v159,page 293,QB3 CORRUPTION EXPER: POLICE SERVICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,320,ZA4976
+v160,page 295,QB3 CORRUPTION EXPER: CUSTOMS SERVICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,322,ZA4976
+v161,page 297,QB3 CORRUPTION EXPER: JUDICIAL SERVICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,324,ZA4976
+v162,page 299,QB3 CORRUPTION EXPER: POLITICIANS NAT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,326,ZA4976
+v163,page 301,QB3 CORRUPTION EXPER: POLITICIANS REG,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,328,ZA4976
+v164,page 303,QB3 CORRUPTION EXPER: POLITICIANS LOC,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,330,ZA4976
+v165,page 305,QB3 CORRUPTION EXPER: OFFIC AWRD TENDERS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,332,ZA4976
+v166,page 307,QB3 CORRUPTION EXPER: OFFIC BUILDNG PERM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,334,ZA4976
+v167,page 309,QB3 CORRUPTION EXPER: OFFIC BUSINES PERM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,336,ZA4976
+v168,page 311,QB3 CORRUPTION EXPER: PUBL HEALTH SECTOR,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,338,ZA4976
+v169,page 313,QB3 CORRUPTION EXPER: PUBL EDUCAT SECTOR,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,340,ZA4976
+v170,page 315,QB3 CORRUPTION EXPER: INSPECTORS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,342,ZA4976
+v171,page 317,QB3 CORRUPTION EXPER: SOMEONE ELSE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,344,ZA4976
+v172,page 319,QB3 CORRUPTION EXPER: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,346,ZA4976
+v173,page 321,QB3 CORRUPTION EXPERIENCE: YES (REC),Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,348,ZA4976
+v174,page 323,QB4 CORRUPTION REASONS: NOT ENOUGH FIGHT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,350,ZA4976
+v175,page 325,QB4 CORRUPTION REASONS: TOO CLOSE LINKS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,352,ZA4976
+v176,page 327,QB4 CORRUPTION REASONS: PUBLIC APPOINTMENTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,354,ZA4976
+v177,page 329,QB4 CORRUPTION REASONS: NO TRANSPARENCY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,356,ZA4976
+v178,page 331,QB4 CORRUPTION REASONS: LAW IS NOT APPLIED,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,358,ZA4976
+v179,page 333,QB4 CORRUPTION REASONS: NO REAL PUNISHMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,360,ZA4976
+v180,page 335,QB4 CORRUPTION REASONS: PART OF DAILY LIFE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,362,ZA4976
+v181,page 337,QB4 CORRUPTION REASONS: SOCIO-ECONOMIC COND,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,364,ZA4976
+v182,page 339,QB4 CORRUPTION REASONS: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,366,ZA4976
+v183,page 341,QB4 CORRUPTION REASONS: NONE/NO CORRUPTION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,368,ZA4976
+v184,page 343,QB4 CORRUPTION REASONS: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,370,ZA4976
+v185,page 345,QB5 CORRUPTION STATEM: EFFECTIVE GOV EFFORTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,372,ZA4976
+v186,page 347,QB5 CORRUPTION STATEM: LIGHT COURT SENTENCES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,374,ZA4976
+v187,page 349,QB5 CORRUPTION STATEM: EU HELPS IN REDUCING,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,376,ZA4976
+v188,page 351,QB5 CORRUPTION STATEM: UNAVOIDABLE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,378,ZA4976
+v189,page 353,QB6 FIGHT CORRUPTION: NAT GOVERNMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,380,ZA4976
+v190,page 355,QB6 FIGHT CORRUPTION: POLICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,382,ZA4976
+v191,page 357,QB6 FIGHT CORRUPTION: JUDICIAL SYSTEM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,384,ZA4976
+v192,page 359,QB6 FIGHT CORRUPTION: EU INSTITUTIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,386,ZA4976
+v193,page 361,QB6 FIGHT CORRUPTION: NGO / OTHER ASSOC,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,388,ZA4976
+v194,page 363,QB6 FIGHT CORRUPTION: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,390,ZA4976
+v195,page 365,QB6 FIGHT CORRUPTION: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,392,ZA4976
+v196,page 367,QB6 FIGHT CORRUPTION: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,394,ZA4976
+v197,page 369,QB7 CORRUPTION COMPLAIN TO: POLICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,396,ZA4976
+v198,page 371,QB7 CORRUPTION COMPLAIN TO: JUDICIAL SYSTEM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,398,ZA4976
+v199,page 373,QB7 CORRUPTION COMPLAIN TO: NGO / OTHER ASSOC,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,400,ZA4976
+v200,page 375,QB7 CORRUPTION COMPLAIN TO: NAT OMBUDSMAN,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,402,ZA4976
+v201,page 377,QB7 CORRUPTION COMPLAIN TO: POL REPRESENTATIVE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,404,ZA4976
+v202,page 379,QB7 CORRUPTION COMPLAIN TO: TRADE UNIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,406,ZA4976
+v203,page 381,QB7 CORRUPTION COMPLAIN TO: EU INSTITUTIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,408,ZA4976
+v204,page 383,QB7 CORRUPTION COMPLAIN TO: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,410,ZA4976
+v205,page 385,QB7 CORRUPTION COMPLAIN TO: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,412,ZA4976
+v206,page 387,QB7 CORRUPTION COMPLAIN TO: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,414,ZA4976
+v207,page 389,QC1 GENDER INEQUALITY - AT CURRENT TIME,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,416,ZA4976
+v208,page 391,QC2 GENDER INEQUALITY - COMPARED 10 Y AGO,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,418,ZA4976
+v209,,QC3 WORKING WOMEN: LESS IS NORMAL,,QC3 WORKING WOMEN: LESS IS NORMAL,GESIS Variable Report,420,ZA4976
+v210,,QC3 WORKING WOMEN: NUMBER IS TOO LOW,,QC3 WORKING WOMEN: NUMBER IS TOO LOW,GESIS Variable Report,422,ZA4976
+v211,page 397,QC4 WORKING WOMEN PRIORITY: FLEXIBILITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,424,ZA4976
+v212,page 399,QC4 WORKING WOMEN PRIORITY: CARE FACILITIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,426,ZA4976
+v213,page 401,QC4 WORKING WOMEN PRIORITY: ACCESS TO SECTORS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,428,ZA4976
+v214,page 403,QC4 WORKING WOMEN PRIORITY: BETTER QUALITY JOBS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,430,ZA4976
+v215,page 405,QC4 WORKING WOMEN PRIORITY: INCREASE PAY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,432,ZA4976
+v216,page 407,QC4 WORKING WOMEN PRIORITY: OTHER MEASURES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,434,ZA4976
+v217,page 409,QC4 WORKING WOMEN PRIORITY: NONE/DOES NOT WANT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,436,ZA4976
+v218,page 411,QC4 WORKING WOMEN PRIORITY: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,438,ZA4976
+v219,page 413,QC5 WORKING WOMEN PAY GAP - EU ISSUE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,440,ZA4976
+v220,page 415,QC6 WOMEN PAY GAP: COMBAT PREJUDICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,442,ZA4976
+v221,page 417,QC6 WOMEN PAY GAP: ENHANCE STANDING OF SECTORS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,444,ZA4976
+v222,page 419,QC6 WOMEN PAY GAP: ACCESS TO SECTORS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,446,ZA4976
+v223,page 421,QC6 WOMEN PAY GAP: MORE TRANSPARENCY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,448,ZA4976
+v224,page 423,QC6 WOMEN PAY GAP: PENALTIES ON COMPANIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,450,ZA4976
+v225,page 425,QC6 WOMEN PAY GAP: ACCESS TO POSITIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,452,ZA4976
+v226,page 427,QC6 WOMEN PAY GAP: OTHER MEASURES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,454,ZA4976
+v227,page 429,QC6 WOMEN PAY GAP: NONE / DOES NOT WANT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,456,ZA4976
+v228,page 431,QC6 WOMEN PAY GAP: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,458,ZA4976
+v229,page 433,QC7 WORKING WOMEN: ISOLATED IF NOT WORKING,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,460,ZA4976
+v230,page 435,QC7 WORKING WOMEN: FATHER SHOULD GIVE UP WORK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,462,ZA4976
+v231,page 437,QC7 WORKING WOMEN: AS MUCH CHILDCARE COSTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,464,ZA4976
+v232,page 439,QC7 WORKING WOMEN: MOTHER MUST LOOK AFTER CHILD,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,466,ZA4976
+v233,page 441,QC7 WORKING WOMEN: OWN PAY IS INDISPENSABLE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,468,ZA4976
+v234,page 443,QC7 WORKING WOMEN: MORE MEN IN CHILDCARE SECTORS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,470,ZA4976
+v235,page 445,QC7 WORKING WOMEN: MEN PARTICIPATE LESS IN HH,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,472,ZA4976
+v236,page 447,QC8 MEN MAINLY LOOKING AFTER CHILDREN - APPROVAL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,474,ZA4976
+v237,page 449,QC9 FAMILY WORK BALANCE: MATERNITY LEAVE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,476,ZA4976
+v238,page 451,QC9 FAMILY WORK BALANCE: PATERNITY LEAVE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,478,ZA4976
+v239,page 453,QC9 FAMILY WORK BALANCE: PARENTAL LEAVE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,480,ZA4976
+v240,page 455,QC9 FAMILY WORK BALANCE: CARE FACILITIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,482,ZA4976
+v241,page 457,QC9 FAMILY WORK BALANCE: COMPANY MEASURES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,484,ZA4976
+v242,page 459,QC9 FAMILY WORK BALANCE: SHARING OF HH TASKS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,486,ZA4976
+v243,page 461,QC9 FAMILY WORK BALANCE: FLEXIBLE WORKING HOURS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,488,ZA4976
+v244,page 463,QC9 FAMILY WORK BALANCE: REDUCE WORKING HOURS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,490,ZA4976
+v245,page 465,QC9 FAMILY WORK BALANCE: OTHER MEASURES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,492,ZA4976
+v246,page 467,QC9 FAMILY WORK BALANCE: NONE / DOES NOT WANT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,494,ZA4976
+v247,page 469,QC9 FAMILY WORK BALANCE: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,496,ZA4976
+v248,page 471,QC10 WOMEN IN NAT PARLIAMENTS - PRIORITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,498,ZA4976
+v249,page 473,QC11 WOMEN IN NAT PARLIAMENTS - MEASURES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,500,ZA4976
+v250,page 475,QC12 WOMEN IN RESPONSBL POSITIONS: LESS INTEREST,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,502,ZA4976
+v251,page 477,QC12 WOMEN IN RESPONSBL POSITIONS: LESS WILLING,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,504,ZA4976
+v252,page 479,QC12 WOMEN IN RESPONSBL POSITIONS: LESS FREEDOM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,506,ZA4976
+v253,page 481,QC12 WOMEN IN RESPONSBL POSITIONS: MALE DOMINATED,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,508,ZA4976
+v254,page 483,QC12 WOMEN IN RESPONSBL POSITIONS: LESS QUALIFIED,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,510,ZA4976
+v255,page 485,QC13 VIOLENCE AGAINST WOMEN - ACTION PRIORITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,512,ZA4976
+v256,page 487,QC14 WOMEN AT RISK OF POVERTY - ACTION PRIORITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,514,ZA4976
+v257,page 489,QC15 SEXIST STEREOTYPES: IN SCHOOL PROGRAMMES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,516,ZA4976
+v258,page 491,QC15 SEXIST STEREOTYPES: IN WORKING LIFE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,518,ZA4976
+v259,page 493,QC15 SEXIST STEREOTYPES: IN NEWS MEDIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,520,ZA4976
+v260,page 495,QC15 SEXIST STEREOTYPES: IN WORLD OF SPORT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,522,ZA4976
+v261,page 497,QC15 SEXIST STEREOTYPES: IN ADVERTISING,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,524,ZA4976
+v262,page 499,QC15 SEXIST STEREOTYPES: IN POLITICS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,526,ZA4976
+v263,page 501,QC15 SEXIST STEREOTYPES: IN THE POLICE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,528,ZA4976
+v264,page 503,QC15 SEXIST STEREOTYPES: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,530,ZA4976
+v265,page 505,QC15 SEXIST STEREOTYPES: NONE / DONT EXIST,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,532,ZA4976
+v266,page 507,QC15 SEXIST STEREOTYPES: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,534,ZA4976
+v267,page 509,QC16 GENDER INEQUALITY: SEXIST STEREOTYPES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,536,ZA4976
+v268,page 511,QC16 GENDER INEQUALITY: PAY GAP,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,538,ZA4976
+v269,page 513,QC16 GENDER INEQUALITY: SHARING OF HH TASKS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,540,ZA4976
+v270,page 515,QC16 GENDER INEQUALITY: POLIT REPRESENTATION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,542,ZA4976
+v271,page 517,QC16 GENDER INEQUALITY: RESPONSIBLE POSITIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,544,ZA4976
+v272,page 519,QC16 GENDER INEQUALITY: VIOLENCE AGAINST WOMEN,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,546,ZA4976
+v273,page 521,QC16 GENDER INEQUALITY: DEVELOPING COUNTRIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,548,ZA4976
+v274,page 523,QC16 GENDER INEQUALITY: OTHER PRIORITY AREAS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,550,ZA4976
+v275,page 525,QC16 GENDER INEQUALITY: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,552,ZA4976
+v276,page 527,QC16 GENDER INEQUALITY: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,554,ZA4976
+v277,page 529,QC17 EU COMMON POLICY - GENDER EQUALITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,556,ZA4976
+v278,page 531,QC18 EU GENDER POLICY - ENOUGH EFFORT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,558,ZA4976
+v279,page 533,QC19 EU GENDER POLICY - PROGRESS LAST 10 YEARS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,560,ZA4976
+v280,page 535,QC20 EU GENDER POL AWARENESS: EQUAL OPPORTUNITIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,562,ZA4976
+v281,page 537,QC20 EU GENDER POL AWARENESS: EQUALITY AT WORK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,564,ZA4976
+v282,page 539,QC20 EU GENDER POL AWARENESS: ECONOM EMPOWERMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,566,ZA4976
+v283,page 541,QC20 EU GENDER POL AWARENESS: CHILDCARE FACILITIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,568,ZA4976
+v284,page 543,QC20 EU GENDER POL AWARENESS: WOMEN IN SCIENCE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,570,ZA4976
+v285,page 545,QC20 EU GENDER POL AWARENESS: STRUCTURAL FUNDS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,572,ZA4976
+v286,page 547,QC20 EU GENDER POL AWARENESS: COMBAT VIOLENCE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,574,ZA4976
+v287,page 549,QC20 EU GENDER POL AWARENESS: COMBAT STEREOTYPES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,576,ZA4976
+v288,page 551,QC20 EU GENDER POL AWARENESS: DEVELOPING COUNTRIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,578,ZA4976
+v289,page 553,QC21 GENDER EQ CONTRIBUTION: EU INSTITUTIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,580,ZA4976
+v290,page 555,QC21 GENDER EQ CONTRIBUTION: NAT PUBL AUTHORITIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,582,ZA4976
+v291,page 557,QC21 GENDER EQ CONTRIBUTION: EMPLOYERS REPRESENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,584,ZA4976
+v292,page 559,QC21 GENDER EQ CONTRIBUTION: TRADE UNIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,586,ZA4976
+v293,page 561,QC21 GENDER EQ CONTRIBUTION: WOMEN ASSOCIATIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,588,ZA4976
+v294,page 563,QC21 GENDER EQ CONTRIBUTION: EQUALITY ORGANISAT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,590,ZA4976
+v295,page 565,QC21 GENDER EQ CONTRIBUTION: NGO-S,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,592,ZA4976
+v296,page 567,QC21 GENDER EQ CONTRIBUTION: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,594,ZA4976
+v297,page 569,QC21 GENDER EQ CONTRIBUTION: NONE / NO PROGRESS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,596,ZA4976
+v298,page 571,QC21 GENDER EQ CONTRIBUTION: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,598,ZA4976
+v299,page 573,QC22 GENDER EQ 2030: LESS STEREOTYPES IN MEDIA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,600,ZA4976
+v300,page 575,QC22 GENDER EQ 2030: SAME PAY FOR MEN AND WOMEN,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,602,ZA4976
+v301,page 577,QC22 GENDER EQ 2030: MEN ASSUME MORE HH TASKS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,604,ZA4976
+v302,page 579,QC22 GENDER EQ 2030: MR WOMEN AS HEADS OF STATE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,606,ZA4976
+v303,page 581,QC22 GENDER EQ 2030: MR WOMEN IN TRAD MALE PROF,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,608,ZA4976
+v304,page 583,QC22 GENDER EQ 2030: LS VIOLENCE AGAINST WOMEN,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,610,ZA4976
+v305,page 585,QC22 GENDER EQ 2030: RECOGNIT IN DEVELOP CNTRS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,612,ZA4976
+v306,page 587,QC23 GENDER INEQUALITY - ECONOMIC CRISIS EFFECT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,614,ZA4976
+v307,page 589,QC24 GENDER RIGHTS AWARENESS: DISCRIMINATION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,616,ZA4976
+v308,page 591,QC24 GENDER RIGHTS AWARENESS: EQUAL PAY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,618,ZA4976
+v309,page 593,QC24 GENDER RIGHTS AWARENESS: PREGNANT WORKERS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,620,ZA4976
+v310,page 595,QC24 GENDER RIGHTS AWARENESS: PARENTAL LEAVE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,622,ZA4976
+v311,page 597,QC24 GENDER RIGHTS AWARENESS: EDUCATION ACCESS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,624,ZA4976
+v312,page 599,QC25 GENDER DISCRIM VICTIM: EDUCATION ACCESS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,626,ZA4976
+v313,page 601,QC25 GENDER DISCRIM VICTIM: EMPLOYMENT AREA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,628,ZA4976
+v314,page 603,QC25 GENDER DISCRIM VICTIM: SOCIETY IN GENERAL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,630,ZA4976
+v315,page 605,QC25 GENDER DISCRIM VICTIM: POLITICAL LIFE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,632,ZA4976
+v316,page 607,QC25 GENDER DISCRIM VICTIM: HEALTHCARE ACCESS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,634,ZA4976
+v317,page 609,QC25 GENDER DISCRIM VICTIM: IN ANOTHER AREA,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,636,ZA4976
+v318,,QC25 GENDER DISCRIM VICTIM: WHICH OTHER AREA,,QC25 GENDER DISCRIM VICTIM: WHICH OTHER AREA,GESIS Variable Report,638,ZA4976
+v319,page 614,QC26 GENDER DISCRIMINATION - ACTION TAKEN,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,641,ZA4976
+v320,,QC27 GENDER DISCRIMINATION - REQUEST HANDLING,,QC27 GENDER DISCRIMINATION - REQUEST HANDLING,GESIS Variable Report,643,ZA4976
+v321,,QC28 GENDER DISCRIM CONTACTED: TRADE UNION,,QC28 GENDER DISCRIM CONTACTED: TRADE UNION,GESIS Variable Report,645,ZA4976
+v322,,QC28 GENDER DISCRIM CONTACTED: COURTS,,QC28 GENDER DISCRIM CONTACTED: COURTS,GESIS Variable Report,647,ZA4976
+v323,,QC28 GENDER DISCRIM CONTACTED: EQUALITY ORG,,QC28 GENDER DISCRIM CONTACTED: EQUALITY ORG,GESIS Variable Report,649,ZA4976
+v324,,QC28 GENDER DISCRIM CONTACTED: POLICE,,QC28 GENDER DISCRIM CONTACTED: POLICE,GESIS Variable Report,651,ZA4976
+v325,,QC28 GENDER DISCRIM CONTACTED: LAWYER,,QC28 GENDER DISCRIM CONTACTED: LAWYER,GESIS Variable Report,653,ZA4976
+v326,,QC28 GENDER DISCRIM CONTACTED: ASSOC / NGO,,QC28 GENDER DISCRIM CONTACTED: ASSOC / NGO,GESIS Variable Report,655,ZA4976
+v327,,QC28 GENDER DISCRIM CONTACTED: OTHER,,QC28 GENDER DISCRIM CONTACTED: OTHER,GESIS Variable Report,657,ZA4976
+v328,,QC28 GENDER DISCRIM CONTACTED: DK,,QC28 GENDER DISCRIM CONTACTED: DK,GESIS Variable Report,659,ZA4976
+v329,,QC29 GENDER DISCRIMINATION - WOULD CONTACT,,QC29 GENDER DISCRIMINATION - WOULD CONTACT,GESIS Variable Report,661,ZA4976
+v330,page 636,QD1 HEALTHCARE CRITERIA: DOCTOR PROXIMITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,663,ZA4976
+v331,page 638,QD1 HEALTHCARE CRITERIA: CHOICE OF DOCTOR,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,665,ZA4976
+v332,page 640,QD1 HEALTHCARE CRITERIA: PATIENTS DIGNITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,667,ZA4976
+v333,page 642,QD1 HEALTHCARE CRITERIA: WELL TRAINED STAFF,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,669,ZA4976
+v334,page 644,QD1 HEALTHCARE CRITERIA: CLEAN ENVIRONMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,671,ZA4976
+v335,page 646,QD1 HEALTHCARE CRITERIA: EFFECTIVE TREATMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,673,ZA4976
+v336,page 648,QD1 HEALTHCARE CRITERIA: CHOICE OF HOSPITAL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,675,ZA4976
+v337,page 650,QD1 HEALTHCARE CRITERIA: SAFETY FROM HARM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,677,ZA4976
+v338,page 652,QD1 HEALTHCARE CRITERIA: NO WAITING LISTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,679,ZA4976
+v339,page 654,QD1 HEALTHCARE CRITERIA: FRIENDLY ENVIRONMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,681,ZA4976
+v340,page 656,QD1 HEALTHCARE CRITERIA: MODERN EQUIPMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,683,ZA4976
+v341,page 658,QD1 HEALTHCARE CRITERIA: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,685,ZA4976
+v342,page 660,QD1 HEALTHCARE CRITERIA: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,687,ZA4976
+v343,page 662,QD2 HEALTHCARE QUALITY - OVERALL EVALUATION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,689,ZA4976
+v344,page 664,QD3 HEALTHCARE QUALITY - COMPARED TO EU,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,691,ZA4976
+v345,page 666,QD4A HOSPITAL CARE - PROBABILITY OF HARM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,693,ZA4976
+v346,page 668,QD4B NON-HOSPITAL CARE - PROBABILITY OF HARM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,695,ZA4976
+v347,page 670,QD5 HEALTHCARE ADV EVENTS: HOSPITAL INFECTIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,697,ZA4976
+v348,page 672,QD5 HEALTHCARE ADV EVENTS: INCORRECT DIAGNOSES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,699,ZA4976
+v349,page 674,QD5 HEALTHCARE ADV EVENTS: SURGICAL ERRORS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,701,ZA4976
+v350,,QD5 HEALTHCARE ADV EVENTS: MEDICATION ERRORS,,QD5 HEALTHCARE ADV EVENTS: MEDICATION ERRORS,GESIS Variable Report,703,ZA4976
+v351,page 678,QD5 HEALTHCARE ADV EVENTS: EQUIPMENT ERRORS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,705,ZA4976
+v352,v352 1 2 3 N Sum N Valid Sum,QD6A HEALTHCARE ADVERSE EVENT - EXPERIENCED,v7 M AT 120 (12.3) 856 (87.7) 25 1001 976 BE 297 (29.4) 713 (70.6) 5 1015 1010 BG 152 (15.5) 827 (84.5) 21 1000 979 CY 176 (34.9) 329 (65.1) 505 505 CZ 250 (23.5) 816 (76.5) 7 1073 1066 DE-E 124 (24.7) 378 (75.3) 13 515 502 DE-W 319 (31.8) 684 (68.2) 19 1022 1003 DK 437 (43.7) 562 (56.3) 8 1007 999 EE 390 (39.4) 601 (60.6) 12 1003 991 ES 205 (20.7) 785 (79.3) 14 1004 990 FI 351 (34.4) 669 (65.6) 6 1026 1020 FR 397 (39.3) 614 (60.7) 6 1017 1011 GB-GBN 323 (31.6) 699 (68.4) 17 1039 1022 GB-NIR 96 (31.5) 209 (68.5) 1 306 305 GR 160 (16.0) 839 (84.0) 1 1000 999 HU 235 (24.0) 744 (76.0) 21 1000 979 IE 200 (21.1) 747 (78.9) 29 976 947 IT 153 (15.7) 824 (84.3) 63 1040 977 LT 370 (36.5) 643 (63.5) 13 1026 1013 LU 146 (29.5) 349 (70.5) 5 500 495 LV 431 (43.3) 565 (56.7) 10 1006 996 MT 115 (23.1) 382 (76.9) 3 500 497 NL 425 (42.8) 569 (57.2) 12 1006 994 PL 204 (20.8) 776 (79.2) 20 1000 980 PT 126 (13.0) 842 (87.0) 41 1009 968 RO 165 (17.2) 795 (82.8) 47 1007 960 SE 489 (49.1) 507 (50.9) 10 1006 996 SI 298 (29.2) 722 (70.8) 6 1026 1020 SK 294 (29.0) 721 (71.0) 14 1029 1015 N Sum 7448 18767 449 26664 N Valid Sum 7448 18767 26215 Eurobarometer 72.2 - September-October 2009,v7 M AT 120 (12.3) 856 (87.7) 25 1001 976 BE 297 (29.4) 713 (70.6) 5 1015 1010 BG 152 (15.5) 827 (84.5) 21 1000 979 CY 176 (34.9) 329 (65.1) 505 505 CZ 250 (23.5) 816 (76.5) 7 1073 1066 DE-E 124 (24.7) 378 (75.3) 13 515 502 DE-W 319 (31.8) 684 (68.2) 19 1022 1003 DK 437 (43.7) 562 (56.3) 8 1007 999 EE 390 (39.4) 601 (60.6) 12 1003 991 ES 205 (20.7) 785 (79.3) 14 1004 990 FI 351 (34.4) 669 (65.6) 6 1026 1020 FR 397 (39.3) 614 (60.7) 6 1017 1011 GB-GBN 323 (31.6) 699 (68.4) 17 1039 1022 GB-NIR 96 (31.5) 209 (68.5) 1 306 305 GR 160 (16.0) 839 (84.0) 1 1000 999 HU 235 (24.0) 744 (76.0) 21 1000 979 IE 200 (21.1) 747 (78.9) 29 976 947 IT 153 (15.7) 824 (84.3) 63 1040 977 LT 370 (36.5) 643 (63.5) 13 1026 1013 LU 146 (29.5) 349 (70.5) 5 500 495 LV 431 (43.3) 565 (56.7) 10 1006 996 MT 115 (23.1) 382 (76.9) 3 500 497 NL 425 (42.8) 569 (57.2) 12 1006 994 PL 204 (20.8) 776 (79.2) 20 1000 980 PT 126 (13.0) 842 (87.0) 41 1009 968 RO 165 (17.2) 795 (82.8) 47 1007 960 SE 489 (49.1) 507 (50.9) 10 1006 996 SI 298 (29.2) 722 (70.8) 6 1026 1020 SK 294 (29.0) 721 (71.0) 14 1029 1015 N Sum 7448 18767 449 26664 N Valid Sum 7448 18767 26215 Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,707,ZA4976
+v353,page 681,QD6B HEALTHCARE ADVERSE EVENT - COUNTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,708,ZA4976
+v354,page 683,QD6C HEALTHCARE ADVERSE EVENT - REPORTED,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,710,ZA4976
+v355,,QD6D ADVERSE EVENT REPORT: HOSPITAL MANAGEMENT,,QD6D ADVERSE EVENT REPORT: HOSPITAL MANAGEMENT,GESIS Variable Report,712,ZA4976
+v356,,QD6D ADVERSE EVENT REPORT: REG/LOC AUTHORITY,,QD6D ADVERSE EVENT REPORT: REG/LOC AUTHORITY,GESIS Variable Report,714,ZA4976
+v357,,QD6D ADVERSE EVENT REPORT: NATIONAL AGENCY,,QD6D ADVERSE EVENT REPORT: NATIONAL AGENCY,GESIS Variable Report,716,ZA4976
+v358,,QD6D ADVERSE EVENT REPORT: LAWYER,,QD6D ADVERSE EVENT REPORT: LAWYER,GESIS Variable Report,718,ZA4976
+v359,,QD6D ADVERSE EVENT REPORT: MINISTRY OF HEALTH,,QD6D ADVERSE EVENT REPORT: MINISTRY OF HEALTH,GESIS Variable Report,720,ZA4976
+v360,,QD6D ADVERSE EVENT REPORT: CONSUMER PROTEC BODY,,QD6D ADVERSE EVENT REPORT: CONSUMER PROTEC BODY,GESIS Variable Report,722,ZA4976
+v361,,QD6D ADVERSE EVENT REPORT: RELATIVE/ACQUAINTANCE,,QD6D ADVERSE EVENT REPORT: RELATIVE/ACQUAINTANCE,GESIS Variable Report,724,ZA4976
+v362,,QD6D ADVERSE EVENT REPORT: HEALTH PROFESSIONALS,,QD6D ADVERSE EVENT REPORT: HEALTH PROFESSIONALS,GESIS Variable Report,726,ZA4976
+v363,,QD6D ADVERSE EVENT REPORT: EMBASSY/CONSULATE,,QD6D ADVERSE EVENT REPORT: EMBASSY/CONSULATE,GESIS Variable Report,728,ZA4976
+v364,,QD6D ADVERSE EVENT REPORT: OTHER,,QD6D ADVERSE EVENT REPORT: OTHER,GESIS Variable Report,730,ZA4976
+v365,,QD6D ADVERSE EVENT REPORT: DK,,QD6D ADVERSE EVENT REPORT: DK,GESIS Variable Report,732,ZA4976
+v366,,QD6E HEALTHCARE ADVERSE EVENT REPORT - COUNTRY,,QD6E HEALTHCARE ADVERSE EVENT REPORT - COUNTRY,GESIS Variable Report,734,ZA4976
+v367,page 709,QD7 PATIENT SAFETY RESPONSIBLE: MINISTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,736,ZA4976
+v368,page 711,QD7 PATIENT SAFETY RESPONSIBLE: NAT GOVERMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,738,ZA4976
+v369,page 713,QD7 PATIENT SAFETY RESPONSIBLE: NAT PARLIAMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,740,ZA4976
+v370,page 715,QD7 PATIENT SAFETY RESPONSIBLE: PROFESSIONALS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,742,ZA4976
+v371,page 717,QD7 PATIENT SAFETY RESPONSIBLE: ASSOCIATIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,744,ZA4976
+v372,page 719,QD7 PATIENT SAFETY RESPONSIBLE: INSURANCE COMP,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,746,ZA4976
+v373,page 721,QD7 PATIENT SAFETY RESPONSIBLE: LEGAL SYSTEM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,748,ZA4976
+v374,page 723,QD7 PATIENT SAFETY RESPONSIBLE: TRADE UNIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,750,ZA4976
+v375,page 725,QD7 PATIENT SAFETY RESPONSIBLE: PATIENTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,752,ZA4976
+v376,page 727,QD7 PATIENT SAFETY RESPONSIBLE: R/L AUTHORITIES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,754,ZA4976
+v377,page 729,QD7 PATIENT SAFETY RESPONSIBLE: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,756,ZA4976
+v378,page 731,QD7 PATIENT SAFETY RESPONSIBLE: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,758,ZA4976
+v379,page 733,QD7 PATIENT SAFETY RESPONSIBLE: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,760,ZA4976
+v380,page 735,QD8A SUBJECT TO SURGICAL PROCED - LAST 3 YEARS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,762,ZA4976
+v381,page 737,QD8B SUBJECT TO SURGICAL PROCED - WRITTEN CONSENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,764,ZA4976
+v382,page 739,QD9 HEALTHCARE HARM REDRESS CTRY: ACKNOWLEDGEMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,766,ZA4976
+v383,page 741,QD9 HEALTHCARE HARM REDRESS CTRY: EXPLANATION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,768,ZA4976
+v384,page 743,QD9 HEALTHCARE HARM REDRESS CTRY: APOLOGY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,770,ZA4976
+v385,page 745,QD9 HEALTHCARE HARM REDRESS CTRY: FINANC COMPENS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,772,ZA4976
+v386,page 747,QD9 HEALTHCARE HARM REDRESS CTRY: INVESTIGATION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,774,ZA4976
+v387,page 749,QD9 HEALTHCARE HARM REDRESS CTRY: DISCIPL MEASURE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,776,ZA4976
+v388,page 751,QD9 HEALTHCARE HARM REDRESS CTRY: ACT AG FACILITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,778,ZA4976
+v389,page 753,QD9 HEALTHCARE HARM REDRESS CTRY: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,780,ZA4976
+v390,page 755,QD9 HEALTHCARE HARM REDRESS CTRY: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,782,ZA4976
+v391,page 757,QD9 HEALTHCARE HARM REDRESS CTRY: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,784,ZA4976
+v392,page 759,QD10 HEALTHCARE HARM REDRESS EU: ACKNOWLEDGEMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,786,ZA4976
+v393,page 761,QD10 HEALTHCARE HARM REDRESS EU: EXPLANATION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,788,ZA4976
+v394,page 763,QD10 HEALTHCARE HARM REDRESS EU: APOLOGY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,790,ZA4976
+v395,page 765,QD10 HEALTHCARE HARM REDRESS EU: FINANC COMPENS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,792,ZA4976
+v396,page 767,QD10 HEALTHCARE HARM REDRESS EU: INVESTIGATION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,794,ZA4976
+v397,page 769,QD10 HEALTHCARE HARM REDRESS EU: DISCIPL MEASURE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,796,ZA4976
+v398,page 771,QD10 HEALTHCARE HARM REDRESS EU: ACT AG FACILITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,798,ZA4976
+v399,page 773,QD10 HEALTHCARE HARM REDRESS EU: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,800,ZA4976
+v400,page 775,QD10 HEALTHCARE HARM REDRESS EU: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,802,ZA4976
+v401,page 777,QD10 HEALTHCARE HARM REDRESS EU: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,804,ZA4976
+v402,page 779,QD11 HEALTHCARE REDRESS HLP CTRY: HOSPITAL MANAG,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,806,ZA4976
+v403,page 781,QD11 HEALTHCARE REDRESS HLP CTRY: R/L AUTHORITY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,808,ZA4976
+v404,page 783,QD11 HEALTHCARE REDRESS HLP CTRY: NATIONAL AGENCY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,810,ZA4976
+v405,page 785,QD11 HEALTHCARE REDRESS HLP CTRY: LAWYER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,812,ZA4976
+v406,page 787,QD11 HEALTHCARE REDRESS HLP CTRY: MINISTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,814,ZA4976
+v407,page 789,QD11 HEALTHCARE REDRESS HLP CTRY: CONSUMER PROT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,816,ZA4976
+v408,page 791,QD11 HEALTHCARE REDRESS HLP CTRY: RELATIVE/ACQUIT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,818,ZA4976
+v409,page 793,QD11 HEALTHCARE REDRESS HLP CTRY: PROFESSIONALS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,820,ZA4976
+v410,page 795,QD11 HEALTHCARE REDRESS HLP CTRY: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,822,ZA4976
+v411,page 797,QD11 HEALTHCARE REDRESS HLP CTRY: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,824,ZA4976
+v412,page 799,QD11 HEALTHCARE REDRESS HLP CTRY: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,826,ZA4976
+v413,page 801,QD12 HEALTHCARE REDRESS HLP EU: HOSPITAL MANAG,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,828,ZA4976
+v414,page 803,QD12 HEALTHCARE REDRESS HLP EU: PROFESSIONALS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,830,ZA4976
+v415,page 805,QD12 HEALTHCARE REDRESS HLP EU: EMBASSY/CONSULATE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,832,ZA4976
+v416,page 807,QD12 HEALTHCARE REDRESS HLP EU: NATIONAL AGENCY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,834,ZA4976
+v417,page 809,QD12 HEALTHCARE REDRESS HLP EU: MINISTRY OWN CTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,836,ZA4976
+v418,page 811,QD12 HEALTHCARE REDRESS HLP EU: LAWYER OWN CTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,838,ZA4976
+v419,page 813,QD12 HEALTHCARE REDRESS HLP EU: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,840,ZA4976
+v420,page 815,QD12 HEALTHCARE REDRESS HLP EU: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,842,ZA4976
+v421,page 817,QD12 HEALTHCARE REDRESS HLP EU: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,844,ZA4976
+v422,page 819,QD13 HEALTHCARE ADVERSE EVENTS INFO: EXPERIENCE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,846,ZA4976
+v423,page 821,QD13 HEALTHCARE ADVERSE EVENTS INFO: FRNDS/FAMILY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,848,ZA4976
+v424,page 823,QD13 HEALTHCARE ADVERSE EVENTS INFO: TV,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,850,ZA4976
+v425,page 825,QD13 HEALTHCARE ADVERSE EVENTS INFO: HOSPITAL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,852,ZA4976
+v426,page 827,QD13 HEALTHCARE ADVERSE EVENTS INFO: INTERNET,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,854,ZA4976
+v427,page 829,QD13 HEALTHCARE ADVERSE EVENTS INFO: PRESS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,856,ZA4976
+v428,page 831,QD13 HEALTHCARE ADVERSE EVENTS INFO: STATISTICS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,858,ZA4976
+v429,page 833,QD13 HEALTHCARE ADVERSE EVENTS INFO: RADIO,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,860,ZA4976
+v430,page 835,QD13 HEALTHCARE ADVERSE EVENTS INFO: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,862,ZA4976
+v431,page 837,QD13 HEALTHCARE ADVERSE EVENTS INFO: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,864,ZA4976
+v432,page 839,QE1 DISASTERS MOST AT RISK: EARTHQUAKE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,866,ZA4976
+v433,page 841,QE1 DISASTERS MOST AT RISK: FOREST FIRE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,868,ZA4976
+v434,page 843,QE1 DISASTERS MOST AT RISK: FLOODING,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,870,ZA4976
+v435,page 845,QE1 DISASTERS MOST AT RISK: VIOLENT STORM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,872,ZA4976
+v436,page 847,QE1 DISASTERS MOST AT RISK: TSUNAMI,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,874,ZA4976
+v437,page 849,QE1 DISASTERS MOST AT RISK: VOLCANO ERUPTION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,876,ZA4976
+v438,page 851,QE1 DISASTERS MOST AT RISK: LANDSLIDE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,878,ZA4976
+v439,page 853,QE1 DISASTERS MOST AT RISK: INDUSTRIAL ACCIDENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,880,ZA4976
+v440,page 855,QE1 DISASTERS MOST AT RISK: NUCLEAR ACCIDENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,882,ZA4976
+v441,page 857,QE1 DISASTERS MOST AT RISK: MARINE POLLUTION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,884,ZA4976
+v442,page 859,QE1 DISASTERS MOST AT RISK: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,886,ZA4976
+v443,page 861,QE1 DISASTERS MOST AT RISK: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,888,ZA4976
+v444,page 863,QE1 DISASTERS MOST AT RISK: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,890,ZA4976
+v445,page 865,QE2 INFORMED: DISASTER PREVENTION COUNTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,892,ZA4976
+v446,page 867,QE2 INFORMED: DISASTER PREVENTION EU LEVEL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,894,ZA4976
+v447,page 869,QE2 INFORMED: DISASTER PREPAREDNESS COUNTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,896,ZA4976
+v448,page 871,QE2 INFORMED: DISASTER PREPAREDNESS EU LEVEL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,898,ZA4976
+v449,page 873,QE2 INFORMED: DISASTER RESPONSE COUNTRY,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,900,ZA4976
+v450,page 875,QE2 INFORMED: DISASTER RESPONSE EU LEVEL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,902,ZA4976
+v451,page 877,QE3 EU DISASTER MANAGEM POLICY REASON: NATURAL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,904,ZA4976
+v452,page 879,QE3 EU DISASTER MANAGEM POLICY REASON: MAN-MADE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,906,ZA4976
+v453,page 881,QE3 EU DISASTER MANAGEM POLICY REASON: TERRORISM,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,908,ZA4976
+v454,page 883,QE4 MORE EU SUPPORT APPRVL: DISASTER PREVENTION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,910,ZA4976
+v455,page 885,QE4 MORE EU SUPPORT APPRVL: DISASTER PREPAREDNESS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,912,ZA4976
+v456,page 887,QE4 MORE EU SUPPORT APPRVL: DISASTER RESPONSE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,914,ZA4976
+v457,page 889,QE5 EU SUPPORT TO VOLUNTEER ORGANISAT - APPROVAL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,916,ZA4976
+v458,page 891,QE6 EU SUPPORT FACING DISASTERS - MOST IMP REASON,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,918,ZA4976
+v459,page 893,QE7 EU SUPPORT FACING DESASTER - NEIGHBOURS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,920,ZA4976
+v460,page 895,QE7 EU SUPPORT FACING DESASTER - WORLDWIDE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,922,ZA4976
+v461,page 897,QE8 DISASTER BACKGRND INFO TRUST: EUROP INSTITUT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,924,ZA4976
+v462,page 899,QE8 DISASTER BACKGRND INFO TRUST: NAT GOVERNMENT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,926,ZA4976
+v463,page 901,QE8 DISASTER BACKGRND INFO TRUST: NGO-S,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,928,ZA4976
+v464,page 903,QE8 DISASTER BACKGRND INFO TRUST: JOURNALISTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,930,ZA4976
+v465,page 905,QE8 DISASTER BACKGRND INFO TRUST: SCIENTISTS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,932,ZA4976
+v466,page 907,QE8 DISASTER BACKGRND INFO TRUST: FAM/FRNDS/COLL,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,934,ZA4976
+v467,page 909,QE8 DISASTER BACKGRND INFO TRUST: OTHER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,936,ZA4976
+v468,page 911,QE8 DISASTER BACKGRND INFO TRUST: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,938,ZA4976
+v469,page 913,QE8 DISASTER BACKGRND INFO TRUST: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,940,ZA4976
+v470,page 915,QE9 EU DISASTER PREVENTION: COMMON MEASURES,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,942,ZA4976
+v471,page 917,QE9 EU DISASTER PREVENTION: COMMON STANDARDS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,944,ZA4976
+v472,page 919,QE9 EU DISASTER PREVENTION: COMMON WARNING,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,946,ZA4976
+v473,page 921,QE10 DISASTER PREPAREDNESS: PERSONAL ACTIONS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,948,ZA4976
+v474,page 923,QE11 DISASTER PREPAREDNESS: EU RESERVE OF ASSETS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,950,ZA4976
+v475,,D7 MARITAL STATUS,,D7 MARITAL STATUS,GESIS Variable Report,952,ZA4976
+v476,,D7 MARITAL STATUS (REC),,D7 MARITAL STATUS (REC),GESIS Variable Report,955,ZA4976
+v477,,D8 AGE EDUCATION,,D8 AGE EDUCATION,GESIS Variable Report,957,ZA4976
+v478,,D8 AGE EDUCATION (REC),,D8 AGE EDUCATION (REC),GESIS Variable Report,958,ZA4976
+v479,v479 1 2 N Sum N Valid Sum,D10 GENDER,v7 AT 484 (48.4) 517 (51.6) 1001 1001 BE 493 (48.6) 522 (51.4) 1015 1015 BG 479 (47.9) 521 (52.1) 1000 1000 CY 247 (48.9) 258 (51.1) 505 505 CZ 523 (48.7) 550 (51.3) 1073 1073 DE-E 250 (48.5) 265 (51.5) 515 515 DE-W 493 (48.2) 529 (51.8) 1022 1022 DK 495 (49.2) 512 (50.8) 1007 1007 EE 452 (45.1) 551 (54.9) 1003 1003 ES 492 (49.0) 512 (51.0) 1004 1004 FI 499 (48.6) 527 (51.4) 1026 1026 FR 485 (47.7) 532 (52.3) 1017 1017 GB-GBN 506 (48.7) 533 (51.3) 1039 1039 GB-NIR 148 (48.4) 158 (51.6) 306 306 GR 490 (49.0) 510 (51.0) 1000 1000 HU 467 (46.7) 533 (53.3) 1000 1000 IE 485 (49.7) 491 (50.3) 976 976 IT 500 (48.1) 540 (51.9) 1040 1040 LT 469 (45.7) 557 (54.3) 1026 1026 LU 246 (49.2) 254 (50.8) 500 500 LV 466 (46.3) 540 (53.7) 1006 1006 MT 246 (49.2) 254 (50.8) 500 500 NL 494 (49.1) 512 (50.9) 1006 1006 PL 477 (47.7) 523 (52.3) 1000 1000 PT 481 (47.7) 528 (52.3) 1009 1009 RO 486 (48.3) 521 (51.7) 1007 1007 SE 497 (49.5) 508 (50.5) 1005 1005 SI 503 (49.0) 523 (51.0) 1026 1026 SK 495 (48.1) 534 (51.9) 1029 1029 N Sum 12848 13815 26663 N Valid Sum 12848 13815 26663 Eurobarometer 72.2 - September-October 2009,v7 AT 484 (48.4) 517 (51.6) 1001 1001 BE 493 (48.6) 522 (51.4) 1015 1015 BG 479 (47.9) 521 (52.1) 1000 1000 CY 247 (48.9) 258 (51.1) 505 505 CZ 523 (48.7) 550 (51.3) 1073 1073 DE-E 250 (48.5) 265 (51.5) 515 515 DE-W 493 (48.2) 529 (51.8) 1022 1022 DK 495 (49.2) 512 (50.8) 1007 1007 EE 452 (45.1) 551 (54.9) 1003 1003 ES 492 (49.0) 512 (51.0) 1004 1004 FI 499 (48.6) 527 (51.4) 1026 1026 FR 485 (47.7) 532 (52.3) 1017 1017 GB-GBN 506 (48.7) 533 (51.3) 1039 1039 GB-NIR 148 (48.4) 158 (51.6) 306 306 GR 490 (49.0) 510 (51.0) 1000 1000 HU 467 (46.7) 533 (53.3) 1000 1000 IE 485 (49.7) 491 (50.3) 976 976 IT 500 (48.1) 540 (51.9) 1040 1040 LT 469 (45.7) 557 (54.3) 1026 1026 LU 246 (49.2) 254 (50.8) 500 500 LV 466 (46.3) 540 (53.7) 1006 1006 MT 246 (49.2) 254 (50.8) 500 500 NL 494 (49.1) 512 (50.9) 1006 1006 PL 477 (47.7) 523 (52.3) 1000 1000 PT 481 (47.7) 528 (52.3) 1009 1009 RO 486 (48.3) 521 (51.7) 1007 1007 SE 497 (49.5) 508 (50.5) 1005 1005 SI 503 (49.0) 523 (51.0) 1026 1026 SK 495 (48.1) 534 (51.9) 1029 1029 N Sum 12848 13815 26663 N Valid Sum 12848 13815 26663 Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,961,ZA4976
+v480,page 935,D11 AGE EXACT,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,962,ZA4976
+v481,page 936,D11 AGE RECODED - FOUR GROUPS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,963,ZA4976
+v482,,D11 AGE RECODED - SIX GROUPS,,D11 AGE RECODED - SIX GROUPS,GESIS Variable Report,965,ZA4976
+v483,,D15A OCCUPATION OF RESPONDENT,,D15A OCCUPATION OF RESPONDENT,GESIS Variable Report,967,ZA4976
+v484,,D15B OCCUPATION OF RESPONDENT - LAST JOB,,D15B OCCUPATION OF RESPONDENT - LAST JOB,GESIS Variable Report,970,ZA4976
+v485,,D25 TYPE OF COMMUNITY,,D25 TYPE OF COMMUNITY,GESIS Variable Report,973,ZA4976
+v486,,D40A HOUSEHOLD COMPOSITION: AGED 15+,,D40A HOUSEHOLD COMPOSITION: AGED 15+,GESIS Variable Report,975,ZA4976
+v487,page 951,D40A HOUSEHOLD COMPOSITION: AGED 15+ (REC),Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,978,ZA4976
+v488,,D40B HOUSEHOLD COMPOSITION: AGED <10,,D40B HOUSEHOLD COMPOSITION: AGED <10,GESIS Variable Report,980,ZA4976
+v489,page 955,D40B HOUSEHOLD COMPOSITION: AGED <10 (REC),Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,982,ZA4976
+v490,,D40C HOUSEHOLD COMPOSITION: AGED 10-14,,D40C HOUSEHOLD COMPOSITION: AGED 10-14,GESIS Variable Report,984,ZA4976
+v491,page 959,D40C HOUSEHOLD COMPOSITION: AGED 10-14 (REC),Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,986,ZA4976
+v492,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C,GESIS Variable Report,988,ZA4976
+v493,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C (REC),,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C (REC),GESIS Variable Report,991,ZA4976
+v494,v494 1 2 N Sum N Valid Sum,D43A PHONE AVAILABLE - FIXED IN HH,v7 AT 519 (51.8) 482 (48.2) 1001 1001 BE 759 (74.8) 256 (25.2) 1015 1015 BG 533 (53.3) 467 (46.7) 1000 1000 CY 444 (87.9) 61 (12.1) 505 505 CZ 221 (20.6) 852 (79.4) 1073 1073 DE-E 435 (84.5) 80 (15.5) 515 515 DE-W 959 (93.8) 63 (6.2) 1022 1022 DK 670 (66.5) 337 (33.5) 1007 1007 EE 513 (51.1) 490 (48.9) 1003 1003 ES 612 (61.0) 392 (39.0) 1004 1004 FI 296 (28.8) 730 (71.2) 1026 1026 FR 890 (87.5) 127 (12.5) 1017 1017 GB-GBN 877 (84.4) 162 (15.6) 1039 1039 GB-NIR 249 (81.4) 57 (18.6) 306 306 GR 826 (82.6) 174 (17.4) 1000 1000 HU 472 (47.2) 528 (52.8) 1000 1000 IE 699 (71.6) 277 (28.4) 976 976 IT 702 (67.5) 338 (32.5) 1040 1040 LT 437 (42.6) 589 (57.4) 1026 1026 LU 458 (91.6) 42 (8.4) 500 500 LV 451 (44.8) 555 (55.2) 1006 1006 MT 490 (98.0) 10 (2.0) 500 500 NL 899 (89.4) 107 (10.6) 1006 1006 PL 508 (50.7) 493 (49.3) 1001 1001 PT 551 (54.6) 458 (45.4) 1009 1009 RO 410 (40.7) 597 (59.3) 1007 1007 SE 996 (99.1) 9 (0.9) 1005 1005 SI 878 (85.6) 148 (14.4) 1026 1026 SK 325 (31.6) 704 (68.4) 1029 1029 N Sum 17079 9585 26664 N Valid Sum 17079 9585 26664 Eurobarometer 72.2 - September-October 2009,v7 AT 519 (51.8) 482 (48.2) 1001 1001 BE 759 (74.8) 256 (25.2) 1015 1015 BG 533 (53.3) 467 (46.7) 1000 1000 CY 444 (87.9) 61 (12.1) 505 505 CZ 221 (20.6) 852 (79.4) 1073 1073 DE-E 435 (84.5) 80 (15.5) 515 515 DE-W 959 (93.8) 63 (6.2) 1022 1022 DK 670 (66.5) 337 (33.5) 1007 1007 EE 513 (51.1) 490 (48.9) 1003 1003 ES 612 (61.0) 392 (39.0) 1004 1004 FI 296 (28.8) 730 (71.2) 1026 1026 FR 890 (87.5) 127 (12.5) 1017 1017 GB-GBN 877 (84.4) 162 (15.6) 1039 1039 GB-NIR 249 (81.4) 57 (18.6) 306 306 GR 826 (82.6) 174 (17.4) 1000 1000 HU 472 (47.2) 528 (52.8) 1000 1000 IE 699 (71.6) 277 (28.4) 976 976 IT 702 (67.5) 338 (32.5) 1040 1040 LT 437 (42.6) 589 (57.4) 1026 1026 LU 458 (91.6) 42 (8.4) 500 500 LV 451 (44.8) 555 (55.2) 1006 1006 MT 490 (98.0) 10 (2.0) 500 500 NL 899 (89.4) 107 (10.6) 1006 1006 PL 508 (50.7) 493 (49.3) 1001 1001 PT 551 (54.6) 458 (45.4) 1009 1009 RO 410 (40.7) 597 (59.3) 1007 1007 SE 996 (99.1) 9 (0.9) 1005 1005 SI 878 (85.6) 148 (14.4) 1026 1026 SK 325 (31.6) 704 (68.4) 1029 1029 N Sum 17079 9585 26664 N Valid Sum 17079 9585 26664 Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,993,ZA4976
+v495,v495 1 2 N Sum N Valid Sum,D43B PHONE AVAILABLE - PRIVATE MOBILE,v7 AT 882 (88.1) 119 (11.9) 1001 1001 BE 898 (88.5) 117 (11.5) 1015 1015 BG 752 (75.2) 248 (24.8) 1000 1000 CY 461 (91.3) 44 (8.7) 505 505 CZ 995 (92.7) 78 (7.3) 1073 1073 DE-E 429 (83.3) 86 (16.7) 515 515 DE-W 864 (84.5) 158 (15.5) 1022 1022 DK 943 (93.6) 64 (6.4) 1007 1007 EE 932 (92.9) 71 (7.1) 1003 1003 ES 736 (73.3) 268 (26.7) 1004 1004 FI 993 (96.8) 33 (3.2) 1026 1026 FR 841 (82.7) 176 (17.3) 1017 1017 GB-GBN 929 (89.4) 110 (10.6) 1039 1039 GB-NIR 257 (84.0) 49 (16.0) 306 306 GR 815 (81.5) 185 (18.5) 1000 1000 HU 824 (82.4) 176 (17.6) 1000 1000 IE 894 (91.6) 82 (8.4) 976 976 IT 974 (93.7) 66 (6.3) 1040 1040 LT 920 (89.7) 106 (10.3) 1026 1026 LU 477 (95.4) 23 (4.6) 500 500 LV 926 (92.0) 80 (8.0) 1006 1006 MT 443 (88.6) 57 (11.4) 500 500 NL 942 (93.6) 64 (6.4) 1006 1006 PL 819 (81.9) 181 (18.1) 1000 1000 PT 765 (75.8) 244 (24.2) 1009 1009 RO 756 (75.1) 251 (24.9) 1007 1007 SE 961 (95.6) 44 (4.4) 1005 1005 SI 917 (89.4) 109 (10.6) 1026 1026 SK 939 (91.3) 90 (8.7) 1029 1029 N Sum 23284 3379 26663 N Valid Sum 23284 3379 26663 Eurobarometer 72.2 - September-October 2009,v7 AT 882 (88.1) 119 (11.9) 1001 1001 BE 898 (88.5) 117 (11.5) 1015 1015 BG 752 (75.2) 248 (24.8) 1000 1000 CY 461 (91.3) 44 (8.7) 505 505 CZ 995 (92.7) 78 (7.3) 1073 1073 DE-E 429 (83.3) 86 (16.7) 515 515 DE-W 864 (84.5) 158 (15.5) 1022 1022 DK 943 (93.6) 64 (6.4) 1007 1007 EE 932 (92.9) 71 (7.1) 1003 1003 ES 736 (73.3) 268 (26.7) 1004 1004 FI 993 (96.8) 33 (3.2) 1026 1026 FR 841 (82.7) 176 (17.3) 1017 1017 GB-GBN 929 (89.4) 110 (10.6) 1039 1039 GB-NIR 257 (84.0) 49 (16.0) 306 306 GR 815 (81.5) 185 (18.5) 1000 1000 HU 824 (82.4) 176 (17.6) 1000 1000 IE 894 (91.6) 82 (8.4) 976 976 IT 974 (93.7) 66 (6.3) 1040 1040 LT 920 (89.7) 106 (10.3) 1026 1026 LU 477 (95.4) 23 (4.6) 500 500 LV 926 (92.0) 80 (8.0) 1006 1006 MT 443 (88.6) 57 (11.4) 500 500 NL 942 (93.6) 64 (6.4) 1006 1006 PL 819 (81.9) 181 (18.1) 1000 1000 PT 765 (75.8) 244 (24.2) 1009 1009 RO 756 (75.1) 251 (24.9) 1007 1007 SE 961 (95.6) 44 (4.4) 1005 1005 SI 917 (89.4) 109 (10.6) 1026 1026 SK 939 (91.3) 90 (8.7) 1029 1029 N Sum 23284 3379 26663 N Valid Sum 23284 3379 26663 Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,994,ZA4976
+v496,page 968,D46 OWNERSHIP DURABLES: TELEVISION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,995,ZA4976
+v497,page 970,D46 OWNERSHIP DURABLES: DVD PLAYER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,997,ZA4976
+v498,page 972,D46 OWNERSHIP DURABLES: MUSIC CD PLAYER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,999,ZA4976
+v499,page 974,D46 OWNERSHIP DURABLES: COMPUTER,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1001,ZA4976
+v500,page 976,D46 OWNERSHIP DURABLES: INTERNET ACCESS,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1003,ZA4976
+v501,page 978,D46 OWNERSHIP DURABLES: CAR,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1005,ZA4976
+v502,page 980,D46 OWNERSHIP DURABLES: AP/HOUSE PAID,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1007,ZA4976
+v503,page 982,D46 OWNERSHIP DURABLES: AP/HOUSE PAYING,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1009,ZA4976
+v504,page 984,D46 OWNERSHIP DURABLES: NONE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1011,ZA4976
+v505,page 986,D46 OWNERSHIP DURABLES: DK,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1013,ZA4976
+v506,page 988,D60 DIFFICULTIES PAYING BILLS - LAST YEAR,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1015,ZA4976
+v507,,D61 LEVEL IN SOCIETY - SELF PLACEMENT,,D61 LEVEL IN SOCIETY - SELF PLACEMENT,GESIS Variable Report,1017,ZA4976
+v508,,D62 INTERNET USE FREQ: AT HOME,,D62 INTERNET USE FREQ: AT HOME,GESIS Variable Report,1020,ZA4976
+v509,,D62 INTERNET USE FREQ: AT PLACE OF WORK,,D62 INTERNET USE FREQ: AT PLACE OF WORK,GESIS Variable Report,1022,ZA4976
+v510,,D62 INTERNET USE FREQ: SOMEWHERE ELSE,,D62 INTERNET USE FREQ: SOMEWHERE ELSE,GESIS Variable Report,1024,ZA4976
+v511,page 999,P1 DATE OF INTERVIEW,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1026,ZA4976
+v512,page 1000,P2 TIME OF INTERVIEW - RECODED,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1027,ZA4976
+v513,page 1001,P3 DURATION OF INTERVIEW,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1028,ZA4976
+v514,page 1002,P4 N OF PERSONS PRESENT DURING INTERVIEW,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1029,ZA4976
+v515,page 1003,P5 RESPONDENT COOPERATION,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1030,ZA4976
+v516,,P6 SIZE OF COMMUNITY - FRANCE,,P6 SIZE OF COMMUNITY - FRANCE,GESIS Variable Report,1031,ZA4976
+v517,,P6 SIZE OF COMMUNITY - BELGIUM,,P6 SIZE OF COMMUNITY - BELGIUM,GESIS Variable Report,1032,ZA4976
+v518,,P6 SIZE OF COMMUNITY - NETHERLANDS,,P6 SIZE OF COMMUNITY - NETHERLANDS,GESIS Variable Report,1033,ZA4976
+v519,,P6 SIZE OF COMMUNITY - GERMANY,,P6 SIZE OF COMMUNITY - GERMANY,GESIS Variable Report,1034,ZA4976
+v520,,P6 SIZE OF COMMUNITY - ITALY,,P6 SIZE OF COMMUNITY - ITALY,GESIS Variable Report,1035,ZA4976
+v521,,P6 SIZE OF COMMUNITY - LUXEMBOURG,,P6 SIZE OF COMMUNITY - LUXEMBOURG,GESIS Variable Report,1036,ZA4976
+v522,,P6 SIZE OF COMMUNITY - DENMARK,,P6 SIZE OF COMMUNITY - DENMARK,GESIS Variable Report,1037,ZA4976
+v523,,P6 SIZE OF COMMUNITY - IRELAND,,P6 SIZE OF COMMUNITY - IRELAND,GESIS Variable Report,1038,ZA4976
+v524,,P6 SIZE OF COMMUNITY - UNITED KINGDOM,,P6 SIZE OF COMMUNITY - UNITED KINGDOM,GESIS Variable Report,1039,ZA4976
+v525,,P6 SIZE OF COMMUNITY - GREECE,,P6 SIZE OF COMMUNITY - GREECE,GESIS Variable Report,1040,ZA4976
+v526,,P6 SIZE OF COMMUNITY - SPAIN,,P6 SIZE OF COMMUNITY - SPAIN,GESIS Variable Report,1041,ZA4976
+v527,,P6 SIZE OF COMMUNITY - PORTUGAL,,P6 SIZE OF COMMUNITY - PORTUGAL,GESIS Variable Report,1042,ZA4976
+v528,,P6 SIZE OF COMMUNITY - FINLAND,,P6 SIZE OF COMMUNITY - FINLAND,GESIS Variable Report,1043,ZA4976
+v529,,P6 SIZE OF COMMUNITY - SWEDEN,,P6 SIZE OF COMMUNITY - SWEDEN,GESIS Variable Report,1044,ZA4976
+v530,,P6 SIZE OF COMMUNITY - AUSTRIA,,P6 SIZE OF COMMUNITY - AUSTRIA,GESIS Variable Report,1045,ZA4976
+v531,Sum 26663 100.0 100.0,P6 SIZE OF COMMUNITY - CYPRUS (REPUBLIC),Valid Cases 505 Eurobarometer 72.2 - September-October 2009,Valid Cases 505 Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1046,ZA4976
+v532,,P6 SIZE OF COMMUNITY - CZECH REPUBLIC,,P6 SIZE OF COMMUNITY - CZECH REPUBLIC,GESIS Variable Report,1047,ZA4976
+v533,,P6 SIZE OF COMMUNITY - ESTONIA,,P6 SIZE OF COMMUNITY - ESTONIA,GESIS Variable Report,1048,ZA4976
+v534,,P6 SIZE OF COMMUNITY - HUNGARY,,P6 SIZE OF COMMUNITY - HUNGARY,GESIS Variable Report,1049,ZA4976
+v535,,P6 SIZE OF COMMUNITY - LATVIA,,P6 SIZE OF COMMUNITY - LATVIA,GESIS Variable Report,1050,ZA4976
+v536,,P6 SIZE OF COMMUNITY - LITHUANIA,,P6 SIZE OF COMMUNITY - LITHUANIA,GESIS Variable Report,1051,ZA4976
+v537,,P6 SIZE OF COMMUNITY - MALTA,,P6 SIZE OF COMMUNITY - MALTA,GESIS Variable Report,1052,ZA4976
+v538,,P6 SIZE OF COMMUNITY - POLAND,,P6 SIZE OF COMMUNITY - POLAND,GESIS Variable Report,1053,ZA4976
+v539,,P6 SIZE OF COMMUNITY - SLOVAKIA,,P6 SIZE OF COMMUNITY - SLOVAKIA,GESIS Variable Report,1054,ZA4976
+v540,,P6 SIZE OF COMMUNITY - SLOVENIA,,P6 SIZE OF COMMUNITY - SLOVENIA,GESIS Variable Report,1055,ZA4976
+v541,,P6 SIZE OF COMMUNITY - BULGARIA,,P6 SIZE OF COMMUNITY - BULGARIA,GESIS Variable Report,1056,ZA4976
+v542,,P6 SIZE OF COMMUNITY - ROMANIA,,P6 SIZE OF COMMUNITY - ROMANIA,GESIS Variable Report,1057,ZA4976
+v543,,P7 REGION I - FRANCE,,P7 REGION I - FRANCE,GESIS Variable Report,1058,ZA4976
+v544,,P7 REGION I - BELGIUM,,P7 REGION I - BELGIUM,GESIS Variable Report,1060,ZA4976
+v545,,P7 REGION I - NETHERLANDS,,P7 REGION I - NETHERLANDS,GESIS Variable Report,1061,ZA4976
+v546,,P7 REGION I - ITALY,,P7 REGION I - ITALY,GESIS Variable Report,1062,ZA4976
+v547,,P7 REGION I - LUXEMBOURG,,P7 REGION I - LUXEMBOURG,GESIS Variable Report,1064,ZA4976
+v548,,P7 REGION I - DENMARK,,P7 REGION I - DENMARK,GESIS Variable Report,1065,ZA4976
+v549,,P7 REGION I - UNITED KINGDOM,,P7 REGION I - UNITED KINGDOM,GESIS Variable Report,1066,ZA4976
+v550,,P7 REGION I - GREECE,,P7 REGION I - GREECE,GESIS Variable Report,1068,ZA4976
+v551,,P7 REGION I - SPAIN,,P7 REGION I - SPAIN,GESIS Variable Report,1069,ZA4976
+v552,,P7 REGION I - PORTUGAL,,P7 REGION I - PORTUGAL,GESIS Variable Report,1071,ZA4976
+v553,,P7 REGION I - FINLAND,,P7 REGION I - FINLAND,GESIS Variable Report,1072,ZA4976
+v554,,P7 REGION I - SWEDEN,,P7 REGION I - SWEDEN,GESIS Variable Report,1074,ZA4976
+v555,,P7 REGION I - AUSTRIA,,P7 REGION I - AUSTRIA,GESIS Variable Report,1075,ZA4976
+v556,,P7 REGION I - CYPRUS (REPUBLIC),,P7 REGION I - CYPRUS (REPUBLIC),GESIS Variable Report,1076,ZA4976
+v557,,P7 REGION I - CZECH REPUBLIC,,P7 REGION I - CZECH REPUBLIC,GESIS Variable Report,1077,ZA4976
+v558,,P7 REGION I - ESTONIA,,P7 REGION I - ESTONIA,GESIS Variable Report,1078,ZA4976
+v559,,P7 REGION I - HUNGARY,,P7 REGION I - HUNGARY,GESIS Variable Report,1079,ZA4976
+v560,,P7 REGION I - LATVIA,,P7 REGION I - LATVIA,GESIS Variable Report,1080,ZA4976
+v561,,P7 REGION I - LITHUANIA,,P7 REGION I - LITHUANIA,GESIS Variable Report,1081,ZA4976
+v562,,P7 REGION I - POLAND,,P7 REGION I - POLAND,GESIS Variable Report,1082,ZA4976
+v563,,P7 REGION I - SLOVAKIA,,P7 REGION I - SLOVAKIA,GESIS Variable Report,1084,ZA4976
+v564,,P7 REGION I - SLOVENIA,,P7 REGION I - SLOVENIA,GESIS Variable Report,1085,ZA4976
+v565,,P7 REGION I - BULGARIA,,P7 REGION I - BULGARIA,GESIS Variable Report,1086,ZA4976
+v566,,P7 REGION I - ROMANIA,,P7 REGION I - ROMANIA,GESIS Variable Report,1088,ZA4976
+v567,,P7 REGION II - FRANCE,,P7 REGION II - FRANCE,GESIS Variable Report,1089,ZA4976
+v568,,P7 REGION II - BELGIUM,,P7 REGION II - BELGIUM,GESIS Variable Report,1090,ZA4976
+v569,,P7 REGION II - NETHERLANDS,,P7 REGION II - NETHERLANDS,GESIS Variable Report,1091,ZA4976
+v570,,P7 REGION II - GERMANY,,P7 REGION II - GERMANY,GESIS Variable Report,1092,ZA4976
+v571,,P7 REGION II - ITALY (11 CATEGORIES),,P7 REGION II - ITALY (11 CATEGORIES),GESIS Variable Report,1094,ZA4976
+v572,,P7 REGION II - ITALY (5 CATEGORIES),,P7 REGION II - ITALY (5 CATEGORIES),GESIS Variable Report,1095,ZA4976
+v573,,P7 REGION II - IRELAND,,P7 REGION II - IRELAND,GESIS Variable Report,1096,ZA4976
+v574,,P7 REGION II - UNITED KINGDOM,,P7 REGION II - UNITED KINGDOM,GESIS Variable Report,1097,ZA4976
+v575,,P7 REGION II - GREECE,,P7 REGION II - GREECE,GESIS Variable Report,1098,ZA4976
+v576,,P7 REGION II - SPAIN (10 CATEGORIES),,P7 REGION II - SPAIN (10 CATEGORIES),GESIS Variable Report,1099,ZA4976
+v577,,P7 REGION II - SPAIN (7 CATEGORIES),,P7 REGION II - SPAIN (7 CATEGORIES),GESIS Variable Report,1100,ZA4976
+v578,,P7 REGION II - FINLAND,,P7 REGION II - FINLAND,GESIS Variable Report,1101,ZA4976
+v579,,P7 REGION II - SWEDEN,,P7 REGION II - SWEDEN,GESIS Variable Report,1102,ZA4976
+v580,,P7 REGION II - AUSTRIA,,P7 REGION II - AUSTRIA,GESIS Variable Report,1103,ZA4976
+v581,,P7 REGION II - HUNGARY,,P7 REGION II - HUNGARY,GESIS Variable Report,1104,ZA4976
+v582,,P7 REGION II - POLAND,,P7 REGION II - POLAND,GESIS Variable Report,1105,ZA4976
+v583,,P7 REGION II - SLOVENIA,,P7 REGION II - SLOVENIA,GESIS Variable Report,1106,ZA4976
+v584,,P7 REGION II - BULGARIA,,P7 REGION II - BULGARIA,GESIS Variable Report,1107,ZA4976
+v585,,P7 REGION II - ROMANIA,,P7 REGION II - ROMANIA,GESIS Variable Report,1108,ZA4976
+v586,page 1082,P13 LANGUAGE OF INTERVIEW,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1109,ZA4976
+v587,page 1083,C14 RESPONDENT OCCUPATION SCALE,Eurobarometer 72.2 - September-October 2009,Eurobarometer 72.2 - September-October 2009,GESIS Variable Report,1110,ZA4976

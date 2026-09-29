@@ -1,0 +1,586 @@
+variable,question_number,variable_label,question_text,question_text_filled,source,source_page,za_id
+v4,v4,EUROBAROMETER NUMBER,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,31,ZA5450
+v6,,NATION - ALL SAMPLES,,NATION - ALL SAMPLES,GESIS Variable Report,33,ZA5450
+v9,page 10,NATION - UNITED KINGDOM,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,37,ZA5450
+v11,page 13,NATION - UNITED GERMANY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,40,ZA5450
+v13,page 16,NATION GROUP EU6,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,43,ZA5450
+v15,page 19,NATION GROUP EU9,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,46,ZA5450
+v17,page 22,NATION GROUP EU10,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,49,ZA5450
+v19,page 25,NATION GROUP EU12,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,52,ZA5450
+v21,page 28,NATION GROUP EU12+,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,55,ZA5450
+v23,page 31,NATION GROUP EU NMS 3,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,58,ZA5450
+v25,page 34,NATION GROUP EU15,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,61,ZA5450
+v27,page 37,NATION GROUP EU NMS 10,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,64,ZA5450
+v29,page 40,NATION GROUP EU25,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,67,ZA5450
+v31,page 43,NATION GROUP AC (BG RO),Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,70,ZA5450
+v33,page 46,NATION GROUP EU27,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,73,ZA5450
+v35,page 49,NATION GROUP EU NMS 12,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,76,ZA5450
+v37,page 52,NATION GROUP EURO ZONE 2009,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,79,ZA5450
+v39,page 55,NATION GROUP NON EURO ZONE 2009,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,82,ZA5450
+v42,page 59,Q1 NATIONALITY BELGIUM,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,86,ZA5450
+v43,page 61,Q1 NATIONALITY DENMARK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,88,ZA5450
+v44,page 63,Q1 NATIONALITY GERMANY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,90,ZA5450
+v45,page 65,Q1 NATIONALITY GREECE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,92,ZA5450
+v46,page 67,Q1 NATIONALITY SPAIN,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,94,ZA5450
+v47,page 69,Q1 NATIONALITY FRANCE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,96,ZA5450
+v48,page 71,Q1 NATIONALITY IRELAND,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,98,ZA5450
+v49,page 73,Q1 NATIONALITY ITALY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,100,ZA5450
+v50,page 75,Q1 NATIONALITY LUXEMBOURG,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,102,ZA5450
+v51,page 77,Q1 NATIONALITY NETHERLANDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,104,ZA5450
+v52,page 79,Q1 NATIONALITY PORTUGAL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,106,ZA5450
+v53,page 81,Q1 NATIONALITY UNITED KINGDOM,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,108,ZA5450
+v54,page 83,Q1 NATIONALITY AUSTRIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,110,ZA5450
+v55,page 85,Q1 NATIONALITY SWEDEN,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,112,ZA5450
+v56,page 87,Q1 NATIONALITY FINLAND,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,114,ZA5450
+v57,page 89,Q1 NATIONALITY CYPRUS (REPUBLIC),Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,116,ZA5450
+v58,page 91,Q1 NATIONALITY CZECH REPUBLIC,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,118,ZA5450
+v59,page 93,Q1 NATIONALITY ESTONIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,120,ZA5450
+v60,page 95,Q1 NATIONALITY HUNGARY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,122,ZA5450
+v61,page 97,Q1 NATIONALITY LATVIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,124,ZA5450
+v62,page 99,Q1 NATIONALITY LITHUANIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,126,ZA5450
+v63,page 101,Q1 NATIONALITY MALTA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,128,ZA5450
+v64,page 103,Q1 NATIONALITY POLAND,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,130,ZA5450
+v65,page 105,Q1 NATIONALITY SLOVAKIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,132,ZA5450
+v66,page 107,Q1 NATIONALITY SLOVENIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,134,ZA5450
+v67,page 109,Q1 NATIONALITY BULGARIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,136,ZA5450
+v68,page 111,Q1 NATIONALITY ROMANIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,138,ZA5450
+v69,page 113,Q1 NATIONALITY OTHER COUNTRIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,140,ZA5450
+v70,page 115,QA1 EUROPEAN PARLIAMENT - HEARD ABOUT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,142,ZA5450
+v71,page 117,QA2 EUROPEAN PARLIAMENT - INFORMATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,144,ZA5450
+v72,,QA3 EUROP PARLIAM PERCEPTION: DYNAMIC,,QA3 EUROP PARLIAM PERCEPTION: DYNAMIC,GESIS Variable Report,146,ZA5450
+v73,,QA3 EUROP PARLIAM PERCEPTION: DEMOCRATIC,,QA3 EUROP PARLIAM PERCEPTION: DEMOCRATIC,GESIS Variable Report,148,ZA5450
+v74,,QA3 EUROP PARLIAM PERCEPTION: LISTEN TO CITIZENS,,QA3 EUROP PARLIAM PERCEPTION: LISTEN TO CITIZENS,GESIS Variable Report,150,ZA5450
+v75,,QA3 EUROP PARLIAM PERCEPTION: NOT WELL KNOWN,,QA3 EUROP PARLIAM PERCEPTION: NOT WELL KNOWN,GESIS Variable Report,152,ZA5450
+v76,,QA3 EUROP PARLIAM PERCEPTION: INEFFICIENT,,QA3 EUROP PARLIAM PERCEPTION: INEFFICIENT,GESIS Variable Report,154,ZA5450
+v77,page 129,QA4 EUROPEAN PARLIAMENT - MEMBER AFFILIATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,156,ZA5450
+v78,page 131,QA5 EUROPEAN PARLIAMENT - ROLE PREFERENCE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,158,ZA5450
+v79,page 133,QA6 EP VALUES PRIO: GENDER EQUALITY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,160,ZA5450
+v80,page 135,QA6 EP VALUES PRIO: MINORITIES PROTECTION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,162,ZA5450
+v81,page 137,QA6 EP VALUES PRIO: CULTURE/RELIG DIALOGUE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,164,ZA5450
+v82,page 139,QA6 EP VALUES PRIO: EU SOLIDARITY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,166,ZA5450
+v83,page 141,QA6 EP VALUES PRIO: POOR CNTRS SOLIDARITY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,168,ZA5450
+v84,page 143,QA6 EP VALUES PRIO: HUMAN RIGHTS PROTECTION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,170,ZA5450
+v85,page 145,QA6 EP VALUES PRIO: FREEDOM OF SPEECH,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,172,ZA5450
+v86,page 147,QA6 EP VALUES PRIO: DEATH PENALTY ABOLITION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,174,ZA5450
+v87,page 149,QA6 EP VALUES PRIO: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,176,ZA5450
+v88,page 151,QA6 EP VALUES PRIO: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,178,ZA5450
+v89,page 153,QA6 EP VALUES PRIO: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,180,ZA5450
+v90,,QA7 EU ENERGY COOPERATION - EP PRIORITY,,QA7 EU ENERGY COOPERATION - EP PRIORITY,GESIS Variable Report,182,ZA5450
+v91,page 157,QA8 ENERGY SUPPLY SECURITY - COUNTRY OR EU LEVEL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,184,ZA5450
+v92,page 159,QA9 EU ENERGY SUPPLY ASSISTANCE - CNTRY INTEREST,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,186,ZA5450
+v93,page 161,QA9 EU ENERGY SUPPLY ASSISTANCE - DESIRABLE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,188,ZA5450
+v94,,D15A OCCUPATION OF RESPONDENT,,D15A OCCUPATION OF RESPONDENT,GESIS Variable Report,190,ZA5450
+v95,page 166,D15A OCCUPATION OF RESPONDENT (REC),Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,193,ZA5450
+v96,,D15B OCCUPATION OF RESPONDENT - LAST JOB,,D15B OCCUPATION OF RESPONDENT - LAST JOB,GESIS Variable Report,195,ZA5450
+v97,page 171,D15B OCCUPATION OF RESPONDENT - LAST JOB (REC),Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,198,ZA5450
+v98,,D62 INTERNET USE FREQ: AT HOME,,D62 INTERNET USE FREQ: AT HOME,GESIS Variable Report,200,ZA5450
+v99,,D62 INTERNET USE FREQ: AT PLACE OF WORK,,D62 INTERNET USE FREQ: AT PLACE OF WORK,GESIS Variable Report,202,ZA5450
+v100,,D62 INTERNET USE FREQ: SOMEWHERE ELSE,,D62 INTERNET USE FREQ: SOMEWHERE ELSE,GESIS Variable Report,204,ZA5450
+v101,page 179,QB1A INTERNET USE: SHARING PICTURES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,206,ZA5450
+v102,page 181,QB1A INTERNET USE: SOCIAL NETWORKING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,208,ZA5450
+v103,page 183,QB1A INTERNET USE: E-SHOPPING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,210,ZA5450
+v104,,QB1A INTERNET USE INDEX,,QB1A INTERNET USE INDEX,GESIS Variable Report,212,ZA5450
+v105,page 187,QB1B INTERNET USE: KEEP A BLOG,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,214,ZA5450
+v106,page 189,QB1B INTERNET USE: INSTANT MESSAGING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,216,ZA5450
+v107,page 191,QB1B INTERNET USE: PEER-TO-PEER EXCHANGE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,218,ZA5450
+v108,page 193,QB1B INTERNET USE: PHONE/VIDEO CALLS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,220,ZA5450
+v109,page 195,QB1B INTERNET USE: BROWSER PLUG-INS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,222,ZA5450
+v110,page 197,QB1B INTERNET USE: MAINTAIN WEBSITE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,224,ZA5450
+v111,page 199,QB1B INTERNET USE: HOME BANKING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,226,ZA5450
+v112,page 201,QB1B INTERNET USE: E-SHOPPING COUNTRY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,228,ZA5450
+v113,page 203,QB1B INTERNET USE: E-SHOPPING EU,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,230,ZA5450
+v114,page 205,QB1B INTERNET USE: E-SHOPPING NON-EU,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,232,ZA5450
+v115,page 207,QB1B INTERNET USE: GOVERNMENT SERVICES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,234,ZA5450
+v116,page 209,QB1B INTERNET USE: ONLINE SOFTWARE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,236,ZA5450
+v117,page 211,QB1B INTERNET USE: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,238,ZA5450
+v118,page 213,QB1B INTERNET USE: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,240,ZA5450
+v119,page 215,QB2 PERSONAL DATA: MEDICAL INFO,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,242,ZA5450
+v120,page 217,QB2 PERSONAL DATA: FINGERPRINTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,244,ZA5450
+v121,page 219,QB2 PERSONAL DATA: FINANCIAL INFO,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,246,ZA5450
+v122,page 221,QB2 PERSONAL DATA: WORK HISTORY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,248,ZA5450
+v123,page 223,QB2 PERSONAL DATA: NAT ID NUMBER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,250,ZA5450
+v124,page 225,QB2 PERSONAL DATA: NAME,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,252,ZA5450
+v125,page 227,QB2 PERSONAL DATA: HOME ADDRESS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,254,ZA5450
+v126,page 229,QB2 PERSONAL DATA: NATIONALITY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,256,ZA5450
+v127,page 231,QB2 PERSONAL DATA: ACTIVITIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,258,ZA5450
+v128,page 233,QB2 PERSONAL DATA: TASTES/OPINIONS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,260,ZA5450
+v129,page 235,QB2 PERSONAL DATA: PHOTOS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,262,ZA5450
+v130,page 237,QB2 PERSONAL DATA: FRIENDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,264,ZA5450
+v131,page 239,QB2 PERSONAL DATA: WEBSITE VISITS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,266,ZA5450
+v132,page 241,QB2 PERSONAL DATA: MOBILE PHONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,268,ZA5450
+v133,page 243,QB2 PERSONAL DATA: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,270,ZA5450
+v134,page 245,QB2 PERSONAL DATA: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,272,ZA5450
+v135,page 247,QB2 PERSONAL DATA: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,274,ZA5450
+v136,page 249,QB3 INFO DISCLOSURE: USERNAMES/PASSWORDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,276,ZA5450
+v137,page 251,QB3 INFO DISCLOSURE: GOVERNMENT REQUESTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,278,ZA5450
+v138,page 253,QB3 INFO DISCLOSURE: INTERNET OBLIGES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,280,ZA5450
+v139,page 255,QB3 INFO DISCLOSURE: E-SHOPPING OBLIGES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,282,ZA5450
+v140,page 257,QB3 INFO DISCLOSURE: NOT A BIG ISSUE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,284,ZA5450
+v141,page 259,QB3 INFO DISCLOSURE: PART OF MODERN LIFE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,286,ZA5450
+v142,page 261,QB3 INFO DISCLOSURE: FOR FREE SERVICES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,288,ZA5450
+v143,,QB4A SOCIAL WEB DISCLOSED: MEDICAL INFO,,QB4A SOCIAL WEB DISCLOSED: MEDICAL INFO,GESIS Variable Report,290,ZA5450
+v144,,QB4A SOCIAL WEB DISCLOSED: FINGERPRINTS,,QB4A SOCIAL WEB DISCLOSED: FINGERPRINTS,GESIS Variable Report,292,ZA5450
+v145,,QB4A SOCIAL WEB DISCLOSED: FINANCIAL INFO,,QB4A SOCIAL WEB DISCLOSED: FINANCIAL INFO,GESIS Variable Report,294,ZA5450
+v146,,QB4A SOCIAL WEB DISCLOSED: WORK HISTORY,,QB4A SOCIAL WEB DISCLOSED: WORK HISTORY,GESIS Variable Report,296,ZA5450
+v147,,QB4A SOCIAL WEB DISCLOSED: NAT ID NUMBER,,QB4A SOCIAL WEB DISCLOSED: NAT ID NUMBER,GESIS Variable Report,298,ZA5450
+v148,,QB4A SOCIAL WEB DISCLOSED: NAME,,QB4A SOCIAL WEB DISCLOSED: NAME,GESIS Variable Report,300,ZA5450
+v149,,QB4A SOCIAL WEB DISCLOSED: HOME ADDRESS,,QB4A SOCIAL WEB DISCLOSED: HOME ADDRESS,GESIS Variable Report,302,ZA5450
+v150,,QB4A SOCIAL WEB DISCLOSED: NATIONALITY,,QB4A SOCIAL WEB DISCLOSED: NATIONALITY,GESIS Variable Report,304,ZA5450
+v151,,QB4A SOCIAL WEB DISCLOSED: ACTIVITIES,,QB4A SOCIAL WEB DISCLOSED: ACTIVITIES,GESIS Variable Report,306,ZA5450
+v152,,QB4A SOCIAL WEB DISCLOSED: TASTES/OPINIONS,,QB4A SOCIAL WEB DISCLOSED: TASTES/OPINIONS,GESIS Variable Report,308,ZA5450
+v153,,QB4A SOCIAL WEB DISCLOSED: PHOTOS,,QB4A SOCIAL WEB DISCLOSED: PHOTOS,GESIS Variable Report,310,ZA5450
+v154,,QB4A SOCIAL WEB DISCLOSED: FRIENDS,,QB4A SOCIAL WEB DISCLOSED: FRIENDS,GESIS Variable Report,312,ZA5450
+v155,,QB4A SOCIAL WEB DISCLOSED: WEBSITE VISITS,,QB4A SOCIAL WEB DISCLOSED: WEBSITE VISITS,GESIS Variable Report,314,ZA5450
+v156,,QB4A SOCIAL WEB DISCLOSED: MOBILE PHONE,,QB4A SOCIAL WEB DISCLOSED: MOBILE PHONE,GESIS Variable Report,316,ZA5450
+v157,,QB4A SOCIAL WEB DISCLOSED: OTHER,,QB4A SOCIAL WEB DISCLOSED: OTHER,GESIS Variable Report,318,ZA5450
+v158,,QB4A SOCIAL WEB DISCLOSED: NONE,,QB4A SOCIAL WEB DISCLOSED: NONE,GESIS Variable Report,320,ZA5450
+v159,,QB4A SOCIAL WEB DISCLOSED: DK,,QB4A SOCIAL WEB DISCLOSED: DK,GESIS Variable Report,322,ZA5450
+v160,,QB5A SOCIAL WEB INFO DISCL: SERVICE ACCESS,,QB5A SOCIAL WEB INFO DISCL: SERVICE ACCESS,GESIS Variable Report,324,ZA5450
+v161,,QB5A SOCIAL WEB INFO DISCL: SAVE TIME,,QB5A SOCIAL WEB INFO DISCL: SAVE TIME,GESIS Variable Report,326,ZA5450
+v162,,QB5A SOCIAL WEB INFO DISCL: FINANCIAL BENEFIT,,QB5A SOCIAL WEB INFO DISCL: FINANCIAL BENEFIT,GESIS Variable Report,328,ZA5450
+v163,,QB5A SOCIAL WEB INFO DISCL: BENEFIT FR OFFERS,,QB5A SOCIAL WEB INFO DISCL: BENEFIT FR OFFERS,GESIS Variable Report,330,ZA5450
+v164,,QB5A SOCIAL WEB INFO DISCL: SERVICE FOR FREE,,QB5A SOCIAL WEB INFO DISCL: SERVICE FOR FREE,GESIS Variable Report,332,ZA5450
+v165,,QB5A SOCIAL WEB INFO DISCL: ADAPTED SERVICE,,QB5A SOCIAL WEB INFO DISCL: ADAPTED SERVICE,GESIS Variable Report,334,ZA5450
+v166,,QB5A SOCIAL WEB INFO DISCL: FOR FUN,,QB5A SOCIAL WEB INFO DISCL: FOR FUN,GESIS Variable Report,336,ZA5450
+v167,,QB5A SOCIAL WEB INFO DISCL: CONNECT W OTHERS,,QB5A SOCIAL WEB INFO DISCL: CONNECT W OTHERS,GESIS Variable Report,338,ZA5450
+v168,,QB5A SOCIAL WEB INFO DISCL: OTHER REASONS,,QB5A SOCIAL WEB INFO DISCL: OTHER REASONS,GESIS Variable Report,340,ZA5450
+v169,,QB5A SOCIAL WEB INFO DISCL: DK,,QB5A SOCIAL WEB INFO DISCL: DK,GESIS Variable Report,342,ZA5450
+v170,,QB6A SOCIAL WEB INFO DISCLOSURE - CONTROL,,QB6A SOCIAL WEB INFO DISCLOSURE - CONTROL,GESIS Variable Report,344,ZA5450
+v171,page 319,QB7A SOC WEB DISCLOSURE RISKS: USE W/O KNOWLEDGE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,346,ZA5450
+v172,page 321,QB7A SOC WEB DISCLOSURE RISKS: SHARED W/O AGREEM,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,348,ZA5450
+v173,page 323,QB7A SOC WEB DISCLOSURE RISKS: COMMERCIAL OFFERS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,350,ZA5450
+v174,page 325,QB7A SOC WEB DISCLOSURE RISKS: MISUNDERSTANDING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,352,ZA5450
+v175,page 327,QB7A SOC WEB DISCLOSURE RISKS: ONLINE THEFT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,354,ZA5450
+v176,page 329,QB7A SOC WEB DISCLOSURE RISKS: PERSONAL SAFETY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,356,ZA5450
+v177,page 331,QB7A SOC WEB DISCLOSURE RISKS: FRAUD,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,358,ZA5450
+v178,page 333,QB7A SOC WEB DISCLOSURE RISKS: DISCRIMINATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,360,ZA5450
+v179,page 335,QB7A SOC WEB DISCLOSURE RISKS: REPUTATION DAMAGE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,362,ZA5450
+v180,page 337,QB7A SOC WEB DISCLOSURE RISKS: IN OTHER CONTEXTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,364,ZA5450
+v181,page 339,QB7A SOC WEB DISCLOSURE RISKS: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,366,ZA5450
+v182,page 341,QB7A SOC WEB DISCLOSURE RISKS: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,368,ZA5450
+v183,page 343,QB7A SOC WEB DISCLOSURE RISKS: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,370,ZA5450
+v184,,QB8A SOCIAL WEB - SUFFICIENT DISCLOSURE INFO,,QB8A SOCIAL WEB - SUFFICIENT DISCLOSURE INFO,GESIS Variable Report,372,ZA5450
+v185,,QB9A1 SOCIAL WEB INFO SECURITY - RESPONSIBLE 1ST,,QB9A1 SOCIAL WEB INFO SECURITY - RESPONSIBLE 1ST,GESIS Variable Report,374,ZA5450
+v186,,QB9A2 SOCIAL WEB INFO SECURITY - RESPONSIBLE 2ND,,QB9A2 SOCIAL WEB INFO SECURITY - RESPONSIBLE 2ND,GESIS Variable Report,376,ZA5450
+v187,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: USER,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: USER,GESIS Variable Report,378,ZA5450
+v188,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: SITE,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: SITE,GESIS Variable Report,380,ZA5450
+v189,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: PUBLIC AUTH,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: PUBLIC AUTH,GESIS Variable Report,382,ZA5450
+v190,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: OTHER,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: OTHER,GESIS Variable Report,384,ZA5450
+v191,,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: DK (Q.B9A1 ONLY),,QB9A_TOT SOCIAL WEB INFO SECURITY RESP: DK (Q.B9A1 ONLY),GESIS Variable Report,386,ZA5450
+v192,,QB10A SOC WEB PRIVACY SETTINGS - CHANGED,,QB10A SOC WEB PRIVACY SETTINGS - CHANGED,GESIS Variable Report,388,ZA5450
+v193,,QB11A SOC WEB PRIVACY SETTINGS - COMPLEXITY,,QB11A SOC WEB PRIVACY SETTINGS - COMPLEXITY,GESIS Variable Report,390,ZA5450
+v194,,QB12A SOC WEB PRIVACY NO CHANGE: DK POSSIBILITY,,QB12A SOC WEB PRIVACY NO CHANGE: DK POSSIBILITY,GESIS Variable Report,392,ZA5450
+v195,,QB12A SOC WEB PRIVACY NO CHANGE: DK HOW TO,,QB12A SOC WEB PRIVACY NO CHANGE: DK HOW TO,GESIS Variable Report,394,ZA5450
+v196,,QB12A SOC WEB PRIVACY NO CHANGE: TRUST THE SITE,,QB12A SOC WEB PRIVACY NO CHANGE: TRUST THE SITE,GESIS Variable Report,396,ZA5450
+v197,,QB12A SOC WEB PRIVACY NO CHANGE: NOT WORRIED,,QB12A SOC WEB PRIVACY NO CHANGE: NOT WORRIED,GESIS Variable Report,398,ZA5450
+v198,,QB12A SOC WEB PRIVACY NO CHANGE: NO TIME,,QB12A SOC WEB PRIVACY NO CHANGE: NO TIME,GESIS Variable Report,400,ZA5450
+v199,,QB12A SOC WEB PRIVACY NO CHANGE: OTHER,,QB12A SOC WEB PRIVACY NO CHANGE: OTHER,GESIS Variable Report,402,ZA5450
+v200,,QB12A SOC WEB PRIVACY NO CHANGE: DK,,QB12A SOC WEB PRIVACY NO CHANGE: DK,GESIS Variable Report,404,ZA5450
+v201,,QB4B E-SHOPPING DISCLOSED: MEDICAL INFO,,QB4B E-SHOPPING DISCLOSED: MEDICAL INFO,GESIS Variable Report,406,ZA5450
+v202,,QB4B E-SHOPPING DISCLOSED: FINGERPRINTS,,QB4B E-SHOPPING DISCLOSED: FINGERPRINTS,GESIS Variable Report,408,ZA5450
+v203,,QB4B E-SHOPPING DISCLOSED: FINANCIAL INFO,,QB4B E-SHOPPING DISCLOSED: FINANCIAL INFO,GESIS Variable Report,410,ZA5450
+v204,,QB4B E-SHOPPING DISCLOSED: WORK HISTORY,,QB4B E-SHOPPING DISCLOSED: WORK HISTORY,GESIS Variable Report,412,ZA5450
+v205,,QB4B E-SHOPPING DISCLOSED: NAT ID NUMBER,,QB4B E-SHOPPING DISCLOSED: NAT ID NUMBER,GESIS Variable Report,414,ZA5450
+v206,,QB4B E-SHOPPING DISCLOSED: NAME,,QB4B E-SHOPPING DISCLOSED: NAME,GESIS Variable Report,416,ZA5450
+v207,,QB4B E-SHOPPING DISCLOSED: HOME ADDRESS,,QB4B E-SHOPPING DISCLOSED: HOME ADDRESS,GESIS Variable Report,418,ZA5450
+v208,,QB4B E-SHOPPING DISCLOSED: NATIONALITY,,QB4B E-SHOPPING DISCLOSED: NATIONALITY,GESIS Variable Report,420,ZA5450
+v209,,QB4B E-SHOPPING DISCLOSED: ACTIVITIES,,QB4B E-SHOPPING DISCLOSED: ACTIVITIES,GESIS Variable Report,422,ZA5450
+v210,,QB4B E-SHOPPING DISCLOSED: TASTES/OPINIONS,,QB4B E-SHOPPING DISCLOSED: TASTES/OPINIONS,GESIS Variable Report,424,ZA5450
+v211,,QB4B E-SHOPPING DISCLOSED: PHOTOS,,QB4B E-SHOPPING DISCLOSED: PHOTOS,GESIS Variable Report,426,ZA5450
+v212,,QB4B E-SHOPPING DISCLOSED: FRIENDS,,QB4B E-SHOPPING DISCLOSED: FRIENDS,GESIS Variable Report,428,ZA5450
+v213,,QB4B E-SHOPPING DISCLOSED: WEBSITE VISITS,,QB4B E-SHOPPING DISCLOSED: WEBSITE VISITS,GESIS Variable Report,430,ZA5450
+v214,,QB4B E-SHOPPING DISCLOSED: MOBILE PHONE,,QB4B E-SHOPPING DISCLOSED: MOBILE PHONE,GESIS Variable Report,432,ZA5450
+v215,,QB4B E-SHOPPING DISCLOSED: OTHER,,QB4B E-SHOPPING DISCLOSED: OTHER,GESIS Variable Report,434,ZA5450
+v216,,QB4B E-SHOPPING DISCLOSED: NONE,,QB4B E-SHOPPING DISCLOSED: NONE,GESIS Variable Report,436,ZA5450
+v217,,QB4B E-SHOPPING DISCLOSED: DK,,QB4B E-SHOPPING DISCLOSED: DK,GESIS Variable Report,438,ZA5450
+v218,,QB5B E-SHOPPING INFO DISCL: SERVICE ACCESS,,QB5B E-SHOPPING INFO DISCL: SERVICE ACCESS,GESIS Variable Report,440,ZA5450
+v219,,QB5B E-SHOPPING INFO DISCL: SAVE TIME,,QB5B E-SHOPPING INFO DISCL: SAVE TIME,GESIS Variable Report,442,ZA5450
+v220,,QB5B E-SHOPPING INFO DISCL: FINANCIAL BENEFIT,,QB5B E-SHOPPING INFO DISCL: FINANCIAL BENEFIT,GESIS Variable Report,444,ZA5450
+v221,,QB5B E-SHOPPING INFO DISCL: BENEFIT FR OFFERS,,QB5B E-SHOPPING INFO DISCL: BENEFIT FR OFFERS,GESIS Variable Report,446,ZA5450
+v222,,QB5B E-SHOPPING INFO DISCL: SERVICE FOR FREE,,QB5B E-SHOPPING INFO DISCL: SERVICE FOR FREE,GESIS Variable Report,448,ZA5450
+v223,,QB5B E-SHOPPING INFO DISCL: ADAPTED SERVICE,,QB5B E-SHOPPING INFO DISCL: ADAPTED SERVICE,GESIS Variable Report,450,ZA5450
+v224,,QB5B E-SHOPPING INFO DISCL: FOR FUN,,QB5B E-SHOPPING INFO DISCL: FOR FUN,GESIS Variable Report,452,ZA5450
+v225,,QB5B E-SHOPPING INFO DISCL: CONNECT W OTHERS,,QB5B E-SHOPPING INFO DISCL: CONNECT W OTHERS,GESIS Variable Report,454,ZA5450
+v226,,QB5B E-SHOPPING INFO DISCL: OTHER REASONS,,QB5B E-SHOPPING INFO DISCL: OTHER REASONS,GESIS Variable Report,456,ZA5450
+v227,,QB5B E-SHOPPING INFO DISCL: DK,,QB5B E-SHOPPING INFO DISCL: DK,GESIS Variable Report,458,ZA5450
+v228,,QB6B E-SHOPPING INFO DISCLOSURE - CONTROL,,QB6B E-SHOPPING INFO DISCLOSURE - CONTROL,GESIS Variable Report,460,ZA5450
+v229,page 435,QB7B E-SHOPPING DISCLSR RISKS: USE W/O KNOWLEDGE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,462,ZA5450
+v230,page 437,QB7B E-SHOPPING DISCLSRE RISKS: SHARED W/O AGREEM,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,464,ZA5450
+v231,page 439,QB7B E-SHOPPING DISCLSRE RISKS: COMMERCIAL OFFERS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,466,ZA5450
+v232,page 441,QB7B E-SHOPPING DISCLSRE RISKS: MISUNDERSTANDING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,468,ZA5450
+v233,page 443,QB7B E-SHOPPING DISCLSRE RISKS: ONLINE THEFT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,470,ZA5450
+v234,page 445,QB7B E-SHOPPING DISCLSRE RISKS: PERSONAL SAFETY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,472,ZA5450
+v235,page 447,QB7B E-SHOPPING DISCLSRE RISKS: FRAUD,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,474,ZA5450
+v236,page 449,QB7B E-SHOPPING DISCLSRE RISKS: DISCRIMINATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,476,ZA5450
+v237,page 451,QB7B E-SHOPPING DISCLSRE RISKS: REPUTATION DAMAGE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,478,ZA5450
+v238,page 453,QB7B E-SHOPPING DISCLSRE RISKS: IN OTHER CONTEXTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,480,ZA5450
+v239,page 455,QB7B E-SHOPPING DISCLSRE RISKS: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,482,ZA5450
+v240,page 457,QB7B E-SHOPPING DISCLSRE RISKS: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,484,ZA5450
+v241,page 459,QB7B E-SHOPPING DISCLSRE RISKS: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,486,ZA5450
+v242,page 461,QB8B1 E-SHOPPING INFO SECURITY - RESPONSIBLE 1ST,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,488,ZA5450
+v243,,QB8B2 E-SHOPPING INFO SECURITY - RESPONSIBLE 2ND,,QB8B2 E-SHOPPING INFO SECURITY - RESPONSIBLE 2ND,GESIS Variable Report,490,ZA5450
+v244,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: USER,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: USER,GESIS Variable Report,492,ZA5450
+v245,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: SITE,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: SITE,GESIS Variable Report,494,ZA5450
+v246,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: PUBLIC AUTH,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: PUBLIC AUTH,GESIS Variable Report,496,ZA5450
+v247,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: OTHER,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: OTHER,GESIS Variable Report,498,ZA5450
+v248,,QB8B_TOT E-SHOPPING INFO SECURITY RESP: DK (Q.B8B1 ONLY),,QB8B_TOT E-SHOPPING INFO SECURITY RESP: DK (Q.B8B1 ONLY),GESIS Variable Report,500,ZA5450
+v249,,QB13 BEHAVIOUR RECORDING CONCERN: INTERNET,,QB13 BEHAVIOUR RECORDING CONCERN: INTERNET,GESIS Variable Report,502,ZA5450
+v250,,QB13 BEHAVIOUR RECORDING CONCERN: PUBLIC SPACE,,QB13 BEHAVIOUR RECORDING CONCERN: PUBLIC SPACE,GESIS Variable Report,504,ZA5450
+v251,,QB13 BEHAVIOUR RECORDING CONCERN: PRIVATE SPACE,,QB13 BEHAVIOUR RECORDING CONCERN: PRIVATE SPACE,GESIS Variable Report,506,ZA5450
+v252,,QB13 BEHAVIOUR RECORDING CONCERN: MOBILE PHONE,,QB13 BEHAVIOUR RECORDING CONCERN: MOBILE PHONE,GESIS Variable Report,508,ZA5450
+v253,,QB13 BEHAVIOUR RECORDING CONCERN: PAYMENT CARDS,,QB13 BEHAVIOUR RECORDING CONCERN: PAYMENT CARDS,GESIS Variable Report,510,ZA5450
+v254,,QB13 BEHAVIOUR RECORDING CONCERN: CUSTOMER CARDS,,QB13 BEHAVIOUR RECORDING CONCERN: CUSTOMER CARDS,GESIS Variable Report,512,ZA5450
+v255,page 487,QB14 CARD USE: CREDIT/BANK CARDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,514,ZA5450
+v256,page 489,QB14 CARD USE: CUSTOMER CARDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,516,ZA5450
+v257,page 491,QB14 CARD USE: NATIONAL IDENTITY CARDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,518,ZA5450
+v258,page 493,QB14 CARD USE: PASSPORT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,520,ZA5450
+v259,page 495,QB14 CARD USE: GOVERNMENT ENTITLEMENT CARDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,522,ZA5450
+v260,page 497,QB14 CARD USE: DRIVING LICENCE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,524,ZA5450
+v261,page 499,QB14 CARD USE: STUDENT CARD,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,526,ZA5450
+v262,page 501,QB14 CARD USE: INTERNET ACCOUNT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,528,ZA5450
+v263,page 503,QB14 CARD USE: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,530,ZA5450
+v264,page 505,QB14 CARD USE: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,532,ZA5450
+v265,page 507,QB15 IDENTITY PROT ACTION: CASH PAYMENT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,534,ZA5450
+v266,page 509,QB15 IDENTITY PROT ACTION: MINIMUM INFO,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,536,ZA5450
+v267,page 511,QB15 IDENTITY PROT ACTION: ADJUST INFO,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,538,ZA5450
+v268,page 513,QB15 IDENTITY PROT ACTION: WRONG INFO,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,540,ZA5450
+v269,page 515,QB15 IDENTITY PROT ACTION: ONLY IF TRUST,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,542,ZA5450
+v270,page 517,QB15 IDENTITY PROT ACTION: SHRED OLD RECORDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,544,ZA5450
+v271,page 519,QB15 IDENTITY PROT ACTION: NO ONLINE CARD PAYMENT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,546,ZA5450
+v272,page 521,QB15 IDENTITY PROT ACTION: NOT DISCL NAMES/PASSW,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,548,ZA5450
+v273,page 523,QB15 IDENTITY PROT ACTION: NOT DISCL BANK DETAILS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,550,ZA5450
+v274,page 525,QB15 IDENTITY PROT ACTION: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,552,ZA5450
+v275,page 527,QB15 IDENTITY PROT ACTION: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,554,ZA5450
+v276,page 529,QB15 IDENTITY PROT ACTION: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,556,ZA5450
+v277,page 531,QB16 IDENTITY PROT INTERNET: DUMMY E-MAIL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,558,ZA5450
+v278,page 533,QB16 IDENTITY PROT INTERNET: ANTI-SPY SOFTW,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,560,ZA5450
+v279,page 535,QB16 IDENTITY PROT INTERNET: DELETE COOKIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,562,ZA5450
+v280,page 537,QB16 IDENTITY PROT INTERNET: LIMIT SPAMS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,564,ZA5450
+v281,page 539,QB16 IDENTITY PROT INTERNET: TRANSACTION SECURITY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,566,ZA5450
+v282,page 541,QB16 IDENTITY PROT INTERNET: AVOID SAME INFO,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,568,ZA5450
+v283,page 543,QB16 IDENTITY PROT INTERNET: BROWSER SECURITY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,570,ZA5450
+v284,page 545,QB16 IDENTITY PROT INTERNET: MAINTAIN AWARENESS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,572,ZA5450
+v285,page 547,QB16 IDENTITY PROT INTERNET: ACCESS INFORMATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,574,ZA5450
+v286,page 549,QB16 IDENTITY PROT INTERNET: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,576,ZA5450
+v287,page 551,QB16 IDENTITY PROT INTERNET: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,578,ZA5450
+v288,page 553,QB16 IDENTITY PROT INTERNET: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,580,ZA5450
+v289,,QB17 ONLINE REGISTRATION - DATA PRIVACY INFO,,QB17 ONLINE REGISTRATION - DATA PRIVACY INFO,GESIS Variable Report,582,ZA5450
+v290,page 557,QB18 PRIVACY STATEMENTS - PERCEPTION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,584,ZA5450
+v291,,QB19 PRIVACY STATEMENTS - CONSIDERATION,,QB19 PRIVACY STATEMENTS - CONSIDERATION,GESIS Variable Report,586,ZA5450
+v292,,QB20 IGNORE PRIVACY STATEM - NOT HONOURED ANYWAY,,QB20 IGNORE PRIVACY STATEM - NOT HONOURED ANYWAY,GESIS Variable Report,588,ZA5450
+v293,,QB20 IGNORE PRIVACY STATEM - LAW PROTECTS ANYWAY,,QB20 IGNORE PRIVACY STATEM - LAW PROTECTS ANYWAY,GESIS Variable Report,590,ZA5450
+v294,,QB20 IGNORE PRIVACY STATEM - EXISTENCE SUFFICIENT,,QB20 IGNORE PRIVACY STATEM - EXISTENCE SUFFICIENT,GESIS Variable Report,592,ZA5450
+v295,,QB20 IGNORE PRIVACY STATEM - DK REASON,,QB20 IGNORE PRIVACY STATEM - DK REASON,GESIS Variable Report,594,ZA5450
+v296,,QB21 ONLINE ACTIVITY INFO - FOR ADVERTISEMENT,,QB21 ONLINE ACTIVITY INFO - FOR ADVERTISEMENT,GESIS Variable Report,596,ZA5450
+v297,,QB22 ONLINE SERVICE - EXCESSIVE INFO REQUIREMENT,,QB22 ONLINE SERVICE - EXCESSIVE INFO REQUIREMENT,GESIS Variable Report,598,ZA5450
+v298,,QB23 ONLINE SERVICE - CONCERN ABOUT INFO EXCESS,,QB23 ONLINE SERVICE - CONCERN ABOUT INFO EXCESS,GESIS Variable Report,600,ZA5450
+v299,page 575,QB24 DATA PROCESSING APPROVAL REQ: IN ALL CASES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,602,ZA5450
+v300,page 577,QB24 DATA PROCESSING APPROVAL REQ: ON THE INTERNET,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,604,ZA5450
+v301,page 579,QB24 DATA PROCESSING APPROVAL REQ: IF SENSITIVE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,606,ZA5450
+v302,page 581,QB24 DATA PROCESSING APPROVAL REQ: NO,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,608,ZA5450
+v303,page 583,QB24 DATA PROCESSING APPROVAL REQ: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,610,ZA5450
+v304,page 585,QB25 INFO PROTECTION TRUST: NAT PUBL AUTHORITIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,612,ZA5450
+v305,page 587,QB25 INFO PROTECTION TRUST: EUROP INSTITUTIONS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,614,ZA5450
+v306,page 589,QB25 INFO PROTECTION TRUST: FINANC INSTITUTIONS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,616,ZA5450
+v307,page 591,QB25 INFO PROTECTION TRUST: MEDICAL INSTITUTIONS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,618,ZA5450
+v308,page 593,QB25 INFO PROTECTION TRUST: SHOPS/DEPARTM STORES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,620,ZA5450
+v309,page 595,QB25 INFO PROTECTION TRUST: INTERNET COMPANIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,622,ZA5450
+v310,page 597,QB25 INFO PROTECTION TRUST: PHONE COMPANIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,624,ZA5450
+v311,page 599,QB26 PERSONAL INFORMATION MISUSE - CONCERN,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,626,ZA5450
+v312,page 601,QB27 ACCESS OWN PERSONAL INFO - PREPARED TO PAY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,628,ZA5450
+v313,page 603,QB28 DELETION OF PERS WEB INFO: ON DECISION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,630,ZA5450
+v314,page 605,QB28 DELETION OF PERS WEB INFO: PROVIDER CHANGE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,632,ZA5450
+v315,page 607,QB28 DELETION OF PERS WEB INFO: WHEN STOP USING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,634,ZA5450
+v316,page 609,QB28 DELETION OF PERS WEB INFO: NEVER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,636,ZA5450
+v317,page 611,QB28 DELETION OF PERS WEB INFO: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,638,ZA5450
+v318,,QB29 PERSONAL WEB INFO - TRANSFER FACILITY,,QB29 PERSONAL WEB INFO - TRANSFER FACILITY,GESIS Variable Report,640,ZA5450
+v319,page 615,QB30 IDENTITY THEFT: HEARD THROUGH MEDIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,642,ZA5450
+v320,page 617,QB30 IDENTITY THEFT: HEARD THROUGH WORD OF MOUTH,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,644,ZA5450
+v321,page 619,QB30 IDENTITY THEFT: ACQUAINTANCES AFFECTED,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,646,ZA5450
+v322,page 621,QB30 IDENTITY THEFT: FAMILY MEMBER AFFECTED,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,648,ZA5450
+v323,page 623,QB30 IDENTITY THEFT: PERSONALLY AFFECTED,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,650,ZA5450
+v324,page 625,QB30 IDENTITY THEFT: HEARD/EXPERIENCED OTHERS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,652,ZA5450
+v325,page 627,QB30 IDENTITY THEFT: NOT HEARD/EXPERIENCED,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,654,ZA5450
+v326,page 629,QB30 IDENTITY THEFT: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,656,ZA5450
+v327,v327 1 2 3 N Sum N Valid Sum,QB31 PERS INFORMATION LOST - BE COMMUNICATED,v7 M AT 792 (82.5) 168 (17.5) 50 1010 960 BE 896 (88.9) 112 (11.1) 12 1020 1008 BG 907 (96.4) 34 (3.6) 59 1000 941 CY 474 (96.3) 18 (3.7) 9 501 492 CZ 930 (93.5) 65 (6.5) 20 1015 995 DE-E 468 (90.9) 47 (9.1) 15 530 515 DE-W 867 (91.8) 77 (8.2) 45 989 944 DK 973 (97.7) 23 (2.3) 12 1008 996 EE 916 (93.0) 69 (7.0) 15 1000 985 ES 829 (87.9) 114 (12.1) 62 1005 943 FI 937 (94.6) 53 (5.4) 13 1003 990 FR 921 (93.6) 63 (6.4) 16 1000 984 GB-GBN 944 (95.3) 47 (4.7) 9 1000 991 GB-NIR 281 (97.6) 7 (2.4) 3 291 288 GR 915 (93.9) 59 (6.1) 26 1000 974 HU 791 (80.9) 187 (19.1) 36 1014 978 IE 907 (96.8) 30 (3.2) 38 975 937 IT 851 (86.5) 133 (13.5) 56 1040 984 LT 853 (89.1) 104 (10.9) 69 1026 957 LU 456 (92.9) 35 (7.1) 10 501 491 LV 902 (92.6) 72 (7.4) 26 1000 974 MT 483 (98.4) 8 (1.6) 8 499 491 NL 948 (94.1) 59 (5.9) 17 1024 1007 PL 839 (87.5) 120 (12.5) 41 1000 959 PT 893 (88.7) 114 (11.3) 38 1045 1007 RO 800 (86.3) 127 (13.7) 87 1014 927 SE 962 (96.2) 38 (3.8) 10 1010 1000 SI 977 (96.6) 34 (3.4) 9 1020 1011 SK 935 (92.2) 79 (7.8) 20 1034 1014 N Sum 23647 2096 831 26574 N Valid Sum 23647 2096 25743 Eurobarometer 74.3 - November-December 2010,v7 M AT 792 (82.5) 168 (17.5) 50 1010 960 BE 896 (88.9) 112 (11.1) 12 1020 1008 BG 907 (96.4) 34 (3.6) 59 1000 941 CY 474 (96.3) 18 (3.7) 9 501 492 CZ 930 (93.5) 65 (6.5) 20 1015 995 DE-E 468 (90.9) 47 (9.1) 15 530 515 DE-W 867 (91.8) 77 (8.2) 45 989 944 DK 973 (97.7) 23 (2.3) 12 1008 996 EE 916 (93.0) 69 (7.0) 15 1000 985 ES 829 (87.9) 114 (12.1) 62 1005 943 FI 937 (94.6) 53 (5.4) 13 1003 990 FR 921 (93.6) 63 (6.4) 16 1000 984 GB-GBN 944 (95.3) 47 (4.7) 9 1000 991 GB-NIR 281 (97.6) 7 (2.4) 3 291 288 GR 915 (93.9) 59 (6.1) 26 1000 974 HU 791 (80.9) 187 (19.1) 36 1014 978 IE 907 (96.8) 30 (3.2) 38 975 937 IT 851 (86.5) 133 (13.5) 56 1040 984 LT 853 (89.1) 104 (10.9) 69 1026 957 LU 456 (92.9) 35 (7.1) 10 501 491 LV 902 (92.6) 72 (7.4) 26 1000 974 MT 483 (98.4) 8 (1.6) 8 499 491 NL 948 (94.1) 59 (5.9) 17 1024 1007 PL 839 (87.5) 120 (12.5) 41 1000 959 PT 893 (88.7) 114 (11.3) 38 1045 1007 RO 800 (86.3) 127 (13.7) 87 1014 927 SE 962 (96.2) 38 (3.8) 10 1010 1000 SI 977 (96.6) 34 (3.4) 9 1020 1011 SK 935 (92.2) 79 (7.8) 20 1034 1014 N Sum 23647 2096 831 26574 N Valid Sum 23647 2096 25743 Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,658,ZA5450
+v328,page 632,QB32 PERS INFO PROTECTION ACROSS EU - IMPORTANCE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,659,ZA5450
+v329,page 634,QB33 EU DATA PROTECTION F GENETIC INFO - DEMAND,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,661,ZA5450
+v330,page 636,QB34 PERS DATA OF MINORS - SPEC PROTECTION NEED,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,663,ZA5450
+v331,page 638,QB34 PERS DATA OF MINORS - WARN OF CONSEQUENCES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,665,ZA5450
+v332,page 640,QB35 POLICE ACCESS TO PERS DATA - PREFERENCE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,667,ZA5450
+v333,page 642,QB36 DATA PROTECTION CONTACT IN COMPANIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,669,ZA5450
+v334,page 644,QB37 ENFORCEMENT OF DATA PROTECTION RULES - LEVEL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,671,ZA5450
+v335,v335 1 2 3 N Sum N Valid Sum,QB38 PUBLIC DATA PROTECTION AUTHORITY - HEARD,v7 M AT 192 (20.4) 749 (79.6) 69 1010 941 BE 210 (20.8) 802 (79.2) 8 1020 1012 BG 172 (19.1) 730 (80.9) 98 1000 902 CY 183 (37.7) 303 (62.3) 15 501 486 CZ 381 (38.1) 618 (61.9) 16 1015 999 DE-E 199 (39.6) 303 (60.4) 28 530 502 DE-W 397 (42.2) 544 (57.8) 48 989 941 DK 441 (44.9) 541 (55.1) 25 1007 982 EE 281 (28.4) 707 (71.6) 12 1000 988 ES 162 (16.5) 819 (83.5) 25 1006 981 FI 326 (33.2) 655 (66.8) 22 1003 981 FR 310 (31.6) 671 (68.4) 19 1000 981 GB-GBN 327 (33.2) 657 (66.8) 16 1000 984 GB-NIR 91 (31.6) 197 (68.4) 3 291 288 GR 455 (46.1) 531 (53.9) 13 999 986 HU 512 (51.7) 478 (48.3) 24 1014 990 IE 342 (36.9) 584 (63.1) 49 975 926 IT 397 (41.0) 572 (59.0) 70 1039 969 LT 276 (27.8) 718 (72.2) 32 1026 994 LU 112 (23.2) 370 (76.8) 19 501 482 LV 282 (28.3) 713 (71.7) 5 1000 995 MT 213 (44.8) 262 (55.2) 25 500 475 NL 350 (35.5) 637 (64.5) 37 1024 987 PL 401 (41.4) 568 (58.6) 32 1001 969 PT 228 (22.4) 790 (77.6) 29 1047 1018 RO 199 (21.2) 739 (78.8) 75 1013 938 SE 423 (43.3) 554 (56.7) 32 1009 977 SI 491 (49.5) 501 (50.5) 27 1019 992 SK 380 (37.3) 640 (62.7) 15 1035 1020 N Sum 8733 16953 888 26574 N Valid Sum 8733 16953 25686 Eurobarometer 74.3 - November-December 2010,v7 M AT 192 (20.4) 749 (79.6) 69 1010 941 BE 210 (20.8) 802 (79.2) 8 1020 1012 BG 172 (19.1) 730 (80.9) 98 1000 902 CY 183 (37.7) 303 (62.3) 15 501 486 CZ 381 (38.1) 618 (61.9) 16 1015 999 DE-E 199 (39.6) 303 (60.4) 28 530 502 DE-W 397 (42.2) 544 (57.8) 48 989 941 DK 441 (44.9) 541 (55.1) 25 1007 982 EE 281 (28.4) 707 (71.6) 12 1000 988 ES 162 (16.5) 819 (83.5) 25 1006 981 FI 326 (33.2) 655 (66.8) 22 1003 981 FR 310 (31.6) 671 (68.4) 19 1000 981 GB-GBN 327 (33.2) 657 (66.8) 16 1000 984 GB-NIR 91 (31.6) 197 (68.4) 3 291 288 GR 455 (46.1) 531 (53.9) 13 999 986 HU 512 (51.7) 478 (48.3) 24 1014 990 IE 342 (36.9) 584 (63.1) 49 975 926 IT 397 (41.0) 572 (59.0) 70 1039 969 LT 276 (27.8) 718 (72.2) 32 1026 994 LU 112 (23.2) 370 (76.8) 19 501 482 LV 282 (28.3) 713 (71.7) 5 1000 995 MT 213 (44.8) 262 (55.2) 25 500 475 NL 350 (35.5) 637 (64.5) 37 1024 987 PL 401 (41.4) 568 (58.6) 32 1001 969 PT 228 (22.4) 790 (77.6) 29 1047 1018 RO 199 (21.2) 739 (78.8) 75 1013 938 SE 423 (43.3) 554 (56.7) 32 1009 977 SI 491 (49.5) 501 (50.5) 27 1019 992 SK 380 (37.3) 640 (62.7) 15 1035 1020 N Sum 8733 16953 888 26574 N Valid Sum 8733 16953 25686 Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,673,ZA5450
+v336,page 647,QB39 FIGHT DATA MISUSE BY COMP: IMPOSE FINE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,674,ZA5450
+v337,page 649,QB39 FIGHT DATA MISUSE BY COMP: LEGAL SUPPORT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,676,ZA5450
+v338,page 651,QB39 FIGHT DATA MISUSE BY COMP: OUT OF COURT PROC,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,678,ZA5450
+v339,page 653,QB39 FIGHT DATA MISUSE BY COMP: BAN FROM USE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,680,ZA5450
+v340,page 655,QB39 FIGHT DATA MISUSE BY COMP: COMPENSATIONS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,682,ZA5450
+v341,page 657,QB39 FIGHT DATA MISUSE BY COMP: JOINT LEGAL ACT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,684,ZA5450
+v342,page 659,QB39 FIGHT DATA MISUSE BY COMP: DIRECT CONTROL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,686,ZA5450
+v343,page 661,QB39 FIGHT DATA MISUSE BY COMP: MONITORING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,688,ZA5450
+v344,page 663,QB39 FIGHT DATA MISUSE BY COMP: BETTER TECHNICS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,690,ZA5450
+v345,page 665,QB39 FIGHT DATA MISUSE BY COMP: FORMAL EDUCATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,692,ZA5450
+v346,page 667,QB39 FIGHT DATA MISUSE BY COMP: RAISE AWARENESS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,694,ZA5450
+v347,page 669,QB39 FIGHT DATA MISUSE BY COMP: USE OF WARNINGS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,696,ZA5450
+v348,page 671,QB39 FIGHT DATA MISUSE BY COMP: OTHER PRIORITIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,698,ZA5450
+v349,page 673,QB39 FIGHT DATA MISUSE BY COMP: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,700,ZA5450
+v350,page 675,QC1 CHEMICAL PRODUCTS: USEFUL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,702,ZA5450
+v351,page 677,QC1 CHEMICAL PRODUCTS: INNOVATIVE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,704,ZA5450
+v352,page 679,QC1 CHEMICAL PRODUCTS: EFFECTIVE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,706,ZA5450
+v353,page 681,QC1 CHEMICAL PRODUCTS: MODERN,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,708,ZA5450
+v354,page 683,QC1 CHEMICAL PRODUCTS: NATURAL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,710,ZA5450
+v355,page 685,QC1 CHEMICAL PRODUCTS: UNHEALTHY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,712,ZA5450
+v356,page 687,QC1 CHEMICAL PRODUCTS: INDUSTRIAL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,714,ZA5450
+v357,page 689,QC1 CHEMICAL PRODUCTS: ARTIFICIAL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,716,ZA5450
+v358,page 691,QC1 CHEMICAL PRODUCTS: HARMFUL TO ENVIRONMENT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,718,ZA5450
+v359,page 693,QC1 CHEMICAL PRODUCTS: DANGEROUS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,720,ZA5450
+v360,page 695,QC1 CHEMICAL PRODUCTS: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,722,ZA5450
+v361,page 697,QC1 CHEMICAL PRODUCTS: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,724,ZA5450
+v362,page 699,QC1 CHEMICAL PRODUCTS: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,726,ZA5450
+v363,,QC2 CHEMICAL PRODUCTS AT WORK - EVER USED,,QC2 CHEMICAL PRODUCTS AT WORK - EVER USED,GESIS Variable Report,728,ZA5450
+v364,page 703,QC3 CHEMICAL PRODUCTS: DIY/BUILDING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,730,ZA5450
+v365,page 705,QC3 CHEMICAL PRODUCTS: EVERY DAY DETERGENTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,732,ZA5450
+v366,page 707,QC3 CHEMICAL PRODUCTS: OTHER CLEANING PRODUCTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,734,ZA5450
+v367,page 709,QC3 CHEMICAL PRODUCTS: CAR/VEHICLE CARE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,736,ZA5450
+v368,page 711,QC3 CHEMICAL PRODUCTS: GARDENING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,738,ZA5450
+v369,page 713,QC3 CHEMICAL PRODUCTS: PESTICIDES/INSECTICIDES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,740,ZA5450
+v370,page 715,QC3 CHEMICAL PRODUCTS: OTHER PRODUCTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,742,ZA5450
+v371,page 717,QC3 CHEMICAL PRODUCTS: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,744,ZA5450
+v372,page 719,QC3 CHEMICAL PRODUCTS: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,746,ZA5450
+v373,page 721,QC4 CHEMICAL PROD ASSESSMENT: EXPERIENCE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,748,ZA5450
+v374,page 723,QC4 CHEMICAL PROD ASSESSMENT: SMELL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,750,ZA5450
+v375,page 725,QC4 CHEMICAL PROD ASSESSMENT: COLOUR,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,752,ZA5450
+v376,page 727,QC4 CHEMICAL PROD ASSESSMENT: PACKAGING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,754,ZA5450
+v377,page 729,QC4 CHEMICAL PROD ASSESSMENT: SAFETY INSTRUCTIONS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,756,ZA5450
+v378,page 731,QC4 CHEMICAL PROD ASSESSMENT: WARNING SYMBOLS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,758,ZA5450
+v379,page 733,QC4 CHEMICAL PROD ASSESSMENT: SHOP INFORMATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,760,ZA5450
+v380,page 735,QC4 CHEMICAL PROD ASSESSMENT: TYPE OF SHOP,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,762,ZA5450
+v381,page 737,QC4 CHEMICAL PROD ASSESSMENT: FAMILY/FRIENDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,764,ZA5450
+v382,page 739,QC4 CHEMICAL PROD ASSESSMENT: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,766,ZA5450
+v383,page 741,QC4 CHEMICAL PROD ASSESSMENT: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,768,ZA5450
+v384,page 743,QC4 CHEMICAL PROD ASSESSMENT: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,770,ZA5450
+v385,page 745,QC5 CHEMICAL PROD USE: READ INSTRUCTIONS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,772,ZA5450
+v386,page 747,QC5 CHEMICAL PROD USE: PROTECTIVE CLOTHING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,774,ZA5450
+v387,page 749,QC5 CHEMICAL PROD USE: RECOMMENDED FREQUENCY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,776,ZA5450
+v388,page 751,QC5 CHEMICAL PROD USE: RECOMMENDED AMOUNT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,778,ZA5450
+v389,page 753,QC5 CHEMICAL PROD USE: CORRECT STORAGE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,780,ZA5450
+v390,page 755,QC5 CHEMICAL PROD USE: CORRECT DISPOSE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,782,ZA5450
+v391,page 757,QC5 CHEMICAL PROD USE: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,784,ZA5450
+v392,page 759,QC5 CHEMICAL PROD USE: NO SAFE USE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,786,ZA5450
+v393,page 761,QC5 CHEMICAL PROD USE: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,788,ZA5450
+v394,page 763,QC6 CHEMIC PROD INSTR NECESSARY: DIY/BUILDING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,790,ZA5450
+v395,page 765,QC6 CHEMIC PROD INSTR NECESSARY: DETERGENTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,792,ZA5450
+v396,page 767,QC6 CHEMIC PROD INSTR NECESSARY: OTHER CLEANING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,794,ZA5450
+v397,page 769,QC6 CHEMIC PROD INSTR NECESSARY: CAR CARE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,796,ZA5450
+v398,page 771,QC6 CHEMIC PROD INSTR NECESSARY: GARDENING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,798,ZA5450
+v399,page 773,QC6 CHEMIC PROD INSTR NECESSARY: PESTIC/INSECTIC,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,800,ZA5450
+v400,page 775,QC6 CHEMIC PROD INSTR NECESSARY: OTHER PRODUCTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,802,ZA5450
+v401,page 777,QC6 CHEMIC PROD INSTR NECESSARY: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,804,ZA5450
+v402,page 779,QC6 CHEMIC PROD INSTR NECESSARY: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,806,ZA5450
+v403,page 781,QC7 CHEMIC PROD READ INSTRUCTION: DIY/BUILDING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,808,ZA5450
+v404,page 783,QC7 CHEMIC PROD READ INSTRUCTION: DETERGENTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,810,ZA5450
+v405,page 785,QC7 CHEMIC PROD READ INSTRUCTION: OTHER CLEANING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,812,ZA5450
+v406,page 787,QC7 CHEMIC PROD READ INSTRUCTION: CAR CARE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,814,ZA5450
+v407,page 789,QC7 CHEMIC PROD READ INSTRUCTION: GARDENING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,816,ZA5450
+v408,page 791,QC7 CHEMIC PROD READ INSTRUCTION: PESTIC/INSECTIC,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,818,ZA5450
+v409,page 793,QC8 CHEMIC PROD FOLLOW INSTRUCT: DIY/BUILDING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,820,ZA5450
+v410,page 795,QC8 CHEMIC PROD FOLLOW INSTRUCT: DETERGENTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,822,ZA5450
+v411,page 797,QC8 CHEMIC PROD FOLLOW INSTRUCT: OTHER CLEANING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,824,ZA5450
+v412,page 799,QC8 CHEMIC PROD FOLLOW INSTRUCT: CAR CARE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,826,ZA5450
+v413,page 801,QC8 CHEMIC PROD FOLLOW INSTRUCT: GARDENING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,828,ZA5450
+v414,page 803,QC8 CHEMIC PROD FOLLOW INSTRUCT: PESTIC/INSECTIC,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,830,ZA5450
+v415,page 805,QC9 CHEMICAL PROD HAZARD LABEL - UNDERSTANDING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,832,ZA5450
+v416,,QC10 CHEMICAL PROD HAZARD SYMBOL A - SEEN,,QC10 CHEMICAL PROD HAZARD SYMBOL A - SEEN,GESIS Variable Report,834,ZA5450
+v417,,QC10 CHEMICAL PROD HAZARD SYMBOL B - SEEN,,QC10 CHEMICAL PROD HAZARD SYMBOL B - SEEN,GESIS Variable Report,836,ZA5450
+v418,,QC10 CHEMICAL PROD HAZARD SYMBOL C - SEEN,,QC10 CHEMICAL PROD HAZARD SYMBOL C - SEEN,GESIS Variable Report,838,ZA5450
+v419,,QC10 CHEMICAL PROD HAZARD SYMBOL D - SEEN,,QC10 CHEMICAL PROD HAZARD SYMBOL D - SEEN,GESIS Variable Report,840,ZA5450
+v420,,QC10 CHEMICAL PROD HAZARD PICTOGRAM E - SEEN,,QC10 CHEMICAL PROD HAZARD PICTOGRAM E - SEEN,GESIS Variable Report,842,ZA5450
+v421,,QC10 CHEMICAL PROD HAZARD PICTOGRAM F - SEEN,,QC10 CHEMICAL PROD HAZARD PICTOGRAM F - SEEN,GESIS Variable Report,844,ZA5450
+v422,,QC10 CHEMICAL PROD HAZARD PICTOGRAM G - SEEN,,QC10 CHEMICAL PROD HAZARD PICTOGRAM G - SEEN,GESIS Variable Report,846,ZA5450
+v423,,QC10 CHEMICAL PROD HAZARD PICTOGRAM H - SEEN,,QC10 CHEMICAL PROD HAZARD PICTOGRAM H - SEEN,GESIS Variable Report,848,ZA5450
+v424,,QC11 CHEMICAL PROD HAZARD SYMBOL A - MEANING,,QC11 CHEMICAL PROD HAZARD SYMBOL A - MEANING,GESIS Variable Report,850,ZA5450
+v425,,QC11 CHEMICAL PROD HAZARD SYMBOL B - MEANING,,QC11 CHEMICAL PROD HAZARD SYMBOL B - MEANING,GESIS Variable Report,852,ZA5450
+v426,,QC11 CHEMICAL PROD HAZARD SYMBOL C - MEANING,,QC11 CHEMICAL PROD HAZARD SYMBOL C - MEANING,GESIS Variable Report,854,ZA5450
+v427,,QC11 CHEMICAL PROD HAZARD SYMBOL D - MEANING,,QC11 CHEMICAL PROD HAZARD SYMBOL D - MEANING,GESIS Variable Report,856,ZA5450
+v428,,QC12 CHEMICAL PRODUCT RISK INFO: DIY/BUILDING,,QC12 CHEMICAL PRODUCT RISK INFO: DIY/BUILDING,GESIS Variable Report,858,ZA5450
+v429,,QC12 CHEMICAL PRODUCT RISK INFO: DETERGENTS,,QC12 CHEMICAL PRODUCT RISK INFO: DETERGENTS,GESIS Variable Report,860,ZA5450
+v430,,QC12 CHEMICAL PRODUCT RISK INFO: OTHER CLEANING,,QC12 CHEMICAL PRODUCT RISK INFO: OTHER CLEANING,GESIS Variable Report,862,ZA5450
+v431,,QC12 CHEMICAL PRODUCT RISK INFO: CAR CARE,,QC12 CHEMICAL PRODUCT RISK INFO: CAR CARE,GESIS Variable Report,864,ZA5450
+v432,,QC12 CHEMICAL PRODUCT RISK INFO: GARDENING,,QC12 CHEMICAL PRODUCT RISK INFO: GARDENING,GESIS Variable Report,866,ZA5450
+v433,,QC12 CHEMICAL PRODUCT RISK INFO: PESTIC/INSECTIC,,QC12 CHEMICAL PRODUCT RISK INFO: PESTIC/INSECTIC,GESIS Variable Report,868,ZA5450
+v434,page 843,QC13 CHEMICAL PROD INFO SOURCES: PACKAGING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,870,ZA5450
+v435,page 845,QC13 CHEMICAL PROD INFO SOURCES: NEWSPAPERS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,872,ZA5450
+v436,page 847,QC13 CHEMICAL PROD INFO SOURCES: MAGAZINES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,874,ZA5450
+v437,page 849,QC13 CHEMICAL PROD INFO SOURCES: TV,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,876,ZA5450
+v438,page 851,QC13 CHEMICAL PROD INFO SOURCES: RADIO,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,878,ZA5450
+v439,page 853,QC13 CHEMICAL PROD INFO SOURCES: LEAFLETS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,880,ZA5450
+v440,page 855,QC13 CHEMICAL PROD INFO SOURCES: INTERNET,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,882,ZA5450
+v441,page 857,QC13 CHEMICAL PROD INFO SOURCES: WORD OF MOUTH,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,884,ZA5450
+v442,page 859,QC13 CHEMICAL PROD INFO SOURCES: FAMILY/FRIENDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,886,ZA5450
+v443,page 861,QC13 CHEMICAL PROD INFO SOURCES: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,888,ZA5450
+v444,page 863,QC13 CHEMICAL PROD INFO SOURCES: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,890,ZA5450
+v445,page 865,QC13 CHEMICAL PROD INFO SOURCES: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,892,ZA5450
+v446,page 867,QC14 CHEMICAL PROD INFO TRUST: SALES PERSON,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,894,ZA5450
+v447,page 869,QC14 CHEMICAL PROD INFO TRUST: NGO/CONSUMER ORG,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,896,ZA5450
+v448,page 871,QC14 CHEMICAL PROD INFO TRUST: MANUFACTURERS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,898,ZA5450
+v449,page 873,QC14 CHEMICAL PROD INFO TRUST: POISON CENTRES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,900,ZA5450
+v450,page 875,QC14 CHEMICAL PROD INFO TRUST: FAMILY/FRIENDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,902,ZA5450
+v451,page 877,QC14 CHEMICAL PROD INFO TRUST: DOCTORS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,904,ZA5450
+v452,page 879,QC14 CHEMICAL PROD INFO TRUST: PHARMACISTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,906,ZA5450
+v453,page 881,QC14 CHEMICAL PROD INFO TRUST: JOURNALISTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,908,ZA5450
+v454,page 883,QC14 CHEMICAL PROD INFO TRUST: SCIENTISTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,910,ZA5450
+v455,page 885,QC14 CHEMICAL PROD INFO TRUST: HEALTH AUTHORITIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,912,ZA5450
+v456,page 887,QC14 CHEMICAL PROD INFO TRUST: EU INSTITUTIONS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,914,ZA5450
+v457,page 889,QC14 CHEMICAL PROD INFO TRUST: NAT GOVERNMENT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,916,ZA5450
+v458,page 891,QC14 CHEMICAL PROD INFO TRUST: OTHER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,918,ZA5450
+v459,page 893,QC14 CHEMICAL PROD INFO TRUST: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,920,ZA5450
+v460,page 895,QC14 CHEMICAL PROD INFO TRUST: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,922,ZA5450
+v461,,QD1 RARE DISEASES - UNDERSTANDING,,QD1 RARE DISEASES - UNDERSTANDING,GESIS Variable Report,924,ZA5450
+v462,page 899,QD2 RARE DISEASE CONTACT: KNOW S/O SUFFERING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,926,ZA5450
+v463,page 901,QD2 RARE DISEASE CONTACT: HEARD IN FAMILY/FRIENDS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,928,ZA5450
+v464,page 903,QD2 RARE DISEASE CONTACT: HEARD IN MEDIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,930,ZA5450
+v465,page 905,QD2 RARE DISEASE CONTACT: NEVER HEARD ABOUT ANY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,932,ZA5450
+v466,page 907,QD2 RARE DISEASE CONTACT: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,934,ZA5450
+v467,page 909,QD3 RARE DISEASES: HEALTH AUTHORITY SUPPORT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,936,ZA5450
+v468,page 911,QD3 RARE DISEASES: MORE EUROPEAN COOPERATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,938,ZA5450
+v469,page 913,QD3 RARE DISEASES: DRUGS BE FULLY REIMBURSED,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,940,ZA5450
+v470,page 915,QD3 RARE DISEASES: AWARE OF SPECIALIZED CENTRES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,942,ZA5450
+v471,page 917,QD3 RARE DISEASES: RIGHT TO ACCESS APPROP CARE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,944,ZA5450
+v472,page 919,QD3 RARE DISEASES: TOO MANY MAJOR HEALTH ISSUES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,946,ZA5450
+v473,page 921,QD3 RARE DISEASES: EU MEMBERS NEED NAT STRATEGY,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,948,ZA5450
+v474,page 923,QD3 RARE DISEASES: UNAWARENESS OF REAL PROBLEMS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,950,ZA5450
+v475,page 925,QD4 RARE DISEASE INITIATIVES: RESEARCH,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,952,ZA5450
+v476,page 927,QD4 RARE DISEASE INITIATIVES: ACCESS TO DRUGS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,954,ZA5450
+v477,page 929,QD4 RARE DISEASE INITIATIVES: IMPROVE AWARENESS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,956,ZA5450
+v478,page 931,QD4 RARE DISEASE INITIATIVES: LABORATORY TESTS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,958,ZA5450
+v479,page 933,QD4 RARE DISEASE INITIATIVES: SUPPORT TO FAMILIES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,960,ZA5450
+v480,page 935,QD4 RARE DISEASE INITIATIVES: SUPPORT PATIENT ORG,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,962,ZA5450
+v481,page 937,QD4 RARE DISEASE INITIATIVES: SPECIALIZED CENTRES,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,964,ZA5450
+v482,page 939,QD5 RARE DISEASES HEARD: CYSTIC FIBROSIS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,966,ZA5450
+v483,page 941,QD5 RARE DISEASES HEARD: DUCHENNE MUSCULAR DYSTR,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,968,ZA5450
+v484,page 943,QD5 RARE DISEASES HEARD: HAEMOPHILIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,970,ZA5450
+v485,page 945,QD5 RARE DISEASES HEARD: HUNTINGTON'S DISEASE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,972,ZA5450
+v486,page 947,QD5 RARE DISEASES HEARD: OSTEOGENESIS IMPERFECTA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,974,ZA5450
+v487,page 949,QD5 RARE DISEASES HEARD: PROGERIA,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,976,ZA5450
+v488,,D1 LEFT-RIGHT PLACEMENT,,D1 LEFT-RIGHT PLACEMENT,GESIS Variable Report,978,ZA5450
+v489,page 954,D1 LEFT-RIGHT PLACEMENT - RECODED 3 CAT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,981,ZA5450
+v490,,D1 LEFT-RIGHT PLACEMENT - RECODED 5 CAT,,D1 LEFT-RIGHT PLACEMENT - RECODED 5 CAT,GESIS Variable Report,983,ZA5450
+v491,,D7 MARITAL STATUS,,D7 MARITAL STATUS,GESIS Variable Report,985,ZA5450
+v492,,D7 MARITAL STATUS (REC STATUS),,D7 MARITAL STATUS (REC STATUS),GESIS Variable Report,988,ZA5450
+v493,page 963,D7 MARITAL STATUS (REC CHILDREN),Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,990,ZA5450
+v494,,D8 AGE EDUCATION,,D8 AGE EDUCATION,GESIS Variable Report,992,ZA5450
+v495,,D8 AGE EDUCATION - RECODED,,D8 AGE EDUCATION - RECODED,GESIS Variable Report,993,ZA5450
+v496,v496 1 2 N Sum N Valid Sum,D10 GENDER,v7 AT 489 (48.4) 521 (51.6) 1010 1010 BE 495 (48.5) 525 (51.5) 1020 1020 BG 479 (47.9) 521 (52.1) 1000 1000 CY 245 (48.9) 256 (51.1) 501 501 CZ 494 (48.7) 521 (51.3) 1015 1015 DE-E 257 (48.5) 273 (51.5) 530 530 DE-W 478 (48.3) 511 (51.7) 989 989 DK 495 (49.2) 512 (50.8) 1007 1007 EE 451 (45.1) 549 (54.9) 1000 1000 ES 493 (49.0) 513 (51.0) 1006 1006 FI 488 (48.7) 515 (51.3) 1003 1003 FR 477 (47.7) 523 (52.3) 1000 1000 GB-GBN 487 (48.7) 513 (51.3) 1000 1000 GB-NIR 141 (48.5) 150 (51.5) 291 291 GR 490 (49.0) 510 (51.0) 1000 1000 HU 474 (46.7) 540 (53.3) 1014 1014 IE 485 (49.7) 490 (50.3) 975 975 IT 500 (48.1) 539 (51.9) 1039 1039 LT 469 (45.7) 557 (54.3) 1026 1026 LU 247 (49.3) 254 (50.7) 501 501 LV 463 (46.3) 537 (53.7) 1000 1000 MT 246 (49.2) 254 (50.8) 500 500 NL 504 (49.2) 520 (50.8) 1024 1024 PL 477 (47.7) 523 (52.3) 1000 1000 PT 499 (47.7) 547 (52.3) 1046 1046 RO 489 (48.3) 524 (51.7) 1013 1013 SE 499 (49.4) 511 (50.6) 1010 1010 SI 501 (49.1) 519 (50.9) 1020 1020 SK 497 (48.1) 537 (51.9) 1034 1034 N Sum 12809 13765 26574 N Valid Sum 12809 13765 26574 Eurobarometer 74.3 - November-December 2010,v7 AT 489 (48.4) 521 (51.6) 1010 1010 BE 495 (48.5) 525 (51.5) 1020 1020 BG 479 (47.9) 521 (52.1) 1000 1000 CY 245 (48.9) 256 (51.1) 501 501 CZ 494 (48.7) 521 (51.3) 1015 1015 DE-E 257 (48.5) 273 (51.5) 530 530 DE-W 478 (48.3) 511 (51.7) 989 989 DK 495 (49.2) 512 (50.8) 1007 1007 EE 451 (45.1) 549 (54.9) 1000 1000 ES 493 (49.0) 513 (51.0) 1006 1006 FI 488 (48.7) 515 (51.3) 1003 1003 FR 477 (47.7) 523 (52.3) 1000 1000 GB-GBN 487 (48.7) 513 (51.3) 1000 1000 GB-NIR 141 (48.5) 150 (51.5) 291 291 GR 490 (49.0) 510 (51.0) 1000 1000 HU 474 (46.7) 540 (53.3) 1014 1014 IE 485 (49.7) 490 (50.3) 975 975 IT 500 (48.1) 539 (51.9) 1039 1039 LT 469 (45.7) 557 (54.3) 1026 1026 LU 247 (49.3) 254 (50.7) 501 501 LV 463 (46.3) 537 (53.7) 1000 1000 MT 246 (49.2) 254 (50.8) 500 500 NL 504 (49.2) 520 (50.8) 1024 1024 PL 477 (47.7) 523 (52.3) 1000 1000 PT 499 (47.7) 547 (52.3) 1046 1046 RO 489 (48.3) 524 (51.7) 1013 1013 SE 499 (49.4) 511 (50.6) 1010 1010 SI 501 (49.1) 519 (50.9) 1020 1020 SK 497 (48.1) 537 (51.9) 1034 1034 N Sum 12809 13765 26574 N Valid Sum 12809 13765 26574 Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,996,ZA5450
+v497,page 970,D11 AGE EXACT,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,997,ZA5450
+v498,page 971,D11 AGE RECODED - FOUR GROUPS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,998,ZA5450
+v499,,D11 AGE RECODED - SIX GROUPS,,D11 AGE RECODED - SIX GROUPS,GESIS Variable Report,1000,ZA5450
+v500,,D25 TYPE OF COMMUNITY,,D25 TYPE OF COMMUNITY,GESIS Variable Report,1002,ZA5450
+v501,,D40A HOUSEHOLD COMPOSITION: AGED 15+,,D40A HOUSEHOLD COMPOSITION: AGED 15+,GESIS Variable Report,1004,ZA5450
+v502,page 980,D40A HOUSEHOLD COMPOSITION: AGED 15+ (REC),Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1007,ZA5450
+v503,,D40B HOUSEHOLD COMPOSITION: AGED <10,,D40B HOUSEHOLD COMPOSITION: AGED <10,GESIS Variable Report,1009,ZA5450
+v504,page 984,D40B HOUSEHOLD COMPOSITION: AGED <10 (REC),Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1011,ZA5450
+v505,,D40C HOUSEHOLD COMPOSITION: AGED 10-14,,D40C HOUSEHOLD COMPOSITION: AGED 10-14,GESIS Variable Report,1013,ZA5450
+v506,page 988,D40C HOUSEHOLD COMPOSITION: AGED 10-14 (REC),Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1015,ZA5450
+v507,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C,GESIS Variable Report,1017,ZA5450
+v508,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C (REC),,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C (REC),GESIS Variable Report,1020,ZA5450
+v509,page 995,D43A PHONE AVAILABLE - FIXED IN HH,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1022,ZA5450
+v510,page 997,D43B PHONE AVAILABLE - PRIVATE MOBILE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1024,ZA5450
+v511,page 999,D46 OWNERSHIP DURABLES: TELEVISION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1026,ZA5450
+v512,page 1000,D46 OWNERSHIP DURABLES: DVD PLAYER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1027,ZA5450
+v513,page 1001,D46 OWNERSHIP DURABLES: MUSIC CD PLAYER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1028,ZA5450
+v514,page 1002,D46 OWNERSHIP DURABLES: COMPUTER,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1029,ZA5450
+v515,page 1003,D46 OWNERSHIP DURABLES: INTERNET ACCESS,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1030,ZA5450
+v516,page 1004,D46 OWNERSHIP DURABLES: CAR,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1031,ZA5450
+v517,page 1005,D46 OWNERSHIP DURABLES: AP/HOUSE PAID,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1032,ZA5450
+v518,page 1006,D46 OWNERSHIP DURABLES: AP/HOUSE PAYING,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1033,ZA5450
+v519,page 1007,D46 OWNERSHIP DURABLES: NONE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1034,ZA5450
+v520,page 1008,D46 OWNERSHIP DURABLES: DK,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1035,ZA5450
+v521,page 1009,D60 DIFFICULTIES PAYING BILLS - LAST YEAR,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1036,ZA5450
+v522,,D61 LEVEL IN SOCIETY - SELF PLACEMENT,,D61 LEVEL IN SOCIETY - SELF PLACEMENT,GESIS Variable Report,1038,ZA5450
+v523,page 1014,P1 DATE OF INTERVIEW,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1041,ZA5450
+v524,page 1015,P2 TIME OF INTERVIEW,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1042,ZA5450
+v525,page 1016,P2 TIME OF INTERVIEW - RECODED,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1043,ZA5450
+v526,page 1017,P3 DURATION OF INTERVIEW,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1044,ZA5450
+v527,page 1018,P3 DURATION OF INTERVIEW - RECODED,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1045,ZA5450
+v528,page 1019,P4 N OF PERSONS PRESENT DURING INTERVIEW,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1046,ZA5450
+v529,page 1020,P5 RESPONDENT COOPERATION,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1047,ZA5450
+v530,,P6 SIZE OF COMMUNITY - FRANCE,,P6 SIZE OF COMMUNITY - FRANCE,GESIS Variable Report,1048,ZA5450
+v531,,P6 SIZE OF COMMUNITY - BELGIUM,,P6 SIZE OF COMMUNITY - BELGIUM,GESIS Variable Report,1049,ZA5450
+v532,,P6 SIZE OF COMMUNITY - NETHERLANDS,,P6 SIZE OF COMMUNITY - NETHERLANDS,GESIS Variable Report,1050,ZA5450
+v533,,P6 SIZE OF COMMUNITY - GERMANY,,P6 SIZE OF COMMUNITY - GERMANY,GESIS Variable Report,1051,ZA5450
+v534,,P6 SIZE OF COMMUNITY - ITALY,,P6 SIZE OF COMMUNITY - ITALY,GESIS Variable Report,1052,ZA5450
+v535,,P6 SIZE OF COMMUNITY - LUXEMBOURG,,P6 SIZE OF COMMUNITY - LUXEMBOURG,GESIS Variable Report,1053,ZA5450
+v536,,P6 SIZE OF COMMUNITY - DENMARK,,P6 SIZE OF COMMUNITY - DENMARK,GESIS Variable Report,1054,ZA5450
+v537,,P6 SIZE OF COMMUNITY - IRELAND,,P6 SIZE OF COMMUNITY - IRELAND,GESIS Variable Report,1055,ZA5450
+v538,,P6 SIZE OF COMMUNITY - UNITED KINGDOM,,P6 SIZE OF COMMUNITY - UNITED KINGDOM,GESIS Variable Report,1056,ZA5450
+v539,,P6 SIZE OF COMMUNITY - GREECE,,P6 SIZE OF COMMUNITY - GREECE,GESIS Variable Report,1057,ZA5450
+v540,,P6 SIZE OF COMMUNITY - SPAIN,,P6 SIZE OF COMMUNITY - SPAIN,GESIS Variable Report,1058,ZA5450
+v541,,P6 SIZE OF COMMUNITY - PORTUGAL,,P6 SIZE OF COMMUNITY - PORTUGAL,GESIS Variable Report,1059,ZA5450
+v542,,P6 SIZE OF COMMUNITY - FINLAND,,P6 SIZE OF COMMUNITY - FINLAND,GESIS Variable Report,1060,ZA5450
+v543,,P6 SIZE OF COMMUNITY - SWEDEN,,P6 SIZE OF COMMUNITY - SWEDEN,GESIS Variable Report,1061,ZA5450
+v544,,P6 SIZE OF COMMUNITY - AUSTRIA,,P6 SIZE OF COMMUNITY - AUSTRIA,GESIS Variable Report,1062,ZA5450
+v545,Sum 26574 100.0 100.0,P6 SIZE OF COMMUNITY - CYPRUS (REPUBLIC),Valid Cases 501 Eurobarometer 74.3 - November-December 2010,Valid Cases 501 Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1063,ZA5450
+v546,,P6 SIZE OF COMMUNITY - CZECH REPUBLIC,,P6 SIZE OF COMMUNITY - CZECH REPUBLIC,GESIS Variable Report,1064,ZA5450
+v547,,P6 SIZE OF COMMUNITY - ESTONIA,,P6 SIZE OF COMMUNITY - ESTONIA,GESIS Variable Report,1065,ZA5450
+v548,,P6 SIZE OF COMMUNITY - HUNGARY,,P6 SIZE OF COMMUNITY - HUNGARY,GESIS Variable Report,1066,ZA5450
+v549,,P6 SIZE OF COMMUNITY - LATVIA,,P6 SIZE OF COMMUNITY - LATVIA,GESIS Variable Report,1067,ZA5450
+v550,,P6 SIZE OF COMMUNITY - LITHUANIA,,P6 SIZE OF COMMUNITY - LITHUANIA,GESIS Variable Report,1068,ZA5450
+v551,,P6 SIZE OF COMMUNITY - MALTA,,P6 SIZE OF COMMUNITY - MALTA,GESIS Variable Report,1069,ZA5450
+v552,,P6 SIZE OF COMMUNITY - POLAND,,P6 SIZE OF COMMUNITY - POLAND,GESIS Variable Report,1070,ZA5450
+v553,,P6 SIZE OF COMMUNITY - SLOVAKIA,,P6 SIZE OF COMMUNITY - SLOVAKIA,GESIS Variable Report,1071,ZA5450
+v554,,P6 SIZE OF COMMUNITY - SLOVENIA,,P6 SIZE OF COMMUNITY - SLOVENIA,GESIS Variable Report,1072,ZA5450
+v555,,P6 SIZE OF COMMUNITY - BULGARIA,,P6 SIZE OF COMMUNITY - BULGARIA,GESIS Variable Report,1073,ZA5450
+v556,,P6 SIZE OF COMMUNITY - ROMANIA,,P6 SIZE OF COMMUNITY - ROMANIA,GESIS Variable Report,1074,ZA5450
+v557,,P7 REGION - FRANCE NUTS 2,,P7 REGION - FRANCE NUTS 2,GESIS Variable Report,1075,ZA5450
+v558,,P7 REGION - FRANCE NUTS 1,,P7 REGION - FRANCE NUTS 1,GESIS Variable Report,1077,ZA5450
+v559,,P7 REGION - BELGIUM NUTS 2,,P7 REGION - BELGIUM NUTS 2,GESIS Variable Report,1078,ZA5450
+v560,,P7 REGION - BELGIUM NUTS 1,,P7 REGION - BELGIUM NUTS 1,GESIS Variable Report,1079,ZA5450
+v561,,P7 REGION - NETHERLANDS NUTS 2,,P7 REGION - NETHERLANDS NUTS 2,GESIS Variable Report,1080,ZA5450
+v562,,P7 REGION - NETHERLANDS NUTS 1,,P7 REGION - NETHERLANDS NUTS 1,GESIS Variable Report,1081,ZA5450
+v563,,P7 REGION - GERMANY NUTS 1,,P7 REGION - GERMANY NUTS 1,GESIS Variable Report,1082,ZA5450
+v564,,P7 REGION - ITALY NUTS 2 MOD,,P7 REGION - ITALY NUTS 2 MOD,GESIS Variable Report,1084,ZA5450
+v565,,P7 REGION - ITALY NUTS 1,,P7 REGION - ITALY NUTS 1,GESIS Variable Report,1086,ZA5450
+v566,,P7 REGION - ITALY NUTS 1 MOD,,P7 REGION - ITALY NUTS 1 MOD,GESIS Variable Report,1087,ZA5450
+v567,,P7 REGION - LUXEMBOURG,,P7 REGION - LUXEMBOURG,GESIS Variable Report,1088,ZA5450
+v568,,P7 REGION - DENMARK NUTS 2,,P7 REGION - DENMARK NUTS 2,GESIS Variable Report,1089,ZA5450
+v569,,P7 REGION - IRELAND,,P7 REGION - IRELAND,GESIS Variable Report,1090,ZA5450
+v570,,P7 REGION - UNITED KINGDOM NUTS 1,,P7 REGION - UNITED KINGDOM NUTS 1,GESIS Variable Report,1091,ZA5450
+v571,,P7 REGION - UNITED KINGDOM NUTS 1 MOD,,P7 REGION - UNITED KINGDOM NUTS 1 MOD,GESIS Variable Report,1093,ZA5450
+v572,,P7 REGION - GREECE NUTS 2,,P7 REGION - GREECE NUTS 2,GESIS Variable Report,1094,ZA5450
+v573,,P7 REGION - GREECE NUTS 1,,P7 REGION - GREECE NUTS 1,GESIS Variable Report,1095,ZA5450
+v574,,P7 REGION - SPAIN NUTS 2,,P7 REGION - SPAIN NUTS 2,GESIS Variable Report,1096,ZA5450
+v575,,P7 REGION - SPAIN NUTS 1,,P7 REGION - SPAIN NUTS 1,GESIS Variable Report,1098,ZA5450
+v576,,P7 REGION - SPAIN NUTS 1 MOD,,P7 REGION - SPAIN NUTS 1 MOD,GESIS Variable Report,1099,ZA5450
+v577,,P7 REGION - PORTUGAL NUTS 2,,P7 REGION - PORTUGAL NUTS 2,GESIS Variable Report,1100,ZA5450
+v578,,P7 REGION - FINLAND NUTS 3,,P7 REGION - FINLAND NUTS 3,GESIS Variable Report,1101,ZA5450
+v579,,P7 REGION - FINLAND NUTS 2,,P7 REGION - FINLAND NUTS 2,GESIS Variable Report,1103,ZA5450
+v580,,P7 REGION - SWEDEN NUTS 2,,P7 REGION - SWEDEN NUTS 2,GESIS Variable Report,1104,ZA5450
+v581,,P7 REGION - SWEDEN NUTS 1,,P7 REGION - SWEDEN NUTS 1,GESIS Variable Report,1105,ZA5450
+v582,,P7 REGION - AUSTRIA NUTS 2,,P7 REGION - AUSTRIA NUTS 2,GESIS Variable Report,1106,ZA5450
+v583,,P7 REGION - AUSTRIA NUTS 1,,P7 REGION - AUSTRIA NUTS 1,GESIS Variable Report,1107,ZA5450
+v584,,P7 REGION - CYPRUS (REPUBLIC),,P7 REGION - CYPRUS (REPUBLIC),GESIS Variable Report,1108,ZA5450
+v585,,P7 REGION - CZECH REPUBLIC NUTS 2,,P7 REGION - CZECH REPUBLIC NUTS 2,GESIS Variable Report,1109,ZA5450
+v586,,P7 REGION - ESTONIA,,P7 REGION - ESTONIA,GESIS Variable Report,1110,ZA5450
+v587,,P7 REGION - HUNGARY NUTS 2,,P7 REGION - HUNGARY NUTS 2,GESIS Variable Report,1111,ZA5450
+v588,,P7 REGION - HUNGARY NUTS 1,,P7 REGION - HUNGARY NUTS 1,GESIS Variable Report,1112,ZA5450
+v589,,P7 REGION - LATVIA NUTS 3,,P7 REGION - LATVIA NUTS 3,GESIS Variable Report,1113,ZA5450
+v590,,P7 REGION - LITHUANIA NUTS 3,,P7 REGION - LITHUANIA NUTS 3,GESIS Variable Report,1114,ZA5450
+v591,,P7 REGION - POLAND NUTS 2,,P7 REGION - POLAND NUTS 2,GESIS Variable Report,1115,ZA5450
+v592,,P7 REGION - POLAND NUTS 1,,P7 REGION - POLAND NUTS 1,GESIS Variable Report,1117,ZA5450
+v593,,P7 REGION - SLOVAKIA NUTS 2,,P7 REGION - SLOVAKIA NUTS 2,GESIS Variable Report,1118,ZA5450
+v594,,P7 REGION - SLOVENIA NUTS 3,,P7 REGION - SLOVENIA NUTS 3,GESIS Variable Report,1119,ZA5450
+v595,,P7 REGION - SLOVENIA NUTS 2,,P7 REGION - SLOVENIA NUTS 2,GESIS Variable Report,1120,ZA5450
+v596,,P7 REGION - BULGARIA NUTS 3,,P7 REGION - BULGARIA NUTS 3,GESIS Variable Report,1121,ZA5450
+v597,,P7 REGION - BULGARIA NUTS 2,,P7 REGION - BULGARIA NUTS 2,GESIS Variable Report,1123,ZA5450
+v598,,P7 REGION - ROMANIA NUTS 2,,P7 REGION - ROMANIA NUTS 2,GESIS Variable Report,1124,ZA5450
+v599,,P7 REGION - ROMANIA NUTS 1,,P7 REGION - ROMANIA NUTS 1,GESIS Variable Report,1125,ZA5450
+v601,page 1108,REGION - NUTS LEVEL,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1135,ZA5450
+v602,v602,P13 LANGUAGE OF INTERVIEW - BELGIUM,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1137,ZA5450
+v603,v603,P13 LANGUAGE OF INTERVIEW - LUXEMBOURG,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1138,ZA5450
+v604,v604,P13 LANGUAGE OF INTERVIEW - SPAIN,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1139,ZA5450
+v605,v605,P13 LANGUAGE OF INTERVIEW - FINLAND,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1140,ZA5450
+v606,v606,P13 LANGUAGE OF INTERVIEW - ESTONIA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1141,ZA5450
+v607,v607,P13 LANGUAGE OF INTERVIEW - LATVIA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1142,ZA5450
+v608,v608,P13 LANGUAGE OF INTERVIEW - MALTA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1143,ZA5450
+v609,page 1117,C14 RESPONDENT OCCUPATION SCALE,Eurobarometer 74.3 - November-December 2010,Eurobarometer 74.3 - November-December 2010,GESIS Variable Report,1144,ZA5450

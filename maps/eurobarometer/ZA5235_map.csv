@@ -1,0 +1,479 @@
+variable,question_number,variable_label,question_text,question_text_filled,source,source_page,za_id
+v4,v4,EUROBAROMETER NUMBER,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,31,ZA5235
+v6,,NATION - ALL SAMPLES,,NATION - ALL SAMPLES,GESIS Variable Report,33,ZA5235
+v9,page 10,NATION - UNITED KINGDOM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,37,ZA5235
+v11,page 13,NATION - UNITED GERMANY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,40,ZA5235
+v13,page 16,NATION GROUP EU6,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,43,ZA5235
+v15,page 19,NATION GROUP EU9,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,46,ZA5235
+v17,page 22,NATION GROUP EU10,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,49,ZA5235
+v19,page 25,NATION GROUP EU12,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,52,ZA5235
+v21,page 28,NATION GROUP EU12+,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,55,ZA5235
+v23,page 31,NATION GROUP EU NMS 3,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,58,ZA5235
+v25,page 34,NATION GROUP EU15,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,61,ZA5235
+v27,page 37,NATION GROUP EU NMS 10,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,64,ZA5235
+v29,page 40,NATION GROUP EU25,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,67,ZA5235
+v31,page 43,NATION GROUP AC (BG RO),Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,70,ZA5235
+v33,page 46,NATION GROUP EU27,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,73,ZA5235
+v35,page 49,NATION GROUP EU NMS 12,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,76,ZA5235
+v37,page 52,NATION GROUP EURO ZONE 2009,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,79,ZA5235
+v39,page 55,NATION GROUP NON EURO ZONE 2009,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,82,ZA5235
+v42,page 59,Q1 NATIONALITY BELGIUM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,86,ZA5235
+v43,page 61,Q1 NATIONALITY DENMARK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,88,ZA5235
+v44,page 63,Q1 NATIONALITY GERMANY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,90,ZA5235
+v45,page 65,Q1 NATIONALITY GREECE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,92,ZA5235
+v46,page 67,Q1 NATIONALITY SPAIN,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,94,ZA5235
+v47,page 69,Q1 NATIONALITY FRANCE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,96,ZA5235
+v48,page 71,Q1 NATIONALITY IRELAND,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,98,ZA5235
+v49,page 73,Q1 NATIONALITY ITALY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,100,ZA5235
+v50,page 75,Q1 NATIONALITY LUXEMBOURG,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,102,ZA5235
+v51,page 77,Q1 NATIONALITY NETHERLANDS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,104,ZA5235
+v52,page 79,Q1 NATIONALITY PORTUGAL,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,106,ZA5235
+v53,page 81,Q1 NATIONALITY UNITED KINGDOM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,108,ZA5235
+v54,page 83,Q1 NATIONALITY AUSTRIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,110,ZA5235
+v55,page 85,Q1 NATIONALITY SWEDEN,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,112,ZA5235
+v56,page 87,Q1 NATIONALITY FINLAND,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,114,ZA5235
+v57,page 89,Q1 NATIONALITY CYPRUS (REPUBLIC),Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,116,ZA5235
+v58,page 91,Q1 NATIONALITY CZECH REPUBLIC,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,118,ZA5235
+v59,page 93,Q1 NATIONALITY ESTONIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,120,ZA5235
+v60,page 95,Q1 NATIONALITY HUNGARY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,122,ZA5235
+v61,page 97,Q1 NATIONALITY LATVIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,124,ZA5235
+v62,page 99,Q1 NATIONALITY LITHUANIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,126,ZA5235
+v63,page 101,Q1 NATIONALITY MALTA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,128,ZA5235
+v64,page 103,Q1 NATIONALITY POLAND,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,130,ZA5235
+v65,page 105,Q1 NATIONALITY SLOVAKIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,132,ZA5235
+v66,page 107,Q1 NATIONALITY SLOVENIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,134,ZA5235
+v67,page 109,Q1 NATIONALITY BULGARIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,136,ZA5235
+v68,page 111,Q1 NATIONALITY ROMANIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,138,ZA5235
+v69,page 113,Q1 NATIONALITY OTHER COUNTRIES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,140,ZA5235
+v70,page 115,QA1 LIFE SATISFACTION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,142,ZA5235
+v71,page 117,QA2 SITUATION: AREA YOU LIVE IN,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,144,ZA5235
+v72,page 119,QA2 SITUATION: HEALTHCARE PROVISION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,146,ZA5235
+v73,page 121,QA2 SITUATION: PROVISION OF PENSIONS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,148,ZA5235
+v74,page 123,QA2 SITUATION: UNEMPLOYMENT BENEFITS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,150,ZA5235
+v75,page 125,QA2 SITUATION: COST OF LIVING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,152,ZA5235
+v76,page 127,QA2 SITUATION: CROSS-CULTURAL RELATIONS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,154,ZA5235
+v77,page 129,QA2 SITUATION: WAY ADDRESSING POVERTY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,156,ZA5235
+v78,page 131,QA2 SITUATION: AFFORDABILITY OF ENERGY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,158,ZA5235
+v79,page 133,QA2 SITUATION: AFFORDABILITY OF HOUSING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,160,ZA5235
+v80,page 135,QA2 SITUATION: PUBLIC ADMINISTRATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,162,ZA5235
+v81,page 137,QA2 SITUATION: ECONOMIC SITUATION CNTRY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,164,ZA5235
+v82,page 139,QA2 SITUATION: PERSONAL JOB SITUATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,166,ZA5235
+v83,page 141,QA2 SITUATION: FINANCIAL SITUATION HH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,168,ZA5235
+v84,page 143,QA2 SITUATION: EMPLOYMENT SITUATION CNTRY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,170,ZA5235
+v85,page 145,QA3 EXPECTATIONS: LIFE IN GENERAL,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,172,ZA5235
+v86,page 147,QA3 EXPECTATIONS: AREA YOU LIVE IN,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,174,ZA5235
+v87,page 149,QA3 EXPECTATIONS: HEALTHCARE SYSTEM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,176,ZA5235
+v88,page 151,QA3 EXPECTATIONS: PROVISION OF PENSIONS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,178,ZA5235
+v89,page 153,QA3 EXPECTATIONS: UNEMPLOYMENT BENEFITS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,180,ZA5235
+v90,page 155,QA3 EXPECTATIONS: COST OF LIVING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,182,ZA5235
+v91,page 157,QA3 EXPECTATIONS: CROSS-CULTURAL RELATIONS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,184,ZA5235
+v92,page 159,QA3 EXPECTATIONS: WAY ADDRESSING POVERTY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,186,ZA5235
+v93,page 161,QA3 EXPECTATIONS: AFFORDABILITY OF ENERGY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,188,ZA5235
+v94,page 163,QA3 EXPECTATIONS: AFFORDABILITY OF HOUSING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,190,ZA5235
+v95,page 165,QA3 EXPECTATIONS: PUBLIC ADMINISTRATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,192,ZA5235
+v96,page 167,QA3 EXPECTATIONS: ECONOMIC SITUATION CNTRY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,194,ZA5235
+v97,page 169,QA3 EXPECTATIONS: PERSONAL JOB SITUATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,196,ZA5235
+v98,page 171,QA3 EXPECTATIONS: FINANCIAL SITUATION HH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,198,ZA5235
+v99,page 173,QA3 EXPECTATIONS: EMPLOYMENT SITUATION CNTRY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,200,ZA5235
+v100,page 175,QA4 CHANGE 5 YRS: LIFE IN GENERAL,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,202,ZA5235
+v101,page 177,QA4 CHANGE 5 YRS: AREA YOU LIVE IN,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,204,ZA5235
+v102,page 179,QA4 CHANGE 5 YRS: HEALTHCARE SYSTEM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,206,ZA5235
+v103,page 181,QA4 CHANGE 5 YRS: PROVISION OF PENSIONS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,208,ZA5235
+v104,page 183,QA4 CHANGE 5 YRS: UNEMPLOYMENT BENEFITS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,210,ZA5235
+v105,page 185,QA4 CHANGE 5 YRS: COST OF LIVING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,212,ZA5235
+v106,page 187,QA4 CHANGE 5 YRS: CROSS-CULTURAL RELATIONS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,214,ZA5235
+v107,page 189,QA4 CHANGE 5 YRS: WAY ADDRESSING POVERTY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,216,ZA5235
+v108,page 191,QA4 CHANGE 5 YRS: AFFORDABILITY OF ENERGY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,218,ZA5235
+v109,page 193,QA4 CHANGE 5 YRS: AFFORDABILITY OF HOUSING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,220,ZA5235
+v110,page 195,QA4 CHANGE 5 YRS: PUBLIC ADMINISTRATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,222,ZA5235
+v111,page 197,QA4 CHANGE 5 YRS: ECONOMIC SITUATION CNTRY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,224,ZA5235
+v112,page 199,QA4 CHANGE 5 YRS: PERSONAL JOB SITUATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,226,ZA5235
+v113,page 201,QA4 CHANGE 5 YRS: FINANCIAL SITUATION HH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,228,ZA5235
+v114,page 203,QA4 CHANGE 5 YRS: EMPLOYMENT SITUATION CNTRY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,230,ZA5235
+v115,page 205,QB1 EU PRIORITIES: AGEING POPULATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,232,ZA5235
+v116,page 207,QB1 EU PRIORITIES: UNEMPLOYMENT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,234,ZA5235
+v117,page 209,QB1 EU PRIORITIES: POVERTY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,236,ZA5235
+v118,page 211,QB1 EU PRIORITIES: EQUAL OPPORTUNITIES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,238,ZA5235
+v119,page 213,QB1 EU PRIORITIES: INTEGRATION OF MINORITIES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,240,ZA5235
+v120,page 215,QB1 EU PRIORITIES: HEALTH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,242,ZA5235
+v121,page 217,QB1 EU PRIORITIES: CLIMATE CHANGE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,244,ZA5235
+v122,page 219,QB1 EU PRIORITIES: CRIME,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,246,ZA5235
+v123,page 221,QB1 EU PRIORITIES: EDUCATION AND TRAINING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,248,ZA5235
+v124,page 223,QB1 EU PRIORITIES: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,250,ZA5235
+v125,page 225,QB1 EU PRIORITIES: NONE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,252,ZA5235
+v126,page 227,QB1 EU PRIORITIES: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,254,ZA5235
+v127,page 229,QB2 EU SOCIAL ISSUES: EDUCATION AND TRAINING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,256,ZA5235
+v128,page 231,QB2 EU SOCIAL ISSUES: HEALTHCARE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,258,ZA5235
+v129,page 233,QB2 EU SOCIAL ISSUES: ENTREPRENEURSHIP,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,260,ZA5235
+v130,page 235,QB2 EU SOCIAL ISSUES: JOB CREATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,262,ZA5235
+v131,page 237,QB2 EU SOCIAL ISSUES: SOCIAL SECURITY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,264,ZA5235
+v132,page 239,QB2 EU SOCIAL ISSUES: CULTURE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,266,ZA5235
+v133,page 241,QB2 EU SOCIAL ISSUES: FIGHTING DISCRIMINATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,268,ZA5235
+v134,page 243,QB2 EU SOCIAL ISSUES: EFF PUBL ADMINSTRATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,270,ZA5235
+v135,page 245,QB2 EU SOCIAL ISSUES: RESEARCH AND INNOVATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,272,ZA5235
+v136,page 247,QB2 EU SOCIAL ISSUES: INTEGRATION OF EXCLUDED,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,274,ZA5235
+v137,page 249,QB2 EU SOCIAL ISSUES: ACCESS TO EMPLOYMENT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,276,ZA5235
+v138,page 251,QB2 EU SOCIAL ISSUES: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,278,ZA5235
+v139,page 253,QB2 EU SOCIAL ISSUES: NONE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,280,ZA5235
+v140,page 255,QB2 EU SOCIAL ISSUES: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,282,ZA5235
+v141,page 257,QB3 EU SOCIAL ISSUES - FOCUS PREFERENCE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,284,ZA5235
+v142,page 259,QB4 EU SOCIAL FUND ESF - AWARENESS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,286,ZA5235
+v143,,QC1 CIV JUSTICE EU - BEEN INVOLVED,,QC1 CIV JUSTICE EU - BEEN INVOLVED,GESIS Variable Report,288,ZA5235
+v144,,QC1 CIV JUSTICE NON-EU - BEEN INVOLVED,,QC1 CIV JUSTICE NON-EU - BEEN INVOLVED,GESIS Variable Report,290,ZA5235
+v145,page 265,QC2 CIV JUSTICE ACCESS - IN OTHER EU CTR,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,292,ZA5235
+v146,page 267,QC3 CIV JUSTICE ACCESS - HELP MEASURES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,294,ZA5235
+v147,,QC4 LEGAL PROCEEDINGS ABROAD - MATTER,,QC4 LEGAL PROCEEDINGS ABROAD - MATTER,GESIS Variable Report,296,ZA5235
+v148,,QC5 LEGAL PROCEEDINGS ABROAD - NON-EU COUNTRY,,QC5 LEGAL PROCEEDINGS ABROAD - NON-EU COUNTRY,GESIS Variable Report,298,ZA5235
+v149,,QC6A CIV JUSTICE ACCESS - CONCERN IN EU (1ST),,QC6A CIV JUSTICE ACCESS - CONCERN IN EU (1ST),GESIS Variable Report,301,ZA5235
+v150,,QC6B CIV JUSTICE ACCESS - CONCERN IN EU (2ND),,QC6B CIV JUSTICE ACCESS - CONCERN IN EU (2ND),GESIS Variable Report,304,ZA5235
+v151,page 280,QC6AB CIV JUSTICE ACCESS CONCERN: RULES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,307,ZA5235
+v152,page 282,QC6AB CIV JUSTICE ACCESS CONCERN: PROCEDURES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,309,ZA5235
+v153,page 284,QC6AB CIV JUSTICE ACCESS CONCERN: COSTS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,311,ZA5235
+v154,page 286,QC6AB CIV JUSTICE ACCESS CONCERN: TRUST,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,313,ZA5235
+v155,page 288,QC6AB CIV JUSTICE ACCESS CONCERN: LENGTH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,315,ZA5235
+v156,page 290,QC6AB CIV JUSTICE ACCESS CONCERN: LANGUAGE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,317,ZA5235
+v157,page 292,QC6AB CIV JUSTICE ACCESS CONCERN: DISTANCE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,319,ZA5235
+v158,page 294,QC6AB CIV JUSTICE ACCESS CONCERN: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,321,ZA5235
+v159,page 296,QC6AB CIV JUSTICE ACCESS CONCERN: NONE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,323,ZA5235
+v160,page 298,QC6AB CIV JUSTICE ACCESS CONCERN: DK (QC6A ONLY),Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,325,ZA5235
+v161,,QC7A LEGAL DECISION ENFORCEMENT EU - CONCERN (1ST),,QC7A LEGAL DECISION ENFORCEMENT EU - CONCERN (1ST),GESIS Variable Report,327,ZA5235
+v162,,QC7B LEGAL DECISION ENFORCEMENT EU - CONCERN (2ND),,QC7B LEGAL DECISION ENFORCEMENT EU - CONCERN (2ND),GESIS Variable Report,329,ZA5235
+v163,page 304,QC7AB LEGAL DECISION ENFORCEMENT CONCERN: AUTHORITY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,331,ZA5235
+v164,page 306,QC7AB LEGAL DECISION ENFORCEMENT CONCERN: NOTIFYING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,333,ZA5235
+v165,page 308,QC7AB LEGAL DECISION ENFORCEMENT CONCERN: LANGUAGE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,335,ZA5235
+v166,page 310,QC7AB LEGAL DECISION ENFORCEMENT CONCERN: COSTS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,337,ZA5235
+v167,page 312,QC7AB LEGAL DECISION ENFORCEMENT CONCERN: LENGTH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,339,ZA5235
+v168,page 314,QC7AB LEGAL DECISION ENFORCEMENT CONCERN: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,341,ZA5235
+v169,page 316,QC7AB LEGAL DECISION ENFORCEMENT CONCERN: NONE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,343,ZA5235
+v170,page 318,QC7AB LEGAL DECISION ENFORCEMENT CONCERN: DK (QC7A ONLY),Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,345,ZA5235
+v171,page 320,QC8 LEGAL DECISION ENFORCEMENT - PROCEDURE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,347,ZA5235
+v172,page 322,QC9 LEGAL DECISION ENFORCEMENT - EU MEASURES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,349,ZA5235
+v173,page 324,QC10 EU SMALL CLAIMS PROCEDURE - AWARENESS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,351,ZA5235
+v174,page 326,QC11 EU SMALL CLAIMS PROC INFO SRC: LAWYER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,353,ZA5235
+v175,page 328,QC11 EU SMALL CLAIMS PROC INFO SRC: INTERNET,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,355,ZA5235
+v176,page 330,QC11 EU SMALL CLAIMS PROC INFO SRC: NEWSP MAG,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,357,ZA5235
+v177,page 332,QC11 EU SMALL CLAIMS PROC INFO SRC: TELEVISON,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,359,ZA5235
+v178,page 334,QC11 EU SMALL CLAIMS PROC INFO SRC: RADIO,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,361,ZA5235
+v179,page 336,QC11 EU SMALL CLAIMS PROC INFO SRC: BROCHURES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,363,ZA5235
+v180,page 338,QC11 EU SMALL CLAIMS PROC INFO SRC: DISCUSSION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,365,ZA5235
+v181,page 340,QC11 EU SMALL CLAIMS PROC INFO SRC: EU OFFICE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,367,ZA5235
+v182,page 342,QC11 EU SMALL CLAIMS PROC INFO SRC: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,369,ZA5235
+v183,page 344,QC11 EU SMALL CLAIMS PROC INFO SRC: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,371,ZA5235
+v184,page 346,QC12 EUROPEAN PAYMENT ORDER - AWARENESS AND USE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,373,ZA5235
+v185,page 348,QC13 EUROP PAYMENT ORDER INFO SRC: LAWYER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,375,ZA5235
+v186,page 350,QC13 EUROP PAYMENT ORDER INFO SRC: INTERNET,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,377,ZA5235
+v187,page 352,QC13 EUROP PAYMENT ORDER INFO SRC: NEWSP MAG,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,379,ZA5235
+v188,page 354,QC13 EUROP PAYMENT ORDER INFO SRC: TELEVISION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,381,ZA5235
+v189,page 356,QC13 EUROP PAYMENT ORDER INFO SRC: RADIO,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,383,ZA5235
+v190,page 358,QC13 EUROP PAYMENT ORDER INFO SRC: BROCHURES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,385,ZA5235
+v191,page 360,QC13 EUROP PAYMENT ORDER INFO SRC: DISCUSSION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,387,ZA5235
+v192,page 362,QC13 EUROP PAYMENT ORDER INFO SRC: EU OFFICE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,389,ZA5235
+v193,page 364,QC13 EUROP PAYMENT ORDER INFO SRC: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,391,ZA5235
+v194,page 366,QC13 EUROP PAYMENT ORDER INFO SRC: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,393,ZA5235
+v195,page 368,QC14 LEGAL AID EU STANDARD - AWARENESS AND USE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,395,ZA5235
+v196,page 370,QC10/12/14 CIVIL JUSTICE EU PROCED - AWARENESS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,397,ZA5235
+v197,page 372,QC15 LEGAL AID EU STANDARD INFO SRC: LAWYER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,399,ZA5235
+v198,page 374,QC15 LEGAL AID EU STANDARD INFO SRC: INTERNET,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,401,ZA5235
+v199,page 376,QC15 LEGAL AID EU STANDARD INFO SRC: NEWSP MAG,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,403,ZA5235
+v200,page 378,QC15 LEGAL AID EU STANDARD INFO SRC: TELEVISION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,405,ZA5235
+v201,page 380,QC15 LEGAL AID EU STANDARD INFO SRC: RADIO,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,407,ZA5235
+v202,page 382,QC15 LEGAL AID EU STANDARD INFO SRC: BROCHURES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,409,ZA5235
+v203,page 384,QC15 LEGAL AID EU STANDARD INFO SRC: DISCUSSION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,411,ZA5235
+v204,page 386,QC15 LEGAL AID EU STANDARD INFO SRC: EU OFFICE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,413,ZA5235
+v205,page 388,QC15 LEGAL AID EU STANDARD INFO SRC: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,415,ZA5235
+v206,page 390,QC15 LEGAL AID EU STANDARD INFO SRC: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,417,ZA5235
+v207,page 392,QC16 CROSS-BORDER FAMILY LAW - DIVORCE RULES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,419,ZA5235
+v208,page 394,QC16 CROSS-BORDER FAMILY LAW - MARRIAGE FINANCES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,421,ZA5235
+v209,page 396,QC16 CROSS-BORDER FAMILY LAW - COUPLE FINANCES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,423,ZA5235
+v210,page 398,QC17 CROSS-BORDER VALIDITY OF DIVORCE AGREEMENTS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,425,ZA5235
+v211,page 400,QC18 FAMILY DOCUMENTS SHOWN IN EU: NEVER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,427,ZA5235
+v212,page 402,QC18 FAMILY DOCUMENTS SHOWN IN EU: BIRTH CERT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,429,ZA5235
+v213,page 404,QC18 FAMILY DOCUMENTS SHOWN IN EU: MARRIAGE CERT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,431,ZA5235
+v214,page 406,QC18 FAMILY DOCUMENTS SHOWN IN EU: DEATH CERT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,433,ZA5235
+v215,page 408,QC18 FAMILY DOCUMENTS SHOWN IN EU: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,435,ZA5235
+v216,page 410,QC18 FAMILY DOCUMENTS SHOWN IN EU: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,437,ZA5235
+v217,,QC19 FAMILY DOC FORMALITY IN EU: NONE,,QC19 FAMILY DOC FORMALITY IN EU: NONE,GESIS Variable Report,439,ZA5235
+v218,,QC19 FAMILY DOC FORMALITY IN EU: TRANSLATION,,QC19 FAMILY DOC FORMALITY IN EU: TRANSLATION,GESIS Variable Report,441,ZA5235
+v219,,QC19 FAMILY DOC FORMALITY IN EU: LEGALISATION,,QC19 FAMILY DOC FORMALITY IN EU: LEGALISATION,GESIS Variable Report,443,ZA5235
+v220,,QC19 FAMILY DOC FORMALITY IN EU: APOSTILLA,,QC19 FAMILY DOC FORMALITY IN EU: APOSTILLA,GESIS Variable Report,445,ZA5235
+v221,,QC19 FAMILY DOC FORMALITY IN EU: CERTIFICATION,,QC19 FAMILY DOC FORMALITY IN EU: CERTIFICATION,GESIS Variable Report,447,ZA5235
+v222,,QC19 FAMILY DOC FORMALITY IN EU: OTHER,,QC19 FAMILY DOC FORMALITY IN EU: OTHER,GESIS Variable Report,449,ZA5235
+v223,,QC19 FAMILY DOC FORMALITY IN EU: DK,,QC19 FAMILY DOC FORMALITY IN EU: DK,GESIS Variable Report,451,ZA5235
+v224,page 426,QC20 CIV STATUS CERTIF RECOG - ADD MEASURES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,453,ZA5235
+v225,page 428,QC21 CIV STATUS CERTIF RECOG: AUTOMATIC,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,455,ZA5235
+v226,page 430,QC21 CIV STATUS CERTIF RECOG: STANDARD FORMATS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,457,ZA5235
+v227,page 432,QC21 CIV STATUS CERTIF RECOG: TRANSLAT MECHANISMS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,459,ZA5235
+v228,page 434,QC22 ADOPTION DECISION RECOG - ADD MEASURES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,461,ZA5235
+v229,page 435,QD1 DEVELOPMENT CHALLENGES: ECONOMIC CRISIS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,462,ZA5235
+v230,page 437,QD1 DEVELOPMENT CHALLENGES: FOOD,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,464,ZA5235
+v231,page 439,QD1 DEVELOPMENT CHALLENGES: WATER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,466,ZA5235
+v232,page 441,QD1 DEVELOPMENT CHALLENGES: POVERTY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,468,ZA5235
+v233,page 443,QD1 DEVELOPMENT CHALLENGES: HEALTH ISSUES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,470,ZA5235
+v234,page 445,QD1 DEVELOPMENT CHALLENGES: EDUCATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,472,ZA5235
+v235,page 447,QD1 DEVELOPMENT CHALLENGES: ENERGY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,474,ZA5235
+v236,page 449,QD1 DEVELOPMENT CHALLENGES: CLIMATE CHANGE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,476,ZA5235
+v237,page 451,QD1 DEVELOPMENT CHALLENGES: MIGRATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,478,ZA5235
+v238,page 453,QD1 DEVELOPMENT CHALLENGES: POOR GOVERNANCE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,480,ZA5235
+v239,page 455,QD1 DEVELOPMENT CHALLENGES: CIVIL CONFLICT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,482,ZA5235
+v240,page 457,QD1 DEVELOPMENT CHALLENGES: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,484,ZA5235
+v241,page 459,QD1 DEVELOPMENT CHALLENGES: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,486,ZA5235
+v242,page 461,QD2 DEVELOPMENT AID - IMPORTANCE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,488,ZA5235
+v243,,QD3 DEVELOPMENT AID - PERSONAL RELATION,,QD3 DEVELOPMENT AID - PERSONAL RELATION,GESIS Variable Report,490,ZA5235
+v244,,QD4 DEVELOPMENT AID - BEST PLACED ACTORS,,QD4 DEVELOPMENT AID - BEST PLACED ACTORS,GESIS Variable Report,492,ZA5235
+v245,page 467,QD5 DEVELOPMENT AID - EU AND THE ECONOMIC CRISIS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,494,ZA5235
+v246,page 469,QD6 DEVELOPMENT AID - EU COOPERATION ADDED VALUE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,496,ZA5235
+v247,page 471,QD7 EU POL POSITIVE DEVELOPM IMPACT: CLIMATE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,498,ZA5235
+v248,page 473,QD7 EU POL POSITIVE DEVELOPM IMPACT: MIGRATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,500,ZA5235
+v249,page 475,QD7 EU POL POSITIVE DEVELOPM IMPACT: TRADE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,502,ZA5235
+v250,page 477,QD7 EU POL POSITIVE DEVELOPM IMPACT: ENERGY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,504,ZA5235
+v251,page 479,QD7 EU POL POSITIVE DEVELOPM IMPACT: ENVIRONMENT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,506,ZA5235
+v252,page 481,QD7 EU POL POSITIVE DEVELOPM IMPACT: TRANSPORT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,508,ZA5235
+v253,page 483,QD7 EU POL POSITIVE DEVELOPM IMPACT: AGRICULTURE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,510,ZA5235
+v254,page 485,QD7 EU POL POSITIVE DEVELOPM IMPACT: PEACE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,512,ZA5235
+v255,page 487,QD7 EU POL POSITIVE DEVELOPM IMPACT: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,514,ZA5235
+v256,page 489,QD7 EU POL POSITIVE DEVELOPM IMPACT: NONE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,516,ZA5235
+v257,page 491,QD7 EU POL POSITIVE DEVELOPM IMPACT: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,518,ZA5235
+v258,page 493,QE1 AFRICA EU PARTNERSHIP - FUTURE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,520,ZA5235
+v259,page 495,QE2 AFRICA EU COOP AREAS: PEACE SECURITY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,522,ZA5235
+v260,page 497,QE2 AFRICA EU COOP AREAS: DEMOCRACY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,524,ZA5235
+v261,page 499,QE2 AFRICA EU COOP AREAS: HUMAN RIGHTS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,526,ZA5235
+v262,page 501,QE2 AFRICA EU COOP AREAS: TRADE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,528,ZA5235
+v263,page 503,QE2 AFRICA EU COOP AREAS: INFRASTRUCTURE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,530,ZA5235
+v264,page 505,QE2 AFRICA EU COOP AREAS: TACKLING POVERTY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,532,ZA5235
+v265,page 507,QE2 AFRICA EU COOP AREAS: ENERGY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,534,ZA5235
+v266,page 509,QE2 AFRICA EU COOP AREAS: ENVIRONMENT PROT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,536,ZA5235
+v267,page 511,QE2 AFRICA EU COOP AREAS: CLIMATE CHANGE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,538,ZA5235
+v268,page 513,QE2 AFRICA EU COOP AREAS: MIGRATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,540,ZA5235
+v269,page 515,QE2 AFRICA EU COOP AREAS: EMPLOYMENT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,542,ZA5235
+v270,page 517,QE2 AFRICA EU COOP AREAS: SCIENCE TECHNOLOGY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,544,ZA5235
+v271,page 519,QE2 AFRICA EU COOP AREAS: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,546,ZA5235
+v272,page 521,QE2 AFRICA EU COOP AREAS: NONE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,548,ZA5235
+v273,page 523,QE2 AFRICA EU COOP AREAS: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,550,ZA5235
+v274,page 525,QE3 AFRICA IMP PROBLEMS: POVERTY HUNGER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,552,ZA5235
+v275,page 527,QE3 AFRICA IMP PROBLEMS: CORRUPTION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,554,ZA5235
+v276,page 529,QE3 AFRICA IMP PROBLEMS: TRADE BARRIERS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,556,ZA5235
+v277,page 531,QE3 AFRICA IMP PROBLEMS: POOR INFRASTRUCTURE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,558,ZA5235
+v278,page 533,QE3 AFRICA IMP PROBLEMS: EXPLOIT BY MULTI-NAT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,560,ZA5235
+v279,page 535,QE3 AFRICA IMP PROBLEMS: POPULATION GROWTH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,562,ZA5235
+v280,page 537,QE3 AFRICA IMP PROBLEMS: UNSEC BUSINESS ENV,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,564,ZA5235
+v281,page 539,QE3 AFRICA IMP PROBLEMS: ENVIRONMENT DEGRAD,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,566,ZA5235
+v282,page 541,QE3 AFRICA IMP PROBLEMS: INTERNAL CONFLICTS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,568,ZA5235
+v283,page 543,QE3 AFRICA IMP PROBLEMS: OTHER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,570,ZA5235
+v284,page 545,QE3 AFRICA IMP PROBLEMS: NONE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,572,ZA5235
+v285,page 547,QE3 AFRICA IMP PROBLEMS: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,574,ZA5235
+v286,,QE4 AFRICA - MOST POSITIVE IMAGE,,QE4 AFRICA - MOST POSITIVE IMAGE,GESIS Variable Report,576,ZA5235
+v287,page 552,QF1 FOOD/EATING: SATISFYING HUNGER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,579,ZA5235
+v288,page 554,QF1 FOOD/EATING: ENJOYING A MEAL,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,581,ZA5235
+v289,page 556,QF1 FOOD/EATING: SELECTING FRESH/TASTY FOODS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,583,ZA5235
+v290,page 558,QF1 FOOD/EATING: LOOKING FOR AFFORDABLE PRICES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,585,ZA5235
+v291,page 560,QF1 FOOD/EATING: CHECKING CALORIES/NUTRIENTS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,587,ZA5235
+v292,page 562,QF1 FOOD/EATING: CONCERN ABOUT FOOD SAFETY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,589,ZA5235
+v293,page 564,QF2 RISK LIKELIHOOD: VICTIM OF CRIME,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,591,ZA5235
+v294,page 566,QF2 RISK LIKELIHOOD: FOOD DAMAGING HEALTH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,593,ZA5235
+v295,page 568,QF2 RISK LIKELIHOOD: ENVIRONMENTAL POLLUTION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,595,ZA5235
+v296,page 570,QF2 RISK LIKELIHOOD: ECONOMIC CRISIS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,597,ZA5235
+v297,page 572,QF2 RISK LIKELIHOOD: INJURED IN CAR ACCIDENT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,599,ZA5235
+v298,page 574,QF2 RISK LIKELIHOOD: SERIOUS ILLNESS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,601,ZA5235
+v299,,QF3 FOOD RISKS: POISONING/BACTERIA,,QF3 FOOD RISKS: POISONING/BACTERIA,GESIS Variable Report,603,ZA5235
+v300,,QF3 FOOD RISKS: NEW VIRUSES/DISEASES,,QF3 FOOD RISKS: NEW VIRUSES/DISEASES,GESIS Variable Report,605,ZA5235
+v301,,QF3 FOOD RISKS: BSE,,QF3 FOOD RISKS: BSE,GESIS Variable Report,607,ZA5235
+v302,,QF3 FOOD RISKS: CHEMICALS/PESTICIDES/TOXICS,,QF3 FOOD RISKS: CHEMICALS/PESTICIDES/TOXICS,GESIS Variable Report,609,ZA5235
+v303,,QF3 FOOD RISKS: GENETICALLY MOD ORGANISMS,,QF3 FOOD RISKS: GENETICALLY MOD ORGANISMS,GESIS Variable Report,611,ZA5235
+v304,,QF3 FOOD RISKS: TRACEABILITY OF PRODUCTS,,QF3 FOOD RISKS: TRACEABILITY OF PRODUCTS,GESIS Variable Report,613,ZA5235
+v305,,QF3 FOOD RISKS: ADDITIVES/PRESERVATIVES,,QF3 FOOD RISKS: ADDITIVES/PRESERVATIVES,GESIS Variable Report,615,ZA5235
+v306,,QF3 FOOD RISKS: NOT NATURAL/INDUSTRIAL,,QF3 FOOD RISKS: NOT NATURAL/INDUSTRIAL,GESIS Variable Report,617,ZA5235
+v307,,QF3 FOOD RISKS: LACK OF FRESHNESS,,QF3 FOOD RISKS: LACK OF FRESHNESS,GESIS Variable Report,619,ZA5235
+v308,,QF3 FOOD RISKS: LACK OF HYGIENE,,QF3 FOOD RISKS: LACK OF HYGIENE,GESIS Variable Report,621,ZA5235
+v309,,QF3 FOOD RISKS: POOR QUALITY,,QF3 FOOD RISKS: POOR QUALITY,GESIS Variable Report,623,ZA5235
+v310,,QF3 FOOD RISKS: ALLERGIES,,QF3 FOOD RISKS: ALLERGIES,GESIS Variable Report,625,ZA5235
+v311,,QF3 FOOD RISKS: OBESITY/OVERWEIGHT,,QF3 FOOD RISKS: OBESITY/OVERWEIGHT,GESIS Variable Report,627,ZA5235
+v312,,QF3 FOOD RISKS: UNBALANCED DIET/FAT/SUGAR,,QF3 FOOD RISKS: UNBALANCED DIET/FAT/SUGAR,GESIS Variable Report,629,ZA5235
+v313,,QF3 FOOD RISKS: DIET-RELATED DISEASES,,QF3 FOOD RISKS: DIET-RELATED DISEASES,GESIS Variable Report,631,ZA5235
+v314,,QF3 FOOD RISKS: ANOREXIA/BULIMIA,,QF3 FOOD RISKS: ANOREXIA/BULIMIA,GESIS Variable Report,633,ZA5235
+v315,,QF3 FOOD RISKS: DIGESTIVE PROBLEMS,,QF3 FOOD RISKS: DIGESTIVE PROBLEMS,GESIS Variable Report,635,ZA5235
+v316,,QF3 FOOD RISKS: CANCER,,QF3 FOOD RISKS: CANCER,GESIS Variable Report,637,ZA5235
+v317,,QF3 FOOD RISKS: ENVIRONMENTAL CONCERNS,,QF3 FOOD RISKS: ENVIRONMENTAL CONCERNS,GESIS Variable Report,639,ZA5235
+v318,,QF3 FOOD RISKS: HIGH PRICES,,QF3 FOOD RISKS: HIGH PRICES,GESIS Variable Report,641,ZA5235
+v319,,QF3 FOOD RISKS: POVERTY/HUNGER,,QF3 FOOD RISKS: POVERTY/HUNGER,GESIS Variable Report,643,ZA5235
+v320,,QF3 FOOD RISKS: NEW TECHNOLOGIES,,QF3 FOOD RISKS: NEW TECHNOLOGIES,GESIS Variable Report,645,ZA5235
+v321,,QF3 FOOD RISKS: NO PROBLEM,,QF3 FOOD RISKS: NO PROBLEM,GESIS Variable Report,647,ZA5235
+v322,,QF3 FOOD RISKS: OTHER,,QF3 FOOD RISKS: OTHER,GESIS Variable Report,649,ZA5235
+v323,,QF3 FOOD RISKS: DK,,QF3 FOOD RISKS: DK,GESIS Variable Report,651,ZA5235
+v324,page 626,QF4 FOOD WORRIES: MAD COW DISEASE (BSE),Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,653,ZA5235
+v325,page 628,QF4 FOOD WORRIES: GENETICALLY MOD PRODUCTS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,655,ZA5235
+v326,page 630,QF4 FOOD WORRIES: ALLERGIC REACTION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,657,ZA5235
+v327,page 632,QF4 FOOD WORRIES: ADDITIVES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,659,ZA5235
+v328,page 634,QF4 FOOD WORRIES: POISONING FROM BACTERIA,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,661,ZA5235
+v329,page 636,QF4 FOOD WORRIES: PESTICIDE/RESIDUES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,663,ZA5235
+v330,page 638,QF4 FOOD WORRIES: RESIDUES IN MEAT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,665,ZA5235
+v331,page 640,QF4 FOOD WORRIES: POLLUTANTS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,667,ZA5235
+v332,page 642,QF4 FOOD WORRIES: SUBSTANCES IN PLASTICS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,669,ZA5235
+v333,page 644,QF4 FOOD WORRIES: HEALTHY/BALANCED DIET,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,671,ZA5235
+v334,page 646,QF4 FOOD WORRIES: DIET RELATED DISEASES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,673,ZA5235
+v335,page 648,QF4 FOOD WORRIES: PUTTING ON WEIGHT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,675,ZA5235
+v336,page 650,QF4 FOOD WORRIES: NEW VIRUSES IN ANIMALS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,677,ZA5235
+v337,page 652,QF4 FOOD WORRIES: CLONING ANIMALS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,679,ZA5235
+v338,page 654,QF4 FOOD WORRIES: FARMED ANIMALS WELFARE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,681,ZA5235
+v339,page 656,QF4 FOOD WORRIES: QUALITY AND FRESHNESS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,683,ZA5235
+v340,page 658,QF4 FOOD WORRIES: NANO PARTICLES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,685,ZA5235
+v341,page 660,QF4 FOOD WORRIES - TOTAL SCALE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,687,ZA5235
+v342,,QF5 FOOD RISK INFO TRUST: MEDIA,,QF5 FOOD RISK INFO TRUST: MEDIA,GESIS Variable Report,689,ZA5235
+v343,,QF5 FOOD RISK INFO TRUST: SCIENTISTS,,QF5 FOOD RISK INFO TRUST: SCIENTISTS,GESIS Variable Report,691,ZA5235
+v344,,QF5 FOOD RISK INFO TRUST: FOOD SAFETY AGENCIES,,QF5 FOOD RISK INFO TRUST: FOOD SAFETY AGENCIES,GESIS Variable Report,693,ZA5235
+v345,,QF5 FOOD RISK INFO TRUST: EUROPEAN INSTITUTIONS,,QF5 FOOD RISK INFO TRUST: EUROPEAN INSTITUTIONS,GESIS Variable Report,695,ZA5235
+v346,,QF5 FOOD RISK INFO TRUST: NATIONAL GOVERNMENT,,QF5 FOOD RISK INFO TRUST: NATIONAL GOVERNMENT,GESIS Variable Report,697,ZA5235
+v347,,QF5 FOOD RISK INFO TRUST: CONSUMER ORGANISATIONS,,QF5 FOOD RISK INFO TRUST: CONSUMER ORGANISATIONS,GESIS Variable Report,699,ZA5235
+v348,,QF5 FOOD RISK INFO TRUST: ENVIRONM PROTEC GROUPS,,QF5 FOOD RISK INFO TRUST: ENVIRONM PROTEC GROUPS,GESIS Variable Report,701,ZA5235
+v349,,QF5 FOOD RISK INFO TRUST: FARMERS,,QF5 FOOD RISK INFO TRUST: FARMERS,GESIS Variable Report,703,ZA5235
+v350,,QF5 FOOD RISK INFO TRUST: FOOD MANUFACTURERS,,QF5 FOOD RISK INFO TRUST: FOOD MANUFACTURERS,GESIS Variable Report,705,ZA5235
+v351,,QF5 FOOD RISK INFO TRUST: SUPERMARKETS/SHOPS,,QF5 FOOD RISK INFO TRUST: SUPERMARKETS/SHOPS,GESIS Variable Report,707,ZA5235
+v352,,QF5 FOOD RISK INFO TRUST: HEALTH PROFESSIONALS,,QF5 FOOD RISK INFO TRUST: HEALTH PROFESSIONALS,GESIS Variable Report,709,ZA5235
+v353,,QF5 FOOD RISK INFO TRUST: FAMILY/FRIENDS,,QF5 FOOD RISK INFO TRUST: FAMILY/FRIENDS,GESIS Variable Report,711,ZA5235
+v354,,QF5 FOOD RISK INFO TRUST: INTERNET,,QF5 FOOD RISK INFO TRUST: INTERNET,GESIS Variable Report,713,ZA5235
+v355,page 688,QF6 FOOD SAFETY: TODAY SAFER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,715,ZA5235
+v356,page 690,QF6 FOOD SAFETY: EU PRODUCTS SAFER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,717,ZA5235
+v357,page 692,QF6 FOOD SAFETY: STRICT EU LAWS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,719,ZA5235
+v358,page 694,QF6 FOOD SAFETY: PUBL AUTH ACT QUICKLY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,721,ZA5235
+v359,page 696,QF6 FOOD SAFETY: PUBL AUTH PRIORITIZE HEALTH,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,723,ZA5235
+v360,page 698,QF6 FOOD SAFETY: PUBL AUTH SHOULD DO MORE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,725,ZA5235
+v361,,QF6 FOOD SAFETY: PUBL AUTH SCIENTIFIC EVIDENCE,,QF6 FOOD SAFETY: PUBL AUTH SCIENTIFIC EVIDENCE,GESIS Variable Report,727,ZA5235
+v362,page 702,QF6 FOOD SAFETY: PUBL AUTH GOOD INFORMATION JOB,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,729,ZA5235
+v363,page 704,QF6 FOOD SAFETY: SCIENTIF ADVICE IS INDEPENDENT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,731,ZA5235
+v364,page 706,QF6 FOOD SAFETY: DIET TODAY LESS HEALTHY,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,733,ZA5235
+v365,page 708,QF6 FOOD SAFETY: PUBL AUTH SHOULD INFORM MORE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,735,ZA5235
+v366,page 710,QF6 FOOD SAFETY: PUBL AUTH CITIZENS CONCERNS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,737,ZA5235
+v367,page 712,QF7 PERSONAL AVOIDABLE RISKS: CHEMICAL CONTAM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,739,ZA5235
+v368,page 714,QF7 PERSONAL AVOIDABLE RISKS: BACTERIAL CONTAM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,741,ZA5235
+v369,page 716,QF7 PERSONAL AVOIDABLE RISKS: UNHEALTHY DIET,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,743,ZA5235
+v370,page 718,QF7 PERSONAL AVOIDABLE RISKS: NEW TECHNOLOGIES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,745,ZA5235
+v371,page 720,QF7 PERSONAL AVOIDABLE RISKS: ANIMAL DISEASES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,747,ZA5235
+v372,page 722,QF8 PUBLIC RISK PROTECTION: CHEMICAL CONTAM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,749,ZA5235
+v373,page 724,QF8 PUBLIC RISK PROTECTION: BACTERIAL CONTAM,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,751,ZA5235
+v374,page 726,QF8 PUBLIC RISK PROTECTION: UNHEALTHY DIET,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,753,ZA5235
+v375,page 728,QF8 PUBLIC RISK PROTECTION: NEW TECHNOLOGIES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,755,ZA5235
+v376,page 730,QF8 PUBLIC RISK PROTECTION: ANIMAL DISEASES,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,757,ZA5235
+v377,,QF9A UNSAFE FOOD INFO - MEDIA COVERAGE,,QF9A UNSAFE FOOD INFO - MEDIA COVERAGE,GESIS Variable Report,759,ZA5235
+v378,,QF10A UNSAFE FOOD INFO - PERS REACTION,,QF10A UNSAFE FOOD INFO - PERS REACTION,GESIS Variable Report,761,ZA5235
+v379,,QF9B UNHEALTHY FOOD - MEDIA COVERAGE,,QF9B UNHEALTHY FOOD - MEDIA COVERAGE,GESIS Variable Report,763,ZA5235
+v380,,QF10B UNHEALTHY FOOD - PERS REACTION,,QF10B UNHEALTHY FOOD - PERS REACTION,GESIS Variable Report,765,ZA5235
+v381,,D7 MARITAL STATUS,,D7 MARITAL STATUS,GESIS Variable Report,767,ZA5235
+v382,,D7 MARITAL STATUS (REC),,D7 MARITAL STATUS (REC),GESIS Variable Report,770,ZA5235
+v383,,D8 AGE EDUCATION,,D8 AGE EDUCATION,GESIS Variable Report,772,ZA5235
+v384,,D8 AGE EDUCATION - RECODED,,D8 AGE EDUCATION - RECODED,GESIS Variable Report,773,ZA5235
+v385,v385 1 2 N Sum N Valid Sum,D10 GENDER,v7 AT 482 (48.4) 514 (51.6) 996 996 BE 486 (48.6) 514 (51.4) 1000 1000 BG 480 (48.0) 521 (52.0) 1001 1001 CY 246 (49.0) 256 (51.0) 502 502 CZ 490 (48.7) 516 (51.3) 1006 1006 DE-E 264 (48.6) 279 (51.4) 543 543 DE-W 484 (48.3) 519 (51.7) 1003 1003 DK 512 (49.2) 529 (50.8) 1041 1041 EE 451 (45.1) 549 (54.9) 1000 1000 ES 493 (49.0) 513 (51.0) 1006 1006 FI 490 (48.7) 517 (51.3) 1007 1007 FR 479 (47.8) 524 (52.2) 1003 1003 GB-GBN 495 (48.7) 522 (51.3) 1017 1017 GB-NIR 146 (48.5) 155 (51.5) 301 301 GR 490 (49.0) 510 (51.0) 1000 1000 HU 482 (46.7) 550 (53.3) 1032 1032 IE 501 (49.7) 507 (50.3) 1008 1008 IT 498 (48.1) 538 (51.9) 1036 1036 LT 473 (45.7) 563 (54.3) 1036 1036 LU 246 (49.2) 254 (50.8) 500 500 LV 470 (46.3) 546 (53.7) 1016 1016 MT 246 (49.2) 254 (50.8) 500 500 NL 503 (49.3) 518 (50.7) 1021 1021 PL 477 (47.7) 523 (52.3) 1000 1000 PT 480 (47.7) 527 (52.3) 1007 1007 RO 489 (48.3) 524 (51.7) 1013 1013 SE 497 (49.2) 513 (50.8) 1010 1010 SI 492 (49.1) 511 (50.9) 1003 1003 SK 521 (48.1) 563 (51.9) 1084 1084 N Sum 12863 13829 26692 N Valid Sum 12863 13829 26692 Eurobarometer 73.5 - June 2010,v7 AT 482 (48.4) 514 (51.6) 996 996 BE 486 (48.6) 514 (51.4) 1000 1000 BG 480 (48.0) 521 (52.0) 1001 1001 CY 246 (49.0) 256 (51.0) 502 502 CZ 490 (48.7) 516 (51.3) 1006 1006 DE-E 264 (48.6) 279 (51.4) 543 543 DE-W 484 (48.3) 519 (51.7) 1003 1003 DK 512 (49.2) 529 (50.8) 1041 1041 EE 451 (45.1) 549 (54.9) 1000 1000 ES 493 (49.0) 513 (51.0) 1006 1006 FI 490 (48.7) 517 (51.3) 1007 1007 FR 479 (47.8) 524 (52.2) 1003 1003 GB-GBN 495 (48.7) 522 (51.3) 1017 1017 GB-NIR 146 (48.5) 155 (51.5) 301 301 GR 490 (49.0) 510 (51.0) 1000 1000 HU 482 (46.7) 550 (53.3) 1032 1032 IE 501 (49.7) 507 (50.3) 1008 1008 IT 498 (48.1) 538 (51.9) 1036 1036 LT 473 (45.7) 563 (54.3) 1036 1036 LU 246 (49.2) 254 (50.8) 500 500 LV 470 (46.3) 546 (53.7) 1016 1016 MT 246 (49.2) 254 (50.8) 500 500 NL 503 (49.3) 518 (50.7) 1021 1021 PL 477 (47.7) 523 (52.3) 1000 1000 PT 480 (47.7) 527 (52.3) 1007 1007 RO 489 (48.3) 524 (51.7) 1013 1013 SE 497 (49.2) 513 (50.8) 1010 1010 SI 492 (49.1) 511 (50.9) 1003 1003 SK 521 (48.1) 563 (51.9) 1084 1084 N Sum 12863 13829 26692 N Valid Sum 12863 13829 26692 Eurobarometer 73.5 - June 2010,GESIS Variable Report,776,ZA5235
+v386,page 750,D11 AGE EXACT,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,777,ZA5235
+v387,page 751,D11 AGE RECODED - FOUR GROUPS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,778,ZA5235
+v388,,D11 AGE RECODED - SIX GROUPS,,D11 AGE RECODED - SIX GROUPS,GESIS Variable Report,780,ZA5235
+v389,,D15A OCCUPATION OF RESPONDENT,,D15A OCCUPATION OF RESPONDENT,GESIS Variable Report,782,ZA5235
+v390,,D15B OCCUPATION OF RESPONDENT - LAST JOB,,D15B OCCUPATION OF RESPONDENT - LAST JOB,GESIS Variable Report,785,ZA5235
+v391,,D25 TYPE OF COMMUNITY,,D25 TYPE OF COMMUNITY,GESIS Variable Report,788,ZA5235
+v392,,D40A HOUSEHOLD COMPOSITION: AGED 15+,,D40A HOUSEHOLD COMPOSITION: AGED 15+,GESIS Variable Report,790,ZA5235
+v393,page 766,D40A HOUSEHOLD COMPOSITION: AGED 15+ (REC),Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,793,ZA5235
+v394,,D40B HOUSEHOLD COMPOSITION: AGED <10,,D40B HOUSEHOLD COMPOSITION: AGED <10,GESIS Variable Report,795,ZA5235
+v395,page 770,D40B HOUSEHOLD COMPOSITION: AGED <10 (REC),Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,797,ZA5235
+v396,,D40C HOUSEHOLD COMPOSITION: AGED 10-14,,D40C HOUSEHOLD COMPOSITION: AGED 10-14,GESIS Variable Report,799,ZA5235
+v397,page 774,D40C HOUSEHOLD COMPOSITION: AGED 10-14 (REC),Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,801,ZA5235
+v398,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C,GESIS Variable Report,803,ZA5235
+v399,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C (REC),,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C (REC),GESIS Variable Report,806,ZA5235
+v400,v400 1 2 N Sum N Valid Sum,D43A PHONE AVAILABLE - FIXED IN HH,v7 AT 490 (49.2) 506 (50.8) 996 996 BE 653 (65.3) 347 (34.7) 1000 1000 BG 521 (52.0) 480 (48.0) 1001 1001 CY 412 (82.1) 90 (17.9) 502 502 CZ 192 (19.1) 814 (80.9) 1006 1006 DE-E 478 (88.0) 65 (12.0) 543 543 DE-W 947 (94.4) 56 (5.6) 1003 1003 DK 661 (63.6) 379 (36.4) 1040 1040 EE 504 (50.4) 496 (49.6) 1000 1000 ES 716 (71.2) 290 (28.8) 1006 1006 FI 304 (30.2) 703 (69.8) 1007 1007 FR 886 (88.3) 117 (11.7) 1003 1003 GB-GBN 861 (84.7) 156 (15.3) 1017 1017 GB-NIR 249 (82.7) 52 (17.3) 301 301 GR 822 (82.2) 178 (17.8) 1000 1000 HU 445 (43.1) 587 (56.9) 1032 1032 IE 728 (72.2) 280 (27.8) 1008 1008 IT 696 (67.2) 340 (32.8) 1036 1036 LT 403 (38.9) 633 (61.1) 1036 1036 LU 437 (87.4) 63 (12.6) 500 500 LV 419 (41.2) 597 (58.8) 1016 1016 MT 485 (97.0) 15 (3.0) 500 500 NL 893 (87.5) 128 (12.5) 1021 1021 PL 511 (51.1) 489 (48.9) 1000 1000 PT 582 (57.8) 425 (42.2) 1007 1007 RO 388 (38.3) 625 (61.7) 1013 1013 SE 991 (98.1) 19 (1.9) 1010 1010 SI 816 (81.4) 187 (18.6) 1003 1003 SK 328 (30.3) 756 (69.7) 1084 1084 N Sum 16818 9873 26691 N Valid Sum 16818 9873 26691 Eurobarometer 73.5 - June 2010,v7 AT 490 (49.2) 506 (50.8) 996 996 BE 653 (65.3) 347 (34.7) 1000 1000 BG 521 (52.0) 480 (48.0) 1001 1001 CY 412 (82.1) 90 (17.9) 502 502 CZ 192 (19.1) 814 (80.9) 1006 1006 DE-E 478 (88.0) 65 (12.0) 543 543 DE-W 947 (94.4) 56 (5.6) 1003 1003 DK 661 (63.6) 379 (36.4) 1040 1040 EE 504 (50.4) 496 (49.6) 1000 1000 ES 716 (71.2) 290 (28.8) 1006 1006 FI 304 (30.2) 703 (69.8) 1007 1007 FR 886 (88.3) 117 (11.7) 1003 1003 GB-GBN 861 (84.7) 156 (15.3) 1017 1017 GB-NIR 249 (82.7) 52 (17.3) 301 301 GR 822 (82.2) 178 (17.8) 1000 1000 HU 445 (43.1) 587 (56.9) 1032 1032 IE 728 (72.2) 280 (27.8) 1008 1008 IT 696 (67.2) 340 (32.8) 1036 1036 LT 403 (38.9) 633 (61.1) 1036 1036 LU 437 (87.4) 63 (12.6) 500 500 LV 419 (41.2) 597 (58.8) 1016 1016 MT 485 (97.0) 15 (3.0) 500 500 NL 893 (87.5) 128 (12.5) 1021 1021 PL 511 (51.1) 489 (48.9) 1000 1000 PT 582 (57.8) 425 (42.2) 1007 1007 RO 388 (38.3) 625 (61.7) 1013 1013 SE 991 (98.1) 19 (1.9) 1010 1010 SI 816 (81.4) 187 (18.6) 1003 1003 SK 328 (30.3) 756 (69.7) 1084 1084 N Sum 16818 9873 26691 N Valid Sum 16818 9873 26691 Eurobarometer 73.5 - June 2010,GESIS Variable Report,808,ZA5235
+v401,page 782,D43B PHONE AVAILABLE - PRIVATE MOBILE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,809,ZA5235
+v402,page 784,D46 OWNERSHIP DURABLES: TELEVISION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,811,ZA5235
+v403,page 786,D46 OWNERSHIP DURABLES: DVD PLAYER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,813,ZA5235
+v404,page 788,D46 OWNERSHIP DURABLES: MUSIC CD PLAYER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,815,ZA5235
+v405,page 790,D46 OWNERSHIP DURABLES: COMPUTER,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,817,ZA5235
+v406,page 792,D46 OWNERSHIP DURABLES: INTERNET ACCESS,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,819,ZA5235
+v407,page 794,D46 OWNERSHIP DURABLES: CAR,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,821,ZA5235
+v408,page 796,D46 OWNERSHIP DURABLES: AP/HOUSE PAID,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,823,ZA5235
+v409,page 798,D46 OWNERSHIP DURABLES: AP/HOUSE PAYING,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,825,ZA5235
+v410,page 800,D46 OWNERSHIP DURABLES: NONE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,827,ZA5235
+v411,page 802,D46 OWNERSHIP DURABLES: DK,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,829,ZA5235
+v412,page 804,D60 DIFFICULTIES PAYING BILLS - LAST YEAR,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,831,ZA5235
+v413,,D61 LEVEL IN SOCIETY - SELF PLACEMENT,,D61 LEVEL IN SOCIETY - SELF PLACEMENT,GESIS Variable Report,833,ZA5235
+v414,,D62 INTERNET USE FREQ: AT HOME,,D62 INTERNET USE FREQ: AT HOME,GESIS Variable Report,836,ZA5235
+v415,,D62 INTERNET USE FREQ: AT PLACE OF WORK,,D62 INTERNET USE FREQ: AT PLACE OF WORK,GESIS Variable Report,838,ZA5235
+v416,,D62 INTERNET USE FREQ: SOMEWHERE ELSE,,D62 INTERNET USE FREQ: SOMEWHERE ELSE,GESIS Variable Report,840,ZA5235
+v417,,P1 DATE OF INTERVIEW,,P1 DATE OF INTERVIEW,GESIS Variable Report,842,ZA5235
+v418,page 817,P2 TIME OF INTERVIEW - RECODED,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,844,ZA5235
+v419,page 819,P3 DURATION OF INTERVIEW,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,846,ZA5235
+v420,,P3 DURATION OF INTERVIEW - RECODED,,P3 DURATION OF INTERVIEW - RECODED,GESIS Variable Report,847,ZA5235
+v421,page 822,P4 N OF PERSONS PRESENT DURING INTERVIEW,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,849,ZA5235
+v422,page 824,P5 RESPONDENT COOPERATION,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,851,ZA5235
+v423,,P6 SIZE OF COMMUNITY - FRANCE,,P6 SIZE OF COMMUNITY - FRANCE,GESIS Variable Report,853,ZA5235
+v424,,P6 SIZE OF COMMUNITY - BELGIUM,,P6 SIZE OF COMMUNITY - BELGIUM,GESIS Variable Report,854,ZA5235
+v425,,P6 SIZE OF COMMUNITY - NETHERLANDS,,P6 SIZE OF COMMUNITY - NETHERLANDS,GESIS Variable Report,855,ZA5235
+v426,,P6 SIZE OF COMMUNITY - GERMANY,,P6 SIZE OF COMMUNITY - GERMANY,GESIS Variable Report,856,ZA5235
+v427,,P6 SIZE OF COMMUNITY - ITALY,,P6 SIZE OF COMMUNITY - ITALY,GESIS Variable Report,857,ZA5235
+v428,,P6 SIZE OF COMMUNITY - LUXEMBOURG,,P6 SIZE OF COMMUNITY - LUXEMBOURG,GESIS Variable Report,858,ZA5235
+v429,,P6 SIZE OF COMMUNITY - DENMARK,,P6 SIZE OF COMMUNITY - DENMARK,GESIS Variable Report,859,ZA5235
+v430,,P6 SIZE OF COMMUNITY - IRELAND,,P6 SIZE OF COMMUNITY - IRELAND,GESIS Variable Report,860,ZA5235
+v431,,P6 SIZE OF COMMUNITY - UNITED KINGDOM,,P6 SIZE OF COMMUNITY - UNITED KINGDOM,GESIS Variable Report,861,ZA5235
+v432,,P6 SIZE OF COMMUNITY - GREECE,,P6 SIZE OF COMMUNITY - GREECE,GESIS Variable Report,862,ZA5235
+v433,,P6 SIZE OF COMMUNITY - SPAIN,,P6 SIZE OF COMMUNITY - SPAIN,GESIS Variable Report,863,ZA5235
+v434,,P6 SIZE OF COMMUNITY - PORTUGAL,,P6 SIZE OF COMMUNITY - PORTUGAL,GESIS Variable Report,864,ZA5235
+v435,,P6 SIZE OF COMMUNITY - FINLAND,,P6 SIZE OF COMMUNITY - FINLAND,GESIS Variable Report,865,ZA5235
+v436,,P6 SIZE OF COMMUNITY - SWEDEN,,P6 SIZE OF COMMUNITY - SWEDEN,GESIS Variable Report,866,ZA5235
+v437,,P6 SIZE OF COMMUNITY - AUSTRIA,,P6 SIZE OF COMMUNITY - AUSTRIA,GESIS Variable Report,867,ZA5235
+v438,Sum 26691 100.0 100.0,P6 SIZE OF COMMUNITY - CYPRUS (REPUBLIC),Valid Cases 502 Eurobarometer 73.5 - June 2010,Valid Cases 502 Eurobarometer 73.5 - June 2010,GESIS Variable Report,868,ZA5235
+v439,,P6 SIZE OF COMMUNITY - CZECH REPUBLIC,,P6 SIZE OF COMMUNITY - CZECH REPUBLIC,GESIS Variable Report,869,ZA5235
+v440,,P6 SIZE OF COMMUNITY - ESTONIA,,P6 SIZE OF COMMUNITY - ESTONIA,GESIS Variable Report,870,ZA5235
+v441,,P6 SIZE OF COMMUNITY - HUNGARY,,P6 SIZE OF COMMUNITY - HUNGARY,GESIS Variable Report,871,ZA5235
+v442,,P6 SIZE OF COMMUNITY - LATVIA,,P6 SIZE OF COMMUNITY - LATVIA,GESIS Variable Report,872,ZA5235
+v443,,P6 SIZE OF COMMUNITY - LITHUANIA,,P6 SIZE OF COMMUNITY - LITHUANIA,GESIS Variable Report,873,ZA5235
+v444,,P6 SIZE OF COMMUNITY - MALTA,,P6 SIZE OF COMMUNITY - MALTA,GESIS Variable Report,874,ZA5235
+v445,,P6 SIZE OF COMMUNITY - POLAND,,P6 SIZE OF COMMUNITY - POLAND,GESIS Variable Report,875,ZA5235
+v446,,P6 SIZE OF COMMUNITY - SLOVAKIA,,P6 SIZE OF COMMUNITY - SLOVAKIA,GESIS Variable Report,876,ZA5235
+v447,,P6 SIZE OF COMMUNITY - SLOVENIA,,P6 SIZE OF COMMUNITY - SLOVENIA,GESIS Variable Report,877,ZA5235
+v448,,P6 SIZE OF COMMUNITY - BULGARIA,,P6 SIZE OF COMMUNITY - BULGARIA,GESIS Variable Report,878,ZA5235
+v449,,P6 SIZE OF COMMUNITY - ROMANIA,,P6 SIZE OF COMMUNITY - ROMANIA,GESIS Variable Report,879,ZA5235
+v450,,P7 REGION I - FRANCE,,P7 REGION I - FRANCE,GESIS Variable Report,880,ZA5235
+v451,,P7 REGION I - BELGIUM,,P7 REGION I - BELGIUM,GESIS Variable Report,882,ZA5235
+v452,,P7 REGION I - NETHERLANDS,,P7 REGION I - NETHERLANDS,GESIS Variable Report,883,ZA5235
+v453,,P7 REGION I - ITALY,,P7 REGION I - ITALY,GESIS Variable Report,884,ZA5235
+v454,,P7 REGION I - LUXEMBOURG,,P7 REGION I - LUXEMBOURG,GESIS Variable Report,886,ZA5235
+v455,,P7 REGION I - DENMARK,,P7 REGION I - DENMARK,GESIS Variable Report,887,ZA5235
+v456,,P7 REGION I - UNITED KINGDOM,,P7 REGION I - UNITED KINGDOM,GESIS Variable Report,888,ZA5235
+v457,,P7 REGION I - GREECE,,P7 REGION I - GREECE,GESIS Variable Report,890,ZA5235
+v458,,P7 REGION I - SPAIN,,P7 REGION I - SPAIN,GESIS Variable Report,891,ZA5235
+v459,,P7 REGION I - PORTUGAL,,P7 REGION I - PORTUGAL,GESIS Variable Report,893,ZA5235
+v460,,P7 REGION I - FINLAND,,P7 REGION I - FINLAND,GESIS Variable Report,894,ZA5235
+v461,,P7 REGION I - SWEDEN,,P7 REGION I - SWEDEN,GESIS Variable Report,896,ZA5235
+v462,,P7 REGION I - AUSTRIA,,P7 REGION I - AUSTRIA,GESIS Variable Report,897,ZA5235
+v463,,P7 REGION I - CYPRUS (REPUBLIC),,P7 REGION I - CYPRUS (REPUBLIC),GESIS Variable Report,898,ZA5235
+v464,,P7 REGION I - CZECH REPUBLIC,,P7 REGION I - CZECH REPUBLIC,GESIS Variable Report,899,ZA5235
+v465,,P7 REGION I - ESTONIA,,P7 REGION I - ESTONIA,GESIS Variable Report,900,ZA5235
+v466,,P7 REGION I - HUNGARY,,P7 REGION I - HUNGARY,GESIS Variable Report,901,ZA5235
+v467,,P7 REGION I - LATVIA,,P7 REGION I - LATVIA,GESIS Variable Report,902,ZA5235
+v468,,P7 REGION I - LITHUANIA,,P7 REGION I - LITHUANIA,GESIS Variable Report,903,ZA5235
+v469,,P7 REGION I - POLAND,,P7 REGION I - POLAND,GESIS Variable Report,904,ZA5235
+v470,,P7 REGION I - SLOVAKIA,,P7 REGION I - SLOVAKIA,GESIS Variable Report,906,ZA5235
+v471,,P7 REGION I - SLOVENIA,,P7 REGION I - SLOVENIA,GESIS Variable Report,907,ZA5235
+v472,,P7 REGION I - BULGARIA,,P7 REGION I - BULGARIA,GESIS Variable Report,908,ZA5235
+v473,,P7 REGION I - ROMANIA,,P7 REGION I - ROMANIA,GESIS Variable Report,910,ZA5235
+v474,,P7 REGION II - FRANCE,,P7 REGION II - FRANCE,GESIS Variable Report,911,ZA5235
+v475,,P7 REGION II - BELGIUM,,P7 REGION II - BELGIUM,GESIS Variable Report,912,ZA5235
+v476,,P7 REGION II - NETHERLANDS,,P7 REGION II - NETHERLANDS,GESIS Variable Report,913,ZA5235
+v477,,P7 REGION II - GERMANY,,P7 REGION II - GERMANY,GESIS Variable Report,914,ZA5235
+v478,,P7 REGION II - ITALY (11 CATEGORIES),,P7 REGION II - ITALY (11 CATEGORIES),GESIS Variable Report,916,ZA5235
+v479,,P7 REGION II - ITALY (5 CATEGORIES),,P7 REGION II - ITALY (5 CATEGORIES),GESIS Variable Report,917,ZA5235
+v480,,P7 REGION II - IRELAND,,P7 REGION II - IRELAND,GESIS Variable Report,918,ZA5235
+v481,,P7 REGION II - UNITED KINGDOM,,P7 REGION II - UNITED KINGDOM,GESIS Variable Report,919,ZA5235
+v482,,P7 REGION II - GREECE,,P7 REGION II - GREECE,GESIS Variable Report,920,ZA5235
+v483,,P7 REGION II - SPAIN (10 CATEGORIES),,P7 REGION II - SPAIN (10 CATEGORIES),GESIS Variable Report,921,ZA5235
+v484,,P7 REGION II - SPAIN (7 CATEGORIES),,P7 REGION II - SPAIN (7 CATEGORIES),GESIS Variable Report,922,ZA5235
+v485,,P7 REGION II - FINLAND,,P7 REGION II - FINLAND,GESIS Variable Report,923,ZA5235
+v486,,P7 REGION II - SWEDEN,,P7 REGION II - SWEDEN,GESIS Variable Report,924,ZA5235
+v487,,P7 REGION II - AUSTRIA,,P7 REGION II - AUSTRIA,GESIS Variable Report,925,ZA5235
+v488,,P7 REGION II - HUNGARY,,P7 REGION II - HUNGARY,GESIS Variable Report,926,ZA5235
+v489,,P7 REGION II - POLAND,,P7 REGION II - POLAND,GESIS Variable Report,927,ZA5235
+v490,,P7 REGION II - SLOVENIA,,P7 REGION II - SLOVENIA,GESIS Variable Report,928,ZA5235
+v491,,P7 REGION II - BULGARIA,,P7 REGION II - BULGARIA,GESIS Variable Report,929,ZA5235
+v492,,P7 REGION II - ROMANIA,,P7 REGION II - ROMANIA,GESIS Variable Report,930,ZA5235
+v493,v493,P13 LANGUAGE OF INTERVIEW - BELGIUM,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,931,ZA5235
+v494,,P13 LANGUAGE OF INTERVIEW - LUXEMBOURG,,P13 LANGUAGE OF INTERVIEW - LUXEMBOURG,GESIS Variable Report,932,ZA5235
+v495,v495,P13 LANGUAGE OF INTERVIEW - SPAIN,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,933,ZA5235
+v496,v496,P13 LANGUAGE OF INTERVIEW - FINLAND,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,934,ZA5235
+v497,v497,P13 LANGUAGE OF INTERVIEW - ESTONIA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,935,ZA5235
+v498,v498,P13 LANGUAGE OF INTERVIEW - LATVIA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,936,ZA5235
+v499,v499,P13 LANGUAGE OF INTERVIEW - MALTA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,937,ZA5235
+v500,page 911,C14 RESPONDENT OCCUPATION SCALE,Eurobarometer 73.5 - June 2010,Eurobarometer 73.5 - June 2010,GESIS Variable Report,938,ZA5235
+v501,v501,"SPLIT (QF9, QF10)",Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,940,ZA5235
