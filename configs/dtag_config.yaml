@@ -27,8 +27,8 @@ validation_models:
 
 maps:
   gss_2018: maps/gss/gss_2018_map.csv
-  gss_2022: maps/map2022.csv
-  gss_2024: maps/map2024.csv
+  gss_2022: maps/gss/gss_2022_map.csv
+  gss_2024: maps/gss/gss_2024_map.csv
   wvs7: maps/wvs7_variable_question_map.csv
   afrobarometer_r1: maps/afromap/afrobarometer_r1_map.csv
   afrobarometer_r2: maps/afromap/afrobarometer_r2_map.csv
