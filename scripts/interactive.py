@@ -124,7 +124,7 @@ def build_command(
     if args.with_ideology:
         run_cfg['no_ideology'] = False
 
-    cmd: List[str] = [py, pipeline, '--map', map_path, '--qnet', qnet, '--persona', persona]
+    cmd: List[str] = [py, pipeline, '--map', map_path, '--qnet', str(qnet_check), '--persona', persona]
     cmd += ['--assets_dir', str(profile.get('assets_dir', 'assets'))]
     cmd += ['--logs_dir', logs_dir, '--tag', tag]
 
