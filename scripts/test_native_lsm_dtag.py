@@ -20,6 +20,7 @@ import pandas as pd
 import yaml
 
 from model_backend import load_model
+from dtag_paths import resolve_repo_path
 import pipeline as core
 import pipeline_localized as localized
 
@@ -35,8 +36,7 @@ def load_config(path: Path) -> Dict[str, Any]:
 
 
 def resolve(root: Path, value: str) -> Path:
-    p = Path(str(value)).expanduser()
-    return p.resolve() if p.is_absolute() else (root / p).resolve()
+    return resolve_repo_path(value, root)
 
 
 def profile_for_model(cfg: Dict[str, Any], key: str) -> List[str]:
