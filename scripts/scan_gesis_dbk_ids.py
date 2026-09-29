@@ -202,7 +202,13 @@ def main():
             clen = headers.get("content-length", "")
             hdr_text = " ".join([dispo, final_url])
             za = za_from_text(hdr_text)
-            kind = "header"
+            low_hdr = hdr_text.lower()
+            if "_cdb.pdf" in low_hdr or "codebook" in low_hdr or "variable_report" in low_hdr:
+                kind = "codebook"
+            elif "_bq.pdf" in low_hdr or "questionnaire" in low_hdr:
+                kind = "questionnaire"
+            else:
+                kind = "header"
 
             is_pdf = ("pdf" in ctype) or (".pdf" in dispo.lower())
             if not is_pdf:
@@ -215,9 +221,11 @@ def main():
             except ValueError:
                 pass
 
-            # Deep inspection only when needed.
+            # Deep inspection when ZA is absent OR headers identify only a
+            # generic/questionnaire document. This prevents saving a BQ PDF as
+            # ZAxxxx_cdb.pdf merely because its filename contains the ZA id.
             pdf_path = None
-            if za is None and args.deep:
+            if args.deep and (za is None or kind in ("header", "questionnaire")):
                 if size_mb is not None and size_mb > args.max_mb:
                     print(f"{dbk_id}: PDF {size_mb:.1f} MiB, skip deep (> {args.max_mb} MiB)")
                     time.sleep(args.delay)
@@ -241,10 +249,11 @@ def main():
 
             if za:
                 wanted = (not targets) or (za in targets)
+                usable = kind in ("variable_report", "codebook")
                 marker = "TARGET" if wanted else "other"
                 print(f"{dbk_id}: {za} [{kind}] {marker}")
 
-                if wanted:
+                if wanted and usable:
                     local = ""
                     if args.save_matches:
                         out = OUT_DIR / f"{za}_cdb.pdf"
@@ -254,8 +263,8 @@ def main():
                             pdf_path = tmpdir / f"{dbk_id}.pdf"
                             final_url, _ = download(dbk_id, pdf_path, args.timeout)
 
-                        # Save only variable reports/codebooks by default.
-                        if kind in ("variable_report", "codebook", "header"):
+                        # Save only verified variable reports/codebooks.
+                        if kind in ("variable_report", "codebook"):
                             shutil.copy2(pdf_path, out)
                             local = str(out.relative_to(ROOT))
                             print(f"         saved -> {local}")
