@@ -120,7 +120,7 @@ def main() -> None:
     if not codebook_path.is_file():
         raise SystemExit(f"Codebook not found: {codebook_path}")
 
-    model = load_model(model_path, backend="native_lsm")
+    model = load_model(model_path, backend="native_lsm", preload=False)
     features = [str(v) for v in model.feature_names]
 
     docs = parse_codebook(codebook_path)
