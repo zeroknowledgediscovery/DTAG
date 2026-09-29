@@ -123,7 +123,7 @@ def main() -> None:
             print(f"SKIP {year}: {out} exists")
             continue
 
-        model = load_model(model_path, backend="native_lsm")
+        model = load_model(model_path, backend="native_lsm", preload=False)
         features = [str(x) for x in model.feature_names]
 
         year_specific = read_semantic_map(
