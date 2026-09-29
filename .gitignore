@@ -32,7 +32,8 @@ models/lsm/**/*
 !models/lsm/README.md
 
 # Bundled native LSM build products
+# Prebuilt Linux CPython extension is intentionally trackable; build directory
+# and non-Linux binary variants remain local.
 native/lsm_runtime/build/
-native/lsm_runtime/python/*.so
 native/lsm_runtime/python/*.pyd
 native/lsm_runtime/python/*.dylib
