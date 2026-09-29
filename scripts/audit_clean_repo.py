@@ -52,6 +52,8 @@ def iter_source_files():
         for p in root.rglob("*"):
             if not p.is_file():
                 continue
+            if p.resolve() == Path(__file__).resolve():
+                continue
             if p.suffix.lower() in SOURCE_EXTENSIONS or p.name.endswith(".sh"):
                 yield p
 
