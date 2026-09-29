@@ -4,13 +4,14 @@
 This branch is intentionally native-only. A DTAG model is a directory produced
 by the C++ LSM trainer and must contain source_maps/ and trees/binary/.
 
-Native LSM bindings expected on PYTHONPATH:
-    predict_distribution
-    qdistance
-    qsample (optional for DTAG; imported only by callers that need it)
+DTAG ships its own persistent native LSM binding under native/lsm_runtime.
+Build it once with:
 
-Set LSM_BINDINGS_DIR=/path/to/lsm/bin to make the bindings discoverable without
-modifying the shell PYTHONPATH.
+    bash scripts/build_native_bindings.sh
+
+The resulting dtag_lsm extension is loaded directly from the DTAG checkout.
+Legacy external predict_distribution/qdistance bindings are accepted only as a
+temporary fallback.
 """
 from __future__ import annotations
 
@@ -26,9 +27,16 @@ import numpy as np
 
 
 def _add_lsm_bindings_dir() -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    bundled = repo_root / "native" / "lsm_runtime" / "python"
+    if bundled.is_dir() and str(bundled) not in sys.path:
+        sys.path.insert(0, str(bundled))
+
+    # Temporary compatibility fallback for machines that have not yet built the
+    # bundled extension.
     p = os.environ.get("LSM_BINDINGS_DIR", "").strip()
     if p and p not in sys.path:
-        sys.path.insert(0, p)
+        sys.path.append(p)
 
 
 def _native_root(path: str | Path) -> Path:
@@ -140,24 +148,33 @@ class NativeLSMBackend:
 
     def __init__(self, path: str | Path, cols_per_shard: int = 50000):
         _add_lsm_bindings_dir()
+
+        bundled_runtime = None
+        legacy_predict = None
+        legacy_qdistance = None
         try:
-            import predict_distribution  # type: ignore
-            import qdistance  # type: ignore
-        except Exception as e:
-            hint = os.environ.get("LSM_BINDINGS_DIR", "")
-            raise ImportError(
-                "Native LSM Python bindings are not importable. Build the LSM "
-                "bindings and either add lsm/bin to PYTHONPATH or set "
-                "LSM_BINDINGS_DIR=/path/to/lsm/bin."
-                + (f" Current LSM_BINDINGS_DIR={hint!r}." if hint else "")
-            ) from e
+            import dtag_lsm  # type: ignore
+            bundled_runtime = dtag_lsm
+        except Exception:
+            try:
+                import predict_distribution  # type: ignore
+                import qdistance  # type: ignore
+                legacy_predict = predict_distribution
+                legacy_qdistance = qdistance
+            except Exception as e:
+                raise ImportError(
+                    "DTAG native LSM binding is not importable. From the DTAG "
+                    "repository run: bash scripts/build_native_bindings.sh"
+                ) from e
 
         self.root = _native_root(path)
         self.path = str(self.root)
         self.trees_dir = str(self.root / "trees" / "binary")
         self.cols_per_shard = int(cols_per_shard)
-        self._predict = predict_distribution
-        self._qdistance = qdistance
+        self._predict = legacy_predict
+        self._qdistance = legacy_qdistance
+        self._runtime = None
+        self._runtime_kind = "legacy_external"
 
         self.feature_names, self._values_by_col = _read_native_columns(self.root)
         self._idx = {name: i for i, name in enumerate(self.feature_names)}
@@ -182,6 +199,18 @@ class NativeLSMBackend:
             raise RuntimeError(
                 f"No native LSM trees with categorical support found in {self.trees_dir}"
             )
+
+        if bundled_runtime is not None:
+            self._runtime = bundled_runtime.Runtime(
+                self.trees_dir,
+                self.path,
+                self.cols_per_shard,
+                self._usable_tree_ids,
+                len(self.feature_names),
+                True,
+                True,
+            )
+            self._runtime_kind = "bundled_persistent"
 
     @property
     def tree_ids(self) -> List[int]:
@@ -223,6 +252,19 @@ class NativeLSMBackend:
         if not tree_ids:
             return {}
 
+        if self._runtime is not None:
+            result = self._runtime.predict_distributions(raw.tolist(), tree_ids)
+            out: Dict[str, Dict[str, float]] = {}
+            for tid in tree_ids:
+                name = self.feature_names[tid]
+                d = result.get(tid, {})
+                out[name] = {
+                    str(k): float(v)
+                    for k, v in dict(d).items()
+                    if str(k) != ""
+                }
+            return out
+
         result = self._predict.predict_distributions(
             self.trees_dir,
             raw,
@@ -245,6 +287,16 @@ class NativeLSMBackend:
     def qdistance(self, a: Sequence[str] | np.ndarray, b: Sequence[str] | np.ndarray) -> float:
         aa = ["" if x is None else str(x) for x in list(a)]
         bb = ["" if x is None else str(x) for x in list(b)]
+
+        if self._runtime is not None:
+            return float(
+                self._runtime.qdistance(
+                    aa,
+                    bb,
+                    self._usable_tree_ids,
+                )
+            )
+
         result = self._qdistance.qdistance(
             self.trees_dir,
             aa,
@@ -255,6 +307,31 @@ class NativeLSMBackend:
             False,
         )
         return float(result["qdistance_bits"])
+
+    def distances_to_state(
+        self,
+        left: Sequence[str] | np.ndarray,
+        right: Sequence[str] | np.ndarray,
+        state: Sequence[str] | np.ndarray,
+    ) -> tuple[float, float]:
+        ll = ["" if x is None else str(x) for x in list(left)]
+        rr = ["" if x is None else str(x) for x in list(right)]
+        ss = ["" if x is None else str(x) for x in list(state)]
+
+        if self._runtime is not None:
+            d_left, d_right = self._runtime.distances_to_state(
+                ll,
+                rr,
+                ss,
+                self._usable_tree_ids,
+            )
+            return float(d_left), float(d_right)
+
+        return self.qdistance(ll, ss), self.qdistance(rr, ss)
+
+    @property
+    def runtime_kind(self) -> str:
+        return self._runtime_kind
 
     def cache_signature(self) -> str:
         h = hashlib.sha1()
