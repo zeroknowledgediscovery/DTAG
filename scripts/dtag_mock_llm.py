@@ -11,7 +11,7 @@ conditional distributions. It only stands in for the language layer:
 
 * ``variable_selection``: the first ``min(K, 2)`` lexical candidates;
 * ``semantic_bridge_selection``: the first two embedding candidates, confidence 0.6;
-* ``persona_assignments``: deterministic picks from the offered variables;
+* ``persona_assignments``: deterministic picks (hash of persona and variable);
 * free text: a short, clearly labelled mock answer built from the anchors.
 
 Magic markers in a question steer the mock for tests:
@@ -110,6 +110,8 @@ class _Responses:
             m = re.search(r"MAX_ASSIGN=(\d+)", input)
             max_assign = int(m.group(1)) if m else 0
             allowed = _section(input, "ALLOWED (var<TAB>responses):\n")
+            pm = re.search(r"PERSONA:\n(.*?)\n\nALLOWED", input, flags=re.S)
+            persona = pm.group(1) if pm else ""
             assigns = []
             for line in allowed.splitlines():
                 if len(assigns) >= min(max_assign, 5):
@@ -120,7 +122,7 @@ class _Responses:
                 opts = [o.strip() for o in parts[1].replace(" ...", "").split("; ") if o.strip()]
                 if not opts:
                     continue
-                h = int(hashlib.sha1(parts[0].encode()).hexdigest(), 16)
+                h = int(hashlib.sha1(f"{persona}|{parts[0]}".encode()).hexdigest(), 16)
                 assigns.append({"variable": parts[0], "value": opts[h % len(opts)]})
             obj = {"assignments": assigns, "rationale": "mock: deterministic persona assignments"}
             return SimpleNamespace(output_text=json.dumps(obj))

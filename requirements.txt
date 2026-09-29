@@ -6,6 +6,8 @@ pyreadstat
 pdfplumber
 pyyaml>=6.0
 zstandard>=0.22.0
+fastapi>=0.110
+uvicorn>=0.27
 
 
 # The native DTAG LSM runtime is bundled in this repository under

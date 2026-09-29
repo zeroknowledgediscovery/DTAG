@@ -13,12 +13,23 @@ RUNTIME_DIRS = [
     "assets",
     "bin",
     "native/lsm_runtime",
+    "webapp/backend",
+    "webapp/frontend/dist",
+]
+
+# Top-level webapp files installed alongside the runtime tree.
+WEBAPP_FILES = [
+    "webapp/README.md",
+    "webapp/IMPLEMENTATION_PLAN.md",
+    "webapp/run.sh",
+    "webapp/.env.example",
 ]
 
 EXCLUDE_PARTS = {
     "__pycache__",
     ".pytest_cache",
     "build",
+    "node_modules",
 }
 
 EXCLUDE_SUFFIXES = {
@@ -45,6 +56,11 @@ def runtime_data_files():
                 continue
             dest = Path("share") / "dtag" / relpath.parent
             groups.setdefault(str(dest), []).append(str(path))
+
+    for rel in WEBAPP_FILES:
+        p = ROOT / rel
+        if p.is_file():
+            groups.setdefault(str(Path("share") / "dtag" / Path(rel).parent), []).append(str(p))
 
     # Keep top-level metadata next to the installed runtime tree.
     for name in ("README.md", "VERSION", "requirements.txt"):
@@ -73,6 +89,8 @@ setup(
         "pdfplumber",
         "pyyaml>=6.0",
         "zstandard>=0.22.0",
+        "fastapi>=0.110",
+        "uvicorn>=0.27",
     ],
     data_files=runtime_data_files(),
     entry_points={
@@ -80,6 +98,7 @@ setup(
             "dtag=dtag.cli:main",
             "dtag-models=dtag.cli:models_main",
             "dtag-doctor=dtag.cli:doctor_main",
+            "dtag-web=dtag.cli:web_main",
         ]
     },
     include_package_data=True,
