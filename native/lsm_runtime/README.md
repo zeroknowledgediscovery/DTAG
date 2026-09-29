@@ -35,6 +35,38 @@ runtime object.
 The clean DTAG branch does not use the old stateless external extension
 modules. Build this bundled runtime before running DTAG.
 
+## Binary linkage
+
+On GNU/Linux the build uses:
+
+```text
+-static-libstdc++
+-static-libgcc
+```
+
+and DTAG uses its own `std::thread` worker loop rather than OpenMP. Therefore
+the resulting extension should have no dynamic dependency on:
+
+```text
+libstdc++.so
+libgcc_s.so
+libgomp.so
+```
+
+`scripts/build_native_bindings.sh` checks this automatically with `ldd` and
+fails the build if one of those dependencies remains.
+
+The intended prebuilt binary in this repository is therefore approximately
+self-contained except for the host operating-system and Python ABI. A filename
+such as:
+
+```text
+dtag_lsm.cpython-313-x86_64-linux-gnu.so
+```
+
+is specific to CPython 3.13 on x86-64 Linux. Other Python versions,
+architectures, or operating systems should rebuild from the bundled source.
+
 ## Build dependencies
 
 - C++17 compiler
