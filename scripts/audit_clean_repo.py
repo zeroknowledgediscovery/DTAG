@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Audit that the native-lsm-clean DTAG checkout contains no legacy surface."""
+"""Audit that the clean native-LSM DTAG checkout (main) contains no legacy surface."""
 from __future__ import annotations
 
 import argparse

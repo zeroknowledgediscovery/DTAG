@@ -38,7 +38,7 @@ python3.13 -m venv .venv
 source .venv/bin/activate
 
 python -m pip install \
-  "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+  "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 
 export OPENAI_API_KEY="..."
 dtag-web                      # http://127.0.0.1:8000
@@ -61,7 +61,7 @@ dtag-doctor                   # readiness checks
 ## Source checkout
 
 ```bash
-git clone -b native-lsm-clean https://github.com/zeroknowledgediscovery/DTAG.git
+git clone https://github.com/zeroknowledgediscovery/DTAG.git
 cd DTAG
 python3.13 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
