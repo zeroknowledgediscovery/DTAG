@@ -16,6 +16,79 @@ Current validated native inventory:
 
 The deep audit verifies zero missing maps, zero bad maps, and complete model-map feature overlap across all 252 native models.
 
+## Quick start
+
+DTAG can be installed directly from the public GitHub branch; no manual clone is required.
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+
+python -m pip install --upgrade pip
+python -m pip install \
+  "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+```
+
+List the available DTAG profiles:
+
+```bash
+dtag --list
+```
+
+Install the model needed for a profile from the public DTAG model store. For example:
+
+```bash
+dtag-models gss/gss_2024
+```
+
+Models are downloaded once, SHA256-verified, decompressed into the local cache, and reused on later runs. The default cache is:
+
+```text
+~/.cache/dtag/models/
+```
+
+Set the OpenAI API key and start an interactive DTAG session:
+
+```bash
+export OPENAI_API_KEY="..."
+
+dtag --profile gss2024_cm
+```
+
+A complete minimal setup is therefore:
+
+```bash
+python3.13 -m venv .venv
+source .venv/bin/activate
+python -m pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+
+dtag-models gss/gss_2024
+
+export OPENAI_API_KEY="..."
+dtag --profile gss2024_cm
+```
+
+To inspect the public model catalog:
+
+```bash
+dtag-models --list
+```
+
+To install all models in one survey family:
+
+```bash
+dtag-models --family gss
+```
+
+To install the complete public model corpus:
+
+```bash
+dtag-models --all
+```
+
+On compatible CPython 3.13 x86-64 Linux systems, DTAG uses the bundled prebuilt native LSM extension. Other supported environments can rebuild the native extension from the source shipped with the installed repository tree.
+
+
 ## Architecture
 
 DTAG separates three layers:
