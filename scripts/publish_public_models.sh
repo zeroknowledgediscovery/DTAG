@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 RELEASE="${1:-v0.2.0}"
+MODE="${2:-}"
 BUCKET="${DTAG_PUBLIC_BUCKET:-git-zeroknowledgediscovery-dtag}"
 MODEL_ROOT="${DTAG_MODEL_ROOT:-$ROOT/models/lsm}"
 OUT="${DTAG_RELEASE_DIR:-/tmp/dtag-models-$RELEASE}"
@@ -15,12 +16,19 @@ command -v gcloud >/dev/null 2>&1 || {
   exit 1
 }
 
-echo "== Package runtime-only model release =="
-python3 scripts/package_public_models.py \
-  --model-root "$MODEL_ROOT" \
-  --release "$RELEASE" \
-  --bucket "$BUCKET" \
-  --out "$OUT"
+if [[ "$MODE" == "--existing" ]]; then
+  echo "== Rebuild manifest for existing tar.zst release =="
+  python3 scripts/rebuild_public_manifest.py "$OUT" \
+    --release "$RELEASE" \
+    --bucket "$BUCKET"
+else
+  echo "== Package runtime-only model release =="
+  python3 scripts/package_public_models.py \
+    --model-root "$MODEL_ROOT" \
+    --release "$RELEASE" \
+    --bucket "$BUCKET" \
+    --out "$OUT"
+fi
 
 echo
 echo "== Local release size =="
