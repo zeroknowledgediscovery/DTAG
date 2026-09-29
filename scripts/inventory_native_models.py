@@ -8,7 +8,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MODEL_ROOT = ROOT / "models" / "lsm"
+from dtag_paths import model_root
+
+MODEL_ROOT = model_root(ROOT)
 sys.path.insert(0, str(ROOT / "scripts"))
 from model_backend import load_model  # noqa: E402
 
