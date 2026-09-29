@@ -13,11 +13,14 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from model_backend import load_model  # noqa: E402
+from dtag_paths import model_root  # noqa: E402
+
+MODEL_ROOT = model_root(ROOT)
 
 
 def gss_pairs() -> List[Tuple[str, Path, Path]]:
     out = []
-    root = ROOT / "models/lsm/gss"
+    root = MODEL_ROOT / "gss"
     if root.is_dir():
         for p in sorted(root.iterdir()):
             if not p.is_dir():
@@ -32,7 +35,7 @@ def gss_pairs() -> List[Tuple[str, Path, Path]]:
 
 def afro_pairs() -> List[Tuple[str, Path, Path]]:
     out = []
-    root = ROOT / "models/lsm/afrobarometer"
+    root = MODEL_ROOT / "afrobarometer"
     if root.is_dir():
         for p in sorted(root.iterdir()):
             if not p.is_dir():
@@ -50,7 +53,7 @@ def afro_pairs() -> List[Tuple[str, Path, Path]]:
 
 
 def wvs_pairs() -> List[Tuple[str, Path, Path]]:
-    p = ROOT / "models/lsm/wvs/wvs7_pooled"
+    p = MODEL_ROOT / "wvs/wvs7_pooled"
     if not p.is_dir():
         return []
     return [("WVS7 pooled", p, ROOT / "maps/wvs7_variable_question_map.csv")]
@@ -58,7 +61,7 @@ def wvs_pairs() -> List[Tuple[str, Path, Path]]:
 
 def euro_pairs() -> List[Tuple[str, Path, Path]]:
     out = []
-    root = ROOT / "models/lsm/eurobarometer"
+    root = MODEL_ROOT / "eurobarometer"
     if root.is_dir():
         for p in sorted(root.iterdir()):
             if not p.is_dir():
