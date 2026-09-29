@@ -1708,7 +1708,7 @@ def main() -> None:
                 config=config,
                 polar=polar,
                 client_factory=default_client_factory,
-                forced_assignment_fn=lambda **kw: build_forced_assignments(**kw),
+                forced_assignment_fn=None,  # resolved at call time (pipeline_localized patches it)
                 timings_init=timings_init,
             )
         except DTAGConfigError as e:

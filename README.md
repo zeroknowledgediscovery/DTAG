@@ -417,7 +417,7 @@ persona + time + place + current survey state
 
 DTAG uses geography in this order when supported:
 
-1. direct categorical country variable;
+1. direct categorical country variable (a variable named *country*; for Eurobarometer also the ISO 3166 `isocntry` variable and, in older waves, the map-labelled `NATION` variable);
 2. WVS-style geographic proxy fields such as coordinates;
 3. contextual localization if no deterministic survey variable exists.
 

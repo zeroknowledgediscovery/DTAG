@@ -23,7 +23,9 @@ distributions. The LLM only selects variables and renders prose.
 from __future__ import annotations
 
 import copy
+import inspect
 import os
+import re
 import threading
 import time
 from collections import OrderedDict
@@ -120,6 +122,41 @@ def load_map_provenance(map_csv: str) -> Dict[str, Dict[str, str]]:
     return out
 
 
+_NATION_RE = re.compile(r"^\s*NATION\b(?!ALITY)", re.I)
+
+
+def nation_hint_features(map_csv: str) -> List[str]:
+    """Variables a semantic map labels as *the* nation variable.
+
+    Older Eurobarometer waves hold country only in variables such as ``v3``
+    labelled "NATION", "NATION - ALL SAMPLES" or "NATION I (UNITED KINGDOM)".
+    Group flags ("NATION GROUP EU15") and single-country subsets
+    ("NATION - UNITED GERMANY (ONLY)") are excluded. Ordered by preference.
+    """
+    try:
+        df = pd.read_csv(map_csv, dtype=str).fillna("")
+    except Exception:
+        return []
+    if "variable" not in df.columns or "variable_label" not in df.columns:
+        return []
+    ranked = []
+    for _, r in df.iterrows():
+        label = str(r["variable_label"]).strip()
+        up = label.upper()
+        if not _NATION_RE.match(label) or "GROUP" in up or "(ONLY)" in up:
+            continue
+        if "ALL SAMPLES" in up:
+            rank = 0
+        elif up == "NATION":
+            rank = 1
+        else:
+            m = re.match(r"NATION\s+(I{1,3}|IV|V)\b", up)
+            rank = 2 + ["I", "II", "III", "IV", "V"].index(m.group(1)) if m else 9
+        ranked.append((rank, core.normalize_varname(str(r["variable"]).strip())))
+    ranked.sort()
+    return [v for _, v in ranked]
+
+
 class ModelContext:
     """Native model + semantic map data needed by sessions.
 
@@ -154,6 +191,7 @@ class ModelContext:
                 "After intersecting map with native model feature_names, no variables remain."
             )
         self.map_provenance = load_map_provenance(self.map_path)
+        self.country_hints = [v for v in nation_hint_features(self.map_path) if v in self.feat]
 
         t2 = time.time()
         if possible is None:
@@ -322,6 +360,12 @@ class DTAGSession:
 
     def _forced(self, **kwargs):
         fn = self._forced_fn or core.build_forced_assignments
+        try:
+            accepts_hints = "hint_features" in inspect.signature(fn).parameters
+        except (TypeError, ValueError):
+            accepts_hints = False
+        if accepts_hints and self.ctx.country_hints:
+            kwargs["hint_features"] = list(self.ctx.country_hints)
         return fn(**kwargs)
 
     # -- initialisation (pipeline.main steps 5-10) ---------------------------

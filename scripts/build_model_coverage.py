@@ -12,10 +12,10 @@ Per model it records:
 * ``country_feature`` / ``country_values``: the categorical country variable
   DTAG's localized pipeline would hard-condition (same feature-priority rule as
   ``pipeline_localized``), with its full support;
-* ``nation_feature`` / ``nation_values``: for waves whose only country variable
-  is not named "country" (older Eurobarometer ``v3``/``NATION``), the variable
-  whose map label is NATION/COUNTRY -- coverage information only, since the
-  pipeline cannot hard-condition it;
+* ``iso_feature`` / ``iso_values``: Eurobarometer ``isocntry`` (ISO 3166 codes);
+* ``nation_features``: variables the semantic map labels as the nation
+  variable (older Eurobarometer ``NATION``), with their support -- the same
+  hints the session passes to the localized country matcher;
 * ``year_feature`` / ``year_values``: e.g. WVS7 ``A_YEAR``;
 * ``coordinate_values``: WVS-style O1_LONGITUDE/O2_LATITUDE support.
 
@@ -43,6 +43,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import fetch_models  # noqa: E402
 import pipeline_localized as localized  # noqa: E402
+from dtag_session import nation_hint_features  # noqa: E402
 
 OUT = ROOT / "configs" / "model_coverage.json"
 
@@ -59,19 +60,6 @@ def _map_path(key: str) -> Optional[Path]:
     else:
         p = ROOT / "maps" / "wvs7_variable_question_map.csv"
     return p if p.is_file() else None
-
-
-def _nation_label_vars(key: str) -> List[str]:
-    p = _map_path(key)
-    if p is None:
-        return []
-    out = []
-    with p.open(newline="", encoding="utf-8") as fh:
-        for row in csv.DictReader(fh):
-            label = " ".join(str(row.get(c, "")) for c in ("variable_label", "question_text")).strip().upper()
-            if re.match(r"^(NATION|COUNTRY)\b", label) and "REGION" not in label:
-                out.append(str(row.get("variable", "")).strip())
-    return out
 
 
 def read_source_maps(url: str) -> Dict[str, List[str]]:
@@ -108,12 +96,15 @@ def summarize(key: str, support: Dict[str, List[str]]) -> Dict[str, object]:
     if country_feats:
         rec["country_feature"] = country_feats[0]
         rec["country_values"] = support[country_feats[0]]
-    elif key.startswith("eurobarometer/"):
-        for v in _nation_label_vars(key):
-            if support.get(v):
-                rec["nation_feature"] = v
-                rec["nation_values"] = support[v]
-                break
+    iso = [f for f in feats if f.lower() == "isocntry"]
+    if iso:
+        rec["iso_feature"] = iso[0]
+        rec["iso_values"] = support[iso[0]]
+    if key.startswith("eurobarometer/"):
+        mp = _map_path(key)
+        hints = [v for v in (nation_hint_features(str(mp)) if mp else []) if support.get(v)]
+        if hints:
+            rec["nation_features"] = {v: support[v] for v in hints}
     for yf in ("A_YEAR", "year"):
         if support.get(yf):
             rec["year_feature"] = yf
@@ -139,7 +130,7 @@ def main() -> None:
 
     out_path = Path(args.out)
     existing = json.loads(out_path.read_text()) if out_path.is_file() else {}
-    models: Dict[str, object] = dict(existing.get("models", {}))
+    models: Dict[str, object] = dict(existing.get("models", {})) if args.family else {}
 
     def job(key: str):
         url = manifest["base_url"].rstrip("/") + "/" + manifest["models"][key]["archive"]
@@ -150,15 +141,15 @@ def main() -> None:
         for i, f in enumerate(as_completed(futs), 1):
             key, rec = f.result()
             models[key] = rec
-            print(f"[{i}/{len(keys)}] {key}: {rec.get('country_feature') or rec.get('nation_feature') or '-'} "
-                  f"({len(rec.get('country_values') or rec.get('nation_values') or [])} values)", flush=True)
+            print(f"[{i}/{len(keys)}] {key}: country={rec.get('country_feature', '-')} iso={rec.get('iso_feature', '-')} "
+                  f"nation={list(rec.get('nation_features', {}))[:2]}", flush=True)
 
     out = {
         "schema": "dtag-model-coverage/1",
         "release": manifest.get("release"),
         "generated_by": "scripts/build_model_coverage.py",
-        "note": "Derived from native model source maps. country_values are the categorical support DTAG can "
-                "hard-condition; nation_values are coverage-only (not conditionable by the pipeline).",
+        "note": "Derived from native model source maps and semantic maps. Country conditioning uses, in order: "
+                "country_feature, iso_feature (ISO 3166), nation_features (map-labelled NATION variables).",
         "models": dict(sorted(models.items())),
     }
     out_path.write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")

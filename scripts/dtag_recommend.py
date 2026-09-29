@@ -166,11 +166,15 @@ class Recommender:
             if fam:
                 rec["families"].add(fam)
 
-        for k, v in self.coverage.items():
+        for k in self.coverage:
             fam = k.split("/", 1)[0]
-            for lab in (v.get("country_values") or v.get("nation_values") or []):
-                if lab.strip().isdigit() or lab.strip().lower() in {"none", "nan"}:
+            possible, _ = self._country_support(k)
+            for lab in (x for vals in possible.values() for x in vals):
+                lab = str(lab).strip()
+                if lab.isdigit() or lab.lower() in {"none", "nan", ""}:
                     continue
+                if lab.upper() in localized.ISO_COUNTRY_NAMES:
+                    lab = localized.ISO_COUNTRY_NAMES[lab.upper()]
                 key, _ = _label_key(lab)
                 add(key, key.title(), fam)
         add("united states", "United States", "gss")
@@ -238,27 +242,33 @@ class Recommender:
             return 0.0
         return float(lo - year if year < lo else year - hi)
 
-    def _geo_for(self, key: str, country_key: str, country_raw: str) -> Optional[Tuple[str, str, Optional[str]]]:
+    def _country_support(self, key: str) -> Tuple[Dict[str, List[str]], List[str]]:
+        """Country-bearing variables of a model (support) and NATION hints."""
         rec = self.coverage.get(key, {})
-        feat = rec.get("country_feature")
-        if feat:
-            vals = rec.get("country_values") or []
-            var, val = localized.find_categorical_country_assignment({feat}, {feat: vals}, country_raw)
-            if var is None and country_key != norm_country(country_raw):
-                var, val = localized.find_categorical_country_assignment({feat}, {feat: vals}, country_key)
-            if var is not None:
-                return "categorical", f"{feat} = {val!r}", val
-            partial = [v for v in vals if _label_key(v)[0] == country_key]
-            if partial:
-                return "coverage_only", f"{country_key.title()} present as {', '.join(partial[:3])}; country is contextual (no unique category)", None
+        possible: Dict[str, List[str]] = {}
+        if rec.get("country_feature"):
+            possible[rec["country_feature"]] = list(rec.get("country_values") or [])
+        if rec.get("iso_feature"):
+            possible[rec["iso_feature"]] = list(rec.get("iso_values") or [])
+        hints = list((rec.get("nation_features") or {}).keys())
+        for v in hints:
+            possible[v] = list(rec["nation_features"][v])
+        return possible, hints
+
+    def _geo_for(self, key: str, country_key: str, country_raw: str) -> Optional[Tuple[str, str, Optional[str]]]:
+        possible, hints = self._country_support(key)
+        if not possible:
             return None
-        nat = rec.get("nation_values") or []
-        hits = [v for v in nat if _label_key(v)[0] == country_key]
-        if hits:
-            return "coverage_only", (
-                f"{country_key.title()} is in this wave ({rec.get('nation_feature')}={hits[0]!r}) but the variable "
-                "is not a conditionable country feature; country is contextual"
-            ), None
+        for req in dict.fromkeys([country_raw, country_key]):
+            var, val = localized.find_categorical_country_assignment(set(possible), possible, req, hint_features=hints)
+            if var is not None:
+                return "categorical", f"{var} = {val!r}", val
+        partial = sorted({
+            str(v) for vals in possible.values() for v in vals
+            if _label_key(localized._value_country_name(v) if str(v).strip().upper() in localized.ISO_COUNTRY_NAMES else v)[0] == country_key
+        })
+        if partial:
+            return "coverage_only", f"{country_key.title()} present as {', '.join(partial[:3])}; no unique category, so country is contextual", None
         return None
 
     def _gss(self, year: Optional[int]) -> Optional[Candidate]:
