@@ -247,6 +247,151 @@ def _extract_question(block_lines: Sequence[str], variable: str) -> Tuple[str, s
     return qnum, _join_text(text_lines)
 
 
+
+TREND_VAR_RE = re.compile(
+    r"^(.*?)\\s*VARIABLE\\s+NAME:\\s*([A-Za-z0-9_]+)\\s*$",
+    re.I,
+)
+
+
+def _extract_trend_question(block_lines: Sequence[str]) -> Tuple[str, str]:
+    """Extract semantic prose from ZA4669-style harmonized trend-file blocks."""
+    lines = [_clean_line(x) for x in block_lines if _clean_line(x)]
+    if not lines:
+        return "", ""
+
+    stop_prefixes = (
+        "options",
+        "codes",
+        "output",
+        "frequency distribution",
+        "sample (n)",
+        "total ",
+    )
+
+    qnum = ""
+    text_lines: List[str] = []
+    saw_q = False
+
+    for line in lines:
+        low = line.lower()
+
+        if any(low.startswith(p) for p in stop_prefixes):
+            break
+        if re.fullmatch(r"\\d+", line):
+            continue
+        if re.match(r"^\\d+(?:\\.\\d+)+\\.?\\s+", line):
+            continue
+
+        # ZA4669 generally marks substantive wording with a simple "Q.".
+        if low == "q." or low.startswith("q. "):
+            saw_q = True
+            qnum = "Q."
+            rest = line[2:].strip()
+            if rest:
+                text_lines.append(rest)
+            continue
+
+        # If this is a survey-question block, ignore descriptive material before
+        # Q. and keep only question wording thereafter.
+        if saw_q:
+            text_lines.append(line)
+
+    if saw_q:
+        return qnum, _join_text(text_lines)
+
+    # Technical/demographic blocks often have no Q. marker. Preserve their
+    # leading descriptive prose until coding/frequency material begins.
+    prose: List[str] = []
+    for line in lines:
+        low = line.lower()
+        if any(low.startswith(p) for p in stop_prefixes):
+            break
+        if re.fullmatch(r"\\d+", line):
+            continue
+        if re.match(r"^\\d+(?:\\.\\d+)+\\.?\\s+", line):
+            continue
+        prose.append(line)
+        if sum(len(x) for x in prose) > 3000:
+            break
+
+    return "", _join_text(prose)
+
+
+def parse_trend_file_report(
+    pdf_path: Path,
+    features: Sequence[str],
+) -> Dict[str, VariableDoc]:
+    """Parse harmonized Eurobarometer trend files such as ZA4669.
+
+    These codebooks use headings like:
+        News Interest - Sports    VARIABLE NAME: int_sport
+    rather than the normal GESIS Variable Report block syntax.
+    """
+    exact_lower, _ = _feature_lookup(features)
+    docs: Dict[str, VariableDoc] = {}
+
+    current_var: Optional[str] = None
+    current_label = ""
+    current_page = -1
+    current_lines: List[str] = []
+
+    def flush() -> None:
+        nonlocal current_var, current_label, current_page, current_lines
+        if current_var is None:
+            return
+
+        qnum, qtext = _extract_trend_question(current_lines)
+        candidate = VariableDoc(
+            variable=current_var,
+            variable_label=current_label,
+            question_number=qnum,
+            question_text=qtext,
+            page=current_page,
+        )
+        previous = docs.get(current_var)
+        if previous is None:
+            docs[current_var] = candidate
+        else:
+            old_score = len(previous.variable_label) + len(previous.question_text)
+            new_score = len(candidate.variable_label) + len(candidate.question_text)
+            if new_score > old_score:
+                docs[current_var] = candidate
+
+        current_var = None
+        current_label = ""
+        current_page = -1
+        current_lines = []
+
+    with pdfplumber.open(str(pdf_path)) as pdf:
+        for page_no, page in enumerate(pdf.pages, start=1):
+            text = page.extract_text(x_tolerance=2, y_tolerance=2) or ""
+            if not text:
+                continue
+
+            for raw in text.splitlines():
+                line = _clean_line(raw)
+                if not line:
+                    continue
+
+                m = TREND_VAR_RE.match(line)
+                if m:
+                    key = m.group(2).strip().lower()
+                    if key in exact_lower:
+                        flush()
+                        current_var = exact_lower[key]
+                        current_label = _clean_line(m.group(1)) or current_var
+                        current_page = page_no
+                        current_lines = []
+                        continue
+
+                if current_var is not None:
+                    current_lines.append(line)
+
+    flush()
+    return docs
+
+
 def parse_variable_report(pdf_path: Path, features: Sequence[str]) -> Dict[str, VariableDoc]:
     exact_lower, ordered = _feature_lookup(features)
     docs: Dict[str, VariableDoc] = {}
@@ -313,6 +458,12 @@ def build_map(za: str, model_dir: Path, codebook: Path, out_path: Path) -> dict:
     model = load_model(model_dir, backend="native_lsm")
     features = [str(v) for v in model.feature_names]
     docs = parse_variable_report(codebook, features)
+
+    # Harmonized trend-file codebooks such as ZA4669 use a different explicit
+    # "VARIABLE NAME:" syntax. Fall back to that parser only when the standard
+    # Variable Report parser finds nothing.
+    if not docs:
+        docs = parse_trend_file_report(codebook, features)
 
     rows = []
     n_question = 0
