@@ -110,21 +110,39 @@ $DTAG_MODEL_ROOT/
 
 When `DTAG_MODEL_ROOT` is unset, DTAG falls back to `<repo>/models/lsm`.
 
-## Native LSM bindings
+## Bundled native LSM runtime
 
-DTAG requires the native LSM Python bindings used by the runtime:
+DTAG now vendors the minimal native C++ inference runtime directly under:
 
 ```text
-predict_distribution
-qdistance
+native/lsm_runtime/
 ```
 
-Point Python at the LSM binding directory, for example:
+A fresh clone therefore does **not** require a sibling `lsm` repository.
+
+Build the Python extension once:
 
 ```bash
-export LSM_BINDINGS_DIR="$HOME/Dropbox/ZED/Research/lsm/bin"
-export PYTHONPATH="$LSM_BINDINGS_DIR:$PYTHONPATH"
+bash scripts/build_native_bindings.sh
 ```
+
+The build creates:
+
+```text
+native/lsm_runtime/python/dtag_lsm*.so
+```
+
+DTAG discovers this extension automatically.
+
+The binding is session-persistent: when a DTAG model is loaded, its usable
+binary trees and source-map dictionaries are loaded/cached once and retained by
+a single C++ `dtag_lsm.Runtime` object for the lifetime of that interactive
+session. Per-question predictions and ideology distances reuse the same
+in-memory model rather than reopening the model files.
+
+The previous external `predict_distribution` / `qdistance` modules are kept
+only as a temporary fallback for installations that have not built the bundled
+extension yet.
 
 ## Python environment
 
