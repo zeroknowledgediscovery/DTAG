@@ -26,7 +26,7 @@ If no compatible polar-vector file is provided, the pipeline still answers quest
 runs semantic fallback, and writes records, but skips ideology scoring.
 
 Requirements:
-  pip install openai pandas numpy quasinet
+  pip install openai pandas numpy
 
 Env:
   export OPENAI_API_KEY="..."
@@ -1455,9 +1455,9 @@ def build_forced_assignments(
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--map", required=True, help="CSV mapping file (variable -> question text)")
-    ap.add_argument("--qnet", required=True, help="Model path: legacy Quasinet file or native LSM model directory")
-    ap.add_argument("--model_backend", choices=["auto", "quasinet", "native_lsm"], default="auto",
-                    help="Model runtime backend. auto detects native LSM directories; otherwise uses Quasinet.")
+    ap.add_argument("--model", "--qnet", dest="qnet", required=True, help="Native LSM model directory")
+    ap.add_argument("--model_backend", choices=["auto", "native_lsm"], default="native_lsm",
+                    help="Native LSM runtime backend. auto is retained as a compatibility alias.")
     ap.add_argument("--persona", required=True, help="Free-text description of an individual")
 
     ap.add_argument("--question", default="", help="User plain text question (ignored if --loop or --autoplay_csv)")
