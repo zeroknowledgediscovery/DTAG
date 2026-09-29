@@ -6,7 +6,12 @@ SRC="$ROOT/native/lsm_runtime"
 BUILD="$SRC/build"
 JOBS="${DTAG_BUILD_JOBS:-$(nproc 2>/dev/null || echo 4)}"
 
-cmake -S "$SRC" -B "$BUILD" -DCMAKE_BUILD_TYPE=Release
+PYTHON_BIN="$(command -v python3)"
+
+cmake -S "$SRC" -B "$BUILD" \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DPython_EXECUTABLE="$PYTHON_BIN" \
+  -DPYTHON_EXECUTABLE="$PYTHON_BIN"
 cmake --build "$BUILD" --parallel "$JOBS"
 
 PYTHONPATH="$SRC/python:${PYTHONPATH:-}" python3 - <<'PY'
