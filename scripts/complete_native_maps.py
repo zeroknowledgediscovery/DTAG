@@ -21,6 +21,8 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from dtag_paths import model_path  # noqa: E402
 
 
 def run(cmd: list[str]) -> None:
@@ -29,7 +31,7 @@ def run(cmd: list[str]) -> None:
 
 
 def euro_models() -> dict[str, Path]:
-    root = ROOT / "models/lsm/eurobarometer"
+    root = model_path("eurobarometer")
     out = {}
     if not root.is_dir():
         return out
@@ -101,7 +103,7 @@ def main() -> None:
             sys.executable,
             "scripts/getmap_dtag.py",
             "--codebook_pdf", str(cb),
-            "--model", "models/lsm/afrobarometer/r9",
+            "--model", str(model_path("afrobarometer", "r9")),
             "--model-backend", "native_lsm",
             "--text-mode", "combined",
             "--out", "maps/afromap/afrobarometer_r9_map.csv",
