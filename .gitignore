@@ -37,3 +37,12 @@ models/lsm/**/*
 native/lsm_runtime/build/
 native/lsm_runtime/python/*.pyd
 native/lsm_runtime/python/*.dylib
+
+# Public GCS model corpus / local model-release staging
+# Actual native models and generated archives belong in GCS, never Git.
+/models/lsm/**
+!/models/lsm/README.md
+/models/releases/
+/models/public_releases/
+/dtag-models-*/
+/*.dtag-model-release/
