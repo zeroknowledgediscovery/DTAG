@@ -456,93 +456,144 @@ def find_za_files(root: Path) -> Dict[str, Dict[str, List[Path]]]:
 
 
 def check_eurobarometer(report: Report, root: Path) -> None:
-    base_data = root / "data/eurobarometer"
-    base_maps = root / "maps/euromap"
-    base_models = root / "models/eurobarometer"
-    if not base_data.exists():
-        report.warn("Eurobarometer data", "data/eurobarometer not present", "Create data/eurobarometer and place ZAxxxx*.csv and ZAxxxx*.pdf files there")
+    """Check the native Eurobarometer development surface.
+
+    Development policy is intentionally nonblocking:
+      - native model + per-ZA map is runnable;
+      - a local GESIS codebook makes that map exact;
+      - a union-derived map is runnable but reported as a warning;
+      - missing maps/models are warnings here so unrelated DTAG development can
+        continue. The affected ZA wave itself is not runnable until fixed.
+    """
+    model_root = root / "models/lsm/eurobarometer"
+    map_root = root / "maps/eurobarometer"
+    codebook_root = root / "data/eurobarometer/codebooks"
+
+    if not model_root.is_dir():
+        report.warn(
+            "Eurobarometer native models",
+            f"Missing {rel(root, model_root)}",
+            "Populate models/lsm/eurobarometer when Eurobarometer development is needed.",
+        )
         return
 
-    za_files = find_za_files(root)
-    if not za_files:
-        report.warn("Eurobarometer data", "No ZA*.csv or ZA*.pdf files found", "Place flat files such as data/eurobarometer/ZA7575*.csv and ZA7575*.pdf")
+    models: Dict[str, Path] = {}
+    for p in model_root.iterdir():
+        if not p.is_dir():
+            continue
+        m = ZA_RE.search(p.name)
+        if m:
+            models[m.group(1).upper()] = p
+
+    if not models:
+        report.warn("Eurobarometer native models", "No ZA native model directories found")
         return
 
-    report.info("Eurobarometer ZA files", f"found {len(za_files)} ZA IDs under {rel(root, base_data)}")
-
-    if base_maps.exists():
-        report.ok("Eurobarometer map directory", rel(root, base_maps))
-    else:
-        report.fail("Eurobarometer map directory", "Missing maps/euromap", "mkdir -p maps/euromap")
-
-    if base_models.exists():
-        report.ok("Eurobarometer model directory", rel(root, base_models))
-    else:
-        report.warn("Eurobarometer model directory", "Missing models/eurobarometer", "mkdir -p models/eurobarometer; place LSM_ZAxxxx.gz models there")
-
-    integrated = base_maps / "eurobarometer_integrated_fallback_map.csv"
-    prefixed = base_maps / "eurobarometer_all_prefixed_map.csv"
-    if integrated.exists():
-        report.ok("Eurobarometer integrated fallback map", rel(root, integrated))
+    maps: Dict[str, Path] = {}
+    if map_root.is_dir():
+        for p in map_root.glob("ZA*_map.csv"):
+            m = ZA_RE.search(p.name)
+            if m:
+                maps[m.group(1).upper()] = p
     else:
         report.warn(
-            "Eurobarometer integrated fallback map",
-            "Missing maps/euromap/eurobarometer_integrated_fallback_map.csv",
-            "Run: bash scripts/generate_eurobarometer_maps.sh --drop-admin",
+            "Eurobarometer map directory",
+            f"Missing {rel(root, map_root)}",
+            "Generate per-ZA maps under maps/eurobarometer.",
         )
-    if prefixed.exists():
-        report.ok("Eurobarometer all-prefixed map", rel(root, prefixed))
-    else:
-        report.info("Eurobarometer all-prefixed map", "not present; only needed for pooled prefixed qnets")
 
-    n_ready = 0
-    n_missing_map = 0
-    n_missing_model = 0
-    n_missing_pair = 0
-    examples = []
-    for za, files in sorted(za_files.items()):
-        has_csv = bool(files.get("csv"))
-        has_pdf = bool(files.get("pdf"))
-        if not (has_csv and has_pdf):
-            n_missing_pair += 1
+    codebooks: Dict[str, Path] = {}
+    if codebook_root.is_dir():
+        for p in codebook_root.glob("ZA*_cdb.pdf"):
+            m = ZA_RE.search(p.name)
+            if m:
+                codebooks[m.group(1).upper()] = p
+
+    exact = 0
+    fallback = 0
+    missing_map = []
+    invalid_map = []
+    fallback_unresolved = 0
+    fallback_total = 0
+
+    for za, model_path in sorted(models.items()):
+        map_path = maps.get(za)
+        if map_path is None:
+            missing_map.append(za)
+            continue
+
+        ok, detail, fix = inspect_map_file(map_path)
+        if not ok:
+            invalid_map.append(za)
             report.warn(
-                f"Eurobarometer {za} data/codebook pair",
-                f"csv={len(files.get('csv', []))}; pdf={len(files.get('pdf', []))}",
-                f"Need both data/eurobarometer/{za}*.csv and {za}*.pdf",
+                f"Eurobarometer {za} map",
+                f"{rel(root, map_path)}; {detail}",
+                fix,
             )
             continue
-        map_path = base_maps / f"eurobarometer_{za}_map.csv"
-        model_candidates = []
-        if base_models.exists():
-            model_candidates = sorted(base_models.glob(f"*{za}*.gz")) + sorted(base_models.glob(f"*{za}*.pkl.gz"))
-            default_model = base_models / f"LSM_{za}.gz"
-            if default_model.exists() and default_model not in model_candidates:
-                model_candidates.insert(0, default_model)
-        if map_path.exists() and model_candidates:
-            n_ready += 1
-            report.ok(f"Eurobarometer {za}", f"csv+pdf+map+model present")
-        else:
-            if not map_path.exists():
-                n_missing_map += 1
-            if not model_candidates:
-                n_missing_model += 1
-            examples.append(za)
-    report.info(
-        "Eurobarometer readiness summary",
-        f"ZA IDs={len(za_files)}; ready={n_ready}; missing_pair={n_missing_pair}; missing_map={n_missing_map}; missing_model={n_missing_model}; examples={examples[:8]}",
+
+        if za in codebooks:
+            exact += 1
+            continue
+
+        fallback += 1
+        try:
+            import pandas as pd
+            df = pd.read_csv(map_path, dtype=str, keep_default_na=False)
+            if "map_provenance" in df.columns:
+                unresolved = int((df["map_provenance"] == "UNRESOLVED_NATIVE").sum())
+                fallback_unresolved += unresolved
+                fallback_total += len(df)
+        except Exception:
+            pass
+
+    runnable = len(models) - len(missing_map) - len(invalid_map)
+
+    report.ok(
+        "Eurobarometer native model inventory",
+        f"{len(models)} native model directories under {rel(root, model_root)}",
     )
-    if n_missing_map:
+
+    if runnable == len(models):
+        report.ok(
+            "Eurobarometer runnable coverage",
+            f"{runnable}/{len(models)} native models have readable per-ZA maps",
+        )
+    else:
+        report.warn(
+            "Eurobarometer runnable coverage",
+            f"{runnable}/{len(models)} native models have readable per-ZA maps; "
+            f"missing={len(missing_map)} invalid={len(invalid_map)}",
+            "Generate/fix only the affected ZA maps; this does not block other DTAG development.",
+        )
+
+    report.ok(
+        "Eurobarometer exact maps",
+        f"{exact} native waves have local GESIS codebook-backed maps",
+    )
+
+    if fallback:
+        frac = (
+            1.0 - fallback_unresolved / fallback_total
+            if fallback_total
+            else 0.0
+        )
+        report.warn(
+            "Eurobarometer fallback maps",
+            f"{fallback} waves use semantic-union fallback maps; "
+            f"fallback resolved fraction={frac:.3f}" if fallback_total else
+            f"{fallback} waves use semantic-union fallback maps",
+            "Nonblocking development fallback. Improve documentation/mapping later.",
+        )
+
+    if missing_map:
         report.warn(
             "Eurobarometer maps missing",
-            f"{n_missing_map} ZA IDs have CSV/PDF pairs but no individual map",
-            "Install scripts/getmap_eurobarometer.py and scripts/generate_eurobarometer_maps.sh, then run: bash scripts/generate_eurobarometer_maps.sh --drop-admin",
+            f"{len(missing_map)} model waves lack maps: {' '.join(missing_map[:12])}"
+            + (" ..." if len(missing_map) > 12 else ""),
+            "Affected waves cannot run semantic DTAG until mapped; unrelated development remains usable.",
         )
-    if n_missing_model:
-        report.warn(
-            "Eurobarometer models missing",
-            f"{n_missing_model} ZA IDs have no matching model in models/eurobarometer",
-            "Train or copy qnet/LSM files named models/eurobarometer/LSM_ZAxxxx.gz; maps alone are not enough to run DTAG.",
-        )
+
 
 
 def get_experiment_pairs(root: Path, cfg: Dict[str, Any]) -> List[Tuple[str, Path, Path]]:
