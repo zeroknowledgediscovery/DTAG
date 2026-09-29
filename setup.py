@@ -21,6 +21,7 @@ RUNTIME_DIRS = [
 WEBAPP_FILES = [
     "webapp/README.md",
     "webapp/QUICKSTART.md",
+    "webapp/HANDOFF.md",
     "webapp/IMPLEMENTATION_PLAN.md",
     "webapp/run.sh",
     "webapp/.env.example",
