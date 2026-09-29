@@ -1,27 +1,25 @@
 #!/usr/bin/env python3
 """
-pipeline6iloc.py (DTAG Pipeline 6, WVS/location-aware)
+DTAG native-LSM core pipeline.
 
-Merged version of pipeline6.py and pipeline5iloc.py.
-
-Keeps the Pipeline 6 experiment features:
+This is the canonical survey-grounded respondent runtime. It supports:
 1) Optional ideology tracking per iteration using polar reference vectors and qdistance.
 2) Ideology time-series CSV written to logs only when ideology tracking is enabled.
 3) Question-sequence CSV written to logs.
 4) Autoplay mode: provide a CSV of questions and the run becomes non-interactive.
 
 Adds the WVS/location-aware conditioning features:
-5) Supports forcing A_YEAR via --year.
+5) Supports year conditioning via --year when the model exposes a compatible feature.
 6) Supports forcing location context via --country and/or --continent.
 7) Country/continent is encoded through O1_LONGITUDE and O2_LATITUDE when those
    variables exist in the current model.
 8) Country/continent names are validated against internal dictionaries.
-9) Target coordinates are snapped to the nearest allowed qnet support values.
+9) Target coordinates are snapped to the nearest allowed native-LSM support values.
 10) Metadata/logging includes requested and resolved geography.
 
 Ideology index, when --polar_vectors is provided and compatible:
   I(s) = ( d(sL, s) - d(sR, s) ) / d(sL, sR)
-where d = qdistance(.,.,model,model), and s is the current full state vector.
+where d is native LSM qdistance and s is the current full state vector.
 If no compatible polar-vector file is provided, the pipeline still answers questions,
 runs semantic fallback, and writes records, but skips ideology scoring.
 
