@@ -6,6 +6,7 @@
 #include <pybind11/stl.h>
 
 #include <filesystem>
+#include <algorithm>
 #include <atomic>
 #include <cmath>
 #include <exception>
