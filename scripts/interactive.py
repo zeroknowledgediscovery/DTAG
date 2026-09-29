@@ -188,11 +188,9 @@ def main() -> None:
             qpath = resolve_named(cfg, 'models', qkey) if qkey else ''
             status = ''
             if qpath:
-                p = Path(qpath).expanduser()
-                if not p.is_absolute():
-                    p = root / p
+                p = resolve_repo_path(qpath, root)
                 if not p.exists():
-                    status = ' [model not trained]'
+                    status = ' [model not installed]'
             print(f'  {name}{status}' + (f' - {desc}' if desc else ''))
         return
 
