@@ -46,7 +46,9 @@ from typing import Dict, Iterable, List
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-MODEL_ROOT = ROOT / "models" / "lsm" / "eurobarometer"
+from dtag_paths import model_path
+
+MODEL_ROOT = model_path("eurobarometer")
 MAP_ROOT = ROOT / "maps" / "eurobarometer"
 CODEBOOK_ROOT = ROOT / "data" / "eurobarometer" / "codebooks"
 
