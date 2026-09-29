@@ -38,6 +38,7 @@ maps:
   afrobarometer_r6: maps/afromap/afrobarometer_r6_map.csv
   afrobarometer_r7: maps/afromap/afrobarometer_r7_map.csv
   afrobarometer_r8: maps/afromap/afrobarometer_r8_map.csv
+  afrobarometer_r9: maps/afromap/afrobarometer_r9_map.csv
 
 question_sets:
   original:
