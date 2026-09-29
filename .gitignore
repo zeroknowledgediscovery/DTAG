@@ -30,3 +30,9 @@ data/**/codebooks/*.pdf
 # Native LSM model artifacts are distributed outside Git
 models/lsm/**/*
 !models/lsm/README.md
+
+# Bundled native LSM build products
+native/lsm_runtime/build/
+native/lsm_runtime/python/*.so
+native/lsm_runtime/python/*.pyd
+native/lsm_runtime/python/*.dylib
