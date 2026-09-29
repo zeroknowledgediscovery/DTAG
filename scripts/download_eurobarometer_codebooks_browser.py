@@ -231,6 +231,23 @@ def existing_verified_pdf(path: Path, za: str) -> bool:
         return False
 
 
+def latest_failed_from_manifest() -> List[str]:
+    """Return ZA ids whose most recent manifest row is still failed."""
+    if not MANIFEST.is_file():
+        return []
+    latest: Dict[str, str] = {}
+    with MANIFEST.open("r", newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            za = str(row.get("za_id", "")).strip()
+            status = str(row.get("status", "")).strip()
+            if za:
+                latest[za] = status
+    return sorted(
+        (za for za, status in latest.items() if status == "failed"),
+        key=lambda z: int(normalize_za(z)[2:]),
+    )
+
+
 def append_manifest(row: dict) -> None:
     OUT_ROOT.mkdir(parents=True, exist_ok=True)
     fields = [
@@ -318,6 +335,47 @@ def discover_variable_report_url(page, za: str, profile_url: str, timeout_ms: in
 
     if not candidates:
         raise RuntimeError(f"No Archive variable report link found on {page.url}")
+
+    candidates.sort(key=lambda x: (-x[0], x[1]))
+    return candidates[0][1]
+
+
+def discover_basic_questionnaire_url(
+    page,
+    za: str,
+    profile_url: str,
+    timeout_ms: int,
+) -> str:
+    """Find the Basic bilingual questionnaire on a study profile."""
+    wait_dom(page, profile_url, timeout_ms)
+
+    candidates = []
+    for link in browser_links(page):
+        text = str(link.get("text", "")).strip()
+        href = str(link.get("href", "")).strip()
+        low = text.lower()
+        score = 0
+        if "basic bilingual questionnaire" in low:
+            score += 10000
+        elif "bilingual questionnaire" in low:
+            score += 8000
+        elif "basic questionnaire" in low:
+            score += 7000
+        elif "questionnaire" in low:
+            score += 1000
+
+        if "access.gesis.org/dbk/" in href.lower():
+            score += 1200
+        if "country questionnaire" in low:
+            score -= 5000
+
+        if score > 0 and href:
+            candidates.append((score, href, text))
+
+    if not candidates:
+        raise RuntimeError(
+            f"No Basic bilingual questionnaire link found on {page.url}"
+        )
 
     candidates.sort(key=lambda x: (-x[0], x[1]))
     return candidates[0][1]
@@ -450,6 +508,8 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true",
                     help="process every installed native Eurobarometer model")
+    ap.add_argument("--retry-failed", action="store_true",
+                    help="retry only ZA ids whose latest browser manifest status is failed")
     ap.add_argument("--za", action="append", default=[],
                     help="ZA study id; repeatable")
     ap.add_argument("--dbk", action="append", default=[],
@@ -465,13 +525,19 @@ def main() -> None:
     requested = [normalize_za(x) for x in args.za]
     if args.all:
         requested.extend(installed_za_ids())
+    if args.retry_failed:
+        retry_ids = latest_failed_from_manifest()
+        print(f"Retrying latest failed manifest entries: {len(retry_ids)}")
+        requested.extend(retry_ids)
 
     known_dbk = parse_dbk_args(args.dbk)
     requested.extend(known_dbk)
 
     za_ids = sorted(set(requested), key=lambda z: int(z[2:]))
     if not za_ids:
-        raise SystemExit("Use --all, --za ZAxxxx, and/or --dbk ZAxxxx=NNNN")
+        raise SystemExit(
+            "Use --all, --retry-failed, --za ZAxxxx, and/or --dbk ZAxxxx=NNNN"
+        )
 
     try:
         from playwright.sync_api import sync_playwright
@@ -493,6 +559,7 @@ def main() -> None:
     print()
 
     ok: List[str] = []
+    fallback: List[str] = []
     skip: List[str] = []
     fail: List[str] = []
 
@@ -552,9 +619,67 @@ def main() -> None:
                     validation = validate_variable_report_pdf(
                         tmp, za, pages=3, timeout_sec=12.0
                     )
-                except Exception:
-                    tmp.unlink(missing_ok=True)
-                    raise
+                except Exception as validation_error:
+                    # GESIS labels some archive-pre-release summaries as
+                    # "Archive variable report" even though they explicitly do
+                    # not contain complete variable documentation.  Preserve
+                    # that report separately and retrieve the Basic bilingual
+                    # questionnaire for semantic-map construction.
+                    _basic_pdf_check(tmp)
+                    archive_report = OUT_ROOT / f"{za}_archive_report.pdf"
+                    tmp.replace(archive_report)
+                    print(
+                        f"archive report only:      {archive_report}",
+                        flush=True,
+                    )
+                    print(
+                        f"reason:                   {validation_error}",
+                        flush=True,
+                    )
+
+                    if not profile_url:
+                        profile_url = discover_profile_url(page, za, timeout_ms)
+                        print(f"study profile:          {profile_url}")
+
+                    questionnaire_url = discover_basic_questionnaire_url(
+                        page, za, profile_url, timeout_ms
+                    )
+                    print(
+                        f"Basic questionnaire:     {questionnaire_url}",
+                        flush=True,
+                    )
+                    qdata = capture_pdf_through_chrome(
+                        page, context, questionnaire_url, timeout_ms
+                    )
+                    qout = OUT_ROOT / f"{za}_bq.pdf"
+                    qtmp = qout.with_suffix(".pdf.part")
+                    qtmp.write_bytes(qdata)
+                    _basic_pdf_check(qtmp)
+                    qtmp.replace(qout)
+
+                    qdigest = hashlib.sha256(qdata).hexdigest()
+                    print(f"saved questionnaire:    {qout}")
+                    print(f"size:                   {len(qdata) / 1024**2:.2f} MiB")
+                    print(f"sha256:                 {qdigest}")
+
+                    append_manifest(
+                        {
+                            "za_id": za,
+                            "status": "questionnaire_fallback",
+                            "profile_url": profile_url,
+                            "document_url": questionnaire_url,
+                            "dbk_id": dbk_id_from_url(questionnaire_url),
+                            "bytes": len(qdata),
+                            "sha256": qdigest,
+                            "local_path": str(qout.relative_to(ROOT)),
+                            "message": (
+                                "Archive variable report lacked complete variable "
+                                f"documentation: {validation_error}"
+                            ),
+                        }
+                    )
+                    fallback.append(za)
+                    continue
 
                 if validation == "timeout":
                     print(
@@ -609,9 +734,10 @@ def main() -> None:
     print()
     print("=" * 76)
     print("SUMMARY")
-    print(f"downloaded:       {len(ok)}")
-    print(f"already present:  {len(skip)}")
-    print(f"failed:           {len(fail)}")
+    print(f"downloaded:             {len(ok)}")
+    print(f"questionnaire fallback: {len(fallback)}")
+    print(f"already present:        {len(skip)}")
+    print(f"failed:                 {len(fail)}")
     if fail:
         print("failed ZA ids:")
         print(" ".join(fail))
