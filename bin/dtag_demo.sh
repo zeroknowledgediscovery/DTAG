@@ -86,7 +86,7 @@ section "Native model inventory"
 run python3 scripts/inventory_native_models.py
 
 section "Native repository cleanup audit"
-run python3 scripts/audit_clean_repo.py --allow-local-legacy
+run python3 scripts/audit_clean_repo.py
 
 section "Complete model/map overlap audit"
 run python3 scripts/audit_native_maps.py --deep
