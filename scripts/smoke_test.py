@@ -2,14 +2,14 @@
 """
 Minimal OpenAI API smoke test for DTAG pipelines.
 
-Checks the two API patterns used in pipeline6/pipeline6iloc:
+Checks the two OpenAI API patterns used by the native DTAG runtime:
   1) plain Responses API text generation
   2) Responses API strict JSON-schema structured output
 
 Usage:
   export OPENAI_API_KEY=...
-  python3 openai_dtag_smoketest.py --model gpt-4.1-mini
-  python3 openai_dtag_smoketest.py --model gpt-4.1 --list-models
+  python3 scripts/smoke_test.py --model gpt-4.1-mini
+  python3 scripts/smoke_test.py --model gpt-4.1 --list-models
 
 Exit code is nonzero if any required check fails.
 """
