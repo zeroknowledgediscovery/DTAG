@@ -12,7 +12,7 @@
 # gss_2022.csv, and gss_2024.csv.  Persona sex/age/etc. are conditioned
 # inside the pooled LSM rather than selecting a sex-specific model.
 #
-# Model directories live under models/lsm/ so legacy Quasinet artifacts can
+# Model directories use the native model root (DTAG_MODEL_ROOT or models/lsm)
 # remain untouched during A/B validation.
 
 models:
