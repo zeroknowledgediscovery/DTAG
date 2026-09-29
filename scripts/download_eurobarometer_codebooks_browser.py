@@ -61,8 +61,6 @@ import base64
 import csv
 import hashlib
 import re
-import shutil
-import tempfile
 import time
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional
@@ -274,123 +272,121 @@ def dbk_id_from_url(url: str) -> str:
 
 
 def capture_pdf_through_chrome(page, context, url: str, timeout_ms: int) -> bytes:
-    """Navigate real Chrome to URL and capture the PDF response through CDP.
+    """Fetch a PDF through Chrome's own authenticated network stack.
 
-    Two paths are enabled simultaneously:
-      * Chrome download manager, for attachment responses.
-      * Network.getResponseBody, for inline application/pdf responses.
+    This deliberately avoids Chrome's download manager.  GESIS may allow the
+    interactive Chrome session while rejecting ordinary HTTP clients, and the
+    download manager can mark automation-directed temporary downloads as
+    "Removed".  Network.loadNetworkResource performs the request in Chrome's
+    network context with browser credentials and exposes the body as a CDP
+    stream that we read directly.
     """
-    with tempfile.TemporaryDirectory(prefix="dtag_gesis_browser_") as td:
-        tmpdir = Path(td)
-        session = context.new_cdp_session(page)
-        session.send("Network.enable")
-        try:
-            session.send(
-                "Browser.setDownloadBehavior",
+    session = context.new_cdp_session(page)
+
+    try:
+        frame_tree = session.send("Page.getFrameTree")
+        frame_id = frame_tree["frameTree"]["frame"]["id"]
+    except Exception as e:
+        raise RuntimeError(f"cannot obtain Chrome frame id: {e}") from e
+
+    print("browser fetch:           Chrome network stream", flush=True)
+
+    try:
+        loaded = session.send(
+            "Network.loadNetworkResource",
+            {
+                "frameId": frame_id,
+                "url": url,
+                "options": {
+                    "disableCache": True,
+                    "includeCredentials": True,
+                },
+            },
+        )
+    except Exception as e:
+        raise RuntimeError(
+            f"Chrome Network.loadNetworkResource failed for {url}: {e}"
+        ) from e
+
+    resource = loaded.get("resource") or {}
+    success = bool(resource.get("success"))
+    status = resource.get("httpStatusCode")
+    net_error = resource.get("netErrorName") or resource.get("netError")
+
+    if not success:
+        raise RuntimeError(
+            f"Chrome network fetch failed for {url}: "
+            f"http={status!r} net_error={net_error!r}"
+        )
+    if isinstance(status, (int, float)) and int(status) >= 400:
+        raise RuntimeError(
+            f"Chrome network fetch returned HTTP {int(status)} for {url}"
+        )
+
+    # Current Chrome returns a DevTools IO stream.  Keep a small compatibility
+    # path for builds that return inline content instead.
+    handle = resource.get("stream")
+    if not handle:
+        inline = resource.get("content")
+        if isinstance(inline, str):
+            try:
+                data = base64.b64decode(inline)
+            except Exception:
+                data = inline.encode("latin-1", errors="ignore")
+            if data.startswith(b"%PDF"):
+                print(f"browser bytes:           {len(data) / 1024**2:.2f} MiB", flush=True)
+                return data
+        raise RuntimeError(
+            f"Chrome fetched {url} but returned no readable response stream"
+        )
+
+    chunks: List[bytes] = []
+    total = 0
+    next_report = 5 * 1024 * 1024
+
+    try:
+        while True:
+            part = session.send(
+                "IO.read",
                 {
-                    "behavior": "allow",
-                    "downloadPath": str(tmpdir),
-                    "eventsEnabled": True,
+                    "handle": handle,
+                    "size": 1024 * 1024,
                 },
             )
-        except Exception:
-            # Older Chrome versions may expose this under Page instead.
-            try:
-                session.send(
-                    "Page.setDownloadBehavior",
-                    {"behavior": "allow", "downloadPath": str(tmpdir)},
-                )
-            except Exception:
-                pass
-
-        pdf_requests: List[dict] = []
-        finished = set()
-
-        def on_response(params):
-            response = params.get("response", {})
-            mime = str(response.get("mimeType", "")).lower()
-            rurl = str(response.get("url", ""))
-            headers = {
-                str(k).lower(): str(v)
-                for k, v in (response.get("headers") or {}).items()
-            }
-            ctype = headers.get("content-type", "").lower()
-            if (
-                "pdf" in mime
-                or "application/pdf" in ctype
-                or "access.gesis.org/dbk/" in rurl.lower()
-            ):
-                pdf_requests.append(
-                    {
-                        "request_id": params.get("requestId"),
-                        "url": rurl,
-                        "mime": mime,
-                        "ctype": ctype,
-                    }
-                )
-
-        def on_finished(params):
-            rid = params.get("requestId")
-            if rid:
-                finished.add(rid)
-
-        session.on("Network.responseReceived", on_response)
-        session.on("Network.loadingFinished", on_finished)
-
-        nav_error: Optional[Exception] = None
-        try:
-            page.goto(url, wait_until="commit", timeout=timeout_ms)
-        except Exception as e:
-            nav_error = e
-
-        deadline = time.time() + timeout_ms / 1000.0
-        while time.time() < deadline:
-            # Attachment/download path.
-            completed = [
-                p for p in tmpdir.iterdir()
-                if p.is_file() and not p.name.endswith(".crdownload")
-            ]
-            for p in completed:
-                try:
-                    data = p.read_bytes()
-                except OSError:
-                    continue
-                if data.startswith(b"%PDF"):
-                    return data
-
-            # Inline/network response path.
-            for item in reversed(pdf_requests):
-                rid = item.get("request_id")
-                if not rid or rid not in finished:
-                    continue
-                try:
-                    payload = session.send(
-                        "Network.getResponseBody",
-                        {"requestId": rid},
-                    )
-                except Exception:
-                    continue
-
-                body = payload.get("body", "")
-                if payload.get("base64Encoded"):
-                    try:
-                        data = base64.b64decode(body)
-                    except Exception:
-                        continue
+            raw = part.get("data", "")
+            if raw:
+                if part.get("base64Encoded"):
+                    block = base64.b64decode(raw)
                 else:
-                    data = str(body).encode("latin-1", errors="ignore")
+                    block = str(raw).encode("latin-1", errors="ignore")
+                chunks.append(block)
+                total += len(block)
 
-                if data.startswith(b"%PDF"):
-                    return data
+                if total >= next_report:
+                    print(
+                        f"browser bytes:           {total / 1024**2:.1f} MiB",
+                        flush=True,
+                    )
+                    next_report += 5 * 1024 * 1024
 
-            page.wait_for_timeout(250)
+            if part.get("eof"):
+                break
+    finally:
+        try:
+            session.send("IO.close", {"handle": handle})
+        except Exception:
+            pass
 
-        detail = f"; navigation error={nav_error}" if nav_error else ""
+    data = b"".join(chunks)
+    print(f"browser bytes:           {len(data) / 1024**2:.2f} MiB", flush=True)
+
+    if not data.startswith(b"%PDF"):
+        prefix = data[:100].decode("utf-8", errors="replace").replace("\n", " ")
         raise RuntimeError(
-            f"Chrome reached no capturable PDF response for {url}{detail}. "
-            "Open this URL manually in the attached Chrome window; if it works, "
-            "leave that tab/profile open and rerun."
+            f"Chrome response for {url} is not a PDF; prefix={prefix!r}"
         )
+
+    return data
 
 
 def main() -> None:
