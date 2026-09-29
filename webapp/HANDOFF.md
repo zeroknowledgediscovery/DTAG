@@ -110,6 +110,9 @@ Health endpoints: `GET /api/health` (cheap, use for probes),
 | Variable | Default | Deployment notes |
 |---|---|---|
 | `OPENAI_API_KEY` | — | **Required** for real use. Store in Secret Manager. |
+| `DTAG_PASSWORD` | unset (open) | **Set for any shared/public deployment.** Store in Secret Manager. |
+| `DTAG_SESSION_SECRET` | random per process | set a long random value so logins survive restarts |
+| `DTAG_AUTH_HOURS` | `12` | login lifetime |
 | `DTAG_OPENAI_MODEL` | from config (`gpt-4.1-mini`) | optional override |
 | `DTAG_LLM_BACKEND` | `openai` | `mock` = demo without OpenAI (clearly labelled in UI) |
 | `DTAG_HOST` / `DTAG_PORT` | `127.0.0.1` / `8000` | container: `0.0.0.0` / `8000` (Cloud Run: use `$PORT`) |
@@ -137,10 +140,14 @@ Done and verified in a Linux container (Python 3.13):
 **Not yet verified:** a live session with a real `OPENAI_API_KEY` (only the
 deterministic mock LLM was available during development).
 
-**Not implemented (needed before public exposure):**
+**Access control:** shared-password protection is implemented
+(`webapp/backend/dtag_web/auth.py`, enabled by `DTAG_PASSWORD`; tests in
+`webapp/tests/test_auth.py`). Unset = open (local use).
 
-- **No authentication or rate limiting.** Anyone reaching the URL can create
-  sessions and spend OpenAI credit.
+**Not implemented:**
+
+- Per-user identity and per-user rate limits on OpenAI-backed calls (the
+  password is shared). Set a monthly spend limit on the OpenAI key.
 - Sessions are in memory: a restart drops them (models on disk survive).
 
 ## 7. Next task: deploy on Google Cloud
@@ -156,17 +163,16 @@ cache.
 1. **Target:** Compute Engine VM + Docker Compose (recommended: simplest,
    always-on, persistent disk) **or** Cloud Run (managed; must be pinned to one
    instance).
-2. **Access control:** Identity-Aware Proxy (Google accounts), or an app-level
-   shared token/password, or public with rate limits.
+2. **Access control:** the owner chose the **app-level shared password**
+   (`DTAG_PASSWORD`, already implemented). IAP remains an option later.
 3. **GCP project, region, domain name**, and who owns the OpenAI key/billing.
 
 ### 7.3 Required app changes (do these in the repo first)
 
-1. **Access control.** If not using IAP: add an optional middleware in
-   `webapp/backend/dtag_web/app.py` enabled by e.g. `DTAG_ACCESS_TOKEN`
-   (HTTP Basic or a login page setting a signed cookie); exempt only
-   `/api/health`. Add tests in `webapp/tests/test_api.py`.
-2. **Rate limiting** per client for `POST /api/sessions` and
+1. **Access control: done** (`DTAG_PASSWORD`). In deployment, provide
+   `DTAG_PASSWORD` and `DTAG_SESSION_SECRET` from Secret Manager and serve only
+   over HTTPS.
+2. *Optional:* rate limiting per client for `POST /api/sessions` and
    `POST /api/sessions/{id}/questions` (these call OpenAI).
 3. **Cloud Run only:** make the container listen on `$PORT`
    (`CMD` in `webapp/Dockerfile` already uses `DTAG_PORT`; map `PORT` → `DTAG_PORT`).
@@ -204,7 +210,9 @@ cache.
 
 - [ ] `GET https://<host>/api/health` returns `status: ok`, `openai_configured: true`.
 - [ ] `GET /api/readiness` shows 252 catalog models, native runtime available.
-- [ ] Unauthenticated requests are rejected (except `/api/health`).
+- [ ] Unauthenticated requests are rejected (except `/api/health`):
+      `/` redirects to `/login`, `/api/profiles` returns 401; the password logs in;
+      `/api/health` shows `"auth": "password"`.
 - [ ] In the browser: preset `gss2024_cm` → model auto-loads → Start respondent →
       ask “What are your thoughts about immigration?” → real (non-mock) answer
       with evidence and an ideology value.

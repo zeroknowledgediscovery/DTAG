@@ -146,6 +146,8 @@ From the shell: `dtag-models gss/gss_2024`, `dtag-models --family gss`,
 | Variable | Purpose |
 |---|---|
 | `OPENAI_API_KEY` | server-side only; never sent to the browser |
+| `DTAG_PASSWORD` | when set, the whole app requires this shared password (login page; `Authorization: Bearer <password>` for scripts); `/api/health` stays open |
+| `DTAG_SESSION_SECRET`, `DTAG_AUTH_HOURS` | login-cookie signing key (random per process if unset → restart logs everyone out) and lifetime (default 12 h) |
 | `DTAG_OPENAI_MODEL` | override the configured model (default `gpt-4.1-mini`) |
 | `DTAG_LLM_BACKEND=mock` | deterministic mock language layer for demos/tests (native anchors stay real; UI shows MOCK) |
 | `DTAG_MODEL_ROOT` | native model cache |
@@ -287,6 +289,21 @@ are registered for. No paths, commands, modules or URLs are accepted.
   time, seed, response mode, fallback mode, LLM model, initial state, every
   question with selected variables, full distributions, anchors, state updates,
   ideology and timings, plus the CLI-schema records.
+
+## Access control
+
+Set `DTAG_PASSWORD` to protect a shared or internet-facing server. Browsers get
+a sign-in page and an HttpOnly, SameSite=Lax cookie (Secure over HTTPS) signed
+with HMAC-SHA256 and bound to the password (changing the password signs
+everyone out). Failed logins are throttled per client (10 per 15 min). All
+pages and API routes are protected except `/api/health` (for load-balancer
+probes). Always serve it over HTTPS (e.g. Caddy or a cloud load balancer) so
+the password is never sent in clear text. With `DTAG_PASSWORD` unset (the
+default) the app is open, which is intended for local use only.
+
+```bash
+curl -H "Authorization: Bearer $DTAG_PASSWORD" https://<host>/api/profiles
+```
 
 ## Tests
 

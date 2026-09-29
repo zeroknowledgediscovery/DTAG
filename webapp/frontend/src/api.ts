@@ -32,6 +32,10 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   } catch {
     body = text;
   }
+  if (res.status === 401 && typeof window !== "undefined" && !path.startsWith("/api/login")) {
+    // Password protection is on and the login expired: go to the sign-in page.
+    window.location.href = `/login?next=${encodeURIComponent(window.location.pathname + window.location.search)}`;
+  }
   if (!res.ok) {
     let msg = `${res.status} ${res.statusText}`;
     if (body && typeof body === "object" && "detail" in body) {

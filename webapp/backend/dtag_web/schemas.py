@@ -77,6 +77,7 @@ class Health(BaseModel):
     model_cache_root: str
     models_loaded: int
     sessions: int
+    auth: str = "none"
 
 
 class Anchor(BaseModel):

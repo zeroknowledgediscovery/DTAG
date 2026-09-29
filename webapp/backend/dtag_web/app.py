@@ -25,6 +25,7 @@ from .schemas import (
     SessionCreate,
     SessionOut,
 )
+from .auth import PasswordAuth, install as install_auth
 from .sessions import SessionStore
 
 import dtag_paths  # noqa: E402
@@ -38,7 +39,11 @@ def default_data_dir() -> Path:
     return (Path.home() / ".cache" / "dtag" / "webapp").resolve()
 
 
-def create_app(engine: Optional[DTAGEngine] = None, frontend_dist: Optional[Path] = None) -> FastAPI:
+def create_app(
+    engine: Optional[DTAGEngine] = None,
+    frontend_dist: Optional[Path] = None,
+    auth: Optional[PasswordAuth] = None,
+) -> FastAPI:
     data_dir = default_data_dir()
     data_dir.mkdir(parents=True, exist_ok=True)
     if engine is None:
@@ -59,6 +64,8 @@ def create_app(engine: Optional[DTAGEngine] = None, frontend_dist: Optional[Path
     )
     app.state.engine = engine
     app.state.sessions = store
+    # Shared-password protection when DTAG_PASSWORD is set (see auth.py).
+    install_auth(app, auth if auth is not None else PasswordAuth.from_env())
 
     readiness_cache: Dict[str, Any] = {"at": 0.0, "value": None}
     readiness_lock = threading.Lock()
@@ -86,6 +93,7 @@ def create_app(engine: Optional[DTAGEngine] = None, frontend_dist: Optional[Path
             "model_release": engine.manifest.release,
             "model_cache_root": str(dtag_paths.model_root()),
             "models_loaded": len(engine.registry.loaded),
+            "auth": "password" if app.state.auth is not None else "none",
             "sessions": len(store),
         }
 
@@ -102,6 +110,7 @@ def create_app(engine: Optional[DTAGEngine] = None, frontend_dist: Optional[Path
         # live counters are cheap; never serve them stale
         value["models_resident"] = {"loaded": len(engine.registry.loaded), "keys": sorted(engine.registry.loaded)}
         value["sessions"] = len(store)
+        value["auth"] = "password" if app.state.auth is not None else "none"
         value.pop("_ok", None)
         return value
 

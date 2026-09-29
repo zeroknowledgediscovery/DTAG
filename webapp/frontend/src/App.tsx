@@ -363,6 +363,9 @@ export default function App() {
         <a href="/docs" target="_blank" rel="noreferrer">
           API docs
         </a>
+        {readiness && (readiness as unknown as { auth?: string }).auth === "password" && (
+          <a href="/api/logout">Sign out</a>
+        )}
       </div>
 
       <div className="main">
