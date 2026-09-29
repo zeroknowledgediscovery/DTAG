@@ -144,6 +144,10 @@ def check_imports(report: Report) -> None:
             report.fail(f"python package {pkg}", str(e))
 
     try:
+        repo_root = Path(__file__).resolve().parents[1]
+        bundled = repo_root / "native" / "lsm_runtime" / "python"
+        if bundled.is_dir() and str(bundled) not in sys.path:
+            sys.path.insert(0, str(bundled))
         mod = importlib.import_module("dtag_lsm")
         if hasattr(mod, "Runtime"):
             report.ok("bundled DTAG native LSM binding", str(getattr(mod, "__file__", "")))
