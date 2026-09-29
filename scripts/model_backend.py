@@ -229,9 +229,31 @@ class NativeLSMBackend:
         if not self._tree_ids:
             raise RuntimeError(f"No tree_*.bin files found in {self.trees_dir}")
 
+        # Native models can contain structurally present trees whose source-map
+        # alphabet is empty (for example, a survey variable that was entirely
+        # missing in one wave). Those trees cannot yield a normalized
+        # distribution and cause native qdistance to fail with
+        # "normalize_counts_to_probs: total count <= 0". Keep the complete tree
+        # inventory for diagnostics, but use only supported trees for runtime
+        # prediction/distance operations.
+        self._usable_tree_ids = [
+            tid
+            for tid in self._tree_ids
+            if tid < len(self.feature_names)
+            and bool(self._values_by_col.get(tid, []))
+        ]
+        if not self._usable_tree_ids:
+            raise RuntimeError(
+                f"No native LSM trees with categorical support found in {self.trees_dir}"
+            )
+
     @property
     def tree_ids(self) -> List[int]:
         return list(self._tree_ids)
+
+    @property
+    def usable_tree_ids(self) -> List[int]:
+        return list(self._usable_tree_ids)
 
     def possible_values(self) -> Dict[str, List[str]]:
         return {
@@ -254,13 +276,14 @@ class NativeLSMBackend:
     ) -> Dict[str, Dict[str, float]]:
         raw = self._as_raw_row(row)
         if target_names:
+            usable = set(self._usable_tree_ids)
             tree_ids = [
                 self._idx[str(name)]
                 for name in target_names
-                if str(name) in self._idx and self._idx[str(name)] in self._tree_ids
+                if str(name) in self._idx and self._idx[str(name)] in usable
             ]
         else:
-            tree_ids = self._tree_ids
+            tree_ids = self._usable_tree_ids
         if not tree_ids:
             return {}
 
@@ -292,7 +315,7 @@ class NativeLSMBackend:
             bb,
             self.path,
             self.cols_per_shard,
-            self._tree_ids,
+            self._usable_tree_ids,
             False,
         )
         return float(result["qdistance_bits"])
