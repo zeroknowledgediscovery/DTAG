@@ -81,6 +81,13 @@ STUDY_OVERVIEW_URL = (
 
 ZA_RE = re.compile(r"(ZA\s*0*\d+)", re.I)
 
+# Historical/special studies that do not follow the ordinary one-profile,
+# one-variable-report structure.
+KNOWN_SPECIAL_DBK = {
+    "ZA3651": 7045,   # ECS 1970 Great Britain omnibus survey
+    "ZA4669": 19246,  # Public Understanding of Science 1989-2005 trend codebook
+}
+
 
 def normalize_za(value: str) -> str:
     s = str(value).strip().upper().replace(" ", "")
@@ -530,8 +537,12 @@ def main() -> None:
         print(f"Retrying latest failed manifest entries: {len(retry_ids)}")
         requested.extend(retry_ids)
 
-    known_dbk = parse_dbk_args(args.dbk)
-    requested.extend(known_dbk)
+    known_dbk = dict(KNOWN_SPECIAL_DBK)
+    known_dbk.update(parse_dbk_args(args.dbk))
+    requested.extend(
+        za for za in known_dbk
+        if za in requested or args.all or args.retry_failed
+    )
 
     za_ids = sorted(set(requested), key=lambda z: int(z[2:]))
     if not za_ids:
