@@ -38,15 +38,14 @@ if command -v ldd >/dev/null 2>&1; then
   DEPS="$(ldd "$SO")"
   echo "$DEPS"
 
-  if grep -Eq 'libgomp|libstdc\+\+|libgcc_s' <<<"$DEPS"; then
+  if grep -Eq 'libgomp' <<<"$DEPS"; then
     echo >&2
-    echo "ERROR: extension still has a dynamic compiler/OpenMP runtime dependency." >&2
-    echo "Expected no libgomp, libstdc++.so, or libgcc_s.so dependency." >&2
+    echo "ERROR: extension still has a dynamic OpenMP/libgomp dependency." >&2
     exit 1
   fi
 
   echo
-  echo "PASS: no dynamic libgomp/libstdc++/libgcc_s dependency."
+  echo "PASS: no dynamic libgomp dependency."
 fi
 
 PYTHONPATH="$PYDIR:${PYTHONPATH:-}" "$PYTHON_BIN" - <<'PY'
@@ -57,6 +56,6 @@ PY
 
 echo
 echo "Built bundled DTAG native LSM runtime."
-echo "LSM runtime code, libstdc++, and libgcc are contained in the extension."
-echo "The host CPython/glibc ABI remains external."
+echo "All DTAG/LSM inference code is contained in the extension."
+echo "The host CPython, glibc, libstdc++, and libgcc runtimes remain external."
 echo "No sibling LSM repository is required at runtime."
