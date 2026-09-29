@@ -41,14 +41,9 @@ target_link_libraries(
   Threads::Threads
 )
 
-# Keep the extension as self-contained as practical on GNU/Linux.
-# LSM/DTAG C++ code is linked into this single Python extension; libstdc++ and
-# libgcc are linked statically so the runtime does not require matching shared
-# compiler runtimes on the target machine.
-if(UNIX AND NOT APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  target_link_options(dtag_lsm PRIVATE -static-libstdc++ -static-libgcc)
-endif()
-
+# Do not statically link libstdc++/libgcc into a pybind11 extension.
+# DTAG's LSM runtime code itself is compiled directly into dtag_lsm.so; the
+# host compiler runtimes remain dynamic to preserve the CPython/C++ ABI.
 set_target_properties(
   dtag_lsm
   PROPERTIES
