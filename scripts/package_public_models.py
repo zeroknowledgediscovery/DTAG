@@ -14,6 +14,7 @@ import argparse
 import hashlib
 import json
 import tarfile
+import zstandard as zstd
 from pathlib import Path
 
 EXPECTED = {
@@ -82,14 +83,17 @@ def main() -> None:
                     f"{family}/{model.name}: missing runtime assets: {missing}"
                 )
 
-            archive = family_out / f"{model.name}.tar.gz"
+            archive = family_out / f"{model.name}.tar.zst"
             print(f"PACK {family}/{model.name}")
 
-            with tarfile.open(archive, "w:gz") as tf:
-                for name in ("meta.txt", "source_maps", "trees"):
-                    src = model / name
-                    if src.exists():
-                        tf.add(src, arcname=f"{model.name}/{name}")
+            compressor = zstd.ZstdCompressor(level=8, threads=-1)
+            with archive.open("wb") as raw:
+                with compressor.stream_writer(raw, closefd=False) as zw:
+                    with tarfile.open(fileobj=zw, mode="w|") as tf:
+                        for name in ("meta.txt", "source_maps", "trees"):
+                            src = model / name
+                            if src.exists():
+                                tf.add(src, arcname=f"{model.name}/{name}")
 
             digest = sha256_file(archive)
             size = archive.stat().st_size
