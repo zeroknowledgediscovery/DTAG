@@ -6,8 +6,11 @@
 #include <pybind11/stl.h>
 
 #include <filesystem>
-#include <future>
+#include <atomic>
+#include <cmath>
+#include <exception>
 #include <map>
+#include <mutex>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -25,6 +28,130 @@ std::vector<std::string> row_to_tokens(const py::object& row) {
     out.reserve(static_cast<size_t>(n));
     for (ssize_t i = 0; i < n; ++i) out.emplace_back(py::str(seq[i]));
     return out;
+}
+
+std::map<int, double> normalize_counts(const std::map<int, int>& counts) {
+    long long total = 0;
+    for (const auto& kv : counts) total += kv.second;
+    if (total <= 0) {
+        throw std::logic_error("normalize_counts: total count <= 0");
+    }
+    std::map<int, double> out;
+    for (const auto& kv : counts) {
+        out.emplace(
+            kv.first,
+            static_cast<double>(kv.second) / static_cast<double>(total)
+        );
+    }
+    return out;
+}
+
+double persistent_qdistance(
+    const PredictDistribution& predictor,
+    const std::vector<int>& row_a,
+    const std::vector<int>& row_b,
+    const std::vector<int>& tree_ids
+) {
+    std::vector<double> values(tree_ids.size(), 0.0);
+    std::atomic<bool> failed{false};
+    std::exception_ptr first_error;
+    std::mutex error_mutex;
+
+    const long long n = static_cast<long long>(tree_ids.size());
+
+    #ifdef DTAG_HAVE_OPENMP
+    #pragma omp parallel for schedule(dynamic)
+    #endif
+    for (long long i = 0; i < n; ++i) {
+        if (failed.load(std::memory_order_relaxed)) continue;
+        try {
+            const int tid = tree_ids[static_cast<size_t>(i)];
+            const auto p_a = normalize_counts(predictor.predict(tid, row_a));
+            const auto p_b = normalize_counts(predictor.predict(tid, row_b));
+            values[static_cast<size_t>(i)] = jensen_shannon_bits(p_a, p_b);
+        } catch (...) {
+            failed.store(true, std::memory_order_relaxed);
+            std::lock_guard<std::mutex> lock(error_mutex);
+            if (!first_error) first_error = std::current_exception();
+        }
+    }
+
+    if (first_error) std::rethrow_exception(first_error);
+
+    double sum = 0.0;
+    size_t used = 0;
+    for (double v : values) {
+        if (std::isfinite(v)) {
+            sum += v;
+            ++used;
+        }
+    }
+    if (used == 0) throw std::runtime_error("persistent_qdistance: no usable trees");
+    return sum / static_cast<double>(used);
+}
+
+std::pair<double, double> persistent_distances_to_state(
+    const PredictDistribution& predictor,
+    const std::vector<int>& left,
+    const std::vector<int>& right,
+    const std::vector<int>& state,
+    const std::vector<int>& tree_ids
+) {
+    std::vector<double> left_values(tree_ids.size(), 0.0);
+    std::vector<double> right_values(tree_ids.size(), 0.0);
+    std::atomic<bool> failed{false};
+    std::exception_ptr first_error;
+    std::mutex error_mutex;
+
+    const long long n = static_cast<long long>(tree_ids.size());
+
+    #ifdef DTAG_HAVE_OPENMP
+    #pragma omp parallel for schedule(dynamic)
+    #endif
+    for (long long i = 0; i < n; ++i) {
+        if (failed.load(std::memory_order_relaxed)) continue;
+        try {
+            const int tid = tree_ids[static_cast<size_t>(i)];
+
+            // State is evaluated once for this tree and reused for both poles.
+            const auto p_state = normalize_counts(predictor.predict(tid, state));
+            const auto p_left = normalize_counts(predictor.predict(tid, left));
+            const auto p_right = normalize_counts(predictor.predict(tid, right));
+
+            left_values[static_cast<size_t>(i)] =
+                jensen_shannon_bits(p_left, p_state);
+            right_values[static_cast<size_t>(i)] =
+                jensen_shannon_bits(p_right, p_state);
+        } catch (...) {
+            failed.store(true, std::memory_order_relaxed);
+            std::lock_guard<std::mutex> lock(error_mutex);
+            if (!first_error) first_error = std::current_exception();
+        }
+    }
+
+    if (first_error) std::rethrow_exception(first_error);
+
+    double sum_left = 0.0;
+    double sum_right = 0.0;
+    size_t used = 0;
+    for (size_t i = 0; i < tree_ids.size(); ++i) {
+        const double dl = left_values[i];
+        const double dr = right_values[i];
+        if (std::isfinite(dl) && std::isfinite(dr)) {
+            sum_left += dl;
+            sum_right += dr;
+            ++used;
+        }
+    }
+
+    if (used == 0) {
+        throw std::runtime_error("persistent_distances_to_state: no usable trees");
+    }
+
+    return {
+        sum_left / static_cast<double>(used),
+        sum_right / static_cast<double>(used)
+    };
 }
 
 py::dict counts_to_prob_dict(
@@ -131,7 +258,7 @@ public:
         const auto b_codes = store_.encodeRow(row_to_tokens(row_b));
 
         py::gil_scoped_release release;
-        return ::qdistance(predictor_, a_codes, b_codes, tree_ids);
+        return persistent_qdistance(predictor_, a_codes, b_codes, tree_ids);
     }
 
     py::tuple distances_to_state(
@@ -145,21 +272,19 @@ public:
         const auto right_codes = store_.encodeRow(row_to_tokens(right));
         const auto state_codes = store_.encodeRow(row_to_tokens(state));
 
-        double d_left = 0.0;
-        double d_right = 0.0;
+        std::pair<double, double> distances;
         {
             py::gil_scoped_release release;
-            auto f_left = std::async(std::launch::async, [&]() {
-                return ::qdistance(predictor_, left_codes, state_codes, tree_ids);
-            });
-            auto f_right = std::async(std::launch::async, [&]() {
-                return ::qdistance(predictor_, right_codes, state_codes, tree_ids);
-            });
-            d_left = f_left.get();
-            d_right = f_right.get();
+            distances = persistent_distances_to_state(
+                predictor_,
+                left_codes,
+                right_codes,
+                state_codes,
+                tree_ids
+            );
         }
 
-        return py::make_tuple(d_left, d_right);
+        return py::make_tuple(distances.first, distances.second);
     }
 
     void preload() {
