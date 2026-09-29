@@ -16,7 +16,21 @@ Current validated native inventory:
 
 The deep audit verifies zero missing maps, zero bad maps, and complete model-map feature overlap across all 252 native models.
 
-## Quick start
+## Web app quick start
+
+```bash
+python3.13 -m venv dtag-env && source dtag-env/bin/activate
+pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+export OPENAI_API_KEY="sk-..."      # or run with DTAG_LLM_BACKEND=mock to try it without a key
+dtag-web                            # then open http://127.0.0.1:8000
+```
+
+Describe a respondent (who / where / when), let DTAG pick and load the matching
+native survey model, start the respondent and ask questions.
+Step-by-step guide: **[webapp/QUICKSTART.md](webapp/QUICKSTART.md)** ·
+full reference: [webapp/README.md](webapp/README.md).
+
+## Quick start (command line)
 
 DTAG can be installed directly from the public GitHub branch; no manual clone is required.
 
