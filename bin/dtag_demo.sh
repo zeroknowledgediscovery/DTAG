@@ -85,6 +85,12 @@ run python3 -m py_compile scripts/*.py
 section "Native model inventory"
 run python3 scripts/inventory_native_models.py
 
+section "Native repository cleanup audit"
+run python3 scripts/audit_clean_repo.py --allow-local-legacy
+
+section "Complete model/map overlap audit"
+run python3 scripts/audit_native_maps.py --deep
+
 section "Native backend contract tests"
 run python3 scripts/test_native_lsm_dtag.py
 
