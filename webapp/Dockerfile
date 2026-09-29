@@ -1,17 +1,12 @@
 # DTAG web application image: code, maps, configs, native runtime and built UI.
 # Native models are NOT baked in; mount a persistent volume at /data/models.
 #
+# The browser UI is the committed production build in webapp/frontend/dist
+# (rebuild it with `npm run build` in webapp/frontend after UI changes).
+#
 # Build from the repository root:
 #   docker build -f webapp/Dockerfile -t dtag-web .
 # or: cd webapp && docker compose up --build
-
-# ---- frontend build ------------------------------------------------------
-FROM node:22-slim AS frontend
-WORKDIR /src/webapp/frontend
-COPY webapp/frontend/package.json webapp/frontend/package-lock.json ./
-RUN npm ci --no-audit --no-fund
-COPY webapp/frontend/ ./
-RUN npm run build
 
 # ---- runtime -------------------------------------------------------------
 # The bundled dtag_lsm extension targets CPython 3.13 on glibc >= 2.38.
@@ -28,11 +23,11 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /src
 COPY . /src
-COPY --from=frontend /src/webapp/frontend/dist /src/webapp/frontend/dist
 
 # Rebuild the native extension only when the prebuilt one does not import
 # (or when explicitly requested with --build-arg DTAG_REBUILD_NATIVE=1).
-RUN if [ "$DTAG_REBUILD_NATIVE" = "1" ] || ! PYTHONPATH=native/lsm_runtime/python python -c "import dtag_lsm"; then \
+RUN test -f webapp/frontend/dist/index.html \
+ && if [ "$DTAG_REBUILD_NATIVE" = "1" ] || ! PYTHONPATH=native/lsm_runtime/python python -c "import dtag_lsm"; then \
       apt-get update && apt-get install -y --no-install-recommends build-essential cmake git file && \
       bash scripts/build_native_bindings.sh && \
       apt-get purge -y build-essential cmake git && apt-get autoremove -y && rm -rf /var/lib/apt/lists/* native/lsm_runtime/build; \
