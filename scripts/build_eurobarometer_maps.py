@@ -152,17 +152,19 @@ def _match_header(line: str, exact_lower: Dict[str, str], ordered: Sequence[str]
                 if rem.startswith("-"):
                     return feature, rem[1:].strip()
 
-    # Older fixed-width Variable Report form. True block headers are at/near
-    # the left margin, e.g. "v12            Q2 LIFE SATISFACTION". Crosstab
-    # repetitions are substantially indented and are intentionally ignored.
-    leading = len(raw) - len(raw.lstrip())
-    if leading <= 4:
-        m = re.match(r"^\\s*(\\S+)\\s{2,}(.+?)\\s*$", raw)
-        if m:
-            key = m.group(1).strip().lower()
-            label = _clean_line(m.group(2))
-            if key in exact_lower and label:
-                return exact_lower[key], label
+    # Older Variable Report form. In layout-preserving extraction these look
+    # fixed-width, e.g. "v12            Q2 LIFE SATISFACTION". pdfplumber may
+    # collapse that spacing to a single space, so do not require multiple
+    # spaces. A true block header starts with the exact model variable token
+    # and has a nonempty label after it. Crosstab/table repetitions either do
+    # not start with the variable ("isocntry by v12 ...") or contain only the
+    # bare variable name, so they are not matched here.
+    m = re.match(r"^\\s*(\\S+)\\s+(.+?)\\s*$", raw)
+    if m:
+        key = m.group(1).strip().lower()
+        label = _clean_line(m.group(2))
+        if key in exact_lower and label:
+            return exact_lower[key], label
 
     return None
 
