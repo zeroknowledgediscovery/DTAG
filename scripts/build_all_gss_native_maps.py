@@ -27,6 +27,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from build_gss_native_map import parse_codebook, norm  # noqa: E402
 from model_backend import load_model  # noqa: E402
+from dtag_paths import model_path  # noqa: E402
 
 
 def year_from_name(name: str) -> int:
@@ -59,7 +60,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument(
         "--model-root",
-        default="models/lsm/gss",
+        default=str(model_path("gss")),
         help="directory containing gss_YYYY native model directories",
     )
     ap.add_argument(
