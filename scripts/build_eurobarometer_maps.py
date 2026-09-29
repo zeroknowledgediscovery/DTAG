@@ -30,6 +30,7 @@ import argparse
 import csv
 import multiprocessing as mp
 import re
+import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -326,10 +327,26 @@ def parse_trend_file_report(
 
     These codebooks use headings like:
         News Interest - Sports    VARIABLE NAME: int_sport
-    rather than the normal GESIS Variable Report block syntax.
+
+    pdfplumber fragments many of these headings in ZA4669, while Poppler's
+    pdftotext -layout preserves them reliably. Use pdftotext for this special
+    fallback parser and retain page boundaries via form-feed characters.
     """
     exact_lower, _ = _feature_lookup(features)
     docs: Dict[str, VariableDoc] = {}
+
+    proc = subprocess.run(
+        ["pdftotext", "-layout", str(pdf_path), "-"],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        errors="replace",
+        check=False,
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(
+            f"pdftotext failed for {pdf_path}: {proc.stderr.strip()}"
+        )
 
     current_var: Optional[str] = None
     current_label = ""
@@ -363,30 +380,56 @@ def parse_trend_file_report(
         current_page = -1
         current_lines = []
 
-    with pdfplumber.open(str(pdf_path)) as pdf:
-        for page_no, page in enumerate(pdf.pages, start=1):
-            text = page.extract_text(x_tolerance=2, y_tolerance=2) or ""
-            if not text:
+    pages = proc.stdout.split("\f")
+    for page_no, page_text in enumerate(pages, start=1):
+        raw_lines = page_text.splitlines()
+
+        # Some headings are broken across adjacent lines.  Construct a
+        # normalized stream and also look one line ahead when VARIABLE NAME:
+        # is separated from its label.
+        i = 0
+        while i < len(raw_lines):
+            raw = raw_lines[i]
+            line = _clean_line(raw)
+            if not line:
+                i += 1
                 continue
 
-            for raw in text.splitlines():
-                line = _clean_line(raw)
-                if not line:
+            # Primary form: label and VARIABLE NAME occur on the same line.
+            m = re.search(
+                r"^(.*?)\s*VARIABLE\s+NAME:\s*([A-Za-z0-9_]+)\s*$",
+                line,
+                flags=re.I,
+            )
+
+            # Secondary form: the phrase and variable are split across two
+            # adjacent extracted lines.
+            if not m and "VARIABLE NAME:" in line.upper() and i + 1 < len(raw_lines):
+                joined = _clean_line(line + " " + raw_lines[i + 1])
+                m = re.search(
+                    r"^(.*?)\s*VARIABLE\s+NAME:\s*([A-Za-z0-9_]+)\s*$",
+                    joined,
+                    flags=re.I,
+                )
+                if m:
+                    i += 1
+
+            if m:
+                key = m.group(2).strip().lower()
+                if key in exact_lower:
+                    flush()
+                    current_var = exact_lower[key]
+                    label = _clean_line(m.group(1))
+                    current_label = label or current_var
+                    current_page = page_no
+                    current_lines = []
+                    i += 1
                     continue
 
-                m = TREND_VAR_RE.match(line)
-                if m:
-                    key = m.group(2).strip().lower()
-                    if key in exact_lower:
-                        flush()
-                        current_var = exact_lower[key]
-                        current_label = _clean_line(m.group(1)) or current_var
-                        current_page = page_no
-                        current_lines = []
-                        continue
+            if current_var is not None:
+                current_lines.append(line)
 
-                if current_var is not None:
-                    current_lines.append(line)
+            i += 1
 
     flush()
     return docs
