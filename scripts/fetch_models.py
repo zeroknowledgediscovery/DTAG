@@ -10,6 +10,7 @@ import shutil
 import tarfile
 import tempfile
 import urllib.request
+import zstandard as zstd
 from pathlib import Path
 
 DEFAULT_RELEASE = os.environ.get("DTAG_MODEL_RELEASE", "v0.2.0")
@@ -85,8 +86,13 @@ def fetch_one(root: Path, manifest: dict, key: str, force: bool = False) -> Path
 
         extract = tmp / "extract"
         extract.mkdir()
-        with tarfile.open(archive, "r:gz") as tf:
-            tf.extractall(extract)
+        with archive.open("rb") as raw:
+            with zstd.ZstdDecompressor().stream_reader(raw) as zr:
+                with tarfile.open(fileobj=zr, mode="r|") as tf:
+                    try:
+                        tf.extractall(extract, filter="data")
+                    except TypeError:
+                        tf.extractall(extract)
 
         top = extract / Path(key).name
         if not (top / "source_maps").is_dir():
