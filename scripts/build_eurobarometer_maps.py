@@ -503,10 +503,21 @@ def build_map(za: str, model_dir: Path, codebook: Path, out_path: Path) -> dict:
     docs = parse_variable_report(codebook, features)
 
     # Harmonized trend-file codebooks such as ZA4669 use a different explicit
-    # "VARIABLE NAME:" syntax. Fall back to that parser only when the standard
-    # Variable Report parser finds nothing.
-    if not docs:
-        docs = parse_trend_file_report(codebook, features)
+    # "VARIABLE NAME:" syntax. The standard parser can occasionally find a few
+    # accidental/spurious matches in such files, so do not require exactly zero
+    # matches before trying the trend parser. If standard coverage is low, run
+    # the trend parser and keep the richer per-variable result.
+    if len(docs) < max(10, int(0.50 * len(features))):
+        trend_docs = parse_trend_file_report(codebook, features)
+        for var, candidate in trend_docs.items():
+            previous = docs.get(var)
+            if previous is None:
+                docs[var] = candidate
+            else:
+                old_score = len(previous.variable_label) + len(previous.question_text)
+                new_score = len(candidate.variable_label) + len(candidate.question_text)
+                if new_score > old_score:
+                    docs[var] = candidate
 
     rows = []
     n_question = 0
