@@ -39,6 +39,29 @@ from dtag_paths import model_path
 
 MODEL_ROOT = model_path("eurobarometer")
 
+DEFAULT_PERSONA = "45 year old adult, regular news consumer, politically attentive, moderate"
+DEFAULT_CONTINENT = "Europe"
+
+# Runtime parameters this launcher passes to pipeline_localized.py. The web
+# engine reuses them so a Eurobarometer respondent behaves identically there.
+EUROBAROMETER_RUN_DEFAULTS = {
+    "state_keep": 500,
+    "k": 6,
+    "prefilter": 200,
+    "min_map_score": 1.0,
+    "semantic_fallback": "answer_only",
+    "semantic_k": 6,
+    "semantic_prefilter": 80,
+    "semantic_min_confidence": 0.35,
+    "semantic_resp_mode": "max",
+    "max_assign": 50,
+    "assign_prefilter": 500,
+    "resp_mode": "max",
+    "seed": 1000,
+    "timing": True,
+    "no_ideology": True,
+}
+
 
 def normalize_za(value: str) -> str:
     s = str(value).strip().upper()
@@ -179,10 +202,10 @@ def main() -> None:
     ap.add_argument("--map", default="", help="explicit map CSV; otherwise conservative ZA discovery")
     ap.add_argument(
         "--persona",
-        default="45 year old adult, regular news consumer, politically attentive, moderate",
+        default=DEFAULT_PERSONA,
     )
     ap.add_argument("--country", default="")
-    ap.add_argument("--continent", default="Europe")
+    ap.add_argument("--continent", default=DEFAULT_CONTINENT)
     ap.add_argument("--year", type=int, default=None, help="context/conditioning; if no --za/--date is given, list candidate waves in that year")
     ap.add_argument("--question", default="")
     ap.add_argument("--logs-dir", default="")

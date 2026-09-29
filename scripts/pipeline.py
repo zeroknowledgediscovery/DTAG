@@ -767,15 +767,22 @@ def semantic_prefilter(
     map_csv: str,
     assets_dir: str,
     embedding_model: str,
+    var_embeddings: Optional[Dict[str, List[float]]] = None,
 ) -> List[Tuple[str, str, float]]:
-    """Embedding-based broad semantic retrieval for indirect fallback answers."""
-    var_embeddings = get_var_embeddings_cached(
-        client=client,
-        var_map=var_map,
-        map_csv=map_csv,
-        assets_dir=assets_dir,
-        embedding_model=embedding_model,
-    )
+    """Embedding-based broad semantic retrieval for indirect fallback answers.
+
+    ``var_embeddings`` may be supplied by a caller that already holds the map
+    embeddings in memory (for example a persistent DTAG session); otherwise
+    they are read from, or written to, the on-disk cache.
+    """
+    if var_embeddings is None:
+        var_embeddings = get_var_embeddings_cached(
+            client=client,
+            var_map=var_map,
+            map_csv=map_csv,
+            assets_dir=assets_dir,
+            embedding_model=embedding_model,
+        )
     q_resp = client.embeddings.create(model=embedding_model, input=[question])
     q_vec = np.array(_l2_normalize_vector(list(q_resp.data[0].embedding)), dtype=float)
 
@@ -1569,6 +1576,17 @@ def main() -> None:
     sys.stderr = Tee(orig_stderr, log_fh)  # type: ignore[assignment]
 
     try:
+        # The respondent algorithm lives in dtag_session.DTAGSession so that the
+        # CLI and the web application execute the same implementation.
+        from dtag_session import (
+            DTAGConfigError,
+            DTAGSession,
+            ModelContext,
+            SessionConfig,
+            build_polar_geometry,
+            default_client_factory,
+        )
+
         timings_init: Dict[str, float] = {}
         t0 = time.time()
 
@@ -1625,64 +1643,23 @@ def main() -> None:
         if hasattr(model, "runtime_kind"):
             meta["native_runtime_kind"] = str(model.runtime_kind)
             print(f"INFO: native runtime = {model.runtime_kind}", file=sys.stderr)
-        feat = set(model.feature_names)
-        idx_map = {model.feature_names[i]: i for i in range(len(model.feature_names))}
         meta["model_backend"] = getattr(model, "backend_name", args.model_backend)
 
-        # Load map and restrict to model features
-        t1 = time.time()
-        var_map = load_var_map(args.map)
-        var_map = {v: q for v, q in var_map.items() if v in feat}
-        timings_init["load_map"] = time.time() - t1
-        if not var_map:
-            print("ERROR: After intersecting map with qnet feature_names, no variables remain.", file=sys.stderr)
+        # Load map (restricted to model features) and possible responses.
+        try:
+            ctx = ModelContext(model, args.qnet, args.map, assets_dir=assets_dir)
+        except DTAGConfigError as e:
+            print(f"ERROR: {e}", file=sys.stderr)
             sys.exit(2)
+        timings_init["load_map"] = ctx.timings["load_map"]
 
         # Optional polar vectors: needed only for ideology time-series output.
         # WVS/non-GSS answering can run with no polar vector file.
-        tpol = time.time()
-        polar_path = str(args.polar_vectors or "").strip()
-        ideology_enabled = False
-        ideology_disable_reason = ""
-        left_map: Dict[str, str] = {}
-        right_map: Dict[str, str] = {}
-        sL: Optional[np.ndarray] = None
-        sR: Optional[np.ndarray] = None
-        dLR = 0.0
-
-        if args.no_ideology:
-            ideology_disable_reason = "--no_ideology was set"
-        elif not polar_path:
-            ideology_disable_reason = "no --polar_vectors file provided"
-        elif not os.path.exists(polar_path):
-            ideology_disable_reason = f"--polar_vectors file not found: {polar_path}"
-        else:
-            try:
-                left_loaded, right_loaded = load_polar_vectors_csv(polar_path)
-                left_map = {v: val for v, val in left_loaded.items() if v in feat}
-                right_map = {v: val for v, val in right_loaded.items() if v in feat}
-                if not left_map or not right_map:
-                    ideology_disable_reason = "polar vectors have no usable overlap with this qnet model"
-                else:
-                    sL = build_pole_vector(model, left_map, idx_map)
-                    sR = build_pole_vector(model, right_map, idx_map)
-                    dLR = model.qdistance(sL, sR)
-                    if np.isfinite(dLR) and dLR > 0:
-                        ideology_enabled = True
-                    else:
-                        ideology_disable_reason = "polar-vector left/right distance is non-finite or zero"
-            except Exception as e:
-                ideology_disable_reason = f"failed to load/use polar vectors: {e}"
-
-        timings_init["load_polar_vectors"] = time.time() - tpol
-        meta["polar_vectors_summary"] = {
-            "enabled": bool(ideology_enabled),
-            "disable_reason": "" if ideology_enabled else ideology_disable_reason,
-            "path": _abspath(polar_path) if polar_path else "",
-            "n_left_assignments": len(left_map),
-            "n_right_assignments": len(right_map),
-            "dLR": float(dLR) if np.isfinite(dLR) else None,
-        }
+        polar = build_polar_geometry(ctx, str(args.polar_vectors or ""), no_ideology=bool(args.no_ideology))
+        timings_init["load_polar_vectors"] = polar.seconds
+        ideology_enabled = bool(polar.enabled)
+        ideology_disable_reason = polar.disable_reason
+        meta["polar_vectors_summary"] = polar.summary()
         meta["ideology_enabled"] = bool(ideology_enabled)
         meta["ideology_disable_reason"] = "" if ideology_enabled else ideology_disable_reason
 
@@ -1692,106 +1669,65 @@ def main() -> None:
         if not ideology_enabled:
             print(f"INFO: Ideology tracking disabled: {ideology_disable_reason}", file=sys.stderr)
 
-        # Possible responses (cached)
-        t2 = time.time()
-        possible = get_possible_responses_cached(model, args.qnet, assets_dir=assets_dir)
-        timings_init["possible_cache"] = time.time() - t2
-        meta["paths"]["possible_cache_path"] = _abspath(_possible_cache_path(args.qnet, assets_dir=assets_dir, model=model))
-        meta["paths"]["semantic_embedding_cache_path"] = _abspath(_embedding_cache_path(args.map, assets_dir=assets_dir, embedding_model=args.semantic_embedding_model))
+        timings_init["possible_cache"] = ctx.timings["possible_cache"]
+        meta["paths"]["possible_cache_path"] = ctx.possible_cache_path
+        meta["paths"]["semantic_embedding_cache_path"] = ctx.embedding_cache_path(args.semantic_embedding_model)
         meta["timings_init"] = dict(timings_init)
 
-        persona = args.persona
-        if args.continent:
-            persona = f"{persona}\nRegion context: {args.continent}"
-        if args.country:
-            persona = f"{persona}\nCountry context: {args.country}"
-        if args.year is not None:
-            persona = f"{persona}\nSurvey year: {args.year}"
-
-        # Prep allowed vars for persona assignment (one-time)
-        t3 = time.time()
-        p_toks = set(_tokenize(persona))
-        scored_vars = []
-        for v in feat:
-            opts = possible.get(v, [])
-            if not opts:
-                continue
-            proxy = var_map.get(v, v)
-            t = _norm(proxy)
-            t_toks = set(_tokenize(t))
-            overlap = len(p_toks & t_toks)
-            scored_vars.append((overlap, v))
-        scored_vars.sort(key=lambda x: (x[0], x[1]), reverse=True)
-        offer_vars = [v for _, v in scored_vars[: max(1, args.assign_prefilter)]]
-        allowed_for_llm = {v: possible.get(v, []) for v in offer_vars if possible.get(v, [])}
-        timings_init["prep_persona_allowed"] = time.time() - t3
-
-        # Initial persona assignment (one-time)
-        t4 = time.time()
-        client_assign = OpenAI()
-        persona_assigns, persona_rationale = llm_persona_to_assignments(
-            client=client_assign,
-            persona_text=persona,
-            allowed=allowed_for_llm,
+        config = SessionConfig(
+            k=args.k,
+            prefilter=args.prefilter,
+            min_map_score=args.min_map_score,
+            semantic_fallback=args.semantic_fallback,
+            semantic_k=args.semantic_k,
+            semantic_prefilter=args.semantic_prefilter,
+            semantic_min_confidence=args.semantic_min_confidence,
+            semantic_embedding_model=args.semantic_embedding_model,
+            semantic_resp_mode=args.semantic_resp_mode,
+            openai_model=args.openai_model,
             max_assign=args.max_assign,
-            model=args.openai_model,
-        )
-        timings_init["llm_persona_init"] = time.time() - t4
-
-        # Forced year/geography assignments, if requested. These override LLM persona assignments.
-        t5 = time.time()
-        forced_assigns, geo_meta = build_forced_assignments(
-            feat=feat,
-            possible=possible,
+            assign_prefilter=args.assign_prefilter,
+            resp_mode=args.resp_mode,
+            seed=args.seed,
+            state_keep=args.state_keep,
             year=args.year,
             country=args.country,
             continent=args.continent,
+            no_ideology=bool(args.no_ideology),
+            require_polar_vectors=bool(args.require_polar_vectors),
+            timing=bool(args.timing),
         )
-        timings_init["forced_assignments"] = time.time() - t5
 
-        # Validate persona assignments
-        state: "OrderedDict[str, str]" = OrderedDict()
-        dropped: List[str] = []
-        for v, val in persona_assigns.items():
-            if v not in feat:
-                dropped.append(f"{v} (not in model)")
-                continue
-            opts = possible.get(v, [])
-            if val not in opts:
-                dropped.append(f"{v}={val} (not allowed)")
-                continue
-            state[v] = val
+        # Persona initialisation, forced year/geography, initial ideology.
+        # build_forced_assignments is resolved at call time so that
+        # pipeline_localized.py's deterministic geography still applies.
+        try:
+            session = DTAGSession(
+                ctx=ctx,
+                persona=args.persona,
+                config=config,
+                polar=polar,
+                client_factory=default_client_factory,
+                forced_assignment_fn=lambda **kw: build_forced_assignments(**kw),
+                timings_init=timings_init,
+            )
+        except DTAGConfigError as e:
+            print(f"ERROR: {e}", file=sys.stderr)
+            sys.exit(2)
+        timings_init = session.timings_init
+        persona = session.persona
 
-        for v, val in forced_assigns.items():
-            state[v] = val
+        if session.persona_assignments_dropped:
+            print(f"WARNING: Dropped initial persona assignments: {session.persona_assignments_dropped[:20]}", file=sys.stderr)
 
-        if dropped:
-            print(f"WARNING: Dropped initial persona assignments: {dropped[:20]}", file=sys.stderr)
-
-        meta["persona_assignment_rationale"] = persona_rationale
-        meta["persona_assignments_llm_raw"] = dict(persona_assigns)
-        meta["persona_assignments_initial"] = dict(state)
-        meta["persona_assignments_dropped"] = dropped
-        meta["forced_assignments"] = dict(forced_assigns)
-        meta["geography"] = geo_meta
+        meta["persona_assignment_rationale"] = session.persona_rationale
+        meta["persona_assignments_llm_raw"] = dict(session.persona_assignments_llm_raw)
+        meta["persona_assignments_initial"] = dict(session.persona_assignments_initial)
+        meta["persona_assignments_dropped"] = list(session.persona_assignments_dropped)
+        meta["forced_assignments"] = dict(session.forced_assignments)
+        meta["geography"] = dict(session.geo_meta)
         meta["timings_init"] = dict(timings_init)
-
-        # Initial ideology (step 0), only when compatible polar vectors are available.
-        ideology_series: List[Tuple[int, Optional[float]]] = []
-        ideology0: Optional[float] = None
-        if ideology_enabled and sL is not None and sR is not None:
-            tI0 = time.time()
-            s0 = build_full_vector_from_state(model, dict(state), idx_map)
-            ideology0 = ideology_index_from_vectors(s0, sL, sR, model, dLR=dLR)
-            timings_init["ideology_init"] = time.time() - tI0
-            ideology_series.append((0, ideology0))
-        else:
-            timings_init["ideology_init"] = 0.0
-        meta["ideology_initial"] = ideology0
-
-        # Question sequence record: list of (step, question, source)
-        # step 0 reserved for persona init (no question)
-        question_series: List[Tuple[int, str, str]] = []
+        meta["ideology_initial"] = session.ideology0
 
         if args.timing:
             print("TIMING (init)")
@@ -1800,475 +1736,31 @@ def main() -> None:
                 print(f"{k}: {v:.3f}s")
             print()
 
-        records: List[Dict[str, object]] = []
-
-        def _evict_to_limit():
-            while len(state) > max(1, int(args.state_keep)):
-                state.popitem(last=False)
-
-        def _carry_forward_ideology(query_idx: int) -> Optional[float]:
-            if ideology_enabled and ideology_series:
-                ideol_prev = ideology_series[-1][1]
-                ideology_series.append((query_idx, ideol_prev))
-                return ideol_prev
-            return None
-
-        def _compute_and_record_ideology(query_idx: int) -> Optional[float]:
-            if not ideology_enabled or sL is None or sR is None:
-                return None
-            s_vec = build_full_vector_from_state(model, dict(state), idx_map)
-            ideol_now = ideology_index_from_vectors(s_vec, sL, sR, model, dLR=dLR)
-            ideology_series.append((query_idx, ideol_now))
-            return ideol_now
-
-        def _record_no_match(
-            question: str,
-            query_idx: int,
-            source: str,
-            rationale: str,
-            skip_reason: str,
-            timings_q: Dict[str, float],
-        ) -> None:
-            """Record a question that could not be mapped without mutating state."""
-            ideol = _carry_forward_ideology(query_idx)
-
-            timings_q["total"] = timings_q.get("total", 0.0)
-            print("NO_MATCH: No semantically relevant survey variable was found; state was not updated.", file=sys.stderr)
-            _section("NO MATCH", "No semantically relevant survey variable was found. The respondent state was not updated.", "91")
-            _section("QUESTION", question.strip(), "90")
-            _section("SELECTION RATIONALE", rationale.strip() or skip_reason, "90")
-
-            records.append({
-                "query_idx": query_idx,
-                "question": question,
-                "question_source": source,
-                "selected_variables": [],
-                "selection_rationale": rationale,
-                "responses": {},
-                "state_updates": {},
-                "ideology_index": ideol,
-                "answer": "",
-                "skipped": True,
-                "skip_reason": skip_reason,
-                "direct_mapping": False,
-                "semantic_fallback": False,
-                "semantic_trigger": skip_reason,
-                "semantic_state_updated": False,
-                "semantic_bridge_items": [],
-                "timings": dict(timings_q) if args.timing else None,
-            })
-
-        def _run_semantic_fallback(
-            question: str,
-            query_idx: int,
-            source: str,
-            trigger_reason: str,
-            trigger_rationale: str,
-            timings_q: Dict[str, float],
-            tq0: float,
-        ) -> bool:
-            """Answer via indirect semantic anchors.
-
-            By default this does not mutate state. Use
-            --semantic_fallback update_state only when indirect anchors should
-            become part of the simulated respondent trajectory.
-            """
-            if args.semantic_fallback == "off":
-                timings_q["total"] = time.time() - tq0
-                _record_no_match(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    rationale=trigger_rationale,
-                    skip_reason=trigger_reason,
-                    timings_q=timings_q,
-                )
-                return True
-
-            t = time.time()
-            client_sem = OpenAI()
-            try:
-                sem_cands = semantic_prefilter(
-                    client=client_sem,
-                    var_map=var_map,
-                    question=question,
-                    top_n=args.semantic_prefilter,
-                    map_csv=args.map,
-                    assets_dir=assets_dir,
-                    embedding_model=args.semantic_embedding_model,
-                )
-            except Exception as e:
-                timings_q["semantic_prefilter"] = time.time() - t
-                timings_q["total"] = time.time() - tq0
-                _record_no_match(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    rationale=f"{trigger_rationale} Semantic fallback failed during embedding retrieval: {e}",
-                    skip_reason="semantic_prefilter_failed",
-                    timings_q=timings_q,
-                )
-                return True
-            timings_q["semantic_prefilter"] = time.time() - t
-
-            if not sem_cands:
-                timings_q["total"] = time.time() - tq0
-                _record_no_match(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    rationale=f"{trigger_rationale} No embedding candidates were available for semantic fallback.",
-                    skip_reason="semantic_no_candidates",
-                    timings_q=timings_q,
-                )
-                return True
-
-            t = time.time()
-            bridge_block = semantic_candidates_text(sem_cands)
-            bridge_vars, bridge_rationale, bridge_items, answerable = llm_select_semantic_bridge_variables(
-                client=client_sem,
-                question=question,
-                candidates_block=bridge_block,
-                k=args.semantic_k,
-                model=args.openai_model,
-                min_confidence=args.semantic_min_confidence,
-            )
-            timings_q["semantic_llm_select"] = time.time() - t
-
-            bridge_items = [x for x in bridge_items if str(x.get("variable", "")) in var_map and str(x.get("variable", "")) in idx_map]
-            bridge_vars = [v for v in bridge_vars if v in var_map and v in idx_map]
-            bridge_items_for_answer = [x for x in bridge_items if str(x.get("variable", "")) in bridge_vars]
-            low_confidence_answer_only = False
-
-            if not answerable:
-                timings_q["total"] = time.time() - tq0
-                _record_no_match(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    rationale=bridge_rationale or trigger_rationale,
-                    skip_reason="semantic_no_defensible_bridge",
-                    timings_q=timings_q,
-                )
-                return True
-
-            if not bridge_vars:
-                # If the bridge is judged answerable but all candidate anchors fall below
-                # the normal confidence threshold, still allow an answer-only fallback
-                # from non-weak anchors. This prevents valid broad questions such as
-                # climate -> environment from returning a blank answer, while preserving
-                # the digital-twin state by forbidding mutation on these low-confidence anchors.
-                if args.semantic_fallback == "answer_only":
-                    low_conf_items = [
-                        x for x in bridge_items
-                        if str(x.get("relation_type", "")).strip() != "weak"
-                    ]
-                    bridge_vars = list(dict.fromkeys([str(x.get("variable", "")) for x in low_conf_items if str(x.get("variable", ""))]))[: max(1, int(args.semantic_k))]
-                    bridge_items_for_answer = [x for x in low_conf_items if str(x.get("variable", "")) in bridge_vars]
-                    low_confidence_answer_only = bool(bridge_vars)
-
-                if not bridge_vars:
-                    timings_q["total"] = time.time() - tq0
-                    _record_no_match(
-                        question=question,
-                        query_idx=query_idx,
-                        source=source,
-                        rationale=bridge_rationale or trigger_rationale,
-                        skip_reason="semantic_no_defensible_bridge",
-                        timings_q=timings_q,
-                    )
-                    return True
-
-            t = time.time()
-            NULL_cond = build_NULL_with_assignments(model, dict(state), idx_map)
-            dists_cond = qnet_conditional_distributions(model, NULL_cond, target_vars=bridge_vars)
-            bridge_vars = [v for v in bridge_vars if v in dists_cond]
-            bridge_items_for_answer = [x for x in bridge_items_for_answer if str(x.get("variable", "")) in bridge_vars]
-            timings_q["semantic_qnet_predict"] = time.time() - t
-
-            if not bridge_vars:
-                timings_q["total"] = time.time() - tq0
-                _record_no_match(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    rationale=bridge_rationale or trigger_rationale,
-                    skip_reason="semantic_qnet_no_distribution",
-                    timings_q=timings_q,
-                )
-                return True
-
-            t = time.time()
-            respmap, missing = responses_for_vars_from_distributions(
-                dists=dists_cond,
-                var_set=bridge_vars,
-                mode=args.semantic_resp_mode,
-                seed=args.seed + query_idx,
-            )
-            timings_q["semantic_response"] = time.time() - t
-            if missing:
-                bridge_vars = [v for v in bridge_vars if v in respmap]
-                bridge_items_for_answer = [x for x in bridge_items_for_answer if str(x.get("variable", "")) in bridge_vars]
-
-            if not bridge_vars:
-                timings_q["total"] = time.time() - tq0
-                _record_no_match(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    rationale=bridge_rationale or trigger_rationale,
-                    skip_reason="semantic_no_response_for_bridge_variables",
-                    timings_q=timings_q,
-                )
-                return True
-
-            var_items = [
-                VarItem(variable=v, question_text=var_map.get(v, ""), response=respmap.get(v, ""))
-                for v in bridge_vars
-            ]
-
-            updates: Dict[str, str] = {}
-            state_updated = (args.semantic_fallback == "update_state") and (not low_confidence_answer_only)
-            if state_updated:
-                t = time.time()
-                for v in bridge_vars:
-                    if v in respmap and respmap[v] in possible.get(v, []):
-                        if v in state:
-                            state.move_to_end(v)
-                        state[v] = respmap[v]
-                        updates[v] = respmap[v]
-                _evict_to_limit()
-                timings_q["semantic_state_update"] = time.time() - t
-
-                t = time.time()
-                ideol = _compute_and_record_ideology(query_idx)
-                timings_q["semantic_ideology"] = time.time() - t
-            else:
-                ideol = _carry_forward_ideology(query_idx)
-
-            t = time.time()
-            client_final = OpenAI()
-            answer = llm_craft_semantic_bridge_answer(
-                client=client_final,
-                persona_text=persona,
-                user_question=question,
-                var_items=var_items,
-                bridge_rationale=bridge_rationale,
-                bridge_items=bridge_items_for_answer,
-                model=args.openai_model,
-            )
-            timings_q["semantic_llm_final"] = time.time() - t
-            timings_q["total"] = time.time() - tq0
-
-            if low_confidence_answer_only:
-                mode_label = "SEMANTIC FALLBACK: low-confidence answer only; state not updated"
-            else:
-                mode_label = "SEMANTIC FALLBACK: state updated" if state_updated else "SEMANTIC FALLBACK: answer only; state not updated"
-            rationale = f"{mode_label}. Trigger={trigger_reason}. {bridge_rationale}"
+        def _print_result(result: Dict[str, object]) -> None:
+            if result["mapping"]["type"] == "no_match":
+                print("NO_MATCH: No semantically relevant survey variable was found; state was not updated.", file=sys.stderr)
+                _section("NO MATCH", "No semantically relevant survey variable was found. The respondent state was not updated.", "91")
+                _section("QUESTION", str(result["question"]).strip(), "90")
+                _section("SELECTION RATIONALE", str(result["display_rationale"]), "90")
+                return
             pretty_print_output(
                 model_path=args.qnet,
                 persona_text=persona,
-                persona_assignments=dict(state),
-                var_set=bridge_vars,
-                rationale_vars=rationale,
-                var_items=var_items,
-                answer=answer,
-                ideology=ideol,
-                timings=timings_q if args.timing else None,
+                persona_assignments=dict(session.state),
+                var_set=list(result["selected_variables"]),
+                rationale_vars=str(result["display_rationale"]),
+                var_items=[
+                    VarItem(variable=a["variable"], question_text=a["survey_question"], response=a["response"])
+                    for a in result["anchors"]
+                ],
+                answer=str(result["answer"]),
+                ideology=result["ideology"]["after"],
+                timings=result["timings"] if args.timing else None,
             )
-
-            records.append({
-                "query_idx": query_idx,
-                "question": question,
-                "question_source": source,
-                "selected_variables": list(bridge_vars),
-                "selection_rationale": bridge_rationale,
-                "responses": {it.variable: it.response for it in var_items},
-                "state_updates": updates,
-                "ideology_index": ideol,
-                "answer": answer,
-                "skipped": False,
-                "skip_reason": "",
-                "direct_mapping": False,
-                "semantic_fallback": True,
-                "semantic_trigger": trigger_reason,
-                "semantic_state_updated": state_updated,
-                "semantic_bridge_items": bridge_items_for_answer,
-                "semantic_low_confidence_answer_only": bool(low_confidence_answer_only),
-                "timings": dict(timings_q) if args.timing else None,
-            })
-            return True
 
         def _run_one(question: str, query_idx: int, source: str) -> None:
-            timings_q: Dict[str, float] = {}
-            tq0 = time.time()
-
-            # Save question to series
-            question_series.append((query_idx, question, source))
-
-            # Prefilter candidates for variable selection. This can now return
-            # no candidates instead of forcing unrelated survey variables.
-            t = time.time()
-            cands = lexical_prefilter(
-                var_map,
-                question,
-                top_n=args.prefilter,
-                min_score=args.min_map_score,
-            )
-            timings_q["prefilters"] = time.time() - t
-
-            if not cands:
-                _run_semantic_fallback(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    trigger_reason="no_lexical_candidate",
-                    trigger_rationale="No direct lexical candidate passed the minimum content-word relevance threshold.",
-                    timings_q=timings_q,
-                    tq0=tq0,
-                )
-                return
-
-            cand_block = candidates_text(cands)
-
-            # LLM selects variables; schema now permits an empty variable list.
-            t = time.time()
-            client_vars = OpenAI()
-            var_set, rationale_vars = llm_select_variables(
-                client=client_vars,
-                question=question,
-                candidates_block=cand_block,
-                k=args.k,
-                model=args.openai_model,
-            )
-            timings_q["llm_select"] = time.time() - t
-
-            # Keep only valid selected vars before calling Qnet. If the LLM returns
-            # no relevant variables, skip the question and preserve state.
-            var_set = [v for v in var_set if v in var_map and v in idx_map]
-            if not var_set:
-                _run_semantic_fallback(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    trigger_reason="llm_no_relevant_variable",
-                    trigger_rationale=rationale_vars,
-                    timings_q=timings_q,
-                    tq0=tq0,
-                )
-                return
-
-            # Condition Qnet on current cumulative state
-            t = time.time()
-            NULL_cond = build_NULL_with_assignments(model, dict(state), idx_map)
-            dists_cond = qnet_conditional_distributions(model, NULL_cond, target_vars=var_set)
-            timings_q["qnet_predict"] = time.time() - t
-
-            # Keep only selected vars for which Qnet returned a distribution
-            var_set = [v for v in var_set if v in dists_cond]
-            if not var_set:
-                timings_q["total"] = time.time() - tq0
-                _record_no_match(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    rationale=rationale_vars,
-                    skip_reason="qnet_no_distribution_for_selected_variables",
-                    timings_q=timings_q,
-                )
-                return
-
-            # Draw / choose responses
-            t = time.time()
-            respmap, missing = responses_for_vars_from_distributions(
-                dists=dists_cond,
-                var_set=var_set,
-                mode=args.resp_mode,
-                seed=args.seed + query_idx,
-            )
-            timings_q["draw"] = time.time() - t
-            if missing:
-                var_set = [v for v in var_set if v in respmap]
-
-            if not var_set:
-                timings_q["total"] = time.time() - tq0
-                _record_no_match(
-                    question=question,
-                    query_idx=query_idx,
-                    source=source,
-                    rationale=rationale_vars,
-                    skip_reason="no_response_for_selected_variables",
-                    timings_q=timings_q,
-                )
-                return
-
-            # Update cumulative state with drawn values
-            t = time.time()
-            updates = {}
-            for v in var_set:
-                if v in respmap and respmap[v] in possible.get(v, []):
-                    if v in state:
-                        state.move_to_end(v)
-                    state[v] = respmap[v]
-                    updates[v] = respmap[v]
-            _evict_to_limit()
-            timings_q["state_update"] = time.time() - t
-
-            # Ideology index after update, if enabled.
-            t = time.time()
-            ideol = _compute_and_record_ideology(query_idx)
-            timings_q["ideology"] = time.time() - t
-
-            var_items = [
-                VarItem(variable=v, question_text=var_map.get(v, ""), response=respmap.get(v, ""))
-                for v in var_set
-            ]
-
-            # Human answer
-            t = time.time()
-            client_final = OpenAI()
-            answer = llm_craft_human_answer(
-                client=client_final,
-                persona_text=persona,
-                user_question=question,
-                var_items=var_items,
-                model=args.openai_model,
-            )
-            timings_q["llm_final"] = time.time() - t
-
-            timings_q["total"] = time.time() - tq0
-
-            pretty_print_output(
-                model_path=args.qnet,
-                persona_text=persona,
-                persona_assignments=dict(state),
-                var_set=var_set,
-                rationale_vars=rationale_vars,
-                var_items=var_items,
-                answer=answer,
-                ideology=ideol,
-                timings=timings_q if args.timing else None,
-            )
-
-            records.append({
-                "query_idx": query_idx,
-                "question": question,
-                "question_source": source,
-                "selected_variables": list(var_set),
-                "selection_rationale": rationale_vars,
-                "responses": {it.variable: it.response for it in var_items},
-                "state_updates": updates,
-                "ideology_index": ideol,
-                "answer": answer,
-                "skipped": False,
-                "skip_reason": "",
-                "direct_mapping": True,
-                "semantic_fallback": False,
-                "semantic_trigger": "",
-                "semantic_state_updated": False,
-                "semantic_bridge_items": [],
-                "timings": dict(timings_q) if args.timing else None,
-            })
+            session.query_count = query_idx - 1
+            _print_result(session.ask(question, source=source))
 
         # Execute questions based on mode
         if mode_autoplay:
@@ -2292,6 +1784,11 @@ def main() -> None:
 
         else:
             _run_one(args.question.strip(), 1, source="single")
+
+        state = session.state
+        records = session.records
+        ideology_series = session.ideology_series
+        question_series = session.question_series
 
         # Write final state JSON
         final_state = dict(state)

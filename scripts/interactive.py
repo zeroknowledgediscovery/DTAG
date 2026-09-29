@@ -71,18 +71,33 @@ def optional_text(value: Any) -> str:
     return s
 
 
-def build_command(
+def config_root(config_path: Path) -> Path:
+    config_path = Path(config_path).expanduser().resolve()
+    return config_path.parent.parent if config_path.parent.name == 'configs' else config_path.parent
+
+
+def resolve_profile(
     cfg: Dict[str, Any],
     profile_name: str,
-    args: argparse.Namespace,
-) -> tuple[List[str], Path]:
+    root: Path,
+    semantic_fallback: str = '',
+    persona: Any = None,
+    country: Any = None,
+    continent: Any = None,
+    year: Any = None,
+    no_ideology: bool = False,
+    with_ideology: bool = False,
+) -> Dict[str, Any]:
+    """Resolve an interactive profile into concrete runtime settings.
+
+    Shared by the command-line launcher and the DTAG web engine so both apply
+    identical defaults/profile/override precedence.
+    """
     profiles = cfg.get('interactive_profiles', {}) or {}
     if profile_name not in profiles:
         raise SystemExit(f'Unknown profile {profile_name!r}. Use --list.')
     profile = dict(profiles[profile_name] or {})
 
-    config_path = Path(args.config).expanduser().resolve()
-    root = config_path.parent.parent if config_path.parent.name == 'configs' else config_path.parent
     defaults = cfg.get('defaults', {}) or {}
     run_cfg = dict(defaults.get('run', {}) or {})
     run_cfg.update(profile.get('run', {}) or {})
@@ -92,50 +107,89 @@ def build_command(
         run_cfg['resp_mode'] = 'max'
     if 'seed' not in run_cfg and 'seed_base' in run_cfg:
         run_cfg['seed'] = run_cfg['seed_base']
-    if args.semantic_fallback:
-        run_cfg['semantic_fallback'] = args.semantic_fallback
+    if semantic_fallback:
+        run_cfg['semantic_fallback'] = semantic_fallback
 
-    py = str(run_cfg.get('python', sys.executable or 'python3'))
-    pipeline = str(profile.get('pipeline', defaults.get('pipeline', 'scripts/pipeline_localized.py')))
-    qnet = resolve_named(cfg, 'models', str(profile.get('qnet', '')))
-    map_path = resolve_named(cfg, 'maps', str(profile.get('map', '')))
-    persona = args.persona if args.persona is not None else str(profile.get('persona', ''))
+    qnet_ref = str(profile.get('qnet', ''))
+    map_ref = str(profile.get('map', ''))
+    qnet = resolve_named(cfg, 'models', qnet_ref)
+    map_path = resolve_named(cfg, 'maps', map_ref)
+    persona = persona if persona is not None else str(profile.get('persona', ''))
     if not qnet or not map_path or not persona:
         raise SystemExit(f'Profile {profile_name!r} must define qnet, map, and persona')
 
-    qnet_check = resolve_repo_path(qnet, root)
+    polar = optional_text(profile.get('polar_vectors', defaults.get('polar_vectors', '')))
+    if no_ideology:
+        run_cfg['no_ideology'] = True
+    if with_ideology:
+        run_cfg['no_ideology'] = False
+
+    return {
+        'name': profile_name,
+        'description': str(profile.get('description', '')).strip(),
+        'pipeline': str(profile.get('pipeline', defaults.get('pipeline', 'scripts/pipeline_localized.py'))),
+        'qnet_ref': qnet_ref,
+        'map_ref': map_ref,
+        'qnet': qnet,
+        'qnet_path': resolve_repo_path(qnet, root),
+        'map': map_path,
+        'map_path': resolve_repo_path(map_path, root),
+        'persona': persona,
+        'country': country if country is not None else str(profile.get('country', '')),
+        'continent': continent if continent is not None else str(profile.get('continent', '')),
+        'year': year if year is not None else profile.get('year'),
+        'polar_vectors': polar,
+        'assets_dir': str(profile.get('assets_dir', 'assets')),
+        'logs_dir': str(profile.get('logs_dir', f'outputs/interactive_{profile_name}')),
+        'tag': str(profile.get('tag', profile_name)),
+        'run': run_cfg,
+    }
+
+
+def build_command(
+    cfg: Dict[str, Any],
+    profile_name: str,
+    args: argparse.Namespace,
+) -> tuple[List[str], Path]:
+    root = config_root(Path(args.config))
+    r = resolve_profile(
+        cfg,
+        profile_name,
+        root,
+        semantic_fallback=args.semantic_fallback,
+        persona=args.persona,
+        country=args.country,
+        continent=args.continent,
+        year=args.year,
+        no_ideology=args.no_ideology,
+        with_ideology=args.with_ideology,
+    )
+    run_cfg = r['run']
+
+    py = str(run_cfg.get('python', sys.executable or 'python3'))
+    qnet_check = r['qnet_path']
     if not qnet_check.exists():
         raise SystemExit(
             f"Profile {profile_name!r} model is not available yet: {qnet_check}. "
-            "For native-LSM development profiles, train it with "
-            "scripts/train_native_lsm_models.py first."
+            "Install it with dtag-models, for example: "
+            f"dtag-models {r['qnet'].split('models/lsm/', 1)[-1]}"
         )
 
-    logs_dir = args.logs_dir or str(profile.get('logs_dir', f'outputs/interactive_{profile_name}'))
-    tag = args.tag or str(profile.get('tag', profile_name))
+    logs_dir = args.logs_dir or r['logs_dir']
+    tag = args.tag or r['tag']
 
-    country = args.country if args.country is not None else str(profile.get('country', ''))
-    continent = args.continent if args.continent is not None else str(profile.get('continent', ''))
-    year = args.year if args.year is not None else profile.get('year')
-
-    polar = optional_text(profile.get('polar_vectors', defaults.get('polar_vectors', '')))
-    if args.no_ideology:
-        run_cfg['no_ideology'] = True
-    if args.with_ideology:
-        run_cfg['no_ideology'] = False
-
-    cmd: List[str] = [py, pipeline, '--map', map_path, '--qnet', str(qnet_check), '--persona', persona]
-    cmd += ['--assets_dir', str(profile.get('assets_dir', 'assets'))]
+    cmd: List[str] = [py, r['pipeline'], '--map', r['map'], '--qnet', str(qnet_check), '--persona', r['persona']]
+    cmd += ['--assets_dir', r['assets_dir']]
     cmd += ['--logs_dir', logs_dir, '--tag', tag]
 
-    if year is not None:
-        cmd += ['--year', str(year)]
-    if country:
-        cmd += ['--country', country]
-    if continent:
-        cmd += ['--continent', continent]
-    if polar:
-        cmd += ['--polar_vectors', polar]
+    if r['year'] is not None:
+        cmd += ['--year', str(r['year'])]
+    if r['country']:
+        cmd += ['--country', r['country']]
+    if r['continent']:
+        cmd += ['--continent', r['continent']]
+    if r['polar_vectors']:
+        cmd += ['--polar_vectors', r['polar_vectors']]
 
     for key, flag in VALUE_FLAGS.items():
         if key in run_cfg and run_cfg[key] is not None:
