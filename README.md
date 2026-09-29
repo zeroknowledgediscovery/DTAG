@@ -180,6 +180,18 @@ python3 scripts/check_dtag_readiness.py   --create-smoke-csv   --overlap
 
 It checks source files, Python syntax, packages, native bindings, configured model paths, maps, selected model-map overlap, question sets, polar vectors, and Eurobarometer coverage/provenance.
 
+## Clean native-only checkout audit
+
+After switching to this branch, verify that no legacy runtime files or local
+top-level model folders remain:
+
+```bash
+python3 scripts/audit_clean_repo.py
+```
+
+This checks obsolete paths, stale legacy source references, required clean
+surface files, and Python syntax.
+
 ## Complete native audit
 
 Inventory installed native models:
