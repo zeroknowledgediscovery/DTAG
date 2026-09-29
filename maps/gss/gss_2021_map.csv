@@ -1,0 +1,741 @@
+variable,question_text,question_text_filled,source,source_year,codebook_page,map_provenance
+id,respondent id number,respondent id number,DONOR_MAP,2022,,DONOR_MAP
+wrkstat,labor force status,labor force status,DONOR_MAP,2022,,DONOR_MAP
+hrs1,number of hours worked last week,number of hours worked last week,DONOR_MAP,2022,,DONOR_MAP
+hrs2,number of hours usually work a week,number of hours usually work a week,DONOR_MAP,2022,,DONOR_MAP
+evwork,ever work as long as one year,ever work as long as one year,DONOR_MAP,2022,,DONOR_MAP
+wrkslf,r self-emp or works for somebody,r self-emp or works for somebody,DONOR_MAP,2022,,DONOR_MAP
+wrkgovt,wrkgovt,wrkgovt,DONOR_MAP,2018,,DONOR_MAP
+occ10,r's census occupation code (2010),r's census occupation code (2010),DONOR_MAP,2022,,DONOR_MAP
+prestg10,r's occupational prestige score (2010),r's occupational prestige score (2010),DONOR_MAP,2022,,DONOR_MAP
+indus10,r's industry code (naics 2007),r's industry code (naics 2007),DONOR_MAP,2022,,DONOR_MAP
+marital,marital status,marital status,DONOR_MAP,2022,,DONOR_MAP
+martype,marital type,marital type,DONOR_MAP,2022,,DONOR_MAP
+divorce,ever been divorced or separated,ever been divorced or separated,DONOR_MAP,2022,,DONOR_MAP
+widowed,ever been widowed,ever been widowed,DONOR_MAP,2022,,DONOR_MAP
+spwrksta,spouse labor force status,spouse labor force status,DONOR_MAP,2022,,DONOR_MAP
+sphrs1,number of hrs spouse worked last week,number of hrs spouse worked last week,DONOR_MAP,2022,,DONOR_MAP
+sphrs2,no. of hrs spouse usually works a week,no. of hrs spouse usually works a week,DONOR_MAP,2022,,DONOR_MAP
+spevwork,spouse ever work as long as a year,spouse ever work as long as a year,DONOR_MAP,2022,,DONOR_MAP
+cowrksta,partner's labor force status,partner's labor force status,DONOR_MAP,2022,,DONOR_MAP
+coevwork,partner ever work as long as a year,partner ever work as long as a year,DONOR_MAP,2022,,DONOR_MAP
+cohrs1,number of hours partner worked last week,number of hours partner worked last week,DONOR_MAP,2022,,DONOR_MAP
+cohrs2,no. of hours partner usually works a week,no. of hours partner usually works a week,DONOR_MAP,2022,,DONOR_MAP
+spocc10,spouse census occupation code (2010),spouse census occupation code (2010),DONOR_MAP,2022,,DONOR_MAP
+sppres10,spouse occupational prestige score (2010),spouse occupational prestige score (2010),DONOR_MAP,2022,,DONOR_MAP
+spind10,spouse's industry code (naics 2007),spouse's industry code (naics 2007),DONOR_MAP,2022,,DONOR_MAP
+coocc10,partner's census occupation code (2010),partner's census occupation code (2010),DONOR_MAP,2022,,DONOR_MAP
+coind10,partner's industry code (2010),partner's industry code (2010),DONOR_MAP,2022,,DONOR_MAP
+pawrkslf,father (or oldest same-sex parent) self-emp. or worked for somebody,father (or oldest same-sex parent) self-emp. or worked for somebody,DONOR_MAP,2022,,DONOR_MAP
+paocc10,father's (or oldest same-sex parent's) occupatoin code (2010),father's (or oldest same-sex parent's) occupatoin code (2010),DONOR_MAP,2022,,DONOR_MAP
+papres10,father's (or oldest same-sex parent's) occupational prestige score (2010),father's (or oldest same-sex parent's) occupational prestige score (2010),DONOR_MAP,2022,,DONOR_MAP
+paind10,father's (or oldest same-sex parent's) industry code (naics 2007),father's (or oldest same-sex parent's) industry code (naics 2007),DONOR_MAP,2022,,DONOR_MAP
+mawrkslf,mother (or youngest same-sex parent) self-emp. or worked for somebody,mother (or youngest same-sex parent) self-emp. or worked for somebody,DONOR_MAP,2022,,DONOR_MAP
+maocc10,mother's (or youngest same-sex parent's) occupatoin code (2010),mother's (or youngest same-sex parent's) occupatoin code (2010),DONOR_MAP,2022,,DONOR_MAP
+mapres10,mother's (or youngest same-sex parent's) occupational prestige score (2010),mother's (or youngest same-sex parent's) occupational prestige score (2010),DONOR_MAP,2022,,DONOR_MAP
+maind10,mother's (or youngest same-sex parent's) industry code (naics 2007),mother's (or youngest same-sex parent's) industry code (naics 2007),DONOR_MAP,2022,,DONOR_MAP
+sibs,number of siblings (including step- and adopted),number of siblings (including step- and adopted),DONOR_MAP,2022,,DONOR_MAP
+childs,number of children,number of children,DONOR_MAP,2022,,DONOR_MAP
+age,age of respondent,age of respondent,DONOR_MAP,2022,,DONOR_MAP
+agekdbrn,r's age when 1st child born,r's age when 1st child born,DONOR_MAP,2022,,DONOR_MAP
+educ,highest year of school completed,highest year of school completed,DONOR_MAP,2022,,DONOR_MAP
+paeduc,"highest year school completed, father (or oldest same-sex parent)","highest year school completed, father (or oldest same-sex parent)",DONOR_MAP,2022,,DONOR_MAP
+maeduc,"highest year school completed, mother (or youngest same-sex parent)","highest year school completed, mother (or youngest same-sex parent)",DONOR_MAP,2022,,DONOR_MAP
+degree,r's highest degree,r's highest degree,DONOR_MAP,2022,,DONOR_MAP
+padeg,father's (or oldest same-sex parent's) highest degree,father's (or oldest same-sex parent's) highest degree,DONOR_MAP,2022,,DONOR_MAP
+madeg,mother's (or youngest same-sex parent's) highest degree,mother's (or youngest same-sex parent's) highest degree,DONOR_MAP,2022,,DONOR_MAP
+dipged,"diploma, ged, or other","diploma, ged, or other",DONOR_MAP,2022,,DONOR_MAP
+sex,respondents sex,respondents sex,DONOR_MAP,2022,,DONOR_MAP
+race,race of respondent,race of respondent,DONOR_MAP,2022,,DONOR_MAP
+res16,type of place lived in when 16 yrs old,type of place lived in when 16 yrs old,DONOR_MAP,2022,,DONOR_MAP
+reg16,"region of residence, age 16","region of residence, age 16",DONOR_MAP,2022,,DONOR_MAP
+mobile16,geographic mobility since age 16,geographic mobility since age 16,DONOR_MAP,2022,,DONOR_MAP
+famdif16,reason not living with parents,reason not living with parents,DONOR_MAP,2022,,DONOR_MAP
+mawrkgrw,did mother (or youngest same-sex parent) ever work for pay for as long as a year,did mother (or youngest same-sex parent) ever work for pay for as long as a year,DONOR_MAP,2022,,DONOR_MAP
+incom16,r's family income when 16 yrs old,r's family income when 16 yrs old,DONOR_MAP,2022,,DONOR_MAP
+born,was r born in this country,was r born in this country,DONOR_MAP,2022,,DONOR_MAP
+granborn,how many grandparents born outside u.s.,how many grandparents born outside u.s.,DONOR_MAP,2022,,DONOR_MAP
+preteen,household members 6 thru 12 yrs old,household members 6 thru 12 yrs old,DONOR_MAP,2022,,DONOR_MAP
+earnrs,how many in family earned money?,how many in family earned money?,DONOR_MAP,2022,,DONOR_MAP
+income,total family income,total family income,DONOR_MAP,2022,,DONOR_MAP
+income16,total family income,total family income,DONOR_MAP,2022,,DONOR_MAP
+rincom16,respondents income,respondents income,DONOR_MAP,2022,,DONOR_MAP
+region,region of interview,region of interview,DONOR_MAP,2022,,DONOR_MAP
+partyid,political party affiliation,political party affiliation,DONOR_MAP,2022,,DONOR_MAP
+vote16,remember if voted in 2016 election,remember if voted in 2016 election,DONOR_MAP,2022,,DONOR_MAP
+pres16,vote clinton or trump,vote clinton or trump,DONOR_MAP,2022,,DONOR_MAP
+if16who,who you would have voted for,who you would have voted for,DONOR_MAP,2022,,DONOR_MAP
+polviews,think of self as liberal or conservative,think of self as liberal or conservative,DONOR_MAP,2022,,DONOR_MAP
+natspac,space exploration program,space exploration program,DONOR_MAP,2022,,DONOR_MAP
+natenvir,improving & protecting environment,improving & protecting environment,DONOR_MAP,2022,,DONOR_MAP
+natheal,improving & protecting nations health,improving & protecting nations health,DONOR_MAP,2022,,DONOR_MAP
+natcity,solving problems of big cities,solving problems of big cities,DONOR_MAP,2022,,DONOR_MAP
+natcrime,halting rising crime rate,halting rising crime rate,DONOR_MAP,2022,,DONOR_MAP
+natdrug,dealing with drug addiction,dealing with drug addiction,DONOR_MAP,2022,,DONOR_MAP
+nateduc,improving nations education system,improving nations education system,DONOR_MAP,2022,,DONOR_MAP
+natrace,improving the conditions of black people,improving the conditions of black people,DONOR_MAP,2022,,DONOR_MAP
+natarms,"military, armaments, and defense","military, armaments, and defense",DONOR_MAP,2022,,DONOR_MAP
+nataid,foreign aid,foreign aid,DONOR_MAP,2022,,DONOR_MAP
+natfare,welfare,welfare,DONOR_MAP,2022,,DONOR_MAP
+natroad,highways and bridges,highways and bridges,DONOR_MAP,2022,,DONOR_MAP
+natsoc,social security,social security,DONOR_MAP,2022,,DONOR_MAP
+natmass,mass transportation,mass transportation,DONOR_MAP,2022,,DONOR_MAP
+natpark,parks and recreation,parks and recreation,DONOR_MAP,2022,,DONOR_MAP
+natchld,assistance for childcare,assistance for childcare,DONOR_MAP,2022,,DONOR_MAP
+natsci,supporting scientific research,supporting scientific research,DONOR_MAP,2022,,DONOR_MAP
+natenrgy,developing alternative energy sources,developing alternative energy sources,DONOR_MAP,2022,,DONOR_MAP
+natspacy,space exploration:version y,space exploration:version y,DONOR_MAP,2022,,DONOR_MAP
+natenviy,the environment:version y,the environment:version y,DONOR_MAP,2022,,DONOR_MAP
+nathealy,health:version y,health:version y,DONOR_MAP,2022,,DONOR_MAP
+natcityy,assistance to big cities:version y,assistance to big cities:version y,DONOR_MAP,2022,,DONOR_MAP
+natcrimy,law enforcement:version y,law enforcement:version y,DONOR_MAP,2022,,DONOR_MAP
+natdrugy,drug rehabilitation:version y,drug rehabilitation:version y,DONOR_MAP,2022,,DONOR_MAP
+nateducy,education:version y,education:version y,DONOR_MAP,2022,,DONOR_MAP
+natracey,assistance to black people: version y,assistance to black people: version y,DONOR_MAP,2022,,DONOR_MAP
+natarmsy,national defense:version y,national defense:version y,DONOR_MAP,2022,,DONOR_MAP
+nataidy,assistance to other countries:ver y,assistance to other countries:ver y,DONOR_MAP,2022,,DONOR_MAP
+natfarey,assistance to the poor:version y,assistance to the poor:version y,DONOR_MAP,2022,,DONOR_MAP
+eqwlth,should govt reduce income differences,should govt reduce income differences,DONOR_MAP,2022,,DONOR_MAP
+tax,r's federal income tax,r's federal income tax,DONOR_MAP,2022,,DONOR_MAP
+spkath,allow anti-religionist to speak,allow anti-religionist to speak,DONOR_MAP,2022,,DONOR_MAP
+colath,allow anti-religionist to teach,allow anti-religionist to teach,DONOR_MAP,2022,,DONOR_MAP
+libath,allow anti-religious book in library,allow anti-religious book in library,DONOR_MAP,2022,,DONOR_MAP
+spkrac,allow racist to speak,allow racist to speak,DONOR_MAP,2022,,DONOR_MAP
+colrac,allow racist to teach,allow racist to teach,DONOR_MAP,2022,,DONOR_MAP
+librac,allow racists book in library,allow racists book in library,DONOR_MAP,2022,,DONOR_MAP
+spkcom,allow communist to speak,allow communist to speak,DONOR_MAP,2022,,DONOR_MAP
+colcom,should communist teacher be fired,should communist teacher be fired,DONOR_MAP,2022,,DONOR_MAP
+libcom,allow communists book in library,allow communists book in library,DONOR_MAP,2022,,DONOR_MAP
+spkmil,spkmil,spkmil,DONOR_MAP,2018,,DONOR_MAP
+colmil,colmil,colmil,DONOR_MAP,2018,,DONOR_MAP
+libmil,libmil,libmil,DONOR_MAP,2018,,DONOR_MAP
+spkhomo,spkhomo,spkhomo,DONOR_MAP,2018,,DONOR_MAP
+colhomo,colhomo,colhomo,DONOR_MAP,2018,,DONOR_MAP
+libhomo,libhomo,libhomo,DONOR_MAP,2018,,DONOR_MAP
+spkmslm,allow muslim clergymen preaching hatred of the us,allow muslim clergymen preaching hatred of the us,DONOR_MAP,2022,,DONOR_MAP
+colmslm,allow anti-american muslim clergymen teaching in college,allow anti-american muslim clergymen teaching in college,DONOR_MAP,2022,,DONOR_MAP
+libmslm,allow anti-american muslim clergymen's books in library,allow anti-american muslim clergymen's books in library,DONOR_MAP,2022,,DONOR_MAP
+cappun,favor or oppose death penalty for murder,favor or oppose death penalty for murder,DONOR_MAP,2022,,DONOR_MAP
+gunlaw,favor or oppose gun permits,favor or oppose gun permits,DONOR_MAP,2022,,DONOR_MAP
+relig,r's religious preference,r's religious preference,DONOR_MAP,2022,,DONOR_MAP
+denom,specific denomination,specific denomination,DONOR_MAP,2022,,DONOR_MAP
+other,other protestant denominations,other protestant denominations,DONOR_MAP,2022,,DONOR_MAP
+jew,what sort of jew r is,what sort of jew r is,DONOR_MAP,2022,,DONOR_MAP
+fund,how fundamentalist is r currently,how fundamentalist is r currently,DONOR_MAP,2022,,DONOR_MAP
+attend,how often r attends religious services,how often r attends religious services,DONOR_MAP,2022,,DONOR_MAP
+pray,how often does r pray,how often does r pray,DONOR_MAP,2022,,DONOR_MAP
+popespks,pope is infallible on matter's of faith or morals,pope is infallible on matter's of faith or morals,DONOR_MAP,2022,,DONOR_MAP
+relig16,religion in which raised,religion in which raised,DONOR_MAP,2022,,DONOR_MAP
+denom16,denomination in which r was raised,denomination in which r was raised,DONOR_MAP,2022,,DONOR_MAP
+oth16,other protestant denominations,other protestant denominations,DONOR_MAP,2022,,DONOR_MAP
+jew16,what sort of jew r was at age 16,what sort of jew r was at age 16,DONOR_MAP,2022,,DONOR_MAP
+fund16,how fundamentalist was r at age 16,how fundamentalist was r at age 16,DONOR_MAP,2022,,DONOR_MAP
+sprel,spouse's religious preference,spouse's religious preference,DONOR_MAP,2022,,DONOR_MAP
+spden,"specific denomination, spouse","specific denomination, spouse",DONOR_MAP,2022,,DONOR_MAP
+spother,other protestant denominations,other protestant denominations,DONOR_MAP,2022,,DONOR_MAP
+spjew,what sort of jew is r's spouse currently,what sort of jew is r's spouse currently,DONOR_MAP,2022,,DONOR_MAP
+spfund,how fundamentalist is spouse currently,how fundamentalist is spouse currently,DONOR_MAP,2022,,DONOR_MAP
+corel,partner's religious preference,partner's religious preference,DONOR_MAP,2022,,DONOR_MAP
+coden,partner's denomination,partner's denomination,DONOR_MAP,2022,,DONOR_MAP
+coother,other protestant denominations,other protestant denominations,DONOR_MAP,2022,,DONOR_MAP
+cojew,what sort of jew is r's partner currently,what sort of jew is r's partner currently,DONOR_MAP,2022,,DONOR_MAP
+raclive,any opp. race in neighborhood,any opp. race in neighborhood,DONOR_MAP,2022,,DONOR_MAP
+affrmact,favor preference in hiring black people,favor preference in hiring black people,DONOR_MAP,2022,,DONOR_MAP
+wrkwayup,black people overcome prejudice without favors,black people overcome prejudice without favors,DONOR_MAP,2022,,DONOR_MAP
+happy,general happiness,general happiness,DONOR_MAP,2022,,DONOR_MAP
+hapmar,happiness of marriage,happiness of marriage,DONOR_MAP,2022,,DONOR_MAP
+hapcohab,happiness of relt with partner,happiness of relt with partner,DONOR_MAP,2022,,DONOR_MAP
+health,condition of health,condition of health,DONOR_MAP,2022,,DONOR_MAP
+life,is life exciting or dull,is life exciting or dull,DONOR_MAP,2022,,DONOR_MAP
+confinan,confid in banks & financial institutions,confid in banks & financial institutions,DONOR_MAP,2022,,DONOR_MAP
+conbus,confidence in major companies,confidence in major companies,DONOR_MAP,2022,,DONOR_MAP
+conclerg,confidence in organized religion,confidence in organized religion,DONOR_MAP,2022,,DONOR_MAP
+coneduc,confidence in education,confidence in education,DONOR_MAP,2022,,DONOR_MAP
+confed,confid. in exec branch of fed govt,confid. in exec branch of fed govt,DONOR_MAP,2022,,DONOR_MAP
+conlabor,confidence in organized labor,confidence in organized labor,DONOR_MAP,2022,,DONOR_MAP
+conpress,confidence in press,confidence in press,DONOR_MAP,2022,,DONOR_MAP
+conmedic,confidence in medicine,confidence in medicine,DONOR_MAP,2022,,DONOR_MAP
+contv,confidence in television,confidence in television,DONOR_MAP,2022,,DONOR_MAP
+conjudge,confid. in united states supreme court,confid. in united states supreme court,DONOR_MAP,2022,,DONOR_MAP
+consci,confidence in scientific community,confidence in scientific community,DONOR_MAP,2022,,DONOR_MAP
+conlegis,confidence in congress,confidence in congress,DONOR_MAP,2022,,DONOR_MAP
+conarmy,confidence in military,confidence in military,DONOR_MAP,2022,,DONOR_MAP
+obey,to obey,to obey,DONOR_MAP,2022,,DONOR_MAP
+popular,to be well liked or popular,to be well liked or popular,DONOR_MAP,2022,,DONOR_MAP
+thnkself,to think for ones self,to think for ones self,DONOR_MAP,2022,,DONOR_MAP
+workhard,to work hard,to work hard,DONOR_MAP,2022,,DONOR_MAP
+helpoth,to help others,to help others,DONOR_MAP,2022,,DONOR_MAP
+socrel,spend evening with relatives,spend evening with relatives,DONOR_MAP,2022,,DONOR_MAP
+socommun,spend evening with neighbor,spend evening with neighbor,DONOR_MAP,2022,,DONOR_MAP
+socfrend,spend evening with friends,spend evening with friends,DONOR_MAP,2022,,DONOR_MAP
+socbar,spend evening at bar,spend evening at bar,DONOR_MAP,2022,,DONOR_MAP
+joblose,is r likely to lose job,is r likely to lose job,DONOR_MAP,2022,,DONOR_MAP
+jobfind,could r find equally good job,could r find equally good job,DONOR_MAP,2022,,DONOR_MAP
+satjob,work satisfaction,work satisfaction,DONOR_MAP,2022,,DONOR_MAP
+richwork,"if rich, continue or stop working","if rich, continue or stop working",DONOR_MAP,2022,,DONOR_MAP
+class,subjective class identification,subjective class identification,DONOR_MAP,2022,,DONOR_MAP
+rank,r's self ranking of social position,r's self ranking of social position,DONOR_MAP,2022,,DONOR_MAP
+satfin,satisfaction with financial situation,satisfaction with financial situation,DONOR_MAP,2022,,DONOR_MAP
+finalter,change in financial situation,change in financial situation,DONOR_MAP,2022,,DONOR_MAP
+finrela,opinion of family income,opinion of family income,DONOR_MAP,2022,,DONOR_MAP
+wksub,does r or spouse have supervisor,does r or spouse have supervisor,DONOR_MAP,2022,,DONOR_MAP
+wksubs,does supervisor have supervisor,does supervisor have supervisor,DONOR_MAP,2022,,DONOR_MAP
+wksub1,does r or spouse or partner have a supervisor,does r or spouse or partner have a supervisor,DONOR_MAP,2022,,DONOR_MAP
+wksubs1,does supervisor have supervisor,does supervisor have supervisor,DONOR_MAP,2022,,DONOR_MAP
+wksup,does r or spouse supervise anyone,does r or spouse supervise anyone,DONOR_MAP,2022,,DONOR_MAP
+wksups,does subordinate supervise anyone,does subordinate supervise anyone,DONOR_MAP,2022,,DONOR_MAP
+wksup1,does r or spouse or partner supervise anyone,does r or spouse or partner supervise anyone,DONOR_MAP,2022,,DONOR_MAP
+wksups1,does subordinant supervise anyone,does subordinant supervise anyone,DONOR_MAP,2022,,DONOR_MAP
+union,does r or spouse belong to union,does r or spouse belong to union,DONOR_MAP,2022,,DONOR_MAP
+union1,does r or spouse or partner belong to union,does r or spouse or partner belong to union,DONOR_MAP,2022,,DONOR_MAP
+parsol,r's living standard compared to parents,r's living standard compared to parents,DONOR_MAP,2022,,DONOR_MAP
+abdefect,strong chance of serious defect,strong chance of serious defect,DONOR_MAP,2022,,DONOR_MAP
+abnomore,married--wants no more children,married--wants no more children,DONOR_MAP,2022,,DONOR_MAP
+abhlth,woman's health seriously endangered,woman's health seriously endangered,DONOR_MAP,2022,,DONOR_MAP
+abpoor,low income--cant afford more children,low income--cant afford more children,DONOR_MAP,2022,,DONOR_MAP
+abrape,pregnant as result of rape,pregnant as result of rape,DONOR_MAP,2022,,DONOR_MAP
+absingle,not married,not married,DONOR_MAP,2022,,DONOR_MAP
+abany,abortion if woman wants for any reason,abortion if woman wants for any reason,DONOR_MAP,2022,,DONOR_MAP
+chldidel,ideal number of children,ideal number of children,DONOR_MAP,2022,,DONOR_MAP
+pillok,birth control to teenagers 14-16,birth control to teenagers 14-16,DONOR_MAP,2022,,DONOR_MAP
+sexeduc,sex education in public schools,sex education in public schools,DONOR_MAP,2022,,DONOR_MAP
+premarsx,sex before marriage,sex before marriage,DONOR_MAP,2022,,DONOR_MAP
+teensex,sex before marriage:teens 14-16,sex before marriage:teens 14-16,DONOR_MAP,2022,,DONOR_MAP
+xmarsex,sex with person other than spouse,sex with person other than spouse,DONOR_MAP,2022,,DONOR_MAP
+homosex,homosexual sex relations,homosexual sex relations,DONOR_MAP,2022,,DONOR_MAP
+pornlaw,feelings about pornography laws,feelings about pornography laws,DONOR_MAP,2022,,DONOR_MAP
+xmovie,seen x-rated movie in last year,seen x-rated movie in last year,DONOR_MAP,2022,,DONOR_MAP
+spanking,favor spanking to discipline child,favor spanking to discipline child,DONOR_MAP,2022,,DONOR_MAP
+letdie1,allow incurable patients to die,allow incurable patients to die,DONOR_MAP,2022,,DONOR_MAP
+suicide1,suicide if incurable disease,suicide if incurable disease,DONOR_MAP,2022,,DONOR_MAP
+suicide2,suicide if bankrupt,suicide if bankrupt,DONOR_MAP,2022,,DONOR_MAP
+suicide3,suicide if dishonored family,suicide if dishonored family,DONOR_MAP,2022,,DONOR_MAP
+suicide4,suicide if tired of living,suicide if tired of living,DONOR_MAP,2022,,DONOR_MAP
+polhitok,ever approve of police striking citizen,ever approve of police striking citizen,DONOR_MAP,2022,,DONOR_MAP
+polabuse,citizen said vulgar or obscene things,citizen said vulgar or obscene things,DONOR_MAP,2022,,DONOR_MAP
+polmurdr,citizen questioned as murder suspect,citizen questioned as murder suspect,DONOR_MAP,2022,,DONOR_MAP
+polescap,citizen attempting to escape custody,citizen attempting to escape custody,DONOR_MAP,2022,,DONOR_MAP
+polattak,citizen attacking policeman with fists,citizen attacking policeman with fists,DONOR_MAP,2022,,DONOR_MAP
+fear,afraid to walk at night in neighborhood,afraid to walk at night in neighborhood,DONOR_MAP,2022,,DONOR_MAP
+owngun,have gun in home,have gun in home,DONOR_MAP,2022,,DONOR_MAP
+pistol,pistol or revolver in home,pistol or revolver in home,DONOR_MAP,2022,,DONOR_MAP
+shotgun,shotgun in home,shotgun in home,DONOR_MAP,2022,,DONOR_MAP
+rifle,rifle in home,rifle in home,DONOR_MAP,2022,,DONOR_MAP
+rowngun,does gun belong to r,does gun belong to r,DONOR_MAP,2022,,DONOR_MAP
+hunt,does r or spouse hunt,does r or spouse hunt,DONOR_MAP,2022,,DONOR_MAP
+hunt1,does r or spouse or partner hunt,does r or spouse or partner hunt,DONOR_MAP,2022,,DONOR_MAP
+news,how often does r read newspaper,how often does r read newspaper,DONOR_MAP,2022,,DONOR_MAP
+tvhours,hours per day watching tv,hours per day watching tv,DONOR_MAP,2022,,DONOR_MAP
+phone,does r have telephone,does r have telephone,DONOR_MAP,2022,,DONOR_MAP
+coop,r's attitude toward interview,r's attitude toward interview,DONOR_MAP,2022,,DONOR_MAP
+comprend,r's understanding of questions,r's understanding of questions,DONOR_MAP,2022,,DONOR_MAP
+form,form of split questionnaire asked,form of split questionnaire asked,DONOR_MAP,2022,,DONOR_MAP
+fechld,mother working doesn't hurt children,mother working doesn't hurt children,DONOR_MAP,2022,,DONOR_MAP
+fepresch,preschool kids suffer if mother works,preschool kids suffer if mother works,DONOR_MAP,2022,,DONOR_MAP
+fefam,"better for man to work, woman tend home","better for man to work, woman tend home",DONOR_MAP,2022,,DONOR_MAP
+racdif1,differences due to discrimination,differences due to discrimination,DONOR_MAP,2022,,DONOR_MAP
+racdif2,differences due to in-born learning ability,differences due to in-born learning ability,DONOR_MAP,2022,,DONOR_MAP
+racdif3,differences due to lack of education,differences due to lack of education,DONOR_MAP,2022,,DONOR_MAP
+racdif4,differences due to lack of will,differences due to lack of will,DONOR_MAP,2022,,DONOR_MAP
+helppoor,should govt improve standard of living?,should govt improve standard of living?,DONOR_MAP,2022,,DONOR_MAP
+helpnot,should govt do more or less?,should govt do more or less?,DONOR_MAP,2022,,DONOR_MAP
+helpsick,should govt help pay for medical care?,should govt help pay for medical care?,DONOR_MAP,2022,,DONOR_MAP
+helpblk,should govt aid black people?,should govt aid black people?,DONOR_MAP,2022,,DONOR_MAP
+god,r's confidence in the existence of god,r's confidence in the existence of god,DONOR_MAP,2022,,DONOR_MAP
+reborn,has r ever had a 'born again' experience,has r ever had a 'born again' experience,DONOR_MAP,2022,,DONOR_MAP
+savesoul,tried to convince others to accept jesus,tried to convince others to accept jesus,DONOR_MAP,2022,,DONOR_MAP
+wlthwhts,rich - poor,rich - poor,DONOR_MAP,2022,,DONOR_MAP
+wlthblks,rich - poor,rich - poor,DONOR_MAP,2022,,DONOR_MAP
+wlthhsps,rich - poor,rich - poor,DONOR_MAP,2022,,DONOR_MAP
+workwhts,hard working - lazy,hard working - lazy,DONOR_MAP,2022,,DONOR_MAP
+workblks,hard working - lazy,hard working - lazy,DONOR_MAP,2022,,DONOR_MAP
+workhsps,hard working -lazy,hard working -lazy,DONOR_MAP,2022,,DONOR_MAP
+intlwhts,unintelligent -intelligent,unintelligent -intelligent,DONOR_MAP,2022,,DONOR_MAP
+intlblks,unintelligent - intelligent,unintelligent - intelligent,DONOR_MAP,2022,,DONOR_MAP
+intlhsps,unintelligent - intelligent,unintelligent - intelligent,DONOR_MAP,2022,,DONOR_MAP
+liveblks,neighborhood half black,neighborhood half black,DONOR_MAP,2022,,DONOR_MAP
+marblk,close relative marry black person,close relative marry black person,DONOR_MAP,2022,,DONOR_MAP
+marasian,close relative marry asian,close relative marry asian,DONOR_MAP,2022,,DONOR_MAP
+marhisp,close relative marry hispanic,close relative marry hispanic,DONOR_MAP,2022,,DONOR_MAP
+marwht,r favor close relative marrying white person,r favor close relative marrying white person,DONOR_MAP,2022,,DONOR_MAP
+racwork,racial makeup of workplace,racial makeup of workplace,DONOR_MAP,2022,,DONOR_MAP
+discaff,whites hurt by aff. action,whites hurt by aff. action,DONOR_MAP,2022,,DONOR_MAP
+yousup,how many people do you supervise directly,how many people do you supervise directly,DONOR_MAP,2022,,DONOR_MAP
+spwksup,does spouse supervise anyone,does spouse supervise anyone,DONOR_MAP,2022,,DONOR_MAP
+fejobaff,for or against preferential hiring of women,for or against preferential hiring of women,DONOR_MAP,2022,,DONOR_MAP
+discaffm,a man won't get a job or promotion,a man won't get a job or promotion,DONOR_MAP,2022,,DONOR_MAP
+fehire,should hire and promote women,should hire and promote women,DONOR_MAP,2022,,DONOR_MAP
+relpersn,r consider self a religious person,r consider self a religious person,DONOR_MAP,2022,,DONOR_MAP
+sprtprsn,r consider self a spiritual person,r consider self a spiritual person,DONOR_MAP,2022,,DONOR_MAP
+othlang,can r speak language other than english/spanish,can r speak language other than english/spanish,DONOR_MAP,2022,,DONOR_MAP
+othlang1,what other languages does r speak,what other languages does r speak,DONOR_MAP,2022,,DONOR_MAP
+othlang2,what other languages does r speak,what other languages does r speak,DONOR_MAP,2022,,DONOR_MAP
+spklang,how well does r speak other language,how well does r speak other language,DONOR_MAP,2022,,DONOR_MAP
+betrlang,which language r speaks more fluent,which language r speaks more fluent,DONOR_MAP,2022,,DONOR_MAP
+compuse,r use computer,r use computer,DONOR_MAP,2022,,DONOR_MAP
+webmob,r uses home internet through mobile device,r uses home internet through mobile device,DONOR_MAP,2022,,DONOR_MAP
+emailmin,email minutes per week,email minutes per week,DONOR_MAP,2022,,DONOR_MAP
+emailhr,email hours per week,email hours per week,DONOR_MAP,2022,,DONOR_MAP
+usewww,r use www other than email,r use www other than email,DONOR_MAP,2022,,DONOR_MAP
+wwwhr,www hours per week,www hours per week,DONOR_MAP,2022,,DONOR_MAP
+wwwmin,www minutes per week,www minutes per week,DONOR_MAP,2022,,DONOR_MAP
+disrspct,r is treated with less courtesy or respect than others,r is treated with less courtesy or respect than others,DONOR_MAP,2022,,DONOR_MAP
+poorserv,r recieves poorer service in restaurants or stores,r recieves poorer service in restaurants or stores,DONOR_MAP,2022,,DONOR_MAP
+notsmart,people act as if they think r is not smart,people act as if they think r is not smart,DONOR_MAP,2022,,DONOR_MAP
+afraidof,people act as if they are afraid of r,people act as if they are afraid of r,DONOR_MAP,2022,,DONOR_MAP
+threaten,r is threatened or harassed,r is threatened or harassed,DONOR_MAP,2022,,DONOR_MAP
+quallife,quallife,quallife,DONOR_MAP,2018,,DONOR_MAP
+hlthphys,hlthphys,hlthphys,DONOR_MAP,2018,,DONOR_MAP
+hlthmntl,hlthmntl,hlthmntl,DONOR_MAP,2018,,DONOR_MAP
+satsoc,satsoc,satsoc,DONOR_MAP,2018,,DONOR_MAP
+actssoc,actssoc,actssoc,DONOR_MAP,2018,,DONOR_MAP
+physacts,physacts,physacts,DONOR_MAP,2018,,DONOR_MAP
+emoprobs,emoprobs,emoprobs,DONOR_MAP,2018,,DONOR_MAP
+fatigue,fatigue,fatigue,DONOR_MAP,2018,,DONOR_MAP
+wrkslffam,does r work in family business or farm,does r work in family business or farm,DONOR_MAP,2022,,DONOR_MAP
+nextgen,science & tech. give more opportunities to next generation,science & tech. give more opportunities to next generation,DONOR_MAP,2022,,DONOR_MAP
+toofast,science makes our way of life change too fast,science makes our way of life change too fast,DONOR_MAP,2022,,DONOR_MAP
+advfront,sci rsch is necessary and should be supported by federal govt,sci rsch is necessary and should be supported by federal govt,DONOR_MAP,2022,,DONOR_MAP
+balpos,balpos,balpos,DONOR_MAP,2018,,DONOR_MAP
+balneg,balneg,balneg,DONOR_MAP,2018,,DONOR_MAP
+viruses,viruses,viruses,DONOR_MAP,2018,,DONOR_MAP
+inteduc,inteduc,inteduc,DONOR_MAP,2018,,DONOR_MAP
+intsci,intsci,intsci,DONOR_MAP,2018,,DONOR_MAP
+intecon,intecon,intecon,DONOR_MAP,2018,,DONOR_MAP
+inttech,inttech,inttech,DONOR_MAP,2018,,DONOR_MAP
+scientgo,scientists work for good of humanity,scientists work for good of humanity,DONOR_MAP,2022,,DONOR_MAP
+scienthe,scientists help solve prob,scientists help solve prob,DONOR_MAP,2022,,DONOR_MAP
+scientbe,scientists want to make life better for avg person,scientists want to make life better for avg person,DONOR_MAP,2022,,DONOR_MAP
+posslq,does r have marital partner,does r have marital partner,DONOR_MAP,2022,,DONOR_MAP
+posslqy,relationship status and cohabitation or not,relationship status and cohabitation or not,DONOR_MAP,2022,,DONOR_MAP
+marcohab,cohabitation status,cohabitation status,DONOR_MAP,2022,,DONOR_MAP
+endsmeet,how difficult or easy is it for r's household to make ends meet,how difficult or easy is it for r's household to make ends meet,DONOR_MAP,2022,,DONOR_MAP
+opwlth,opwlth,opwlth,NATIVE_NAME,,,NATIVE_NAME
+oppared,oppared,oppared,NATIVE_NAME,,,NATIVE_NAME
+opeduc,opeduc,opeduc,NATIVE_NAME,,,NATIVE_NAME
+ophrdwrk,ophrdwrk,ophrdwrk,NATIVE_NAME,,,NATIVE_NAME
+opknow,opknow,opknow,NATIVE_NAME,,,NATIVE_NAME
+opclout,opclout,opclout,NATIVE_NAME,,,NATIVE_NAME
+oprace,oprace,oprace,NATIVE_NAME,,,NATIVE_NAME
+oprelig,oprelig,oprelig,NATIVE_NAME,,,NATIVE_NAME
+opsex,opsex,opsex,NATIVE_NAME,,,NATIVE_NAME
+goodlife,standard of living of r will improve,standard of living of r will improve,DONOR_MAP,2022,,DONOR_MAP
+inequal5,inequal5,inequal5,NATIVE_NAME,,,NATIVE_NAME
+inequal6,inequal6,inequal6,NATIVE_NAME,,,NATIVE_NAME
+paydoc,paydoc,paydoc,NATIVE_NAME,,,NATIVE_NAME
+payclerk,payclerk,payclerk,NATIVE_NAME,,,NATIVE_NAME
+payexec,payexec,payexec,NATIVE_NAME,,,NATIVE_NAME
+payunskl,payunskl,payunskl,NATIVE_NAME,,,NATIVE_NAME
+paycabnt,paycabnt,paycabnt,NATIVE_NAME,,,NATIVE_NAME
+givdoc,givdoc,givdoc,NATIVE_NAME,,,NATIVE_NAME
+givclerk,givclerk,givclerk,NATIVE_NAME,,,NATIVE_NAME
+givexec,givexec,givexec,NATIVE_NAME,,,NATIVE_NAME
+givunskl,givunskl,givunskl,NATIVE_NAME,,,NATIVE_NAME
+givcabnt,givcabnt,givcabnt,NATIVE_NAME,,,NATIVE_NAME
+incgap,incgap,incgap,DONOR_MAP,2018,,DONOR_MAP
+goveqinc,goveqinc,goveqinc,DONOR_MAP,2018,,DONOR_MAP
+govunemp,govunemp,govunemp,NATIVE_NAME,,,NATIVE_NAME
+taxrich,taxrich,taxrich,NATIVE_NAME,,,NATIVE_NAME
+taxshare,taxshare,taxshare,NATIVE_NAME,,,NATIVE_NAME
+conwlth,conwlth,conwlth,NATIVE_NAME,,,NATIVE_NAME
+conclass,conclass,conclass,NATIVE_NAME,,,NATIVE_NAME
+conunion,conunion,conunion,NATIVE_NAME,,,NATIVE_NAME
+conage,conage,conage,NATIVE_NAME,,,NATIVE_NAME
+ldcgap,ldcgap,ldcgap,NATIVE_NAME,,,NATIVE_NAME
+ldctax,ldctax,ldctax,NATIVE_NAME,,,NATIVE_NAME
+richhlth,richhlth,richhlth,NATIVE_NAME,,,NATIVE_NAME
+richeduc,richeduc,richeduc,NATIVE_NAME,,,NATIVE_NAME
+payresp,payresp,payresp,NATIVE_NAME,,,NATIVE_NAME
+payedtrn,payedtrn,payedtrn,NATIVE_NAME,,,NATIVE_NAME
+paychild,paychild,paychild,NATIVE_NAME,,,NATIVE_NAME
+paydowel,paydowel,paydowel,NATIVE_NAME,,,NATIVE_NAME
+soctype1,soctype1,soctype1,NATIVE_NAME,,,NATIVE_NAME
+soctype2,soctype2,soctype2,NATIVE_NAME,,,NATIVE_NAME
+marhomo,marhomo,marhomo,DONOR_MAP,2018,,DONOR_MAP
+meovrwrk,men hurt family when focus on work too much,men hurt family when focus on work too much,DONOR_MAP,2022,,DONOR_MAP
+relactiv,how often does r take part in relig activities,how often does r take part in relig activities,DONOR_MAP,2022,,DONOR_MAP
+cantrust,cantrust,cantrust,DONOR_MAP,2018,,DONOR_MAP
+religinf,the u.s. would be a better country if religion had less influence,the u.s. would be a better country if religion had less influence,DONOR_MAP,2024,,DONOR_MAP
+privent,privent,privent,NATIVE_NAME,,,NATIVE_NAME
+postmat1,postmat1,postmat1,NATIVE_NAME,,,NATIVE_NAME
+postmat2,postmat2,postmat2,NATIVE_NAME,,,NATIVE_NAME
+scigrn,scigrn,scigrn,NATIVE_NAME,,,NATIVE_NAME
+grnecon,grnecon,grnecon,NATIVE_NAME,,,NATIVE_NAME
+harmsgrn,harmsgrn,harmsgrn,NATIVE_NAME,,,NATIVE_NAME
+grnprog,grnprog,grnprog,NATIVE_NAME,,,NATIVE_NAME
+grwthelp,grwthelp,grwthelp,NATIVE_NAME,,,NATIVE_NAME
+grwtharm,grwtharm,grwtharm,NATIVE_NAME,,,NATIVE_NAME
+grnprice,grnprice,grnprice,NATIVE_NAME,,,NATIVE_NAME
+grntaxes,grntaxes,grntaxes,NATIVE_NAME,,,NATIVE_NAME
+grnsol,grnsol,grnsol,NATIVE_NAME,,,NATIVE_NAME
+toodifme,toodifme,toodifme,NATIVE_NAME,,,NATIVE_NAME
+ihlpgrn,ihlpgrn,ihlpgrn,NATIVE_NAME,,,NATIVE_NAME
+carsgen,carsgen,carsgen,NATIVE_NAME,,,NATIVE_NAME
+recycle,recycle,recycle,NATIVE_NAME,,,NATIVE_NAME
+grngroup,grngroup,grngroup,NATIVE_NAME,,,NATIVE_NAME
+grnsign,grnsign,grnsign,NATIVE_NAME,,,NATIVE_NAME
+grnmoney,grnmoney,grnmoney,NATIVE_NAME,,,NATIVE_NAME
+grndemo,grndemo,grndemo,NATIVE_NAME,,,NATIVE_NAME
+impgrn,impgrn,impgrn,NATIVE_NAME,,,NATIVE_NAME
+othssame,othssame,othssame,NATIVE_NAME,,,NATIVE_NAME
+grnexagg,grnexagg,grnexagg,NATIVE_NAME,,,NATIVE_NAME
+topprob1,topprob1,topprob1,NATIVE_NAME,,,NATIVE_NAME
+topprob2,topprob2,topprob2,NATIVE_NAME,,,NATIVE_NAME
+trust5,trust5,trust5,NATIVE_NAME,,,NATIVE_NAME
+grncon,grncon,grncon,NATIVE_NAME,,,NATIVE_NAME
+enprbus,enprbus,enprbus,NATIVE_NAME,,,NATIVE_NAME
+helpharm,helpharm,helpharm,NATIVE_NAME,,,NATIVE_NAME
+grneffme,grneffme,grneffme,NATIVE_NAME,,,NATIVE_NAME
+tempgen1,tempgen1,tempgen1,NATIVE_NAME,,,NATIVE_NAME
+busgrn,busgrn,busgrn,NATIVE_NAME,,,NATIVE_NAME
+peopgrn,peopgrn,peopgrn,NATIVE_NAME,,,NATIVE_NAME
+nobuygrn,nobuygrn,nobuygrn,NATIVE_NAME,,,NATIVE_NAME
+imports,america should limit the import,america should limit the import,DONOR_MAP,2024,,DONOR_MAP
+powrorgs,powrorgs,powrorgs,NATIVE_NAME,,,NATIVE_NAME
+letin1a,number of immigrants nowadays should be,number of immigrants nowadays should be,DONOR_MAP,2022,,DONOR_MAP
+partners,how many sex partner's r had in last year,how many sex partner's r had in last year,DONOR_MAP,2022,,DONOR_MAP
+matesex,was 1 of r's partner's spouse or regular,was 1 of r's partner's spouse or regular,DONOR_MAP,2022,,DONOR_MAP
+frndsex,r had sex with friend last year,r had sex with friend last year,DONOR_MAP,2022,,DONOR_MAP
+acqntsex,r had sex with acquaintance last year,r had sex with acquaintance last year,DONOR_MAP,2022,,DONOR_MAP
+pikupsex,r had sex with casual date last year,r had sex with casual date last year,DONOR_MAP,2022,,DONOR_MAP
+paidsex,r had sex for pay last year,r had sex for pay last year,DONOR_MAP,2022,,DONOR_MAP
+othersex,r had sex with some other last year,r had sex with some other last year,DONOR_MAP,2022,,DONOR_MAP
+sexsex,sex of sex partner's in last year,sex of sex partner's in last year,DONOR_MAP,2022,,DONOR_MAP
+sexfreq,frequency of sex during last year,frequency of sex during last year,DONOR_MAP,2022,,DONOR_MAP
+numwomen,number of female sex partner's since 18,number of female sex partner's since 18,DONOR_MAP,2022,,DONOR_MAP
+nummen,number of male sex partner's since 18,number of male sex partner's since 18,DONOR_MAP,2022,,DONOR_MAP
+partnrs5,how many sex partner's r had in last 5 years,how many sex partner's r had in last 5 years,DONOR_MAP,2022,,DONOR_MAP
+sexsex5,sex of sex partner's last five years,sex of sex partner's last five years,DONOR_MAP,2022,,DONOR_MAP
+evpaidsx,ever have sex paid for or being paid since 18,ever have sex paid for or being paid since 18,DONOR_MAP,2022,,DONOR_MAP
+evstray,have sex other than spouse while married,have sex other than spouse while married,DONOR_MAP,2022,,DONOR_MAP
+condom,used condom last time,used condom last time,DONOR_MAP,2022,,DONOR_MAP
+relatsex,relation to last sex partner,relation to last sex partner,DONOR_MAP,2022,,DONOR_MAP
+evidu,r ever inject drugs,r ever inject drugs,DONOR_MAP,2022,,DONOR_MAP
+idu30,r inject drugs in past 30 days,r inject drugs in past 30 days,DONOR_MAP,2022,,DONOR_MAP
+evcrack,r ever use crack cocaine,r ever use crack cocaine,DONOR_MAP,2022,,DONOR_MAP
+crack30,r last use crack cocaine,r last use crack cocaine,DONOR_MAP,2022,,DONOR_MAP
+hivtest,have you ever been tested for hiv,have you ever been tested for hiv,DONOR_MAP,2022,,DONOR_MAP
+hivtest1,in what year was your last hiv test,in what year was your last hiv test,DONOR_MAP,2022,,DONOR_MAP
+hivtest2,where did you have your last hiv test,where did you have your last hiv test,DONOR_MAP,2022,,DONOR_MAP
+sexornt,sexual orientation,sexual orientation,DONOR_MAP,2022,,DONOR_MAP
+realinc,family income in constant $,family income in constant $,DONOR_MAP,2022,,DONOR_MAP
+coninc,family income in constant dollars,family income in constant dollars,DONOR_MAP,2022,,DONOR_MAP
+ethnic,country of family origin,country of family origin,DONOR_MAP,2022,,DONOR_MAP
+hispanic,r hispanic specific,r hispanic specific,DONOR_MAP,2022,,DONOR_MAP
+racecen1,"what is r's race, first mention","what is r's race, first mention",DONOR_MAP,2022,,DONOR_MAP
+racecen2,"what is r's race, second mention","what is r's race, second mention",DONOR_MAP,2022,,DONOR_MAP
+racecen3,"what is r's race, third mention","what is r's race, third mention",DONOR_MAP,2022,,DONOR_MAP
+vetyears,years in armed forces,years in armed forces,DONOR_MAP,2022,,DONOR_MAP
+dwelown,does r own or rent home?,does r own or rent home?,DONOR_MAP,2022,,DONOR_MAP
+dwelown16,did rs family own or rent home when r was age 16,did rs family own or rent home when r was age 16,DONOR_MAP,2022,,DONOR_MAP
+dateintv,date of interview,date of interview,DONOR_MAP,2022,,DONOR_MAP
+sei10,r's socioeconomic index (2010),r's socioeconomic index (2010),DONOR_MAP,2022,,DONOR_MAP
+spsei10,r's spouse's socioeconomic index (2010),r's spouse's socioeconomic index (2010),DONOR_MAP,2022,,DONOR_MAP
+cosei10,partner's socioeconomic index (2010),partner's socioeconomic index (2010),DONOR_MAP,2022,,DONOR_MAP
+copres10,partner's occupational prestige score (2010),partner's occupational prestige score (2010),DONOR_MAP,2022,,DONOR_MAP
+cohort,year of birth,year of birth,DONOR_MAP,2022,,DONOR_MAP
+marcohrt,marcohrt,marcohrt,NATIVE_NAME,,,NATIVE_NAME
+zodiac,respondents astrological sign,respondents astrological sign,DONOR_MAP,2022,,DONOR_MAP
+mode,interview done in-person or over the phone,interview done in-person or over the phone,DONOR_MAP,2022,,DONOR_MAP
+consent,participation/recording consent,participation/recording consent,DONOR_MAP,2022,,DONOR_MAP
+adminconsent,consent to possible data linkage,consent to possible data linkage,DONOR_MAP,2022,,DONOR_MAP
+letdie1y,allow incurable patients to die (form 2),allow incurable patients to die (form 2),DONOR_MAP,2022,,DONOR_MAP
+ballot,ballot used for interview,ballot used for interview,DONOR_MAP,2022,,DONOR_MAP
+version,version of questionnaire,version of questionnaire,DONOR_MAP,2022,,DONOR_MAP
+issp,filter for issp cases,filter for issp cases,DONOR_MAP,2022,,DONOR_MAP
+formwt,weight deal with experimental randomization,weight deal with experimental randomization,DONOR_MAP,2022,,DONOR_MAP
+oversamp,weights for black oversamples,weights for black oversamples,DONOR_MAP,2022,,DONOR_MAP
+spanself,"if this interview had only been available in english, would you...","if this interview had only been available in english, would you...",DONOR_MAP,2022,,DONOR_MAP
+spanint,"if no spanish, r could have been interviewed in english","if no spanish, r could have been interviewed in english",DONOR_MAP,2022,,DONOR_MAP
+spaneng,interviews conducted in spanish or english,interviews conducted in spanish or english,DONOR_MAP,2022,,DONOR_MAP
+vstrat,variance stratum,variance stratum,DONOR_MAP,2022,,DONOR_MAP
+vpsu,variance primary sampling unit,variance primary sampling unit,DONOR_MAP,2022,,DONOR_MAP
+famdif16y,which of the following best describes your situation?,which of the following best describes your situation?,DONOR_MAP,2022,,DONOR_MAP
+pawrkslf2,"at this job, was father (or oldest same-sex parent) an employee, self-employed w","at this job, was father (or oldest same-sex parent) an employee, self-employed w",DONOR_MAP,2022,,DONOR_MAP
+mawrkslf2,"at this job, was mother (or youngest same-sex parent) an employee, self-employed","at this job, was mother (or youngest same-sex parent) an employee, self-employed",DONOR_MAP,2022,,DONOR_MAP
+ethworld1,from what part of the world did your ancestors come? europe,from what part of the world did your ancestors come? europe,DONOR_MAP,2022,,DONOR_MAP
+ethworld2,from what part of the world did your ancestors come? africa,from what part of the world did your ancestors come? africa,DONOR_MAP,2022,,DONOR_MAP
+ethworld3,from what part of the world did your ancestors come? asia,from what part of the world did your ancestors come? asia,DONOR_MAP,2022,,DONOR_MAP
+ethworld4,from what part of the world did your ancestors come? middle east,from what part of the world did your ancestors come? middle east,DONOR_MAP,2022,,DONOR_MAP
+ethworld5,from what part of the world did your ancestors come? south america,from what part of the world did your ancestors come? south america,DONOR_MAP,2022,,DONOR_MAP
+ethworld6,from what part of the world did your ancestors come? central america,from what part of the world did your ancestors come? central america,DONOR_MAP,2022,,DONOR_MAP
+ethworld7,from what part of the world did your ancestors come? north america,from what part of the world did your ancestors come? north america,DONOR_MAP,2022,,DONOR_MAP
+ethworld8,from what part of the world did your ancestors come? caribbean,from what part of the world did your ancestors come? caribbean,DONOR_MAP,2022,,DONOR_MAP
+ethworld9,from what part of the world did your ancestors come? oceania,from what part of the world did your ancestors come? oceania,DONOR_MAP,2022,,DONOR_MAP
+ethregion1,from what country or countries did your ancestors come? austria,from what country or countries did your ancestors come? austria,DONOR_MAP,2022,,DONOR_MAP
+ethregion2,from what country or countries did your ancestors come? belgium,from what country or countries did your ancestors come? belgium,DONOR_MAP,2022,,DONOR_MAP
+ethregion3,from what country or countries did your ancestors come? czechoslovakia,from what country or countries did your ancestors come? czechoslovakia,DONOR_MAP,2022,,DONOR_MAP
+ethregion4,from what country or countries did your ancestors come? denmark,from what country or countries did your ancestors come? denmark,DONOR_MAP,2022,,DONOR_MAP
+ethregion5,from what country or countries did your ancestors come? england and wales,from what country or countries did your ancestors come? england and wales,DONOR_MAP,2022,,DONOR_MAP
+ethregion6,from what country or countries did your ancestors come? finland,from what country or countries did your ancestors come? finland,DONOR_MAP,2022,,DONOR_MAP
+ethregion7,from what country or countries did your ancestors come? france,from what country or countries did your ancestors come? france,DONOR_MAP,2022,,DONOR_MAP
+ethregion8,from what country or countries did your ancestors come? germany,from what country or countries did your ancestors come? germany,DONOR_MAP,2022,,DONOR_MAP
+ethregion9,from what country or countries did your ancestors come? greece,from what country or countries did your ancestors come? greece,DONOR_MAP,2022,,DONOR_MAP
+ethregion10,from what country or countries did your ancestors come? hungary,from what country or countries did your ancestors come? hungary,DONOR_MAP,2022,,DONOR_MAP
+ethregion11,from what country or countries did your ancestors come? ireland,from what country or countries did your ancestors come? ireland,DONOR_MAP,2022,,DONOR_MAP
+ethregion12,from what country or countries did your ancestors come? italy,from what country or countries did your ancestors come? italy,DONOR_MAP,2022,,DONOR_MAP
+ethregion13,from what country or countries did your ancestors come? lithuania,from what country or countries did your ancestors come? lithuania,DONOR_MAP,2022,,DONOR_MAP
+ethregion14,from what country or countries did your ancestors come? netherlands (dutch/holl,from what country or countries did your ancestors come? netherlands (dutch/holl,DONOR_MAP,2022,,DONOR_MAP
+ethregion15,from what country or countries did your ancestors come? norway,from what country or countries did your ancestors come? norway,DONOR_MAP,2022,,DONOR_MAP
+ethregion16,from what country or countries did your ancestors come? poland,from what country or countries did your ancestors come? poland,DONOR_MAP,2022,,DONOR_MAP
+ethregion17,from what country or countries did your ancestors come? portugal,from what country or countries did your ancestors come? portugal,DONOR_MAP,2022,,DONOR_MAP
+ethregion18,from what country or countries did your ancestors come? romania,from what country or countries did your ancestors come? romania,DONOR_MAP,2022,,DONOR_MAP
+ethregion19,from what country or countries did your ancestors come? russia (ussr),from what country or countries did your ancestors come? russia (ussr),DONOR_MAP,2022,,DONOR_MAP
+ethregion20,from what country or countries did your ancestors come? scotland,from what country or countries did your ancestors come? scotland,DONOR_MAP,2022,,DONOR_MAP
+ethregion21,from what country or countries did your ancestors come? spain,from what country or countries did your ancestors come? spain,DONOR_MAP,2022,,DONOR_MAP
+ethregion22,from what country or countries did your ancestors come? sweden,from what country or countries did your ancestors come? sweden,DONOR_MAP,2022,,DONOR_MAP
+ethregion23,from what country or countries did your ancestors come? switzerland,from what country or countries did your ancestors come? switzerland,DONOR_MAP,2022,,DONOR_MAP
+ethregion24,from what country or countries did your ancestors come? turkey,from what country or countries did your ancestors come? turkey,DONOR_MAP,2022,,DONOR_MAP
+ethregion25,from what country or countries did your ancestors come? yugoslavia,from what country or countries did your ancestors come? yugoslavia,DONOR_MAP,2022,,DONOR_MAP
+ethregion26,from what country or countries did your ancestors come? other europe,from what country or countries did your ancestors come? other europe,DONOR_MAP,2022,,DONOR_MAP
+ethregion27,from what country or countries did your ancestors come? algeria,from what country or countries did your ancestors come? algeria,DONOR_MAP,2022,,DONOR_MAP
+ethregion28,from what country or countries did your ancestors come? democratic republic of,from what country or countries did your ancestors come? democratic republic of,DONOR_MAP,2022,,DONOR_MAP
+ethregion29,from what country or countries did your ancestors come? egypt,from what country or countries did your ancestors come? egypt,DONOR_MAP,2022,,DONOR_MAP
+ethregion30,from what country or countries did your ancestors come? ethiopia,from what country or countries did your ancestors come? ethiopia,DONOR_MAP,2022,,DONOR_MAP
+ethregion31,from what country or countries did your ancestors come? kenya,from what country or countries did your ancestors come? kenya,DONOR_MAP,2022,,DONOR_MAP
+ethregion32,from what country or countries did your ancestors come? nigeria,from what country or countries did your ancestors come? nigeria,DONOR_MAP,2022,,DONOR_MAP
+ethregion33,from what country or countries did your ancestors come? south africa,from what country or countries did your ancestors come? south africa,DONOR_MAP,2022,,DONOR_MAP
+ethregion34,from what country or countries did your ancestors come? sudan,from what country or countries did your ancestors come? sudan,DONOR_MAP,2022,,DONOR_MAP
+ethregion35,from what country or countries did your ancestors come? tanzania,from what country or countries did your ancestors come? tanzania,DONOR_MAP,2022,,DONOR_MAP
+ethregion36,from what country or countries did your ancestors come? uganda,from what country or countries did your ancestors come? uganda,DONOR_MAP,2022,,DONOR_MAP
+ethregion37,from what country or countries did your ancestors come? other africa,from what country or countries did your ancestors come? other africa,DONOR_MAP,2022,,DONOR_MAP
+ethregion38,from what country or countries did your ancestors come? bangladesh,from what country or countries did your ancestors come? bangladesh,DONOR_MAP,2022,,DONOR_MAP
+ethregion39,from what country or countries did your ancestors come? china,from what country or countries did your ancestors come? china,DONOR_MAP,2022,,DONOR_MAP
+ethregion40,from what country or countries did your ancestors come? india,from what country or countries did your ancestors come? india,DONOR_MAP,2022,,DONOR_MAP
+ethregion41,from what country or countries did your ancestors come? indonesia,from what country or countries did your ancestors come? indonesia,DONOR_MAP,2022,,DONOR_MAP
+ethregion42,from what country or countries did your ancestors come? japan,from what country or countries did your ancestors come? japan,DONOR_MAP,2022,,DONOR_MAP
+ethregion43,from what country or countries did your ancestors come? pakistan,from what country or countries did your ancestors come? pakistan,DONOR_MAP,2022,,DONOR_MAP
+ethregion44,from what country or countries did your ancestors come? philippines,from what country or countries did your ancestors come? philippines,DONOR_MAP,2022,,DONOR_MAP
+ethregion45,from what country or countries did your ancestors come? south korea,from what country or countries did your ancestors come? south korea,DONOR_MAP,2022,,DONOR_MAP
+ethregion46,from what country or countries did your ancestors come? thailand,from what country or countries did your ancestors come? thailand,DONOR_MAP,2022,,DONOR_MAP
+ethregion47,from what country or countries did your ancestors come? vietnam,from what country or countries did your ancestors come? vietnam,DONOR_MAP,2022,,DONOR_MAP
+ethregion48,from what country or countries did your ancestors come? other asia,from what country or countries did your ancestors come? other asia,DONOR_MAP,2022,,DONOR_MAP
+ethregion49,from what country or countries did your ancestors come? iran,from what country or countries did your ancestors come? iran,DONOR_MAP,2022,,DONOR_MAP
+ethregion50,from what country or countries did your ancestors come? iraq,from what country or countries did your ancestors come? iraq,DONOR_MAP,2022,,DONOR_MAP
+ethregion51,from what country or countries did your ancestors come? israel,from what country or countries did your ancestors come? israel,DONOR_MAP,2022,,DONOR_MAP
+ethregion52,from what country or countries did your ancestors come? jordan,from what country or countries did your ancestors come? jordan,DONOR_MAP,2022,,DONOR_MAP
+ethregion53,from what country or countries did your ancestors come? saudi arabia,from what country or countries did your ancestors come? saudi arabia,DONOR_MAP,2022,,DONOR_MAP
+ethregion54,from what country or countries did your ancestors come? syria,from what country or countries did your ancestors come? syria,DONOR_MAP,2022,,DONOR_MAP
+ethregion55,from what country or countries did your ancestors come? united arab emirates,from what country or countries did your ancestors come? united arab emirates,DONOR_MAP,2022,,DONOR_MAP
+ethregion56,from what country or countries did your ancestors come? yemen,from what country or countries did your ancestors come? yemen,DONOR_MAP,2022,,DONOR_MAP
+ethregion57,from what country or countries did your ancestors come? other middle east,from what country or countries did your ancestors come? other middle east,DONOR_MAP,2022,,DONOR_MAP
+ethregion58,from what country or countries did your ancestors come? argentina,from what country or countries did your ancestors come? argentina,DONOR_MAP,2022,,DONOR_MAP
+ethregion59,from what country or countries did your ancestors come? bolivia,from what country or countries did your ancestors come? bolivia,DONOR_MAP,2022,,DONOR_MAP
+ethregion60,from what country or countries did your ancestors come? brazil,from what country or countries did your ancestors come? brazil,DONOR_MAP,2022,,DONOR_MAP
+ethregion61,from what country or countries did your ancestors come? chile,from what country or countries did your ancestors come? chile,DONOR_MAP,2022,,DONOR_MAP
+ethregion62,from what country or countries did your ancestors come? colombia,from what country or countries did your ancestors come? colombia,DONOR_MAP,2022,,DONOR_MAP
+ethregion63,from what country or countries did your ancestors come? ecuador,from what country or countries did your ancestors come? ecuador,DONOR_MAP,2022,,DONOR_MAP
+ethregion64,from what country or countries did your ancestors come? french guiana,from what country or countries did your ancestors come? french guiana,DONOR_MAP,2022,,DONOR_MAP
+ethregion65,from what country or countries did your ancestors come? guyana,from what country or countries did your ancestors come? guyana,DONOR_MAP,2022,,DONOR_MAP
+ethregion66,from what country or countries did your ancestors come? paraguay,from what country or countries did your ancestors come? paraguay,DONOR_MAP,2022,,DONOR_MAP
+ethregion67,from what country or countries did your ancestors come? peru,from what country or countries did your ancestors come? peru,DONOR_MAP,2022,,DONOR_MAP
+ethregion68,from what country or countries did your ancestors come? suriname,from what country or countries did your ancestors come? suriname,DONOR_MAP,2022,,DONOR_MAP
+ethregion69,from what country or countries did your ancestors come? uruguay,from what country or countries did your ancestors come? uruguay,DONOR_MAP,2022,,DONOR_MAP
+ethregion70,from what country or countries did your ancestors come? venezuela,from what country or countries did your ancestors come? venezuela,DONOR_MAP,2022,,DONOR_MAP
+ethregion71,from what country or countries did your ancestors come? other south america,from what country or countries did your ancestors come? other south america,DONOR_MAP,2022,,DONOR_MAP
+ethregion72,from what country or countries did your ancestors come? belize,from what country or countries did your ancestors come? belize,DONOR_MAP,2022,,DONOR_MAP
+ethregion73,from what country or countries did your ancestors come? costa rica,from what country or countries did your ancestors come? costa rica,DONOR_MAP,2022,,DONOR_MAP
+ethregion74,from what country or countries did your ancestors come? el salvador,from what country or countries did your ancestors come? el salvador,DONOR_MAP,2022,,DONOR_MAP
+ethregion75,from what country or countries did your ancestors come? guatemala,from what country or countries did your ancestors come? guatemala,DONOR_MAP,2022,,DONOR_MAP
+ethregion76,from what country or countries did your ancestors come? honduras,from what country or countries did your ancestors come? honduras,DONOR_MAP,2022,,DONOR_MAP
+ethregion77,from what country or countries did your ancestors come? mexico,from what country or countries did your ancestors come? mexico,DONOR_MAP,2022,,DONOR_MAP
+ethregion78,from what country or countries did your ancestors come? nicaragua,from what country or countries did your ancestors come? nicaragua,DONOR_MAP,2022,,DONOR_MAP
+ethregion79,from what country or countries did your ancestors come? panama,from what country or countries did your ancestors come? panama,DONOR_MAP,2022,,DONOR_MAP
+ethregion80,from what country or countries did your ancestors come? other central america,from what country or countries did your ancestors come? other central america,DONOR_MAP,2022,,DONOR_MAP
+ethregion81,from what country or countries did your ancestors come? american indian,from what country or countries did your ancestors come? american indian,DONOR_MAP,2022,,DONOR_MAP
+ethregion82,from what country or countries did your ancestors come? canada,from what country or countries did your ancestors come? canada,DONOR_MAP,2022,,DONOR_MAP
+ethregion83,from what country or countries did your ancestors come? canada (french),from what country or countries did your ancestors come? canada (french),DONOR_MAP,2022,,DONOR_MAP
+ethregion84,from what country or countries did your ancestors come? puerto rico,from what country or countries did your ancestors come? puerto rico,DONOR_MAP,2022,,DONOR_MAP
+ethregion85,from what country or countries did your ancestors come? other north america,from what country or countries did your ancestors come? other north america,DONOR_MAP,2022,,DONOR_MAP
+ethregion86,from what country or countries did your ancestors come? cuba,from what country or countries did your ancestors come? cuba,DONOR_MAP,2022,,DONOR_MAP
+ethregion87,from what country or countries did your ancestors come? haiti,from what country or countries did your ancestors come? haiti,DONOR_MAP,2022,,DONOR_MAP
+ethregion88,from what country or countries did your ancestors come? dominican republic,from what country or countries did your ancestors come? dominican republic,DONOR_MAP,2022,,DONOR_MAP
+ethregion89,from what country or countries did your ancestors come? jamaica,from what country or countries did your ancestors come? jamaica,DONOR_MAP,2022,,DONOR_MAP
+ethregion90,from what country or countries did your ancestors come? other caribbean,from what country or countries did your ancestors come? other caribbean,DONOR_MAP,2022,,DONOR_MAP
+ethregion91,from what country or countries did your ancestors come? australia,from what country or countries did your ancestors come? australia,DONOR_MAP,2022,,DONOR_MAP
+ethregion92,from what country or countries did your ancestors come? papua new guinea,from what country or countries did your ancestors come? papua new guinea,DONOR_MAP,2022,,DONOR_MAP
+ethregion93,from what country or countries did your ancestors come? new zealand,from what country or countries did your ancestors come? new zealand,DONOR_MAP,2022,,DONOR_MAP
+ethregion94,from what country or countries did your ancestors come? samoa,from what country or countries did your ancestors come? samoa,DONOR_MAP,2022,,DONOR_MAP
+ethregion95,from what country or countries did your ancestors come? other oceania,from what country or countries did your ancestors come? other oceania,DONOR_MAP,2022,,DONOR_MAP
+ethregion96,ethregion96,ethregion96,NATIVE_NAME,,,NATIVE_NAME
+wrkgovt1,govt employee,govt employee,DONOR_MAP,2022,,DONOR_MAP
+wrkgovt2,private employee,private employee,DONOR_MAP,2022,,DONOR_MAP
+spkathy,allow anti-religionist to speak y,allow anti-religionist to speak y,DONOR_MAP,2022,,DONOR_MAP
+libathy,allow anti-religionist to teach y,allow anti-religionist to teach y,DONOR_MAP,2022,,DONOR_MAP
+spkracy,allow racist to speak y,allow racist to speak y,DONOR_MAP,2022,,DONOR_MAP
+libracy,allow racists book in library y,allow racists book in library y,DONOR_MAP,2022,,DONOR_MAP
+spkcomy,allow communist to speak y,allow communist to speak y,DONOR_MAP,2022,,DONOR_MAP
+colcomy,should communist teacher be fired y,should communist teacher be fired y,DONOR_MAP,2022,,DONOR_MAP
+libcomy,allow communists book in library y,allow communists book in library y,DONOR_MAP,2022,,DONOR_MAP
+spkmily,spkmily,spkmily,NATIVE_NAME,,,NATIVE_NAME
+libmily,libmily,libmily,NATIVE_NAME,,,NATIVE_NAME
+spkhomoy,spkhomoy,spkhomoy,NATIVE_NAME,,,NATIVE_NAME
+libhomoy,libhomoy,libhomoy,NATIVE_NAME,,,NATIVE_NAME
+spkmslmy,allow muslim clergymen preaching hatred of the us y,allow muslim clergymen preaching hatred of the us y,DONOR_MAP,2022,,DONOR_MAP
+libmslmy,allow anti-american muslim clergymen's books in library y,allow anti-american muslim clergymen's books in library y,DONOR_MAP,2022,,DONOR_MAP
+polhitoky,ever approve of police striking citizen y,ever approve of police striking citizen y,DONOR_MAP,2022,,DONOR_MAP
+polabusey,citizen said vulgar or obscene things y,citizen said vulgar or obscene things y,DONOR_MAP,2022,,DONOR_MAP
+polattaky,citizen attacking policeman with fists y,citizen attacking policeman with fists y,DONOR_MAP,2022,,DONOR_MAP
+raceacs1,white,white,DONOR_MAP,2022,,DONOR_MAP
+raceacs2,black,black,DONOR_MAP,2022,,DONOR_MAP
+raceacs3,american indian or alaska native,american indian or alaska native,DONOR_MAP,2022,,DONOR_MAP
+raceacs4,asian indian,asian indian,DONOR_MAP,2022,,DONOR_MAP
+raceacs5,chinese,chinese,DONOR_MAP,2022,,DONOR_MAP
+raceacs6,filipino,filipino,DONOR_MAP,2022,,DONOR_MAP
+raceacs7,japanese,japanese,DONOR_MAP,2022,,DONOR_MAP
+raceacs8,korean,korean,DONOR_MAP,2022,,DONOR_MAP
+raceacs9,vietnamese,vietnamese,DONOR_MAP,2022,,DONOR_MAP
+raceacs10,other asian,other asian,DONOR_MAP,2022,,DONOR_MAP
+raceacs11,native hawaiian,native hawaiian,DONOR_MAP,2022,,DONOR_MAP
+raceacs12,guamanian or chamorro,guamanian or chamorro,DONOR_MAP,2022,,DONOR_MAP
+raceacs13,samoan,samoan,DONOR_MAP,2022,,DONOR_MAP
+raceacs14,native hawaiian or other pacific islander,native hawaiian or other pacific islander,DONOR_MAP,2022,,DONOR_MAP
+raceacs15,some other race,some other race,DONOR_MAP,2022,,DONOR_MAP
+raceacs16,hispanic,hispanic,DONOR_MAP,2022,,DONOR_MAP
+abdefectg,strong chance of serious defect (grid on web),strong chance of serious defect (grid on web),DONOR_MAP,2022,,DONOR_MAP
+abnomoreg,married--wants no more children (grid on web),married--wants no more children (grid on web),DONOR_MAP,2022,,DONOR_MAP
+abhlthg,woman's health seriously endangered (grid on web),woman's health seriously endangered (grid on web),DONOR_MAP,2022,,DONOR_MAP
+abpoorg,low income--cant afford more children (grid on web),low income--cant afford more children (grid on web),DONOR_MAP,2022,,DONOR_MAP
+abrapeg,pregnant as result of rape (grid on web),pregnant as result of rape (grid on web),DONOR_MAP,2022,,DONOR_MAP
+absingleg,not married (grid on web),not married (grid on web),DONOR_MAP,2022,,DONOR_MAP
+suicide1g,suicide if incurable disease,suicide if incurable disease,DONOR_MAP,2022,,DONOR_MAP
+suicide2g,suicide if bankrupt,suicide if bankrupt,DONOR_MAP,2022,,DONOR_MAP
+suicide3g,suicide if dishonored family,suicide if dishonored family,DONOR_MAP,2022,,DONOR_MAP
+suicide4g,suicide if tired of living,suicide if tired of living,DONOR_MAP,2022,,DONOR_MAP
+maborn,was r's mother (or youngest same-sex parent) born in this country?,was r's mother (or youngest same-sex parent) born in this country?,DONOR_MAP,2022,,DONOR_MAP
+paborn,was r's father (or oldest same-sex parent) born in this country?,was r's father (or oldest same-sex parent) born in this country?,DONOR_MAP,2022,,DONOR_MAP
+sexbirth1,r's sex assigned at birth (2021),r's sex assigned at birth (2021),DONOR_MAP,2022,,DONOR_MAP
+sexnow1,r's sex now (2021),r's sex now (2021),DONOR_MAP,2022,,DONOR_MAP
+goveqinc1,goveqinc1,goveqinc1,NATIVE_NAME,,,NATIVE_NAME
+immlimit,immlimit,immlimit,NATIVE_NAME,,,NATIVE_NAME
+trresrch,trresrch,trresrch,NATIVE_NAME,,,NATIVE_NAME
+trmedia,trmedia,trmedia,NATIVE_NAME,,,NATIVE_NAME
+trbusind,trbusind,trbusind,NATIVE_NAME,,,NATIVE_NAME
+trlegis,trlegis,trlegis,NATIVE_NAME,,,NATIVE_NAME
+clmtcaus,clmtcaus,clmtcaus,NATIVE_NAME,,,NATIVE_NAME
+clmtwrld,clmtwrld,clmtwrld,NATIVE_NAME,,,NATIVE_NAME
+clmtusa,clmtusa,clmtusa,NATIVE_NAME,,,NATIVE_NAME
+naturdev,naturdev,naturdev,NATIVE_NAME,,,NATIVE_NAME
+indusgen1,indusgen1,indusgen1,NATIVE_NAME,,,NATIVE_NAME
+chemgen1,chemgen1,chemgen1,NATIVE_NAME,,,NATIVE_NAME
+watergen1,watergen1,watergen1,NATIVE_NAME,,,NATIVE_NAME
+genegen1,genegen1,genegen1,NATIVE_NAME,,,NATIVE_NAME
+nukegen1,nukegen1,nukegen1,NATIVE_NAME,,,NATIVE_NAME
+enjoynat,enjoynat,enjoynat,NATIVE_NAME,,,NATIVE_NAME
+activnat,activnat,activnat,NATIVE_NAME,,,NATIVE_NAME
+planetrp,planetrp,planetrp,NATIVE_NAME,,,NATIVE_NAME
+carhr,carhr,carhr,NATIVE_NAME,,,NATIVE_NAME
+eatmeat,eatmeat,eatmeat,NATIVE_NAME,,,NATIVE_NAME
+numrooms,numrooms,numrooms,NATIVE_NAME,,,NATIVE_NAME
+airpollu,airpollu,airpollu,NATIVE_NAME,,,NATIVE_NAME
+wtrpollu,wtrpollu,wtrpollu,NATIVE_NAME,,,NATIVE_NAME
+exweathr,exweathr,exweathr,NATIVE_NAME,,,NATIVE_NAME
+opbribes,opbribes,opbribes,NATIVE_NAME,,,NATIVE_NAME
+mkt1,mkt1,mkt1,NATIVE_NAME,,,NATIVE_NAME
+respineq,respineq,respineq,NATIVE_NAME,,,NATIVE_NAME
+govineq1,govineq1,govineq1,NATIVE_NAME,,,NATIVE_NAME
+govineq2,govineq2,govineq2,NATIVE_NAME,,,NATIVE_NAME
+ineqmad,ineqmad,ineqmad,NATIVE_NAME,,,NATIVE_NAME
+migrpoor,migrpoor,migrpoor,NATIVE_NAME,,,NATIVE_NAME
+conimm,conimm,conimm,NATIVE_NAME,,,NATIVE_NAME
+rank1,rank1,rank1,NATIVE_NAME,,,NATIVE_NAME
+rank16,rank16,rank16,NATIVE_NAME,,,NATIVE_NAME
+rank10fut,rank10fut,rank10fut,NATIVE_NAME,,,NATIVE_NAME
+fairdist,fairdist,fairdist,NATIVE_NAME,,,NATIVE_NAME
+contpoor,contpoor,contpoor,NATIVE_NAME,,,NATIVE_NAME
+contrich,contrich,contrich,NATIVE_NAME,,,NATIVE_NAME
+endsme12,endsme12,endsme12,NATIVE_NAME,,,NATIVE_NAME
+skipmeal,skipmeal,skipmeal,NATIVE_NAME,,,NATIVE_NAME
+class1,class1,class1,NATIVE_NAME,,,NATIVE_NAME
+ratepain1,ratepain1,ratepain1,NATIVE_NAME,,,NATIVE_NAME
+norelgsp,is r atheist or agnostic,is r atheist or agnostic,DONOR_MAP,2024,,DONOR_MAP
+evangclx,evangclx,evangclx,NATIVE_NAME,,,NATIVE_NAME
+evangcly,evangcly,evangcly,NATIVE_NAME,,,NATIVE_NAME
+religimp,religimp,religimp,NATIVE_NAME,,,NATIVE_NAME
+relidimp,relidimp,relidimp,NATIVE_NAME,,,NATIVE_NAME
+relidesc,relidesc,relidesc,NATIVE_NAME,,,NATIVE_NAME
+relidwe,relidwe,relidwe,NATIVE_NAME,,,NATIVE_NAME
+relidins,relidins,relidins,NATIVE_NAME,,,NATIVE_NAME
+biblauth,biblauth,biblauth,NATIVE_NAME,,,NATIVE_NAME
+evngelze,evngelze,evngelze,NATIVE_NAME,,,NATIVE_NAME
+sinsacri,sinsacri,sinsacri,NATIVE_NAME,,,NATIVE_NAME
+chrstsav,chrstsav,chrstsav,NATIVE_NAME,,,NATIVE_NAME
+sprtconnct,sprtconnct,sprtconnct,NATIVE_NAME,,,NATIVE_NAME
+sprtlrgr,sprtlrgr,sprtlrgr,NATIVE_NAME,,,NATIVE_NAME
+sprtpurp,sprtpurp,sprtpurp,NATIVE_NAME,,,NATIVE_NAME
+mditate1,mditate1,mditate1,NATIVE_NAME,,,NATIVE_NAME
+grtwrks,grtwrks,grtwrks,NATIVE_NAME,,,NATIVE_NAME
+freemind,freemind,freemind,NATIVE_NAME,,,NATIVE_NAME
+decevidc,decevidc,decevidc,NATIVE_NAME,,,NATIVE_NAME
+advfmsci,advfmsci,advfmsci,NATIVE_NAME,,,NATIVE_NAME
+prochoic,prochoic,prochoic,NATIVE_NAME,,,NATIVE_NAME
+prolife,prolife,prolife,NATIVE_NAME,,,NATIVE_NAME
+godusa,godusa,godusa,NATIVE_NAME,,,NATIVE_NAME
+govchrst,govchrst,govchrst,NATIVE_NAME,,,NATIVE_NAME
+buseqinc,buseqinc,buseqinc,NATIVE_NAME,,,NATIVE_NAME
+trdunio1,trdunio1,trdunio1,NATIVE_NAME,,,NATIVE_NAME
+boardrep,boardrep,boardrep,NATIVE_NAME,,,NATIVE_NAME
+upwages,upwages,upwages,NATIVE_NAME,,,NATIVE_NAME
+limitpay,limitpay,limitpay,NATIVE_NAME,,,NATIVE_NAME
+govfnanc,govfnanc,govfnanc,NATIVE_NAME,,,NATIVE_NAME
+dclindus,dclindus,dclindus,NATIVE_NAME,,,NATIVE_NAME
+govfnaid,govfnaid,govfnaid,NATIVE_NAME,,,NATIVE_NAME
+hivafraid,afraid to be around a person with hiv,afraid to be around a person with hiv,DONOR_MAP,2022,,DONOR_MAP
+hivimmrl,people with hiv have participated in immoral activities,people with hiv have participated in immoral activities,DONOR_MAP,2022,,DONOR_MAP
+hivdscrm,there is a lot of discrimination against people with hiv,there is a lot of discrimination against people with hiv,DONOR_MAP,2022,,DONOR_MAP
+ptnrornt,recent partner's sexual orientation,recent partner's sexual orientation,DONOR_MAP,2022,,DONOR_MAP
+ptnrsxbrth,recent partner's sex at birth,recent partner's sex at birth,DONOR_MAP,2022,,DONOR_MAP
+ptnrsxnow,recent partner's sex now,recent partner's sex now,DONOR_MAP,2022,,DONOR_MAP
+poltrtblk,poltrtblk,poltrtblk,NATIVE_NAME,,,NATIVE_NAME
+poltrthsp,poltrthsp,poltrthsp,NATIVE_NAME,,,NATIVE_NAME
+defund,defund,defund,NATIVE_NAME,,,NATIVE_NAME
+strvbias,strvbias,strvbias,NATIVE_NAME,,,NATIVE_NAME
+strvbiasy,strvbiasy,strvbiasy,NATIVE_NAME,,,NATIVE_NAME
+racesurv17,racesurv17,racesurv17,NATIVE_NAME,,,NATIVE_NAME
+conpharvac,conpharvac,conpharvac,NATIVE_NAME,,,NATIVE_NAME
+conpharvacy,confidence in pharmaceutical companies y,confidence in pharmaceutical companies y,DONOR_MAP,2022,,DONOR_MAP
+confedvac,confedvac,confedvac,NATIVE_NAME,,,NATIVE_NAME
+confedvacy,confidence in the federal government y,confidence in the federal government y,DONOR_MAP,2022,,DONOR_MAP
+wtssps,person post-stratification weight,person post-stratification weight,DONOR_MAP,2022,,DONOR_MAP
+wtssnrps,"person post-stratification weight, nonrespondents adjusted","person post-stratification weight, nonrespondents adjusted",DONOR_MAP,2022,,DONOR_MAP
+uswaryv,expect us in world war in next 10 years (volunteered response on web),expect us in world war in next 10 years (volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+prayerv,bible prayer in public schools (with volunteered response on web),bible prayer in public schools (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+courtsv,courts dealing with criminals (with volunteered response on web),courts dealing with criminals (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+discaffwv,a woman won't get a job or promotion (with volunteered response on web),a woman won't get a job or promotion (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+racopenv,vote on open housing law (with volunteered response on web),vote on open housing law (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+getaheadv,opinion of how people get ahead (with volunteered response on web),opinion of how people get ahead (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+divlawv,divorce laws (with volunteered response on web),divorce laws (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+helpfulv,people helpful or looking out for selves (with volunteered response on web),people helpful or looking out for selves (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+fairv,people fair or try to take advantage (with volunteered resposne on web),people fair or try to take advantage (with volunteered resposne on web),DONOR_MAP,2022,,DONOR_MAP
+trustv,can people be trusted (with volunteered response on web),can people be trusted (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+agedv,should aged live with their children (with volunteered response on web),should aged live with their children (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+grassv,should marijuana be made legal (with volunteered response on web),should marijuana be made legal (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+relitenv,strength of affiliation (with volunteered response on web),strength of affiliation (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+biblev,feelings about the bible (with volunteered response on web),feelings about the bible (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+postlifev,belief in life after death (with volunteered response on web),belief in life after death (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+kidssolv,r's kids living standard compared to r (with volunteered response on web),r's kids living standard compared to r (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+uscitznv,is r us citizen (with volunteered response on web),is r us citizen (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+fucitznv,is r planning/appling for us citizenship or not (with volunteered response on we,is r planning/appling for us citizenship or not (with volunteered response on we,DONOR_MAP,2022,,DONOR_MAP
+fepolv,women not suited for politics (with volunteered response on web),women not suited for politics (with volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+uswarynv,expect us in world war in next 10 years (no volunteered response on web),expect us in world war in next 10 years (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+prayernv,bible prayer in public schools (no volunteered response on web),bible prayer in public schools (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+courtsnv,courts dealing with criminals (no volunteered response on web),courts dealing with criminals (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+discaffwnv,a woman won't get a job or promotion (no volunteered response on web),a woman won't get a job or promotion (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+racopennv,vote on open housing law (no volunteered response on web),vote on open housing law (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+getaheadnv,opinion of how people get ahead (no volunteered response on web),opinion of how people get ahead (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+divlawnv,divorce laws (no volunteered response on web),divorce laws (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+helpfulnv,people helpful or looking out for selves (no volunteered response on web),people helpful or looking out for selves (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+fairnv,people fair or try to take advantage (no volunteered response on web),people fair or try to take advantage (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+trustnv,can people be trusted (no volunteered response on web),can people be trusted (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+agednv,should aged live with their children (no volunteered response on web),should aged live with their children (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+grassnv,should marijuana be made legal (no volunteered response on web),should marijuana be made legal (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+relitennv,strength of affiliation (no volunteered response on web),strength of affiliation (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+biblenv,feelings about the bible (no volunteered response on web),feelings about the bible (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+postlifenv,belief in life after death (no volunteered response on web),belief in life after death (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+kidssolnv,r's kids living standard compared to r (no volunteered response on web),r's kids living standard compared to r (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+uscitznnv,is r us citizen (no volunteered response on web),is r us citizen (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+fucitznnv,is r planning/appling for us citizenship or not (no volunteered response on web),is r planning/appling for us citizenship or not (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+fepolnv,women not suited for politics (no volunteered response on web),women not suited for politics (no volunteered response on web),DONOR_MAP,2022,,DONOR_MAP
+scibnftsv,scibnftsv,scibnftsv,NATIVE_NAME,,,NATIVE_NAME
+abanyg,abortion if woman wants for any reason (grid on web),abortion if woman wants for any reason (grid on web),DONOR_MAP,2022,,DONOR_MAP
+fileversion,gss data file version,gss data file version,DONOR_MAP,2022,,DONOR_MAP

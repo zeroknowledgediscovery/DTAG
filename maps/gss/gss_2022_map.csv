@@ -1,0 +1,881 @@
+variable,question_text,question_text_filled,source,source_year,codebook_page,map_provenance
+id,respondent id number,respondent id number,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrkstat,labor force status,labor force status,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hrs1,number of hours worked last week,number of hours worked last week,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hrs2,number of hours usually work a week,number of hours usually work a week,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+evwork,ever work as long as one year,ever work as long as one year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrkslf,r self-emp or works for somebody,r self-emp or works for somebody,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+occ10,r's census occupation code (2010),r's census occupation code (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prestg10,r's occupational prestige score (2010),r's occupational prestige score (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+indus10,r's industry code (naics 2007),r's industry code (naics 2007),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marital,marital status,marital status,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+martype,marital type,marital type,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+divorce,ever been divorced or separated,ever been divorced or separated,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+widowed,ever been widowed,ever been widowed,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sppres80,sppres80,sppres80,NATIVE_NAME,,,NATIVE_NAME
+spocc10,spouse census occupation code (2010),spouse census occupation code (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sppres10,spouse occupational prestige score (2010),spouse occupational prestige score (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spind10,spouse's industry code (naics 2007),spouse's industry code (naics 2007),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+coocc10,partner's census occupation code (2010),partner's census occupation code (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+coind10,partner's industry code (2010),partner's industry code (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+mawrkslf,mother (or youngest same-sex parent) self-emp. or worked for somebody,mother (or youngest same-sex parent) self-emp. or worked for somebody,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sibs,number of siblings (including step- and adopted),number of siblings (including step- and adopted),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+childs,number of children,number of children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+age,age of respondent,age of respondent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+agekdbrn,r's age when 1st child born,r's age when 1st child born,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+educ,highest year of school completed,highest year of school completed,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+degree,r's highest degree,r's highest degree,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+major1,college major 1,college major 1,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+dipged,"diploma, ged, or other","diploma, ged, or other",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sex,respondents sex,respondents sex,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+race,race of respondent,race of respondent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+res16,type of place lived in when 16 yrs old,type of place lived in when 16 yrs old,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+reg16,"region of residence, age 16","region of residence, age 16",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+family16,living with parents when 16 yrs old,living with parents when 16 yrs old,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+famdif16,reason not living with parents,reason not living with parents,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+mawrkgrw,did mother (or youngest same-sex parent) ever work for pay for as long as a year,did mother (or youngest same-sex parent) ever work for pay for as long as a year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+incom16,r's family income when 16 yrs old,r's family income when 16 yrs old,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+born,was r born in this country,was r born in this country,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+parborn,were r's parents born in this country,were r's parents born in this country,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+granborn,how many grandparents born outside u.s.,how many grandparents born outside u.s.,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+adults,household members 18 yrs and older (household roster),household members 18 yrs and older (household roster),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+unrelat,number in household not related,number in household not related,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+earnrs,how many in family earned money?,how many in family earned money?,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+income,total family income,total family income,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rincome,respondents income,respondents income,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+income16,total family income,total family income,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rincom16,respondents income,respondents income,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+region,region of interview,region of interview,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+partyid,political party affiliation,political party affiliation,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vote16,remember if voted in 2016 election,remember if voted in 2016 election,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pres16,vote clinton or trump,vote clinton or trump,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+if16who,who you would have voted for,who you would have voted for,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+polviews,think of self as liberal or conservative,think of self as liberal or conservative,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natspac,space exploration program,space exploration program,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natenvir,improving & protecting environment,improving & protecting environment,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natheal,improving & protecting nations health,improving & protecting nations health,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natcity,solving problems of big cities,solving problems of big cities,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natcrime,halting rising crime rate,halting rising crime rate,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natdrug,dealing with drug addiction,dealing with drug addiction,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nateduc,improving nations education system,improving nations education system,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natrace,improving the conditions of black people,improving the conditions of black people,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natarms,"military, armaments, and defense","military, armaments, and defense",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nataid,foreign aid,foreign aid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natfare,welfare,welfare,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natroad,highways and bridges,highways and bridges,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natsoc,social security,social security,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natmass,mass transportation,mass transportation,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natpark,parks and recreation,parks and recreation,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natchld,assistance for childcare,assistance for childcare,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natsci,supporting scientific research,supporting scientific research,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natenrgy,developing alternative energy sources,developing alternative energy sources,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natspacy,space exploration:version y,space exploration:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natenviy,the environment:version y,the environment:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nathealy,health:version y,health:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natcityy,assistance to big cities:version y,assistance to big cities:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natcrimy,law enforcement:version y,law enforcement:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natdrugy,drug rehabilitation:version y,drug rehabilitation:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nateducy,education:version y,education:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natracey,assistance to black people: version y,assistance to black people: version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natarmsy,national defense:version y,national defense:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nataidy,assistance to other countries:ver y,assistance to other countries:ver y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+natfarey,assistance to the poor:version y,assistance to the poor:version y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+eqwlth,should govt reduce income differences,should govt reduce income differences,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spkath,allow anti-religionist to speak,allow anti-religionist to speak,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+colath,allow anti-religionist to teach,allow anti-religionist to teach,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+libath,allow anti-religious book in library,allow anti-religious book in library,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spkrac,allow racist to speak,allow racist to speak,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+colrac,allow racist to teach,allow racist to teach,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+librac,allow racists book in library,allow racists book in library,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spkcom,allow communist to speak,allow communist to speak,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+colcom,should communist teacher be fired,should communist teacher be fired,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+libcom,allow communists book in library,allow communists book in library,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spkmslm,allow muslim clergymen preaching hatred of the us,allow muslim clergymen preaching hatred of the us,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+colmslm,allow anti-american muslim clergymen teaching in college,allow anti-american muslim clergymen teaching in college,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+libmslm,allow anti-american muslim clergymen's books in library,allow anti-american muslim clergymen's books in library,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cappun,favor or oppose death penalty for murder,favor or oppose death penalty for murder,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+gunlaw,favor or oppose gun permits,favor or oppose gun permits,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+courts,courts dealing with criminals,courts dealing with criminals,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+grass,should marijuana be made legal,should marijuana be made legal,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+attend,how often r attends religious services,how often r attends religious services,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+postlife,belief in life after death,belief in life after death,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pray,how often does r pray,how often does r pray,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prayer,bible prayer in public schools,bible prayer in public schools,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+bible,feelings about the bible,feelings about the bible,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racopen,vote on open housing law,vote on open housing law,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raclive,any opp. race in neighborhood,any opp. race in neighborhood,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+affrmact,favor preference in hiring black people,favor preference in hiring black people,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrkwayup,black people overcome prejudice without favors,black people overcome prejudice without favors,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+happy,general happiness,general happiness,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hapmar,happiness of marriage,happiness of marriage,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hapcohab,happiness of relt with partner,happiness of relt with partner,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+health,condition of health,condition of health,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+life,is life exciting or dull,is life exciting or dull,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+helpful,people helpful or looking out for selves,people helpful or looking out for selves,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fair,people fair or try to take advantage,people fair or try to take advantage,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+trust,can people be trusted,can people be trusted,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+confinan,confid in banks & financial institutions,confid in banks & financial institutions,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conbus,confidence in major companies,confidence in major companies,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conclerg,confidence in organized religion,confidence in organized religion,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+coneduc,confidence in education,confidence in education,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+confed,confid. in exec branch of fed govt,confid. in exec branch of fed govt,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conlabor,confidence in organized labor,confidence in organized labor,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conpress,confidence in press,confidence in press,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conmedic,confidence in medicine,confidence in medicine,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+contv,confidence in television,confidence in television,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conjudge,confid. in united states supreme court,confid. in united states supreme court,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+consci,confidence in scientific community,confidence in scientific community,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conlegis,confidence in congress,confidence in congress,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conarmy,confidence in military,confidence in military,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+obey,to obey,to obey,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+popular,to be well liked or popular,to be well liked or popular,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+thnkself,to think for ones self,to think for ones self,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+workhard,to work hard,to work hard,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+helpoth,to help others,to help others,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+socrel,spend evening with relatives,spend evening with relatives,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+socommun,spend evening with neighbor,spend evening with neighbor,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+socfrend,spend evening with friends,spend evening with friends,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+socbar,spend evening at bar,spend evening at bar,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+aged,should aged live with their children,should aged live with their children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+weekswrk,weeks r worked last year,weeks r worked last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+joblose,is r likely to lose job,is r likely to lose job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+jobfind,could r find equally good job,could r find equally good job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+satjob,work satisfaction,work satisfaction,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+richwork,"if rich, continue or stop working","if rich, continue or stop working",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+class,subjective class identification,subjective class identification,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rank,r's self ranking of social position,r's self ranking of social position,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+satfin,satisfaction with financial situation,satisfaction with financial situation,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+finalter,change in financial situation,change in financial situation,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+finrela,opinion of family income,opinion of family income,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+unemp,ever unemployed in last ten yrs,ever unemployed in last ten yrs,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+union,does r or spouse belong to union,does r or spouse belong to union,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+union1,does r or spouse or partner belong to union,does r or spouse or partner belong to union,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+getahead,opinion of how people get ahead,opinion of how people get ahead,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+parsol,r's living standard compared to parents,r's living standard compared to parents,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+kidssol,r's kids living standard compared to r,r's kids living standard compared to r,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fepol,women not suited for politics,women not suited for politics,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abdefect,strong chance of serious defect,strong chance of serious defect,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abnomore,married--wants no more children,married--wants no more children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abhlth,woman's health seriously endangered,woman's health seriously endangered,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abpoor,low income--cant afford more children,low income--cant afford more children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abrape,pregnant as result of rape,pregnant as result of rape,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+absingle,not married,not married,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abany,abortion if woman wants for any reason,abortion if woman wants for any reason,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+chldidel,ideal number of children,ideal number of children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pillok,birth control to teenagers 14-16,birth control to teenagers 14-16,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sexeduc,sex education in public schools,sex education in public schools,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+premarsx,sex before marriage,sex before marriage,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+teensex,sex before marriage:teens 14-16,sex before marriage:teens 14-16,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+xmarsex,sex with person other than spouse,sex with person other than spouse,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+homosex,homosexual sex relations,homosexual sex relations,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pornlaw,feelings about pornography laws,feelings about pornography laws,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+xmovie,seen x-rated movie in last year,seen x-rated movie in last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spanking,favor spanking to discipline child,favor spanking to discipline child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+letdie1,allow incurable patients to die,allow incurable patients to die,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+suicide4,suicide if tired of living,suicide if tired of living,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+polhitok,ever approve of police striking citizen,ever approve of police striking citizen,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+polabuse,citizen said vulgar or obscene things,citizen said vulgar or obscene things,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+polmurdr,citizen questioned as murder suspect,citizen questioned as murder suspect,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+polescap,citizen attempting to escape custody,citizen attempting to escape custody,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+polattak,citizen attacking policeman with fists,citizen attacking policeman with fists,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fear,afraid to walk at night in neighborhood,afraid to walk at night in neighborhood,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+owngun,have gun in home,have gun in home,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pistol,pistol or revolver in home,pistol or revolver in home,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+shotgun,shotgun in home,shotgun in home,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rifle,rifle in home,rifle in home,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rowngun,does gun belong to r,does gun belong to r,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hunt,does r or spouse hunt,does r or spouse hunt,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hunt1,does r or spouse or partner hunt,does r or spouse or partner hunt,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+news,how often does r read newspaper,how often does r read newspaper,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+tvhours,hours per day watching tv,hours per day watching tv,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+form,form of split questionnaire asked,form of split questionnaire asked,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fechld,mother working doesn't hurt children,mother working doesn't hurt children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fepresch,preschool kids suffer if mother works,preschool kids suffer if mother works,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fefam,"better for man to work, woman tend home","better for man to work, woman tend home",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racdif1,differences due to discrimination,differences due to discrimination,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racdif2,differences due to in-born learning ability,differences due to in-born learning ability,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racdif3,differences due to lack of education,differences due to lack of education,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racdif4,differences due to lack of will,differences due to lack of will,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+helppoor,should govt improve standard of living?,should govt improve standard of living?,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+helpnot,should govt do more or less?,should govt do more or less?,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+helpsick,should govt help pay for medical care?,should govt help pay for medical care?,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+helpblk,should govt aid black people?,should govt aid black people?,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+god,r's confidence in the existence of god,r's confidence in the existence of god,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+reborn,has r ever had a 'born again' experience,has r ever had a 'born again' experience,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+savesoul,tried to convince others to accept jesus,tried to convince others to accept jesus,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wlthwhts,rich - poor,rich - poor,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wlthblks,rich - poor,rich - poor,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+workwhts,hard working - lazy,hard working - lazy,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+workblks,hard working - lazy,hard working - lazy,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+intlwhts,unintelligent -intelligent,unintelligent -intelligent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+intlblks,unintelligent - intelligent,unintelligent - intelligent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+intlhsps,unintelligent - intelligent,unintelligent - intelligent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marblk,close relative marry black person,close relative marry black person,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marasian,close relative marry asian,close relative marry asian,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marhisp,close relative marry hispanic,close relative marry hispanic,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marwht,r favor close relative marrying white person,r favor close relative marrying white person,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racwork,racial makeup of workplace,racial makeup of workplace,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+discaff,whites hurt by aff. action,whites hurt by aff. action,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fejobaff,for or against preferential hiring of women,for or against preferential hiring of women,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+discaffm,a man won't get a job or promotion,a man won't get a job or promotion,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+discaffw,a woman won't get a job or promotion,a woman won't get a job or promotion,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fehire,should hire and promote women,should hire and promote women,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+relpersn,r consider self a religious person,r consider self a religious person,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sprtprsn,r consider self a spiritual person,r consider self a spiritual person,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+othlang,can r speak language other than english/spanish,can r speak language other than english/spanish,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spklang,how well does r speak other language,how well does r speak other language,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+letinhsp,immigration from latin america should be increased,immigration from latin america should be increased,DONOR_MAP,2024,,DONOR_MAP
+letinasn,immigration from asia should be increased,immigration from asia should be increased,DONOR_MAP,2024,,DONOR_MAP
+compuse,r use computer,r use computer,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wwwhr,www hours per week,www hours per week,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrktype,work arrangement at main job,work arrangement at main job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yearsjob,time at current job,time at current job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+waypaid,how paid in main job,how paid in main job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrksched,usual work schedule,usual work schedule,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+moredays,days per month r work extra hours,days per month r work extra hours,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+mustwork,mandatory to work extra hours,mandatory to work extra hours,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrkhome,how often r works at home,how often r works at home,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+whywkhme,usual reason r work at home,usual reason r work at home,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+famwkoff,how hard to take time off,how hard to take time off,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wkvsfam,how often job interferes fam life,how often job interferes fam life,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+famvswk,how often fam life interfere job,how often fam life interfere job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hrsrelax,hours per day r have to relax,hours per day r have to relax,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+secondwk,r has job other than main,r has job other than main,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+learnnew,job requires r to learn new things,job requires r to learn new things,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+workfast,job requires r to work fast,job requires r to work fast,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+workdiff,r does numerous things on job,r does numerous things on job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+overwork,r has too much work to do well,r has too much work to do well,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+knowwhat,r knows what's expected on job,r knows what's expected on job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+myskills,job allows r use of skills,job allows r use of skills,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+respect,r treated with respect at work,r treated with respect at work,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+trustman,r trust management at work,r trust management at work,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+safetywk,worker safety priority at work,worker safety priority at work,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+safefrst,no shortcuts on worker safety,no shortcuts on worker safety,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+teamsafe,mgt and employees work together re safety,mgt and employees work together re safety,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+safehlth,safety and health condition good at work,safety and health condition good at work,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+proudemp,r proud to work for employer,r proud to work for employer,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prodctiv,work conditions allow productivity,work conditions allow productivity,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wksmooth,workplace runs in smooth manner,workplace runs in smooth manner,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+trdunion,workers need strong unions,workers need strong unions,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+partteam,r work as part of a team,r work as part of a team,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wkdecide,how often r take part in decisions,how often r take part in decisions,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+toofewwk,how often not enough staff,how often not enough staff,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+promteok,r's chances for promotion good,r's chances for promotion good,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+opdevel,opportunity to develop my abilities,opportunity to develop my abilities,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlpequip,enough help and equip to ge the job done,enough help and equip to ge the job done,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+haveinfo,enough info to get the job done,enough info to get the job done,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wkfreedm,a lot of freedom to decide how to do job,a lot of freedom to decide how to do job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fringeok,fringe benefits are good,fringe benefits are good,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+supcares,supervisor concerned about welfare,supervisor concerned about welfare,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+condemnd,r free from conflicting demands,r free from conflicting demands,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+promtefr,promotions are handled fairly,promotions are handled fairly,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cowrkint,coworkers take a personal interest in r,coworkers take a personal interest in r,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+jobsecok,the job security is good,the job security is good,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+suphelp,supervisor helpful to r in getting job done,supervisor helpful to r in getting job done,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrktime,r has enough time to get the job done,r has enough time to get the job done,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cowrkhlp,coworkers can be relied on when r needs help,coworkers can be relied on when r needs help,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+manvsemp,relations bw management and employees,relations bw management and employees,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hvylift,r do repeated lifting,r do repeated lifting,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+handmove,r perform forceful hand movements,r perform forceful hand movements,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wkpraise,r is likely to be praised by supervisor,r is likely to be praised by supervisor,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fairearn,how fair is what r earn on the job,how fair is what r earn on the job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rincblls,income alone is enough,income alone is enough,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+laidoff,r was laid off main job last year,r was laid off main job last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+jobfind1,how easy for r to find a same job,how easy for r to find a same job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+trynewjb,how likely r make effort for new job next year,how likely r make effort for new job next year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wkageism,r feels discriminated because of age,r feels discriminated because of age,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wkracism,r feels discriminated because of race,r feels discriminated because of race,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wksexism,r feels discriminated because of gender,r feels discriminated because of gender,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wkharsex,r sexually harassed on the job last 12 months,r sexually harassed on the job last 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wkharoth,r threatened on the job last 12 months,r threatened on the job last 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+health1,r's health in general,r's health in general,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+physhlth,days of poor physical health past 30 days,days of poor physical health past 30 days,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+mntlhlth,days of poor mental health past 30 days,days of poor mental health past 30 days,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthdays,days of activity limitation past 30 days,days of activity limitation past 30 days,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+usedup,how often during past month r felt used up,how often during past month r felt used up,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+backpain,r had back pain in the past 12 months,r had back pain in the past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+painarms,r had pain in the arms in the past 12 months,r had pain in the arms in the past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hurtatwk,number of injuries on the job past 12 months,number of injuries on the job past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spvtrfair,supervisor is fair,supervisor is fair,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+strredpg,access to stress management,access to stress management,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+phyeffrt,rate physical effort,rate physical effort,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+slpprblm,trouble sleeping last 12 months,trouble sleeping last 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+satjob1,job satisfaction in general,job satisfaction in general,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+knowschd,knowschd,knowschd,DONOR_MAP,2018,,DONOR_MAP
+usetech,percentage of time use tech,percentage of time use tech,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stress12,stress management program last 12 months,stress management program last 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hyperten,told have hypertension or high blood pressure,told have hypertension or high blood pressure,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+arthrtis,told have arthritis or rheumatism,told have arthritis or rheumatism,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+diabetes,told have diabetes,told have diabetes,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+depress,told have depression,told have depression,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+weight,r weighs how much,r weighs how much,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+height,r is how tall,r is how tall,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ntwkhard,past week not work hard enough,past week not work hard enough,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+misswork,miss work for health past 30 days,miss work for health past 30 days,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+lifenow,r's rating of life overall now from 0-10,r's rating of life overall now from 0-10,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+lifein5,r's rating of life overall in five years from 0-10,r's rating of life overall in five years from 0-10,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abmoral,r has a moral opposition to abortion,r has a moral opposition to abortion,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abhelp1,r would help with arrangements for abortion,r would help with arrangements for abortion,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abhelp2,r would help with paying for abortion,r would help with paying for abortion,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abhelp3,r would help with paying for abortion-related other costs,r would help with paying for abortion-related other costs,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abhelp4,r would help with emotional support for abortion,r would help with emotional support for abortion,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+workfor1,r work for whom,r work for whom,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ownstock,r has stock in r's company,r has stock in r's company,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stockops,r hold any stock options of r's company,r hold any stock options of r's company,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+extrapay,eligible for performance based pay,eligible for performance based pay,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+compperf,size of perf based pay depend on profits,size of perf based pay depend on profits,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+deptperf,size of perf based pay depend on workgroup,size of perf based pay depend on workgroup,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+indperf,size of perf based pay depend on individual,size of perf based pay depend on individual,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+extrayr,year of the most recent perf based payments,year of the most recent perf based payments,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yearval,yearval,yearval,DONOR_MAP,2018,,DONOR_MAP
+nextgen,science & tech. give more opportunities to next generation,science & tech. give more opportunities to next generation,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+toofast,science makes our way of life change too fast,science makes our way of life change too fast,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+advfront,sci rsch is necessary and should be supported by federal govt,sci rsch is necessary and should be supported by federal govt,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+scientgo,scientists work for good of humanity,scientists work for good of humanity,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+scienthe,scientists help solve prob,scientists help solve prob,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+scientbe,scientists want to make life better for avg person,scientists want to make life better for avg person,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+buyvalue,percent of company stock r bought from own money,percent of company stock r bought from own money,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+compwage,annual wages in previous year were higher than same jobs in other companies,annual wages in previous year were higher than same jobs in other companies,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+empinput,r involved in any task force for decision-making,r involved in any task force for decision-making,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+slfmangd,r involved in a self-managed team,r involved in a self-managed team,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+emptrain,received formal training from employer,received formal training from employer,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wealth,total wealth of respondent,total wealth of respondent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+esop,r is member of esop,r is member of esop,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+defpensn,r has defined benefit pension plan,r has defined benefit pension plan,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+posslq,does r have marital partner,does r have marital partner,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+posslqy,relationship status and cohabitation or not,relationship status and cohabitation or not,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marcohab,cohabitation status,cohabitation status,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+healthissp,merged healthissp_d and healthissp_e,merged healthissp_d and healthissp_e,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+endsmeet,how difficult or easy is it for r's household to make ends meet,how difficult or easy is it for r's household to make ends meet,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+goodlife,standard of living of r will improve,standard of living of r will improve,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+famsuffr,family life suffers if mom works f-t,family life suffers if mom works f-t,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+homekid,most women really want a home and kids,most women really want a home and kids,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+housewrk,being housewife as fulfilling as paid work,being housewife as fulfilling as paid work,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrkbaby,shld woman with preschooler work?,shld woman with preschooler work?,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrksch,shld woman work after youngest in school?,shld woman work after youngest in school?,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marlegit,those wanting kids should get married,those wanting kids should get married,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marmakid,single ma can raise kids well as couple,single ma can raise kids well as couple,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marpakid,single pa can raise kids well as couple,single pa can raise kids well as couple,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marhomo,marhomo,marhomo,DONOR_MAP,2018,,DONOR_MAP
+numkids,what is ideal number of kids for family,what is ideal number of kids for family,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+kidnofre,kids interfere with parents' freedom,kids interfere with parents' freedom,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hubbywk1,men should earn money women keep house,men should earn money women keep house,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+meovrwrk,men hurt family when focus on work too much,men hurt family when focus on work too much,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cohabok,living together as an acceptable option,living together as an acceptable option,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+laundry1,who in household does laundry,who in household does laundry,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+caresik1,who in household cares for sick in family,who in household cares for sick in family,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+shop1,who in household shops for groceries,who in household shops for groceries,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cooking1,who in household prepares the meals,who in household prepares the meals,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rhhwork,how many hours a week does r spend on hh work,how many hours a week does r spend on hh work,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sphhwork,how many hours a week does spouse on hh wrk,how many hours a week does spouse on hh wrk,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+happy7,how happy r is,how happy r is,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ssfchild,same sex female couple raise child as well as male-female couple,same sex female couple raise child as well as male-female couple,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ssmchild,same sex male couple raise child as well as male-female couple,same sex male couple raise child as well as male-female couple,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+kidsocst,having children increases social standing in society,having children increases social standing in society,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+paidlv,paid leave for childcare,paid leave for childcare,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+paidlvdv,mother or father paid leave,mother or father paid leave,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+famwkbst,best way to org family work life with under school age child,best way to org family work life with under school age child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+famwklst,wor'st way to org family work life with under school age child,wor'st way to org family work life with under school age child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+careprov,who should provide childcare for under school age child,who should provide childcare for under school age child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+carecost,who should pay for costs of care for under school age child,who should pay for costs of care for under school age child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+eldhelp,who should provide help for elderly,who should provide help for elderly,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+eldcost,who should pay for help for elderly,who should pay for help for elderly,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hhclean1,who does household cleaning,who does household cleaning,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+tiredhm1,how often too tired to do housework,how often too tired to do housework,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+jobvsfa1,how often jobtakes too much time to fulfill family resp,how often jobtakes too much time to fulfill family resp,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+tiredwk1,how often too tired from housework to do job well,how often too tired from housework to do job well,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+famvswk1,how often difficult to conc at work because family resp,how often difficult to conc at work because family resp,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rfamlook,how many hours a week r spends looking after family,how many hours a week r spends looking after family,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spfalook,hours spouse spends looking after family members,hours spouse spends looking after family members,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stress,how often does r find work stressful,how often does r find work stressful,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+supervis,does r supervise others at work in main job,does r supervise others at work in main job,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hapunhap,hapunhap,hapunhap,DONOR_MAP,2018,,DONOR_MAP
+immcrime,immigrants increase crime rates,immigrants increase crime rates,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+immjobs,immigrants take jobs away,immigrants take jobs away,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+letin1a,number of immigrants nowadays should be,number of immigrants nowadays should be,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+partners,how many sex partner's r had in last year,how many sex partner's r had in last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+matesex,was 1 of r's partner's spouse or regular,was 1 of r's partner's spouse or regular,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+frndsex,r had sex with friend last year,r had sex with friend last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+acqntsex,r had sex with acquaintance last year,r had sex with acquaintance last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pikupsex,r had sex with casual date last year,r had sex with casual date last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+paidsex,r had sex for pay last year,r had sex for pay last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+othersex,r had sex with some other last year,r had sex with some other last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sexsex,sex of sex partner's in last year,sex of sex partner's in last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sexfreq,frequency of sex during last year,frequency of sex during last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+numwomen,number of female sex partner's since 18,number of female sex partner's since 18,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nummen,number of male sex partner's since 18,number of male sex partner's since 18,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+partnrs5,how many sex partner's r had in last 5 years,how many sex partner's r had in last 5 years,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sexsex5,sex of sex partner's last five years,sex of sex partner's last five years,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+evpaidsx,ever have sex paid for or being paid since 18,ever have sex paid for or being paid since 18,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+evstray,have sex other than spouse while married,have sex other than spouse while married,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+condom,used condom last time,used condom last time,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+relatsex,relation to last sex partner,relation to last sex partner,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+evidu,r ever inject drugs,r ever inject drugs,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+idu30,r inject drugs in past 30 days,r inject drugs in past 30 days,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+evcrack,r ever use crack cocaine,r ever use crack cocaine,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+crack30,r last use crack cocaine,r last use crack cocaine,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hivtest,have you ever been tested for hiv,have you ever been tested for hiv,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hivtest1,in what year was your last hiv test,in what year was your last hiv test,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hivtest2,where did you have your last hiv test,where did you have your last hiv test,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sexornt,sexual orientation,sexual orientation,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+realinc,family income in constant $,family income in constant $,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+realrinc,r's income in constant $,r's income in constant $,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+coninc,family income in constant dollars,family income in constant dollars,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conrinc,respondent income in constant dollars,respondent income in constant dollars,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethnic,country of family origin,country of family origin,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+eth1,1st mentioned country of origin,1st mentioned country of origin,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+eth2,2nd mentioned country of origin,2nd mentioned country of origin,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+eth3,3rd mentioned country of origin,3rd mentioned country of origin,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hispanic,r hispanic specific,r hispanic specific,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racecen1,"what is r's race, first mention","what is r's race, first mention",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racecen2,"what is r's race, second mention","what is r's race, second mention",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racecen3,"what is r's race, third mention","what is r's race, third mention",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+uscitzn,"if not born in us, is r a us citizen","if not born in us, is r a us citizen",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fucitzn,is r planning/appling for us citizenship or not,is r planning/appling for us citizenship or not,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vetyears,years in armed forces,years in armed forces,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+dwelown,does r own or rent home?,does r own or rent home?,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+worda,word a,word a,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordb,word b,word b,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordc,word c,word c,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordd,word d,word d,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+worde,word e,word e,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordf,word f,word f,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordg,word g,word g,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordh,word h,word h,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordi,word i,word i,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordj,word j,word j,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordsum,number words correct in vocabulary test,number words correct in vocabulary test,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+dateintv,date of interview,date of interview,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sei10,r's socioeconomic index (2010),r's socioeconomic index (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spsei10,r's spouse's socioeconomic index (2010),r's spouse's socioeconomic index (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cosei10,partner's socioeconomic index (2010),partner's socioeconomic index (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+copres10,partner's occupational prestige score (2010),partner's occupational prestige score (2010),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cohort,year of birth,year of birth,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+marcohrt,marcohrt,marcohrt,NATIVE_NAME,,,NATIVE_NAME
+zodiac,respondents astrological sign,respondents astrological sign,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+mode,interview done in-person or over the phone,interview done in-person or over the phone,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+consent,participation/recording consent,participation/recording consent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+adminconsent,consent to possible data linkage,consent to possible data linkage,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ballot,ballot used for interview,ballot used for interview,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+version,version of questionnaire,version of questionnaire,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+formwt,weight deal with experimental randomization,weight deal with experimental randomization,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sampcode,sampling error code,sampling error code,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sample,sampling frame and method,sampling frame and method,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+oversamp,weights for black oversamples,weights for black oversamples,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spanself,"if this interview had only been available in english, would you...","if this interview had only been available in english, would you...",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spanint,"if no spanish, r could have been interviewed in english","if no spanish, r could have been interviewed in english",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spaneng,interviews conducted in spanish or english,interviews conducted in spanish or english,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vstrat,variance stratum,variance stratum,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vpsu,variance primary sampling unit,variance primary sampling unit,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld1,from what part of the world did your ancestors come? europe,from what part of the world did your ancestors come? europe,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld2,from what part of the world did your ancestors come? africa,from what part of the world did your ancestors come? africa,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld3,from what part of the world did your ancestors come? asia,from what part of the world did your ancestors come? asia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld4,from what part of the world did your ancestors come? middle east,from what part of the world did your ancestors come? middle east,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld5,from what part of the world did your ancestors come? south america,from what part of the world did your ancestors come? south america,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld6,from what part of the world did your ancestors come? central america,from what part of the world did your ancestors come? central america,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld7,from what part of the world did your ancestors come? north america,from what part of the world did your ancestors come? north america,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld8,from what part of the world did your ancestors come? caribbean,from what part of the world did your ancestors come? caribbean,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethworld9,from what part of the world did your ancestors come? oceania,from what part of the world did your ancestors come? oceania,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion1,from what country or countries did your ancestors come? austria,from what country or countries did your ancestors come? austria,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion2,from what country or countries did your ancestors come? belgium,from what country or countries did your ancestors come? belgium,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion3,from what country or countries did your ancestors come? czechoslovakia,from what country or countries did your ancestors come? czechoslovakia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion4,from what country or countries did your ancestors come? denmark,from what country or countries did your ancestors come? denmark,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion5,from what country or countries did your ancestors come? england and wales,from what country or countries did your ancestors come? england and wales,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion6,from what country or countries did your ancestors come? finland,from what country or countries did your ancestors come? finland,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion7,from what country or countries did your ancestors come? france,from what country or countries did your ancestors come? france,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion8,from what country or countries did your ancestors come? germany,from what country or countries did your ancestors come? germany,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion9,from what country or countries did your ancestors come? greece,from what country or countries did your ancestors come? greece,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion10,from what country or countries did your ancestors come? hungary,from what country or countries did your ancestors come? hungary,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion11,from what country or countries did your ancestors come? ireland,from what country or countries did your ancestors come? ireland,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion12,from what country or countries did your ancestors come? italy,from what country or countries did your ancestors come? italy,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion13,from what country or countries did your ancestors come? lithuania,from what country or countries did your ancestors come? lithuania,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion14,from what country or countries did your ancestors come? netherlands (dutch/holl,from what country or countries did your ancestors come? netherlands (dutch/holl,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion15,from what country or countries did your ancestors come? norway,from what country or countries did your ancestors come? norway,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion16,from what country or countries did your ancestors come? poland,from what country or countries did your ancestors come? poland,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion17,from what country or countries did your ancestors come? portugal,from what country or countries did your ancestors come? portugal,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion18,from what country or countries did your ancestors come? romania,from what country or countries did your ancestors come? romania,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion19,from what country or countries did your ancestors come? russia (ussr),from what country or countries did your ancestors come? russia (ussr),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion20,from what country or countries did your ancestors come? scotland,from what country or countries did your ancestors come? scotland,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion21,from what country or countries did your ancestors come? spain,from what country or countries did your ancestors come? spain,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion22,from what country or countries did your ancestors come? sweden,from what country or countries did your ancestors come? sweden,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion23,from what country or countries did your ancestors come? switzerland,from what country or countries did your ancestors come? switzerland,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion24,from what country or countries did your ancestors come? turkey,from what country or countries did your ancestors come? turkey,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion25,from what country or countries did your ancestors come? yugoslavia,from what country or countries did your ancestors come? yugoslavia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion26,from what country or countries did your ancestors come? other europe,from what country or countries did your ancestors come? other europe,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion27,from what country or countries did your ancestors come? algeria,from what country or countries did your ancestors come? algeria,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion28,from what country or countries did your ancestors come? democratic republic of,from what country or countries did your ancestors come? democratic republic of,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion29,from what country or countries did your ancestors come? egypt,from what country or countries did your ancestors come? egypt,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion30,from what country or countries did your ancestors come? ethiopia,from what country or countries did your ancestors come? ethiopia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion31,from what country or countries did your ancestors come? kenya,from what country or countries did your ancestors come? kenya,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion32,from what country or countries did your ancestors come? nigeria,from what country or countries did your ancestors come? nigeria,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion33,from what country or countries did your ancestors come? south africa,from what country or countries did your ancestors come? south africa,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion34,from what country or countries did your ancestors come? sudan,from what country or countries did your ancestors come? sudan,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion35,from what country or countries did your ancestors come? tanzania,from what country or countries did your ancestors come? tanzania,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion36,from what country or countries did your ancestors come? uganda,from what country or countries did your ancestors come? uganda,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion37,from what country or countries did your ancestors come? other africa,from what country or countries did your ancestors come? other africa,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion38,from what country or countries did your ancestors come? bangladesh,from what country or countries did your ancestors come? bangladesh,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion39,from what country or countries did your ancestors come? china,from what country or countries did your ancestors come? china,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion40,from what country or countries did your ancestors come? india,from what country or countries did your ancestors come? india,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion41,from what country or countries did your ancestors come? indonesia,from what country or countries did your ancestors come? indonesia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion42,from what country or countries did your ancestors come? japan,from what country or countries did your ancestors come? japan,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion43,from what country or countries did your ancestors come? pakistan,from what country or countries did your ancestors come? pakistan,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion44,from what country or countries did your ancestors come? philippines,from what country or countries did your ancestors come? philippines,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion45,from what country or countries did your ancestors come? south korea,from what country or countries did your ancestors come? south korea,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion46,from what country or countries did your ancestors come? thailand,from what country or countries did your ancestors come? thailand,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion47,from what country or countries did your ancestors come? vietnam,from what country or countries did your ancestors come? vietnam,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion48,from what country or countries did your ancestors come? other asia,from what country or countries did your ancestors come? other asia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion49,from what country or countries did your ancestors come? iran,from what country or countries did your ancestors come? iran,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion50,from what country or countries did your ancestors come? iraq,from what country or countries did your ancestors come? iraq,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion51,from what country or countries did your ancestors come? israel,from what country or countries did your ancestors come? israel,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion52,from what country or countries did your ancestors come? jordan,from what country or countries did your ancestors come? jordan,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion53,from what country or countries did your ancestors come? saudi arabia,from what country or countries did your ancestors come? saudi arabia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion54,from what country or countries did your ancestors come? syria,from what country or countries did your ancestors come? syria,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion55,from what country or countries did your ancestors come? united arab emirates,from what country or countries did your ancestors come? united arab emirates,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion56,from what country or countries did your ancestors come? yemen,from what country or countries did your ancestors come? yemen,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion57,from what country or countries did your ancestors come? other middle east,from what country or countries did your ancestors come? other middle east,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion58,from what country or countries did your ancestors come? argentina,from what country or countries did your ancestors come? argentina,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion59,from what country or countries did your ancestors come? bolivia,from what country or countries did your ancestors come? bolivia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion60,from what country or countries did your ancestors come? brazil,from what country or countries did your ancestors come? brazil,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion61,from what country or countries did your ancestors come? chile,from what country or countries did your ancestors come? chile,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion62,from what country or countries did your ancestors come? colombia,from what country or countries did your ancestors come? colombia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion63,from what country or countries did your ancestors come? ecuador,from what country or countries did your ancestors come? ecuador,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion64,from what country or countries did your ancestors come? french guiana,from what country or countries did your ancestors come? french guiana,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion65,from what country or countries did your ancestors come? guyana,from what country or countries did your ancestors come? guyana,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion66,from what country or countries did your ancestors come? paraguay,from what country or countries did your ancestors come? paraguay,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion67,from what country or countries did your ancestors come? peru,from what country or countries did your ancestors come? peru,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion68,from what country or countries did your ancestors come? suriname,from what country or countries did your ancestors come? suriname,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion69,from what country or countries did your ancestors come? uruguay,from what country or countries did your ancestors come? uruguay,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion70,from what country or countries did your ancestors come? venezuela,from what country or countries did your ancestors come? venezuela,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion71,from what country or countries did your ancestors come? other south america,from what country or countries did your ancestors come? other south america,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion72,from what country or countries did your ancestors come? belize,from what country or countries did your ancestors come? belize,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion73,from what country or countries did your ancestors come? costa rica,from what country or countries did your ancestors come? costa rica,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion74,from what country or countries did your ancestors come? el salvador,from what country or countries did your ancestors come? el salvador,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion75,from what country or countries did your ancestors come? guatemala,from what country or countries did your ancestors come? guatemala,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion76,from what country or countries did your ancestors come? honduras,from what country or countries did your ancestors come? honduras,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion77,from what country or countries did your ancestors come? mexico,from what country or countries did your ancestors come? mexico,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion78,from what country or countries did your ancestors come? nicaragua,from what country or countries did your ancestors come? nicaragua,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion79,from what country or countries did your ancestors come? panama,from what country or countries did your ancestors come? panama,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion80,from what country or countries did your ancestors come? other central america,from what country or countries did your ancestors come? other central america,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion81,from what country or countries did your ancestors come? american indian,from what country or countries did your ancestors come? american indian,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion82,from what country or countries did your ancestors come? canada,from what country or countries did your ancestors come? canada,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion83,from what country or countries did your ancestors come? canada (french),from what country or countries did your ancestors come? canada (french),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion84,from what country or countries did your ancestors come? puerto rico,from what country or countries did your ancestors come? puerto rico,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion85,from what country or countries did your ancestors come? other north america,from what country or countries did your ancestors come? other north america,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion86,from what country or countries did your ancestors come? cuba,from what country or countries did your ancestors come? cuba,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion87,from what country or countries did your ancestors come? haiti,from what country or countries did your ancestors come? haiti,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion88,from what country or countries did your ancestors come? dominican republic,from what country or countries did your ancestors come? dominican republic,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion89,from what country or countries did your ancestors come? jamaica,from what country or countries did your ancestors come? jamaica,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion90,from what country or countries did your ancestors come? other caribbean,from what country or countries did your ancestors come? other caribbean,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion91,from what country or countries did your ancestors come? australia,from what country or countries did your ancestors come? australia,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion92,from what country or countries did your ancestors come? papua new guinea,from what country or countries did your ancestors come? papua new guinea,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion93,from what country or countries did your ancestors come? new zealand,from what country or countries did your ancestors come? new zealand,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion94,from what country or countries did your ancestors come? samoa,from what country or countries did your ancestors come? samoa,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ethregion96,ethregion96,ethregion96,NATIVE_NAME,,,NATIVE_NAME
+spkathy,allow anti-religionist to speak y,allow anti-religionist to speak y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+libathy,allow anti-religionist to teach y,allow anti-religionist to teach y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spkracy,allow racist to speak y,allow racist to speak y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+libracy,allow racists book in library y,allow racists book in library y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spkcomy,allow communist to speak y,allow communist to speak y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+colcomy,should communist teacher be fired y,should communist teacher be fired y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+libcomy,allow communists book in library y,allow communists book in library y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+spkmslmy,allow muslim clergymen preaching hatred of the us y,allow muslim clergymen preaching hatred of the us y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+libmslmy,allow anti-american muslim clergymen's books in library y,allow anti-american muslim clergymen's books in library y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs1,white,white,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs2,black,black,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs3,american indian or alaska native,american indian or alaska native,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs4,asian indian,asian indian,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs5,chinese,chinese,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs6,filipino,filipino,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs7,japanese,japanese,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs8,korean,korean,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs9,vietnamese,vietnamese,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs10,other asian,other asian,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs11,native hawaiian,native hawaiian,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs12,guamanian or chamorro,guamanian or chamorro,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs13,samoan,samoan,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs14,native hawaiian or other pacific islander,native hawaiian or other pacific islander,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs15,some other race,some other race,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+raceacs16,hispanic,hispanic,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abdefectg,strong chance of serious defect (grid on web),strong chance of serious defect (grid on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abnomoreg,married--wants no more children (grid on web),married--wants no more children (grid on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abhlthg,woman's health seriously endangered (grid on web),woman's health seriously endangered (grid on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abpoorg,low income--cant afford more children (grid on web),low income--cant afford more children (grid on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abrapeg,pregnant as result of rape (grid on web),pregnant as result of rape (grid on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+absingleg,not married (grid on web),not married (grid on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+suicide1g,suicide if incurable disease,suicide if incurable disease,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+suicide2g,suicide if bankrupt,suicide if bankrupt,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+suicide3g,suicide if dishonored family,suicide if dishonored family,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+suicide4g,suicide if tired of living,suicide if tired of living,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sexbirth1,r's sex assigned at birth (2021),r's sex assigned at birth (2021),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sexnow1,r's sex now (2021),r's sex now (2021),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hivafraid,afraid to be around a person with hiv,afraid to be around a person with hiv,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hivimmrl,people with hiv have participated in immoral activities,people with hiv have participated in immoral activities,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hivdscrm,there is a lot of discrimination against people with hiv,there is a lot of discrimination against people with hiv,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ptnrornt,recent partner's sexual orientation,recent partner's sexual orientation,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ptnrsxbrth,recent partner's sex at birth,recent partner's sex at birth,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+ptnrsxnow,recent partner's sex now,recent partner's sex now,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conpharvacy,confidence in pharmaceutical companies y,confidence in pharmaceutical companies y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+confedvacy,confidence in the federal government y,confidence in the federal government y,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wtssps,person post-stratification weight,person post-stratification weight,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wtssnrps,"person post-stratification weight, nonrespondents adjusted","person post-stratification weight, nonrespondents adjusted",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+uswaryv,expect us in world war in next 10 years (volunteered response on web),expect us in world war in next 10 years (volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prayerv,bible prayer in public schools (with volunteered response on web),bible prayer in public schools (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+courtsv,courts dealing with criminals (with volunteered response on web),courts dealing with criminals (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+discaffwv,a woman won't get a job or promotion (with volunteered response on web),a woman won't get a job or promotion (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racopenv,vote on open housing law (with volunteered response on web),vote on open housing law (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+getaheadv,opinion of how people get ahead (with volunteered response on web),opinion of how people get ahead (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+divlawv,divorce laws (with volunteered response on web),divorce laws (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+helpfulv,people helpful or looking out for selves (with volunteered response on web),people helpful or looking out for selves (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fairv,people fair or try to take advantage (with volunteered resposne on web),people fair or try to take advantage (with volunteered resposne on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+trustv,can people be trusted (with volunteered response on web),can people be trusted (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+agedv,should aged live with their children (with volunteered response on web),should aged live with their children (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+grassv,should marijuana be made legal (with volunteered response on web),should marijuana be made legal (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+biblev,feelings about the bible (with volunteered response on web),feelings about the bible (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+postlifev,belief in life after death (with volunteered response on web),belief in life after death (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+kidssolv,r's kids living standard compared to r (with volunteered response on web),r's kids living standard compared to r (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+uscitznv,is r us citizen (with volunteered response on web),is r us citizen (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fucitznv,is r planning/appling for us citizenship or not (with volunteered response on we,is r planning/appling for us citizenship or not (with volunteered response on we,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fepolv,women not suited for politics (with volunteered response on web),women not suited for politics (with volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+uswarynv,expect us in world war in next 10 years (no volunteered response on web),expect us in world war in next 10 years (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prayernv,bible prayer in public schools (no volunteered response on web),bible prayer in public schools (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+courtsnv,courts dealing with criminals (no volunteered response on web),courts dealing with criminals (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+discaffwnv,a woman won't get a job or promotion (no volunteered response on web),a woman won't get a job or promotion (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racopennv,vote on open housing law (no volunteered response on web),vote on open housing law (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+getaheadnv,opinion of how people get ahead (no volunteered response on web),opinion of how people get ahead (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+divlawnv,divorce laws (no volunteered response on web),divorce laws (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+helpfulnv,people helpful or looking out for selves (no volunteered response on web),people helpful or looking out for selves (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fairnv,people fair or try to take advantage (no volunteered response on web),people fair or try to take advantage (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+trustnv,can people be trusted (no volunteered response on web),can people be trusted (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+agednv,should aged live with their children (no volunteered response on web),should aged live with their children (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+grassnv,should marijuana be made legal (no volunteered response on web),should marijuana be made legal (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+biblenv,feelings about the bible (no volunteered response on web),feelings about the bible (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+postlifenv,belief in life after death (no volunteered response on web),belief in life after death (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+kidssolnv,r's kids living standard compared to r (no volunteered response on web),r's kids living standard compared to r (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+uscitznnv,is r us citizen (no volunteered response on web),is r us citizen (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fucitznnv,is r planning/appling for us citizenship or not (no volunteered response on web),is r planning/appling for us citizenship or not (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fepolnv,women not suited for politics (no volunteered response on web),women not suited for politics (no volunteered response on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abanyg,abortion if woman wants for any reason (grid on web),abortion if woman wants for any reason (grid on web),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fileversion,gss data file version,gss data file version,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racerank1,first race selected,first race selected,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racerank2,second race selected,second race selected,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racerank3,third race selected,third race selected,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+racopeny,racopeny,racopeny,NATIVE_NAME,,,NATIVE_NAME
+adoptus,immigrants living in us should adopt us culture,immigrants living in us should adopt us culture,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+immfate,fate of illegal immigrants,fate of illegal immigrants,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vote20,remember if voted in 2020 election,remember if voted in 2020 election,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pres20,voted trump or biden,voted trump or biden,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+if20who,who you would have voted for in 2020,who you would have voted for in 2020,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordk,word k,word k,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordl,word l,word l,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wordn,word n,word n,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fechld2,mother working doesn't hurt children - issp version,mother working doesn't hurt children - issp version,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fepresch2,preschool kids suffer if mother works - issp version,preschool kids suffer if mother works - issp version,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rspgndr,women vs men responsibility for the home,women vs men responsibility for the home,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prntlk,mother vs father care for child,mother vs father care for child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prntfnce,mother vs father provide financially,mother vs father provide financially,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prntcre,mother vs father daily child care,mother vs father daily child care,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prntply,mother vs father play with child,mother vs father play with child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prntbhav,mother vs father teach child to behave,mother vs father teach child to behave,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prntadvs,mother vs father advise child,mother vs father advise child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+prntmdl,mother vs father role model,mother vs father role model,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+orginc,financial distribution in household,financial distribution in household,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+plan1,who in household plans social activities,who in household plans social activities,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+sharehhw,who in household does housework,who in household does housework,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+clsrltv,who are close relatives,who are close relatives,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rsprltv1,offer sibling place to live,offer sibling place to live,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rsprltv2,offer parent place to live,offer parent place to live,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+eldfnce,grandparents should help grandchildren financially,grandparents should help grandchildren financially,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rlyrltv,rely on friends or close relatives,rely on friends or close relatives,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+frndfam,friends or family more important,friends or family more important,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cabgndr,man vs woman cabinet position,man vs woman cabinet position,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+univgndr,man vs woman head of university,man vs woman head of university,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+execgndr,man vs woman senior executive,man vs woman senior executive,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrfnce,financial situation compared to last year,financial situation compared to last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nmbrkids,number of children,number of children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+conhlth,confidence in health care system in us,confidence in health care system in us,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthbtr,higher incomes afford better health care,higher incomes afford better health care,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthmore,people use health care services more than necessary,people use health care services more than necessary,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthgov,govt should provide only limited health care,govt should provide only limited health care,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthinf,health care system in us inefficient,health care system in us inefficient,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthtax,willing to pay higher taxes to imp health care for all,willing to pay higher taxes to imp health care for all,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthctzn,access to public funded health care if not citizen,access to public funded health care if not citizen,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthdmg,access to public funded health care if damage own health,access to public funded health care if damage own health,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthacc1,rich vs poor access to healthcare,rich vs poor access to healthcare,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthacc2,old vs young access to healthcare,old vs young access to healthcare,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthacc3,men vs women access to healthcare,men vs women access to healthcare,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthacc4,citizen vs noncitizen access to healthcare,citizen vs noncitizen access to healthcare,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthbeh,suffer health prob from behavior,suffer health prob from behavior,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthenv,suffer health prob from environ where work or live,suffer health prob from environ where work or live,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthgene,suffer health prob because of genes,suffer health prob because of genes,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthpoor,suffer health prob because poor,suffer health prob because poor,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+altmed,alt med provides better solutions,alt med provides better solutions,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+doctrst,docs can be trusted,docs can be trusted,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+docskls,medical skills of docs not as good as should be,medical skills of docs not as good as should be,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+docearn,docs care more about earnings than patients,docs care more about earnings than patients,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthweb,look up health information online in past 12 months,look up health information online in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthwblif,looked up online - healthy lifestyle,looked up online - healthy lifestyle,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthwbanx,looked up online - anxiety or stress,looked up online - anxiety or stress,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthwbvax,looked up online - vaccines,looked up online - vaccines,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+webhltbeh,infomration online affected health positively,infomration online affected health positively,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+webdocexp,information online helped me understand a doctor,information online helped me understand a doctor,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+websympt,internet is useful to decide if symptoms are serious,internet is useful to decide if symptoms are serious,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+webdradv,internet is useful to decide if doctors give good advice,internet is useful to decide if doctors give good advice,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+webrely,hard to distinguish reliable and unreliable info online,hard to distinguish reliable and unreliable info online,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vaxdoharm,vaccines do more harm than good,vaccines do more harm than good,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+immunbetr,immunity should be developed by getting ill,immunity should be developed by getting ill,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthprb,difficulties with work or housework due to health prob,difficulties with work or housework due to health prob,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthpain,body aches or pains in last 4 weeks,body aches or pains in last 4 weeks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthdep,felt unhappy or depressed in last 4 weeks,felt unhappy or depressed in last 4 weeks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthconf,lost confidence in self in last 4 weeks,lost confidence in self in last 4 weeks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthnot,felt couldn't overcome probs in last 4 weeks,felt couldn't overcome probs in last 4 weeks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+docvst,how often visit doctor,how often visit doctor,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+docalt,how often visit alt health care practitioner,how often visit alt health care practitioner,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+medpay,couldn't get care because couldn't pay,couldn't get care because couldn't pay,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+medcommt,couldn't get care because work/oth commitments,couldn't get care because work/oth commitments,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+medwtlst,couldn't get care because waitlist too long,couldn't get care because waitlist too long,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+medbest,how likely to get best treatment avail in us,how likely to get best treatment avail in us,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+hlthsat,how satisfied r with health care system in us,how satisfied r with health care system in us,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+docsat1,how satisfied r was with last doctor visit,how satisfied r was with last doctor visit,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+altsat,how satisfied r with alt health treatment,how satisfied r with alt health treatment,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+smokeday,how many cigs a day,how many cigs a day,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+drinkday1,how often r drinks 4+ drinks in one day,how often r drinks 4+ drinks in one day,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+physact,how often r does physical activity for 20 min a day,how often r does physical activity for 20 min a day,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+frtvegs,how often r eats fresh fruit/veggies,how often r eats fresh fruit/veggies,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+disblty,does r have disability,does r have disability,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+weight_issp,respondent weight,respondent weight,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+shutbus,govt should shut down business during pandemic,govt should shut down business during pandemic,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stayhome,govt should make people stay at home,govt should make people stay at home,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+mobilsurv,govt should track sick people,govt should track sick people,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+reqmasks,govt should require masks,govt should require masks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+bangather,govt should ban gatherings,govt should ban gatherings,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stockval1,estimate of total value of stocks if sold today,estimate of total value of stocks if sold today,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stockyr,granted shares of stock in past year,granted shares of stock in past year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stockyrval,value of stock gratned in past year,value of stock gratned in past year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stockoptyr,granted stock options in past year,granted stock options in past year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+stoptyramt,value of options granted in past year,value of options granted in past year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+extr2021,extra pay in 2021,extra pay in 2021,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+extraval1,estimate of bonus payments last year,estimate of bonus payments last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+numorg1,estimate of total people in r's business or organization,estimate of total people in r's business or organization,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+perfrt,performance rating last year,performance rating last year,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+chngtime,chngtime,chngtime,NATIVE_NAME,,,NATIVE_NAME
+wrkmeangfl,i find my work meaningful,i find my work meaningful,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+strmgtsup,mangement supports stress prevention,mangement supports stress prevention,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+psysamephys,management supports psychological health,management supports psychological health,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+allorglevel,all levels of org are involved in stress prevention,all levels of org are involved in stress prevention,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+feelnerv,how often felt nervious in past 2 weeks,how often felt nervious in past 2 weeks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+worry,how often could not control worrying in past 2 weeks,how often could not control worrying in past 2 weeks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+feeldown,how often felt down in past 2 weeks,how often felt down in past 2 weeks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nointerest,how often felt no interest in doing things in past 2 weeks,how often felt no interest in doing things in past 2 weeks,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+svyenjoy,enjoy taking surveys,enjoy taking surveys,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+svyid1,willingness to use video chat,willingness to use video chat,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+svyid2,willingnes for in-person survey,willingnes for in-person survey,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrlvmus,attend live music or theater in past 12 months,attend live music or theater in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrartxbt,attend art exhibit in past 12 months,attend art exhibit in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrmovie,see movie in past 12 months,see movie in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+artsout,outdoor art activity in past 12 months,outdoor art activity in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrcreat,create art in past 12 months,create art in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrrdg,read fiction or poetry in past 12 months,read fiction or poetry in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrtour,online art tour in past 12 months,online art tour in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrstmus,livestreamed music or theater in past 12 months,livestreamed music or theater in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrarmus,archived livestreamed music or theater in past 12 months,archived livestreamed music or theater in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrstpo,livestreamed reading event in past 12 months,livestreamed reading event in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrarpo,archived livestreamed reading event in past 12 months,archived livestreamed reading event in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrclass,online class in past 12 months,online class in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+yrpod,listen to art podcasts in past 12 months,listen to art podcasts in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdlvmus,change in in-person events since first year of covid,change in in-person events since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdart,change in in-person art since first year of covid,change in in-person art since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdmov,change in in-person movies since first year of covid,change in in-person movies since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdcreat,change in creating art since first year of covid,change in creating art since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdrdg,change in reading since first year of covid,change in reading since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdtour,change in online tours since first year of covid,change in online tours since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdstmus,change in livesteamed music or theater since first year of covid,change in livesteamed music or theater since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdarmus,change in archived livestreamed music or theater since first year of covid,change in archived livestreamed music or theater since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdstpo,change in livestreamed reading events since first year of covid,change in livestreamed reading events since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdarpo,change in archived livestreamed reading events since first year of covid,change in archived livestreamed reading events since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdclass,change in online classes since first year of covid,change in online classes since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+cvdpod,change in art podcasts since first year of covid,change in art podcasts since first year of covid,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+neastatus,nea follow-on status,nea follow-on status,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wrkwayup_next,black people overcome prejudice without favors - follow-on version,black people overcome prejudice without favors - follow-on version,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+blkmblty,generations of slavery make change hard for black people,generations of slavery make change hard for black people,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+blkdsrv,black people get less than they deserve,black people get less than they deserve,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+blktry,black people do not try hard enough,black people do not try hard enough,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5,death of someone close in past 5 years,death of someone close in past 5 years,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5sp,death of spouse or partner,death of spouse or partner,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5par,death of parent,death of parent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5grand,death of grandparent,death of grandparent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5child,death of child,death of child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5sib,death of sibling,death of sibling,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5oth,death of someone else,death of someone else,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5spnum,number of spouse deaths,number of spouse deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5partnum,number of partner deaths,number of partner deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5dadnum,number of father deaths,number of father deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5momnum,number of mother deaths,number of mother deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5filnum,number of father in law deaths,number of father in law deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5milnum,number of mother in law deaths,number of mother in law deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5gmanum,number of grandmother deaths,number of grandmother deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5gpanum,number of grandfather deaths,number of grandfather deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5sonnum,number of son deaths,number of son deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5daunum,number of daughter deaths,number of daughter deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5chinum,number of stepchild deaths,number of stepchild deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5bronum,number of brother deaths,number of brother deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5sisnum,number of sister deaths,number of sister deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5silnum,number of brother-in-law or sister-in-law deaths,number of brother-in-law or sister-in-law deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5cuznum,number of cousin deaths,number of cousin deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5frndnum,number of friend deaths,number of friend deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5cowknum,number of coworker deaths,number of coworker deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv5othnum,number of other deaths,number of other deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16,death of someone close before age 16,death of someone close before age 16,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16sp,death of spouse or partner,death of spouse or partner,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16par,death of parent,death of parent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16grand,death of grandparent,death of grandparent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16child,brv16child,brv16child,NATIVE_NAME,,,NATIVE_NAME
+brv16sib,death of sibling,death of sibling,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16oth,death of someone else,death of someone else,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16spnum,number of spouse deaths,number of spouse deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16partnum,number of partner deaths,number of partner deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16dadnum,number of father deaths,number of father deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16momnum,number of mother deaths,number of mother deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16filnum,number of father in law deaths,number of father in law deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16milnum,number of mother in law deaths,number of mother in law deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16gmanum,number of grandmother deaths,number of grandmother deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16gpanum,number of grandfather deaths,number of grandfather deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16sonnum,brv16sonnum,brv16sonnum,NATIVE_NAME,,,NATIVE_NAME
+brv16daunum,brv16daunum,brv16daunum,NATIVE_NAME,,,NATIVE_NAME
+brv16chinum,brv16chinum,brv16chinum,NATIVE_NAME,,,NATIVE_NAME
+brv16bronum,number of brother deaths,number of brother deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16sisnum,number of sister deaths,number of sister deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16silnum,number of brother-in-law or sister-in-law deaths,number of brother-in-law or sister-in-law deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16cuznum,number of cousin deaths,number of cousin deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16frndnum,number of friend deaths,number of friend deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+brv16othnum,number of other deaths,number of other deaths,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+gestate,abortion legal past 4.5 months,abortion legal past 4.5 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abgender,abortion legal for gender selection,abortion legal for gender selection,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+abbelief,pro-choice vs pro-life,pro-choice vs pro-life,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vaxhstncy,parents choose not to vaccinate their children,parents choose not to vaccinate their children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vaxkids,vaccines are important for children,vaccines are important for children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+vaxsafe,vaccines are safe,vaccines are safe,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+fluvax,flu vaccine in past 12 months,flu vaccine in past 12 months,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+covid12,covid vaccine ever,covid vaccine ever,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+covemply,change in employment over covid pandemic,change in employment over covid pandemic,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pandinc,change in household income over covid pandemic,change in household income over covid pandemic,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+pandmet,change in socialization over covid pandemic,change in socialization over covid pandemic,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+biokids,number of biological children,number of biological children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+malekids,number of male children,number of male children,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+firstkidsex,sex of first child,sex of first child,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nonbinkids,first child nonbinary,first child nonbinary,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+femself,how feminine r sees self,how feminine r sees self,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+mascself,how masculine r sees self,how masculine r sees self,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+nextstatus,gss next follow-on status,gss next follow-on status,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+worksick,how many times in the last 90 days did r work while ill,how many times in the last 90 days did r work while ill,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+modesequence,initial mode of contact for respondent,initial mode of contact for respondent,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+rheight,respondent height,respondent height,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+instype01,first type of insurance mentioned,first type of insurance mentioned,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+instype02,second type of insurance mentioned,second type of insurance mentioned,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+instype03,third type of insurance mentioned,third type of insurance mentioned,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+instype04,fourth type of insurance mentioned,fourth type of insurance mentioned,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+totalincentive,"total incentive for case, including pre- and post- incentive for baseline and an","total incentive for case, including pre- and post- incentive for baseline and an",YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+childsinhh,total children in hh (household composition version),total children in hh (household composition version),YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wtssps_nea,poststratification weight for analyzing nea follow-on,poststratification weight for analyzing nea follow-on,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wtssnrps_nea,poststratification and nonresponse weight for analyzing nea follow-on,poststratification and nonresponse weight for analyzing nea follow-on,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wtssps_next,poststratification weight for analyzing gss next follow-on,poststratification weight for analyzing gss next follow-on,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC
+wtssnrps_next,poststratification and nonresponse weight for analyzing gss next follow-on,poststratification and nonresponse weight for analyzing gss next follow-on,YEAR_SPECIFIC,2022,,YEAR_SPECIFIC

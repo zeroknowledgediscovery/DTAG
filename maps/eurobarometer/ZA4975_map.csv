@@ -1,0 +1,534 @@
+variable,question_number,variable_label,question_text,question_text_filled,source,source_page,za_id
+v4,v4,EUROBAROMETER NUMBER,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,31,ZA4975
+v6,,NATION - ALL SAMPLES,,NATION - ALL SAMPLES,GESIS Variable Report,33,ZA4975
+v9,page 10,NATION - UNITED KINGDOM,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,37,ZA4975
+v11,page 13,NATION - UNITED GERMANY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,40,ZA4975
+v13,page 16,NATION GROUP EU6,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,43,ZA4975
+v15,page 19,NATION GROUP EU9,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,46,ZA4975
+v17,page 22,NATION GROUP EU10,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,49,ZA4975
+v19,page 25,NATION GROUP EU12,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,52,ZA4975
+v21,page 28,NATION GROUP EU12+,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,55,ZA4975
+v23,page 31,NATION GROUP EU NMS 3,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,58,ZA4975
+v25,page 34,NATION GROUP EU15,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,61,ZA4975
+v27,page 37,NATION GROUP EU NMS 10,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,64,ZA4975
+v29,page 40,NATION GROUP EU25,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,67,ZA4975
+v31,page 43,NATION GROUP AC (BG RO),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,70,ZA4975
+v33,page 46,NATION GROUP EU27,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,73,ZA4975
+v35,page 49,NATION GROUP EU NMS 12,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,76,ZA4975
+v37,page 52,NATION GROUP EURO ZONE 2009,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,79,ZA4975
+v39,page 55,NATION GROUP NON EURO ZONE 2009,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,82,ZA4975
+v41,page 58,WEX WEIGHT EXTRA POPULATION 15+,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,85,ZA4975
+v42,page 59,Q1 NATIONALITY BELGIUM,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,86,ZA4975
+v43,page 61,Q1 NATIONALITY DENMARK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,88,ZA4975
+v44,page 63,Q1 NATIONALITY GERMANY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,90,ZA4975
+v45,page 65,Q1 NATIONALITY GREECE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,92,ZA4975
+v46,page 67,Q1 NATIONALITY SPAIN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,94,ZA4975
+v47,page 69,Q1 NATIONALITY FRANCE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,96,ZA4975
+v48,page 71,Q1 NATIONALITY IRELAND,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,98,ZA4975
+v49,page 73,Q1 NATIONALITY ITALY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,100,ZA4975
+v50,page 75,Q1 NATIONALITY LUXEMBOURG,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,102,ZA4975
+v51,page 77,Q1 NATIONALITY NETHERLANDS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,104,ZA4975
+v52,page 79,Q1 NATIONALITY PORTUGAL,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,106,ZA4975
+v53,page 81,Q1 NATIONALITY UNITED KINGDOM,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,108,ZA4975
+v54,page 83,Q1 NATIONALITY AUSTRIA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,110,ZA4975
+v55,page 85,Q1 NATIONALITY SWEDEN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,112,ZA4975
+v56,page 87,Q1 NATIONALITY FINLAND,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,114,ZA4975
+v57,page 89,Q1 NATIONALITY CYPRUS (REPUBLIC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,116,ZA4975
+v58,page 91,Q1 NATIONALITY CZECH REPUBLIC,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,118,ZA4975
+v59,page 93,Q1 NATIONALITY ESTONIA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,120,ZA4975
+v60,page 95,Q1 NATIONALITY HUNGARY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,122,ZA4975
+v61,page 97,Q1 NATIONALITY LATVIA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,124,ZA4975
+v62,page 99,Q1 NATIONALITY LITHUANIA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,126,ZA4975
+v63,page 101,Q1 NATIONALITY MALTA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,128,ZA4975
+v64,page 103,Q1 NATIONALITY POLAND,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,130,ZA4975
+v65,page 105,Q1 NATIONALITY SLOVAKIA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,132,ZA4975
+v66,page 107,Q1 NATIONALITY SLOVENIA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,134,ZA4975
+v67,page 109,Q1 NATIONALITY BULGARIA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,136,ZA4975
+v68,page 111,Q1 NATIONALITY ROMANIA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,138,ZA4975
+v69,page 113,Q1 NATIONALITY OTHER COUNTRIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,140,ZA4975
+v70,,D15A OCCUPATION OF RESPONDENT,,D15A OCCUPATION OF RESPONDENT,GESIS Variable Report,142,ZA4975
+v71,,D15B OCCUPATION OF RESPONDENT - LAST JOB,,D15B OCCUPATION OF RESPONDENT - LAST JOB,GESIS Variable Report,145,ZA4975
+v72,,QA1 SATISFACTION LIFE GENERAL (10P-SCALE),,QA1 SATISFACTION LIFE GENERAL (10P-SCALE),GESIS Variable Report,148,ZA4975
+v73,page 124,QA1 SATISFACTION LIFE GENERAL (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,151,ZA4975
+v74,,QA2 SATISFACTION FAMILY LIFE (10P-SCALE),,QA2 SATISFACTION FAMILY LIFE (10P-SCALE),GESIS Variable Report,153,ZA4975
+v75,page 129,QA2 SATISFACTION FAMILY LIFE (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,156,ZA4975
+v76,,QA2 SATISFACTION HEALTH (10P-SCALE),,QA2 SATISFACTION HEALTH (10P-SCALE),GESIS Variable Report,158,ZA4975
+v77,page 134,QA2 SATISFACTION HEALTH (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,161,ZA4975
+v78,,QA2 SATISFACTION JOB (10P-SCALE),,QA2 SATISFACTION JOB (10P-SCALE),GESIS Variable Report,163,ZA4975
+v79,page 139,QA2 SATISFACTION JOB (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,166,ZA4975
+v80,,QA2 SATISFACTION LIVING STANDARD (10P-SCALE),,QA2 SATISFACTION LIVING STANDARD (10P-SCALE),GESIS Variable Report,168,ZA4975
+v81,page 144,QA2 SATISFACTION LIVING STANDARD (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,171,ZA4975
+v82,,QA3 POVERTY - DEFINITION,,QA3 POVERTY - DEFINITION,GESIS Variable Report,173,ZA4975
+v83,page 148,QA4 POVERTY - EXTENT IN COUNTRY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,175,ZA4975
+v84,page 150,QA5 POVERTY - PROPORTION OF POPULATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,177,ZA4975
+v85,page 152,QA6 POVERTY - EXTENT IN THE AREA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,179,ZA4975
+v86,page 154,QA7 POVERTY TREND - AREA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,181,ZA4975
+v87,page 156,QA7 POVERTY TREND - COUNTRY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,183,ZA4975
+v88,page 158,QA7 POVERTY TREND - EUROPEAN UNION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,185,ZA4975
+v89,page 160,QA7 POVERTY TREND - WORLD,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,187,ZA4975
+v90,page 162,QA8 CAUSES OF POVERTY - OPINIONS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,189,ZA4975
+v91,page 164,QA9A SOC CAUSES OF POVERTY: BENEFITS/PENSIONS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,191,ZA4975
+v92,page 166,QA9A SOC CAUSES OF POVERTY: WAGES/SALARIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,193,ZA4975
+v93,page 168,QA9A SOC CAUSES OF POVERTY: UNEMPLOYMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,195,ZA4975
+v94,page 170,QA9A SOC CAUSES OF POVERTY: DECENT HOUSING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,197,ZA4975
+v95,page 172,QA9A SOC CAUSES OF POVERTY: HEALTH SERVICES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,199,ZA4975
+v96,page 174,QA9A SOC CAUSES OF POVERTY: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,201,ZA4975
+v97,page 176,QA9A SOC CAUSES OF POVERTY: INEVITABLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,203,ZA4975
+v98,page 178,QA9A SOC CAUSES OF POVERTY: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,205,ZA4975
+v99,page 180,QA9A SOC CAUSES OF POVERTY: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,207,ZA4975
+v100,page 182,QA9B PERS CAUSES OF POVERTY: LACK OF SUPPORT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,209,ZA4975
+v101,page 184,QA9B PERS CAUSES OF POVERTY: POOR FAMILY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,211,ZA4975
+v102,page 186,QA9B PERS CAUSES OF POVERTY: DISCRIMINATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,213,ZA4975
+v103,page 188,QA9B PERS CAUSES OF POVERTY: POOR HEALTH,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,215,ZA4975
+v104,page 190,QA9B PERS CAUSES OF POVERTY: MENTAL HEALTH,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,217,ZA4975
+v105,page 192,QA9B PERS CAUSES OF POVERTY: ADDICTION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,219,ZA4975
+v106,page 194,QA9B PERS CAUSES OF POVERTY: TOO MANY CHILDREN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,221,ZA4975
+v107,page 196,QA9B PERS CAUSES OF POVERTY: EDUCATION DEFICIT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,223,ZA4975
+v108,page 198,QA9B PERS CAUSES OF POVERTY: CARE RESPONSIBILITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,225,ZA4975
+v109,page 200,QA9B PERS CAUSES OF POVERTY: LIVE BEYOND MEANS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,227,ZA4975
+v110,page 202,QA9B PERS CAUSES OF POVERTY: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,229,ZA4975
+v111,page 204,QA9B PERS CAUSES OF POVERTY: INEVITABLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,231,ZA4975
+v112,page 206,QA9B PERS CAUSES OF POVERTY: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,233,ZA4975
+v113,page 208,QA9B PERS CAUSES OF POVERTY: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,235,ZA4975
+v114,page 210,QA10 MOST RISK OF POVERTY: CHILDREN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,237,ZA4975
+v115,page 212,QA10 MOST RISK OF POVERTY: YOUNG ADULTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,239,ZA4975
+v116,page 214,QA10 MOST RISK OF POVERTY: ELDERLY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,241,ZA4975
+v117,page 216,QA10 MOST RISK OF POVERTY: UNEMPLOYED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,243,ZA4975
+v118,page 218,QA10 MOST RISK OF POVERTY: PRECARIOUS WORK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,245,ZA4975
+v119,page 220,QA10 MOST RISK OF POVERTY: WOMEN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,247,ZA4975
+v120,page 222,QA10 MOST RISK OF POVERTY: DISABLED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,249,ZA4975
+v121,page 224,QA10 MOST RISK OF POVERTY: MENTALLY ILL,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,251,ZA4975
+v122,page 226,QA10 MOST RISK OF POVERTY: SINGLE PARENTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,253,ZA4975
+v123,page 228,QA10 MOST RISK OF POVERTY: LOW EDUCATED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,255,ZA4975
+v124,page 230,QA10 MOST RISK OF POVERTY: IMMIGRANTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,257,ZA4975
+v125,page 232,QA10 MOST RISK OF POVERTY: ROMA,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,259,ZA4975
+v126,page 234,QA10 MOST RISK OF POVERTY: ADDICTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,261,ZA4975
+v127,page 236,QA10 MOST RISK OF POVERTY: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,263,ZA4975
+v128,page 238,QA10 MOST RISK OF POVERTY: EVERYBODY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,265,ZA4975
+v129,page 240,QA10 MOST RISK OF POVERTY: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,267,ZA4975
+v130,page 242,QA11 MINIMUM LIVING ST: ADEQUATELY WARM HOME,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,269,ZA4975
+v131,page 244,QA11 MINIMUM LIVING ST: MAINTAINED ACCOMODATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,271,ZA4975
+v132,page 246,QA11 MINIMUM LIVING ST: ENOUGH SPACE TO LIVE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,273,ZA4975
+v133,page 248,QA11 MINIMUM LIVING ST: GOOD QUALITY FOOD,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,275,ZA4975
+v134,page 250,QA11 MINIMUM LIVING ST: ELECTRICAL APPLIANCES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,277,ZA4975
+v135,page 252,QA11 MINIMUM LIVING ST: FAMILY HOLIDAYS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,279,ZA4975
+v136,page 254,QA11 MINIMUM LIVING ST: MEDICATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,281,ZA4975
+v137,page 256,QA11 MINIMUM LIVING ST: DENTAL TREATMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,283,ZA4975
+v138,page 258,QA11 MINIMUM LIVING ST: PUBLIC TRANSPORT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,285,ZA4975
+v139,page 260,QA11 MINIMUM LIVING ST: COMMUNICATION ACCESS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,287,ZA4975
+v140,page 262,QA11 MINIMUM LIVING ST: BASIC BANK ACCOUNT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,289,ZA4975
+v141,page 264,QA11 MINIMUM LIVING ST: LEISURE ACTIVITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,291,ZA4975
+v142,page 266,QA11 MINIMUM LIVING ST: GAS/ELECTRICITY/WATER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,293,ZA4975
+v143,page 268,QA11 MINIMUM LIVING ST: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,295,ZA4975
+v144,page 270,QA11 MINIMUM LIVING ST: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,297,ZA4975
+v145,page 272,QA11 MINIMUM LIVING ST: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,299,ZA4975
+v146,page 274,QA12 POVERTY HAMPERS: ACCESS TO DECENT HOUSING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,301,ZA4975
+v147,page 276,QA12 POVERTY HAMPERS: GOOD BASIC EDUCATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,303,ZA4975
+v148,page 278,QA12 POVERTY HAMPERS: HIGHER EDUCATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,305,ZA4975
+v149,page 280,QA12 POVERTY HAMPERS: FINDING A JOB,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,307,ZA4975
+v150,page 282,QA12 POVERTY HAMPERS: MAINTAINING SOC NETWORKS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,309,ZA4975
+v151,page 284,QA12 POVERTY HAMPERS: HAVING MEDICAL CARE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,311,ZA4975
+v152,page 286,QA12 POVERTY HAMPERS: EATING A HOT MEAL A DAY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,313,ZA4975
+v153,page 288,QA12 POVERTY HAMPERS: ACCESS TO A BANK ACCOUNT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,315,ZA4975
+v154,page 290,QA12 POVERTY HAMPERS: ACCESS TO COMMUNICATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,317,ZA4975
+v155,page 292,QA12 POVERTY HAMPERS: STARTING UP A BUSINESS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,319,ZA4975
+v156,page 294,QA13 FINANCIAL SITUATION - NEXT GENERATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,321,ZA4975
+v157,page 296,QA13 FINANCIAL SITUATION - OWN GENERATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,323,ZA4975
+v158,page 298,QA13 FINANCIAL SITUATION - PARENTS GENERATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,325,ZA4975
+v159,page 300,QA14 POVERTY: NEEDS URGENT GOVERNMENT ACTION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,327,ZA4975
+v160,page 302,QA14 POVERTY: TOO LARGE INCOME DIFFERENCES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,329,ZA4975
+v161,page 304,QA14 POVERTY: ENSURE FAIR WEALTH REDISTRIBUTION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,331,ZA4975
+v162,page 306,QA14 POVERTY: HIGHER TAXES TO FIGHTING POVERTY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,333,ZA4975
+v163,page 308,QA14 POVERTY: DISAPPEARS WITH ECONOMIC GROWTH,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,335,ZA4975
+v164,page 310,QA14 POVERTY: WILL ALWAYS EXIST,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,337,ZA4975
+v165,page 312,QA14 POVERTY: INCOME INEQUALITIES ARE NECESSARY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,339,ZA4975
+v166,page 314,QA15 SOCIAL TENSIONS: POOR AND RICH PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,341,ZA4975
+v167,page 316,QA15 SOCIAL TENSIONS: MANAGEMENT AND WORKERS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,343,ZA4975
+v168,page 318,QA15 SOCIAL TENSIONS: ELDERLY AND YOUNG PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,345,ZA4975
+v169,page 320,QA15 SOCIAL TENSIONS: DIFF RACIAL/ETHNIC GROUPS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,347,ZA4975
+v170,,QA16 GENERAL TRUST IN PEOPLE (10P-SCALE),,QA16 GENERAL TRUST IN PEOPLE (10P-SCALE),GESIS Variable Report,349,ZA4975
+v171,page 325,QA16 GENERAL TRUST IN PEOPLE (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,352,ZA4975
+v172,,QA17 TRUST IN INSTITUTIONS: PARLIAMENT (10P-SCALE),,QA17 TRUST IN INSTITUTIONS: PARLIAMENT (10P-SCALE),GESIS Variable Report,354,ZA4975
+v173,page 330,QA17 TRUST IN INSTITUTIONS: PARLIAMENT (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,357,ZA4975
+v174,,QA17 TRUST IN INSTITUTIONS: GOVERNMENT (10P-SCALE),,QA17 TRUST IN INSTITUTIONS: GOVERNMENT (10P-SCALE),GESIS Variable Report,359,ZA4975
+v175,page 335,QA17 TRUST IN INSTITUTIONS: GOVERNMENT (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,362,ZA4975
+v176,page 337,QA18 TRUST COMBATING POVERTY: EUROPEAN UNION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,364,ZA4975
+v177,page 339,QA18 TRUST COMBATING POVERTY: NATIONAL GOVERNMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,366,ZA4975
+v178,page 341,QA18 TRUST COMBATING POVERTY: REG/LOC AUTHORITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,368,ZA4975
+v179,page 343,QA18 TRUST COMBATING POVERTY: NGOS OR CHARITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,370,ZA4975
+v180,page 345,QA18 TRUST COMBATING POVERTY: RELIGIOUS INSTITUT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,372,ZA4975
+v181,page 347,QA18 TRUST COMBATING POVERTY: PRIVATE COMPANIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,374,ZA4975
+v182,page 349,QA18 TRUST COMBATING POVERTY: CITIZENS THEMSELVES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,376,ZA4975
+v183,page 351,QA19 MAIN POVERTY FACTORS: GLOBALISATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,378,ZA4975
+v184,page 353,QA19 MAIN POVERTY FACTORS: INSUFF ECONOMIC GROWTH,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,380,ZA4975
+v185,page 355,QA19 MAIN POVERTY FACTORS: PURSUIT OF PROFIT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,382,ZA4975
+v186,page 357,QA19 MAIN POVERTY FACTORS: GLOBAL FINANCIAL SYSTEM,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,384,ZA4975
+v187,page 359,QA19 MAIN POVERTY FACTORS: WRONG POLICIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,386,ZA4975
+v188,page 361,QA19 MAIN POVERTY FACTORS: IMMIGRATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,388,ZA4975
+v189,page 363,QA19 MAIN POVERTY FACTORS: INADEQ SOC PROTECTION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,390,ZA4975
+v190,page 365,QA19 MAIN POVERTY FACTORS: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,392,ZA4975
+v191,page 367,QA19 MAIN POVERTY FACTORS: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,394,ZA4975
+v192,page 369,QA19 MAIN POVERTY FACTORS: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,396,ZA4975
+v193,,QA20 POVERTY PREVENTION - PRIMARILY RESPONSIBLE,,QA20 POVERTY PREVENTION - PRIMARILY RESPONSIBLE,GESIS Variable Report,398,ZA4975
+v194,page 373,QA21 FIGHTING POVERTY - EU ROLE IMPORTANCE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,400,ZA4975
+v195,page 375,QA22 HELP OUT OF POVERTY GVRMT: ECONOMIC GROWTH,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,402,ZA4975
+v196,page 377,QA22 HELP OUT OF POVERTY GVRMT: CHILD CARE ACCESS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,404,ZA4975
+v197,page 379,QA22 HELP OUT OF POVERTY GVRMT: SOCIAL BENEFITS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,406,ZA4975
+v198,page 381,QA22 HELP OUT OF POVERTY GVRMT: QUALIFICATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,408,ZA4975
+v199,page 383,QA22 HELP OUT OF POVERTY GVRMT: WORK OPPORTUNITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,410,ZA4975
+v200,page 385,QA22 HELP OUT OF POVERTY GVRMT: FIGHT DISCRIMINAT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,412,ZA4975
+v201,page 387,QA22 HELP OUT OF POVERTY GVRMT: AFFORDABLE HOUSING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,414,ZA4975
+v202,page 389,QA22 HELP OUT OF POVERTY GVRMT: REGENERATING AREAS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,416,ZA4975
+v203,page 391,QA22 HELP OUT OF POVERTY GVRMT: ACCESS TO BANKING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,418,ZA4975
+v204,page 393,QA22 HELP OUT OF POVERTY GVRMT: SOCIAL SERVICES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,420,ZA4975
+v205,page 395,QA22 HELP OUT OF POVERTY GVRMT: DEBT COUNSELLING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,422,ZA4975
+v206,page 397,QA22 HELP OUT OF POVERTY GVRMT: OTHER PRIORITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,424,ZA4975
+v207,page 399,QA22 HELP OUT OF POVERTY GVRMT: NO EFFECTIVE WAY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,426,ZA4975
+v208,page 401,QA22 HELP OUT OF POVERTY GVRMT: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,428,ZA4975
+v209,page 403,QA23 HELP OUT OF POVERTY - PUBLIC POLICIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,430,ZA4975
+v210,page 405,QA24 HELP OUT OF POVERTY - PUBLIC SPENDINGS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,432,ZA4975
+v211,page 407,QA25A SOLVING UNEMPLOYMENT PROBLEM - STRATEGIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,434,ZA4975
+v212,page 409,QA25B FINANCING EDUCATION - STRATEGIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,436,ZA4975
+v213,page 411,QA25C SOCIAL SERVICE PROVISION - STRATEGIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,438,ZA4975
+v214,page 413,QA25D WELFARE RESPONSIBILITY - STRATEGIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,440,ZA4975
+v215,page 415,QA25E MINIMUM WAGE GUARANTEE - APPROVAL,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,442,ZA4975
+v216,,QA25F ATT TOWARDS SOCIETY: OPTIMISTIC,,QA25F ATT TOWARDS SOCIETY: OPTIMISTIC,GESIS Variable Report,444,ZA4975
+v217,,QA25F ATT TOWARDS SOCIETY: FEEL LEFT OUT,,QA25F ATT TOWARDS SOCIETY: FEEL LEFT OUT,GESIS Variable Report,446,ZA4975
+v218,page 421,QA26A FINANC SERVICE ACCESS: BASIC BANK ACCOUNT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,448,ZA4975
+v219,page 423,QA26A FINANC SERVICE ACCESS: BANK/PAYMENT CARD,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,450,ZA4975
+v220,page 425,QA26A FINANC SERVICE ACCESS: CREDIT CARD,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,452,ZA4975
+v221,page 427,QA26A FINANC SERVICE ACCESS: CONSUMER LOANS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,454,ZA4975
+v222,page 429,QA26A FINANC SERVICE ACCESS: A MORTGAGE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,456,ZA4975
+v223,page 431,QA26B RISK OF BEING OVER-INDEBTED - RESPONDENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,458,ZA4975
+v224,page 433,QA27 FINANC SERVICES: FREE LOANS FOR POOR,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,460,ZA4975
+v225,page 435,QA27 FINANC SERVICES: CHECK BORROWERS CAPACITY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,462,ZA4975
+v226,page 437,QA27 FINANC SERVICES: UNEMPLOYED START UP LOANS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,464,ZA4975
+v227,page 439,QA27 FINANC SERVICES: FREE ADVICE FOR POOR,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,466,ZA4975
+v228,page 441,QA27 FINANC SERVICES: BANK ACCOUNT FOR EVERYBODY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,468,ZA4975
+v229,page 443,QA28 AREA: FINDING HOUSING FOR REASONABLE PRICE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,470,ZA4975
+v230,page 445,QA29 AREA: PRESENCE OF HOMELESS PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,472,ZA4975
+v231,page 447,QA30 HOMELESS TREND - IN AREA OF RESPONDENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,474,ZA4975
+v232,page 449,QA30 HOMELESS TREND - IN COUNTRY OF RESPONDENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,476,ZA4975
+v233,page 451,QA31 HOMELESS HELP SPENDINGS - NAT GOVERNMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,478,ZA4975
+v234,page 453,QA31 HOMELESS HELP SPENDINGS - LOC/REG AUTHORITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,480,ZA4975
+v235,page 455,QA32 HOMELESSNESS REASONS: LONG-T UNEMPLOYMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,482,ZA4975
+v236,page 457,QA32 HOMELESSNESS REASONS: CANNOT AFFORD RENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,484,ZA4975
+v237,page 459,QA32 HOMELESSNESS REASONS: HOME DESTROYED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,486,ZA4975
+v238,page 461,QA32 HOMELESSNESS REASONS: OVER-INDEBTED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,488,ZA4975
+v239,page 463,QA32 HOMELESSNESS REASONS: ILL OR DISABLED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,490,ZA4975
+v240,page 465,QA32 HOMELESSNESS REASONS: SUFFERING ADDICTION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,492,ZA4975
+v241,page 467,QA32 HOMELESSNESS REASONS: BREAK-UP IN LIFE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,494,ZA4975
+v242,page 469,QA32 HOMELESSNESS REASONS: MENTAL HEALTH PROBL,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,496,ZA4975
+v243,page 471,QA32 HOMELESSNESS REASONS: NO ACCESS TO SUPPORT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,498,ZA4975
+v244,page 473,QA32 HOMELESSNESS REASONS: MIGRATED W/O PAPERS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,500,ZA4975
+v245,page 475,QA32 HOMELESSNESS REASONS: CHOOSE THIS WAY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,502,ZA4975
+v246,page 477,QA32 HOMELESSNESS REASONS: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,504,ZA4975
+v247,page 479,QA32 HOMELESSNESS REASONS: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,506,ZA4975
+v248,page 481,QA32 HOMELESSNESS REASONS: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,508,ZA4975
+v249,page 483,QA33 HOMELESSNESS - LIKELINESS RESPONDENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,510,ZA4975
+v250,page 485,QA34 HELP POOR PEOPLE: GV MONEY TO CHARITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,512,ZA4975
+v251,page 487,QA34 HELP POOR PEOPLE: VOLUNTEER IN CHARITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,514,ZA4975
+v252,page 489,QA34 HELP POOR PEOPLE: GIVING CLOTHES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,516,ZA4975
+v253,page 491,QA34 HELP POOR PEOPLE: FINDING SHELTERS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,518,ZA4975
+v254,page 493,QA34 HELP POOR PEOPLE: GV MONEY TO PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,520,ZA4975
+v255,page 495,QA34 HELP POOR PEOPLE: BUY PAPERS SOLD BY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,522,ZA4975
+v256,page 497,QA34 HELP POOR PEOPLE: GIVING FOOD,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,524,ZA4975
+v257,page 499,QA34 HELP POOR PEOPLE: NEVER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,526,ZA4975
+v258,page 501,QA34 HELP POOR PEOPLE: OTHER TYPES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,528,ZA4975
+v259,page 503,QA34 HELP POOR PEOPLE: NOT CONCERNED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,530,ZA4975
+v260,page 505,QA34 HELP POOR PEOPLE: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,532,ZA4975
+v261,,QA35 HOUSEHOLD INCOME - MAKE ENDS MEET,,QA35 HOUSEHOLD INCOME - MAKE ENDS MEET,GESIS Variable Report,534,ZA4975
+v262,page 509,QA36 HOUSEHOLD CAN AFFORD: ADEQUATE WARM HOME,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,536,ZA4975
+v263,page 511,QA36 HOUSEHOLD CAN AFFORD: ANNUAL HOLIDAY AWAY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,538,ZA4975
+v264,page 513,QA36 HOUSEHOLD CAN AFFORD: MEAL WITH MEAT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,540,ZA4975
+v265,,QA37 HOUSEHOLD BUDGET - KEEPING UP COMMITMENTS,,QA37 HOUSEHOLD BUDGET - KEEPING UP COMMITMENTS,GESIS Variable Report,542,ZA4975
+v266,page 517,QA38 EXPECTATIONS - FINANCIAL SITUATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,544,ZA4975
+v267,page 519,QA39 FINANCIAL RISKS: PAY RENT ON TIME,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,546,ZA4975
+v268,page 521,QA39 FINANCIAL RISKS: PAY MORTGAGE ON TIME,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,548,ZA4975
+v269,page 523,QA39 FINANCIAL RISKS: COPE UNEXPECTED EXPENSE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,550,ZA4975
+v270,page 525,QA39 FINANCIAL RISKS: REPAY CONSUMER LOANS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,552,ZA4975
+v271,page 527,QA39 FINANCIAL RISKS: PAY UTILITY BILLS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,554,ZA4975
+v272,page 529,QA39 FINANCIAL RISKS: PAY DAILY CONSUMER ITEMS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,556,ZA4975
+v273,,QA40 JOP KEEPING ABILITY - NEXT MONTHS,,QA40 JOP KEEPING ABILITY - NEXT MONTHS,GESIS Variable Report,558,ZA4975
+v274,,QA41 STRESS: FAMILY VS TIME SPEND ON JOB,,QA41 STRESS: FAMILY VS TIME SPEND ON JOB,GESIS Variable Report,560,ZA4975
+v275,,QA41 STRESS: CONCENTRATE AT WORK VS FAMILY,,QA41 STRESS: CONCENTRATE AT WORK VS FAMILY,GESIS Variable Report,562,ZA4975
+v276,,QA42 LOWEST HH INCOME TO MAKE ENDS MEET,,QA42 LOWEST HH INCOME TO MAKE ENDS MEET,GESIS Variable Report,564,ZA4975
+v277,,QA42 LOWEST HH INCOME TO MAKE ENDS MEET (REC),,QA42 LOWEST HH INCOME TO MAKE ENDS MEET (REC),GESIS Variable Report,565,ZA4975
+v278,,QA43 INCOME LEVEL HH - COMPARED TO Q42,,QA43 INCOME LEVEL HH - COMPARED TO Q42,GESIS Variable Report,567,ZA4975
+v279,,QA44 HOUSEHOLD SITUATION - POOR/WEALTHY,,QA44 HOUSEHOLD SITUATION - POOR/WEALTHY,GESIS Variable Report,569,ZA4975
+v280,page 545,QA44 HOUSEHOLD SITUATION - POOR/WEALTHY (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,572,ZA4975
+v281,page 547,QA45 SOCIAL SERVICE USE: LONG TERM CARE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,574,ZA4975
+v282,page 549,QA45 SOCIAL SERVICE USE: CHILDCARE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,576,ZA4975
+v283,page 551,QA45 SOCIAL SERVICE USE: PUBLIC EMPLOYMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,578,ZA4975
+v284,page 553,QA45 SOCIAL SERVICE USE: SOCIAL HOUSING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,580,ZA4975
+v285,page 555,QA45 SOCIAL SERVICE USE: SOCIAL ASSISTANCE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,582,ZA4975
+v286,page 557,QA46 SOCIAL SERVICE QUALITY: LONG TERM CARE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,584,ZA4975
+v287,page 559,QA46 SOCIAL SERVICE QUALITY: CHILDCARE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,586,ZA4975
+v288,page 561,QA46 SOCIAL SERVICE QUALITY: PUBLIC EMPLOYMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,588,ZA4975
+v289,page 563,QA46 SOCIAL SERVICE QUALITY: SOCIAL HOUSING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,590,ZA4975
+v290,page 565,QA46 SOCIAL SERVICE QUALITY: SOCIAL ASSISTANCE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,592,ZA4975
+v291,,QA47 SOCIAL SERVICE AFFORDABLE: LONG TERM CARE,,QA47 SOCIAL SERVICE AFFORDABLE: LONG TERM CARE,GESIS Variable Report,594,ZA4975
+v292,,QA47 SOCIAL SERVICE AFFORDABLE: CHILDCARE,,QA47 SOCIAL SERVICE AFFORDABLE: CHILDCARE,GESIS Variable Report,596,ZA4975
+v293,,QA47 SOCIAL SERVICE AFFORDABLE: PUBLIC EMPLOYMENT,,QA47 SOCIAL SERVICE AFFORDABLE: PUBLIC EMPLOYMENT,GESIS Variable Report,598,ZA4975
+v294,,QA47 SOCIAL SERVICE AFFORDABLE: SOCIAL HOUSING,,QA47 SOCIAL SERVICE AFFORDABLE: SOCIAL HOUSING,GESIS Variable Report,600,ZA4975
+v295,,QA47 SOCIAL SERVICE AFFORDABLE: SOCIAL ASSISTANCE,,QA47 SOCIAL SERVICE AFFORDABLE: SOCIAL ASSISTANCE,GESIS Variable Report,602,ZA4975
+v296,,QA48A ELDERLY PARENTS - BEST CARE 1ST,,QA48A ELDERLY PARENTS - BEST CARE 1ST,GESIS Variable Report,604,ZA4975
+v297,,QA48B ELDERLY PARENTS - BEST CARE 2ND,,QA48B ELDERLY PARENTS - BEST CARE 2ND,GESIS Variable Report,606,ZA4975
+v298,page 581,QA48AB ELDERLY BEST CARE: LIVE W CHILDREN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,608,ZA4975
+v299,page 583,QA48AB ELDERLY BEST CARE: VISITS CHILDREN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,610,ZA4975
+v300,page 585,QA48AB ELDERLY BEST CARE: VISITS SERVICE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,612,ZA4975
+v301,page 587,QA48AB ELDERLY BEST CARE: NURSING HOME,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,614,ZA4975
+v302,page 589,QA48AB ELDERLY BEST CARE: OTHER OPTION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,616,ZA4975
+v303,page 591,QA48AB ELDERLY BEST CARE: IT DEPENDS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,618,ZA4975
+v304,page 593,QA48AB ELDERLY BEST CARE: NONE OF THESE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,620,ZA4975
+v305,page 595,QA48AB ELDERLY BEST CARE: DK (QA48A ONLY),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,622,ZA4975
+v306,page 597,QA49 CHILDCARE AGE 0-3: PRE-SCHOOL,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,624,ZA4975
+v307,page 599,QA49 CHILDCARE AGE 0-3: IN-HOUSE MINDER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,626,ZA4975
+v308,page 601,QA49 CHILDCARE AGE 0-3: CERTIFIED MINDING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,628,ZA4975
+v309,page 603,QA49 CHILDCARE AGE 0-3: MAINLY MOTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,630,ZA4975
+v310,page 605,QA49 CHILDCARE AGE 0-3: MAINLY FATHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,632,ZA4975
+v311,page 607,QA49 CHILDCARE AGE 0-3: MOTHER AND FATHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,634,ZA4975
+v312,page 609,QA49 CHILDCARE AGE 0-3: RELATIVES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,636,ZA4975
+v313,page 611,QA49 CHILDCARE AGE 0-3: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,638,ZA4975
+v314,page 613,QA49 CHILDCARE AGE 0-3: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,640,ZA4975
+v315,page 615,QA49 CHILDCARE AGE 0-3: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,642,ZA4975
+v316,page 617,QA50 CHILDCARE AGE 3-6: INFANT SCHOOL,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,644,ZA4975
+v317,page 619,QA50 CHILDCARE AGE 3-6: IN-HOUSE MINDER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,646,ZA4975
+v318,page 621,QA50 CHILDCARE AGE 3-6: CERTIFIED MINDING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,648,ZA4975
+v319,page 623,QA50 CHILDCARE AGE 3-6: MAINLY MOTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,650,ZA4975
+v320,page 625,QA50 CHILDCARE AGE 3-6: MAINLY FATHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,652,ZA4975
+v321,page 627,QA50 CHILDCARE AGE 3-6: MOTHER AND FATHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,654,ZA4975
+v322,page 629,QA50 CHILDCARE AGE 3-6: RELATIVES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,656,ZA4975
+v323,page 631,QA50 CHILDCARE AGE 3-6: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,658,ZA4975
+v324,page 633,QA50 CHILDCARE AGE 3-6: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,660,ZA4975
+v325,page 635,QA50 CHILDCARE AGE 3-6: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,662,ZA4975
+v326,page 637,QA51 CHILDREN - NEED FOR PRE-SCHOOL EDUCATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,664,ZA4975
+v327,page 639,QA52 SOCIAL ASSISTANCE PRIO: SINGLE PARENTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,666,ZA4975
+v328,page 641,QA52 SOCIAL ASSISTANCE PRIO: IMMIGRANTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,668,ZA4975
+v329,page 643,QA52 SOCIAL ASSISTANCE PRIO: ADDICTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,670,ZA4975
+v330,page 645,QA52 SOCIAL ASSISTANCE PRIO: HOMELESS PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,672,ZA4975
+v331,page 647,QA52 SOCIAL ASSISTANCE PRIO: ABANDONED CHILDREN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,674,ZA4975
+v332,page 649,QA52 SOCIAL ASSISTANCE PRIO: YOUNG OFFENDERS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,676,ZA4975
+v333,page 651,QA52 SOCIAL ASSISTANCE PRIO: DISABLED PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,678,ZA4975
+v334,page 653,QA52 SOCIAL ASSISTANCE PRIO: UNEMPLOYED PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,680,ZA4975
+v335,page 655,QA52 SOCIAL ASSISTANCE PRIO: ELDERLY PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,682,ZA4975
+v336,page 657,QA52 SOCIAL ASSISTANCE PRIO: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,684,ZA4975
+v337,page 659,QA52 SOCIAL ASSISTANCE PRIO: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,686,ZA4975
+v338,page 661,QA52 SOCIAL ASSISTANCE PRIO: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,688,ZA4975
+v339,page 663,QA53 SOCIAL HOUSING PRIO: SINGLE PARENTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,690,ZA4975
+v340,page 665,QA53 SOCIAL HOUSING PRIO: IMMIGRANTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,692,ZA4975
+v341,page 667,QA53 SOCIAL HOUSING PRIO: YOUNG PARENTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,694,ZA4975
+v342,page 669,QA53 SOCIAL HOUSING PRIO: HOMELESS PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,696,ZA4975
+v343,page 671,QA53 SOCIAL HOUSING PRIO: STUDENTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,698,ZA4975
+v344,page 673,QA53 SOCIAL HOUSING PRIO: DISABLED PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,700,ZA4975
+v345,page 675,QA53 SOCIAL HOUSING PRIO: UNEMPLOYED PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,702,ZA4975
+v346,page 677,QA53 SOCIAL HOUSING PRIO: ELDERLY PEOPLE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,704,ZA4975
+v347,page 679,QA53 SOCIAL HOUSING PRIO: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,706,ZA4975
+v348,page 681,QA53 SOCIAL HOUSING PRIO: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,708,ZA4975
+v349,page 683,QA53 SOCIAL HOUSING PRIO: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,710,ZA4975
+v350,,QA54 PARENTS CARE - REASONABLE INCOME SHARE,,QA54 PARENTS CARE - REASONABLE INCOME SHARE,GESIS Variable Report,712,ZA4975
+v351,,QA54 PARENTS CARE - REASONABLE INCOME SHARE (REC),,QA54 PARENTS CARE - REASONABLE INCOME SHARE (REC),GESIS Variable Report,713,ZA4975
+v352,,QA55 CHILD CARE - REASONABLE INCOME SHARE,,QA55 CHILD CARE - REASONABLE INCOME SHARE,GESIS Variable Report,715,ZA4975
+v353,,QA55 CHILD CARE - REASONABLE INCOME SHARE (REC),,QA55 CHILD CARE - REASONABLE INCOME SHARE (REC),GESIS Variable Report,716,ZA4975
+v354,page 691,QA56 SOCIAL SERVICE RESPONSBLTY: LONG-TERM CARE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,718,ZA4975
+v355,page 693,QA56 SOCIAL SERVICE RESPONSBLTY: CHILDCARE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,720,ZA4975
+v356,page 695,QA56 SOCIAL SERVICE RESPONSBLTY: EMPLOYMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,722,ZA4975
+v357,page 697,QA56 SOCIAL SERVICE RESPONSBLTY: SOCIAL HOUSING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,724,ZA4975
+v358,page 699,QA56 SOCIAL SERVICE RESPONSBLTY: SOC ASSISTANCE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,726,ZA4975
+v359,,QA57 PUBLIC SERVICE QUALITY: HEALTH SERVICES,,QA57 PUBLIC SERVICE QUALITY: HEALTH SERVICES,GESIS Variable Report,728,ZA4975
+v360,page 704,QA57 PUBLIC SERVICE QUALITY: HEALTH SERVICES (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,731,ZA4975
+v361,,QA57 PUBLIC SERVICE QUALITY: PENSION SYSTEM,,QA57 PUBLIC SERVICE QUALITY: PENSION SYSTEM,GESIS Variable Report,733,ZA4975
+v362,page 709,QA57 PUBLIC SERVICE QUALITY: PENSION SYSTEM (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,736,ZA4975
+v363,,QB1A SERIOUS WORLD PROBLEMS - FIRST,,QB1A SERIOUS WORLD PROBLEMS - FIRST,GESIS Variable Report,738,ZA4975
+v364,,QB1B SERIOUS WORLD PROBLEMS: CLIMATE CHANGE,,QB1B SERIOUS WORLD PROBLEMS: CLIMATE CHANGE,GESIS Variable Report,741,ZA4975
+v365,,QB1B SERIOUS WORLD PROBLEMS: TERRORISM,,QB1B SERIOUS WORLD PROBLEMS: TERRORISM,GESIS Variable Report,743,ZA4975
+v366,,QB1B SERIOUS WORLD PROBLEMS: POVERTY,,QB1B SERIOUS WORLD PROBLEMS: POVERTY,GESIS Variable Report,745,ZA4975
+v367,,QB1B SERIOUS WORLD PROBLEMS: INFECT DISEASE,,QB1B SERIOUS WORLD PROBLEMS: INFECT DISEASE,GESIS Variable Report,747,ZA4975
+v368,,QB1B SERIOUS WORLD PROBLEMS: ECONOM DOWNTURN,,QB1B SERIOUS WORLD PROBLEMS: ECONOM DOWNTURN,GESIS Variable Report,749,ZA4975
+v369,,QB1B SERIOUS WORLD PROBLEMS: NUCLEAR WEAPONS,,QB1B SERIOUS WORLD PROBLEMS: NUCLEAR WEAPONS,GESIS Variable Report,751,ZA4975
+v370,,QB1B SERIOUS WORLD PROBLEMS: ARMED CONFLICTS,,QB1B SERIOUS WORLD PROBLEMS: ARMED CONFLICTS,GESIS Variable Report,753,ZA4975
+v371,,QB1B SERIOUS WORLD PROBLEMS: WRLD POPULATION,,QB1B SERIOUS WORLD PROBLEMS: WRLD POPULATION,GESIS Variable Report,755,ZA4975
+v372,,QB1B SERIOUS WORLD PROBLEMS: OTHERS,,QB1B SERIOUS WORLD PROBLEMS: OTHERS,GESIS Variable Report,757,ZA4975
+v373,,QB1B SERIOUS WORLD PROBLEMS: DK,,QB1B SERIOUS WORLD PROBLEMS: DK,GESIS Variable Report,759,ZA4975
+v374,page 734,QB1AB SERIOUS WORLD PROBLEMS: CLIMATE CHANGE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,761,ZA4975
+v375,page 736,QB1AB SERIOUS WORLD PROBLEMS: TERRORISM,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,763,ZA4975
+v376,page 738,QB1AB SERIOUS WORLD PROBLEMS: POVERTY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,765,ZA4975
+v377,page 740,QB1AB SERIOUS WORLD PROBLEMS: INFECT DISEASE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,767,ZA4975
+v378,page 742,QB1AB SERIOUS WORLD PROBLEMS: ECONOM DOWNTURN,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,769,ZA4975
+v379,page 744,QB1AB SERIOUS WORLD PROBLEMS: NUCLEAR WEAPONS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,771,ZA4975
+v380,page 746,QB1AB SERIOUS WORLD PROBLEMS: ARMED CONFLICTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,773,ZA4975
+v381,page 748,QB1AB SERIOUS WORLD PROBLEMS: WRLD POPULATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,775,ZA4975
+v382,page 750,QB1AB SERIOUS WORLD PROBLEMS: OTHERS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,777,ZA4975
+v383,page 752,QB1AB SERIOUS WORLD PROBLEMS: NONE (QB1A ONLY),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,779,ZA4975
+v384,page 754,QB1AB SERIOUS WORLD PROBLEMS: DK (QB1A ONLY),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,781,ZA4975
+v385,,QB2 CLIMATE CHANGE - PERCEPTION,,QB2 CLIMATE CHANGE - PERCEPTION,GESIS Variable Report,783,ZA4975
+v386,page 759,QB2 CLIMATE CHANGE - PERCEPTION (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,786,ZA4975
+v387,page 761,QB3 FIGHTING CLIMATE CHANGE: NAT GOVERNMENT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,788,ZA4975
+v388,page 763,QB3 FIGHTING CLIMATE CHANGE: EUROPEAN UNION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,790,ZA4975
+v389,page 765,QB3 FIGHTING CLIMATE CHANGE: REG/LOC AUTHORITIES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,792,ZA4975
+v390,page 767,QB3 FIGHTING CLIMATE CHANGE: CORPORAT/INDUSTRY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,794,ZA4975
+v391,page 769,QB3 FIGHTING CLIMATE CHANGE: CITIZENS THEMSELVES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,796,ZA4975
+v392,,QB4 CLIMATE CHANGE: UNSTOPPABLE PROCESS,,QB4 CLIMATE CHANGE: UNSTOPPABLE PROCESS,GESIS Variable Report,798,ZA4975
+v393,,QB4 CLIMATE CHANGE: SERIOUSNESS EXAGGERATED,,QB4 CLIMATE CHANGE: SERIOUSNESS EXAGGERATED,GESIS Variable Report,800,ZA4975
+v394,,QB4 CLIMATE CHANGE: CO2 HAS MARGINAL IMPACT (A),,QB4 CLIMATE CHANGE: CO2 HAS MARGINAL IMPACT (A),GESIS Variable Report,802,ZA4975
+v395,,QB4 CLIMATE CHANGE: CO2 HAS MARGINAL IMPACT (B),,QB4 CLIMATE CHANGE: CO2 HAS MARGINAL IMPACT (B),GESIS Variable Report,804,ZA4975
+v396,,QB4 CLIMATE CHANGE: FIGHT POS ECONOMIC IMPACT,,QB4 CLIMATE CHANGE: FIGHT POS ECONOMIC IMPACT,GESIS Variable Report,806,ZA4975
+v397,,QB4 CLIMATE CHANGE: USE ALTERNATIVE FUELS (A),,QB4 CLIMATE CHANGE: USE ALTERNATIVE FUELS (A),GESIS Variable Report,808,ZA4975
+v398,,QB4 CLIMATE CHANGE: USE ALTERNATIVE FUELS (B),,QB4 CLIMATE CHANGE: USE ALTERNATIVE FUELS (B),GESIS Variable Report,810,ZA4975
+v399,,QB4 CLIMATE CHANGE: PERSONALLY TAKEN ACTIONS,,QB4 CLIMATE CHANGE: PERSONALLY TAKEN ACTIONS,GESIS Variable Report,812,ZA4975
+v400,page 787,QB5 CLIMATE CH ACTION: FUEL-EFFICIENT CAR,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,814,ZA4975
+v401,page 789,QB5 CLIMATE CH ACTION: REDUCING USE OF CAR,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,816,ZA4975
+v402,page 791,QB5 CLIMATE CH ACTION: ENVIRONM FRNDLY TRANSP,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,818,ZA4975
+v403,,QB5 CLIMATE CH ACTION: RED ENERGY CONSUMPTION,,QB5 CLIMATE CH ACTION: RED ENERGY CONSUMPTION,GESIS Variable Report,820,ZA4975
+v404,,QB5 CLIMATE CH ACTION: RED WATER CONSUMPTION,,QB5 CLIMATE CH ACTION: RED WATER CONSUMPTION,GESIS Variable Report,822,ZA4975
+v405,page 797,QB5 CLIMATE CH ACTION: AVOID SHORT FLIGHTS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,824,ZA4975
+v406,,QB5 CLIMATE CH ACTION: SWITCH ENERGY SUPPLIER,,QB5 CLIMATE CH ACTION: SWITCH ENERGY SUPPLIER,GESIS Variable Report,826,ZA4975
+v407,page 801,QB5 CLIMATE CH ACTION: SEPARATING WASTE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,828,ZA4975
+v408,page 803,QB5 CLIMATE CH ACTION: REDUCE DISPOSABLES,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,830,ZA4975
+v409,,QB5 CLIMATE CH ACTION: BUY LOCAL PRODUCTS,,QB5 CLIMATE CH ACTION: BUY LOCAL PRODUCTS,GESIS Variable Report,832,ZA4975
+v410,,QB5 CLIMATE CH ACTION: RENEWABLE ENERGY,,QB5 CLIMATE CH ACTION: RENEWABLE ENERGY,GESIS Variable Report,834,ZA4975
+v411,page 809,QB5 CLIMATE CH ACTION: OTHER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,836,ZA4975
+v412,page 811,QB5 CLIMATE CH ACTION: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,838,ZA4975
+v413,page 813,QB6A ENVIRONMENT PROT CAN BOOST ECONOM GROWTH,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,840,ZA4975
+v414,page 815,QB6B ENVIRONMENT PROT OBSTACLE TO ECONOM GROWTH,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,842,ZA4975
+v415,,QB7 CLIMATE FRIENDLY ENERGY - PAY MORE,,QB7 CLIMATE FRIENDLY ENERGY - PAY MORE,GESIS Variable Report,844,ZA4975
+v416,,QB7 CLIMATE FRIENDLY ENERGY - PAY MORE (REC),,QB7 CLIMATE FRIENDLY ENERGY - PAY MORE (REC),GESIS Variable Report,845,ZA4975
+v417,,QC1A ECONOMY: GROWTH RATE GDP 2008,,QC1A ECONOMY: GROWTH RATE GDP 2008,GESIS Variable Report,847,ZA4975
+v418,page 821,QC1A ECONOMY: GROWTH RATE GDP 2008 (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,848,ZA4975
+v419,,QC1B ECONOMY: GROWTH RATE GDP 2008 - BRIEFED,,QC1B ECONOMY: GROWTH RATE GDP 2008 - BRIEFED,GESIS Variable Report,850,ZA4975
+v420,page 824,QC1B ECONOMY: GROWTH RATE GDP 2008 - BRIEFED (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,851,ZA4975
+v421,page 826,QC1AB ECONOMY: GROWTH RATE GDP - CORRECT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,853,ZA4975
+v422,page 828,QC1AB ECONOMY: GROWTH RATE GDP 2008,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,855,ZA4975
+v423,page 829,QC1AB ECONOMY: GROWTH RATE GDP 2008 (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,856,ZA4975
+v424,,QC2 ECONOMY: OFFICIAL INFLATION RATE 2008,,QC2 ECONOMY: OFFICIAL INFLATION RATE 2008,GESIS Variable Report,858,ZA4975
+v425,page 832,QC2 ECONOMY: OFFICIAL INFLATION RATE 2008 (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,859,ZA4975
+v426,page 834,QC2 ECONOMY: OFFICIAL INFLATION RATE - CORRECT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,861,ZA4975
+v427,page 836,QC3 ECONOMY: INFLATION RATE COMPARED TO 2007,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,863,ZA4975
+v428,page 838,QC4 ECONOMY: OFFIC UNEMPLOYMENT RATE 2008,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,865,ZA4975
+v429,page 839,QC4 ECONOMY: OFFIC UNEMPLOYMENT RATE 2008 (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,866,ZA4975
+v430,page 841,QC4 ECONOMY: OFFIC UNEMPLOYMENT RATE - CORRECT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,868,ZA4975
+v431,page 843,QC1/QC2/QC4 ECONOMY FIGURES - CORRECT ANSWERS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,870,ZA4975
+v432,page 845,QC5 STATISTICS - BASE FOR POLIT DECISIONS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,872,ZA4975
+v433,page 847,QC6 OFFICIAL STATISTICS - TRUST,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,874,ZA4975
+v434,page 849,QC7 ECONOMIC FIGURES - KNOWLEDGE NEEDED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,876,ZA4975
+v435,,QC8 SITUATN CTRY COMPARED TO EU: EMPLOYMENT,,QC8 SITUATN CTRY COMPARED TO EU: EMPLOYMENT,GESIS Variable Report,878,ZA4975
+v436,,QC8 SITUATN CTRY COMPARED TO EU: ECONOMY,,QC8 SITUATN CTRY COMPARED TO EU: ECONOMY,GESIS Variable Report,880,ZA4975
+v437,,D7 MARITAL STATUS,,D7 MARITAL STATUS,GESIS Variable Report,882,ZA4975
+v438,,D7 MARITAL STATUS (REC),,D7 MARITAL STATUS (REC),GESIS Variable Report,885,ZA4975
+v439,,D8 AGE EDUCATION,,D8 AGE EDUCATION,GESIS Variable Report,887,ZA4975
+v440,,D8 AGE EDUCATION - RECODED,,D8 AGE EDUCATION - RECODED,GESIS Variable Report,888,ZA4975
+v441,v441 1 2 N Sum N Valid Sum,D10 GENDER,v7 AT 485 (48.2) 522 (51.8) 1007 1007 BE 487 (48.5) 518 (51.5) 1005 1005 BG 487 (48.0) 528 (52.0) 1015 1015 CY 248 (48.8) 260 (51.2) 508 508 CZ 490 (48.7) 517 (51.3) 1007 1007 DE-E 249 (48.6) 263 (51.4) 512 512 DE-W 501 (48.3) 536 (51.7) 1037 1037 DK 501 (49.1) 519 (50.9) 1020 1020 EE 439 (43.9) 561 (56.1) 1000 1000 ES 504 (49.1) 522 (50.9) 1026 1026 FI 489 (48.5) 519 (51.5) 1008 1008 FR 492 (47.9) 535 (52.1) 1027 1027 GB-GBN 502 (48.7) 529 (51.3) 1031 1031 GB-NIR 145 (48.3) 155 (51.7) 300 300 GR 490 (49.0) 510 (51.0) 1000 1000 HU 467 (46.7) 533 (53.3) 1000 1000 IE 497 (49.7) 503 (50.3) 1000 1000 IT 498 (47.9) 541 (52.1) 1039 1039 LT 467 (45.7) 556 (54.3) 1023 1023 LU 246 (49.2) 254 (50.8) 500 500 LV 467 (46.2) 544 (53.8) 1011 1011 MT 246 (49.2) 254 (50.8) 500 500 NL 489 (49.1) 507 (50.9) 996 996 PL 478 (47.8) 522 (52.2) 1000 1000 PT 501 (47.7) 550 (52.3) 1051 1051 RO 489 (48.3) 524 (51.7) 1013 1013 SE 497 (49.4) 510 (50.6) 1007 1007 SI 499 (48.7) 526 (51.3) 1025 1025 SK 503 (47.9) 547 (52.1) 1050 1050 N Sum 12853 13865 26718 N Valid Sum 12853 13865 26718 Eurobarometer 72.1 - August-September 2009,v7 AT 485 (48.2) 522 (51.8) 1007 1007 BE 487 (48.5) 518 (51.5) 1005 1005 BG 487 (48.0) 528 (52.0) 1015 1015 CY 248 (48.8) 260 (51.2) 508 508 CZ 490 (48.7) 517 (51.3) 1007 1007 DE-E 249 (48.6) 263 (51.4) 512 512 DE-W 501 (48.3) 536 (51.7) 1037 1037 DK 501 (49.1) 519 (50.9) 1020 1020 EE 439 (43.9) 561 (56.1) 1000 1000 ES 504 (49.1) 522 (50.9) 1026 1026 FI 489 (48.5) 519 (51.5) 1008 1008 FR 492 (47.9) 535 (52.1) 1027 1027 GB-GBN 502 (48.7) 529 (51.3) 1031 1031 GB-NIR 145 (48.3) 155 (51.7) 300 300 GR 490 (49.0) 510 (51.0) 1000 1000 HU 467 (46.7) 533 (53.3) 1000 1000 IE 497 (49.7) 503 (50.3) 1000 1000 IT 498 (47.9) 541 (52.1) 1039 1039 LT 467 (45.7) 556 (54.3) 1023 1023 LU 246 (49.2) 254 (50.8) 500 500 LV 467 (46.2) 544 (53.8) 1011 1011 MT 246 (49.2) 254 (50.8) 500 500 NL 489 (49.1) 507 (50.9) 996 996 PL 478 (47.8) 522 (52.2) 1000 1000 PT 501 (47.7) 550 (52.3) 1051 1051 RO 489 (48.3) 524 (51.7) 1013 1013 SE 497 (49.4) 510 (50.6) 1007 1007 SI 499 (48.7) 526 (51.3) 1025 1025 SK 503 (47.9) 547 (52.1) 1050 1050 N Sum 12853 13865 26718 N Valid Sum 12853 13865 26718 Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,891,ZA4975
+v442,page 865,D11 AGE EXACT,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,892,ZA4975
+v443,page 866,D11 AGE RECODED - FOUR GROUPS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,893,ZA4975
+v444,,D11 AGE RECODED - SIX GROUPS,,D11 AGE RECODED - SIX GROUPS,GESIS Variable Report,895,ZA4975
+v445,page 870,D25 TYPE OF COMMUNITY,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,897,ZA4975
+v446,,D40A HOUSEHOLD COMPOSITION: AGED 15+,,D40A HOUSEHOLD COMPOSITION: AGED 15+,GESIS Variable Report,899,ZA4975
+v447,page 875,D40A HOUSEHOLD COMPOSITION: AGED 15+ (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,902,ZA4975
+v448,,D40B HOUSEHOLD COMPOSITION: AGED <10,,D40B HOUSEHOLD COMPOSITION: AGED <10,GESIS Variable Report,904,ZA4975
+v449,page 879,D40B HOUSEHOLD COMPOSITION: AGED <10 (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,906,ZA4975
+v450,,D40C HOUSEHOLD COMPOSITION: AGED 10-14,,D40C HOUSEHOLD COMPOSITION: AGED 10-14,GESIS Variable Report,908,ZA4975
+v451,page 883,D40C HOUSEHOLD COMPOSITION: AGED 10-14 (REC),Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,910,ZA4975
+v452,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C,GESIS Variable Report,912,ZA4975
+v453,,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C (REC),,D40 HOUSEHOLD COMPOSITION: SIZE A+B+C (REC),GESIS Variable Report,915,ZA4975
+v454,v454 1 2 N Sum N Valid Sum,D43A PHONE AVAILABLE - FIXED IN HH,v7 AT 546 (54.2) 461 (45.8) 1007 1007 BE 736 (73.2) 269 (26.8) 1005 1005 BG 580 (57.1) 435 (42.9) 1015 1015 CY 421 (82.9) 87 (17.1) 508 508 CZ 209 (20.8) 798 (79.2) 1007 1007 DE-E 411 (80.3) 101 (19.7) 512 512 DE-W 970 (93.5) 67 (6.5) 1037 1037 DK 710 (69.6) 310 (30.4) 1020 1020 EE 510 (51.0) 490 (49.0) 1000 1000 ES 598 (58.3) 428 (41.7) 1026 1026 FI 331 (32.8) 677 (67.2) 1008 1008 FR 901 (87.7) 126 (12.3) 1027 1027 GB-GBN 885 (85.8) 146 (14.2) 1031 1031 GB-NIR 257 (85.7) 43 (14.3) 300 300 GR 810 (81.0) 190 (19.0) 1000 1000 HU 497 (49.7) 503 (50.3) 1000 1000 IE 745 (74.4) 256 (25.6) 1001 1001 IT 663 (63.8) 376 (36.2) 1039 1039 LT 462 (45.2) 561 (54.8) 1023 1023 LU 448 (89.6) 52 (10.4) 500 500 LV 457 (45.2) 554 (54.8) 1011 1011 MT 479 (95.8) 21 (4.2) 500 500 NL 893 (89.7) 103 (10.3) 996 996 PL 542 (54.2) 458 (45.8) 1000 1000 PT 588 (55.9) 463 (44.1) 1051 1051 RO 420 (41.5) 593 (58.5) 1013 1013 SE 1000 (99.3) 7 (0.7) 1007 1007 SI 850 (82.9) 175 (17.1) 1025 1025 SK 356 (33.9) 694 (66.1) 1050 1050 N Sum 17275 9444 26719 N Valid Sum 17275 9444 26719 Eurobarometer 72.1 - August-September 2009,v7 AT 546 (54.2) 461 (45.8) 1007 1007 BE 736 (73.2) 269 (26.8) 1005 1005 BG 580 (57.1) 435 (42.9) 1015 1015 CY 421 (82.9) 87 (17.1) 508 508 CZ 209 (20.8) 798 (79.2) 1007 1007 DE-E 411 (80.3) 101 (19.7) 512 512 DE-W 970 (93.5) 67 (6.5) 1037 1037 DK 710 (69.6) 310 (30.4) 1020 1020 EE 510 (51.0) 490 (49.0) 1000 1000 ES 598 (58.3) 428 (41.7) 1026 1026 FI 331 (32.8) 677 (67.2) 1008 1008 FR 901 (87.7) 126 (12.3) 1027 1027 GB-GBN 885 (85.8) 146 (14.2) 1031 1031 GB-NIR 257 (85.7) 43 (14.3) 300 300 GR 810 (81.0) 190 (19.0) 1000 1000 HU 497 (49.7) 503 (50.3) 1000 1000 IE 745 (74.4) 256 (25.6) 1001 1001 IT 663 (63.8) 376 (36.2) 1039 1039 LT 462 (45.2) 561 (54.8) 1023 1023 LU 448 (89.6) 52 (10.4) 500 500 LV 457 (45.2) 554 (54.8) 1011 1011 MT 479 (95.8) 21 (4.2) 500 500 NL 893 (89.7) 103 (10.3) 996 996 PL 542 (54.2) 458 (45.8) 1000 1000 PT 588 (55.9) 463 (44.1) 1051 1051 RO 420 (41.5) 593 (58.5) 1013 1013 SE 1000 (99.3) 7 (0.7) 1007 1007 SI 850 (82.9) 175 (17.1) 1025 1025 SK 356 (33.9) 694 (66.1) 1050 1050 N Sum 17275 9444 26719 N Valid Sum 17275 9444 26719 Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,917,ZA4975
+v455,page 891,D43B PHONE AVAILABLE - PRIVATE MOBILE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,918,ZA4975
+v456,page 893,D46 OWNERSHIP DURABLES: TELEVISION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,920,ZA4975
+v457,page 895,D46 OWNERSHIP DURABLES: DVD PLAYER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,922,ZA4975
+v458,page 897,D46 OWNERSHIP DURABLES: MUSIC CD PLAYER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,924,ZA4975
+v459,page 899,D46 OWNERSHIP DURABLES: COMPUTER,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,926,ZA4975
+v460,page 901,D46 OWNERSHIP DURABLES: INTERNET ACCESS,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,928,ZA4975
+v461,page 903,D46 OWNERSHIP DURABLES: CAR,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,930,ZA4975
+v462,page 905,D46 OWNERSHIP DURABLES: AP/HOUSE PAID,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,932,ZA4975
+v463,page 907,D46 OWNERSHIP DURABLES: AP/HOUSE PAYING,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,934,ZA4975
+v464,page 909,D46 OWNERSHIP DURABLES: NONE,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,936,ZA4975
+v465,page 911,D46 OWNERSHIP DURABLES: DK,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,938,ZA4975
+v466,page 913,D60 DIFFICULTIES PAYING BILLS - LAST YEAR,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,940,ZA4975
+v467,,D61 LEVEL IN SOCIETY - SELF PLACEMENT,,D61 LEVEL IN SOCIETY - SELF PLACEMENT,GESIS Variable Report,942,ZA4975
+v468,,D62 INTERNET USE FREQ: AT HOME,,D62 INTERNET USE FREQ: AT HOME,GESIS Variable Report,945,ZA4975
+v469,,D62 INTERNET USE FREQ: AT PLACE OF WORK,,D62 INTERNET USE FREQ: AT PLACE OF WORK,GESIS Variable Report,947,ZA4975
+v470,,D62 INTERNET USE FREQ: SOMEWHERE ELSE,,D62 INTERNET USE FREQ: SOMEWHERE ELSE,GESIS Variable Report,949,ZA4975
+v471,,P1 DATE OF INTERVIEW,,P1 DATE OF INTERVIEW,GESIS Variable Report,951,ZA4975
+v472,page 926,P2 TIME OF INTERVIEW - RECODED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,953,ZA4975
+v473,page 928,P3 DURATION OF INTERVIEW,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,955,ZA4975
+v474,page 929,P3 DURATION OF INTERVIEW - RECODED,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,956,ZA4975
+v475,page 931,P4 N OF PERSONS PRESENT DURING INTERVIEW,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,958,ZA4975
+v476,page 933,P5 RESPONDENT COOPERATION,Eurobarometer 72.1 - August-September 2009,Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,960,ZA4975
+v477,,P6 SIZE OF COMMUNITY - FRANCE,,P6 SIZE OF COMMUNITY - FRANCE,GESIS Variable Report,962,ZA4975
+v478,,P6 SIZE OF COMMUNITY - BELGIUM,,P6 SIZE OF COMMUNITY - BELGIUM,GESIS Variable Report,963,ZA4975
+v479,,P6 SIZE OF COMMUNITY - NETHERLANDS,,P6 SIZE OF COMMUNITY - NETHERLANDS,GESIS Variable Report,964,ZA4975
+v480,,P6 SIZE OF COMMUNITY - GERMANY,,P6 SIZE OF COMMUNITY - GERMANY,GESIS Variable Report,965,ZA4975
+v481,,P6 SIZE OF COMMUNITY - ITALY,,P6 SIZE OF COMMUNITY - ITALY,GESIS Variable Report,966,ZA4975
+v482,,P6 SIZE OF COMMUNITY - LUXEMBOURG,,P6 SIZE OF COMMUNITY - LUXEMBOURG,GESIS Variable Report,967,ZA4975
+v483,,P6 SIZE OF COMMUNITY - DENMARK,,P6 SIZE OF COMMUNITY - DENMARK,GESIS Variable Report,968,ZA4975
+v484,,P6 SIZE OF COMMUNITY - IRELAND,,P6 SIZE OF COMMUNITY - IRELAND,GESIS Variable Report,969,ZA4975
+v485,,P6 SIZE OF COMMUNITY - UNITED KINGDOM,,P6 SIZE OF COMMUNITY - UNITED KINGDOM,GESIS Variable Report,970,ZA4975
+v486,,P6 SIZE OF COMMUNITY - GREECE,,P6 SIZE OF COMMUNITY - GREECE,GESIS Variable Report,971,ZA4975
+v487,,P6 SIZE OF COMMUNITY - SPAIN,,P6 SIZE OF COMMUNITY - SPAIN,GESIS Variable Report,972,ZA4975
+v488,,P6 SIZE OF COMMUNITY - PORTUGAL,,P6 SIZE OF COMMUNITY - PORTUGAL,GESIS Variable Report,973,ZA4975
+v489,,P6 SIZE OF COMMUNITY - FINLAND,,P6 SIZE OF COMMUNITY - FINLAND,GESIS Variable Report,974,ZA4975
+v490,,P6 SIZE OF COMMUNITY - SWEDEN,,P6 SIZE OF COMMUNITY - SWEDEN,GESIS Variable Report,975,ZA4975
+v491,,P6 SIZE OF COMMUNITY - AUSTRIA,,P6 SIZE OF COMMUNITY - AUSTRIA,GESIS Variable Report,976,ZA4975
+v492,Sum 26719 100.0 100.0,P6 SIZE OF COMMUNITY - CYPRUS (REPUBLIC),Valid Cases 508 Eurobarometer 72.1 - August-September 2009,Valid Cases 508 Eurobarometer 72.1 - August-September 2009,GESIS Variable Report,977,ZA4975
+v493,,P6 SIZE OF COMMUNITY - CZECH REPUBLIC,,P6 SIZE OF COMMUNITY - CZECH REPUBLIC,GESIS Variable Report,978,ZA4975
+v494,,P6 SIZE OF COMMUNITY - ESTONIA,,P6 SIZE OF COMMUNITY - ESTONIA,GESIS Variable Report,979,ZA4975
+v495,,P6 SIZE OF COMMUNITY - HUNGARY,,P6 SIZE OF COMMUNITY - HUNGARY,GESIS Variable Report,980,ZA4975
+v496,,P6 SIZE OF COMMUNITY - LATVIA,,P6 SIZE OF COMMUNITY - LATVIA,GESIS Variable Report,981,ZA4975
+v497,,P6 SIZE OF COMMUNITY - LITHUANIA,,P6 SIZE OF COMMUNITY - LITHUANIA,GESIS Variable Report,982,ZA4975
+v498,,P6 SIZE OF COMMUNITY - MALTA,,P6 SIZE OF COMMUNITY - MALTA,GESIS Variable Report,983,ZA4975
+v499,,P6 SIZE OF COMMUNITY - POLAND,,P6 SIZE OF COMMUNITY - POLAND,GESIS Variable Report,984,ZA4975
+v500,,P6 SIZE OF COMMUNITY - SLOVAKIA,,P6 SIZE OF COMMUNITY - SLOVAKIA,GESIS Variable Report,985,ZA4975
+v501,,P6 SIZE OF COMMUNITY - SLOVENIA,,P6 SIZE OF COMMUNITY - SLOVENIA,GESIS Variable Report,986,ZA4975
+v502,,P6 SIZE OF COMMUNITY - BULGARIA,,P6 SIZE OF COMMUNITY - BULGARIA,GESIS Variable Report,987,ZA4975
+v503,,P6 SIZE OF COMMUNITY - ROMANIA,,P6 SIZE OF COMMUNITY - ROMANIA,GESIS Variable Report,988,ZA4975
+v504,,P7 REGION I - FRANCE,,P7 REGION I - FRANCE,GESIS Variable Report,989,ZA4975
+v505,,P7 REGION I - BELGIUM,,P7 REGION I - BELGIUM,GESIS Variable Report,991,ZA4975
+v506,,P7 REGION I - NETHERLANDS,,P7 REGION I - NETHERLANDS,GESIS Variable Report,992,ZA4975
+v507,,P7 REGION I - ITALY,,P7 REGION I - ITALY,GESIS Variable Report,993,ZA4975
+v508,,P7 REGION I - LUXEMBOURG,,P7 REGION I - LUXEMBOURG,GESIS Variable Report,995,ZA4975
+v509,,P7 REGION I - DENMARK,,P7 REGION I - DENMARK,GESIS Variable Report,996,ZA4975
+v510,,P7 REGION I - UNITED KINGDOM,,P7 REGION I - UNITED KINGDOM,GESIS Variable Report,997,ZA4975
+v511,,P7 REGION I - GREECE,,P7 REGION I - GREECE,GESIS Variable Report,999,ZA4975
+v512,,P7 REGION I - SPAIN,,P7 REGION I - SPAIN,GESIS Variable Report,1000,ZA4975
+v513,,P7 REGION I - PORTUGAL,,P7 REGION I - PORTUGAL,GESIS Variable Report,1002,ZA4975
+v514,,P7 REGION I - FINLAND,,P7 REGION I - FINLAND,GESIS Variable Report,1003,ZA4975
+v515,,P7 REGION I - SWEDEN,,P7 REGION I - SWEDEN,GESIS Variable Report,1005,ZA4975
+v516,,P7 REGION I - AUSTRIA,,P7 REGION I - AUSTRIA,GESIS Variable Report,1006,ZA4975
+v517,,P7 REGION I - CYPRUS (REPUBLIC),,P7 REGION I - CYPRUS (REPUBLIC),GESIS Variable Report,1007,ZA4975
+v518,,P7 REGION I - CZECH REPUBLIC,,P7 REGION I - CZECH REPUBLIC,GESIS Variable Report,1008,ZA4975
+v519,,P7 REGION I - ESTONIA,,P7 REGION I - ESTONIA,GESIS Variable Report,1009,ZA4975
+v520,,P7 REGION I - HUNGARY,,P7 REGION I - HUNGARY,GESIS Variable Report,1010,ZA4975
+v521,,P7 REGION I - LATVIA,,P7 REGION I - LATVIA,GESIS Variable Report,1011,ZA4975
+v522,,P7 REGION I - LITHUANIA,,P7 REGION I - LITHUANIA,GESIS Variable Report,1012,ZA4975
+v523,,P7 REGION I - POLAND,,P7 REGION I - POLAND,GESIS Variable Report,1013,ZA4975
+v524,,P7 REGION I - SLOVAKIA,,P7 REGION I - SLOVAKIA,GESIS Variable Report,1015,ZA4975
+v525,,P7 REGION I - SLOVENIA,,P7 REGION I - SLOVENIA,GESIS Variable Report,1016,ZA4975
+v526,,P7 REGION I - BULGARIA,,P7 REGION I - BULGARIA,GESIS Variable Report,1017,ZA4975
+v527,,P7 REGION I - ROMANIA,,P7 REGION I - ROMANIA,GESIS Variable Report,1019,ZA4975
+v528,,P7 REGION II - FRANCE,,P7 REGION II - FRANCE,GESIS Variable Report,1020,ZA4975
+v529,,P7 REGION II - BELGIUM,,P7 REGION II - BELGIUM,GESIS Variable Report,1021,ZA4975
+v530,,P7 REGION II - NETHERLANDS,,P7 REGION II - NETHERLANDS,GESIS Variable Report,1022,ZA4975
+v531,,P7 REGION II - GERMANY,,P7 REGION II - GERMANY,GESIS Variable Report,1023,ZA4975
+v532,,P7 REGION II - ITALY (11 CATEGORIES),,P7 REGION II - ITALY (11 CATEGORIES),GESIS Variable Report,1025,ZA4975
+v533,,P7 REGION II - ITALY (5 CATEGORIES),,P7 REGION II - ITALY (5 CATEGORIES),GESIS Variable Report,1026,ZA4975
+v534,,P7 REGION II - IRELAND,,P7 REGION II - IRELAND,GESIS Variable Report,1027,ZA4975
+v535,,P7 REGION II - UNITED KINGDOM,,P7 REGION II - UNITED KINGDOM,GESIS Variable Report,1028,ZA4975
+v536,,P7 REGION II - GREECE,,P7 REGION II - GREECE,GESIS Variable Report,1029,ZA4975
+v537,,P7 REGION II - SPAIN (10 CATEGORIES),,P7 REGION II - SPAIN (10 CATEGORIES),GESIS Variable Report,1030,ZA4975
+v538,,P7 REGION II - SPAIN (7 CATEGORIES),,P7 REGION II - SPAIN (7 CATEGORIES),GESIS Variable Report,1031,ZA4975
+v539,,P7 REGION II - FINLAND,,P7 REGION II - FINLAND,GESIS Variable Report,1032,ZA4975
+v540,,P7 REGION II - SWEDEN,,P7 REGION II - SWEDEN,GESIS Variable Report,1033,ZA4975
+v541,,P7 REGION II - AUSTRIA,,P7 REGION II - AUSTRIA,GESIS Variable Report,1034,ZA4975
+v542,,P7 REGION II - HUNGARY,,P7 REGION II - HUNGARY,GESIS Variable Report,1035,ZA4975
+v543,,P7 REGION II - POLAND,,P7 REGION II - POLAND,GESIS Variable Report,1036,ZA4975
+v544,,P7 REGION II - SLOVENIA,,P7 REGION II - SLOVENIA,GESIS Variable Report,1037,ZA4975
+v545,,P7 REGION II - BULGARIA,,P7 REGION II - BULGARIA,GESIS Variable Report,1038,ZA4975
+v546,,P7 REGION II - ROMANIA,,P7 REGION II - ROMANIA,GESIS Variable Report,1039,ZA4975
+v547,v547,P13 LANGUAGE OF INTERVIEW - BELGIUM,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1040,ZA4975
+v548,v548,P13 LANGUAGE OF INTERVIEW - LUXEMBOURG,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1041,ZA4975
+v549,v549,P13 LANGUAGE OF INTERVIEW - SPAIN,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1042,ZA4975
+v550,v550,P13 LANGUAGE OF INTERVIEW - FINLAND,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1043,ZA4975
+v551,v551,P13 LANGUAGE OF INTERVIEW - ESTONIA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1044,ZA4975
+v552,v552,P13 LANGUAGE OF INTERVIEW - LATVIA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1045,ZA4975
+v553,v553,P13 LANGUAGE OF INTERVIEW - MALTA,Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1046,ZA4975
+v554,,C14 RESPONDENT OCCUPATION SCALE,,C14 RESPONDENT OCCUPATION SCALE,GESIS Variable Report,1047,ZA4975
+v555,v555,SPLIT (QB4/QB6/QC1),Value Label Missing Count Percent Valid Percent,Value Label Missing Count Percent Valid Percent,GESIS Variable Report,1049,ZA4975
