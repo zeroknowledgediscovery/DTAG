@@ -11,6 +11,7 @@
 #include <exception>
 #include <map>
 #include <mutex>
+#include <thread>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -46,6 +47,39 @@ std::map<int, double> normalize_counts(const std::map<int, int>& counts) {
     return out;
 }
 
+template <typename Fn>
+void parallel_for_indices(size_t n, Fn&& fn) {
+    if (n == 0) return;
+
+    unsigned int hw = std::thread::hardware_concurrency();
+    size_t workers = hw > 0 ? static_cast<size_t>(hw) : 4u;
+
+    // Tree-level work is moderately coarse; avoid excessive thread creation.
+    workers = std::min(workers, static_cast<size_t>(16));
+    workers = std::min(workers, n);
+
+    if (workers <= 1 || n < 16) {
+        for (size_t i = 0; i < n; ++i) fn(i);
+        return;
+    }
+
+    std::atomic<size_t> next{0};
+    std::vector<std::thread> pool;
+    pool.reserve(workers);
+
+    for (size_t w = 0; w < workers; ++w) {
+        pool.emplace_back([&]() {
+            while (true) {
+                const size_t i = next.fetch_add(1, std::memory_order_relaxed);
+                if (i >= n) break;
+                fn(i);
+            }
+        });
+    }
+
+    for (auto& t : pool) t.join();
+}
+
 double persistent_qdistance(
     const PredictDistribution& predictor,
     const std::vector<int>& row_a,
@@ -57,24 +91,19 @@ double persistent_qdistance(
     std::exception_ptr first_error;
     std::mutex error_mutex;
 
-    const long long n = static_cast<long long>(tree_ids.size());
-
-    #ifdef DTAG_HAVE_OPENMP
-    #pragma omp parallel for schedule(dynamic)
-    #endif
-    for (long long i = 0; i < n; ++i) {
-        if (failed.load(std::memory_order_relaxed)) continue;
+    parallel_for_indices(tree_ids.size(), [&](size_t i) {
+        if (failed.load(std::memory_order_relaxed)) return;
         try {
-            const int tid = tree_ids[static_cast<size_t>(i)];
+            const int tid = tree_ids[i];
             const auto p_a = normalize_counts(predictor.predict(tid, row_a));
             const auto p_b = normalize_counts(predictor.predict(tid, row_b));
-            values[static_cast<size_t>(i)] = jensen_shannon_bits(p_a, p_b);
+            values[i] = jensen_shannon_bits(p_a, p_b);
         } catch (...) {
             failed.store(true, std::memory_order_relaxed);
             std::lock_guard<std::mutex> lock(error_mutex);
             if (!first_error) first_error = std::current_exception();
         }
-    }
+    });
 
     if (first_error) std::rethrow_exception(first_error);
 
@@ -103,31 +132,24 @@ std::pair<double, double> persistent_distances_to_state(
     std::exception_ptr first_error;
     std::mutex error_mutex;
 
-    const long long n = static_cast<long long>(tree_ids.size());
-
-    #ifdef DTAG_HAVE_OPENMP
-    #pragma omp parallel for schedule(dynamic)
-    #endif
-    for (long long i = 0; i < n; ++i) {
-        if (failed.load(std::memory_order_relaxed)) continue;
+    parallel_for_indices(tree_ids.size(), [&](size_t i) {
+        if (failed.load(std::memory_order_relaxed)) return;
         try {
-            const int tid = tree_ids[static_cast<size_t>(i)];
+            const int tid = tree_ids[i];
 
             // State is evaluated once for this tree and reused for both poles.
             const auto p_state = normalize_counts(predictor.predict(tid, state));
             const auto p_left = normalize_counts(predictor.predict(tid, left));
             const auto p_right = normalize_counts(predictor.predict(tid, right));
 
-            left_values[static_cast<size_t>(i)] =
-                jensen_shannon_bits(p_left, p_state);
-            right_values[static_cast<size_t>(i)] =
-                jensen_shannon_bits(p_right, p_state);
+            left_values[i] = jensen_shannon_bits(p_left, p_state);
+            right_values[i] = jensen_shannon_bits(p_right, p_state);
         } catch (...) {
             failed.store(true, std::memory_order_relaxed);
             std::lock_guard<std::mutex> lock(error_mutex);
             if (!first_error) first_error = std::current_exception();
         }
-    }
+    });
 
     if (first_error) std::rethrow_exception(first_error);
 
