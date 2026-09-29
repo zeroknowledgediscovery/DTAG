@@ -202,7 +202,7 @@ def check_config(report: Report, root: Path, cfg: Dict[str, Any], overlap: bool)
         p = resolve(root, str(value))
         valid = p.is_dir() and (p / "source_maps").is_dir() and (p / "trees" / "binary").is_dir()
         if valid:
-            report.ok(f"model {key}", str(p.relative_to(root)))
+            report.ok(f"model {key}", str(p.relative_to(root)) if p.is_relative_to(root) else str(p))
         else:
             report.warn(f"model {key}", f"native model not installed/complete: {p}")
 
