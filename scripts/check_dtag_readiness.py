@@ -28,6 +28,8 @@ from typing import Any, Dict, List
 
 import yaml
 
+from dtag_paths import model_root, resolve_repo_path
+
 ROOT_DEFAULT = Path(__file__).resolve().parents[1]
 TEXT_COLUMNS = [
     "question_text_filled",
@@ -98,8 +100,7 @@ class Report:
 
 
 def resolve(root: Path, value: str) -> Path:
-    p = Path(str(value)).expanduser()
-    return p if p.is_absolute() else (root / p)
+    return resolve_repo_path(value, root)
 
 
 def load_config(path: Path) -> Dict[str, Any]:
@@ -329,14 +330,14 @@ def check_polar_vectors(report: Report, root: Path) -> None:
 
 
 def check_eurobarometer(report: Report, root: Path) -> None:
-    model_root = root / "models/lsm/eurobarometer"
+    model_root_path = model_root(root) / "eurobarometer"
     map_root = root / "maps/eurobarometer"
     codebook_root = root / "data/eurobarometer/codebooks"
 
     models = []
-    if model_root.is_dir():
+    if model_root_path.is_dir():
         models = sorted(
-            p for p in model_root.iterdir()
+            p for p in model_root_path.iterdir()
             if p.is_dir()
             and (p / "source_maps").is_dir()
             and (p / "trees" / "binary").is_dir()
