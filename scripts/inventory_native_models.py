@@ -33,7 +33,7 @@ def inspect_model(path: Path) -> dict:
     if not out["valid_layout"]:
         return out
     try:
-        m = load_model(path, backend="native_lsm")
+        m = load_model(path, backend="native_lsm", preload=False)
         out["features"] = len(m.feature_names)
         out["trees"] = len(m.tree_ids)
         out["usable_trees"] = len(getattr(m, "usable_tree_ids", m.tree_ids))
