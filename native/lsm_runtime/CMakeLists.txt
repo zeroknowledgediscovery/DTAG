@@ -8,7 +8,6 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 find_package(Threads REQUIRED)
-find_package(OpenMP)
 include(FetchContent)
 
 FetchContent_Declare(
@@ -42,9 +41,12 @@ target_link_libraries(
   Threads::Threads
 )
 
-if(OpenMP_CXX_FOUND)
-  target_link_libraries(dtag_lsm PRIVATE OpenMP::OpenMP_CXX)
-  target_compile_definitions(dtag_lsm PRIVATE DTAG_HAVE_OPENMP=1)
+# Keep the extension as self-contained as practical on GNU/Linux.
+# LSM/DTAG C++ code is linked into this single Python extension; libstdc++ and
+# libgcc are linked statically so the runtime does not require matching shared
+# compiler runtimes on the target machine.
+if(UNIX AND NOT APPLE AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+  target_link_options(dtag_lsm PRIVATE -static-libstdc++ -static-libgcc)
 endif()
 
 set_target_properties(
