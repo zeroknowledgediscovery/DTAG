@@ -8,18 +8,22 @@ documentation link for each study, and saves the PDF as:
     data/eurobarometer/codebooks/ZAxxxx_cdb.pdf
 
 Discovery order:
-  1. legacy public DBK study-description page
-     https://dbk.gesis.org/dbksearch/SDesc2.asp?db=E&no=7575
-  2. current public GESIS study page
-     https://search.gesis.org/research_data/ZA7575
+  1. GESIS Eurobarometer public Study Profiles index
+     https://www.gesis.org/en/eurobarometer-data-service/
+       data-and-documentation/standard-special-eb/study-overview
+     -> study profile -> "Archive variable report"
+  2. GESIS Knowledge Graph resource page / SPARQL
+  3. legacy DBK and search.gesis.org compatibility routes
 
-The legacy DBK route is useful because GESIS historically exposed the
-ZAxxxx_cdb.pdf link directly from the study-description page.  Current
-access.gesis.org/dbk/<document-id> links and old
-dbk.gesis.org/dbksearch/download.asp?id=<document-id> links are both accepted.
+The Study Profiles route is the primary path because GESIS publishes the
+complete Standard/Special Eurobarometer ZA index there, including the early
+1962/1970s studies, and each archive-ready profile links the public variable
+report directly at access.gesis.org/dbk/<document-id>.  It does not require a
+GESIS login and does not depend on the search.gesis.org API that can return
+HTTP 403 to scripted clients.
 
-The downloader is resumable, validates the PDF signature, writes a manifest,
-and sleeps between requests.
+The downloader is resumable, validates both the PDF signature and the expected
+ZA/codebook identity, writes a manifest, and sleeps between requests.
 
 Examples:
   python3 scripts/download_eurobarometer_codebooks_public.py --all
@@ -55,6 +59,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode, urljoin
 from urllib.request import Request, urlopen
 
+import pdfplumber
+
 ROOT = Path(__file__).resolve().parents[1]
 MODEL_ROOT = ROOT / "models" / "lsm" / "eurobarometer"
 OUT_ROOT = ROOT / "data" / "eurobarometer" / "codebooks"
@@ -71,6 +77,7 @@ USER_AGENT = (
 )
 
 ZA_RE = re.compile(r"(ZA\d+)", re.I)
+_STUDY_OVERVIEW_CACHE: Optional[tuple[str, List["Link"]]] = None
 
 
 @dataclass
@@ -229,6 +236,26 @@ def parse_links(text: str, base_url: str) -> List[Link]:
     return out
 
 
+def _za_pattern(za: str) -> re.Pattern[str]:
+    """Match ZA ids in both compact ('ZA7575') and rendered ('ZA 7575') form."""
+    digits = re.escape(str(int(normalize_za(za)[2:])))
+    return re.compile(rf"\bZA\s*0*{digits}\b", re.I)
+
+
+def _link_mentions_za(link: Link, za: str) -> bool:
+    pattern = _za_pattern(za)
+    return bool(pattern.search(link.text) or pattern.search(link.href))
+
+
+def _study_overview_links(timeout: float) -> tuple[str, List[Link]]:
+    """Fetch the complete GESIS Study Profiles index once per process."""
+    global _STUDY_OVERVIEW_CACHE
+    if _STUDY_OVERVIEW_CACHE is None:
+        text, final_url = request_html(STUDY_OVERVIEW_URL, timeout=timeout)
+        _STUDY_OVERVIEW_CACHE = (final_url, parse_links(text, final_url))
+    return _STUDY_OVERVIEW_CACHE
+
+
 def score_link(za: str, link: Link) -> int:
     target = f"{za}_cdb.pdf".lower()
     href = link.href.lower()
@@ -316,30 +343,24 @@ def discover_from_eurobarometer_overview(
     """Resolve ZA -> GESIS study profile -> Archive variable report.
 
     This is the preferred route for Standard/Special Eurobarometer.  GESIS
-    publishes a public study-overview index containing all ZA identifiers, and
-    each study profile links its Archive variable report directly.
+    publishes a public study-overview index containing the full historical ZA
+    series.  The index is fetched once per process, then each selected study
+    profile is inspected for its explicit Archive variable report link.
     """
-    index_text, index_final = request_html(STUDY_OVERVIEW_URL, timeout=timeout)
-    index_links = parse_links(index_text, index_final)
+    za = normalize_za(za)
+    index_final, index_links = _study_overview_links(timeout)
 
-    za_low = za.lower()
-    profile_hits: List[Link] = []
-    for link in index_links:
-        text_low = link.text.lower()
-        href_low = link.href.lower()
-        if za_low in text_low or za_low in href_low:
-            profile_hits.append(link)
-
+    profile_hits = [x for x in index_links if _link_mentions_za(x, za)]
     if not profile_hits:
         raise RuntimeError(
-            f"{za} not found on Eurobarometer study-overview index"
+            f"{za} not found on Eurobarometer study-overview index {index_final}"
         )
 
-    # Exact textual ZA match is strongly preferred when more than one link
-    # happens to mention the identifier.
+    # Prefer an exact ZA mention in the visible link text over a URL-only hit.
+    pattern = _za_pattern(za)
     profile_hits.sort(
         key=lambda x: (
-            0 if re.search(rf"\b{re.escape(za_low)}\b", x.text.lower()) else 1,
+            0 if pattern.search(x.text) else 1,
             len(x.href),
             x.href,
         )
@@ -355,9 +376,18 @@ def discover_from_eurobarometer_overview(
             )
             continue
 
+        # Reject an accidental same-number page before examining its documents.
+        page_probe = re.sub(r"<[^>]+>", " ", page_text[:200000])
+        if not _za_pattern(za).search(page_probe) and not _za_pattern(za).search(page_final):
+            diagnostics.append(
+                f"{page_final}: profile does not identify expected study {za}"
+            )
+            continue
+
         links = parse_links(page_text, page_final)
 
-        # The study profiles use labels such as "Archive variable report".
+        # Study profiles use labels such as "Archive variable report".  This
+        # relation is more reliable than guessing DBK document IDs.
         report_links = []
         for link in links:
             txt = link.text.lower()
@@ -473,6 +503,44 @@ def looks_like_pdf(data: bytes, ctype: str) -> bool:
     return data.startswith(b"%PDF") or "application/pdf" in ctype.lower()
 
 
+def validate_variable_report_pdf(path: Path, expected_za: str, pages: int = 12) -> None:
+    """Verify that a PDF is documentation for the requested ZA study."""
+    expected_za = normalize_za(expected_za)
+    digits = re.escape(str(int(expected_za[2:])))
+
+    try:
+        with pdfplumber.open(str(path)) as pdf:
+            if not pdf.pages:
+                raise RuntimeError("PDF has no pages")
+            text = "\n".join(
+                (page.extract_text() or "")
+                for page in pdf.pages[: min(pages, len(pdf.pages))]
+            )
+    except Exception as e:
+        raise RuntimeError(f"cannot parse downloaded PDF: {e}") from e
+
+    compact_id = _za_pattern(expected_za)
+    gesis_id = re.compile(
+        rf"\bGESIS\s+Study\s+(?:No\.?|Number)\s*(?:ZA\s*)?0*{digits}\b",
+        re.I,
+    )
+    if not (compact_id.search(text) or gesis_id.search(text)):
+        raise RuntimeError(
+            f"downloaded PDF does not identify expected GESIS study {expected_za}"
+        )
+
+    low = text.lower()
+    doc_markers = (
+        "variable report",
+        "variable documentation",
+        "codebook",
+    )
+    if not any(marker in low for marker in doc_markers):
+        raise RuntimeError(
+            f"downloaded PDF for {expected_za} does not look like a variable report/codebook"
+        )
+
+
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -498,13 +566,17 @@ def append_manifest(row: dict) -> None:
         w.writerow({k: row.get(k, "") for k in fields})
 
 
-def existing_pdf(path: Path) -> bool:
+def existing_pdf(path: Path, expected_za: str = "") -> bool:
     if not path.is_file() or path.stat().st_size < 1000:
         return False
     try:
         with path.open("rb") as f:
-            return f.read(4) == b"%PDF"
-    except OSError:
+            if f.read(4) != b"%PDF":
+                return False
+        if expected_za:
+            validate_variable_report_pdf(path, expected_za)
+        return True
+    except (OSError, RuntimeError):
         return False
 
 
@@ -547,8 +619,8 @@ def main() -> None:
         print("=" * 72)
         print(f"[{idx}/{len(za_ids)}] {za}")
 
-        if existing_pdf(out) and not args.force:
-            print(f"SKIP existing valid PDF: {out}")
+        if existing_pdf(out, za) and not args.force:
+            print(f"SKIP existing verified variable report: {out}")
             skipped.append(za)
             continue
 
@@ -571,6 +643,11 @@ def main() -> None:
 
             tmp = out.with_suffix(out.suffix + ".part")
             tmp.write_bytes(data)
+            try:
+                validate_variable_report_pdf(tmp, za)
+            except Exception:
+                tmp.unlink(missing_ok=True)
+                raise
             tmp.replace(out)
 
             digest = sha256_bytes(data)
