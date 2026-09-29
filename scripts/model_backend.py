@@ -139,7 +139,12 @@ def _read_native_columns(root: Path) -> tuple[List[str], Dict[int, List[str]]]:
 class NativeLSMBackend:
     backend_name = "native_lsm"
 
-    def __init__(self, path: str | Path, cols_per_shard: int = 50000):
+    def __init__(
+        self,
+        path: str | Path,
+        cols_per_shard: int = 50000,
+        preload: bool = True,
+    ):
         _add_lsm_bindings_dir()
         try:
             import dtag_lsm  # type: ignore
@@ -186,8 +191,8 @@ class NativeLSMBackend:
             self.cols_per_shard,
             self._usable_tree_ids,
             len(self.feature_names),
-            True,
-            True,
+            bool(preload),
+            bool(preload),
         )
 
     @property
@@ -293,14 +298,18 @@ class NativeLSMBackend:
         return f"{self.root}|{h.hexdigest()}|native_lsm"
 
 
-def load_model(path: str | Path, backend: str = "auto"):
+def load_model(
+    path: str | Path,
+    backend: str = "auto",
+    preload: bool = True,
+):
     name = str(backend or "auto").strip().lower()
     if name not in {"auto", "native_lsm", "native", "lsm"}:
         raise ValueError(
             f"DTAG native-only branch does not support backend {backend!r}; "
             "use a native LSM model directory."
         )
-    return NativeLSMBackend(path)
+    return NativeLSMBackend(path, preload=preload)
 
 def model_feature_names(path: str | Path, backend: str = "auto") -> List[str]:
     return list(load_model(path, backend=backend).feature_names)
