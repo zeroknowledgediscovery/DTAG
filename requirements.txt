@@ -7,6 +7,5 @@ pdfplumber
 pyyaml>=6.0
 
 
-# Native LSM runtime modules (predict_distribution, qdistance, qsample) are
-# compiled from zeroknowledgediscovery/lsm rather than installed from PyPI.
-# Set LSM_BINDINGS_DIR=/path/to/lsm/bin or add that directory to PYTHONPATH.
+# The native DTAG LSM runtime is bundled in this repository under
+# native/lsm_runtime; no sibling LSM repository or PYTHONPATH override is needed.
