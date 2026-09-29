@@ -4,7 +4,7 @@
 > steps (including Google Cloud deployment) see [HANDOFF.md](HANDOFF.md).
 
 This document was written before the web application code, from a reading of
-the `native-lsm-clean` branch. It records what the native DTAG runtime does
+the `native-lsm-clean` branch (since promoted to `main`). It records what the native DTAG runtime does
 today, which parts are extracted into reusable objects, and how the web
 application sits on top of them without becoming a second DTAG implementation.
 

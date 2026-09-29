@@ -4,7 +4,7 @@
 in particular to deploy it on Google Cloud. Read this file first; it is the
 single source for *what exists, what must not break, and what to do next*.
 
-Branch: `native-lsm-clean` · Repo: `zeroknowledgediscovery/DTAG`
+Branch: `main` (developed on `native-lsm-clean`) · Repo: `zeroknowledgediscovery/DTAG`
 
 Related documents (read as needed):
 
@@ -133,7 +133,7 @@ Done and verified in a Linux container (Python 3.13):
 - Browser flows driven with Playwright: preset → auto-select → auto-download →
   start → suggested question → answer/evidence → export → reset; Kenya 2005 →
   Afrobarometer R3; France 2019-05-15 → Eurobarometer ZA7575.
-- Direct `pip install git+…@native-lsm-clean` into a clean venv, `dtag-web`
+- Direct `pip install git+…@main` into a clean venv, `dtag-web`
   from an empty model cache: works.
 - Docker image built and run; models persist on the `/data` volume across restarts.
 
@@ -183,7 +183,7 @@ cache.
 - VM: `e2-standard-2` (8 GB RAM), Ubuntu 24.04 LTS or Debian 13, 30 GB
   balanced persistent disk, static external IP, HTTPS firewall rule.
 - Install Docker Engine + Compose plugin.
-- `git clone -b native-lsm-clean https://github.com/zeroknowledgediscovery/DTAG.git`
+- `git clone https://github.com/zeroknowledgediscovery/DTAG.git`
 - Put `OPENAI_API_KEY` in `webapp/.env` (fetched from Secret Manager at boot,
   not committed).
 - Add a reverse proxy with automatic TLS (Caddy) in front of the `dtag`

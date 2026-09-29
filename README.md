@@ -20,7 +20,7 @@ The deep audit verifies zero missing maps, zero bad maps, and complete model-map
 
 ```bash
 python3.13 -m venv dtag-env && source dtag-env/bin/activate
-pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 export OPENAI_API_KEY="sk-..."      # or run with DTAG_LLM_BACKEND=mock to try it without a key
 dtag-web                            # then open http://127.0.0.1:8000
 ```
@@ -40,7 +40,7 @@ source .venv/bin/activate
 
 python -m pip install --upgrade pip
 python -m pip install \
-  "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+  "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 ```
 
 List the available DTAG profiles:
@@ -74,7 +74,7 @@ A complete minimal setup is therefore:
 ```bash
 python3.13 -m venv .venv
 source .venv/bin/activate
-python -m pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+python -m pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 
 dtag-models gss/gss_2024
 

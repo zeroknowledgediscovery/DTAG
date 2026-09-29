@@ -3,8 +3,9 @@ name: Native LSM DTAG dev checks
 on:
   push:
     branches:
-      - dev/native-lsm-dtag
+      - main
       - native-lsm-clean
+      - dev/native-lsm-dtag
   pull_request:
     branches:
       - main

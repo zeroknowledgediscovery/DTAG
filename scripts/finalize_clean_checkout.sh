@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Finalize a native-lsm-clean checkout after map generation.
+# Finalize a clean native-LSM checkout (main or native-lsm-clean) after map generation.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -14,8 +14,8 @@ elif [[ $# -gt 0 ]]; then
 fi
 
 branch="$(git branch --show-current)"
-if [[ "$branch" != "native-lsm-clean" ]]; then
-  echo "ERROR: expected branch native-lsm-clean, found: $branch" >&2
+if [[ "$branch" != "main" && "$branch" != "native-lsm-clean" ]]; then
+  echo "ERROR: expected branch main or native-lsm-clean, found: $branch" >&2
   exit 1
 fi
 

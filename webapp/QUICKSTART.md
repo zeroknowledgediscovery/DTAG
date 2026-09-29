@@ -18,7 +18,7 @@ python3.13 -m venv dtag-env
 source dtag-env/bin/activate
 
 pip install --upgrade pip
-pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 ```
 
 This installs the `dtag-web` command (plus `dtag`, `dtag-models`, `dtag-doctor`).
@@ -26,7 +26,7 @@ This installs the `dtag-web` command (plus `dtag`, `dtag-models`, `dtag-doctor`)
 **Updating later:** stop the server, then
 
 ```bash
-pip install --upgrade --force-reinstall "git+https://github.com/zeroknowledgediscovery/DTAG.git@native-lsm-clean"
+pip install --upgrade --force-reinstall "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 ```
 
 ## 2. Set your OpenAI key
@@ -96,7 +96,7 @@ the public internet, also put it behind HTTPS.)
 **From a clone** (for development):
 
 ```bash
-git clone -b native-lsm-clean https://github.com/zeroknowledgediscovery/DTAG.git
+git clone https://github.com/zeroknowledgediscovery/DTAG.git
 cd DTAG
 python3.13 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -108,7 +108,7 @@ cp .env.example .env        # put OPENAI_API_KEY=... in .env
 **With Docker** (any OS with Docker):
 
 ```bash
-git clone -b native-lsm-clean https://github.com/zeroknowledgediscovery/DTAG.git
+git clone https://github.com/zeroknowledgediscovery/DTAG.git
 cd DTAG/webapp
 cp .env.example .env        # put OPENAI_API_KEY=... in .env
 docker compose up --build   # http://localhost:8000
