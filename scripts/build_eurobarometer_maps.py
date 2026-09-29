@@ -120,24 +120,50 @@ def _feature_lookup(features: Sequence[str]) -> Tuple[Dict[str, str], List[str]]
 
 
 def _match_header(line: str, exact_lower: Dict[str, str], ordered: Sequence[str]) -> Optional[Tuple[str, str]]:
-    """Match GESIS block headers such as 'q1_6 - NATIONALITY: FRANCE'."""
-    s = _clean_line(line)
-    if " - " not in s:
-        return None
-    left, right = s.split(" - ", 1)
-    key = left.strip().lower()
-    if key in exact_lower:
-        return exact_lower[key], right.strip()
+    """Match both modern and older GESIS variable-block headers.
 
-    # Some PDFs can merge punctuation/spacing oddly. Use a conservative
-    # case-insensitive startswith only when followed by a separator.
-    low = s.lower()
-    for feature in ordered:
-        fl = feature.lower()
-        if low.startswith(fl):
-            rem = s[len(feature):].lstrip()
-            if rem.startswith("-"):
-                return feature, rem[1:].strip()
+    Modern reports commonly use:
+        q1_6 - NATIONALITY: FRANCE
+
+    Older GESIS Variable Reports use a fixed-width form:
+        v12            Q2 LIFE SATISFACTION
+
+    The older reports later repeat the variable name inside indented frequency
+    and crosstab tables.  Requiring the fixed-width header to begin near the
+    left margin prevents those table rows from being mistaken for new blocks.
+    """
+    raw = str(line or "").replace("\\u00ad", "").replace("\\x00", " ")
+    s = _clean_line(raw)
+
+    # Modern "variable - label" form.
+    if " - " in s:
+        left, right = s.split(" - ", 1)
+        key = left.strip().lower()
+        if key in exact_lower:
+            return exact_lower[key], right.strip()
+
+        # Some PDFs merge punctuation/spacing oddly. Use a conservative
+        # case-insensitive startswith only when followed by a separator.
+        low = s.lower()
+        for feature in ordered:
+            fl = feature.lower()
+            if low.startswith(fl):
+                rem = s[len(feature):].lstrip()
+                if rem.startswith("-"):
+                    return feature, rem[1:].strip()
+
+    # Older fixed-width Variable Report form. True block headers are at/near
+    # the left margin, e.g. "v12            Q2 LIFE SATISFACTION". Crosstab
+    # repetitions are substantially indented and are intentionally ignored.
+    leading = len(raw) - len(raw.lstrip())
+    if leading <= 4:
+        m = re.match(r"^\\s*(\\S+)\\s{2,}(.+?)\\s*$", raw)
+        if m:
+            key = m.group(1).strip().lower()
+            label = _clean_line(m.group(2))
+            if key in exact_lower and label:
+                return exact_lower[key], label
+
     return None
 
 
@@ -263,7 +289,11 @@ def parse_variable_report(pdf_path: Path, features: Sequence[str]) -> Dict[str, 
                 line = _clean_line(raw)
                 if not line:
                     continue
-                matched = _match_header(line, exact_lower, ordered)
+                # Pass the original extracted line to header matching because
+                # older GESIS reports encode block structure via indentation
+                # and fixed-width spacing. Store normalized text only after
+                # header detection.
+                matched = _match_header(raw, exact_lower, ordered)
                 if matched:
                     flush()
                     current_var, current_label = matched
