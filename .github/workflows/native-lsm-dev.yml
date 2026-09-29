@@ -47,6 +47,10 @@ jobs:
           python scripts/interactive.py --config configs/dtag_config.yaml --list
 
       - name: Test native preprocessing contract
+        env:
+          # The contract asserts repository-local model paths; fresh checkouts
+          # otherwise resolve the model root to ~/.cache/dtag/models.
+          DTAG_MODEL_ROOT: ${{ github.workspace }}/models/lsm
         run: |
           mkdir -p /tmp/dtag-native-fixture
           cat > /tmp/dtag-native-fixture/gss_2024.csv <<'CSV'
