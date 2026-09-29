@@ -59,6 +59,10 @@ ROOT = Path(__file__).resolve().parents[1]
 MODEL_ROOT = ROOT / "models" / "lsm" / "eurobarometer"
 OUT_ROOT = ROOT / "data" / "eurobarometer" / "codebooks"
 MANIFEST = OUT_ROOT / "download_manifest.csv"
+STUDY_OVERVIEW_URL = (
+    "https://www.gesis.org/en/eurobarometer-data-service/"
+    "data-and-documentation/standard-special-eb/study-overview"
+)
 
 USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) "
@@ -305,10 +309,103 @@ def _rescore_with_headers(
     return out
 
 
+def discover_from_eurobarometer_overview(
+    za: str,
+    timeout: float,
+) -> tuple[str, str, int]:
+    """Resolve ZA -> GESIS study profile -> Archive variable report.
+
+    This is the preferred route for Standard/Special Eurobarometer.  GESIS
+    publishes a public study-overview index containing all ZA identifiers, and
+    each study profile links its Archive variable report directly.
+    """
+    index_text, index_final = request_html(STUDY_OVERVIEW_URL, timeout=timeout)
+    index_links = parse_links(index_text, index_final)
+
+    za_low = za.lower()
+    profile_hits: List[Link] = []
+    for link in index_links:
+        text_low = link.text.lower()
+        href_low = link.href.lower()
+        if za_low in text_low or za_low in href_low:
+            profile_hits.append(link)
+
+    if not profile_hits:
+        raise RuntimeError(
+            f"{za} not found on Eurobarometer study-overview index"
+        )
+
+    # Exact textual ZA match is strongly preferred when more than one link
+    # happens to mention the identifier.
+    profile_hits.sort(
+        key=lambda x: (
+            0 if re.search(rf"\b{re.escape(za_low)}\b", x.text.lower()) else 1,
+            len(x.href),
+            x.href,
+        )
+    )
+
+    diagnostics = []
+    for profile in profile_hits:
+        try:
+            page_text, page_final = request_html(profile.href, timeout=timeout)
+        except Exception as e:
+            diagnostics.append(
+                f"{profile.href}: {type(e).__name__}: {e}"
+            )
+            continue
+
+        links = parse_links(page_text, page_final)
+
+        # The study profiles use labels such as "Archive variable report".
+        report_links = []
+        for link in links:
+            txt = link.text.lower()
+            href = link.href.lower()
+            score = 0
+            if "archive variable report" in txt:
+                score += 10000
+            elif "variable report" in txt:
+                score += 8000
+            elif "codebook" in txt:
+                score += 6000
+
+            if "access.gesis.org/dbk/" in href:
+                score += 1500
+            if href.endswith(".pdf"):
+                score += 500
+            if "questionnaire" in txt:
+                score -= 3000
+
+            if score > 0:
+                report_links.append((score, link))
+
+        if report_links:
+            report_links.sort(key=lambda x: (-x[0], x[1].href))
+            score, best = report_links[0]
+            return best.href, page_final, score
+
+        diagnostics.append(
+            f"{page_final}: no Archive variable report/codebook link found"
+        )
+
+    raise RuntimeError("; ".join(diagnostics))
+
+
 def discover_document(za: str, timeout: float) -> tuple[str, str, int]:
     diagnostics = []
 
-    # 1) Preferred route: dereference the public GESIS KG resource page.
+    # 1) Preferred route for Eurobarometer: the public GESIS study-profile
+    # index. It contains ZA identifiers and links each study to its Archive
+    # variable report without requiring login or search.gesis.org.
+    try:
+        return discover_from_eurobarometer_overview(za, timeout=timeout)
+    except Exception as e:
+        diagnostics.append(
+            f"Eurobarometer study overview: {type(e).__name__}: {e}"
+        )
+
+    # 2) Secondary route: dereference the public GESIS KG resource page.
     # This page exposes the dataset metadata directly and includes public
     # access.gesis.org/dbk/... documentation links.  It avoids both the
     # retired DBK catalog and the search.gesis.org anti-bot response.
@@ -331,7 +428,7 @@ def discover_document(za: str, timeout: float) -> tuple[str, str, int]:
     except Exception as e:
         diagnostics.append(f"{resource_page}: {type(e).__name__}: {e}")
 
-    # 2) SPARQL route, retained as a secondary option.  Some deployments of
+    # 3) SPARQL route, retained as a secondary option.  Some deployments of
     # the endpoint reject POST/GET requests transiently, so failure here is not
     # fatal as long as the resource page works.
     try:
@@ -346,7 +443,7 @@ def discover_document(za: str, timeout: float) -> tuple[str, str, int]:
     except Exception as e:
         diagnostics.append(f"GESIS KG SPARQL: {type(e).__name__}: {e}")
 
-    # 3) Compatibility fallbacks.
+    # 4) Compatibility fallbacks.
     digits = str(int(za[2:]))
     pages = [
         f"https://dbk.gesis.org/dbksearch/SDesc2.asp?db=E&no={digits}",
