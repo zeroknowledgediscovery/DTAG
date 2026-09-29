@@ -55,18 +55,20 @@ def runtime_data_files():
             if path.suffix in EXCLUDE_SUFFIXES:
                 continue
             dest = Path("share") / "dtag" / relpath.parent
-            groups.setdefault(str(dest), []).append(str(path))
+            # data_files sources must be relative to setup.py (setuptools
+            # rejects absolute paths when building wheels).
+            groups.setdefault(str(dest), []).append(relpath.as_posix())
 
     for rel in WEBAPP_FILES:
         p = ROOT / rel
         if p.is_file():
-            groups.setdefault(str(Path("share") / "dtag" / Path(rel).parent), []).append(str(p))
+            groups.setdefault(str(Path("share") / "dtag" / Path(rel).parent), []).append(rel)
 
     # Keep top-level metadata next to the installed runtime tree.
     for name in ("README.md", "VERSION", "requirements.txt"):
         p = ROOT / name
         if p.exists():
-            groups.setdefault("share/dtag", []).append(str(p))
+            groups.setdefault("share/dtag", []).append(name)
 
     return sorted(groups.items())
 
