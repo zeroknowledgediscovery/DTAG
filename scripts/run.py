@@ -57,9 +57,10 @@ def resolve_optional_path(root: Path, value: Any) -> str:
 
 def resolve_named_path(root: Path, cfg: Dict[str, Any], section: str, value: str) -> str:
     table = cfg.get(section, {}) or {}
-    if isinstance(table, dict) and value in table:
-        return resolve_path(root, str(table[value]))
-    return resolve_path(root, value)
+    raw = str(table[value]) if isinstance(table, dict) and value in table else value
+    if section == "models":
+        return str(resolve_repo_path(raw, root))
+    return resolve_path(root, raw)
 
 
 def get_experiment(cfg: Dict[str, Any], name: str) -> Dict[str, Any]:
