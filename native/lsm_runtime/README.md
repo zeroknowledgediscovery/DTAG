@@ -32,8 +32,8 @@ Subsequent `predict_distributions`, `qdistance`, and ideology-distance calls
 reuse those caches. Switching to another DTAG process/model creates another
 runtime object.
 
-The old stateless `predict_distribution` and `qdistance` extension modules
-are supported only as a temporary compatibility fallback.
+The clean DTAG branch does not use the old stateless external extension
+modules. Build this bundled runtime before running DTAG.
 
 ## Build dependencies
 
