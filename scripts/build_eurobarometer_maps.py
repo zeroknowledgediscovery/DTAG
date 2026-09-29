@@ -21,7 +21,7 @@ Examples:
   python3 scripts/build_eurobarometer_maps.py \
       --za ZA7575 \
       --codebook data/eurobarometer/codebooks/ZA7575_cdb.pdf \
-      --model models/lsm/eurobarometer/ZA7575 \
+      --model "$DTAG_MODEL_ROOT/eurobarometer/ZA7575" \
       --out maps/eurobarometer/ZA7575_map.csv
 """
 from __future__ import annotations
@@ -40,8 +40,10 @@ import pandas as pd
 import pdfplumber
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from dtag_paths import model_path  # noqa: E402
 DEFAULT_CODEBOOK_DIR = ROOT / "data" / "eurobarometer" / "codebooks"
-DEFAULT_MODEL_DIR = ROOT / "models" / "lsm" / "eurobarometer"
+DEFAULT_MODEL_DIR = model_path("eurobarometer")
 DEFAULT_OUT_DIR = ROOT / "maps" / "eurobarometer"
 
 sys.path.insert(0, str(ROOT / "scripts"))
