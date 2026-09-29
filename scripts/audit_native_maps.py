@@ -125,7 +125,7 @@ def main() -> None:
 
             if args.deep:
                 try:
-                    model = load_model(model_path, backend="native_lsm")
+                    model = load_model(model_path, backend="native_lsm", preload=False)
                     feats = set(map(str, model.feature_names))
                     overlap = len(feats & map_vars)
                     frac = overlap / max(1, len(feats))
