@@ -46,3 +46,11 @@ native/lsm_runtime/python/*.dylib
 /models/public_releases/
 /dtag-models-*/
 /*.dtag-model-release/
+
+# DTAG web application: dependencies and local runtime data
+webapp/frontend/node_modules/
+webapp/frontend/tsconfig.tsbuildinfo
+webapp/data/*
+!webapp/data/.gitkeep
+!webapp/data/README.md
+webapp/.env

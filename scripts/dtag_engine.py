@@ -837,6 +837,7 @@ class DTAGEngine:
         self.eurobarometer = EurobarometerRouter()
         self.profile_store = ProfileStore(Path(profiles_path).expanduser().resolve() if profiles_path else None)
         self._capabilities: Dict[str, Dict[str, Any]] = {}
+        self._possible_cache: Dict[str, Dict[str, List[str]]] = {}
         self._cap_lock = threading.Lock()
 
     # -- environment --------------------------------------------------------
@@ -979,17 +980,34 @@ class DTAGEngine:
 
     # -- capabilities (from installed native source maps; no runtime load) ---
 
+    def _possible_for(self, key: str) -> Optional[Dict[str, List[str]]]:
+        """Categorical support per feature, without loading the native runtime."""
+        if key in self.registry.loaded:
+            return self.registry.loaded[key].possible
+        if not self.registry.is_installed(key):
+            return None
+        with self._cap_lock:
+            cached = self._possible_cache.get(key)
+        if cached is not None:
+            return cached
+        try:
+            names, values = _read_native_columns(model_dir(key))
+        except Exception:
+            return None
+        possible = {names[i]: list(values.get(i, [])) for i in range(len(names))}
+        with self._cap_lock:
+            self._possible_cache[key] = possible
+        return possible
+
     def capabilities(self, key: str) -> Optional[Dict[str, Any]]:
         if not self.registry.is_installed(key):
             return None
         with self._cap_lock:
             if key in self._capabilities:
                 return self._capabilities[key]
-        if key in self.registry.loaded:
-            possible = self.registry.loaded[key].possible
-        else:
-            names, values = _read_native_columns(model_dir(key))
-            possible = {names[i]: list(values.get(i, [])) for i in range(len(names))}
+        possible = self._possible_for(key)
+        if possible is None:
+            return None
         feat = set(possible)
         country_feats = sorted(
             [v for v in feat if "country" in v.lower() and "region" not in v.lower() and possible.get(v)],
@@ -1014,13 +1032,9 @@ class DTAGEngine:
 
     def preview_conditioning(self, key: str, country: str, continent: str, year: Optional[int]) -> Optional[Dict[str, Any]]:
         """Run the real forced-assignment logic against the model's support."""
-        if not self.registry.is_installed(key):
+        possible = self._possible_for(key)
+        if possible is None:
             return None
-        if key in self.registry.loaded:
-            possible = self.registry.loaded[key].possible
-        else:
-            names, values = _read_native_columns(model_dir(key))
-            possible = {names[i]: list(values.get(i, [])) for i in range(len(names))}
         try:
             forced, meta = localized.build_forced_assignments(
                 feat=set(possible), possible=possible, year=year, country=country, continent=continent,
@@ -1091,6 +1105,10 @@ class DTAGEngine:
         spec.base_profile = base
         spec.description = str(data.get("description", "") or spec.description)
         overrides = {k: data[k] for k in OVERRIDE_FIELDS if k in data}
+        saved_run = data.get("run") or {}
+        for k in list(RUN_PARAM_BOUNDS) + list(RUN_PARAM_CHOICES):
+            if k in saved_run and k not in overrides and saved_run[k] is not None:
+                overrides[k] = saved_run[k]
         return self.apply_overrides(spec, overrides)
 
     def _adhoc_spec(self, model_key: str) -> ProfileSpec:

@@ -58,6 +58,23 @@ def models_main() -> None:
     raise SystemExit(_exec("fetch_models.py", sys.argv[1:]))
 
 
+def web_main() -> None:
+    """Launch the DTAG web application (FastAPI + built browser UI)."""
+    root = runtime_root()
+    backend = root / "webapp" / "backend"
+    if not (backend / "dtag_web" / "app.py").is_file():
+        raise SystemExit(f"Installed DTAG web application is missing: {backend}")
+    env = dict(os.environ)
+    paths = [str(backend), str(root / "scripts")]
+    if env.get("PYTHONPATH"):
+        paths.append(env["PYTHONPATH"])
+    env["PYTHONPATH"] = os.pathsep.join(paths)
+    env.setdefault("DTAG_RUNTIME_ROOT", str(root))
+    raise SystemExit(
+        subprocess.call([sys.executable, "-m", "dtag_web", *sys.argv[1:]], cwd=str(root), env=env)
+    )
+
+
 def doctor_main() -> None:
     root = runtime_root()
     scripts = [
