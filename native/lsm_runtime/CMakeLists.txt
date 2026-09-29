@@ -8,6 +8,7 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 find_package(Threads REQUIRED)
+find_package(OpenMP)
 include(FetchContent)
 
 FetchContent_Declare(
@@ -40,6 +41,11 @@ target_link_libraries(
   nlohmann_json::nlohmann_json
   Threads::Threads
 )
+
+if(OpenMP_CXX_FOUND)
+  target_link_libraries(dtag_lsm PRIVATE OpenMP::OpenMP_CXX)
+  target_compile_definitions(dtag_lsm PRIVATE DTAG_HAVE_OPENMP=1)
+endif()
 
 set_target_properties(
   dtag_lsm
