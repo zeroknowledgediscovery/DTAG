@@ -1328,8 +1328,13 @@ def build_pole_vector(model, pole_map: Dict[str, str], idx_map: Dict[str, int]) 
 def ideology_index_from_vectors(s: np.ndarray, sL: np.ndarray, sR: np.ndarray, model, dLR: float) -> float:
     if not np.isfinite(dLR) or dLR <= 0:
         return 0.0
-    dL = model.qdistance(sL, s)
-    dR = model.qdistance(sR, s)
+
+    if hasattr(model, "distances_to_state"):
+        dL, dR = model.distances_to_state(sL, sR, s)
+    else:
+        dL = model.qdistance(sL, s)
+        dR = model.qdistance(sR, s)
+
     if not np.isfinite(dL) or not np.isfinite(dR):
         return 0.0
     return float((dL - dR) / dLR)
@@ -1617,6 +1622,9 @@ def main() -> None:
         # Load model once through the backend-neutral runtime adapter.
         model = load_model(args.qnet, backend=args.model_backend)
         timings_init["load_model"] = time.time() - t0
+        if hasattr(model, "runtime_kind"):
+            meta["native_runtime_kind"] = str(model.runtime_kind)
+            print(f"INFO: native runtime = {model.runtime_kind}", file=sys.stderr)
         feat = set(model.feature_names)
         idx_map = {model.feature_names[i]: i for i in range(len(model.feature_names))}
         meta["model_backend"] = getattr(model, "backend_name", args.model_backend)
