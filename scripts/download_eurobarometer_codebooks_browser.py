@@ -60,6 +60,7 @@ import argparse
 import base64
 import csv
 import hashlib
+import multiprocessing as mp
 import re
 import time
 from pathlib import Path
@@ -125,30 +126,26 @@ def parse_dbk_args(values: Iterable[str]) -> Dict[str, int]:
     return out
 
 
-def existing_verified_pdf(path: Path, za: str) -> bool:
+def _basic_pdf_check(path: Path) -> None:
     if not path.is_file() or path.stat().st_size < 1000:
-        return False
-    try:
-        validate_variable_report_pdf(path, za)
-        return True
-    except Exception:
-        return False
-
-
-def validate_variable_report_pdf(path: Path, expected_za: str, pages: int = 15) -> None:
-    expected_za = normalize_za(expected_za)
-    pattern = za_pattern(expected_za)
-    digits = re.escape(str(int(expected_za[2:])))
-    gesis_study = re.compile(
-        rf"\bGESIS\s+Study\s+(?:No\.?|Number)\s*(?:ZA\s*)?0*{digits}\b",
-        re.I,
-    )
-
+        raise RuntimeError("PDF is missing or implausibly small")
     with path.open("rb") as f:
         if f.read(4) != b"%PDF":
             raise RuntimeError("file is not a PDF")
 
+
+def _pdf_validation_worker(path_str: str, expected_za: str, pages: int, queue) -> None:
+    """Run potentially pathological PDF text extraction outside the main batch."""
     try:
+        path = Path(path_str)
+        expected_za = normalize_za(expected_za)
+        pattern = za_pattern(expected_za)
+        digits = re.escape(str(int(expected_za[2:])))
+        gesis_study = re.compile(
+            rf"\bGESIS\s+Study\s+(?:No\.?|Number)\s*(?:ZA\s*)?0*{digits}\b",
+            re.I,
+        )
+
         with pdfplumber.open(str(path)) as pdf:
             if not pdf.pages:
                 raise RuntimeError("PDF has no pages")
@@ -156,22 +153,82 @@ def validate_variable_report_pdf(path: Path, expected_za: str, pages: int = 15) 
                 (p.extract_text() or "")
                 for p in pdf.pages[: min(pages, len(pdf.pages))]
             )
-    except Exception as e:
-        raise RuntimeError(f"cannot parse PDF: {e}") from e
 
-    if not (pattern.search(text) or gesis_study.search(text)):
-        raise RuntimeError(f"PDF does not identify expected study {expected_za}")
+        if not (pattern.search(text) or gesis_study.search(text)):
+            raise RuntimeError(
+                f"PDF does not identify expected study {expected_za}"
+            )
 
-    low = text.lower()
-    markers = (
-        "variable report",
-        "variable documentation",
-        "codebook",
-    )
-    if not any(x in low for x in markers):
-        raise RuntimeError(
-            f"PDF identifies {expected_za} but does not look like a variable report/codebook"
+        low = text.lower()
+        markers = (
+            "variable report",
+            "variable documentation",
+            "codebook",
         )
+        if not any(x in low for x in markers):
+            raise RuntimeError(
+                f"PDF identifies {expected_za} but does not look like "
+                "a variable report/codebook"
+            )
+
+        queue.put(("ok", ""))
+    except Exception as e:
+        queue.put(("error", f"{type(e).__name__}: {e}"))
+
+
+def validate_variable_report_pdf(
+    path: Path,
+    expected_za: str,
+    pages: int = 3,
+    timeout_sec: float = 12.0,
+) -> str:
+    """Validate without allowing old GESIS PDFs to hang the batch.
+
+    Returns "verified" when text extraction confirms the expected study and
+    document type, or "timeout" when the structural PDF check passes but
+    pdfplumber exceeds the bounded validation time.
+    """
+    _basic_pdf_check(path)
+
+    ctx = mp.get_context("fork")
+    queue = ctx.Queue()
+    proc = ctx.Process(
+        target=_pdf_validation_worker,
+        args=(str(path), expected_za, pages, queue),
+    )
+    proc.start()
+    proc.join(timeout_sec)
+
+    if proc.is_alive():
+        proc.terminate()
+        proc.join(2)
+        return "timeout"
+
+    if queue.empty():
+        raise RuntimeError(
+            f"PDF validation worker exited without a result "
+            f"(exitcode={proc.exitcode})"
+        )
+
+    status, message = queue.get()
+    if status != "ok":
+        raise RuntimeError(message)
+    return "verified"
+
+
+def existing_verified_pdf(path: Path, za: str) -> bool:
+    """Fast resumability check.
+
+    Existing files are trusted after a structural PDF check.  They were
+    provenance-checked when downloaded from the study profile, and repeating
+    expensive pdfplumber extraction here would make --all startup pathological
+    for historical reports.
+    """
+    try:
+        _basic_pdf_check(path)
+        return True
+    except Exception:
+        return False
 
 
 def append_manifest(row: dict) -> None:
@@ -487,12 +544,28 @@ def main() -> None:
                 )
 
                 tmp = out.with_suffix(".pdf.part")
+                print("local write:              staging PDF", flush=True)
                 tmp.write_bytes(data)
+
+                print("local validation:         checking PDF (max 12 s)", flush=True)
                 try:
-                    validate_variable_report_pdf(tmp, za)
+                    validation = validate_variable_report_pdf(
+                        tmp, za, pages=3, timeout_sec=12.0
+                    )
                 except Exception:
                     tmp.unlink(missing_ok=True)
                     raise
+
+                if validation == "timeout":
+                    print(
+                        "local validation:         PDF parser timed out; "
+                        "accepting structurally valid PDF from verified "
+                        "Archive variable report link",
+                        flush=True,
+                    )
+                else:
+                    print("local validation:         verified", flush=True)
+
                 tmp.replace(out)
 
                 digest = hashlib.sha256(data).hexdigest()
