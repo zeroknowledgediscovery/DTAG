@@ -12,6 +12,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 OBSOLETE_PATHS = [
     "models/gss",
+    "DTAG",
+    "node_relations.csv",
+    "ZA4669_features.txt",
     "models/wvs",
     "models/afrobarometer",
     "scripts/legacy_long_names",
