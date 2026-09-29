@@ -10,6 +10,8 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from dtag_paths import model_path
+
 import numpy as np
 from model_backend import load_model
 
@@ -24,7 +26,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument(
         '--qnet',
-        default=str(DTAG_ROOT / 'models/lsm/afrobarometer/r5'),
+        default=str(model_path('afrobarometer', 'r5')),
     )
     ap.add_argument(
         '--model-backend',
