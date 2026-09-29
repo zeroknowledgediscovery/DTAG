@@ -27,11 +27,11 @@ Examples:
     --codebook_pdf afrobarometer_merged_data/merged_r1_codebook2.pdf \
     --out maps/afrobarometer/merged_r1_map.csv
 
-Optional model alignment (Quasinet or native LSM):
+Optional native-LSM model alignment:
   python getmap_dtag.py \
     --data merged_r9_data.sav \
     --codebook_pdf merged_r9_codebook.pdf \
-    --qnet models/afrobarometer/merged_r9_qnet.pkl.gz \
+    --model models/lsm/afrobarometer/r9 \
     --out maps/afrobarometer/merged_r9_map.csv
 """
 
@@ -476,8 +476,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Build a DTAG-ready Afrobarometer variable -> question_text map")
     ap.add_argument("--data", type=Path, default=None, help="Optional .sav, .dta, or .csv survey data file for exact variables/labels")
     ap.add_argument("--codebook_pdf", type=Path, nargs="+", required=True, help="One or more Afrobarometer codebook PDFs")
-    ap.add_argument("--qnet", "--model", dest="model", type=Path, default=None, help="Optional legacy Quasinet file or native LSM directory; restrict output to exact model feature names")
-    ap.add_argument("--model-backend", choices=["auto", "quasinet", "native_lsm"], default="auto")
+    ap.add_argument("--qnet", "--model", dest="model", type=Path, default=None, help="Optional native LSM model directory; restrict output to exact model feature names")
+    ap.add_argument("--model-backend", choices=["auto", "native_lsm"], default="auto")
     ap.add_argument("--out", type=Path, required=True, help="Output DTAG map CSV with variable,question_text")
     ap.add_argument("--audit_out", type=Path, default=None, help="Optional audit CSV; default: <out_stem>_audit.csv")
     ap.add_argument("--text-mode", choices=["combined", "best"], default="combined", help="combined keeps label + all wording; best keeps one best wording")
