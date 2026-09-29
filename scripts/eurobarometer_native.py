@@ -20,6 +20,7 @@ wave-specific codebook.
 from __future__ import annotations
 
 import argparse
+import csv
 import subprocess
 import sys
 from datetime import date
@@ -265,6 +266,27 @@ def main() -> None:
             "Expected source_maps/ and trees/binary/."
         )
     map_path = resolve_map(za, args.map)
+
+    # Fallback maps are intentionally nonblocking for development, but surface
+    # their provenance so an inferred semantic map is never mistaken for an
+    # exact GESIS-codebook map.
+    try:
+        with map_path.open(newline="", encoding="utf-8") as fh:
+            rows = list(csv.DictReader(fh))
+        if rows and "map_provenance" in rows[0]:
+            counts = {}
+            for row in rows:
+                p = str(row.get("map_provenance", "")).strip() or "UNKNOWN"
+                counts[p] = counts.get(p, 0) + 1
+            unresolved = counts.get("UNRESOLVED_NATIVE", 0)
+            resolved = len(rows) - unresolved
+            print(
+                f"MAP QUALITY: fallback map; resolved={resolved}/{len(rows)} "
+                f"({resolved / max(1, len(rows)):.3f}); "
+                f"unresolved_native={unresolved}"
+            )
+    except Exception:
+        pass
 
     logs_dir = args.logs_dir or f"outputs/interactive_eurobarometer_{za}"
     tag = args.tag or f"Eurobarometer_{za}_interactive"
