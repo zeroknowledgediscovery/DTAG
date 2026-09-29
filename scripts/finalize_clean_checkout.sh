@@ -2,11 +2,11 @@
 # Finalize a native-lsm-clean checkout after map generation.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "\${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 APPLY=0
-if [[ "\${1:-}" == "--apply" ]]; then
+if [[ "${1:-}" == "--apply" ]]; then
   APPLY=1
 elif [[ $# -gt 0 ]]; then
   echo "Usage: $0 [--apply]" >&2
@@ -52,7 +52,7 @@ legacy=(
   "bin/complete_native_models.sh"
 )
 
-for p in "\${legacy[@]}"; do
+for p in "${legacy[@]}"; do
   if [[ -e "$p" ]]; then
     if [[ "$APPLY" -eq 1 ]]; then
       echo "REMOVE $p"
