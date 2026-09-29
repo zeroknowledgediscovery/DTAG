@@ -1,32 +1,51 @@
 #!/usr/bin/env python3
-"""Fetch public DTAG native models into the local model cache."""
+"""Fetch public DTAG native models into the local model cache.
+
+Reusable functions (used by ``dtag-models`` and the DTAG web application):
+
+* ``load_manifest(release)``     -- public release manifest (JSON)
+* ``installed(root, key)``       -- native model directory present and valid
+* ``fetch_one(root, manifest, key, progress=...)``
+      download .tar.zst -> SHA256 verify -> safe extract -> validate -> install
+
+The model root is resolved by ``dtag_paths.model_root()`` so the downloader and
+the runtime always agree on where models live.
+"""
 from __future__ import annotations
 
 import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import tarfile
 import tempfile
 import urllib.request
+from pathlib import Path, PurePosixPath
+from typing import Callable, Optional
+
 import zstandard as zstd
-from pathlib import Path
+
+from dtag_paths import model_root
 
 DEFAULT_RELEASE = os.environ.get("DTAG_MODEL_RELEASE", "v0.2.0")
 DEFAULT_BUCKET = os.environ.get(
     "DTAG_PUBLIC_BUCKET", "git-zeroknowledgediscovery-dtag"
 )
 
+MODEL_KEY_RE = re.compile(r"^(gss|afrobarometer|wvs|eurobarometer)/[A-Za-z0-9._-]+$")
+
+# progress(stage, done_bytes, total_bytes); stage in
+# downloading | verifying | extracting | installed
+ProgressFn = Callable[[str, int, int], None]
+
 
 def default_root() -> Path:
-    env = os.environ.get("DTAG_MODEL_ROOT", "").strip()
-    if env:
-        return Path(env).expanduser().resolve()
-    return (Path.home() / ".cache" / "dtag" / "models").resolve()
+    return model_root()
 
 
-def manifest_url(release: str) -> str:
+def manifest_url(release: str = DEFAULT_RELEASE) -> str:
     override = os.environ.get("DTAG_MODEL_MANIFEST_URL", "").strip()
     if override:
         return override
@@ -36,8 +55,8 @@ def manifest_url(release: str) -> str:
     )
 
 
-def load_manifest(release: str) -> dict:
-    with urllib.request.urlopen(manifest_url(release), timeout=60) as r:
+def load_manifest(release: str = DEFAULT_RELEASE, timeout: float = 60) -> dict:
+    with urllib.request.urlopen(manifest_url(release), timeout=timeout) as r:
         return json.loads(r.read().decode("utf-8"))
 
 
@@ -49,34 +68,92 @@ def sha256_file(path: Path) -> str:
     return h.hexdigest()
 
 
+def validate_model_key(key: str) -> str:
+    key = str(key).strip()
+    if not MODEL_KEY_RE.fullmatch(key) or ".." in key:
+        raise ValueError(f"Invalid DTAG model key: {key!r}")
+    return key
+
+
 def installed(root: Path, key: str) -> bool:
     p = root / key
     return (p / "source_maps").is_dir() and (p / "trees" / "binary").is_dir()
 
 
-def fetch_one(root: Path, manifest: dict, key: str, force: bool = False) -> Path:
+def _check_member(member: tarfile.TarInfo) -> None:
+    name = PurePosixPath(member.name)
+    if name.is_absolute() or ".." in name.parts:
+        raise RuntimeError(f"Unsafe path in model archive: {member.name!r}")
+    if member.issym() or member.islnk() or member.isdev():
+        raise RuntimeError(f"Unsupported link/device entry in model archive: {member.name!r}")
+
+
+def safe_extract_tar_zst(archive: Path, dest: Path) -> None:
+    """Extract a .tar.zst without allowing absolute paths, '..' or links."""
+    with archive.open("rb") as raw:
+        with zstd.ZstdDecompressor().stream_reader(raw) as zr:
+            with tarfile.open(fileobj=zr, mode="r|") as tf:
+                for member in tf:
+                    _check_member(member)
+                    try:
+                        tf.extract(member, dest, filter="data")
+                    except TypeError:
+                        tf.extract(member, dest)
+
+
+def _download(url: str, dest: Path, total: int, progress: Optional[ProgressFn]) -> None:
+    done = 0
+    with urllib.request.urlopen(url, timeout=120) as r, dest.open("wb") as out:
+        length = int(r.headers.get("Content-Length") or total or 0)
+        while True:
+            chunk = r.read(1024 * 256)
+            if not chunk:
+                break
+            out.write(chunk)
+            done += len(chunk)
+            if progress:
+                progress("downloading", done, length)
+
+
+def fetch_one(
+    root: Path,
+    manifest: dict,
+    key: str,
+    force: bool = False,
+    progress: Optional[ProgressFn] = None,
+    log: Callable[[str], None] = print,
+) -> Path:
+    key = validate_model_key(key)
     models = manifest.get("models", {})
     if key not in models:
         raise KeyError(f"Model not found in manifest: {key}")
 
     dest = root / key
     if installed(root, key) and not force:
-        print(f"OK installed: {key} -> {dest}")
+        log(f"OK installed: {key} -> {dest}")
+        if progress:
+            progress("installed", 0, 0)
         return dest
 
     entry = models[key]
-    url = manifest["base_url"].rstrip("/") + "/" + entry["archive"]
+    archive_rel = str(entry["archive"])
+    if PurePosixPath(archive_rel).is_absolute() or ".." in PurePosixPath(archive_rel).parts:
+        raise RuntimeError(f"Unsafe archive path in manifest for {key}: {archive_rel!r}")
+    url = manifest["base_url"].rstrip("/") + "/" + archive_rel
+    total = int(entry.get("size_bytes") or 0)
 
     root.mkdir(parents=True, exist_ok=True)
     dest.parent.mkdir(parents=True, exist_ok=True)
 
-    with tempfile.TemporaryDirectory(prefix="dtag-model-") as td:
+    with tempfile.TemporaryDirectory(prefix=".dtag-model-", dir=str(dest.parent)) as td:
         tmp = Path(td)
-        archive = tmp / Path(entry["archive"]).name
-        print(f"GET {key}")
-        print(f"    {url}")
-        urllib.request.urlretrieve(url, archive)
+        archive = tmp / Path(archive_rel).name
+        log(f"GET {key}")
+        log(f"    {url}")
+        _download(url, archive, total, progress)
 
+        if progress:
+            progress("verifying", 0, total)
         got = sha256_file(archive)
         expected = entry["sha256"]
         if got != expected:
@@ -84,15 +161,11 @@ def fetch_one(root: Path, manifest: dict, key: str, force: bool = False) -> Path
                 f"SHA256 mismatch for {key}: expected {expected}, got {got}"
             )
 
+        if progress:
+            progress("extracting", 0, total)
         extract = tmp / "extract"
         extract.mkdir()
-        with archive.open("rb") as raw:
-            with zstd.ZstdDecompressor().stream_reader(raw) as zr:
-                with tarfile.open(fileobj=zr, mode="r|") as tf:
-                    try:
-                        tf.extractall(extract, filter="data")
-                    except TypeError:
-                        tf.extractall(extract)
+        safe_extract_tar_zst(archive, extract)
 
         top = extract / Path(key).name
         if not (top / "source_maps").is_dir():
@@ -104,7 +177,9 @@ def fetch_one(root: Path, manifest: dict, key: str, force: bool = False) -> Path
             shutil.rmtree(dest)
         shutil.move(str(top), str(dest))
 
-    print(f"INSTALLED {key} -> {dest}")
+    log(f"INSTALLED {key} -> {dest}")
+    if progress:
+        progress("installed", total, total)
     return dest
 
 

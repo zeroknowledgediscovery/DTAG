@@ -13,6 +13,7 @@ Country conditioning order:
 """
 from __future__ import annotations
 
+import re
 from collections import OrderedDict
 from typing import Dict, List, Optional, Set, Tuple
 
@@ -83,6 +84,24 @@ def find_categorical_country_assignment(
             for target in targets:
                 if target.startswith(cv) or cv.startswith(target):
                     return var, str(value)
+
+    # Eurobarometer-style labels carry an ISO code prefix and sometimes a
+    # parenthetical ("FR - France", "CY - Cyprus (Republic)", "ES -Spain").
+    # Match the country-name part exactly, and only when a single support
+    # value within the feature matches (e.g. "Germany" never picks one of
+    # "DE-W - Germany West" / "DE-E - Germany East").
+    for var in candidates:
+        hits = []
+        for value in possible.get(var, []):
+            raw = str(value)
+            if '-' not in raw:
+                continue
+            name = raw.rsplit('-', 1)[1]
+            name = re.sub(r'\([^)]*\)', ' ', name)
+            if core._canonicalize_place_name(name) in targets:
+                hits.append(raw)
+        if len(hits) == 1:
+            return var, hits[0]
 
     return None, None
 
