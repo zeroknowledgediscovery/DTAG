@@ -192,6 +192,17 @@ process-level (`dtag-web` does this).
 “Save as custom profile” stores the current respondent (never in the config
 file); “Advanced profile builder…” also lets you choose the semantic map.
 
+Country conditioning (shared by CLI and web, `pipeline_localized`) uses, in
+order: a variable named *country* (e.g. Afrobarometer `COUNTRY_ALPHA`,
+Eurobarometer `country="FR - France"`); the Eurobarometer ISO 3166 variable
+`isocntry` (`FR`, `DE-W`, …; this decodes the 2021–2023 waves whose `country`
+is numeric-only); and, for older Eurobarometer waves, the variable the semantic
+map labels `NATION` (`v3`/`v4`/… with values like `FRANCE`, `DEUTSCHLAND`).
+The extra steps apply only when the earlier ones find nothing and accept a
+value only if it is the unique match, so "Germany" in a wave split into East
+and West stays contextual. All 207 Eurobarometer waves carry usable country
+information.
+
 The recommender's country/year coverage comes from `configs/model_coverage.json`,
 generated from the models' own source maps by
 `python scripts/build_model_coverage.py` (streams each public archive, reads

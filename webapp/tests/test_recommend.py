@@ -113,3 +113,59 @@ def test_resident_model_cap_evicts_lru(fake_engine, fake_model_root):
     b = reg.load("gss/gss_2022")
     assert list(reg.loaded) == ["gss/gss_2022"] and reg.evict_events[-1]["key"] == "gss/gss_2024"
     assert a is not b and reg.status("gss/gss_2024").state == "installed"
+
+
+# -- Eurobarometer country conditioning beyond "country" variables -----------
+
+def test_matcher_iso_and_nation_passes():
+    import pipeline_localized as L
+    possible = {
+        "country": ["29", "19", "2", "7"],  # numeric codes: never matched
+        "isocntry": ["FR", "DE-W", "DE-E", "IT", "NL"],
+        "v4": ["FRANCE", "DEUTSCHLAND", "BELGIQUE", "ITALY"],
+    }
+    feat = set(possible)
+    assert L.find_categorical_country_assignment(feat, possible, "France") == ("isocntry", "FR")
+    assert L.find_categorical_country_assignment(feat, possible, "Netherlands") == ("isocntry", "NL")
+    # Germany is split East/West in isocntry -> not unique there; the NATION hint decides
+    assert L.find_categorical_country_assignment(feat, possible, "Germany", hint_features=["v4"]) == ("v4", "DEUTSCHLAND")
+    assert L.find_categorical_country_assignment(feat, possible, "Germany") == (None, None)
+    assert L.find_categorical_country_assignment({"v4"}, {"v4": possible["v4"]}, "Belgium", hint_features=["v4"]) == ("v4", "BELGIQUE")
+    # original passes still win when a named country variable matches
+    p2 = {"country": ["FR - France", "IT - Italy"], "isocntry": ["FR", "IT"]}
+    assert L.find_categorical_country_assignment(set(p2), p2, "France") == ("country", "FR - France")
+
+
+def test_nation_hint_rule_on_real_maps():
+    from conftest import ROOT
+    from dtag_session import nation_hint_features
+    assert nation_hint_features(str(ROOT / "maps/eurobarometer/ZA0988_map.csv"))[0] == "v4"
+    hints = nation_hint_features(str(ROOT / "maps/eurobarometer/ZA5932_map.csv"))
+    import csv
+    labels = {r["variable"]: r["variable_label"] for r in csv.DictReader(open(ROOT / "maps/eurobarometer/ZA5932_map.csv", encoding="utf-8"))}
+    assert all("GROUP" not in labels[h].upper() and "(ONLY)" not in labels[h].upper() for h in hints)
+    for m in ("gss/gss_2024_map.csv", "afromap/afrobarometer_r5_map.csv", "wvs7_variable_question_map.csv"):
+        assert nation_hint_features(str(ROOT / "maps" / m)) == []
+
+
+def test_every_eurobarometer_wave_has_country_information(fake_engine):
+    cov = fake_engine.recommender.coverage
+    eb = {k: v for k, v in cov.items() if k.startswith("eurobarometer/")}
+    assert len(eb) == 207
+    usable = [k for k, v in eb.items()
+              if v.get("iso_feature") or v.get("nation_features")
+              or any(not str(x).isdigit() for x in v.get("country_values", []))]
+    assert len(usable) == 207
+
+
+def test_old_eurobarometer_waves_recommended_categorically(fake_engine, monkeypatch):
+    real = fake_engine.recommender._catalog
+    monkeypatch.setattr(fake_engine.recommender, "_catalog",
+                        lambda: sorted(set(real()) | set(fake_engine.recommender.coverage)))
+    r = fake_engine.recommend("x", "France", 1975)
+    top = r["candidates"][0]
+    assert top["family"] == "eurobarometer" and top["geo"]["mode"] == "categorical"
+    assert top["geo"]["value"] == "FRANCE"
+    r = fake_engine.recommend("x", "Germany", 2022)
+    top = next(c for c in r["candidates"] if c["family"] == "eurobarometer")
+    assert top["geo"]["mode"] == "coverage_only"  # only DE-E / DE-W categories

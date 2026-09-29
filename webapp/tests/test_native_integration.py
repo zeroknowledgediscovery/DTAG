@@ -213,6 +213,14 @@ def test_country_conditioning_when_models_installed(native_engine, native_model_
         g = native_engine.preview_conditioning("eurobarometer/ZA7575_v1-0-0", "Germany", "Europe", None)
         assert "country" not in g["forced"], "ambiguous East/West Germany must stay contextual"
         checked += 1
+    if _installed(native_model_root, "eurobarometer/ZA0988_v1-0-1"):
+        s = native_engine.create_session(model_key="eurobarometer/ZA0988_v1-0-1", overrides={"country": "France"})
+        assert s.geographic_conditioning["conditioned_variables"] == {"v4": "FRANCE"}
+        checked += 1
+    if _installed(native_model_root, "eurobarometer/ZA7846_v1-0-0"):
+        s = native_engine.create_session(model_key="eurobarometer/ZA7846_v1-0-0", overrides={"country": "France"})
+        assert s.geographic_conditioning["conditioned_variables"] == {"isocntry": "FR"}
+        checked += 1
     g = native_engine.preview_conditioning(NATIVE_KEY, "United States", "", None)
     if NATIVE_KEY.startswith("gss/"):
         assert g["forced"] == {}

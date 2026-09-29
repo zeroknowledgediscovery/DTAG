@@ -138,6 +138,12 @@ Deliberate, visible changes:
   value matches; otherwise conditioning stays contextual and is reported as such.
   This changes CLI behaviour only in cases where country was previously *not*
   hard-conditioned.
+* The matcher then gains two further passes, used only when the original ones
+  find nothing and only for a unique match: the Eurobarometer ISO 3166 variable
+  `isocntry`, and map-labelled `NATION` variables of older waves (passed by
+  `DTAGSession` as `hint_features`, with native spellings such as
+  `DEUTSCHLAND`). GSS/Afrobarometer/WVS results are unchanged (verified: the
+  GSS old-vs-new CLI comparison stays identical).
 
 ## 6. Model catalog, download and memory cache
 
