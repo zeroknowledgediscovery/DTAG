@@ -138,7 +138,7 @@ planned_families:
   eurobarometer:
     source_glob: "ZA*.csv"
     output_template: "models/lsm/eurobarometer/{stem}"
-    map_template: "maps/euromap/eurobarometer_{ZA}_map.csv"
+    map_template: "maps/eurobarometer/{ZA}_map.csv"
     strategy: one_native_lsm_per_ZA_wave
 
   anes:
