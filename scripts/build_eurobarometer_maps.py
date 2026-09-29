@@ -47,7 +47,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from model_backend import load_model  # noqa: E402
 
 
-QUESTION_CODE_RE = re.compile(r"^[A-Z]{1,6}\d+(?:[A-Z0-9_\.\-]*)?$", re.I)
+QUESTION_CODE_RE = re.compile(r"^[A-Z]{1,6}(?:[._-]?\d+)+(?:[A-Z0-9_.\-]*)?$", re.I)
 ANSWER_LINE_RE = re.compile(r"^\s*-?\d+(?:\.\d+)?\s+\S")
 PAGE_NO_RE = re.compile(r"^\s*page\s+\d+\s*$", re.I)
 GESIS_HEADER_RE = re.compile(r"^GESIS\s+Study\s+No\.", re.I)
@@ -132,7 +132,7 @@ def _match_header(line: str, exact_lower: Dict[str, str], ordered: Sequence[str]
     and crosstab tables.  Requiring the fixed-width header to begin near the
     left margin prevents those table rows from being mistaken for new blocks.
     """
-    raw = str(line or "").replace("\\u00ad", "").replace("\\x00", " ")
+    raw = str(line or "").replace("\u00ad", "").replace("\x00", " ")
     s = _clean_line(raw)
 
     # Modern "variable - label" form.
@@ -159,7 +159,7 @@ def _match_header(line: str, exact_lower: Dict[str, str], ordered: Sequence[str]
     # and has a nonempty label after it. Crosstab/table repetitions either do
     # not start with the variable ("isocntry by v12 ...") or contain only the
     # bare variable name, so they are not matched here.
-    m = re.match(r"^\\s*(\\S+)\\s+(.+?)\\s*$", raw)
+    m = re.match(r"^\s*(\S+)\s+(.+?)\s*$", raw)
     if m:
         key = m.group(1).strip().lower()
         label = _clean_line(m.group(2))
