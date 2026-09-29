@@ -355,6 +355,7 @@ class LoadedModel:
         self.model = LockedBackend(backend, self.inference_lock)
         self.load_seconds = load_seconds
         self.loaded_at = _now()
+        self.last_used = time.time()
         self.assets_dir = assets_dir
         self._lock = threading.Lock()
         self._possible: Optional[Dict[str, List[str]]] = None
@@ -410,6 +411,8 @@ class ModelRegistry:
         self._key_locks: Dict[str, threading.Lock] = {}
         self._lock = threading.Lock()
         self.load_events: List[Dict[str, Any]] = []
+        self.evict_events: List[Dict[str, Any]] = []
+        self.max_loaded = max(1, int(os.environ.get("DTAG_MAX_LOADED_MODELS", "6")))
         self.download_events: List[Dict[str, Any]] = []
 
     # -- status -------------------------------------------------------------
@@ -473,12 +476,14 @@ class ModelRegistry:
         key = fetch_models.validate_model_key(key)
         lm = self.loaded.get(key)
         if lm is not None:
+            lm.last_used = time.time()
             return lm
         path = self.install(key)
         with self._key_lock(key):
             lm = self.loaded.get(key)
             if lm is not None:
                 return lm
+            self._evict_for(key)
             self._set(key, state="loading", error=None)
             try:
                 t0 = time.time()
@@ -492,6 +497,20 @@ class ModelRegistry:
             self.load_events.append({"key": key, "seconds": secs, "at": _now()})
             self._set(key, state="loaded", error=None)
             return lm
+
+    def _evict_for(self, key: str) -> None:
+        """Keep at most ``max_loaded`` models resident (least recently used out).
+
+        Sessions already holding an evicted model keep working (they reference
+        it directly); only new sessions would load it again.
+        """
+        while len(self.loaded) >= self.max_loaded:
+            victim = min((k for k in self.loaded if k != key), key=lambda k: self.loaded[k].last_used, default=None)
+            if victim is None:
+                return
+            self.loaded.pop(victim, None)
+            self._set(victim, state="installed")
+            self.evict_events.append({"key": victim, "at": _now()})
 
     def start_job(self, key: str, load: bool = True) -> ModelStatus:
         """Install (and optionally load) in a background thread."""
@@ -838,6 +857,8 @@ class DTAGEngine:
         self.profile_store = ProfileStore(Path(profiles_path).expanduser().resolve() if profiles_path else None)
         self._capabilities: Dict[str, Dict[str, Any]] = {}
         self._possible_cache: Dict[str, Dict[str, List[str]]] = {}
+        from dtag_recommend import Recommender
+        self.recommender = Recommender(self)
         self._cap_lock = threading.Lock()
 
     # -- environment --------------------------------------------------------
@@ -1129,7 +1150,7 @@ class DTAGEngine:
             for k in SERVER_RUN_PARAMS:
                 if defaults_run.get(k):
                     run[k] = defaults_run[k]
-            persona = ""
+            persona = "An adult survey respondent"
             continent = ""
         run.pop("no_ideology", None)
         run["timing"] = True
@@ -1206,12 +1227,24 @@ class DTAGEngine:
         if "model_key" in ov and ov["model_key"]:
             mk = self.validate_model_key(str(ov["model_key"]))
             if mk != spec.model_key:
+                old_family = spec.family
                 spec.model_key = mk
                 spec.family = family_of(mk)
                 spec.map_key = canonical_map_key(mk) or ""
                 spec.za = za_of_model(mk)
                 if spec.family == "gss":
                     spec.year = model_year(mk)
+                if spec.family != old_family:
+                    # A preset from another survey family: keep WHO/WHERE/WHEN
+                    # and runtime settings, drop family-specific pieces.
+                    spec.date = None
+                    if spec.family != "gss" and old_family == "gss":
+                        spec.year = None
+                    compat = [k for k, v in POLAR_VECTOR_SETS.items() if spec.family in v["families"]]
+                    if spec.polar_set not in compat:
+                        spec.polar_set = compat[0] if compat else None
+                        spec.ideology = bool(compat)
+                    spec.run.pop("require_polar_vectors", None)
 
         if "year" in ov:
             y = ov["year"]
@@ -1626,6 +1659,46 @@ class DTAGEngine:
                 round(t.get("native_predict", t.get("semantic_native_predict", 0.0)), 6),
             ])
         return buf.getvalue()
+
+    # -- suggested questions --------------------------------------------------------
+
+    def _suggestion_pool(self, family: str) -> List[str]:
+        path = REPO_ROOT / "configs" / "suggested_questions.yaml"
+        try:
+            cfg = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        except Exception:
+            return []
+        entry = cfg.get(family) or {}
+        pool: List[str] = []
+        if entry.get("csv"):
+            # One question per line (question text may contain unquoted commas).
+            try:
+                lines = (REPO_ROOT / str(entry["csv"])).read_text(encoding="utf-8").splitlines()
+                pool += [ln.strip().strip('"') for ln in lines[1:] if ln.strip()]
+            except Exception:
+                pass
+        pool += [str(q) for q in (entry.get("questions") or [])]
+        return list(dict.fromkeys(q.strip() for q in pool if str(q).strip()))
+
+    def suggestions(self, es: "EngineSession", n: int = 6) -> List[Dict[str, Any]]:
+        """Starter questions that map directly onto this session's survey map."""
+        ctx = es.session.ctx
+        asked = {r["question"].strip().lower() for r in es.session.results}
+        out: List[Dict[str, Any]] = []
+        for q in self._suggestion_pool(es.spec.family):
+            if q.lower() in asked:
+                continue
+            cands = core.lexical_prefilter(ctx.var_map, q, top_n=3, min_score=es.session.config.min_map_score)
+            if cands:
+                out.append({"question": q, "top_variables": [v for v, _ in cands]})
+            if len(out) >= n:
+                break
+        return out
+
+    def recommend(self, persona: str = "", country: str = "", year: Optional[int] = None,
+                  when: Optional[str] = None, preferred_model: Optional[str] = None) -> Dict[str, Any]:
+        return self.recommender.recommend(persona=persona, country=country, year=year, when=when,
+                                          preferred_model=preferred_model)
 
     # -- readiness -----------------------------------------------------------------
 

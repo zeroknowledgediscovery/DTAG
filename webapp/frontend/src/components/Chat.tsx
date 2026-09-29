@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { fmtNum, fmtSigned } from "../api";
-import type { Anchor, QuestionResult } from "../types";
+import type { Anchor, QuestionResult, Suggestion } from "../types";
 
 export function mappingBadge(label: string): string {
   if (label === "DIRECT") return "b-direct";
@@ -209,12 +209,14 @@ export function Chat({
   canAsk,
   onAsk,
   emptyHint,
+  suggestions = [],
 }: {
   history: QuestionResult[];
   pending: string | null;
   canAsk: boolean;
   onAsk: (q: string) => void;
   emptyHint: React.ReactNode;
+  suggestions?: Suggestion[];
 }) {
   const [q, setQ] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
@@ -225,7 +227,26 @@ export function Chat({
   return (
     <>
       <div className="chat">
-        {history.length === 0 && !pending && <div className="empty">{emptyHint}</div>}
+        {history.length === 0 && !pending && (
+          <div className="empty">
+            {emptyHint}
+            {suggestions.length > 0 && (
+              <div className="suggest-grid">
+                {suggestions.map((sg) => (
+                  <button
+                    key={sg.question}
+                    className="suggest"
+                    disabled={!canAsk}
+                    title={`Maps directly to: ${sg.top_variables.join(", ")}`}
+                    onClick={() => onAsk(sg.question)}
+                  >
+                    {sg.question}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
         {history.map((r) => {
           const cls = r.mapping.label === "NO MATCH" ? "nomatch" : r.mapping.label.startsWith("SEMANTIC") ? "sem" : "";
           return (
@@ -273,6 +294,22 @@ export function Chat({
         <div ref={endRef} />
       </div>
       <div className="composer">
+        {history.length > 0 && suggestions.length > 0 && (
+          <div className="suggest-row">
+            <span className="note">Try:</span>
+            {suggestions.slice(0, 4).map((sg) => (
+              <button
+                key={sg.question}
+                className="suggest small"
+                disabled={!canAsk}
+                title={`Maps directly to: ${sg.top_variables.join(", ")}`}
+                onClick={() => onAsk(sg.question)}
+              >
+                {sg.question}
+              </button>
+            ))}
+          </div>
+        )}
         <form
           onSubmit={(e) => {
             e.preventDefault();

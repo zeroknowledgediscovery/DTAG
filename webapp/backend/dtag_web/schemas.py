@@ -137,3 +137,13 @@ class SessionOut(BaseModel):
     geographic_conditioning: Dict[str, Any]
     temporal_conditioning: Dict[str, Any]
     ideology: Dict[str, Any]
+
+
+class RecommendIn(BaseModel):
+    model_config = ConfigDict(extra="forbid", protected_namespaces=())
+
+    persona: str = Field("", max_length=4000)
+    country: str = Field("", max_length=120)
+    year: Optional[int] = Field(None, ge=1900, le=2100)
+    date: Optional[str] = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
+    preferred_model: Optional[str] = Field(None, pattern=r"^[a-z]+/[A-Za-z0-9._-]+$", max_length=120)

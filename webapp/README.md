@@ -152,32 +152,53 @@ From the shell: `dtag-models gss/gss_2024`, `dtag-models --family gss`,
 | `DTAG_WEB_DATA_DIR` | custom profiles (`profiles.json`) |
 | `DTAG_ASSETS_DIR` | possible-response and embedding caches |
 | `DTAG_MAX_SESSIONS`, `DTAG_SESSION_TTL_HOURS` | in-memory session store limits |
+| `DTAG_MAX_LOADED_MODELS` | resident native models kept in memory (default 6, LRU) |
 
 Run a **single worker process**: the native-model cache and sessions are
 process-level (`dtag-web` does this).
 
 ## Using the workbench
 
-* **Left**: profile (configured profiles are discovered from
-  `configs/dtag_config.yaml`; custom profiles are stored in
-  `DTAG_WEB_DATA_DIR`, never in the config), model status/install, **Who**
-  (persona), **Where** (country/continent, with the model's actual geography
-  mode), **When** (GSS wave model, WVS `A_YEAR`, Afrobarometer round,
-  Eurobarometer fieldwork date or explicit ZA), semantic fallback, response
-  mode, ideology, advanced parameters, and validation messages such as
-  “Country is contextual only for this model” or “The requested date resolves
-  to Eurobarometer ZA7575”.
-* **Centre**: the conversation. Each answer has a *Model evidence* panel with
-  the selected variables, survey wording, full native response distribution,
-  the selected anchor, selection rationale, mapping class, semantic-bridge and
-  map provenance, state updates, conditioning and timings.
-* **Right**: survey/model/map/wave/country/conditioning summary, ideology
-  index and trajectory (GSS with compatible polar vectors only), the session
-  timeline (`DIRECT`, `SEMANTIC / ANSWER ONLY`, `SEMANTIC / STATE UPDATE`,
-  `NO MATCH`; state changed/unchanged), current and initial survey state, and
-  JSON/CSV export.
-* **Create profile…**: family → model → template → map → persona/geography/
-  time/ideology/fallback/response → validate → save.
+1. **Describe the respondent** (left, top): optionally start from a preset
+   (configured profiles from `configs/dtag_config.yaml`, or your custom ones),
+   then edit **Who** (description), **Where** (country) and **When** (year, or an
+   exact date for Eurobarometer). A country or year mentioned in the
+   description is detected and shown ("country Kenya ← “kenya”"); the fields
+   override it. US states and cities count as the United States.
+2. **The survey model is chosen for you.** DTAG proposes the best native model
+   from each survey family that covers the respondent and pre-selects a
+   default, ranked by time fit (within a year > within three years > further),
+   then by how directly the country conditions the model (categorical country
+   variable > national sample > country present but contextual > coordinate
+   proxy), then recency. Each option shows *when* (wave/round/fieldwork) and
+   *where* (what is actually conditioned). Pick another option, or “Choose a
+   specific native model…”, to override. Examples: Nigeria 2012 → Afrobarometer
+   R5 (`COUNTRY_ALPHA='Nigeria'`); France 2019-05-15 → Eurobarometer ZA7575;
+   India 2018 → WVS7 (`A_YEAR=2018` + coordinates); rural Alabama → GSS 2024.
+3. **The chosen model is downloaded (once) and loaded automatically**; the
+   option shows `download 2.4 MB → downloading → verifying → extracting →
+   loading → loaded`. Start respondent waits for it if it is still loading.
+4. **Start respondent.** Suggested questions appear (only questions that map
+   directly onto the loaded model's survey variables; hover shows which);
+   click one or type your own.
+5. **Centre**: each answer has a *Model evidence* panel (selected variables,
+   survey wording, full native distribution, anchor, rationale, mapping class,
+   fallback and map provenance, state updates, conditioning, timings).
+6. **Right**: model/map/wave/country/conditioning summary, ideology index and
+   trajectory (GSS only), session timeline (`DIRECT`, `SEMANTIC / ANSWER ONLY`,
+   `SEMANTIC / STATE UPDATE`, `NO MATCH`), current and initial survey state,
+   JSON/CSV export.
+
+“Save as custom profile” stores the current respondent (never in the config
+file); “Advanced profile builder…” also lets you choose the semantic map.
+
+The recommender's country/year coverage comes from `configs/model_coverage.json`,
+generated from the models' own source maps by
+`python scripts/build_model_coverage.py` (streams each public archive, reads
+only its source maps). Afrobarometer round periods are approximate published
+fieldwork years (the native models carry no date variable). Starter questions
+live in `configs/suggested_questions.yaml`. At most `DTAG_MAX_LOADED_MODELS`
+(default 6) models stay resident; the least recently used is released first.
 
 ## API
 
@@ -190,6 +211,7 @@ POST   /api/profiles/validate              POST /api/profiles        DELETE /api
 GET    /api/models[?family=]               GET  /api/models/{family}/{name}
 GET    /api/models/{family}/{name}/status  POST /api/models/{family}/{name}/install[?load=&wait=]
 GET    /api/maps                           GET  /api/polar-vectors   GET /api/geography
+POST   /api/recommend                      GET  /api/countries       GET /api/sessions/{id}/suggestions
 GET    /api/eurobarometer/waves[?year=]    GET  /api/eurobarometer/resolve?date=|za=|year=
 POST   /api/sessions                       GET  /api/sessions        GET /api/sessions/{id}
 POST   /api/sessions/{id}/questions        POST /api/sessions/{id}/reset

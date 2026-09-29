@@ -15,6 +15,8 @@ interface Props {
   capabilities: Capabilities | null | undefined;
   geography: Geography;
   disabled?: boolean;
+  /** Render only these sections (default: all). */
+  only?: Array<"who" | "where" | "when" | "behaviour">;
 }
 
 const ADVANCED: Array<{ key: keyof Overrides; label: string; step?: number }> = [
@@ -56,10 +58,12 @@ export function Controls(props: Props) {
   const afroModels = models.filter((m) => m.family === "afrobarometer");
   const ebModels = models.filter((m) => m.family === "eurobarometer");
   const ebByZa = new Map(props.ebWaves.map((w) => [w.za, w]));
+  const show = (k: "who" | "where" | "when" | "behaviour") => !props.only || props.only.includes(k);
   const ebMode = o.za !== undefined ? "za" : o.date !== undefined ? "date" : resolved.date ? "date" : "za";
 
   return (
     <div>
+      {show("who") && (
       <Section title="Who">
         <label className="field">
           <span>Persona / demographic description</span>
@@ -75,7 +79,9 @@ export function Controls(props: Props) {
           assignments valid in the native model's support hard-condition the state.
         </div>
       </Section>
+      )}
 
+      {show("where") && (
       <Section title="Where">
         <div className="row">
           <label className="field">
@@ -125,7 +131,9 @@ export function Controls(props: Props) {
           </div>
         )}
       </Section>
+      )}
 
+      {show("when") && (
       <Section title="When">
         {family === "gss" && (
           <label className="field">
@@ -244,7 +252,9 @@ export function Controls(props: Props) {
           </div>
         )}
       </Section>
+      )}
 
+      {show("behaviour") && (
       <Section title="Survey response behaviour">
         <div className="row">
           <label className="field">
@@ -317,6 +327,7 @@ export function Controls(props: Props) {
           </div>
         </details>
       </Section>
+      )}
     </div>
   );
 }
