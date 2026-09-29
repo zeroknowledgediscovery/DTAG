@@ -11,9 +11,11 @@ Examples:
   python3 scripts/eurobarometer_native.py --za ZA7575 --country France \
       --question "How satisfied are you with democracy?"
 
-Map discovery is conservative. It looks for filenames containing the ZA id
-under maps/euromap/, maps/eurobarometer/, and maps/. If zero or multiple
-candidates are found, pass --map explicitly.
+Map resolution prefers a newly generated native per-ZA map, then an existing
+legacy Eurobarometer per-ZA map. If neither exists, DTAG may use the legacy
+integrated Eurobarometer fallback map. This lets waves with unavailable GESIS
+variable reports remain runnable without pretending a fallback is an exact
+wave-specific codebook.
 """
 from __future__ import annotations
 
@@ -61,13 +63,27 @@ def valid_native_model(path: Path) -> bool:
 
 
 def map_candidates(za: str) -> List[Path]:
+    """Return exact ZA-specific maps only, ordered by preferred source."""
+    preferred = [
+        ROOT / "maps" / "eurobarometer" / f"{za}_map.csv",
+        ROOT / "maps" / "euromap" / f"eurobarometer_{za}_map.csv",
+    ]
+
+    hits: List[Path] = []
+    seen = set()
+
+    for p in preferred:
+        if p.is_file():
+            rp = p.resolve()
+            hits.append(rp)
+            seen.add(rp)
+
+    # Compatibility discovery for any older naming convention containing ZA.
     roots = [
-        ROOT / "maps" / "euromap",
         ROOT / "maps" / "eurobarometer",
+        ROOT / "maps" / "euromap",
         ROOT / "maps",
     ]
-    hits = []
-    seen = set()
     for base in roots:
         if not base.exists():
             continue
@@ -79,7 +95,19 @@ def map_candidates(za: str) -> List[Path]:
                 continue
             seen.add(rp)
             hits.append(rp)
-    return sorted(hits)
+
+    return hits
+
+
+def integrated_fallback_map() -> Path | None:
+    candidates = [
+        ROOT / "maps" / "euromap" / "eurobarometer_integrated_fallback_map.csv",
+        ROOT / "maps" / "eurobarometer" / "eurobarometer_integrated_fallback_map.csv",
+    ]
+    for p in candidates:
+        if p.is_file():
+            return p.resolve()
+    return None
 
 
 def resolve_model(za: str) -> Path:
@@ -111,15 +139,31 @@ def resolve_map(za: str, explicit: str) -> Path:
         return p
 
     hits = map_candidates(za)
-    if len(hits) == 1:
-        return hits[0]
-    if not hits:
-        raise SystemExit(
-            f"No map containing {za} was found. Pass --map /path/to/{za}_map.csv"
+    if hits:
+        # Deterministic precedence:
+        #   1) newly generated native per-ZA map
+        #   2) legacy per-ZA Eurobarometer map
+        #   3) other exact ZA-named compatibility map
+        chosen = hits[0]
+        if len(hits) > 1:
+            print(
+                "MAP NOTE: multiple exact ZA maps found; using preferred "
+                f"{chosen.relative_to(ROOT)}"
+            )
+        return chosen
+
+    fallback = integrated_fallback_map()
+    if fallback is not None:
+        print(
+            f"MAP FALLBACK: no exact {za} map; using "
+            f"{fallback.relative_to(ROOT)}"
         )
+        return fallback
+
     raise SystemExit(
-        f"More than one map matched {za}; pass --map explicitly:\n  "
-        + "\n  ".join(str(p) for p in hits)
+        f"No exact map for {za} and no Eurobarometer integrated fallback map. "
+        "Pass --map explicitly or generate maps/euromap/"
+        "eurobarometer_integrated_fallback_map.csv."
     )
 
 
@@ -160,14 +204,16 @@ def main() -> None:
             return
         for name, status, maps in rows:
             print(f"{name}: {status}")
-            if len(maps) == 1:
+            if maps:
                 print(f"  map: {maps[0].relative_to(ROOT)}")
-            elif len(maps) == 0:
-                print("  map: MISSING")
+                if len(maps) > 1:
+                    print(f"  alternatives: {len(maps) - 1}")
             else:
-                print("  map: AMBIGUOUS")
-                for m in maps:
-                    print(f"    {m.relative_to(ROOT)}")
+                fb = integrated_fallback_map()
+                if fb is not None:
+                    print(f"  map: FALLBACK -> {fb.relative_to(ROOT)}")
+                else:
+                    print("  map: MISSING")
         return
 
     dates_path = Path(args.dates_file).expanduser()
