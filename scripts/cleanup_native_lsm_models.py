@@ -29,6 +29,8 @@ import argparse
 import os
 import shutil
 from pathlib import Path
+
+from dtag_paths import model_root
 from typing import Iterable, List, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -119,7 +121,7 @@ def remove(path: Path) -> None:
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument("root", nargs="?", default="models/lsm",
+    ap.add_argument("root", nargs="?", default=str(model_root()),
                     help="native model root or one model directory")
     ap.add_argument("--apply", action="store_true",
                     help="actually delete; default is dry-run")
