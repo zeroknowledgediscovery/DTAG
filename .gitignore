@@ -28,8 +28,13 @@ data/**/codebooks/*.pdf
 *.log
 
 # Native LSM model artifacts are distributed outside Git
-models/lsm/**/*
-!models/lsm/README.md
+/models/lsm/**
+!/models/lsm/README.md
+
+# Legacy top-level model trees must never be reintroduced.
+/models/gss/
+/models/wvs/
+/models/afrobarometer/
 
 # Bundled native LSM build products
 # Prebuilt Linux CPython extension is intentionally trackable; build directory
@@ -40,8 +45,6 @@ native/lsm_runtime/python/*.dylib
 
 # Public GCS model corpus / local model-release staging
 # Actual native models and generated archives belong in GCS, never Git.
-/models/lsm/**
-!/models/lsm/README.md
 /models/releases/
 /models/public_releases/
 /dtag-models-*/
