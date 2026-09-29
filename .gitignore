@@ -20,16 +20,13 @@ assets/*.semantic_embeddings.*.json
 assets/**/*.possible.*.json
 assets/**/*.semantic_embeddings.*.json
 
-# Raw / merged survey data are not release artifacts
+# Raw survey data and local source documentation are not release artifacts
 data/raw/*
-models/afrobarometer/merged_r*_data.gz
-models/afrobarometer/tmp
-models/afrobarometer/tmp2
+data/**/codebooks/*.pdf
 
 # Logs
 *.log
 
-# Native LSM development artifacts can contain hundreds/thousands of tree files.
-# Keep them local until we choose the release packaging mechanism.
+# Native LSM model artifacts are distributed outside Git
 models/lsm/**/*
 !models/lsm/README.md
