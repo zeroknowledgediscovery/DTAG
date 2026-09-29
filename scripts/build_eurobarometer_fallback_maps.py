@@ -192,7 +192,7 @@ def feature_f1(a: set[str], b: set[str]) -> float:
 
 
 def load_model_info(path: Path) -> tuple[List[str], Dict[str, set[str]]]:
-    model = load_model(path, backend="native_lsm")
+    model = load_model(path, backend="native_lsm", preload=False)
     features = [str(x) for x in model.feature_names]
     possible = model.possible_values()
     supports = {
