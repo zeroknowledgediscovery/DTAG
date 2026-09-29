@@ -1,5 +1,8 @@
 # DTAG Web Application — Implementation Plan
 
+> Written before implementation. For the current state, invariants and next
+> steps (including Google Cloud deployment) see [HANDOFF.md](HANDOFF.md).
+
 This document was written before the web application code, from a reading of
 the `native-lsm-clean` branch. It records what the native DTAG runtime does
 today, which parts are extracted into reusable objects, and how the web
