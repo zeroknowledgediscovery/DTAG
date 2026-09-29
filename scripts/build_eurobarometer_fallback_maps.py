@@ -147,8 +147,11 @@ def semantic_key(row: dict) -> str:
     filled = str(row.get("question_text_filled", "")).strip()
     var = str(row.get("variable", "")).strip()
 
-    # Full wording is normally the most stable cross-wave semantic signal.
-    for candidate in (q, label, filled):
+    # Variable labels are generally more stable across Eurobarometer waves
+    # than full questionnaire wording, which often changes instructions,
+    # punctuation, country inserts, or interviewer text while preserving the
+    # same item semantics. Use the label as the primary clustering signal.
+    for candidate in (label, q, filled):
         key = normalize_text(candidate)
         if key and key != normalize_text(var):
             return key
@@ -175,6 +178,15 @@ def support_similarity(a: set[str], b: set[str]) -> float:
     if not a or not b:
         return 0.0
     return len(a & b) / len(a | b)
+
+
+def feature_f1(a: set[str], b: set[str]) -> float:
+    if not a and not b:
+        return 1.0
+    if not a or not b:
+        return 0.0
+    inter = len(a & b)
+    return (2.0 * inter) / (len(a) + len(b))
 
 
 def load_model_info(path: Path) -> tuple[List[str], Dict[str, set[str]]]:
@@ -304,11 +316,15 @@ def resolve_variable(
     target_za: str,
     target_support: set[str],
     occurrences: List[dict],
+    donor_context_f1: Dict[str, float],
     *,
     min_consensus_fraction: float,
     min_consensus_sources: int,
     min_support_similarity: float,
     support_margin: float,
+    min_context_f1: float,
+    min_context_support_f1: float,
+    min_context_support_similarity: float,
 ) -> dict:
     if not occurrences:
         return {
@@ -326,6 +342,7 @@ def resolve_variable(
     for occ in occurrences:
         x = dict(occ)
         x["support_similarity"] = support_similarity(target_support, x["support"])
+        x["context_f1"] = float(donor_context_f1.get(x["source_za"], 0.0))
         clusters[x["semantic_key"]].append(x)
 
     total = sum(len(v) for v in clusters.values())
@@ -397,6 +414,63 @@ def resolve_variable(
             "semantic_clusters": len(clusters),
         }
 
+    # If wording varies too much for consensus, use the target wave's complete
+    # feature inventory as context. A donor whose overall feature set is nearly
+    # identical to the target is strong evidence that the same variable name
+    # denotes the same item. This recovers near-clone waves without trusting a
+    # weak arbitrary donor.
+    context_clusters = []
+    for key, rows in clusters.items():
+        best_row = sorted(
+            rows,
+            key=lambda x: (
+                -float(x.get("context_f1", 0.0)),
+                -float(x.get("support_similarity", 0.0)),
+                za_distance(target_za, x["source_za"]),
+                int(x["source_za"][2:]),
+            ),
+        )[0]
+        context_clusters.append(
+            (
+                float(best_row.get("context_f1", 0.0)),
+                float(best_row.get("support_similarity", 0.0)),
+                key,
+                rows,
+                best_row,
+            )
+        )
+
+    context_clusters.sort(
+        key=lambda x: (
+            -x[0],
+            -x[1],
+            -len(x[3]),
+            x[2],
+        )
+    )
+
+    context_f1, context_support, _, context_rows, context_rep = context_clusters[0]
+    context_ok = (
+        context_f1 >= min_context_f1
+        or (
+            context_f1 >= min_context_support_f1
+            and context_support >= min_context_support_similarity
+        )
+    )
+
+    if context_ok:
+        return {
+            "resolution": "UNION_CONTEXT_MATCH",
+            "representative": context_rep,
+            "sources": sorted({x["source_za"] for x in context_rows}),
+            "n_sources": len({x["source_za"] for x in context_rows}),
+            "consensus_fraction": len(context_rows) / max(1, total),
+            "support_similarity": context_support,
+            "context_f1": context_f1,
+            "candidate_occurrences": total,
+            "semantic_clusters": len(clusters),
+        }
+
     return {
         "resolution": "UNRESOLVED_NATIVE",
         "representative": None,
@@ -404,6 +478,7 @@ def resolve_variable(
         "n_sources": 0,
         "consensus_fraction": top_fraction,
         "support_similarity": best_score,
+        "context_f1": context_clusters[0][0] if context_clusters else 0.0,
         "candidate_occurrences": total,
         "semantic_clusters": len(clusters),
     }
@@ -432,6 +507,7 @@ def make_output_row(
             "fallback_n_sources": resolved["n_sources"],
             "fallback_consensus_fraction": f"{resolved['consensus_fraction']:.6f}",
             "fallback_support_similarity": f"{resolved['support_similarity']:.6f}",
+            "fallback_context_f1": f"{float(resolved.get('context_f1', 0.0)):.6f}",
             "fallback_resolution": resolution,
             "fallback_candidate_occurrences": resolved["candidate_occurrences"],
             "fallback_semantic_clusters": resolved["semantic_clusters"],
@@ -450,7 +526,11 @@ def make_output_row(
         "source": (
             "Eurobarometer semantic union consensus"
             if resolution == "UNION_CONSENSUS"
-            else "Eurobarometer semantic union support match"
+            else (
+                "Eurobarometer semantic union support match"
+                if resolution == "UNION_SUPPORT_MATCH"
+                else "Eurobarometer semantic union context match"
+            )
         ),
         "source_page": rep["source_page"],
         "za_id": target_za,
@@ -459,6 +539,7 @@ def make_output_row(
         "fallback_n_sources": resolved["n_sources"],
         "fallback_consensus_fraction": f"{resolved['consensus_fraction']:.6f}",
         "fallback_support_similarity": f"{resolved['support_similarity']:.6f}",
+        "fallback_context_f1": f"{float(resolved.get('context_f1', 0.0)):.6f}",
         "fallback_resolution": resolution,
         "fallback_candidate_occurrences": resolved["candidate_occurrences"],
         "fallback_semantic_clusters": resolved["semantic_clusters"],
@@ -475,6 +556,9 @@ def main() -> None:
     ap.add_argument("--min-consensus-sources", type=int, default=2)
     ap.add_argument("--min-support-similarity", type=float, default=0.75)
     ap.add_argument("--support-margin", type=float, default=0.15)
+    ap.add_argument("--min-context-f1", type=float, default=0.75)
+    ap.add_argument("--min-context-support-f1", type=float, default=0.50)
+    ap.add_argument("--min-context-support-similarity", type=float, default=0.75)
     args = ap.parse_args()
 
     if not args.report_only and not args.build:
@@ -536,16 +620,26 @@ def main() -> None:
         output_rows = []
         counts = Counter()
 
+        target_feature_set = set(features)
+        donor_context_f1 = {
+            za: feature_f1(target_feature_set, set(feature_cache[za]))
+            for za in exact_zas
+        }
+
         for variable in features:
             resolved = resolve_variable(
                 variable,
                 target_za,
                 target_supports.get(variable, set()),
                 union.get(variable, []),
+                donor_context_f1,
                 min_consensus_fraction=args.min_consensus_fraction,
                 min_consensus_sources=args.min_consensus_sources,
                 min_support_similarity=args.min_support_similarity,
                 support_margin=args.support_margin,
+                min_context_f1=args.min_context_f1,
+                min_context_support_f1=args.min_context_support_f1,
+                min_context_support_similarity=args.min_context_support_similarity,
             )
             counts[resolved["resolution"]] += 1
             output_rows.append(make_output_row(variable, target_za, resolved))
@@ -558,6 +652,7 @@ def main() -> None:
                     "fallback_n_sources": resolved["n_sources"],
                     "fallback_consensus_fraction": resolved["consensus_fraction"],
                     "fallback_support_similarity": resolved["support_similarity"],
+                    "fallback_context_f1": float(resolved.get("context_f1", 0.0)),
                     "candidate_occurrences": resolved["candidate_occurrences"],
                     "semantic_clusters": resolved["semantic_clusters"],
                 }
@@ -567,12 +662,14 @@ def main() -> None:
         resolved_n = (
             counts["UNION_CONSENSUS"]
             + counts["UNION_SUPPORT_MATCH"]
+            + counts["UNION_CONTEXT_MATCH"]
         )
 
         print(f"\n== {target_za} ==")
         print(f"variables:              {n}")
         print(f"UNION_CONSENSUS:        {counts['UNION_CONSENSUS']}")
         print(f"UNION_SUPPORT_MATCH:    {counts['UNION_SUPPORT_MATCH']}")
+        print(f"UNION_CONTEXT_MATCH:    {counts['UNION_CONTEXT_MATCH']}")
         print(f"UNRESOLVED_NATIVE:      {counts['UNRESOLVED_NATIVE']}")
         print(f"resolved fraction:      {resolved_n / max(1, n):.3f}")
 
@@ -582,6 +679,7 @@ def main() -> None:
                 "variables": n,
                 "union_consensus": counts["UNION_CONSENSUS"],
                 "union_support_match": counts["UNION_SUPPORT_MATCH"],
+                "union_context_match": counts["UNION_CONTEXT_MATCH"],
                 "unresolved_native": counts["UNRESOLVED_NATIVE"],
                 "resolved": resolved_n,
                 "resolved_fraction": resolved_n / max(1, n),
