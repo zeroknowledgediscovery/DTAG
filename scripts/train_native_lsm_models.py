@@ -33,6 +33,8 @@ from typing import Any, Dict, Iterable, List, Optional
 import pandas as pd
 import yaml
 
+from dtag_paths import model_root, resolve_repo_path
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -347,7 +349,7 @@ def main() -> None:
     ap.add_argument("--family", default="", help="Restrict catalog models to one survey family")
     ap.add_argument("--input", action="append", default=[], help="Direct CSV path; bypass catalog matching")
     ap.add_argument("--model-name", default="", help="Name for a single --input CSV")
-    ap.add_argument("--output-root", default="models/lsm")
+    ap.add_argument("--output-root", default=str(model_root(ROOT)))
     ap.add_argument("--work-root", default="outputs/native_lsm_training")
     ap.add_argument("--lsm-bin", default=os.environ.get("LSM_BIN", ""))
     ap.add_argument("--index-column", default="auto", help="column name, auto, or none")
@@ -365,7 +367,7 @@ def main() -> None:
     args = ap.parse_args()
 
     source_dir = Path(args.source_dir).expanduser().resolve()
-    output_root = (ROOT / args.output_root).resolve() if not Path(args.output_root).is_absolute() else Path(args.output_root).resolve()
+    output_root = resolve_repo_path(args.output_root, ROOT)
     work_root = (ROOT / args.work_root).resolve() if not Path(args.work_root).is_absolute() else Path(args.work_root).resolve()
 
     if args.input:
@@ -403,7 +405,7 @@ def main() -> None:
 
         output_rel = str(job.get("output", "")).strip()
         if output_rel:
-            output_dir = (ROOT / output_rel).resolve() if not Path(output_rel).is_absolute() else Path(output_rel).resolve()
+            output_dir = resolve_repo_path(output_rel, ROOT)
         else:
             output_dir = output_root / family / name
 
