@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Run DTAG/pipeline6 or pipeline6iloc experiments over a grid of personas, question CSVs, order variants,
+Run DTAG native-LSM experiments over a grid of personas, question CSVs, order variants,
 and stochastic replicates, with outputs organized for postprocessing.
 
-This launcher is designed for pipeline6.py / pipeline6iloc.py style scripts, which expect:
+This launcher drives the canonical pipeline_localized.py runtime, which expects:
   --autoplay_csv <questions.csv>
   --logs_dir <directory>
   --assets_dir <directory>
@@ -27,14 +27,14 @@ Persona JSON format:
 [
   {
     "id": "WF",
-    "qnet": "../survey/models/gss/gss_2022female.pkl.gz",
+    "qnet": "models/lsm/gss/gss_2024",
     "persona": "22 year old white female ... highly progressive",
     "year": 2022,
     "country": "United States"
   },
   {
     "id": "CM",
-    "qnet": "../survey/models/gss/gss_2022male.pkl.gz",
+    "qnet": "models/lsm/gss/gss_2024",
     "persona": "45 year old white male ... conservative"
   }
 ]
@@ -102,7 +102,7 @@ def read_questions_csv(path: Path) -> pd.DataFrame:
     if df.shape[1] == 0:
         raise ValueError(f"No columns found in question CSV: {path}")
     if "question" not in df.columns:
-        # pipeline6.py accepts first column if no 'question', but for generated variants
+        # DTAG accepts the first column if no 'question', but for generated variants
         # we normalize to a clean question column.
         df = df.rename(columns={df.columns[0]: "question"})
     df["question"] = df["question"].astype(str).str.strip()
@@ -118,7 +118,7 @@ def write_question_variant(df: pd.DataFrame, out_csv: Path) -> None:
         keep_cols.append("step")
     if "question" in df.columns:
         keep_cols.append("question")
-    # Preserve additional metadata columns after question when present. pipeline6 will use 'question'.
+    # Preserve additional metadata columns after question when present. DTAG will use 'question'.
     for c in df.columns:
         if c not in keep_cols:
             keep_cols.append(c)
