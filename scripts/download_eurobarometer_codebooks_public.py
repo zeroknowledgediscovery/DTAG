@@ -43,6 +43,7 @@ import argparse
 import csv
 import hashlib
 import html
+import json
 import re
 import sys
 import time
@@ -51,7 +52,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Iterable, List, Optional
 from urllib.error import HTTPError, URLError
-from urllib.parse import urljoin
+from urllib.parse import urlencode, urljoin
 from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -143,6 +144,64 @@ def request_bytes(url: str, timeout: float = 45.0) -> tuple[bytes, str, str]:
     return body, final_url, ctype
 
 
+def sparql_links(za: str, timeout: float = 45.0) -> List[Link]:
+    """Discover public access.gesis.org DBK document URLs from GESIS KG.
+
+    GESIS retired the old dbk.gesis.org catalog and search.gesis.org may
+    return HTTP 403 to non-browser clients.  The GESIS Knowledge Graph is the
+    supported public machine-readable metadata interface.
+    """
+    endpoint = "https://data.gesis.org/gesiskg/sparql"
+    resource = f"https://data.gesis.org/gesiskg/resource/{za}"
+    query = f"""
+SELECT ?p ?o
+WHERE {{
+  <{resource}> ?p ?o .
+  FILTER(isIRI(?o))
+  FILTER(CONTAINS(STR(?o), "access.gesis.org/dbk/"))
+}}
+"""
+    body = urlencode({"query": query}).encode("utf-8")
+    req = Request(
+        endpoint,
+        data=body,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "application/sparql-results+json",
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        method="POST",
+    )
+    with urlopen(req, timeout=timeout) as resp:
+        payload = json.loads(resp.read().decode("utf-8"))
+
+    links: List[Link] = []
+    for binding in payload.get("results", {}).get("bindings", []):
+        p = binding.get("p", {}).get("value", "")
+        o = binding.get("o", {}).get("value", "")
+        if not o:
+            continue
+        pred = p.rsplit("/", 1)[-1].rsplit("#", 1)[-1]
+        links.append(Link(o, pred))
+    return links
+
+
+def probe_document_label(url: str, timeout: float = 20.0) -> str:
+    """Return useful HTTP filename/content-type metadata without downloading."""
+    try:
+        req = Request(
+            url,
+            headers={"User-Agent": USER_AGENT, "Accept": "application/pdf,*/*"},
+            method="HEAD",
+        )
+        with urlopen(req, timeout=timeout) as resp:
+            cd = resp.headers.get("Content-Disposition", "")
+            ct = resp.headers.get("Content-Type", "")
+            return f"{cd} {ct}".strip()
+    except Exception:
+        return ""
+
+
 def request_html(url: str, timeout: float = 45.0) -> tuple[str, str]:
     body, final_url, _ = request_bytes(url, timeout=timeout)
     # GESIS pages are usually UTF-8, but tolerate older DBK encodings.
@@ -185,6 +244,17 @@ def score_link(za: str, link: Link) -> int:
         score += 900
     if "access.gesis.org/dbk/" in href:
         score += 700
+
+    # When links came from GESIS KG, link.text is the predicate local-name.
+    # Prefer codebook/documentation relations and avoid dataset payload links.
+    if "codebook" in text:
+        score += 4000
+    if "otherdoc" in text or "document" in text:
+        score += 1800
+    if "questionnaire" in text:
+        score += 400
+    if "dataset" in text:
+        score -= 2500
     if "dbksearch/download.asp" in href:
         score += 650
     if href.endswith(".pdf"):
@@ -210,13 +280,50 @@ def candidate_links(za: str, links: Iterable[Link]) -> List[tuple[int, Link]]:
 
 
 def discover_document(za: str, timeout: float) -> tuple[str, str, int]:
+    diagnostics = []
+
+    # 1) Preferred machine-readable route: GESIS Knowledge Graph.
+    try:
+        kg_links = sparql_links(za, timeout=timeout)
+        if kg_links:
+            scored = candidate_links(za, kg_links)
+
+            # HEAD metadata often exposes a descriptive PDF filename. Fold that
+            # into ranking without downloading each candidate in full.
+            rescored = []
+            for base_score, link in scored:
+                label = probe_document_label(link.href, timeout=min(timeout, 20.0))
+                extra = 0
+                low = label.lower()
+                if "_cdb.pdf" in low:
+                    extra += 6000
+                if "variable report" in low:
+                    extra += 4000
+                if "codebook" in low:
+                    extra += 3000
+                if "questionnaire" in low:
+                    extra -= 800
+                rescored.append((base_score + extra, link, label))
+
+            rescored.sort(key=lambda x: (-x[0], x[1].href))
+            if rescored:
+                score, best, label = rescored[0]
+                source = f"https://data.gesis.org/gesiskg/resource/{za}"
+                return best.href, source, score
+
+        diagnostics.append("GESIS KG: no access.gesis.org/dbk document links found")
+    except Exception as e:
+        diagnostics.append(f"GESIS KG: {type(e).__name__}: {e}")
+
+    # 2) Compatibility fallbacks. The old DBK catalog has been retired and
+    # search.gesis.org may reject scripted clients, but keep these in case
+    # either route becomes available again.
     digits = str(int(za[2:]))
     pages = [
         f"https://dbk.gesis.org/dbksearch/SDesc2.asp?db=E&no={digits}",
         f"https://search.gesis.org/research_data/{za}",
     ]
 
-    diagnostics = []
     for page in pages:
         try:
             text, final_page = request_html(page, timeout=timeout)
