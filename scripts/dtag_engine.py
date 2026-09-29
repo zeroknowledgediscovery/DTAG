@@ -671,6 +671,10 @@ class ProfileSpec:
         d = self.as_dict()
         for k in ("model_label", "temporal", "warnings", "source"):
             d.pop(k, None)
+        # Store what the user asked for: a date-routed profile keeps its date
+        # (re-resolved on load); the resolved ZA is derived, not requested.
+        if d.get("date"):
+            d.pop("za", None)
         return d
 
 
@@ -1387,8 +1391,13 @@ class DTAGEngine:
             else:
                 warns.append("Country is contextual only for this model.")
         for k in ("year_warning", "geography_warning", "country_warning"):
-            if meta.get(k) and not (k == "year_warning" and spec.family == "gss"):
-                warns.append(str(meta[k]))
+            if not meta.get(k):
+                continue
+            if k == "year_warning" and spec.family == "gss":
+                continue  # GSS time is wave-model selection, not a year variable
+            if k == "geography_warning" and mode not in ("categorical_country",) and "O1_LONGITUDE" not in prev["forced"]:
+                continue  # already summarised as "Country is contextual only"
+            warns.append(str(meta[k]))
         return warns
 
     def build_spec(self, profile: Optional[str] = None, overrides: Optional[Dict[str, Any]] = None, model_key: Optional[str] = None) -> ProfileSpec:

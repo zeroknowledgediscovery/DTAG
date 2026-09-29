@@ -186,6 +186,15 @@ def create_app(engine: Optional[DTAGEngine] = None, frontend_dist: Optional[Path
         engine.validate_map_key(path)
         return engine.map_record(path)
 
+    @app.get("/api/geography", tags=["models"])
+    def geography() -> Dict[str, Any]:
+        """Country/continent names understood by DTAG geographic conditioning."""
+        import pipeline as core
+        return {
+            "countries": [c.title() for c in core.list_supported_countries()],
+            "continents": core.list_supported_continents(),
+        }
+
     @app.get("/api/polar-vectors", tags=["models"])
     def polar_sets() -> Dict[str, Any]:
         from dtag_engine import POLAR_VECTOR_SETS
