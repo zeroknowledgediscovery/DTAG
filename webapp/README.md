@@ -1,5 +1,8 @@
 # DTAG Web Application
 
+> **New here? Start with [QUICKSTART.md](QUICKSTART.md)** — install, run and use
+> the web app in five steps. This page is the full reference.
+
 A browser workbench and HTTP API for **DTAG — Digital Twin Anchored Generation**
 over the native Large Science Model (LSM) corpus (35 GSS + 9 Afrobarometer +
 1 WVS7 + 207 Eurobarometer = 252 native models, 252 semantic maps).

@@ -20,6 +20,7 @@ RUNTIME_DIRS = [
 # Top-level webapp files installed alongside the runtime tree.
 WEBAPP_FILES = [
     "webapp/README.md",
+    "webapp/QUICKSTART.md",
     "webapp/IMPLEMENTATION_PLAN.md",
     "webapp/run.sh",
     "webapp/.env.example",
