@@ -507,7 +507,7 @@ def parse_variable_report(pdf_path: Path, features: Sequence[str]) -> Dict[str, 
 
 
 def build_map(za: str, model_dir: Path, codebook: Path, out_path: Path) -> dict:
-    model = load_model(model_dir, backend="native_lsm")
+    model = load_model(model_dir, backend="native_lsm", preload=False)
     features = [str(v) for v in model.feature_names]
     docs = parse_variable_report(codebook, features)
 
