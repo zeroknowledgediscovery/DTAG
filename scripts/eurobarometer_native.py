@@ -35,7 +35,9 @@ from eurobarometer_dates import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-MODEL_ROOT = ROOT / "models" / "lsm" / "eurobarometer"
+from dtag_paths import model_path
+
+MODEL_ROOT = model_path("eurobarometer")
 
 
 def normalize_za(value: str) -> str:
