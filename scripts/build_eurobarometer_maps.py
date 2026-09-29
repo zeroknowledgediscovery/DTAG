@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import multiprocessing as mp
 import re
 import sys
 from dataclasses import dataclass
@@ -328,6 +329,65 @@ def build_map(za: str, model_dir: Path, codebook: Path, out_path: Path) -> dict:
     return stats
 
 
+def _build_map_worker(
+    za: str,
+    model_dir: str,
+    codebook: str,
+    out_path: str,
+    queue,
+) -> None:
+    try:
+        stats = build_map(
+            za,
+            Path(model_dir),
+            Path(codebook),
+            Path(out_path),
+        )
+        queue.put(("ok", stats))
+    except Exception as e:
+        queue.put(("error", f"{type(e).__name__}: {e}"))
+
+
+def build_map_bounded(
+    za: str,
+    model_dir: Path,
+    codebook: Path,
+    out_path: Path,
+    timeout_sec: float,
+) -> dict:
+    """Build one map without letting a pathological PDF stall the whole batch."""
+    if timeout_sec <= 0:
+        return build_map(za, model_dir, codebook, out_path)
+
+    ctx = mp.get_context("fork")
+    queue = ctx.Queue()
+    proc = ctx.Process(
+        target=_build_map_worker,
+        args=(za, str(model_dir), str(codebook), str(out_path), queue),
+    )
+    proc.start()
+    proc.join(timeout_sec)
+
+    if proc.is_alive():
+        proc.terminate()
+        proc.join(2)
+        raise TimeoutError(
+            f"map extraction exceeded {timeout_sec:.0f}s for {za}; "
+            "leave this wave on the legacy Eurobarometer map fallback"
+        )
+
+    if queue.empty():
+        raise RuntimeError(
+            f"map worker exited without a result for {za} "
+            f"(exitcode={proc.exitcode})"
+        )
+
+    status, payload = queue.get()
+    if status != "ok":
+        raise RuntimeError(str(payload))
+    return payload
+
+
 def discover_codebooks(codebook_dir: Path) -> List[Tuple[str, Path]]:
     out = []
     for p in sorted(codebook_dir.glob("ZA*_cdb.pdf")):
@@ -349,6 +409,12 @@ def main() -> None:
     ap.add_argument("--out", default="")
     ap.add_argument("--out-dir", default=str(DEFAULT_OUT_DIR))
     ap.add_argument("--min-question-coverage", type=float, default=0.0)
+    ap.add_argument(
+        "--parse-timeout",
+        type=float,
+        default=120.0,
+        help="max seconds per PDF/map build; <=0 disables timeout",
+    )
     ap.add_argument("--inspect-variable", action="append", default=[],
                     help="print selected output rows after building; repeatable")
     args = ap.parse_args()
@@ -412,7 +478,13 @@ def main() -> None:
         print(f"codebook: {codebook}")
         print(f"out:      {out_path}")
         try:
-            stats = build_map(za, model_dir, codebook, out_path)
+            stats = build_map_bounded(
+                za,
+                model_dir,
+                codebook,
+                out_path,
+                timeout_sec=args.parse_timeout,
+            )
         except Exception as e:
             failures += 1
             print(f"FAIL: {e}", file=sys.stderr)
