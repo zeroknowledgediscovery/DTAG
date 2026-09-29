@@ -279,45 +279,74 @@ def candidate_links(za: str, links: Iterable[Link]) -> List[tuple[int, Link]]:
     return scored
 
 
+def _rescore_with_headers(
+    za: str,
+    scored: List[tuple[int, Link]],
+    timeout: float,
+) -> List[tuple[int, Link, str]]:
+    """Use public HTTP metadata to distinguish codebooks from questionnaires."""
+    out: List[tuple[int, Link, str]] = []
+    for base_score, link in scored:
+        label = probe_document_label(link.href, timeout=min(timeout, 20.0))
+        low = label.lower()
+        extra = 0
+        if "_cdb.pdf" in low:
+            extra += 8000
+        if "variable report" in low:
+            extra += 5000
+        if "codebook" in low:
+            extra += 4000
+        if "questionnaire" in low:
+            extra -= 1200
+        if "basic bilingual" in low:
+            extra -= 800
+        out.append((base_score + extra, link, label))
+    out.sort(key=lambda x: (-x[0], x[1].href))
+    return out
+
+
 def discover_document(za: str, timeout: float) -> tuple[str, str, int]:
     diagnostics = []
 
-    # 1) Preferred machine-readable route: GESIS Knowledge Graph.
+    # 1) Preferred route: dereference the public GESIS KG resource page.
+    # This page exposes the dataset metadata directly and includes public
+    # access.gesis.org/dbk/... documentation links.  It avoids both the
+    # retired DBK catalog and the search.gesis.org anti-bot response.
+    resource_page = f"https://data.gesis.org/gesiskg/resource/{za}"
+    try:
+        text, final_page = request_html(resource_page, timeout=timeout)
+        links = [
+            x for x in parse_links(text, final_page)
+            if "access.gesis.org/dbk/" in x.href.lower()
+        ]
+        if links:
+            scored = candidate_links(za, links)
+            rescored = _rescore_with_headers(za, scored, timeout)
+            if rescored:
+                score, best, label = rescored[0]
+                return best.href, final_page, score
+        diagnostics.append(
+            f"{resource_page}: no public access.gesis.org/dbk documentation links found"
+        )
+    except Exception as e:
+        diagnostics.append(f"{resource_page}: {type(e).__name__}: {e}")
+
+    # 2) SPARQL route, retained as a secondary option.  Some deployments of
+    # the endpoint reject POST/GET requests transiently, so failure here is not
+    # fatal as long as the resource page works.
     try:
         kg_links = sparql_links(za, timeout=timeout)
         if kg_links:
             scored = candidate_links(za, kg_links)
-
-            # HEAD metadata often exposes a descriptive PDF filename. Fold that
-            # into ranking without downloading each candidate in full.
-            rescored = []
-            for base_score, link in scored:
-                label = probe_document_label(link.href, timeout=min(timeout, 20.0))
-                extra = 0
-                low = label.lower()
-                if "_cdb.pdf" in low:
-                    extra += 6000
-                if "variable report" in low:
-                    extra += 4000
-                if "codebook" in low:
-                    extra += 3000
-                if "questionnaire" in low:
-                    extra -= 800
-                rescored.append((base_score + extra, link, label))
-
-            rescored.sort(key=lambda x: (-x[0], x[1].href))
+            rescored = _rescore_with_headers(za, scored, timeout)
             if rescored:
                 score, best, label = rescored[0]
-                source = f"https://data.gesis.org/gesiskg/resource/{za}"
-                return best.href, source, score
-
-        diagnostics.append("GESIS KG: no access.gesis.org/dbk document links found")
+                return best.href, resource_page, score
+        diagnostics.append("GESIS KG SPARQL: no access.gesis.org/dbk document links found")
     except Exception as e:
-        diagnostics.append(f"GESIS KG: {type(e).__name__}: {e}")
+        diagnostics.append(f"GESIS KG SPARQL: {type(e).__name__}: {e}")
 
-    # 2) Compatibility fallbacks. The old DBK catalog has been retired and
-    # search.gesis.org may reject scripted clients, but keep these in case
-    # either route becomes available again.
+    # 3) Compatibility fallbacks.
     digits = str(int(za[2:]))
     pages = [
         f"https://dbk.gesis.org/dbksearch/SDesc2.asp?db=E&no={digits}",
@@ -334,7 +363,8 @@ def discover_document(za: str, timeout: float) -> tuple[str, str, int]:
         links = parse_links(text, final_page)
         scored = candidate_links(za, links)
         if scored:
-            score, best = scored[0]
+            rescored = _rescore_with_headers(za, scored, timeout)
+            score, best, label = rescored[0]
             return best.href, final_page, score
 
         diagnostics.append(f"{page}: no codebook/Variable Report link found")
