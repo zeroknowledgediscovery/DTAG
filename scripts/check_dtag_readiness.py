@@ -143,16 +143,17 @@ def check_imports(report: Report) -> None:
         except Exception as e:
             report.fail(f"python package {pkg}", str(e))
 
-    for mod in ("predict_distribution", "qdistance"):
-        try:
-            importlib.import_module(mod)
-            report.ok(f"native LSM binding {mod}")
-        except Exception as e:
-            hint = os.environ.get("LSM_BINDINGS_DIR", "")
-            report.fail(
-                f"native LSM binding {mod}",
-                f"{e}; LSM_BINDINGS_DIR={hint!r}",
-            )
+    try:
+        mod = importlib.import_module("dtag_lsm")
+        if hasattr(mod, "Runtime"):
+            report.ok("bundled DTAG native LSM binding", str(getattr(mod, "__file__", "")))
+        else:
+            report.fail("bundled DTAG native LSM binding", "dtag_lsm.Runtime is missing")
+    except Exception as e:
+        report.fail(
+            "bundled DTAG native LSM binding",
+            f"{e}; run: bash scripts/build_native_bindings.sh",
+        )
 
 
 def inspect_map(path: Path) -> tuple[bool, str]:
