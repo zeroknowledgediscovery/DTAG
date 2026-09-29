@@ -215,3 +215,19 @@ a.btn {
   padding: 5px 10px; color: var(--text); text-decoration: none;
 }
 a.btn:hover { border-color: var(--accent); }
+
+/* model chooser */
+.cand { display: block; border: 1px solid var(--border); border-radius: 5px; padding: 6px 8px; margin-bottom: 6px; cursor: pointer; background: var(--panel-2); }
+.cand.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; background: var(--accent-weak); }
+.cand-h { display: flex; gap: 6px; align-items: center; }
+.cand-h input { margin: 0; }
+.cand-d { font-size: 12px; color: var(--muted); margin: 2px 0 0 20px; }
+.cand-d .mono { color: var(--faint); margin-right: 4px; }
+
+/* suggested questions */
+.suggest-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; margin-top: 16px; text-align: left; }
+.suggest { border: 1px solid var(--border); background: var(--panel); border-radius: 6px; padding: 8px 10px; cursor: pointer; text-align: left; font-size: 12.5px; color: var(--text); }
+.suggest:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-weak); }
+.suggest:disabled { opacity: 0.5; cursor: not-allowed; }
+.suggest.small { padding: 3px 8px; font-size: 11.5px; max-width: 260px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.suggest-row { display: flex; gap: 6px; align-items: center; max-width: 900px; margin: 0 auto 8px; overflow-x: auto; }

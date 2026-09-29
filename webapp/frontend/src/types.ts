@@ -287,3 +287,45 @@ export interface EBWave extends Fieldwork {
   model_key: string | null;
   installed: boolean;
 }
+
+export interface Candidate {
+  model_key: string;
+  family: Family;
+  family_label: string;
+  label: string;
+  geo: { mode: "categorical" | "national_survey" | "coverage_only" | "coordinates" | "assumed"; note: string; value: string | null };
+  time: { mode: "exact" | "nearest" | "latest"; note: string; distance_years: number };
+  overrides: { year?: number; date?: string; za?: string };
+  installed: boolean;
+  loaded: boolean;
+  status: ModelStatus["state"];
+  archive_bytes: number | null;
+  ideology_available: boolean;
+}
+
+export interface Recommendation {
+  resolved: {
+    country: string;
+    country_key: string;
+    year: number | null;
+    date: string | null;
+    sources: { country: "input" | "description" | "default" | null; year: "input" | "description" | "date" | null };
+  };
+  detected: { country: string | null; country_evidence: string | null; year: number | null; year_evidence: string | null };
+  candidates: Candidate[];
+  default: string | null;
+  choice_required: boolean;
+  reason: string | null;
+  messages: string[];
+}
+
+export interface CountryInfo {
+  key: string;
+  name: string;
+  families: Family[];
+}
+
+export interface Suggestion {
+  question: string;
+  top_variables: string[];
+}

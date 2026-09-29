@@ -21,6 +21,7 @@ from .schemas import (
     ProfileDraft,
     QuestionIn,
     QuestionResult,
+    RecommendIn,
     SessionCreate,
     SessionOut,
 )
@@ -195,6 +196,23 @@ def create_app(engine: Optional[DTAGEngine] = None, frontend_dist: Optional[Path
             "continents": core.list_supported_continents(),
         }
 
+    @app.get("/api/countries", tags=["models"])
+    def countries() -> List[Dict[str, Any]]:
+        """Countries covered by at least one native model, with the families covering them."""
+        return engine.recommender.countries()
+
+    @app.post("/api/recommend", tags=["models"])
+    def recommend(body: RecommendIn) -> Dict[str, Any]:
+        """Recommend native models for a respondent description, country and time.
+
+        Returns one best candidate per survey family, ranked, with a default and
+        the exact overrides (year/date/ZA) to create the session with.
+        """
+        return engine.recommend(
+            persona=body.persona, country=body.country, year=body.year,
+            when=body.date, preferred_model=body.preferred_model,
+        )
+
     @app.get("/api/polar-vectors", tags=["models"])
     def polar_sets() -> Dict[str, Any]:
         from dtag_engine import POLAR_VECTOR_SETS
@@ -290,6 +308,11 @@ def create_app(engine: Optional[DTAGEngine] = None, frontend_dist: Optional[Path
             return es.ask(body.question)
         except ValueError as e:
             raise HTTPException(400, str(e))
+
+    @app.get("/api/sessions/{session_id}/suggestions", tags=["sessions"])
+    def suggestions(session_id: str, n: int = Query(6, ge=1, le=20)) -> List[Dict[str, Any]]:
+        """Starter questions that map directly onto the session's survey map."""
+        return engine.suggestions(_session(session_id), n=n)
 
     @app.post("/api/sessions/{session_id}/reset", response_model=SessionOut, tags=["sessions"])
     def reset(session_id: str) -> Dict[str, Any]:

@@ -1,4 +1,5 @@
 import type {
+  CountryInfo,
   EBWave,
   ModelRecord,
   ModelStatus,
@@ -6,7 +7,9 @@ import type {
   Profile,
   QuestionResult,
   Readiness,
+  Recommendation,
   SessionInfo,
+  Suggestion,
 } from "./types";
 
 export class ApiError extends Error {
@@ -80,6 +83,16 @@ export const api = {
   createSession: (body: { profile?: string; model_key?: string; overrides: Overrides }) =>
     post<SessionInfo>("/api/sessions", { ...body, overrides: cleanOverrides(body.overrides) }),
   session: (id: string) => request<SessionInfo>(`/api/sessions/${id}`),
+  suggestions: (id: string, n = 6) => request<Suggestion[]>(`/api/sessions/${id}/suggestions?n=${n}`),
+  countries: () => request<CountryInfo[]>("/api/countries"),
+  recommend: (body: { persona: string; country: string; year?: number | null; date?: string | null; preferred_model?: string | null }) =>
+    post<Recommendation>("/api/recommend", {
+      persona: body.persona,
+      country: body.country,
+      ...(body.year ? { year: body.year } : {}),
+      ...(body.date ? { date: body.date } : {}),
+      ...(body.preferred_model ? { preferred_model: body.preferred_model } : {}),
+    }),
   ask: (id: string, question: string) => post<QuestionResult>(`/api/sessions/${id}/questions`, { question }),
   reset: (id: string) => post<SessionInfo>(`/api/sessions/${id}/reset`),
   deleteSession: (id: string) => request(`/api/sessions/${id}`, { method: "DELETE" }),

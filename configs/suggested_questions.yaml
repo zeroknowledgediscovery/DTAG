@@ -1,0 +1,47 @@
+# Starter questions offered once a respondent is ready.
+#
+# The web application shows only those that map directly (lexical prefilter)
+# onto the loaded model's semantic map, so every suggestion is answerable from
+# native survey variables. Add or reorder freely; `csv` entries are read too.
+
+gss:
+  csv: assets/question_sets/demo/gss2024_ideology_walk.csv
+  questions:
+    - How often do you attend religious services?
+    - Do you think of yourself as liberal or conservative?
+    - How much confidence do you have in the Supreme Court?
+    - Do you favor or oppose the death penalty for persons convicted of murder?
+    - Generally speaking, can most people be trusted?
+
+afrobarometer:
+  questions:
+    - How much do you trust the president?
+    - Which is closer to your view - democracy is preferable to any other kind of government?
+    - How satisfied are you with the way democracy works in your country?
+    - How well or badly is the government handling the fight against corruption?
+    - How would you describe the present economic condition of this country?
+    - How often do you get news from the radio?
+    - Should women have the same chance as men of being elected to political office?
+    - How much do you trust the police?
+
+wvs:
+  questions:
+    - How important is religion in your life?
+    - Generally speaking, would you say that most people can be trusted?
+    - How important is it for you to live in a country that is governed democratically?
+    - How proud are you to be of your nationality?
+    - How much confidence do you have in the government?
+    - Would you say that men make better political leaders than women do?
+    - How interested would you say you are in politics?
+    - How satisfied are you with your life as a whole these days?
+
+eurobarometer:
+  questions:
+    - How satisfied are you with the way democracy works in your country?
+    - Do you tend to trust or not trust the European Union?
+    - In general, does the European Union conjure up for you a very positive or negative image?
+    - How would you judge the current situation of the national economy?
+    - On the whole, are you satisfied with the life you lead?
+    - What are the two most important issues facing your country at the moment?
+    - Do you think your country's membership of the European Union is a good thing?
+    - How much do you trust the national government?

@@ -98,6 +98,7 @@ def find_categorical_country_assignment(
                 continue
             name = raw.rsplit('-', 1)[1]
             name = re.sub(r'\([^)]*\)', ' ', name)
+            name = re.sub(r'^\s*the\s+', '', name, flags=re.I)  # "NL - The Netherlands"
             if core._canonicalize_place_name(name) in targets:
                 hits.append(raw)
         if len(hits) == 1:
