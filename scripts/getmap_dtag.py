@@ -405,10 +405,12 @@ def build_dtag_map(
     output_vars: List[Tuple[str, str]] = []  # (norm, exact output variable)
 
     if qnet_features:
+        # Native model features are authoritative. Keep every feature so the
+        # resulting DTAG map has 100% model overlap by construction; variables
+        # absent from the codebook/data fall back to a readable native name.
         for v in qnet_features:
             nk = norm_key(v)
-            if nk in pdf_by_norm or nk in data_exact_by_norm:
-                output_vars.append((nk, str(v)))
+            output_vars.append((nk, str(v)))
     elif data_vars:
         for v in data_vars:
             output_vars.append((norm_key(v), str(v)))
