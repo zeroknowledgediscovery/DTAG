@@ -2,7 +2,7 @@
 """Smoke-test native LSM model directories against the DTAG runtime.
 
 This test intentionally separates model/runtime validation from OpenAI calls.
-By default it checks every trained optional native model found in
+By default it checks the native models listed under validation_models in
 configs/dtag_config.yaml.  Use --run-openai for an actual one-question DTAG
 deployment smoke after the no-LLM checks pass.
 """
@@ -108,7 +108,7 @@ def check_model(root: Path, cfg: Dict[str, Any], key: str, path: Path) -> None:
 
     # If this model backs an Afrobarometer dev profile, verify hard country
     # conditioning without an LLM.
-    if key == "afrobarometer_r5_native":
+    if key == "afrobarometer_r5":
         feat = set(m.feature_names)
         fa, ma = localized.build_forced_assignments(
             feat, possible, None, "Nigeria", "Africa"
@@ -145,11 +145,8 @@ def main() -> None:
     config_path = resolve(ROOT, args.config)
     cfg = load_config(config_path)
     models = cfg.get("models", {}) or {}
-    optional = set(
-        map(str, ((cfg.get("development", {}) or {}).get("optional_models", []) or []))
-    )
-
-    selected = args.model or sorted(optional)
+    validation = list(map(str, cfg.get("validation_models", []) or []))
+    selected = args.model or validation
     checked: List[str] = []
     missing: List[str] = []
 
@@ -181,7 +178,7 @@ def main() -> None:
         if not profile:
             # Prefer GSS 2024 because it tests both normal answer generation and
             # the GSS ideology path once the native model exists.
-            profile = "gss2024_native_cm"
+            profile = "gss2024_cm"
         cmd = [
             sys.executable,
             "scripts/interactive.py",
