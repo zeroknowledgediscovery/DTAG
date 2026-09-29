@@ -13,7 +13,7 @@ Default personas match the earlier WF/CM DTAG tests, but a JSON file can overrid
 
 Example:
   python3 run_dtag_experiment_grid.py \
-    --pipeline ./pipeline6.py \
+    --pipeline scripts/pipeline_localized.py \
     --question_dir ./assets/question_sets \
     --outdir ./dtag_batch_out \
     --map maps/map2022.csv \
@@ -65,12 +65,12 @@ import pandas as pd
 DEFAULT_PERSONAS = [
     {
         "id": "WF",
-        "qnet": "../survey/models/gss/gss_2022female.pkl.gz",
+        "qnet": "models/lsm/gss/gss_2024",
         "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
     },
     {
         "id": "CM",
-        "qnet": "../survey/models/gss/gss_2022male.pkl.gz",
+        "qnet": "models/lsm/gss/gss_2024",
         "persona": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative",
     },
 ]
@@ -187,7 +187,7 @@ def load_personas(path: str) -> List[Dict[str, object]]:
             "qnet": str(p["qnet"]),
             "persona": str(p["persona"]),
         }
-        # Optional per-persona pass-throughs supported by pipeline6iloc.py
+        # Optional per-persona pass-throughs supported by pipeline_localized.py
         # Examples: {"year": 2022, "country": "United States", "continent": "North America"}
         for opt in ("year", "country", "continent"):
             if opt in p and str(p[opt]).strip():
@@ -307,12 +307,12 @@ def write_jsonl(path: Path, rows: Iterable[Dict[str, object]]) -> None:
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Run DTAG pipeline6 experiments in parallel over question CSVs.")
-    ap.add_argument("--pipeline", default="./pipeline6.py", help="Path to pipeline6.py")
+    ap = argparse.ArgumentParser(description="Run native-LSM DTAG experiments in parallel over question CSVs.")
+    ap.add_argument("--pipeline", default="scripts/pipeline_localized.py", help="Path to pipeline_localized.py")
     ap.add_argument("--question_dir", required=True, help="Directory containing question CSV files")
     ap.add_argument("--question_glob", default="*.csv", help="Glob for question CSVs inside question_dir")
     ap.add_argument("--outdir", required=True, help="Batch output directory")
-    ap.add_argument("--map", required=True, help="Survey variable map CSV passed to pipeline6.py")
+    ap.add_argument("--map", required=True, help="Survey variable map CSV passed to the DTAG pipeline")
     ap.add_argument("--polar_vectors", default="", help="Optional polar reference vector CSV passed to pipeline.py; omit to disable ideology tracking")
     ap.add_argument("--personas_json", default="", help="Optional JSON list of personas. Defaults to WF and CM from prior tests.")
 
@@ -320,10 +320,10 @@ def main() -> None:
     ap.add_argument("--parallel", type=int, default=4, help="Number of parallel subprocesses")
     ap.add_argument("--variants", default="forward", help="Comma-separated order variants: forward,reverse,shuffle")
     ap.add_argument("--shuffle_orders", type=int, default=3, help="Number of shuffled order variants when variant includes shuffle")
-    ap.add_argument("--seed_base", type=int, default=1000, help="Base RNG seed for pipeline6 replicates and shuffled question orders")
+    ap.add_argument("--seed_base", type=int, default=1000, help="Base RNG seed for DTAG replicates and shuffled question orders")
 
     ap.add_argument("--python", default=sys.executable or "python3", help="Python executable")
-    ap.add_argument("--openai_model", default="gpt-4.1-mini", help="OpenAI model passed to pipeline6.py")
+    ap.add_argument("--openai_model", default="gpt-4.1-mini", help="OpenAI model passed to the DTAG pipeline")
     ap.add_argument("--state_keep", type=int, default=500)
     ap.add_argument("--k", type=int, default=50)
     ap.add_argument("--prefilter", type=int, default=200)
@@ -443,7 +443,7 @@ def main() -> None:
                         cmd.append("--require_polar_vectors")
                     if args.timing:
                         cmd.append("--timing")
-                    # Optional per-persona WVS/location-aware controls for pipeline6iloc.py.
+                    # Optional per-persona WVS/location-aware controls for pipeline_localized.py.
                     if persona.get("year") is not None and str(persona.get("year", "")).strip():
                         cmd.extend(["--year", str(persona["year"])])
                     if str(persona.get("country", "")).strip():
