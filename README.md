@@ -1,63 +1,231 @@
-# DTAG
+# DTAG — Digital Twin Anchored Generation
 
-**DTAG (Digital Twin Attitude Generator)** is a survey-grounded synthetic respondent and synthetic survey simulator built on Large Science Models (LSMs/qnets).
+DTAG is a survey-grounded generative system built on native Large Science Models (LSMs). It conditions a learned survey-state model on a persona, time, and place where supported; maps natural-language questions to survey variables; predicts conditional response distributions; and uses those distributions to anchor generated answers.
 
-This repository is a **research release candidate: v0.1.0-rc1**. It freezes the currently functioning runtime while survey models are progressively regenerated with the latest standardized LSM training pipeline.
+This branch is the clean native-LSM implementation. It contains no Quasinet runtime, no legacy model files, and no RC1 compatibility surface.
 
-## Quick start
+Current validated native inventory:
+
+| Survey family | Native models | Semantic maps |
+|---|---:|---:|
+| GSS | 35 | 35 |
+| Afrobarometer | 9 | 9 |
+| WVS7 pooled | 1 | 1 |
+| Eurobarometer | 207 | 207 |
+| **Total** | **252** | **252** |
+
+The deep audit verifies zero missing maps, zero bad maps, and complete model-map feature overlap across all 252 native models.
+
+## Architecture
+
+DTAG separates three layers:
+
+1. **Native LSM model** — learned conditional structure and state geometry.
+2. **Semantic map** — model variable to survey question/label text.
+3. **Generation layer** — maps a user question into survey variables, conditions the digital twin, predicts response distributions, and generates an answer anchored to those distributions.
+
+A DTAG state is therefore a survey-variable state constrained by the native LSM, not merely free-form conversational history.
+
+## Repository layout
+
+```text
+DTAG/
+  assets/                       question sets, polar vectors, runtime caches
+  bin/                          supported shell entry points
+  configs/
+    dtag_config.yaml            native model/map profiles and experiments
+    eurodates.csv               Eurobarometer fieldwork-date registry
+  data/                         local documentation/raw-data staging
+  maps/
+    gss/                        35 GSS per-wave maps
+    afromap/                    Afrobarometer R1-R9 maps
+    eurobarometer/              207 ZA-specific maps
+    wvs7_variable_question_map.csv
+  models/
+    lsm/
+      README.md                 tracked placeholder/documentation only
+  scripts/                      runtime, builders, audits, tests
+  outputs/                      generated run outputs; ignored by Git
+  README.md
+  requirements.txt
+  VERSION
+```
+
+Native model binaries are intentionally **not stored in Git**. A complete local installation is currently about 6.6 GB.
+
+## Native model location
+
+By default DTAG looks under:
+
+```text
+models/lsm/
+```
+
+A complete store has:
+
+```text
+models/lsm/
+  gss/
+    gss_1972/
+    ...
+    gss_2024/
+  afrobarometer/
+    r1/
+    ...
+    r9/
+  wvs/
+    wvs7_pooled/
+  eurobarometer/
+    ZAxxxx_v.../
+```
+
+Every native model directory must contain at least:
+
+```text
+source_maps/
+trees/binary/
+```
+
+For a clean checkout, keep the large model corpus outside the repository and set:
+
+```bash
+export DTAG_MODEL_ROOT="$HOME/Dropbox/ZED/Models/DTAG_LSM"
+```
+
+or another local/cache path such as:
+
+```bash
+export DTAG_MODEL_ROOT="$HOME/.cache/dtag/models"
+```
+
+The external root contains the family directories directly:
+
+```text
+$DTAG_MODEL_ROOT/
+  gss/
+  afrobarometer/
+  wvs/
+  eurobarometer/
+```
+
+When `DTAG_MODEL_ROOT` is unset, DTAG falls back to `<repo>/models/lsm`.
+
+## Native LSM bindings
+
+DTAG requires the native LSM Python bindings used by the runtime:
+
+```text
+predict_distribution
+qdistance
+```
+
+Point Python at the LSM binding directory, for example:
+
+```bash
+export LSM_BINDINGS_DIR="$HOME/Dropbox/ZED/Research/lsm/bin"
+export PYTHONPATH="$LSM_BINDINGS_DIR:$PYTHONPATH"
+```
+
+## Python environment
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-
-export OPENAI_API_KEY="YOUR_KEY"
-
-python3 scripts/check_dtag_readiness.py \
-  --create-smoke-csv \
-  --overlap
-
-bin/interactive_config.sh --list
 ```
 
-Interactive GSS 2024 conservative-male respondent:
+Live generation also requires:
 
 ```bash
-bin/interactive_config.sh --profile gss2024_cm
+export OPENAI_API_KEY="..."
 ```
 
-Afrobarometer Nigeria:
+The deterministic validation suite does not require an OpenAI call.
+
+## First test / full demonstration
+
+Run the repository-wide deterministic demo:
 
 ```bash
-bin/interactive_config.sh --profile afrobarometer_r5_nigeria
+bin/dtag_demo.sh
 ```
 
-WVS India 2017:
+Faster structural version:
 
 ```bash
-bin/interactive_config.sh --profile wvs7_india_2017
+bin/dtag_demo.sh --quick
 ```
 
-## Supported RC1 surface
+Add live OpenAI-backed demonstrations:
 
-| Survey family | RC1 status | Notes |
-|---|---|---|
-| GSS 2022 | Supported | Female/male LSMs; GSS polar-vector ideology tracking |
-| GSS 2024 | Supported | Pooled LSM; 2024 map; persona-conditioned |
-| WVS7 | Supported | Pooled `LSM60K.gz`; country/year conditioning; ideology disabled by default |
-| Afrobarometer R1-R5 | Models/maps included | R5 Nigeria/Ghana deterministic country localization tested |
-| Afrobarometer R6-R9 | Not included as trained models in RC1 | To be regenerated with the latest LSM training pipeline |
-| Eurobarometer | Not included in RC1 | Planned for a subsequent release candidate |
+```bash
+bin/dtag_demo.sh --openai
+```
+
+Use a custom demonstration question:
+
+```bash
+bin/dtag_demo.sh   --openai   --question "Do you trust the national government?"
+```
+
+The demo covers native model inventory, syntax, backend contract tests, country conditioning, readiness, model/map audits, configured GSS/WVS/Afrobarometer profiles, Eurobarometer date/place routing, and optional live answer generation.
+
+## Repository readiness
+
+Canonical readiness check:
+
+```bash
+python3 scripts/check_dtag_readiness.py   --create-smoke-csv   --overlap
+```
+
+It checks source files, Python syntax, packages, native bindings, configured model paths, maps, selected model-map overlap, question sets, polar vectors, and Eurobarometer coverage/provenance.
+
+## Complete native audit
+
+Inventory installed native models:
+
+```bash
+python3 scripts/inventory_native_models.py
+```
+
+Audit all maps:
+
+```bash
+python3 scripts/audit_native_maps.py
+```
+
+Deep audit loading every model:
+
+```bash
+python3 scripts/audit_native_maps.py --deep
+```
+
+Expected result:
+
+```text
+native models: 252
+maps present:  252
+missing maps:  0
+bad maps:      0
+overlap issues:0
+
+PASS: native DTAG map surface is complete.
+Expected/verified inventory: 35 GSS + 9 Afrobarometer + 1 WVS + 207 Eurobarometer = 252
+```
 
 ## Interactive profiles
 
+List configured profiles:
+
 ```bash
 bin/interactive_config.sh --list
 ```
 
-Expected RC profiles:
+Representative profiles:
 
 ```text
+gss2018_wf
+gss2018_cm
 gss2022_wf
 gss2022_cm
 gss2024_wf
@@ -67,81 +235,392 @@ afrobarometer_r5_nigeria
 afrobarometer_r5_ghana
 ```
 
+Run interactively:
+
+```bash
+bin/interactive_config.sh --profile gss2024_cm
+```
+
 Run one question:
 
 ```bash
-bin/interactive_config.sh \
-  --profile gss2022_cm \
-  --question "What do you think about immigration?"
+bin/interactive_config.sh   --profile gss2024_cm   --question "What do you think about immigration?"
+```
+
+Print the underlying runtime command:
+
+```bash
+bin/interactive_config.sh   --profile gss2024_cm   --question "What do you think about immigration?"   --print-command
 ```
 
 ## Canonical runtime
 
-The canonical RC entry point is:
+Core runtime:
+
+```text
+scripts/pipeline.py
+```
+
+Localized runtime:
 
 ```text
 scripts/pipeline_localized.py
 ```
 
-It wraps `pipeline.py` and adds deterministic geographic conditioning.
-
-Available modes:
+Config-driven launcher:
 
 ```text
-single question
-interactive loop
-CSV/autoplay question sequence
+scripts/interactive.py
 ```
 
-The default semantic fallback mode is `answer_only`. `update_state` is available as an experimental influence-propagation mode.
+Normal use should prefer `bin/interactive_config.sh` or `scripts/eurobarometer_native.py`.
 
-## Geographic conditioning
+A historical `--qnet` option spelling remains as a low-level compatibility alias, but on this branch it accepts only a **native LSM model directory**. There is no Quasinet backend.
 
-DTAG attempts location conditioning in this order:
+## Persona, time, and place
 
-1. direct categorical country feature when available;
-2. WVS-style longitude/latitude proxy conditioning when supported;
-3. context-only localization with a warning otherwise.
+A profile supplies a persona plus optional structured time/location constraints. Persona attributes become explicit model-state constraints only when the selected survey model contains compatible variables and support.
 
-Afrobarometer R5 Nigeria/Ghana deterministic conditioning can be tested with:
+Conceptually:
+
+```text
+persona + time + place + current survey state
+                  ↓
+        native LSM conditionals
+                  ↓
+       survey-anchored generation
+```
+
+### Place
+
+DTAG uses geography in this order when supported:
+
+1. direct categorical country variable;
+2. WVS-style geographic proxy fields such as coordinates;
+3. contextual localization if no deterministic survey variable exists.
+
+Afrobarometer deterministic country conditioning can be tested with:
 
 ```bash
 python3 scripts/test_country_conditioning.py
+```
+
+and end-to-end:
+
+```bash
 bin/smoke_country_pair.sh
 ```
 
-## Readiness
+### Time
+
+Time handling is family-specific.
+
+- **GSS:** model selection is wave-specific.
+- **WVS7:** year may additionally be conditioned if the pooled model exposes a compatible field.
+- **Eurobarometer:** a calendar date is routed to a fieldwork wave.
+
+## Eurobarometer date + country
+
+Example:
 
 ```bash
-python3 scripts/check_dtag_readiness.py \
-  --create-smoke-csv \
-  --overlap
+python3 scripts/eurobarometer_native.py   --date 2019-05-15   --country France   --question "How satisfied are you with the way democracy works?"
 ```
 
-## Models and provenance
+The fieldwork registry is:
 
-RC1 ships only model artifacts used by the currently validated DTAG workflows. Raw/merged survey datasets are not part of the public release tree.
+```text
+configs/eurodates.csv
+```
 
-The survey models in RC1 predate the newest manifest-based LSM training pipeline. Future release candidates will progressively replace them with models regenerated through that workflow while preserving the DTAG runtime interface.
+An explicit ZA is also supported:
 
-## Research status
+```bash
+python3 scripts/eurobarometer_native.py   --za ZA7575   --country France   --question "How satisfied are you with the way democracy works?"
+```
 
-DTAG is research software. This release candidate is intended to make the current simulator reproducible and usable outside the development group while model coverage, validation, automatic survey routing, and additional survey families continue to expand.
+Without `--question`, the wrapper enters interactive mode.
 
+A year alone is deliberately not assumed to identify a unique wave because several Eurobarometers may occur in one year.
 
-## More documentation
+### Eurobarometer routing assumptions
 
-- [Configuration profiles](CONFIG_PROFILES.md)
-- [Complete runnable examples](DTAG_EXAMPLES_FULL.md)
-- [RC1 scope](docs/RC1_SCOPE.md)
+- A date selects a discrete survey wave; there is no continuous interpolation between waves.
+- If multiple ordinary fieldwork intervals cover a date, routing should remain conservative.
+- Broad cumulative/trend files are not silently substituted for ordinary waves.
+- Country is applied after/with wave selection and is not universally sufficient to disambiguate overlapping waves.
 
+## Semantic map provenance
 
-## Native LSM development branch
+Every native model feature has a map row.
 
-Native C++ LSM integration is being developed on `dev/native-lsm-dtag`
-without replacing the validated RC1 Quasinet profiles.
+Canonical locations:
 
-The first validation models are pooled GSS 2018, 2022, and 2024 and are placed
-under `models/lsm/gss/`. See
-[Native LSM DTAG development](docs/NATIVE_LSM_DEV.md) for training, runtime,
-validation, and merge-gate instructions.
+```text
+maps/gss/gss_YYYY_map.csv
+maps/afromap/afrobarometer_rN_map.csv
+maps/wvs7_variable_question_map.csv
+maps/eurobarometer/ZAxxxx_map.csv
+```
+
+When documentation is unavailable, the native variable name is retained rather than dropping the model feature.
+
+### Eurobarometer fallbacks
+
+There are 207 Eurobarometer models and 207 maps. Most maps are derived from wave-specific GESIS documentation. Waves without usable model-specific documentation use a semantic-union fallback built from the exact maps.
+
+Fallback rows retain provenance fields such as:
+
+```text
+map_provenance
+fallback_sources
+fallback_n_sources
+fallback_consensus_fraction
+fallback_support_similarity
+fallback_context_f1
+fallback_resolution
+```
+
+Resolution classes include:
+
+```text
+UNION_CONSENSUS
+UNION_SUPPORT_MATCH
+UNION_CONTEXT_MATCH
+UNRESOLVED_NATIVE
+```
+
+An unresolved row remains runnable using its native variable name. It is not represented as exact documentation.
+
+## Regenerating all maps
+
+One command:
+
+```bash
+python3 scripts/complete_native_maps.py
+```
+
+It orchestrates:
+
+- all 35 GSS maps;
+- Afrobarometer R9 from its real codebook;
+- missing exact Eurobarometer maps;
+- missing union-fallback Eurobarometer maps;
+- WVS map verification;
+- final all-family audit.
+
+### GSS
+
+```bash
+python3 scripts/build_all_gss_native_maps.py --force
+```
+
+The GSS builder resolves text using:
+
+1. year-specific semantics when available;
+2. cumulative GSS documentation;
+3. exact-name nearby-wave donor semantics;
+4. native feature name as final fallback.
+
+### Afrobarometer
+
+Example R9 build:
+
+```bash
+python3 scripts/getmap_dtag.py   --codebook_pdf data/afrobarometer/codebooks/merged_r9_codebook_2.pdf   --model "$DTAG_MODEL_ROOT/afrobarometer/r9"   --model-backend native_lsm   --out maps/afromap/afrobarometer_r9_map.csv
+```
+
+The native model feature list is authoritative; undocumented variables remain in the map.
+
+### Eurobarometer exact map
+
+```bash
+python3 scripts/build_eurobarometer_maps.py   --za ZA7575   --parse-timeout 600
+```
+
+### Eurobarometer fallback maps
+
+Inspect:
+
+```bash
+python3 scripts/build_eurobarometer_fallback_maps.py --report-only
+```
+
+Build:
+
+```bash
+python3 scripts/build_eurobarometer_fallback_maps.py   --build   --force
+```
+
+Audit:
+
+```bash
+python3 scripts/audit_eurobarometer_assets.py
+```
+
+## Batch experiments
+
+Configured experiments live in:
+
+```text
+configs/dtag_config.yaml
+```
+
+List:
+
+```bash
+bin/list_experiments.sh
+```
+
+Run:
+
+```bash
+bin/run_config.sh --experiment gss2024_master
+```
+
+Postprocess:
+
+```bash
+bin/post_config.sh --experiment gss2024_master
+```
+
+The batch layer supports persona grids, question sets, order variants, stochastic replicates, semantic fallback, and optional ideology trajectories.
+
+## GSS ideology tracking
+
+Compatible GSS profiles can use:
+
+```text
+assets/polar_vectors/polar_vectors.csv
+```
+
+The current state is evaluated relative to reference states using native LSM qdistance. If compatible polar vectors are unavailable, DTAG still runs normally; ideology scoring is simply omitted.
+
+## Semantic fallback modes
+
+Runtime modes include:
+
+```text
+off
+answer_only
+update_state
+```
+
+Configured default: `answer_only`.
+
+- `off`: no semantic fallback when direct mapping fails.
+- `answer_only`: fallback assists response grounding but does not change persistent state.
+- `update_state`: inferred assignments may update persistent state; use deliberately.
+
+## Stateful sequences
+
+DTAG can preserve survey-state assignments across a question sequence. When state updates are enabled, an answer may alter subsequent native-LSM conditionals.
+
+CSV/autoplay question sequences are supported for controlled experiments.
+
+## OpenAI API smoke test
+
+Test only the external generation API patterns:
+
+```bash
+bin/run_smoketest.sh
+```
+
+This checks plain generation and the strict structured-output call used in variable selection.
+
+## Supported scripts
+
+| Script | Purpose |
+|---|---|
+| `scripts/pipeline.py` | native LSM DTAG core |
+| `scripts/pipeline_localized.py` | deterministic geographic conditioning |
+| `scripts/interactive.py` | config-driven interactive launcher |
+| `scripts/eurobarometer_native.py` | Eurobarometer date/ZA + country launcher |
+| `scripts/model_backend.py` | native LSM runtime interface |
+| `scripts/dtag_paths.py` | repository/external model-store resolution |
+| `scripts/run.py` | configured batch launcher |
+| `scripts/run_grid.py` | persona/question/order/replicate grid |
+| `scripts/post.py` | configured postprocessing launcher |
+| `scripts/postprocess.py` | postprocessing implementation |
+| `scripts/check_dtag_readiness.py` | repository readiness |
+| `scripts/inventory_native_models.py` | installed model inventory |
+| `scripts/audit_native_maps.py` | 252-model map audit |
+| `scripts/test_native_lsm_dtag.py` | no-LLM runtime contract test |
+| `scripts/test_country_conditioning.py` | deterministic country test |
+| `scripts/complete_native_maps.py` | all-family map completion |
+| `scripts/build_all_gss_native_maps.py` | all-wave GSS maps |
+| `scripts/getmap_dtag.py` | Afrobarometer map builder |
+| `scripts/build_eurobarometer_maps.py` | exact Eurobarometer maps |
+| `scripts/build_eurobarometer_fallback_maps.py` | semantic-union fallbacks |
+
+Survey parsing/build scripts are development utilities, not alternate runtimes.
+
+## Supported shell entry points
+
+| Command | Purpose |
+|---|---|
+| `bin/dtag_demo.sh` | repository-wide deterministic/live demo |
+| `bin/interactive_config.sh` | run/list profiles |
+| `bin/run_config.sh` | run configured experiment |
+| `bin/post_config.sh` | postprocess configured experiment |
+| `bin/list_experiments.sh` | list configured experiments |
+| `bin/smoke_country_pair.sh` | Nigeria/Ghana localization smoke |
+| `bin/run_smoketest.sh` | OpenAI API smoke test |
+
+## Assumptions and limitations
+
+DTAG currently assumes:
+
+- native LSM models represent discrete/categorical survey state spaces;
+- every model feature has a map row;
+- user questions can be matched to relevant survey variables with sufficient semantic confidence;
+- persona attributes are explicit state constraints only when compatible survey variables exist;
+- survey-wave selection is discrete rather than continuous interpolation;
+- geographic conditioning is constrained by fields present in the selected survey;
+- native conditional predictions do not imply causal effects;
+- generated language is an interpretation layer anchored to model distributions, not a literal response emitted by the LSM;
+- semantic-union fallback documentation is weaker evidence than wave-specific documentation and remains explicitly marked.
+
+DTAG generates a model-conditioned digital twin of survey-response behavior. It should not be interpreted as a literal individual, a causal simulator, or a deterministic forecast of a real person's future choices.
+
+## Model distribution
+
+The 6.6 GB native corpus should remain outside Git.
+
+Recommended split:
+
+```text
+Git:
+  source
+  maps
+  configs
+  model manifest/checksums
+  tests/demos
+
+private object store:
+  native LSM model artifacts
+```
+
+The intended distribution path is a private, versioned GCS model store. Trusted machines can use IAM/Application Default Credentials. A later download broker can issue short-lived signed URLs for users who should not receive bucket-level access.
+
+Never commit long-lived cloud credentials or API keys.
+
+## Current status
+
+Validated native surface:
+
+```text
+35 GSS
+9 Afrobarometer
+1 WVS7 pooled
+207 Eurobarometer
+252 native models
+252 semantic maps
+full model-map overlap
+```
+
+The main remaining engineering work is model packaging/distribution and continued semantic improvement of fallback documentation for a subset of Eurobarometer waves.
+
+## Name
+
+**DTAG = Digital Twin Anchored Generation.**
