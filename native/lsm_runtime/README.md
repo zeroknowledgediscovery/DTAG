@@ -37,35 +37,26 @@ modules. Build this bundled runtime before running DTAG.
 
 ## Binary linkage
 
-On GNU/Linux the build uses:
+DTAG compiles the full LSM inference implementation directly into
+`dtag_lsm*.so`: source-map handling, binary-tree loading, prediction,
+qdistance, and the persistent session wrapper all live in that one extension.
 
-```text
--static-libstdc++
--static-libgcc
-```
+The extension deliberately uses the host `libstdc++` and `libgcc` dynamically.
+Statically embedding those runtimes inside a pybind11 extension can create
+duplicate C++ ABI/exception/RTTI state inside the Python process and is not a
+safe portability strategy.
 
-and DTAG uses its own `std::thread` worker loop rather than OpenMP. Therefore
-the resulting extension should have no dynamic dependency on:
+DTAG does **not** depend on OpenMP or `libgomp`; tree-level parallelism uses
+`std::thread`. The build script verifies that `libgomp` is absent.
 
-```text
-libstdc++.so
-libgcc_s.so
-libgomp.so
-```
-
-`scripts/build_native_bindings.sh` checks this automatically with `ldd` and
-fails the build if one of those dependencies remains.
-
-The intended prebuilt binary in this repository is therefore approximately
-self-contained except for the host operating-system and Python ABI. A filename
-such as:
+A prebuilt filename such as:
 
 ```text
 dtag_lsm.cpython-313-x86_64-linux-gnu.so
 ```
 
-is specific to CPython 3.13 on x86-64 Linux. Other Python versions,
-architectures, or operating systems should rebuild from the bundled source.
+is specific to its CPython/platform ABI. Comparable Linux/CPython environments
+can use it directly; other environments should rebuild from the bundled source.
 
 ## Build dependencies
 
