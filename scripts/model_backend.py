@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""Backend-neutral model interface for DTAG.
+"""Native LSM runtime interface for DTAG.
 
-DTAG historically consumed Python Quasinet .gz models.  The native LSM trainer
-produces a model directory containing source_maps/ and trees/binary/.  This
-module presents both formats through the same small runtime interface so that
-the DTAG scientific pipeline does not need two implementations.
+This branch is intentionally native-only. A DTAG model is a directory produced
+by the C++ LSM trainer and must contain source_maps/ and trees/binary/.
 
 Native LSM bindings expected on PYTHONPATH:
     predict_distribution
@@ -47,15 +45,8 @@ def _native_root(path: str | Path) -> Path:
 
 
 def detect_backend(path: str | Path) -> str:
-    p = Path(path).expanduser()
-    if p.is_dir():
-        try:
-            _native_root(p)
-            return "native_lsm"
-        except Exception:
-            pass
-    return "quasinet"
-
+    _native_root(path)
+    return "native_lsm"
 
 def _discover_tree_ids(root: Path) -> List[int]:
     out: List[int] = []
@@ -142,61 +133,6 @@ def _read_native_columns(root: Path) -> tuple[List[str], Dict[int, List[str]]]:
             + (" ..." if len(missing) > 20 else "")
         )
     return names, values
-
-
-class QuasinetBackend:
-    backend_name = "quasinet"
-
-    def __init__(self, path: str | Path):
-        from quasinet.qnet import load_qnet, qdistance as quasinet_qdistance  # type: ignore
-
-        self.path = str(Path(path).expanduser().resolve())
-        self._qdistance = quasinet_qdistance
-        self._model = load_qnet(self.path)
-        self.feature_names = [str(x) for x in self._model.feature_names]
-
-    @property
-    def tree_ids(self) -> List[int]:
-        return list(range(len(self.feature_names)))
-
-    def possible_values(self) -> Dict[str, List[str]]:
-        null = np.array([""] * len(self.feature_names)).astype("U100")
-        resp = self._model.predict_distributions(null)
-        out: Dict[str, List[str]] = {}
-        for i, name in enumerate(self.feature_names):
-            try:
-                out[name] = [str(x) for x in resp[i].keys()]
-            except Exception:
-                out[name] = []
-        return out
-
-    def predict_distributions(
-        self,
-        row: Sequence[str] | np.ndarray,
-        target_names: Optional[Sequence[str]] = None,
-    ) -> Dict[str, Dict[str, float]]:
-        arr = np.asarray(row).astype("U100")
-        resp = self._model.predict_distributions(arr)
-        wanted = set(map(str, target_names)) if target_names else None
-        out: Dict[str, Dict[str, float]] = {}
-        for i, name in enumerate(self.feature_names):
-            if wanted is not None and name not in wanted:
-                continue
-            try:
-                out[name] = {str(k): float(v) for k, v in resp[i].items()}
-            except Exception:
-                out[name] = {}
-        return out
-
-    def qdistance(self, a: Sequence[str] | np.ndarray, b: Sequence[str] | np.ndarray) -> float:
-        aa = np.asarray(a).astype("U100")
-        bb = np.asarray(b).astype("U100")
-        return float(self._qdistance(aa, bb, self._model, self._model))
-
-    def cache_signature(self) -> str:
-        p = Path(self.path)
-        st = p.stat()
-        return f"{p}|{st.st_size}|{st.st_mtime_ns}|quasinet"
 
 
 class NativeLSMBackend:
@@ -339,14 +275,12 @@ class NativeLSMBackend:
 
 def load_model(path: str | Path, backend: str = "auto"):
     name = str(backend or "auto").strip().lower()
-    if name == "auto":
-        name = detect_backend(path)
-    if name in {"quasinet", "qnet", "legacy"}:
-        return QuasinetBackend(path)
-    if name in {"native_lsm", "lsm", "native"}:
-        return NativeLSMBackend(path)
-    raise ValueError(f"Unknown DTAG model backend: {backend!r}")
-
+    if name not in {"auto", "native_lsm", "native", "lsm"}:
+        raise ValueError(
+            f"DTAG native-only branch does not support backend {backend!r}; "
+            "use a native LSM model directory."
+        )
+    return NativeLSMBackend(path)
 
 def model_feature_names(path: str | Path, backend: str = "auto") -> List[str]:
     return list(load_model(path, backend=backend).feature_names)
