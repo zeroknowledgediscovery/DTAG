@@ -1284,8 +1284,18 @@ class DTAGEngine:
             spec.map_key = canonical_map_key(spec.model_key) or ""
             return
         if "year" in ov and ov["year"] not in (None, "") and not ov.get("model_key"):
-            waves = router.waves_in_year(int(ov["year"])) if router.available() else []
+            if not router.available():
+                raise DTAGEngineError(
+                    "A year alone cannot select a Eurobarometer wave and no fieldwork-date "
+                    "registry is available; choose an explicit ZA."
+                )
+            waves = router.waves_in_year(int(ov["year"]))
             ids = [w.za_id for w in waves]
+            if len(ids) == 1:
+                raise DTAGEngineError(
+                    f"The requested year {ov['year']} overlaps one Eurobarometer wave ({ids[0]}); "
+                    "confirm it by choosing a survey date or the explicit ZA."
+                )
             raise DTAGEngineError(
                 f"The requested year {ov['year']} is ambiguous for Eurobarometer "
                 f"({len(ids)} fieldwork waves: {', '.join(ids[:12])}{' ...' if len(ids) > 12 else ''}); "
@@ -1631,7 +1641,12 @@ class DTAGEngine:
                 "by_family": fam_models,
                 "total_archive_bytes": (manifest or {}).get("total_archive_bytes"),
             },
-            "semantic_maps": {"maps": len(inv), "by_family": fam_maps, "catalog_models_missing_map": missing_maps},
+            "semantic_maps": {
+                "maps": len(inv),
+                "matched_to_catalog": len(man_models) - len(missing_maps),
+                "by_family": fam_maps,
+                "catalog_models_missing_map": missing_maps,
+            },
             "model_cache": {"root": str(dtag_paths.model_root()), "installed": len(installed), "installed_keys": installed},
             "models_resident": {"loaded": len(self.registry.loaded), "keys": sorted(self.registry.loaded)},
             "configured_profiles": {"count": len(profiles), "names": profiles},
