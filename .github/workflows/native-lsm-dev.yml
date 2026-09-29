@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      - native-lsm-clean
-      - dev/native-lsm-dtag
   pull_request:
     branches:
       - main
