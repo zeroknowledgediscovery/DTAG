@@ -5,7 +5,7 @@
 # Add --openai to run one live question through each supported survey family.
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "\${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 RUN_OPENAI=0
@@ -23,7 +23,7 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --question)
-      QUESTION="\${2:?--question requires text}"
+      QUESTION="${2:?--question requires text}"
       shift 2
       ;;
     -h|--help)
@@ -72,8 +72,8 @@ section "DTAG environment"
 echo "root: $ROOT"
 echo "python: $(command -v python3)"
 python3 --version
-echo "LSM_BINDINGS_DIR: \${LSM_BINDINGS_DIR:-<not set>}"
-if [[ -n "\${OPENAI_API_KEY:-}" ]]; then
+echo "LSM_BINDINGS_DIR: ${LSM_BINDINGS_DIR:-<not set>}"
+if [[ -n "${OPENAI_API_KEY:-}" ]]; then
   echo "OPENAI_API_KEY: set"
 else
   echo "OPENAI_API_KEY: not set"
@@ -105,17 +105,17 @@ run bin/list_experiments.sh
 
 section "Dry-run native interactive profiles"
 run bin/interactive_config.sh \
-  --profile gss2024_native_cm \
+  --profile gss2024_cm \
   --question "$QUESTION" \
   --print-command
 
 run bin/interactive_config.sh \
-  --profile wvs7_native_india_2017 \
+  --profile wvs7_india_2017 \
   --question "$QUESTION" \
   --print-command
 
 run bin/interactive_config.sh \
-  --profile afrobarometer_r5_native_nigeria \
+  --profile afrobarometer_r5_nigeria \
   --question "$QUESTION" \
   --print-command
 
@@ -133,24 +133,24 @@ run python3 scripts/eurobarometer_native.py \
   --print-command
 
 if [[ "$RUN_OPENAI" -eq 1 ]]; then
-  if [[ -z "\${OPENAI_API_KEY:-}" ]]; then
+  if [[ -z "${OPENAI_API_KEY:-}" ]]; then
     echo "ERROR: --openai requires OPENAI_API_KEY" >&2
     exit 2
   fi
 
   section "LIVE DEMO: GSS 2024 native"
   run bin/interactive_config.sh \
-    --profile gss2024_native_cm \
+    --profile gss2024_cm \
     --question "$QUESTION"
 
   section "LIVE DEMO: WVS7 native / India"
   run bin/interactive_config.sh \
-    --profile wvs7_native_india_2017 \
+    --profile wvs7_india_2017 \
     --question "$QUESTION"
 
   section "LIVE DEMO: Afrobarometer R5 native / Nigeria"
   run bin/interactive_config.sh \
-    --profile afrobarometer_r5_native_nigeria \
+    --profile afrobarometer_r5_nigeria \
     --question "$QUESTION"
 
   section "LIVE DEMO: Eurobarometer exact date/place"
