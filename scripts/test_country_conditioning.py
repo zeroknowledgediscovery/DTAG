@@ -24,12 +24,12 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument(
         '--qnet',
-        default=str(DTAG_ROOT / 'models/afrobarometer/LSM_merged_r5_data.gz'),
+        default=str(DTAG_ROOT / 'models/lsm/afrobarometer/r5'),
     )
     ap.add_argument(
         '--model-backend',
-        choices=['auto', 'quasinet', 'native_lsm'],
-        default='auto',
+        choices=['auto', 'native_lsm'],
+        default='native_lsm',
     )
     ap.add_argument('--country-a', default='Nigeria')
     ap.add_argument('--country-b', default='Ghana')
