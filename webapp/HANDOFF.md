@@ -243,5 +243,6 @@ Frontend changes: `cd webapp/frontend && npm ci && npm run build`, then commit
 - For a country split into sub-samples in a wave (e.g. Germany East/West in
   Eurobarometer), country stays contextual rather than hard-conditioned.
 - Ideology index exists only for GSS (the only registered polar vectors).
-- `models/gss/*.gz` legacy files are tracked in Git from an earlier commit and
-  flagged by `scripts/audit_clean_repo.py`; unrelated to the web app.
+- The clean branch no longer tracks legacy top-level model artifacts under
+  `models/gss/`, `models/wvs/` or `models/afrobarometer/`; runtime models
+  are distributed only through the public native-model store.
