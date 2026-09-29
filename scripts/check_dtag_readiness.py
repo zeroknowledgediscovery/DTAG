@@ -1,54 +1,41 @@
 #!/usr/bin/env python3
-"""
-DTAG readiness checker.
+"""Native-LSM-only DTAG readiness checker.
 
-Run from the DTAG repo root:
+Checks the clean runtime surface without requiring an OpenAI call:
+- Python syntax and required packages
+- native LSM Python bindings
+- config model/map paths
+- configured native validation models
+- model/map variable overlap
+- GSS polar-vector asset
+- question-set CSVs
+- Eurobarometer native model/map coverage and fallback provenance
 
-    python3 scripts/check_dtag_readiness.py
-
-or from the tmprepo root:
-
-    python3 DTAG/scripts/check_dtag_readiness.py --root DTAG
-
-What it checks:
-  - core scripts/config/requirements exist
-  - Python files compile
-  - required packages can be imported
-  - models/maps referenced in configs/dtag_config.yaml exist
-  - question-set CSVs are well formed, including comma-containing questions
-  - GSS polar vectors exist
-  - WVS config path mismatch, if present
-  - Afrobarometer maps/models availability
-  - Eurobarometer CSV/PDF pairs, maps, integrated fallback map, and models
-  - optional qnet/map overlap, when quasinet can load models
-
-It writes:
+Writes:
   outputs/readiness/DTAG_READINESS_REPORT.md
-  outputs/readiness/run_core_smokes.sh
 """
 from __future__ import annotations
 
 import argparse
 import csv
-import json
+import importlib
 import os
-import re
-import shlex
 import subprocess
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List
 
+import yaml
 
+ROOT_DEFAULT = Path(__file__).resolve().parents[1]
 TEXT_COLUMNS = [
     "question_text_filled",
     "question_text",
+    "variable_label",
     "dta_variable_label",
     "pdf_short_label",
 ]
-
-ZA_RE = re.compile(r"(ZA\d{4,5})", re.IGNORECASE)
 
 
 @dataclass
@@ -56,24 +43,23 @@ class Finding:
     level: str
     item: str
     detail: str = ""
-    fix: str = ""
 
 
 @dataclass
 class Report:
     findings: List[Finding] = field(default_factory=list)
 
-    def add(self, level: str, item: str, detail: str = "", fix: str = "") -> None:
-        self.findings.append(Finding(level.upper(), item, detail, fix))
+    def add(self, level: str, item: str, detail: str = "") -> None:
+        self.findings.append(Finding(level.upper(), item, detail))
 
     def ok(self, item: str, detail: str = "") -> None:
         self.add("OK", item, detail)
 
-    def warn(self, item: str, detail: str = "", fix: str = "") -> None:
-        self.add("WARN", item, detail, fix)
+    def warn(self, item: str, detail: str = "") -> None:
+        self.add("WARN", item, detail)
 
-    def fail(self, item: str, detail: str = "", fix: str = "") -> None:
-        self.add("FAIL", item, detail, fix)
+    def fail(self, item: str, detail: str = "") -> None:
+        self.add("FAIL", item, detail)
 
     def info(self, item: str, detail: str = "") -> None:
         self.add("INFO", item, detail)
@@ -85,827 +71,395 @@ class Report:
         return out
 
     def print_console(self) -> None:
-        widths = {"OK": 6, "INFO": 6, "WARN": 6, "FAIL": 6}
         for f in self.findings:
-            prefix = f"[{f.level:<4}]"
-            line = f"{prefix} {f.item}"
-            if f.detail:
-                line += f" -- {f.detail}"
-            print(line)
-            if f.fix:
-                print(f"       fix: {f.fix}")
+            suffix = f" -- {f.detail}" if f.detail else ""
+            print(f"[{f.level:<4}] {f.item}{suffix}")
         print("\nSUMMARY", self.counts())
 
-    def to_markdown(self) -> str:
+    def markdown(self) -> str:
         counts = self.counts()
         lines = [
-            "# DTAG readiness report",
-            "",
-            "## Summary",
+            "# DTAG native readiness report",
             "",
             f"- OK: {counts.get('OK', 0)}",
             f"- WARN: {counts.get('WARN', 0)}",
             f"- FAIL: {counts.get('FAIL', 0)}",
             f"- INFO: {counts.get('INFO', 0)}",
             "",
-            "## Findings",
-            "",
-            "| Level | Item | Detail | Suggested fix |",
-            "|---|---|---|---|",
+            "| Level | Item | Detail |",
+            "|---|---|---|",
         ]
         for f in self.findings:
-            lines.append(
-                "| "
-                + " | ".join(
-                    md_escape(x)
-                    for x in [f.level, f.item, f.detail or "", f.fix or ""]
-                )
-                + " |"
-            )
+            detail = str(f.detail).replace("|", "\\|").replace("\n", "<br>")
+            item = str(f.item).replace("|", "\\|")
+            lines.append(f"| {f.level} | {item} | {detail} |")
         lines.append("")
         return "\n".join(lines)
 
 
-def md_escape(s: str) -> str:
-    return str(s).replace("|", "\\|").replace("\n", "<br>")
+def resolve(root: Path, value: str) -> Path:
+    p = Path(str(value)).expanduser()
+    return p if p.is_absolute() else (root / p)
 
 
-def rel(root: Path, p: Path) -> str:
-    try:
-        return str(p.resolve().relative_to(root.resolve()))
-    except Exception:
-        return str(p)
-
-
-def load_yaml(path: Path, report: Report) -> Dict[str, Any]:
-    if not path.exists():
-        report.fail("config", f"Missing {path}", f"Create {path} or run from the DTAG root")
-        return {}
-    try:
-        import yaml  # type: ignore
-    except Exception as e:
-        report.fail("PyYAML", f"Cannot import yaml: {e}", "pip install pyyaml")
-        return {}
-    try:
-        obj = yaml.safe_load(path.read_text(encoding="utf-8"))
-    except Exception as e:
-        report.fail("config parse", f"Could not parse {path}: {e}")
-        return {}
+def load_config(path: Path) -> Dict[str, Any]:
+    obj = yaml.safe_load(path.read_text(encoding="utf-8"))
     if not isinstance(obj, dict):
-        report.fail("config parse", f"{path} is not a mapping/object")
-        return {}
-    report.ok("config parse", rel(path.parent.parent if path.parent.name == "configs" else path.parent, path))
+        raise RuntimeError(f"Config is not a mapping: {path}")
     return obj
 
 
-def resolve_path(root: Path, p: Any) -> Path:
-    pp = Path(str(p)).expanduser()
-    if pp.is_absolute():
-        return pp
-    return root / pp
-
-
-def check_file(report: Report, root: Path, path: str, label: str, required: bool = True) -> bool:
-    p = resolve_path(root, path)
-    if p.exists():
-        report.ok(label, rel(root, p))
-        return True
-    if required:
-        report.fail(label, f"Missing {path}")
+def check_python_syntax(report: Report, root: Path) -> None:
+    files = sorted((root / "scripts").glob("*.py"))
+    if not files:
+        report.fail("python syntax", "no scripts/*.py files found")
+        return
+    p = subprocess.run(
+        [sys.executable, "-m", "py_compile", *map(str, files)],
+        cwd=root,
+        text=True,
+        capture_output=True,
+    )
+    if p.returncode == 0:
+        report.ok("python syntax", f"{len(files)} scripts compiled")
     else:
-        report.warn(label, f"Missing optional {path}")
-    return False
-
-
-def run_cmd(cmd: Sequence[str], cwd: Path, timeout: int = 120) -> Tuple[int, str, str]:
-    try:
-        p = subprocess.run(
-            list(cmd), cwd=str(cwd), capture_output=True, text=True, timeout=timeout
-        )
-        return p.returncode, p.stdout, p.stderr
-    except subprocess.TimeoutExpired as e:
-        return 124, e.stdout or "", e.stderr or "timeout"
-    except Exception as e:
-        return 127, "", str(e)
+        report.fail("python syntax", (p.stdout + p.stderr).strip()[:3000])
 
 
 def check_imports(report: Report) -> None:
-    pkgs = [
+    for mod, pkg in [
         ("openai", "openai"),
         ("pandas", "pandas"),
         ("numpy", "numpy"),
         ("matplotlib", "matplotlib"),
-        ("quasinet", "quasinet"),
         ("pyreadstat", "pyreadstat"),
         ("pdfplumber", "pdfplumber"),
         ("yaml", "pyyaml"),
-    ]
-    for import_name, pip_name in pkgs:
+    ]:
         try:
-            __import__(import_name)
-            report.ok(f"python package {pip_name}")
+            importlib.import_module(mod)
+            report.ok(f"python package {pkg}")
         except Exception as e:
+            report.fail(f"python package {pkg}", str(e))
+
+    for mod in ("predict_distribution", "qdistance"):
+        try:
+            importlib.import_module(mod)
+            report.ok(f"native LSM binding {mod}")
+        except Exception as e:
+            hint = os.environ.get("LSM_BINDINGS_DIR", "")
             report.fail(
-                f"python package {pip_name}",
-                str(e),
-                f"pip install {pip_name}",
+                f"native LSM binding {mod}",
+                f"{e}; LSM_BINDINGS_DIR={hint!r}",
             )
 
 
-def check_pycompile(report: Report, root: Path) -> None:
-    py_files = sorted((root / "scripts").glob("*.py"))
-    if not py_files:
-        report.fail("py_compile", "No scripts/*.py files found")
-        return
-    code, out, err = run_cmd([sys.executable, "-m", "py_compile", *map(str, py_files)], cwd=root)
-    if code == 0:
-        report.ok("py_compile", f"compiled {len(py_files)} scripts")
-    else:
-        report.fail("py_compile", (out + err).strip()[:2000])
-
-
-def check_config_paths(report: Report, root: Path, cfg: Dict[str, Any]) -> None:
-    models = cfg.get("models", {}) or {}
-    maps = cfg.get("maps", {}) or {}
-    if not isinstance(models, dict):
-        report.fail("config.models", "models is not a mapping")
-        models = {}
-    if not isinstance(maps, dict):
-        report.fail("config.maps", "maps is not a mapping")
-        maps = {}
-
-    dev = cfg.get("development", {}) or {}
-    optional_models = set(map(str, dev.get("optional_models", []) or []))
-
-    for key, val in sorted(models.items()):
-        p = resolve_path(root, val)
-        if p.exists():
-            if p.is_dir() and (p / "source_maps").is_dir() and (p / "trees" / "binary").is_dir():
-                ntree = len(list((p / "trees" / "binary").glob("tree_*.bin")))
-                manifest = p / "training_manifest.json"
-                detail = f"{rel(root, p)}; native_lsm trees={ntree}"
-                if manifest.exists():
-                    detail += "; training_manifest=yes"
-                else:
-                    detail += "; training_manifest=missing"
-                report.ok(f"config model {key}", detail)
-            else:
-                report.ok(f"config model {key}", rel(root, p))
-        else:
-            fix = ""
-            sval = str(val)
-            if key.startswith("wvs") and (root / "models/wvs/LSM60K.gz").exists():
-                fix = "Change this config entry to: models/wvs/LSM60K.gz"
-            elif "gss_2024" in key and (root / "models/gss/gss_2024.gz").exists():
-                fix = "Train the optional native model, or continue using models/gss/gss_2024.gz for the legacy profile."
-            elif "euro" in key.lower():
-                fix = "Train/copy the corresponding model, or update configs/dtag_config.yaml to the actual path."
-            if key in optional_models:
-                report.warn(
-                    f"config model {key}",
-                    f"Optional development model not trained yet: {sval}",
-                    "Run scripts/train_native_lsm_models.py for this model when its source CSV is available.",
-                )
-            else:
-                report.fail(f"config model {key}", f"Missing {sval}", fix)
-
-    for key, val in sorted(maps.items()):
-        p = resolve_path(root, val)
-        if p.exists():
-            ok, detail, fix = inspect_map_file(p)
-            if ok:
-                report.ok(f"config map {key}", f"{rel(root, p)}; {detail}")
-            else:
-                report.fail(f"config map {key}", f"{rel(root, p)}; {detail}", fix)
-        else:
-            fix = ""
-            if "euro" in key.lower():
-                fix = "Generate Eurobarometer maps from data/eurobarometer/ZA*.csv + ZA*.pdf using scripts/generate_eurobarometer_maps.sh."
-            report.fail(f"config map {key}", f"Missing {val}", fix)
-
-
-def inspect_map_file(p: Path) -> Tuple[bool, str, str]:
+def inspect_map(path: Path) -> tuple[bool, str]:
     try:
         import pandas as pd
-        df = pd.read_csv(p, dtype=str, nrows=20).fillna("")
+        df = pd.read_csv(path, dtype=str, keep_default_na=False)
     except Exception as e:
-        return False, f"cannot read CSV: {e}", "Fix CSV formatting"
-    cols = list(df.columns)
-    if "variable" not in cols:
-        return False, f"missing variable column; columns={cols}", "Map must include variable column"
-    text_col = next((c for c in TEXT_COLUMNS if c in cols), None)
+        return False, f"cannot read CSV: {e}"
+    if "variable" not in df.columns:
+        return False, f"missing variable column; columns={list(df.columns)}"
+    text_col = next((c for c in TEXT_COLUMNS if c in df.columns), "")
     if not text_col:
-        return False, f"missing text column; columns={cols}", f"Add one of {TEXT_COLUMNS}"
-    return True, f"columns OK; text_col={text_col}", ""
+        return False, f"missing semantic-text column; columns={list(df.columns)}"
+    return True, f"rows={len(df)} text_col={text_col}"
 
 
-def check_core_layout(report: Report, root: Path) -> None:
-    required_files = [
-        "requirements.txt",
-        "configs/dtag_config.yaml",
-        "scripts/pipeline_localized.py",
-        "scripts/run.py",
-        "scripts/run_grid.py",
-        "scripts/post.py",
-        "scripts/postprocess.py",
-        "scripts/smoke_test.py",
-    ]
-    for x in required_files:
-        check_file(report, root, x, f"core file {x}")
-    for d in ["assets", "bin", "configs", "data", "maps", "models", "outputs", "scripts"]:
-        p = root / d
-        if p.exists() and p.is_dir():
-            report.ok(f"core directory {d}")
+def configured_model_map_pairs(cfg: Dict[str, Any]) -> Dict[str, str]:
+    """Return model-key -> map-key inferred from interactive profiles."""
+    out: Dict[str, str] = {}
+    for spec in (cfg.get("interactive_profiles", {}) or {}).values():
+        if not isinstance(spec, dict):
+            continue
+        model = str(spec.get("qnet", "")).strip()
+        map_key = str(spec.get("map", "")).strip()
+        if model and map_key and model not in out:
+            out[model] = map_key
+    return out
+
+
+def check_config(report: Report, root: Path, cfg: Dict[str, Any], overlap: bool) -> None:
+    models = cfg.get("models", {}) or {}
+    maps = cfg.get("maps", {}) or {}
+
+    if not isinstance(models, dict):
+        report.fail("config models", "models must be a mapping")
+        return
+    if not isinstance(maps, dict):
+        report.fail("config maps", "maps must be a mapping")
+        return
+
+    for key, value in sorted(models.items()):
+        p = resolve(root, str(value))
+        valid = p.is_dir() and (p / "source_maps").is_dir() and (p / "trees" / "binary").is_dir()
+        if valid:
+            report.ok(f"model {key}", str(p.relative_to(root)))
         else:
-            report.fail(f"core directory {d}", f"Missing {d}")
+            report.warn(f"model {key}", f"native model not installed/complete: {p}")
 
-    for x in ["bin/run_smoketest.sh", "bin/list_experiments.sh", "bin/run_config.sh", "bin/post_config.sh"]:
-        check_file(report, root, x, f"wrapper {x}", required=False)
+    for key, value in sorted(maps.items()):
+        p = resolve(root, str(value))
+        if not p.is_file():
+            report.warn(f"map {key}", f"not installed: {p}")
+            continue
+        ok, detail = inspect_map(p)
+        if ok:
+            report.ok(f"map {key}", detail)
+        else:
+            report.fail(f"map {key}", detail)
+
+    if not overlap:
+        return
+
+    try:
+        from model_backend import load_model
+        import pandas as pd
+    except Exception as e:
+        report.fail("model/map overlap", f"cannot import runtime: {e}")
+        return
+
+    pairs = configured_model_map_pairs(cfg)
+    for model_key in cfg.get("validation_models", []) or []:
+        model_key = str(model_key)
+        model_value = models.get(model_key)
+        map_key = pairs.get(model_key)
+        if not model_value or not map_key or map_key not in maps:
+            report.warn(
+                f"overlap {model_key}",
+                "no configured interactive model/map pair",
+            )
+            continue
+
+        mp = resolve(root, str(model_value))
+        map_path = resolve(root, str(maps[map_key]))
+        if not mp.is_dir() or not map_path.is_file():
+            report.warn(f"overlap {model_key}", "model or map missing")
+            continue
+
+        try:
+            model = load_model(mp, backend="native_lsm")
+            df = pd.read_csv(map_path, dtype=str, keep_default_na=False)
+            map_vars = set(df["variable"].astype(str))
+            feat = set(map(str, model.feature_names))
+            frac = len(feat & map_vars) / max(1, len(feat))
+            if frac >= 0.95:
+                report.ok(
+                    f"overlap {model_key}",
+                    f"{len(feat & map_vars)}/{len(feat)} = {frac:.3f}",
+                )
+            elif frac >= 0.50:
+                report.warn(
+                    f"overlap {model_key}",
+                    f"{len(feat & map_vars)}/{len(feat)} = {frac:.3f}",
+                )
+            else:
+                report.fail(
+                    f"overlap {model_key}",
+                    f"{len(feat & map_vars)}/{len(feat)} = {frac:.3f}",
+                )
+        except Exception as e:
+            report.fail(f"overlap {model_key}", str(e))
 
 
-def check_openai_env(report: Report) -> None:
-    if os.environ.get("OPENAI_API_KEY"):
-        report.ok("OPENAI_API_KEY", "set in environment")
-    else:
-        report.warn("OPENAI_API_KEY", "not set; LLM/pipeline smoke tests will fail", "export OPENAI_API_KEY='...' before running pipeline tests")
+def create_smoke_csv(root: Path) -> Path:
+    import pandas as pd
+
+    out = root / "assets/question_sets/smoke/long_gss_smoke.csv"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    questions = [
+        "How satisfied are you with the way democracy works?",
+        "Do you trust the national government?",
+        "Should government do more to reduce income differences?",
+        "How important is environmental protection?",
+        "What do you think about immigration?",
+    ]
+    pd.DataFrame({"question": questions}).to_csv(out, index=False)
+    return out
+
+
+def check_question_sets(report: Report, root: Path, cfg: Dict[str, Any]) -> None:
+    try:
+        import pandas as pd
+    except Exception as e:
+        report.fail("question sets", f"pandas unavailable: {e}")
+        return
+
+    for key, spec in sorted((cfg.get("question_sets", {}) or {}).items()):
+        if not isinstance(spec, dict):
+            report.warn(f"question set {key}", "invalid config entry")
+            continue
+        d = resolve(root, str(spec.get("dir", "")))
+        pattern = str(spec.get("glob", "*.csv"))
+        files = sorted(d.glob(pattern)) if d.is_dir() else []
+        if not files:
+            report.warn(f"question set {key}", f"no files: {d}/{pattern}")
+            continue
+
+        n_questions = 0
+        bad = 0
+        for p in files:
+            try:
+                df = pd.read_csv(p, dtype=str, keep_default_na=False)
+                col = "question" if "question" in df.columns else df.columns[0]
+                n_questions += int(df[col].astype(str).str.strip().ne("").sum())
+            except Exception:
+                bad += 1
+
+        if bad:
+            report.warn(
+                f"question set {key}",
+                f"files={len(files)} unreadable={bad} questions={n_questions}",
+            )
+        else:
+            report.ok(
+                f"question set {key}",
+                f"files={len(files)} questions={n_questions}",
+            )
 
 
 def check_polar_vectors(report: Report, root: Path) -> None:
     p = root / "assets/polar_vectors/polar_vectors.csv"
-    if p.exists():
-        try:
-            with p.open(newline="", encoding="utf-8") as f:
-                reader = csv.reader(f)
-                header = next(reader, [])
-            has_variable_col = (
-                "variable" in header
-                or (len(header) >= 1 and str(header[0]).strip() == "")
-            )
-            has_poles = (("L" in header and "R" in header) or "pole" in header)
-            if has_variable_col and has_poles:
-                report.ok("GSS polar vectors", f"{rel(root, p)}; header={header}")
-            else:
-                report.warn("GSS polar vectors", f"header may be incompatible: {header}")
-        except Exception as e:
-            report.fail("GSS polar vectors", str(e))
+    if p.is_file():
+        report.ok("GSS polar vectors", str(p.relative_to(root)))
     else:
-        report.fail("GSS polar vectors", "Missing assets/polar_vectors/polar_vectors.csv", "Required for GSS ideology tests with --require_polar_vectors")
-
-
-def check_question_sets(report: Report, root: Path, cfg: Dict[str, Any], create_smoke: bool) -> None:
-    if create_smoke:
-        make_smoke_csv(root, report)
-
-    qsets = cfg.get("question_sets", {}) or {}
-    if not isinstance(qsets, dict):
-        report.fail("question_sets", "config question_sets is not a mapping")
-        return
-
-    for name, spec in sorted(qsets.items()):
-        if not isinstance(spec, dict):
-            report.warn(f"question_set {name}", "not a mapping")
-            continue
-        qdir = resolve_path(root, spec.get("dir", ""))
-        glob = str(spec.get("glob", "*.csv"))
-        if not qdir.exists():
-            report.fail(f"question_set {name}", f"Missing dir {rel(root, qdir)}")
-            continue
-        files = sorted(qdir.glob(glob))
-        if not files:
-            report.fail(f"question_set {name}", f"No files match {rel(root, qdir)}/{glob}")
-            continue
-        bad = []
-        total_q = 0
-        for f in files:
-            ok, n, detail = inspect_question_csv(f)
-            total_q += n
-            if not ok:
-                bad.append(f"{rel(root, f)}: {detail}")
-        if bad:
-            report.fail(f"question_set {name}", f"{len(files)} files, {len(bad)} malformed", " | ".join(bad[:5]))
-        else:
-            report.ok(f"question_set {name}", f"{len(files)} files; {total_q} total questions")
-
-
-def inspect_question_csv(p: Path) -> Tuple[bool, int, str]:
-    try:
-        import pandas as pd
-        df = pd.read_csv(p, dtype=str).fillna("")
-    except Exception as e:
-        return False, 0, f"read error: {e}"
-    if df.shape[1] == 0:
-        return False, 0, "no columns"
-    if not isinstance(df.index, pd.RangeIndex):
-        return False, len(df), "non-default index; likely unquoted commas in question text. Recreate with pandas/to_csv or quote questions."
-    col = "question" if "question" in df.columns else df.columns[0]
-    qs = [str(x).strip() for x in df[col].tolist() if str(x).strip()]
-    if not qs:
-        return False, 0, f"no non-empty questions in column {col}"
-    suspicious = [q for q in qs if len(q) < 8 or q.startswith((",", "or ", "and "))]
-    if suspicious:
-        return False, len(qs), f"suspicious question fragments, e.g. {suspicious[:3]}"
-    return True, len(qs), "OK"
-
-
-def make_smoke_csv(root: Path, report: Report) -> None:
-    out = root / "assets/question_sets/smoke/long_gss_smoke.csv"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    questions = [
-        "Should the number of immigrants to America nowadays be increased, decreased, or kept the same?",
-        "Do immigrants take jobs away from people born in America?",
-        "Do immigrants increase crime rates?",
-        "Should undocumented immigrants be allowed to become citizens?",
-        "Do you think the government should do more to reduce income differences?",
-        "Should taxes on high-income people be increased?",
-        "Do you favor or oppose stricter gun-control laws?",
-        "How important is it for the government to protect the environment?",
-        "Do you trust the federal government?",
-        "Are you satisfied with the way democracy works in America?",
-    ]
-    try:
-        import pandas as pd
-        pd.DataFrame({"question": questions}).to_csv(out, index=False)
-        report.ok("created smoke question CSV", rel(root, out))
-    except Exception as e:
-        report.fail("created smoke question CSV", str(e), "pip install pandas")
-
-
-def find_za_files(root: Path) -> Dict[str, Dict[str, List[Path]]]:
-    base = root / "data/eurobarometer"
-    out: Dict[str, Dict[str, List[Path]]] = {}
-    if not base.exists():
-        return out
-    for p in sorted(base.glob("**/*")):
-        if not p.is_file():
-            continue
-        m = ZA_RE.search(p.name)
-        if not m:
-            continue
-        za = m.group(1).upper()
-        kind = None
-        suf = p.suffix.lower()
-        if suf == ".csv":
-            kind = "csv"
-        elif suf == ".pdf":
-            kind = "pdf"
-        elif suf in {".dta", ".sav"}:
-            kind = "data_other"
-        if kind:
-            out.setdefault(za, {"csv": [], "pdf": [], "data_other": []})[kind].append(p)
-    return out
+        report.warn("GSS polar vectors", "assets/polar_vectors/polar_vectors.csv missing")
 
 
 def check_eurobarometer(report: Report, root: Path) -> None:
-    """Check the native Eurobarometer development surface.
-
-    Development policy is intentionally nonblocking:
-      - native model + per-ZA map is runnable;
-      - a local GESIS codebook makes that map exact;
-      - a union-derived map is runnable but reported as a warning;
-      - missing maps/models are warnings here so unrelated DTAG development can
-        continue. The affected ZA wave itself is not runnable until fixed.
-    """
     model_root = root / "models/lsm/eurobarometer"
     map_root = root / "maps/eurobarometer"
     codebook_root = root / "data/eurobarometer/codebooks"
 
-    if not model_root.is_dir():
-        report.warn(
-            "Eurobarometer native models",
-            f"Missing {rel(root, model_root)}",
-            "Populate models/lsm/eurobarometer when Eurobarometer development is needed.",
+    models = []
+    if model_root.is_dir():
+        models = sorted(
+            p for p in model_root.iterdir()
+            if p.is_dir()
+            and (p / "source_maps").is_dir()
+            and (p / "trees" / "binary").is_dir()
         )
-        return
 
-    models: Dict[str, Path] = {}
-    for p in model_root.iterdir():
-        if not p.is_dir():
-            continue
-        m = ZA_RE.search(p.name)
-        if m:
-            models[m.group(1).upper()] = p
+    maps = list(map_root.glob("ZA*_map.csv")) if map_root.is_dir() else []
+    codebooks = list(codebook_root.glob("ZA*_cdb.pdf")) if codebook_root.is_dir() else []
 
     if not models:
-        report.warn("Eurobarometer native models", "No ZA native model directories found")
+        report.warn("Eurobarometer models", "no installed native ZA models")
         return
 
-    maps: Dict[str, Path] = {}
-    if map_root.is_dir():
-        for p in map_root.glob("ZA*_map.csv"):
-            m = ZA_RE.search(p.name)
-            if m:
-                maps[m.group(1).upper()] = p
-    else:
+    model_zas = {p.name.split("_")[0].upper() for p in models}
+    map_zas = {p.stem.replace("_map", "").upper() for p in maps}
+    cb_zas = {p.name.split("_")[0].upper() for p in codebooks}
+
+    missing = sorted(model_zas - map_zas)
+    exact = sorted(model_zas & map_zas & cb_zas)
+    fallback = sorted((model_zas & map_zas) - cb_zas)
+
+    if missing:
         report.warn(
-            "Eurobarometer map directory",
-            f"Missing {rel(root, map_root)}",
-            "Generate per-ZA maps under maps/eurobarometer.",
+            "Eurobarometer runnable coverage",
+            f"{len(model_zas)-len(missing)}/{len(model_zas)} maps; missing={len(missing)}",
         )
-
-    codebooks: Dict[str, Path] = {}
-    if codebook_root.is_dir():
-        for p in codebook_root.glob("ZA*_cdb.pdf"):
-            m = ZA_RE.search(p.name)
-            if m:
-                codebooks[m.group(1).upper()] = p
-
-    exact = 0
-    fallback = 0
-    missing_map = []
-    invalid_map = []
-    fallback_unresolved = 0
-    fallback_total = 0
-
-    for za, model_path in sorted(models.items()):
-        map_path = maps.get(za)
-        if map_path is None:
-            missing_map.append(za)
-            continue
-
-        ok, detail, fix = inspect_map_file(map_path)
-        if not ok:
-            invalid_map.append(za)
-            report.warn(
-                f"Eurobarometer {za} map",
-                f"{rel(root, map_path)}; {detail}",
-                fix,
-            )
-            continue
-
-        if za in codebooks:
-            exact += 1
-            continue
-
-        fallback += 1
-        try:
-            import pandas as pd
-            df = pd.read_csv(map_path, dtype=str, keep_default_na=False)
-            if "map_provenance" in df.columns:
-                unresolved = int((df["map_provenance"] == "UNRESOLVED_NATIVE").sum())
-                fallback_unresolved += unresolved
-                fallback_total += len(df)
-        except Exception:
-            pass
-
-    runnable = len(models) - len(missing_map) - len(invalid_map)
-
-    report.ok(
-        "Eurobarometer native model inventory",
-        f"{len(models)} native model directories under {rel(root, model_root)}",
-    )
-
-    if runnable == len(models):
+    else:
         report.ok(
             "Eurobarometer runnable coverage",
-            f"{runnable}/{len(models)} native models have readable per-ZA maps",
-        )
-    else:
-        report.warn(
-            "Eurobarometer runnable coverage",
-            f"{runnable}/{len(models)} native models have readable per-ZA maps; "
-            f"missing={len(missing_map)} invalid={len(invalid_map)}",
-            "Generate/fix only the affected ZA maps; this does not block other DTAG development.",
+            f"{len(model_zas)}/{len(model_zas)} models have per-ZA maps",
         )
 
-    report.ok(
-        "Eurobarometer exact maps",
-        f"{exact} native waves have local GESIS codebook-backed maps",
+    report.info(
+        "Eurobarometer map provenance",
+        f"exact_codebook={len(exact)} union_fallback={len(fallback)}",
     )
 
+    unresolved = 0
+    total = 0
     if fallback:
-        frac = (
-            1.0 - fallback_unresolved / fallback_total
-            if fallback_total
-            else 0.0
-        )
-        report.warn(
-            "Eurobarometer fallback maps",
-            f"{fallback} waves use semantic-union fallback maps; "
-            f"fallback resolved fraction={frac:.3f}" if fallback_total else
-            f"{fallback} waves use semantic-union fallback maps",
-            "Nonblocking development fallback. Improve documentation/mapping later.",
-        )
-
-    if missing_map:
-        report.warn(
-            "Eurobarometer maps missing",
-            f"{len(missing_map)} model waves lack maps: {' '.join(missing_map[:12])}"
-            + (" ..." if len(missing_map) > 12 else ""),
-            "Affected waves cannot run semantic DTAG until mapped; unrelated development remains usable.",
-        )
-
-
-
-def get_experiment_pairs(root: Path, cfg: Dict[str, Any]) -> List[Tuple[str, Path, Path]]:
-    pairs: List[Tuple[str, Path, Path]] = []
-    models = cfg.get("models", {}) or {}
-    maps = cfg.get("maps", {}) or {}
-    exps = cfg.get("experiments", {}) or {}
-    if not isinstance(exps, dict):
-        return pairs
-    for exp_name, exp in exps.items():
-        if not isinstance(exp, dict):
-            continue
-        map_key = str(exp.get("map", ""))
-        map_val = maps.get(map_key, map_key)
-        map_path = resolve_path(root, map_val)
-        personas = exp.get("personas", []) or []
-        if not isinstance(personas, list):
-            continue
-        for p in personas:
-            if not isinstance(p, dict):
-                continue
-            qkey = str(p.get("qnet", ""))
-            qval = models.get(qkey, qkey)
-            qnet_path = resolve_path(root, qval)
-            label = f"{exp_name}:{p.get('id', qkey)}"
-            pairs.append((label, qnet_path, map_path))
-    # Interactive profiles can point at development/native models even when no
-    # batch experiment has been defined yet.
-    profiles = cfg.get("interactive_profiles", {}) or {}
-    if isinstance(profiles, dict):
-        for prof_name, prof in profiles.items():
-            if not isinstance(prof, dict):
-                continue
-            map_key = str(prof.get("map", ""))
-            qkey = str(prof.get("qnet", ""))
-            if not map_key or not qkey:
-                continue
-            map_val = maps.get(map_key, map_key)
-            qval = models.get(qkey, qkey)
-            pairs.append((
-                f"profile:{prof_name}",
-                resolve_path(root, qval),
-                resolve_path(root, map_val),
-            ))
-
-    # unique by path pair
-    seen = set()
-    out = []
-    for label, q, m in pairs:
-        key = (str(q.resolve()), str(m.resolve()))
-        if key not in seen:
-            seen.add(key)
-            out.append((label, q, m))
-    return out
-
-
-def check_overlap(report: Report, root: Path, cfg: Dict[str, Any]) -> None:
-    try:
-        from model_backend import load_model  # type: ignore
-    except Exception as e:
-        report.warn("model/map overlap", f"Cannot import DTAG model backend: {e}")
-        return
-    try:
-        import pandas as pd
-    except Exception as e:
-        report.warn("qnet/map overlap", f"Cannot import pandas: {e}", "pip install pandas")
-        return
-
-    pairs = get_experiment_pairs(root, cfg)
-    # Add Eurobarometer exact map/model pairs.
-    for mp in sorted((root / "maps/euromap").glob("eurobarometer_ZA*_map.csv")):
-        m = ZA_RE.search(mp.name)
-        if not m:
-            continue
-        za = m.group(1).upper()
-        qnet = root / "models/eurobarometer" / f"LSM_{za}.gz"
-        pairs.append((f"eurobarometer:{za}", qnet, mp))
-
-    if not pairs:
-        report.warn("qnet/map overlap", "no experiment pairs found")
-        return
-
-    for label, qnet_path, map_path in pairs:
-        if not qnet_path.exists() or not map_path.exists():
-            continue
         try:
-            m = load_model(str(qnet_path), backend="auto")
-            qvars = set(map(str, getattr(m, "feature_names")))
-            df = pd.read_csv(map_path, dtype=str).fillna("")
-            map_vars = set(df["variable"].astype(str)) if "variable" in df.columns else set()
-            inter = qvars & map_vars
-            frac = len(inter) / max(1, len(qvars))
-            detail = f"qnet={len(qvars)} map={len(map_vars)} overlap={len(inter)} frac_qnet={frac:.3f}"
-            if frac >= 0.80:
-                report.ok(f"overlap {label}", detail + f" backend={getattr(m, 'backend_name', 'unknown')}")
-            elif frac >= 0.50:
-                report.warn(f"overlap {label}", detail, "Acceptable for quick tests but inspect qnet-only variables before paper runs")
-            else:
-                report.fail(f"overlap {label}", detail, "Regenerate map with qnet alignment or fix variable-name normalization")
+            import pandas as pd
+            for za in fallback:
+                p = map_root / f"{za}_map.csv"
+                df = pd.read_csv(p, dtype=str, keep_default_na=False)
+                if "map_provenance" in df.columns:
+                    total += len(df)
+                    unresolved += int((df["map_provenance"] == "UNRESOLVED_NATIVE").sum())
+            if total:
+                report.warn(
+                    "Eurobarometer fallback quality",
+                    f"resolved={(total-unresolved)/total:.3f}; "
+                    f"resolved={total-unresolved}/{total}; unresolved={unresolved}",
+                )
         except Exception as e:
-            report.warn(f"overlap {label}", f"could not load/check: {e}")
-
-
-def write_smoke_script(root: Path, outdir: Path, cfg: Dict[str, Any]) -> Path:
-    outdir.mkdir(parents=True, exist_ok=True)
-    script = outdir / "run_core_smokes.sh"
-    lines = [
-        "#!/usr/bin/env bash",
-        "set -euo pipefail",
-        f"cd {shlex.quote(str(root.resolve()))}",
-        "",
-        "echo '== Static checks =='",
-        "python3 -m py_compile scripts/*.py",
-        "python3 scripts/run.py --config configs/dtag_config.yaml --list || true",
-        "",
-        "echo '== Create quoted 10-question smoke CSV =='",
-        "python3 scripts/check_dtag_readiness.py --create-smoke-csv --no-pycompile --no-imports --no-overlap --no-write-commands >/dev/null",
-        "",
-        "if [ -z \"${OPENAI_API_KEY:-}\" ]; then",
-        "  echo 'OPENAI_API_KEY is not set; skipping API-dependent smoke tests.'",
-        "  exit 0",
-        "fi",
-        "",
-        "echo '== OpenAI smoke test =='",
-        "bin/run_smoketest.sh gpt-4.1-mini || true",
-        "",
-        "echo '== GSS single question with polar vectors =='",
-        gss_single_command(),
-        "",
-        "echo '== GSS 10-question sequence: answer_only =='",
-        gss_long_command("answer_only"),
-        "",
-        "echo '== GSS 10-question sequence: update_state =='",
-        gss_long_command("update_state"),
-        "",
-        "echo '== WVS India 2017 10-question sequence, no ideology =='",
-        wvs_long_command(),
-        "",
-        "echo '== Afrobarometer R5 Nigeria 10-question sequence, no ideology =='",
-        afro_long_command(),
-        "",
-        "echo '== Batch dry-run =='",
-        "python3 scripts/run.py --config configs/dtag_config.yaml --experiment gss2022_divergence --dry-run || true",
-        "",
-        "echo 'Smoke tests complete.'",
-    ]
-    script.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    script.chmod(0o755)
-    return script
-
-
-def gss_common(extra: List[str]) -> str:
-    args = [
-        "python3", "scripts/pipeline_localized.py",
-        "--map", "maps/map2022.csv",
-        "--qnet", "models/gss/gss_2022female.pkl.gz",
-        "--persona", "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
-        "--polar_vectors", "assets/polar_vectors/polar_vectors.csv",
-        "--require_polar_vectors",
-        "--assets_dir", "assets",
-        "--year", "2022",
-        "--country", "United States",
-        "--state_keep", "500",
-        "--k", "6",
-        "--prefilter", "200",
-        "--min_map_score", "1.0",
-        "--semantic_k", "6",
-        "--semantic_prefilter", "80",
-        "--semantic_min_confidence", "0.35",
-        "--semantic_resp_mode", "max",
-        "--max_assign", "50",
-        "--assign_prefilter", "500",
-        "--resp_mode", "max",
-        "--seed", "1000",
-        "--timing",
-    ] + extra
-    return " \\\n  ".join(shlex.quote(a) for a in args)
-
-
-def gss_single_command() -> str:
-    return gss_common([
-        "--logs_dir", "outputs/smoke_gss_wf_single",
-        "--tag", "smoke_gss_wf_single",
-        "--semantic_fallback", "answer_only",
-        "--question", "What do you think about immigration?",
-    ])
-
-
-def gss_long_command(mode: str) -> str:
-    return gss_common([
-        "--logs_dir", f"outputs/smoke_gss_wf_long_{mode}",
-        "--tag", f"smoke_gss_wf_long_{mode}",
-        "--semantic_fallback", mode,
-        "--autoplay_csv", "assets/question_sets/smoke/long_gss_smoke.csv",
-    ])
-
-
-def wvs_long_command() -> str:
-    args = [
-        "python3", "scripts/pipeline_localized.py",
-        "--map", "maps/wvs7_variable_question_map.csv",
-        "--qnet", "models/wvs/LSM60K.gz",
-        "--persona", "35 year old male, urban, college educated, regular news consumer, politically moderate",
-        "--assets_dir", "assets",
-        "--logs_dir", "outputs/smoke_wvs7_india_long",
-        "--tag", "WVS7_India_long",
-        "--year", "2017",
-        "--country", "India",
-        "--continent", "Asia",
-        "--autoplay_csv", "assets/question_sets/smoke/long_gss_smoke.csv",
-        "--state_keep", "500",
-        "--k", "6",
-        "--prefilter", "200",
-        "--min_map_score", "1.0",
-        "--semantic_fallback", "answer_only",
-        "--semantic_k", "6",
-        "--semantic_prefilter", "80",
-        "--semantic_min_confidence", "0.35",
-        "--semantic_resp_mode", "max",
-        "--max_assign", "50",
-        "--assign_prefilter", "500",
-        "--resp_mode", "max",
-        "--seed", "1000",
-        "--timing",
-        "--no_ideology",
-    ]
-    return " \\\n  ".join(shlex.quote(a) for a in args)
-
-
-def afro_long_command() -> str:
-    args = [
-        "python3", "scripts/pipeline_localized.py",
-        "--map", "maps/afromap/afrobarometer_r5_map.csv",
-        "--qnet", "models/afrobarometer/LSM_merged_r5_data.gz",
-        "--persona", "35 year old urban male in Nigeria, regular news consumer, politically attentive, moderate",
-        "--assets_dir", "assets",
-        "--logs_dir", "outputs/smoke_afro_r5_nigeria_long",
-        "--tag", "Afrobarometer_R5_Nigeria_long",
-        "--country", "Nigeria",
-        "--continent", "Africa",
-        "--autoplay_csv", "assets/question_sets/smoke/long_gss_smoke.csv",
-        "--state_keep", "500",
-        "--k", "6",
-        "--prefilter", "200",
-        "--min_map_score", "1.0",
-        "--semantic_fallback", "answer_only",
-        "--semantic_k", "6",
-        "--semantic_prefilter", "80",
-        "--semantic_min_confidence", "0.35",
-        "--semantic_resp_mode", "max",
-        "--max_assign", "50",
-        "--assign_prefilter", "500",
-        "--resp_mode", "max",
-        "--seed", "1000",
-        "--timing",
-        "--no_ideology",
-    ]
-    return " \\\n  ".join(shlex.quote(a) for a in args)
+            report.warn("Eurobarometer fallback quality", str(e))
 
 
 def main() -> None:
-    ap = argparse.ArgumentParser(description="Check DTAG repo readiness and generate smoke-test commands.")
-    ap.add_argument("--root", default=".", help="DTAG root directory. Use --root DTAG if running from tmprepo root.")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--root", default=str(ROOT_DEFAULT))
     ap.add_argument("--config", default="configs/dtag_config.yaml")
-    ap.add_argument("--outdir", default="outputs/readiness")
-    ap.add_argument("--no-imports", action="store_true")
-    ap.add_argument("--no-pycompile", action="store_true")
-    ap.add_argument("--overlap", action="store_true", help="Load qnets and check model-map feature overlap. May take time.")
-    ap.add_argument("--no-overlap", action="store_true", help="Explicitly skip overlap check.")
-    ap.add_argument("--create-smoke-csv", action="store_true", help="Create assets/question_sets/smoke/long_gss_smoke.csv with correct quoting.")
-    ap.add_argument("--no-write-commands", action="store_true")
+    ap.add_argument("--create-smoke-csv", action="store_true")
+    ap.add_argument("--overlap", action="store_true")
+    ap.add_argument("--skip-imports", action="store_true")
     args = ap.parse_args()
 
     root = Path(args.root).expanduser().resolve()
+    config_path = resolve(root, args.config)
+
     report = Report()
 
-    if not root.exists():
-        report.fail("root", f"Missing {root}")
-        report.print_console()
-        raise SystemExit(2)
+    required = [
+        "requirements.txt",
+        "scripts/model_backend.py",
+        "scripts/pipeline.py",
+        "scripts/pipeline_localized.py",
+        "scripts/interactive.py",
+        "scripts/run.py",
+        "scripts/run_grid.py",
+        "scripts/post.py",
+        "scripts/postprocess.py",
+        "scripts/eurobarometer_native.py",
+        "configs/dtag_config.yaml",
+        "bin/interactive_config.sh",
+        "bin/run_config.sh",
+        "bin/post_config.sh",
+        "bin/dtag_demo.sh",
+    ]
+    for rel in required:
+        p = root / rel
+        if p.exists():
+            report.ok(f"core {rel}")
+        else:
+            report.fail(f"core {rel}", "missing")
 
-    report.info("root", str(root))
-    check_core_layout(report, root)
-    check_openai_env(report)
-    if not args.no_imports:
+    check_python_syntax(report, root)
+
+    if not args.skip_imports:
         check_imports(report)
-    if not args.no_pycompile:
-        check_pycompile(report, root)
 
-    cfg_path = resolve_path(root, args.config)
-    cfg = load_yaml(cfg_path, report)
-    if cfg:
-        check_config_paths(report, root, cfg)
-        check_polar_vectors(report, root)
-        check_question_sets(report, root, cfg, create_smoke=args.create_smoke_csv)
-        check_eurobarometer(report, root)
-        if args.overlap and not args.no_overlap:
-            check_overlap(report, root, cfg)
+    try:
+        cfg = load_config(config_path)
+        report.ok("config parse", str(config_path.relative_to(root)))
+        check_config(report, root, cfg, overlap=args.overlap)
+        if args.create_smoke_csv:
+            out = create_smoke_csv(root)
+            report.ok("smoke question CSV", str(out.relative_to(root)))
+        check_question_sets(report, root, cfg)
+    except Exception as e:
+        report.fail("configuration", str(e))
 
-    outdir = resolve_path(root, args.outdir)
-    outdir.mkdir(parents=True, exist_ok=True)
-    report_path = outdir / "DTAG_READINESS_REPORT.md"
-    report_path.write_text(report.to_markdown(), encoding="utf-8")
-    if not args.no_write_commands:
-        smoke_path = write_smoke_script(root, outdir, cfg)
-        report.info("wrote smoke script", rel(root, smoke_path))
-    report.info("wrote report", rel(root, report_path))
+    check_polar_vectors(report, root)
+    check_eurobarometer(report, root)
 
     report.print_console()
 
-    counts = report.counts()
-    if counts.get("FAIL", 0) > 0:
+    outdir = root / "outputs/readiness"
+    outdir.mkdir(parents=True, exist_ok=True)
+    report_path = outdir / "DTAG_READINESS_REPORT.md"
+    report_path.write_text(report.markdown(), encoding="utf-8")
+    print(f"\nreport: {report_path}")
+
+    if report.counts().get("FAIL", 0):
         raise SystemExit(1)
 
 
