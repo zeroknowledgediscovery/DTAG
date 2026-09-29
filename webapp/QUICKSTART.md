@@ -53,11 +53,16 @@ models; only the prose is a placeholder):
 DTAG_LLM_BACKEND=mock dtag-web
 ```
 
-To reach it from other machines or use another port:
+To reach it from other machines or use another port — **set a password
+first** so others cannot use your OpenAI key:
 
 ```bash
+export DTAG_PASSWORD="choose-a-strong-password"
 dtag-web --host 0.0.0.0 --port 8080
 ```
+
+Everyone then sees a sign-in page and uses that password. (For anything on
+the public internet, also put it behind HTTPS.)
 
 ## 4. Use it
 
@@ -133,6 +138,7 @@ dtag-models --family gss      # a whole survey family
 | “OPENAI_API_KEY is not configured” when starting a respondent | `export OPENAI_API_KEY=...` and restart `dtag-web`, or use `DTAG_LLM_BACKEND=mock` |
 | Native extension not importable (macOS, or Python ≠ 3.13) | Use Docker, or from a clone run `bash scripts/build_native_bindings.sh` once |
 | Port 8000 already in use | `dtag-web --port 8080` |
+| Sign-in page appears | `DTAG_PASSWORD` is set on the server; enter that password (scripts: `Authorization: Bearer <password>`) |
 | Check the installation | `dtag-doctor`, or open http://127.0.0.1:8000/api/readiness |
 
 ## More
