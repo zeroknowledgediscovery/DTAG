@@ -86,6 +86,25 @@ To install the complete public model corpus:
 dtag-models --all
 ```
 
+### Web application
+
+The same installation includes a browser workbench and HTTP API:
+
+```bash
+export OPENAI_API_KEY="..."
+dtag-web                      # http://127.0.0.1:8000  (API docs at /docs)
+```
+
+Select or build a respondent (who / where / when), let DTAG fetch any missing
+public model, ask questions, and inspect the native-LSM evidence behind every
+answer: selected survey variables, response distributions, anchors, state
+updates, conditioning, ideology trajectory, and JSON/CSV exports. From a
+source checkout use `cd webapp && ./run.sh`, or `docker compose up` in
+`webapp/`. See [`webapp/README.md`](webapp/README.md).
+
+The CLI and the web application run the same respondent implementation
+(`scripts/dtag_session.py`, driven by `scripts/dtag_engine.py`).
+
 On compatible CPython 3.13 x86-64 Linux systems, DTAG uses the bundled prebuilt native LSM extension. Other supported environments can rebuild the native extension from the source shipped with the installed repository tree.
 
 
@@ -181,7 +200,7 @@ $DTAG_MODEL_ROOT/
   eurobarometer/
 ```
 
-When `DTAG_MODEL_ROOT` is unset, DTAG falls back to `<repo>/models/lsm`.
+When `DTAG_MODEL_ROOT` is unset, DTAG uses an already-populated `<repo>/models/lsm`, otherwise `~/.cache/dtag/models`.
 
 ## Bundled native LSM runtime
 
@@ -635,7 +654,10 @@ This checks plain generation and the strict structured-output call used in varia
 
 | Script | Purpose |
 |---|---|
-| `scripts/pipeline.py` | native LSM DTAG core |
+| `scripts/pipeline.py` | native LSM DTAG core (CLI; runs `DTAGSession`) |
+| `scripts/dtag_session.py` | reusable respondent session: persona, anchors, fallback, state, ideology |
+| `scripts/dtag_engine.py` | model catalog/registry, profiles, Eurobarometer routing, sessions (web + API) |
+| `scripts/fetch_models.py` | public model download/verification (`dtag-models`) |
 | `scripts/pipeline_localized.py` | deterministic geographic conditioning |
 | `scripts/interactive.py` | config-driven interactive launcher |
 | `scripts/eurobarometer_native.py` | Eurobarometer date/ZA + country launcher |
@@ -662,6 +684,7 @@ Survey parsing/build scripts are development utilities, not alternate runtimes.
 
 | Command | Purpose |
 |---|---|
+| `dtag-web` / `webapp/run.sh` | browser workbench + HTTP API |
 | `bin/dtag_demo.sh` | repository-wide deterministic/live demo |
 | `bin/interactive_config.sh` | run/list profiles |
 | `bin/run_config.sh` | run configured experiment |
