@@ -20,6 +20,69 @@
 
 suppressPackageStartupMessages(library(rgesis))
 
+# -------------------------------------------------------------------------
+# Compatibility patch for current GESIS Search behavior.
+#
+# rgesis authenticates successfully against login.gesis.org, but its current
+# request_searchengine() implementation sends the metadata lookup to
+# https://search.gesis.org/searchengine without the OAuth token.  Some current
+# GESIS deployments return HTTP 403 for that unauthenticated metadata request.
+#
+# For this downloader we patch only the current R session: attach the already
+# working rgesis OAuth credentials plus a normal browser-like User-Agent to the
+# searchengine request. Nothing is written into the installed rgesis package.
+# -------------------------------------------------------------------------
+
+patch_rgesis_search <- function() {
+  patched_request_searchengine <- function(source, from) {
+    source_json <- jsonlite::toJSON(
+      source,
+      auto_unbox = TRUE,
+      force = TRUE
+    )
+
+    req <- httr2::request("https://search.gesis.org/searchengine")
+    req <- httr2::req_url_query(
+      req,
+      source = source_json,
+      source_content_type = "application/json"
+    )
+
+    req <- httr2::req_user_agent(
+      req,
+      "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/152 Safari/537.36"
+    )
+    req <- httr2::req_headers(
+      req,
+      Accept = "application/json, text/plain, */*"
+    )
+
+    # Attach the same OAuth credentials that gesis_can_auth() has validated.
+    req <- rgesis:::req_add_auth(req)
+
+    if (is.null(from) || length(from) > 1) {
+      httr2::req_perform_iterative(
+        req,
+        next_req = rgesis:::iterate_with_source(from),
+        max_reqs = ifelse(is.null(from), Inf, length(from))
+      ) |>
+        httr2::resps_successes() |>
+        httr2::resps_data(
+          function(resp) httr2::resp_body_json(resp)$hits$hits
+        )
+    } else {
+      resp <- httr2::req_perform(req)
+      httr2::resp_body_json(resp)$hits$hits
+    }
+  }
+
+  assignInNamespace(
+    "request_searchengine",
+    patched_request_searchengine,
+    ns = "rgesis"
+  )
+}
+
 args <- commandArgs(trailingOnly = TRUE)
 
 get_arg <- function(flag, default = NULL) {
@@ -48,6 +111,27 @@ if (!gesis_can_auth()) {
     "  library(rgesis)\n",
     "  gesis_auth()\n",
     "  gesis_can_auth()\n"
+  )
+}
+
+patch_rgesis_search()
+
+# Fail early with one metadata lookup so a global 403 does not waste time on
+# every installed ZA model.
+probe_id <- if (nzchar(one_za)) toupper(one_za) else "ZA7575"
+probe_ok <- tryCatch({
+  gesis_file_types(probe_id)
+  TRUE
+}, error = function(e) {
+  cat("Authenticated OAuth works, but GESIS Search metadata lookup still failed:\n")
+  cat("  ", conditionMessage(e), "\n", sep = "")
+  FALSE
+})
+
+if (!probe_ok) {
+  stop(
+    "GESIS Search is still rejecting the authenticated metadata request. ",
+    "This is a service/API compatibility issue rather than a bad password."
   )
 }
 
