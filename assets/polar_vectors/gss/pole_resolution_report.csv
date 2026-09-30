@@ -1,0 +1,1545 @@
+wave,item,variable,status,reason,L_original,L_used,R_original,R_used
+1972,abany,,dropped,item not in wave,yes,,no,
+1972,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1972,abdefect,abdefect,kept,,yes,yes,no,no
+1972,abhlth,abhlth,kept,,yes,yes,no,no
+1972,abnomore,abnomore,kept,,yes,yes,no,no
+1972,abpoor,abpoor,kept,,yes,yes,no,no
+1972,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1972,abrape,abrape,kept,,yes,yes,no,no
+1972,absingle,absingle,kept,,yes,yes,no,no
+1972,bible,,dropped,item not in wave,book of fables,,inspired word,
+1972,colcom,colcom,kept,,not fired,not fired,fired,fired
+1972,colmil,,dropped,item not in wave,not allowed,,not fired,
+1972,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1972,confed,,dropped,item not in wave,a great deal,,hardly any,
+1972,conlabor,,dropped,item not in wave,a great deal,,hardly any,
+1972,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1972,grass,,dropped,item not in wave,legal,,not legal,
+1972,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1972,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1972,libcom,libcom,kept,,not remove,not remove,remove,remove
+1972,libhomo,,dropped,item not in wave,not remove,,remove,
+1972,libmil,,dropped,item not in wave,remove,,not remove,
+1972,libmslm,,dropped,item not in wave,not remove,,remove,
+1972,maboygrl,,dropped,item not in wave,false,,true,
+1972,natarms,,dropped,item not in wave,too much,,about right,
+1972,natenvir,,dropped,item not in wave,too little,,too much,
+1972,natfare,,dropped,item not in wave,too little,,too much,
+1972,natsoc,,dropped,item not in wave,too little,,too much,
+1972,owngun,,dropped,item not in wave,no,,yes,
+1972,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1972,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1972,polabuse,,dropped,item not in wave,yes,,no,
+1972,pray,,dropped,item not in wave,never,,several times a day,
+1972,prayer,,dropped,item not in wave,approve,,disapprove,
+1972,prayfreq,,dropped,item not in wave,never,,several times a day,
+1972,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1972,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1972,reliten,,dropped,item not in wave,no religion,,strong,
+1972,rowngun,,dropped,item not in wave,no,,yes,
+1972,shotgun,,dropped,item not in wave,no,,yes,
+1972,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1972,spkmil,,dropped,item not in wave,not allowed,,allowed,
+1972,taxrich,,dropped,item not in wave,much too low,,about right,
+1972,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1973,abany,,dropped,item not in wave,yes,,no,
+1973,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1973,abdefect,abdefect,kept,,yes,yes,no,no
+1973,abhlth,abhlth,kept,,yes,yes,no,no
+1973,abnomore,abnomore,kept,,yes,yes,no,no
+1973,abpoor,abpoor,kept,,yes,yes,no,no
+1973,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1973,abrape,abrape,kept,,yes,yes,no,no
+1973,absingle,absingle,kept,,yes,yes,no,no
+1973,bible,,dropped,item not in wave,book of fables,,inspired word,
+1973,colcom,colcom,kept,,not fired,not fired,fired,fired
+1973,colmil,,dropped,item not in wave,not allowed,,not fired,
+1973,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1973,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1973,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1973,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1973,grass,grass,kept,,legal,legal,not legal,not legal
+1973,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1973,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1973,libcom,libcom,kept,,not remove,not remove,remove,remove
+1973,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1973,libmil,,dropped,item not in wave,remove,,not remove,
+1973,libmslm,,dropped,item not in wave,not remove,,remove,
+1973,maboygrl,,dropped,item not in wave,false,,true,
+1973,natarms,natarms,kept,,too much,too much,about right,about right
+1973,natenvir,natenvir,kept,,too little,too little,too much,too much
+1973,natfare,natfare,kept,,too little,too little,too much,too much
+1973,natsoc,,dropped,item not in wave,too little,,too much,
+1973,owngun,owngun,kept,,no,no,yes,yes
+1973,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1973,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1973,polabuse,polabuse,kept,,yes,yes,no,no
+1973,pray,,dropped,item not in wave,never,,several times a day,
+1973,prayer,,dropped,item not in wave,approve,,disapprove,
+1973,prayfreq,,dropped,item not in wave,never,,several times a day,
+1973,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1973,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1973,reliten,,dropped,item not in wave,no religion,,strong,
+1973,rowngun,,dropped,item not in wave,no,,yes,
+1973,shotgun,shotgun,kept,,no,no,yes,yes
+1973,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1973,spkmil,,dropped,item not in wave,not allowed,,allowed,
+1973,taxrich,,dropped,item not in wave,much too low,,about right,
+1973,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1974,abany,,dropped,item not in wave,yes,,no,
+1974,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1974,abdefect,abdefect,kept,,yes,yes,no,no
+1974,abhlth,abhlth,kept,,yes,yes,no,no
+1974,abnomore,abnomore,kept,,yes,yes,no,no
+1974,abpoor,abpoor,kept,,yes,yes,no,no
+1974,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1974,abrape,abrape,kept,,yes,yes,no,no
+1974,absingle,absingle,kept,,yes,yes,no,no
+1974,bible,,dropped,item not in wave,book of fables,,inspired word,
+1974,colcom,colcom,kept,,not fired,not fired,fired,fired
+1974,colmil,,dropped,item not in wave,not allowed,,not fired,
+1974,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1974,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1974,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1974,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1974,grass,,dropped,item not in wave,legal,,not legal,
+1974,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1974,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1974,libcom,libcom,kept,,not remove,not remove,remove,remove
+1974,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1974,libmil,,dropped,item not in wave,remove,,not remove,
+1974,libmslm,,dropped,item not in wave,not remove,,remove,
+1974,maboygrl,,dropped,item not in wave,false,,true,
+1974,natarms,natarms,kept,,too much,too much,about right,about right
+1974,natenvir,natenvir,kept,,too little,too little,too much,too much
+1974,natfare,natfare,kept,,too little,too little,too much,too much
+1974,natsoc,,dropped,item not in wave,too little,,too much,
+1974,owngun,owngun,kept,,no,no,yes,yes
+1974,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1974,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1974,polabuse,,dropped,item not in wave,yes,,no,
+1974,pray,,dropped,item not in wave,never,,several times a day,
+1974,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1974,prayfreq,,dropped,item not in wave,never,,several times a day,
+1974,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1974,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1974,reliten,reliten,kept,,no religion,no religion,strong,strong
+1974,rowngun,,dropped,item not in wave,no,,yes,
+1974,shotgun,shotgun,kept,,no,no,yes,yes
+1974,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1974,spkmil,,dropped,item not in wave,not allowed,,allowed,
+1974,taxrich,,dropped,item not in wave,much too low,,about right,
+1974,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1975,abany,,dropped,item not in wave,yes,,no,
+1975,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1975,abdefect,abdefect,kept,,yes,yes,no,no
+1975,abhlth,abhlth,kept,,yes,yes,no,no
+1975,abnomore,abnomore,kept,,yes,yes,no,no
+1975,abpoor,abpoor,kept,,yes,yes,no,no
+1975,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1975,abrape,abrape,kept,,yes,yes,no,no
+1975,absingle,absingle,kept,,yes,yes,no,no
+1975,bible,,dropped,item not in wave,book of fables,,inspired word,
+1975,colcom,,dropped,item not in wave,not fired,,fired,
+1975,colmil,,dropped,item not in wave,not allowed,,not fired,
+1975,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1975,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1975,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1975,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1975,grass,grass,kept,,legal,legal,not legal,not legal
+1975,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1975,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1975,libcom,,dropped,item not in wave,not remove,,remove,
+1975,libhomo,,dropped,item not in wave,not remove,,remove,
+1975,libmil,,dropped,item not in wave,remove,,not remove,
+1975,libmslm,,dropped,item not in wave,not remove,,remove,
+1975,maboygrl,,dropped,item not in wave,false,,true,
+1975,natarms,natarms,kept,,too much,too much,about right,about right
+1975,natenvir,natenvir,kept,,too little,too little,too much,too much
+1975,natfare,natfare,kept,,too little,too little,too much,too much
+1975,natsoc,,dropped,item not in wave,too little,,too much,
+1975,owngun,,dropped,item not in wave,no,,yes,
+1975,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1975,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1975,polabuse,polabuse,kept,,yes,yes,no,no
+1975,pray,,dropped,item not in wave,never,,several times a day,
+1975,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1975,prayfreq,,dropped,item not in wave,never,,several times a day,
+1975,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1975,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1975,reliten,reliten,kept,,no religion,no religion,strong,strong
+1975,rowngun,,dropped,item not in wave,no,,yes,
+1975,shotgun,,dropped,item not in wave,no,,yes,
+1975,spkcom,,dropped,item not in wave,allowed,,not allowed,
+1975,spkmil,,dropped,item not in wave,not allowed,,allowed,
+1975,taxrich,,dropped,item not in wave,much too low,,about right,
+1975,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1976,abany,,dropped,item not in wave,yes,,no,
+1976,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1976,abdefect,abdefect,kept,,yes,yes,no,no
+1976,abhlth,abhlth,kept,,yes,yes,no,no
+1976,abnomore,abnomore,kept,,yes,yes,no,no
+1976,abpoor,abpoor,kept,,yes,yes,no,no
+1976,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1976,abrape,abrape,kept,,yes,yes,no,no
+1976,absingle,absingle,kept,,yes,yes,no,no
+1976,bible,,dropped,item not in wave,book of fables,,inspired word,
+1976,colcom,colcom,kept,,not fired,not fired,fired,fired
+1976,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1976,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1976,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1976,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1976,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1976,grass,grass,kept,,legal,legal,not legal,not legal
+1976,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1976,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1976,libcom,libcom,kept,,not remove,not remove,remove,remove
+1976,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1976,libmil,libmil,kept,,remove,remove,not remove,not remove
+1976,libmslm,,dropped,item not in wave,not remove,,remove,
+1976,maboygrl,,dropped,item not in wave,false,,true,
+1976,natarms,natarms,kept,,too much,too much,about right,about right
+1976,natenvir,natenvir,kept,,too little,too little,too much,too much
+1976,natfare,natfare,kept,,too little,too little,too much,too much
+1976,natsoc,,dropped,item not in wave,too little,,too much,
+1976,owngun,owngun,kept,,no,no,yes,yes
+1976,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1976,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1976,polabuse,polabuse,kept,,yes,yes,no,no
+1976,pray,,dropped,item not in wave,never,,several times a day,
+1976,prayer,,dropped,item not in wave,approve,,disapprove,
+1976,prayfreq,,dropped,item not in wave,never,,several times a day,
+1976,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1976,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1976,reliten,reliten,kept,,no religion,no religion,strong,strong
+1976,rowngun,,dropped,item not in wave,no,,yes,
+1976,shotgun,shotgun,kept,,no,no,yes,yes
+1976,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1976,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1976,taxrich,,dropped,item not in wave,much too low,,about right,
+1976,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1977,abany,abany,kept,,yes,yes,no,no
+1977,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1977,abdefect,abdefect,kept,,yes,yes,no,no
+1977,abhlth,abhlth,kept,,yes,yes,no,no
+1977,abnomore,abnomore,kept,,yes,yes,no,no
+1977,abpoor,abpoor,kept,,yes,yes,no,no
+1977,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1977,abrape,abrape,kept,,yes,yes,no,no
+1977,absingle,absingle,kept,,yes,yes,no,no
+1977,bible,,dropped,item not in wave,book of fables,,inspired word,
+1977,colcom,colcom,kept,,not fired,not fired,fired,fired
+1977,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1977,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1977,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1977,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1977,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1977,grass,,dropped,item not in wave,legal,,not legal,
+1977,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1977,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1977,libcom,libcom,kept,,not remove,not remove,remove,remove
+1977,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1977,libmil,libmil,kept,,remove,remove,not remove,not remove
+1977,libmslm,,dropped,item not in wave,not remove,,remove,
+1977,maboygrl,,dropped,item not in wave,false,,true,
+1977,natarms,natarms,kept,,too much,too much,about right,about right
+1977,natenvir,natenvir,kept,,too little,too little,too much,too much
+1977,natfare,natfare,kept,,too little,too little,too much,too much
+1977,natsoc,,dropped,item not in wave,too little,,too much,
+1977,owngun,owngun,kept,,no,no,yes,yes
+1977,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1977,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1977,polabuse,,dropped,item not in wave,yes,,no,
+1977,pray,,dropped,item not in wave,never,,several times a day,
+1977,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1977,prayfreq,,dropped,item not in wave,never,,several times a day,
+1977,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1977,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1977,reliten,reliten,kept,,no religion,no religion,strong,strong
+1977,rowngun,,dropped,item not in wave,no,,yes,
+1977,shotgun,shotgun,kept,,no,no,yes,yes
+1977,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1977,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1977,taxrich,,dropped,item not in wave,much too low,,about right,
+1977,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1978,abany,abany,kept,,yes,yes,no,no
+1978,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1978,abdefect,abdefect,kept,,yes,yes,no,no
+1978,abhlth,abhlth,kept,,yes,yes,no,no
+1978,abnomore,abnomore,kept,,yes,yes,no,no
+1978,abpoor,abpoor,kept,,yes,yes,no,no
+1978,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1978,abrape,abrape,kept,,yes,yes,no,no
+1978,absingle,absingle,kept,,yes,yes,no,no
+1978,bible,,dropped,item not in wave,book of fables,,inspired word,
+1978,colcom,,dropped,item not in wave,not fired,,fired,
+1978,colmil,,dropped,item not in wave,not allowed,,not fired,
+1978,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1978,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1978,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1978,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1978,grass,grass,kept,,legal,legal,not legal,not legal
+1978,gunlaw,,dropped,item not in wave,favor,,oppose,
+1978,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1978,libcom,,dropped,item not in wave,not remove,,remove,
+1978,libhomo,,dropped,item not in wave,not remove,,remove,
+1978,libmil,,dropped,item not in wave,remove,,not remove,
+1978,libmslm,,dropped,item not in wave,not remove,,remove,
+1978,maboygrl,,dropped,item not in wave,false,,true,
+1978,natarms,natarms,kept,,too much,too much,about right,about right
+1978,natenvir,natenvir,kept,,too little,too little,too much,too much
+1978,natfare,natfare,kept,,too little,too little,too much,too much
+1978,natsoc,,dropped,item not in wave,too little,,too much,
+1978,owngun,,dropped,item not in wave,no,,yes,
+1978,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1978,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1978,polabuse,polabuse,kept,,yes,yes,no,no
+1978,pray,,dropped,item not in wave,never,,several times a day,
+1978,prayer,,dropped,item not in wave,approve,,disapprove,
+1978,prayfreq,,dropped,item not in wave,never,,several times a day,
+1978,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1978,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1978,reliten,reliten,kept,,no religion,no religion,strong,strong
+1978,rowngun,,dropped,item not in wave,no,,yes,
+1978,shotgun,,dropped,item not in wave,no,,yes,
+1978,spkcom,,dropped,item not in wave,allowed,,not allowed,
+1978,spkmil,,dropped,item not in wave,not allowed,,allowed,
+1978,taxrich,,dropped,item not in wave,much too low,,about right,
+1978,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1980,abany,abany,kept,,yes,yes,no,no
+1980,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1980,abdefect,abdefect,kept,,yes,yes,no,no
+1980,abhlth,abhlth,kept,,yes,yes,no,no
+1980,abnomore,abnomore,kept,,yes,yes,no,no
+1980,abpoor,abpoor,kept,,yes,yes,no,no
+1980,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1980,abrape,abrape,kept,,yes,yes,no,no
+1980,absingle,absingle,kept,,yes,yes,no,no
+1980,bible,,dropped,item not in wave,book of fables,,inspired word,
+1980,colcom,colcom,kept,,not fired,not fired,fired,fired
+1980,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1980,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1980,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1980,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1980,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1980,grass,grass,kept,,legal,legal,not legal,not legal
+1980,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1980,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1980,libcom,libcom,kept,,not remove,not remove,remove,remove
+1980,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1980,libmil,libmil,kept,,remove,remove,not remove,not remove
+1980,libmslm,,dropped,item not in wave,not remove,,remove,
+1980,maboygrl,,dropped,item not in wave,false,,true,
+1980,natarms,natarms,kept,,too much,too much,about right,about right
+1980,natenvir,natenvir,kept,,too little,too little,too much,too much
+1980,natfare,natfare,kept,,too little,too little,too much,too much
+1980,natsoc,,dropped,item not in wave,too little,,too much,
+1980,owngun,owngun,kept,,no,no,yes,yes
+1980,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1980,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1980,polabuse,polabuse,kept,,yes,yes,no,no
+1980,pray,,dropped,item not in wave,never,,several times a day,
+1980,prayer,,dropped,item not in wave,approve,,disapprove,
+1980,prayfreq,,dropped,item not in wave,never,,several times a day,
+1980,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1980,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1980,reliten,reliten,kept,,no religion,no religion,strong,strong
+1980,rowngun,rowngun,kept,,no,no,yes,yes
+1980,shotgun,shotgun,kept,,no,no,yes,yes
+1980,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1980,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1980,taxrich,,dropped,item not in wave,much too low,,about right,
+1980,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1982,abany,abany,kept,,yes,yes,no,no
+1982,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1982,abdefect,abdefect,kept,,yes,yes,no,no
+1982,abhlth,abhlth,kept,,yes,yes,no,no
+1982,abnomore,abnomore,kept,,yes,yes,no,no
+1982,abpoor,abpoor,kept,,yes,yes,no,no
+1982,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1982,abrape,abrape,kept,,yes,yes,no,no
+1982,absingle,absingle,kept,,yes,yes,no,no
+1982,bible,,dropped,item not in wave,book of fables,,inspired word,
+1982,colcom,colcom,kept,,not fired,not fired,fired,fired
+1982,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1982,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1982,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1982,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1982,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1982,grass,,dropped,item not in wave,legal,,not legal,
+1982,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1982,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1982,libcom,libcom,kept,,not remove,not remove,remove,remove
+1982,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1982,libmil,libmil,kept,,remove,remove,not remove,not remove
+1982,libmslm,,dropped,item not in wave,not remove,,remove,
+1982,maboygrl,,dropped,item not in wave,false,,true,
+1982,natarms,natarms,kept,,too much,too much,about right,about right
+1982,natenvir,natenvir,kept,,too little,too little,too much,too much
+1982,natfare,natfare,kept,,too little,too little,too much,too much
+1982,natsoc,,dropped,item not in wave,too little,,too much,
+1982,owngun,owngun,kept,,no,no,yes,yes
+1982,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1982,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1982,polabuse,,dropped,item not in wave,yes,,no,
+1982,pray,,dropped,item not in wave,never,,several times a day,
+1982,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1982,prayfreq,,dropped,item not in wave,never,,several times a day,
+1982,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1982,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1982,reliten,reliten,kept,,no religion,no religion,strong,strong
+1982,rowngun,rowngun,kept,,no,no,yes,yes
+1982,shotgun,shotgun,kept,,no,no,yes,yes
+1982,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1982,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1982,taxrich,,dropped,item not in wave,much too low,,about right,
+1982,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1983,abany,abany,kept,,yes,yes,no,no
+1983,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1983,abdefect,abdefect,kept,,yes,yes,no,no
+1983,abhlth,abhlth,kept,,yes,yes,no,no
+1983,abnomore,abnomore,kept,,yes,yes,no,no
+1983,abpoor,abpoor,kept,,yes,yes,no,no
+1983,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1983,abrape,abrape,kept,,yes,yes,no,no
+1983,absingle,absingle,kept,,yes,yes,no,no
+1983,bible,,dropped,item not in wave,book of fables,,inspired word,
+1983,colcom,,dropped,item not in wave,not fired,,fired,
+1983,colmil,,dropped,item not in wave,not allowed,,not fired,
+1983,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1983,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1983,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1983,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1983,grass,grass,kept,,legal,legal,not legal,not legal
+1983,gunlaw,,dropped,item not in wave,favor,,oppose,
+1983,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1983,libcom,,dropped,item not in wave,not remove,,remove,
+1983,libhomo,,dropped,item not in wave,not remove,,remove,
+1983,libmil,,dropped,item not in wave,remove,,not remove,
+1983,libmslm,,dropped,item not in wave,not remove,,remove,
+1983,maboygrl,,dropped,item not in wave,false,,true,
+1983,natarms,natarms,kept,,too much,too much,about right,about right
+1983,natenvir,natenvir,kept,,too little,too little,too much,too much
+1983,natfare,natfare,kept,,too little,too little,too much,too much
+1983,natsoc,,dropped,item not in wave,too little,,too much,
+1983,owngun,,dropped,item not in wave,no,,yes,
+1983,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1983,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1983,polabuse,polabuse,kept,,yes,yes,no,no
+1983,pray,pray,kept,,never,never,several times a day,several times a day
+1983,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1983,prayfreq,,dropped,item not in wave,never,,several times a day,
+1983,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1983,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1983,reliten,reliten,kept,,no religion,no religion,strong,strong
+1983,rowngun,,dropped,item not in wave,no,,yes,
+1983,shotgun,,dropped,item not in wave,no,,yes,
+1983,spkcom,,dropped,item not in wave,allowed,,not allowed,
+1983,spkmil,,dropped,item not in wave,not allowed,,allowed,
+1983,taxrich,,dropped,item not in wave,much too low,,about right,
+1983,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1984,abany,abany,kept,,yes,yes,no,no
+1984,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1984,abdefect,abdefect,kept,,yes,yes,no,no
+1984,abhlth,abhlth,kept,,yes,yes,no,no
+1984,abnomore,abnomore,kept,,yes,yes,no,no
+1984,abpoor,abpoor,kept,,yes,yes,no,no
+1984,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1984,abrape,abrape,kept,,yes,yes,no,no
+1984,absingle,absingle,kept,,yes,yes,no,no
+1984,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1984,colcom,colcom,kept,,not fired,not fired,fired,fired
+1984,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1984,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1984,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1984,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1984,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1984,grass,grass,kept,,legal,legal,not legal,not legal
+1984,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1984,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1984,libcom,libcom,kept,,not remove,not remove,remove,remove
+1984,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1984,libmil,libmil,kept,,remove,remove,not remove,not remove
+1984,libmslm,,dropped,item not in wave,not remove,,remove,
+1984,maboygrl,,dropped,item not in wave,false,,true,
+1984,natarms,natarms,kept,,too much,too much,about right,about right
+1984,natenvir,natenvir,kept,,too little,too little,too much,too much
+1984,natfare,natfare,kept,,too little,too little,too much,too much
+1984,natsoc,natsoc,kept,,too little,too little,too much,too much
+1984,owngun,owngun,kept,,no,no,yes,yes
+1984,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1984,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1984,polabuse,polabuse,kept,,yes,yes,no,no
+1984,pray,pray,kept,,never,never,several times a day,several times a day
+1984,prayer,,dropped,item not in wave,approve,,disapprove,
+1984,prayfreq,,dropped,item not in wave,never,,several times a day,
+1984,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1984,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1984,reliten,reliten,kept,,no religion,no religion,strong,strong
+1984,rowngun,rowngun,kept,,no,no,yes,yes
+1984,shotgun,shotgun,kept,,no,no,yes,yes
+1984,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1984,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1984,taxrich,,dropped,item not in wave,much too low,,about right,
+1984,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1985,abany,abany,kept,,yes,yes,no,no
+1985,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1985,abdefect,abdefect,kept,,yes,yes,no,no
+1985,abhlth,abhlth,kept,,yes,yes,no,no
+1985,abnomore,abnomore,kept,,yes,yes,no,no
+1985,abpoor,abpoor,kept,,yes,yes,no,no
+1985,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1985,abrape,abrape,kept,,yes,yes,no,no
+1985,absingle,absingle,kept,,yes,yes,no,no
+1985,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1985,colcom,colcom,kept,,not fired,not fired,fired,fired
+1985,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1985,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1985,confed,,dropped,item not in wave,a great deal,,hardly any,
+1985,conlabor,,dropped,item not in wave,a great deal,,hardly any,
+1985,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1985,grass,,dropped,item not in wave,legal,,not legal,
+1985,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1985,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1985,libcom,libcom,kept,,not remove,not remove,remove,remove
+1985,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1985,libmil,libmil,kept,,remove,remove,not remove,not remove
+1985,libmslm,,dropped,item not in wave,not remove,,remove,
+1985,maboygrl,,dropped,item not in wave,false,,true,
+1985,natarms,natarms,kept,,too much,too much,about right,about right
+1985,natenvir,natenvir,kept,,too little,too little,too much,too much
+1985,natfare,natfare,kept,,too little,too little,too much,too much
+1985,natsoc,natsoc,kept,,too little,too little,too much,too much
+1985,owngun,owngun,kept,,no,no,yes,yes
+1985,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1985,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1985,polabuse,,dropped,item not in wave,yes,,no,
+1985,pray,pray,kept,,never,never,several times a day,several times a day
+1985,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1985,prayfreq,,dropped,item not in wave,never,,several times a day,
+1985,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1985,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1985,reliten,reliten,kept,,no religion,no religion,strong,strong
+1985,rowngun,rowngun,kept,,no,no,yes,yes
+1985,shotgun,shotgun,kept,,no,no,yes,yes
+1985,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1985,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1985,taxrich,,dropped,item not in wave,much too low,,about right,
+1985,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1986,abany,,dropped,item not in wave,yes,,no,
+1986,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1986,abdefect,,dropped,item not in wave,yes,,no,
+1986,abhlth,,dropped,item not in wave,yes,,no,
+1986,abnomore,,dropped,item not in wave,yes,,no,
+1986,abpoor,,dropped,item not in wave,yes,,no,
+1986,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1986,abrape,,dropped,item not in wave,yes,,no,
+1986,absingle,,dropped,item not in wave,yes,,no,
+1986,bible,,dropped,item not in wave,book of fables,,inspired word,
+1986,colcom,,dropped,item not in wave,not fired,,fired,
+1986,colmil,,dropped,item not in wave,not allowed,,not fired,
+1986,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1986,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1986,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1986,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1986,grass,grass,kept,,legal,legal,not legal,not legal
+1986,gunlaw,,dropped,item not in wave,favor,,oppose,
+1986,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1986,libcom,,dropped,item not in wave,not remove,,remove,
+1986,libhomo,,dropped,item not in wave,not remove,,remove,
+1986,libmil,,dropped,item not in wave,remove,,not remove,
+1986,libmslm,,dropped,item not in wave,not remove,,remove,
+1986,maboygrl,,dropped,item not in wave,false,,true,
+1986,natarms,natarms,kept,,too much,too much,about right,about right
+1986,natenvir,natenvir,kept,,too little,too little,too much,too much
+1986,natfare,natfare,kept,,too little,too little,too much,too much
+1986,natsoc,natsoc,kept,,too little,too little,too much,too much
+1986,owngun,,dropped,item not in wave,no,,yes,
+1986,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1986,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1986,polabuse,polabuse,kept,,yes,yes,no,no
+1986,pray,,dropped,item not in wave,never,,several times a day,
+1986,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1986,prayfreq,,dropped,item not in wave,never,,several times a day,
+1986,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1986,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1986,reliten,reliten,kept,,no religion,no religion,strong,strong
+1986,rowngun,,dropped,item not in wave,no,,yes,
+1986,shotgun,,dropped,item not in wave,no,,yes,
+1986,spkcom,,dropped,item not in wave,allowed,,not allowed,
+1986,spkmil,,dropped,item not in wave,not allowed,,allowed,
+1986,taxrich,,dropped,item not in wave,much too low,,about right,
+1986,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1987,abany,abany,kept,,yes,yes,no,no
+1987,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1987,abdefect,abdefect,kept,,yes,yes,no,no
+1987,abhlth,abhlth,kept,,yes,yes,no,no
+1987,abnomore,abnomore,kept,,yes,yes,no,no
+1987,abpoor,abpoor,kept,,yes,yes,no,no
+1987,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1987,abrape,abrape,kept,,yes,yes,no,no
+1987,absingle,absingle,kept,,yes,yes,no,no
+1987,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1987,colcom,colcom,kept,,not fired,not fired,fired,fired
+1987,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1987,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1987,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1987,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1987,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1987,grass,grass,kept,,legal,legal,not legal,not legal
+1987,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1987,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1987,libcom,libcom,kept,,not remove,not remove,remove,remove
+1987,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1987,libmil,libmil,kept,,remove,remove,not remove,not remove
+1987,libmslm,,dropped,item not in wave,not remove,,remove,
+1987,maboygrl,,dropped,item not in wave,false,,true,
+1987,natarms,natarms,kept,,too much,too much,about right,about right
+1987,natenvir,natenvir,kept,,too little,too little,too much,too much
+1987,natfare,natfare,kept,,too little,too little,too much,too much
+1987,natsoc,natsoc,kept,,too little,too little,too much,too much
+1987,owngun,owngun,kept,,no,no,yes,yes
+1987,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
+1987,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1987,polabuse,polabuse,kept,,yes,yes,no,no
+1987,pray,pray,kept,,never,never,several times a day,several times a day
+1987,prayer,,dropped,item not in wave,approve,,disapprove,
+1987,prayfreq,,dropped,item not in wave,never,,several times a day,
+1987,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1987,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1987,reliten,reliten,kept,,no religion,no religion,strong,strong
+1987,rowngun,rowngun,kept,,no,no,yes,yes
+1987,shotgun,shotgun,kept,,no,no,yes,yes
+1987,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1987,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1987,taxrich,taxrich,kept,,much too low,much too low,about right,about right
+1987,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1988,abany,abany,kept,,yes,yes,no,no
+1988,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1988,abdefect,abdefect,kept,,yes,yes,no,no
+1988,abhlth,abhlth,kept,,yes,yes,no,no
+1988,abnomore,abnomore,kept,,yes,yes,no,no
+1988,abpoor,abpoor,kept,,yes,yes,no,no
+1988,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1988,abrape,abrape,kept,,yes,yes,no,no
+1988,absingle,absingle,kept,,yes,yes,no,no
+1988,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1988,colcom,colcom,kept,,not fired,not fired,fired,fired
+1988,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1988,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1988,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1988,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1988,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1988,grass,grass,kept,,legal,legal,not legal,not legal
+1988,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1988,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1988,libcom,libcom,kept,,not remove,not remove,remove,remove
+1988,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1988,libmil,libmil,kept,,remove,remove,not remove,not remove
+1988,libmslm,,dropped,item not in wave,not remove,,remove,
+1988,maboygrl,,dropped,item not in wave,false,,true,
+1988,natarms,natarms,kept,,too much,too much,about right,about right
+1988,natenvir,natenvir,kept,,too little,too little,too much,too much
+1988,natfare,natfare,kept,,too little,too little,too much,too much
+1988,natsoc,natsoc,kept,,too little,too little,too much,too much
+1988,owngun,owngun,kept,,no,no,yes,yes
+1988,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1988,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1988,polabuse,polabuse,kept,,yes,yes,no,no
+1988,pray,pray,kept,,never,never,several times a day,several times a day
+1988,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1988,prayfreq,,dropped,item not in wave,never,,several times a day,
+1988,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1988,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1988,reliten,reliten,kept,,no religion,no religion,strong,strong
+1988,rowngun,rowngun,kept,,no,no,yes,yes
+1988,shotgun,shotgun,kept,,no,no,yes,yes
+1988,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1988,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1988,taxrich,,dropped,item not in wave,much too low,,about right,
+1988,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1989,abany,abany,kept,,yes,yes,no,no
+1989,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1989,abdefect,abdefect,kept,,yes,yes,no,no
+1989,abhlth,abhlth,kept,,yes,yes,no,no
+1989,abnomore,abnomore,kept,,yes,yes,no,no
+1989,abpoor,abpoor,kept,,yes,yes,no,no
+1989,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1989,abrape,abrape,kept,,yes,yes,no,no
+1989,absingle,absingle,kept,,yes,yes,no,no
+1989,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1989,colcom,colcom,kept,,not fired,not fired,fired,fired
+1989,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1989,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1989,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1989,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1989,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1989,grass,grass,kept,,legal,legal,not legal,not legal
+1989,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1989,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1989,libcom,libcom,kept,,not remove,not remove,remove,remove
+1989,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1989,libmil,libmil,kept,,remove,remove,not remove,not remove
+1989,libmslm,,dropped,item not in wave,not remove,,remove,
+1989,maboygrl,,dropped,item not in wave,false,,true,
+1989,natarms,natarms,kept,,too much,too much,about right,about right
+1989,natenvir,natenvir,kept,,too little,too little,too much,too much
+1989,natfare,natfare,kept,,too little,too little,too much,too much
+1989,natsoc,natsoc,kept,,too little,too little,too much,too much
+1989,owngun,owngun,kept,,no,no,yes,yes
+1989,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1989,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1989,polabuse,polabuse,kept,,yes,yes,no,no
+1989,pray,pray,kept,,never,never,several times a day,several times a day
+1989,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1989,prayfreq,,dropped,item not in wave,never,,several times a day,
+1989,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1989,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1989,reliten,reliten,kept,,no religion,no religion,strong,strong
+1989,rowngun,rowngun,kept,,no,no,yes,yes
+1989,shotgun,shotgun,kept,,no,no,yes,yes
+1989,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1989,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1989,taxrich,,dropped,item not in wave,much too low,,about right,
+1989,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1990,abany,abany,kept,,yes,yes,no,no
+1990,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1990,abdefect,abdefect,kept,,yes,yes,no,no
+1990,abhlth,abhlth,kept,,yes,yes,no,no
+1990,abnomore,abnomore,kept,,yes,yes,no,no
+1990,abpoor,abpoor,kept,,yes,yes,no,no
+1990,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1990,abrape,abrape,kept,,yes,yes,no,no
+1990,absingle,absingle,kept,,yes,yes,no,no
+1990,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1990,colcom,colcom,kept,,not fired,not fired,fired,fired
+1990,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1990,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1990,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1990,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1990,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1990,grass,grass,kept,,legal,legal,not legal,not legal
+1990,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1990,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1990,libcom,libcom,kept,,not remove,not remove,remove,remove
+1990,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1990,libmil,libmil,kept,,remove,remove,not remove,not remove
+1990,libmslm,,dropped,item not in wave,not remove,,remove,
+1990,maboygrl,,dropped,item not in wave,false,,true,
+1990,natarms,natarms,kept,,too much,too much,about right,about right
+1990,natenvir,natenvir,kept,,too little,too little,too much,too much
+1990,natfare,natfare,kept,,too little,too little,too much,too much
+1990,natsoc,natsoc,kept,,too little,too little,too much,too much
+1990,owngun,owngun,kept,,no,no,yes,yes
+1990,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1990,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1990,polabuse,polabuse,kept,,yes,yes,no,no
+1990,pray,pray,dropped,"L answer 'never' not in labels ['lt once a week', 'once a day', 'once a week', 'several times a day', 'several times a week']",never,,several times a day,several times a day
+1990,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1990,prayfreq,,dropped,item not in wave,never,,several times a day,
+1990,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1990,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1990,reliten,reliten,kept,,no religion,no religion,strong,strong
+1990,rowngun,rowngun,kept,,no,no,yes,yes
+1990,shotgun,shotgun,kept,,no,no,yes,yes
+1990,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1990,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1990,taxrich,,dropped,item not in wave,much too low,,about right,
+1990,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1991,abany,abany,kept,,yes,yes,no,no
+1991,abdefctw,abdefctw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
+1991,abdefect,abdefect,kept,,yes,yes,no,no
+1991,abhlth,abhlth,kept,,yes,yes,no,no
+1991,abnomore,abnomore,kept,,yes,yes,no,no
+1991,abpoor,abpoor,kept,,yes,yes,no,no
+1991,abpoorw,abpoorw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
+1991,abrape,abrape,kept,,yes,yes,no,no
+1991,absingle,absingle,kept,,yes,yes,no,no
+1991,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1991,colcom,colcom,kept,,not fired,not fired,fired,fired
+1991,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1991,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1991,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1991,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1991,godchnge,godchnge,kept,,"don't believe now, never have","don't believe now, never have","believe now, always have","believe now, always have"
+1991,grass,grass,kept,,legal,legal,not legal,not legal
+1991,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1991,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1991,libcom,libcom,kept,,not remove,not remove,remove,remove
+1991,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1991,libmil,libmil,kept,,remove,remove,not remove,not remove
+1991,libmslm,,dropped,item not in wave,not remove,,remove,
+1991,maboygrl,,dropped,item not in wave,false,,true,
+1991,natarms,natarms,kept,,too much,too much,about right,about right
+1991,natenvir,natenvir,kept,,too little,too little,too much,too much
+1991,natfare,natfare,kept,,too little,too little,too much,too much
+1991,natsoc,natsoc,kept,,too little,too little,too much,too much
+1991,owngun,owngun,kept,,no,no,yes,yes
+1991,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1991,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1991,polabuse,polabuse,kept,,yes,yes,no,no
+1991,pray,,dropped,item not in wave,never,,several times a day,
+1991,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1991,prayfreq,prayfreq,kept,,never,never,several times a day,several times a day
+1991,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1991,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1991,reliten,reliten,kept,,no religion,no religion,strong,strong
+1991,rowngun,rowngun,kept,,no,no,yes,yes
+1991,shotgun,shotgun,kept,,no,no,yes,yes
+1991,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1991,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1991,taxrich,,dropped,item not in wave,much too low,,about right,
+1991,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1993,abany,abany,kept,,yes,yes,no,no
+1993,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1993,abdefect,abdefect,kept,,yes,yes,no,no
+1993,abhlth,abhlth,kept,,yes,yes,no,no
+1993,abnomore,abnomore,kept,,yes,yes,no,no
+1993,abpoor,abpoor,kept,,yes,yes,no,no
+1993,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1993,abrape,abrape,kept,,yes,yes,no,no
+1993,absingle,absingle,kept,,yes,yes,no,no
+1993,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1993,colcom,colcom,kept,,not fired,not fired,fired,fired
+1993,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1993,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1993,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1993,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1993,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1993,grass,grass,kept,,legal,legal,not legal,not legal
+1993,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1993,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1993,libcom,libcom,kept,,not remove,not remove,remove,remove
+1993,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1993,libmil,libmil,kept,,remove,remove,not remove,not remove
+1993,libmslm,,dropped,item not in wave,not remove,,remove,
+1993,maboygrl,,dropped,item not in wave,false,,true,
+1993,natarms,natarms,kept,,too much,too much,about right,about right
+1993,natenvir,natenvir,kept,,too little,too little,too much,too much
+1993,natfare,natfare,kept,,too little,too little,too much,too much
+1993,natsoc,natsoc,kept,,too little,too little,too much,too much
+1993,owngun,owngun,kept,,no,no,yes,yes
+1993,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1993,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1993,polabuse,polabuse,kept,,yes,yes,no,no
+1993,pray,pray,kept,,never,never,several times a day,several times a day
+1993,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1993,prayfreq,,dropped,item not in wave,never,,several times a day,
+1993,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1993,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1993,reliten,reliten,kept,,no religion,no religion,strong,strong
+1993,rowngun,rowngun,kept,,no,no,yes,yes
+1993,shotgun,shotgun,kept,,no,no,yes,yes
+1993,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1993,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1993,taxrich,,dropped,item not in wave,much too low,,about right,
+1993,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1994,abany,abany,kept,,yes,yes,no,no
+1994,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1994,abdefect,abdefect,kept,,yes,yes,no,no
+1994,abhlth,abhlth,kept,,yes,yes,no,no
+1994,abnomore,abnomore,kept,,yes,yes,no,no
+1994,abpoor,abpoor,kept,,yes,yes,no,no
+1994,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1994,abrape,abrape,kept,,yes,yes,no,no
+1994,absingle,absingle,kept,,yes,yes,no,no
+1994,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1994,colcom,colcom,kept,,not fired,not fired,fired,fired
+1994,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1994,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1994,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1994,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1994,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1994,grass,grass,kept,,legal,legal,not legal,not legal
+1994,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1994,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1994,libcom,libcom,kept,,not remove,not remove,remove,remove
+1994,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1994,libmil,libmil,kept,,remove,remove,not remove,not remove
+1994,libmslm,,dropped,item not in wave,not remove,,remove,
+1994,maboygrl,,dropped,item not in wave,false,,true,
+1994,natarms,natarms,kept,,too much,too much,about right,about right
+1994,natenvir,natenvir,kept,,too little,too little,too much,too much
+1994,natfare,natfare,kept,,too little,too little,too much,too much
+1994,natsoc,natsoc,kept,,too little,too little,too much,too much
+1994,owngun,owngun,kept,,no,no,yes,yes
+1994,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1994,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1994,polabuse,polabuse,kept,,yes,yes,no,no
+1994,pray,pray,kept,,never,never,several times a day,several times a day
+1994,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1994,prayfreq,,dropped,item not in wave,never,,several times a day,
+1994,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1994,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1994,reliten,reliten,kept,,no religion,no religion,strong,strong
+1994,rowngun,rowngun,kept,,no,no,yes,yes
+1994,shotgun,shotgun,kept,,no,no,yes,yes
+1994,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1994,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1994,taxrich,,dropped,item not in wave,much too low,,about right,
+1994,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1996,abany,abany,kept,,yes,yes,no,no
+1996,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+1996,abdefect,abdefect,kept,,yes,yes,no,no
+1996,abhlth,abhlth,kept,,yes,yes,no,no
+1996,abnomore,abnomore,kept,,yes,yes,no,no
+1996,abpoor,abpoor,kept,,yes,yes,no,no
+1996,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+1996,abrape,abrape,kept,,yes,yes,no,no
+1996,absingle,absingle,kept,,yes,yes,no,no
+1996,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1996,colcom,colcom,kept,,not fired,not fired,fired,fired
+1996,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1996,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1996,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1996,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1996,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+1996,grass,grass,kept,,legal,legal,not legal,not legal
+1996,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1996,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1996,libcom,libcom,kept,,not remove,not remove,remove,remove
+1996,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1996,libmil,libmil,kept,,remove,remove,not remove,not remove
+1996,libmslm,,dropped,item not in wave,not remove,,remove,
+1996,maboygrl,,dropped,item not in wave,false,,true,
+1996,natarms,natarms,kept,,too much,too much,about right,about right
+1996,natenvir,natenvir,kept,,too little,too little,too much,too much
+1996,natfare,natfare,kept,,too little,too little,too much,too much
+1996,natsoc,natsoc,kept,,too little,too little,too much,too much
+1996,owngun,owngun,kept,,no,no,yes,yes
+1996,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1996,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1996,polabuse,polabuse,kept,,yes,yes,no,no
+1996,pray,pray,kept,,never,never,several times a day,several times a day
+1996,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1996,prayfreq,,dropped,item not in wave,never,,several times a day,
+1996,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+1996,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1996,reliten,reliten,kept,,no religion,no religion,strong,strong
+1996,rowngun,rowngun,kept,,no,no,yes,yes
+1996,shotgun,shotgun,kept,,no,no,yes,yes
+1996,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1996,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1996,taxrich,taxrich,kept,,much too low,much too low,about right,about right
+1996,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+1998,abany,abany,kept,,yes,yes,no,no
+1998,abdefctw,abdefctw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
+1998,abdefect,abdefect,kept,,yes,yes,no,no
+1998,abhlth,abhlth,kept,,yes,yes,no,no
+1998,abnomore,abnomore,kept,,yes,yes,no,no
+1998,abpoor,abpoor,kept,,yes,yes,no,no
+1998,abpoorw,abpoorw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
+1998,abrape,abrape,kept,,yes,yes,no,no
+1998,absingle,absingle,kept,,yes,yes,no,no
+1998,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+1998,colcom,colcom,kept,,not fired,not fired,fired,fired
+1998,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+1998,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+1998,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+1998,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+1998,godchnge,godchnge,kept,,"don't believe now, never have","don't believe now, never have","believe now, always have","believe now, always have"
+1998,grass,grass,kept,,legal,legal,not legal,not legal
+1998,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+1998,intmil,,dropped,item not in wave,not at all interested,,very interested,
+1998,libcom,libcom,kept,,not remove,not remove,remove,remove
+1998,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+1998,libmil,libmil,kept,,remove,remove,not remove,not remove
+1998,libmslm,,dropped,item not in wave,not remove,,remove,
+1998,maboygrl,,dropped,item not in wave,false,,true,
+1998,natarms,natarms,kept,,too much,too much,about right,about right
+1998,natenvir,natenvir,kept,,too little,too little,too much,too much
+1998,natfare,natfare,kept,,too little,too little,too much,too much
+1998,natsoc,natsoc,kept,,too little,too little,too much,too much
+1998,owngun,owngun,kept,,no,no,yes,yes
+1998,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+1998,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1998,polabuse,polabuse,kept,,yes,yes,no,no
+1998,pray,pray,kept,,never,never,several times a day,several times a day
+1998,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+1998,prayfreq,prayfreq,kept,,never,never,several times a day,several times a day
+1998,religcon,religcon,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+1998,religint,religint,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+1998,reliten,reliten,kept,,no religion,no religion,strong,strong
+1998,rowngun,rowngun,kept,,no,no,yes,yes
+1998,shotgun,shotgun,kept,,no,no,yes,yes
+1998,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+1998,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+1998,taxrich,,dropped,item not in wave,much too low,,about right,
+1998,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+2000,abany,abany,kept,,yes,yes,no,no
+2000,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2000,abdefect,abdefect,kept,,yes,yes,no,no
+2000,abhlth,abhlth,kept,,yes,yes,no,no
+2000,abnomore,abnomore,kept,,yes,yes,no,no
+2000,abpoor,abpoor,kept,,yes,yes,no,no
+2000,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2000,abrape,abrape,kept,,yes,yes,no,no
+2000,absingle,absingle,kept,,yes,yes,no,no
+2000,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2000,colcom,colcom,kept,,not fired,not fired,fired,fired
+2000,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2000,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2000,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2000,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2000,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2000,grass,grass,kept,,legal,legal,not legal,not legal
+2000,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2000,intmil,,dropped,item not in wave,not at all interested,,very interested,
+2000,libcom,libcom,kept,,not remove,not remove,remove,remove
+2000,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2000,libmil,libmil,kept,,remove,remove,not remove,not remove
+2000,libmslm,,dropped,item not in wave,not remove,,remove,
+2000,maboygrl,,dropped,item not in wave,false,,true,
+2000,natarms,natarms,kept,,too much,too much,about right,about right
+2000,natenvir,natenvir,kept,,too little,too little,too much,too much
+2000,natfare,natfare,kept,,too little,too little,too much,too much
+2000,natsoc,natsoc,kept,,too little,too little,too much,too much
+2000,owngun,owngun,kept,,no,no,yes,yes
+2000,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2000,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2000,polabuse,polabuse,kept,,yes,yes,no,no
+2000,pray,pray,kept,,never,never,several times a day,several times a day
+2000,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2000,prayfreq,,dropped,item not in wave,never,,several times a day,
+2000,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2000,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2000,reliten,reliten,kept,,no religion,no religion,strong,strong
+2000,rowngun,rowngun,kept,,no,no,yes,yes
+2000,shotgun,shotgun,kept,,no,no,yes,yes
+2000,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2000,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2000,taxrich,,dropped,item not in wave,much too low,,about right,
+2000,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+2002,abany,abany,kept,,yes,yes,no,no
+2002,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2002,abdefect,abdefect,kept,,yes,yes,no,no
+2002,abhlth,abhlth,kept,,yes,yes,no,no
+2002,abnomore,abnomore,kept,,yes,yes,no,no
+2002,abpoor,abpoor,kept,,yes,yes,no,no
+2002,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2002,abrape,abrape,kept,,yes,yes,no,no
+2002,absingle,absingle,kept,,yes,yes,no,no
+2002,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2002,colcom,colcom,kept,,not fired,not fired,fired,fired
+2002,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2002,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2002,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2002,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2002,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2002,grass,grass,kept,,legal,legal,not legal,not legal
+2002,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2002,intmil,,dropped,item not in wave,not at all interested,,very interested,
+2002,libcom,libcom,kept,,not remove,not remove,remove,remove
+2002,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2002,libmil,libmil,kept,,remove,remove,not remove,not remove
+2002,libmslm,,dropped,item not in wave,not remove,,remove,
+2002,maboygrl,,dropped,item not in wave,false,,true,
+2002,natarms,natarms,kept,,too much,too much,about right,about right
+2002,natenvir,natenvir,kept,,too little,too little,too much,too much
+2002,natfare,natfare,kept,,too little,too little,too much,too much
+2002,natsoc,natsoc,kept,,too little,too little,too much,too much
+2002,owngun,owngun,kept,,no,no,yes,yes
+2002,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2002,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2002,polabuse,polabuse,kept,,yes,yes,no,no
+2002,pray,pray,kept,,never,never,several times a day,several times a day
+2002,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2002,prayfreq,,dropped,item not in wave,never,,several times a day,
+2002,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2002,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2002,reliten,reliten,kept,,no religion,no religion,strong,strong
+2002,rowngun,rowngun,kept,,no,no,yes,yes
+2002,shotgun,shotgun,kept,,no,no,yes,yes
+2002,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2002,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2002,taxrich,,dropped,item not in wave,much too low,,about right,
+2002,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+2004,abany,abany,kept,,yes,yes,no,no
+2004,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2004,abdefect,abdefect,kept,,yes,yes,no,no
+2004,abhlth,abhlth,kept,,yes,yes,no,no
+2004,abnomore,abnomore,kept,,yes,yes,no,no
+2004,abpoor,abpoor,kept,,yes,yes,no,no
+2004,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2004,abrape,abrape,kept,,yes,yes,no,no
+2004,absingle,absingle,kept,,yes,yes,no,no
+2004,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2004,colcom,colcom,kept,,not fired,not fired,fired,fired
+2004,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2004,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2004,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2004,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2004,godchnge,godchnge,kept,,"don't believe now, never have","don't believe now, never have","believe now, always have","believe now, always have"
+2004,grass,grass,kept,,legal,legal,not legal,not legal
+2004,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2004,intmil,,dropped,item not in wave,not at all interested,,very interested,
+2004,libcom,libcom,kept,,not remove,not remove,remove,remove
+2004,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2004,libmil,libmil,kept,,remove,remove,not remove,not remove
+2004,libmslm,,dropped,item not in wave,not remove,,remove,
+2004,maboygrl,,dropped,item not in wave,false,,true,
+2004,natarms,natarms,kept,,too much,too much,about right,about right
+2004,natenvir,natenvir,kept,,too little,too little,too much,too much
+2004,natfare,natfare,kept,,too little,too little,too much,too much
+2004,natsoc,natsoc,kept,,too little,too little,too much,too much
+2004,owngun,owngun,kept,,no,no,yes,yes
+2004,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2004,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2004,polabuse,polabuse,kept,,yes,yes,no,no
+2004,pray,pray,kept,,never,never,several times a day,several times a day
+2004,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2004,prayfreq,,dropped,item not in wave,never,,several times a day,
+2004,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2004,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2004,reliten,reliten,kept,,no religion,no religion,strong,strong
+2004,rowngun,rowngun,kept,,no,no,yes,yes
+2004,shotgun,shotgun,kept,,no,no,yes,yes
+2004,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2004,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2004,taxrich,,dropped,item not in wave,much too low,,about right,
+2004,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+2006,abany,abany,kept,,yes,yes,no,no
+2006,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2006,abdefect,abdefect,kept,,yes,yes,no,no
+2006,abhlth,abhlth,kept,,yes,yes,no,no
+2006,abnomore,abnomore,kept,,yes,yes,no,no
+2006,abpoor,abpoor,kept,,yes,yes,no,no
+2006,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2006,abrape,abrape,kept,,yes,yes,no,no
+2006,absingle,absingle,kept,,yes,yes,no,no
+2006,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2006,colcom,colcom,kept,,not fired,not fired,fired,fired
+2006,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2006,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2006,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2006,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2006,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2006,grass,grass,kept,,legal,legal,not legal,not legal
+2006,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2006,intmil,,dropped,item not in wave,not at all interested,,very interested,
+2006,libcom,libcom,kept,,not remove,not remove,remove,remove
+2006,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2006,libmil,libmil,kept,,remove,remove,not remove,not remove
+2006,libmslm,,dropped,item not in wave,not remove,,remove,
+2006,maboygrl,,dropped,item not in wave,false,,true,
+2006,natarms,natarms,kept,,too much,too much,about right,about right
+2006,natenvir,natenvir,kept,,too little,too little,too much,too much
+2006,natfare,natfare,kept,,too little,too little,too much,too much
+2006,natsoc,natsoc,kept,,too little,too little,too much,too much
+2006,owngun,owngun,kept,,no,no,yes,yes
+2006,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2006,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2006,polabuse,polabuse,kept,,yes,yes,no,no
+2006,pray,pray,kept,,never,never,several times a day,several times a day
+2006,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2006,prayfreq,,dropped,item not in wave,never,,several times a day,
+2006,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2006,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2006,reliten,reliten,kept,,no religion,no religion,strong,strong
+2006,rowngun,rowngun,kept,,no,no,yes,yes
+2006,shotgun,shotgun,kept,,no,no,yes,yes
+2006,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2006,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2006,taxrich,taxrich,kept,,much too low,much too low,about right,about right
+2006,viruses,viruses,corrected,L: 'definitely not true' -> 'false'; R: 'definitely true' -> 'true',definitely not true,false,definitely true,true
+2008,abany,abany,kept,,yes,yes,no,no
+2008,abdefctw,abdefctw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
+2008,abdefect,abdefect,kept,,yes,yes,no,no
+2008,abhlth,abhlth,kept,,yes,yes,no,no
+2008,abnomore,abnomore,kept,,yes,yes,no,no
+2008,abpoor,abpoor,kept,,yes,yes,no,no
+2008,abpoorw,abpoorw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
+2008,abrape,abrape,kept,,yes,yes,no,no
+2008,absingle,absingle,kept,,yes,yes,no,no
+2008,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2008,colcom,colcom,kept,,not fired,not fired,fired,fired
+2008,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2008,comfort,comfort,kept,,strongly disagree,strongly disagree,strongly agree,strongly agree
+2008,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2008,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2008,godchnge,godchnge,kept,,"don't believe now, never have","don't believe now, never have","believe now, always have","believe now, always have"
+2008,grass,grass,kept,,legal,legal,not legal,not legal
+2008,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2008,intmil,intmil,kept,,not at all interested,not at all interested,very interested,very interested
+2008,libcom,libcom,kept,,not remove,not remove,remove,remove
+2008,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2008,libmil,libmil,kept,,remove,remove,not remove,not remove
+2008,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2008,maboygrl,maboygrl,kept,,false,false,true,true
+2008,natarms,natarms,kept,,too much,too much,about right,about right
+2008,natenvir,natenvir,kept,,too little,too little,too much,too much
+2008,natfare,natfare,kept,,too little,too little,too much,too much
+2008,natsoc,natsoc,kept,,too little,too little,too much,too much
+2008,owngun,owngun,kept,,no,no,yes,yes
+2008,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2008,pilloky,pilloky,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2008,polabuse,polabuse,kept,,yes,yes,no,no
+2008,pray,pray,kept,,never,never,several times a day,several times a day
+2008,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2008,prayfreq,prayfreq,kept,,never,never,several times a day,several times a day
+2008,religcon,religcon,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+2008,religint,religint,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+2008,reliten,reliten,kept,,no religion,no religion,strong,strong
+2008,rowngun,rowngun,kept,,no,no,yes,yes
+2008,shotgun,shotgun,kept,,no,no,yes,yes
+2008,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2008,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2008,taxrich,taxrich,kept,,much too low,much too low,about right,about right
+2008,viruses,viruses,corrected,L: 'definitely not true' -> 'false'; R: 'definitely true' -> 'true',definitely not true,false,definitely true,true
+2010,abany,abany,kept,,yes,yes,no,no
+2010,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2010,abdefect,abdefect,kept,,yes,yes,no,no
+2010,abhlth,abhlth,kept,,yes,yes,no,no
+2010,abnomore,abnomore,kept,,yes,yes,no,no
+2010,abpoor,abpoor,kept,,yes,yes,no,no
+2010,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2010,abrape,abrape,kept,,yes,yes,no,no
+2010,absingle,absingle,kept,,yes,yes,no,no
+2010,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2010,colcom,colcom,kept,,not fired,not fired,fired,fired
+2010,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2010,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2010,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2010,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2010,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2010,grass,grass,kept,,legal,legal,not legal,not legal
+2010,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2010,intmil,intmil,kept,,not at all interested,not at all interested,very interested,very interested
+2010,libcom,libcom,kept,,not remove,not remove,remove,remove
+2010,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2010,libmil,libmil,kept,,remove,remove,not remove,not remove
+2010,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2010,maboygrl,,dropped,item not in wave,false,,true,
+2010,natarms,natarms,kept,,too much,too much,about right,about right
+2010,natenvir,natenvir,kept,,too little,too little,too much,too much
+2010,natfare,natfare,kept,,too little,too little,too much,too much
+2010,natsoc,natsoc,kept,,too little,too little,too much,too much
+2010,owngun,owngun,kept,,no,no,yes,yes
+2010,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2010,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2010,polabuse,polabuse,kept,,yes,yes,no,no
+2010,pray,pray,kept,,never,never,several times a day,several times a day
+2010,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2010,prayfreq,,dropped,item not in wave,never,,several times a day,
+2010,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2010,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2010,reliten,reliten,kept,,no religion,no religion,strong,strong
+2010,rowngun,rowngun,kept,,no,no,yes,yes
+2010,shotgun,shotgun,kept,,no,no,yes,yes
+2010,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2010,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2010,taxrich,,dropped,item not in wave,much too low,,about right,
+2010,viruses,viruses,corrected,L: 'definitely not true' -> 'false'; R: 'definitely true' -> 'true',definitely not true,false,definitely true,true
+2012,abany,abany,kept,,yes,yes,no,no
+2012,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2012,abdefect,abdefect,kept,,yes,yes,no,no
+2012,abhlth,abhlth,kept,,yes,yes,no,no
+2012,abnomore,abnomore,kept,,yes,yes,no,no
+2012,abpoor,abpoor,kept,,yes,yes,no,no
+2012,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2012,abrape,abrape,kept,,yes,yes,no,no
+2012,absingle,absingle,kept,,yes,yes,no,no
+2012,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2012,colcom,colcom,kept,,not fired,not fired,fired,fired
+2012,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2012,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2012,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2012,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2012,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2012,grass,grass,kept,,legal,legal,not legal,not legal
+2012,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2012,intmil,intmil,kept,,not at all interested,not at all interested,very interested,very interested
+2012,libcom,libcom,kept,,not remove,not remove,remove,remove
+2012,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2012,libmil,libmil,kept,,remove,remove,not remove,not remove
+2012,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2012,maboygrl,,dropped,item not in wave,false,,true,
+2012,natarms,natarms,kept,,too much,too much,about right,about right
+2012,natenvir,natenvir,kept,,too little,too little,too much,too much
+2012,natfare,natfare,kept,,too little,too little,too much,too much
+2012,natsoc,natsoc,kept,,too little,too little,too much,too much
+2012,owngun,owngun,kept,,no,no,yes,yes
+2012,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2012,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2012,polabuse,polabuse,kept,,yes,yes,no,no
+2012,pray,pray,kept,,never,never,several times a day,several times a day
+2012,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2012,prayfreq,,dropped,item not in wave,never,,several times a day,
+2012,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2012,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2012,reliten,reliten,kept,,no religion,no religion,strong,strong
+2012,rowngun,rowngun,kept,,no,no,yes,yes
+2012,shotgun,shotgun,kept,,no,no,yes,yes
+2012,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2012,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2012,taxrich,,dropped,item not in wave,much too low,,about right,
+2012,viruses,viruses,corrected,L: 'definitely not true' -> 'false'; R: 'definitely true' -> 'true',definitely not true,false,definitely true,true
+2014,abany,abany,kept,,yes,yes,no,no
+2014,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2014,abdefect,abdefect,kept,,yes,yes,no,no
+2014,abhlth,abhlth,kept,,yes,yes,no,no
+2014,abnomore,abnomore,kept,,yes,yes,no,no
+2014,abpoor,abpoor,kept,,yes,yes,no,no
+2014,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2014,abrape,abrape,kept,,yes,yes,no,no
+2014,absingle,absingle,kept,,yes,yes,no,no
+2014,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2014,colcom,colcom,kept,,not fired,not fired,fired,fired
+2014,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2014,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2014,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2014,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2014,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2014,grass,grass,kept,,legal,legal,not legal,not legal
+2014,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2014,intmil,intmil,kept,,not at all interested,not at all interested,very interested,very interested
+2014,libcom,libcom,kept,,not remove,not remove,remove,remove
+2014,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2014,libmil,libmil,kept,,remove,remove,not remove,not remove
+2014,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2014,maboygrl,,dropped,item not in wave,false,,true,
+2014,natarms,natarms,kept,,too much,too much,about right,about right
+2014,natenvir,natenvir,kept,,too little,too little,too much,too much
+2014,natfare,natfare,kept,,too little,too little,too much,too much
+2014,natsoc,natsoc,kept,,too little,too little,too much,too much
+2014,owngun,owngun,kept,,no,no,yes,yes
+2014,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2014,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2014,polabuse,polabuse,kept,,yes,yes,no,no
+2014,pray,pray,kept,,never,never,several times a day,several times a day
+2014,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2014,prayfreq,,dropped,item not in wave,never,,several times a day,
+2014,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2014,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2014,reliten,reliten,kept,,no religion,no religion,strong,strong
+2014,rowngun,rowngun,kept,,no,no,yes,yes
+2014,shotgun,shotgun,kept,,no,no,yes,yes
+2014,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2014,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2014,taxrich,,dropped,item not in wave,much too low,,about right,
+2014,viruses,viruses,corrected,L: 'definitely not true' -> 'false'; R: 'definitely true' -> 'true',definitely not true,false,definitely true,true
+2016,abany,abany,kept,,yes,yes,no,no
+2016,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2016,abdefect,abdefect,kept,,yes,yes,no,no
+2016,abhlth,abhlth,kept,,yes,yes,no,no
+2016,abnomore,abnomore,kept,,yes,yes,no,no
+2016,abpoor,abpoor,kept,,yes,yes,no,no
+2016,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2016,abrape,abrape,kept,,yes,yes,no,no
+2016,absingle,absingle,kept,,yes,yes,no,no
+2016,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2016,colcom,colcom,kept,,not fired,not fired,fired,fired
+2016,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2016,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2016,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2016,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2016,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2016,grass,grass,kept,,legal,legal,not legal,not legal
+2016,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2016,intmil,intmil,kept,,not at all interested,not at all interested,very interested,very interested
+2016,libcom,libcom,kept,,not remove,not remove,remove,remove
+2016,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2016,libmil,libmil,kept,,remove,remove,not remove,not remove
+2016,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2016,maboygrl,,dropped,item not in wave,false,,true,
+2016,natarms,natarms,kept,,too much,too much,about right,about right
+2016,natenvir,natenvir,kept,,too little,too little,too much,too much
+2016,natfare,natfare,kept,,too little,too little,too much,too much
+2016,natsoc,natsoc,kept,,too little,too little,too much,too much
+2016,owngun,owngun,kept,,no,no,yes,yes
+2016,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2016,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2016,polabuse,polabuse,kept,,yes,yes,no,no
+2016,pray,pray,kept,,never,never,several times a day,several times a day
+2016,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2016,prayfreq,,dropped,item not in wave,never,,several times a day,
+2016,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2016,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2016,reliten,reliten,kept,,no religion,no religion,strong,strong
+2016,rowngun,rowngun,kept,,no,no,yes,yes
+2016,shotgun,shotgun,kept,,no,no,yes,yes
+2016,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2016,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2016,taxrich,taxrich,kept,,much too low,much too low,about right,about right
+2016,viruses,viruses,corrected,L: 'definitely not true' -> 'false'; R: 'definitely true' -> 'true',definitely not true,false,definitely true,true
+2018,abany,abany,kept,,yes,yes,no,no
+2018,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2018,abdefect,abdefect,kept,,yes,yes,no,no
+2018,abhlth,abhlth,kept,,yes,yes,no,no
+2018,abnomore,abnomore,kept,,yes,yes,no,no
+2018,abpoor,abpoor,kept,,yes,yes,no,no
+2018,abpoorw,abpoorw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
+2018,abrape,abrape,kept,,yes,yes,no,no
+2018,absingle,absingle,kept,,yes,yes,no,no
+2018,bible,bible,kept,,book of fables,book of fables,inspired word,inspired word
+2018,colcom,colcom,kept,,not fired,not fired,fired,fired
+2018,colmil,colmil,corrected,R: 'not fired' -> 'allowed',not allowed,not allowed,not fired,allowed
+2018,comfort,comfort,kept,,strongly disagree,strongly disagree,strongly agree,strongly agree
+2018,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2018,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2018,godchnge,godchnge,kept,,"don't believe now, never have","don't believe now, never have","believe now, always have","believe now, always have"
+2018,grass,grass,kept,,legal,legal,not legal,not legal
+2018,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2018,intmil,intmil,kept,,not at all interested,not at all interested,very interested,very interested
+2018,libcom,libcom,kept,,not remove,not remove,remove,remove
+2018,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2018,libmil,libmil,kept,,remove,remove,not remove,not remove
+2018,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2018,maboygrl,,dropped,item not in wave,false,,true,
+2018,natarms,natarms,kept,,too much,too much,about right,about right
+2018,natenvir,natenvir,kept,,too little,too little,too much,too much
+2018,natfare,natfare,kept,,too little,too little,too much,too much
+2018,natsoc,natsoc,kept,,too little,too little,too much,too much
+2018,owngun,owngun,kept,,no,no,yes,yes
+2018,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2018,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2018,polabuse,polabuse,kept,,yes,yes,no,no
+2018,pray,pray,kept,,never,never,several times a day,several times a day
+2018,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2018,prayfreq,prayfreq,dropped,"R answer 'several times a day' not in labels ['2-3 times a month', 'about once a month', 'about once or twice a year', 'every week', 'less than once a year', 'nearly every week', 'never', 'several times a week', 'several times a year']",never,never,several times a day,
+2018,religcon,religcon,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+2018,religint,religint,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+2018,reliten,reliten,kept,,no religion,no religion,strong,strong
+2018,rowngun,rowngun,kept,,no,no,yes,yes
+2018,shotgun,shotgun,kept,,no,no,yes,yes
+2018,spkcom,spkcom,kept,,allowed,allowed,not allowed,not allowed
+2018,spkmil,spkmil,kept,,not allowed,not allowed,allowed,allowed
+2018,taxrich,,dropped,item not in wave,much too low,,about right,
+2018,viruses,viruses,corrected,L: 'definitely not true' -> 'false'; R: 'definitely true' -> 'true',definitely not true,false,definitely true,true
+2021,abany,abany,kept,,yes,yes,no,no
+2021,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2021,abdefect,abdefect,kept,,yes,yes,no,no
+2021,abhlth,abhlth,kept,,yes,yes,no,no
+2021,abnomore,abnomore,kept,,yes,yes,no,no
+2021,abpoor,abpoor,kept,,yes,yes,no,no
+2021,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2021,abrape,abrape,kept,,yes,yes,no,no
+2021,absingle,absingle,kept,,yes,yes,no,no
+2021,bible,biblev,corrected,item 'bible' is split into 'biblev' in this wave; L: 'book of fables' -> 'ancient book',book of fables,ancient book,inspired word,inspired word
+2021,bible,biblenv,corrected,item 'bible' is split into 'biblenv' in this wave; L: 'book of fables' -> 'ancient book',book of fables,ancient book,inspired word,inspired word
+2021,colcom,colcom,corrected,"R: 'fired' -> 'yes, fired'",not fired,not fired,fired,"yes, fired"
+2021,colmil,colmil,corrected,"R: 'not fired' -> 'yes, allowed to teach'",not allowed,not allowed,not fired,"yes, allowed to teach"
+2021,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2021,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2021,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2021,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2021,grass,grassv,corrected,item 'grass' is split into 'grassv' in this wave; L: 'legal' -> 'should be legal'; R: 'not legal' -> 'should not be legal',legal,should be legal,not legal,should not be legal
+2021,grass,grassnv,corrected,item 'grass' is split into 'grassnv' in this wave; L: 'legal' -> 'should be legal'; R: 'not legal' -> 'should not be legal',legal,should be legal,not legal,should not be legal
+2021,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2021,intmil,,dropped,item not in wave,not at all interested,,very interested,
+2021,libcom,libcom,kept,,not remove,not remove,remove,remove
+2021,libhomo,libhomo,kept,,not remove,not remove,remove,remove
+2021,libmil,libmil,kept,,remove,remove,not remove,not remove
+2021,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2021,maboygrl,,dropped,item not in wave,false,,true,
+2021,natarms,natarms,kept,,too much,too much,about right,about right
+2021,natenvir,natenvir,kept,,too little,too little,too much,too much
+2021,natfare,natfare,kept,,too little,too little,too much,too much
+2021,natsoc,natsoc,kept,,too little,too little,too much,too much
+2021,owngun,owngun,kept,,no,no,yes,yes
+2021,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2021,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2021,polabuse,polabuse,kept,,yes,yes,no,no
+2021,pray,pray,kept,,never,never,several times a day,several times a day
+2021,prayer,prayerv,renamed,item 'prayer' is split into 'prayerv' in this wave,approve,approve,disapprove,disapprove
+2021,prayer,prayernv,renamed,item 'prayer' is split into 'prayernv' in this wave,approve,approve,disapprove,disapprove
+2021,prayfreq,,dropped,item not in wave,never,,several times a day,
+2021,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2021,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2021,reliten,relitenv,renamed,item 'reliten' is split into 'relitenv' in this wave,no religion,no religion,strong,strong
+2021,reliten,relitennv,renamed,item 'reliten' is split into 'relitennv' in this wave,no religion,no religion,strong,strong
+2021,rowngun,rowngun,kept,,no,no,yes,yes
+2021,shotgun,shotgun,kept,,no,no,yes,yes
+2021,spkcom,spkcom,corrected,"L: 'allowed' -> 'yes, allowed to speak'",allowed,"yes, allowed to speak",not allowed,not allowed
+2021,spkmil,spkmil,corrected,"R: 'allowed' -> 'yes, allowed to speak'",not allowed,not allowed,allowed,"yes, allowed to speak"
+2021,taxrich,taxrich,kept,,much too low,much too low,about right,about right
+2021,viruses,viruses,corrected,L: 'definitely not true' -> 'false'; R: 'definitely true' -> 'true',definitely not true,false,definitely true,true
+2022,abany,abany,kept,,yes,yes,no,no
+2022,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2022,abdefect,abdefect,kept,,yes,yes,no,no
+2022,abhlth,abhlth,kept,,yes,yes,no,no
+2022,abnomore,abnomore,kept,,yes,yes,no,no
+2022,abpoor,abpoor,kept,,yes,yes,no,no
+2022,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2022,abrape,abrape,kept,,yes,yes,no,no
+2022,absingle,absingle,kept,,yes,yes,no,no
+2022,bible,bible,corrected,L: 'book of fables' -> 'ancient book',book of fables,ancient book,inspired word,inspired word
+2022,colcom,colcom,corrected,"R: 'fired' -> 'yes, fired'",not fired,not fired,fired,"yes, fired"
+2022,colmil,,dropped,item not in wave,not allowed,,not fired,
+2022,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2022,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2022,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2022,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2022,grass,grass,corrected,L: 'legal' -> 'should be legal'; R: 'not legal' -> 'should not be legal',legal,should be legal,not legal,should not be legal
+2022,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2022,intmil,,dropped,item not in wave,not at all interested,,very interested,
+2022,libcom,libcom,kept,,not remove,not remove,remove,remove
+2022,libhomo,,dropped,item not in wave,not remove,,remove,
+2022,libmil,,dropped,item not in wave,remove,,not remove,
+2022,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2022,maboygrl,,dropped,item not in wave,false,,true,
+2022,natarms,natarms,kept,,too much,too much,about right,about right
+2022,natenvir,natenvir,kept,,too little,too little,too much,too much
+2022,natfare,natfare,kept,,too little,too little,too much,too much
+2022,natsoc,natsoc,kept,,too little,too little,too much,too much
+2022,owngun,owngun,kept,,no,no,yes,yes
+2022,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2022,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2022,polabuse,polabuse,kept,,yes,yes,no,no
+2022,pray,pray,kept,,never,never,several times a day,several times a day
+2022,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2022,prayfreq,,dropped,item not in wave,never,,several times a day,
+2022,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2022,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2022,reliten,,dropped,item not in wave,no religion,,strong,
+2022,rowngun,rowngun,kept,,no,no,yes,yes
+2022,shotgun,shotgun,kept,,no,no,yes,yes
+2022,spkcom,spkcom,corrected,"L: 'allowed' -> 'yes, allowed to speak'",allowed,"yes, allowed to speak",not allowed,not allowed
+2022,spkmil,,dropped,item not in wave,not allowed,,allowed,
+2022,taxrich,,dropped,item not in wave,much too low,,about right,
+2022,viruses,,dropped,item not in wave,definitely not true,,definitely true,
+2024,abany,abany,kept,,yes,yes,no,no
+2024,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
+2024,abdefect,abdefect,kept,,yes,yes,no,no
+2024,abhlth,abhlth,kept,,yes,yes,no,no
+2024,abnomore,abnomore,kept,,yes,yes,no,no
+2024,abpoor,abpoor,kept,,yes,yes,no,no
+2024,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
+2024,abrape,abrape,kept,,yes,yes,no,no
+2024,absingle,absingle,kept,,yes,yes,no,no
+2024,bible,bible,corrected,L: 'book of fables' -> 'ancient book',book of fables,ancient book,inspired word,inspired word
+2024,colcom,colcom,corrected,"R: 'fired' -> 'yes, fired'",not fired,not fired,fired,"yes, fired"
+2024,colmil,,dropped,item not in wave,not allowed,,not fired,
+2024,comfort,,dropped,item not in wave,strongly disagree,,strongly agree,
+2024,confed,confed,kept,,a great deal,a great deal,hardly any,hardly any
+2024,conlabor,conlabor,kept,,a great deal,a great deal,hardly any,hardly any
+2024,godchnge,,dropped,item not in wave,"don't believe now, never have",,"believe now, always have",
+2024,grass,grass,corrected,L: 'legal' -> 'should be legal'; R: 'not legal' -> 'should not be legal',legal,should be legal,not legal,should not be legal
+2024,gunlaw,gunlaw,kept,,favor,favor,oppose,oppose
+2024,intmil,,dropped,item not in wave,not at all interested,,very interested,
+2024,libcom,libcom,kept,,not remove,not remove,remove,remove
+2024,libhomo,,dropped,item not in wave,not remove,,remove,
+2024,libmil,,dropped,item not in wave,remove,,not remove,
+2024,libmslm,libmslm,kept,,not remove,not remove,remove,remove
+2024,maboygrl,,dropped,item not in wave,false,,true,
+2024,natarms,natarms,kept,,too much,too much,about right,about right
+2024,natenvir,natenvir,kept,,too little,too little,too much,too much
+2024,natfare,natfare,kept,,too little,too little,too much,too much
+2024,natsoc,natsoc,kept,,too little,too little,too much,too much
+2024,owngun,owngun,kept,,no,no,yes,yes
+2024,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2024,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2024,polabuse,polabuse,kept,,yes,yes,no,no
+2024,pray,pray,kept,,never,never,several times a day,several times a day
+2024,prayer,prayer,kept,,approve,approve,disapprove,disapprove
+2024,prayfreq,,dropped,item not in wave,never,,several times a day,
+2024,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
+2024,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2024,reliten,reliten,kept,,no religion,no religion,strong,strong
+2024,rowngun,rowngun,kept,,no,no,yes,yes
+2024,shotgun,shotgun,kept,,no,no,yes,yes
+2024,spkcom,spkcom,corrected,"L: 'allowed' -> 'yes, allowed to speak'",allowed,"yes, allowed to speak",not allowed,not allowed
+2024,spkmil,,dropped,item not in wave,not allowed,,allowed,
+2024,taxrich,,dropped,item not in wave,much too low,,about right,
+2024,viruses,,dropped,item not in wave,definitely not true,,definitely true,

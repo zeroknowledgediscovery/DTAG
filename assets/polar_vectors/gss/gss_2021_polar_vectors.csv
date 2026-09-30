@@ -1,0 +1,39 @@
+variable,R,L
+abany,no,yes
+abdefect,no,yes
+abhlth,no,yes
+abnomore,no,yes
+abpoor,no,yes
+abrape,no,yes
+absingle,no,yes
+biblenv,inspired word,ancient book
+biblev,inspired word,ancient book
+colcom,"yes, fired",not fired
+colmil,"yes, allowed to teach",not allowed
+confed,hardly any,a great deal
+conlabor,hardly any,a great deal
+grassnv,should not be legal,should be legal
+grassv,should not be legal,should be legal
+gunlaw,oppose,favor
+libcom,remove,not remove
+libhomo,remove,not remove
+libmil,not remove,remove
+libmslm,remove,not remove
+natarms,about right,too much
+natenvir,too much,too little
+natfare,too much,too little
+natsoc,too much,too little
+owngun,yes,no
+pillok,strongly disagree,strongly agree
+polabuse,no,yes
+pray,several times a day,never
+prayernv,disapprove,approve
+prayerv,disapprove,approve
+relitennv,strong,no religion
+relitenv,strong,no religion
+rowngun,yes,no
+shotgun,yes,no
+spkcom,not allowed,"yes, allowed to speak"
+spkmil,"yes, allowed to speak",not allowed
+taxrich,about right,much too low
+viruses,true,false
