@@ -329,3 +329,27 @@ export interface Suggestion {
   question: string;
   top_variables: string[];
 }
+
+export interface SequenceStatus {
+  job_id: string;
+  session_id: string;
+  name: string;
+  status: "queued" | "running" | "done" | "cancelled" | "error";
+  error: string | null;
+  total: number;
+  completed: number;
+  reset_first: boolean;
+  first_query_idx: number | null;
+  elapsed_seconds: number;
+  results: QuestionResult[];
+  results_offset: number;
+  ideology: {
+    enabled: boolean;
+    start: number | null;
+    end: number | null;
+    net_change: number | null;
+    min: number | null;
+    max: number | null;
+    top_movers: Array<{ query_idx: number; question: string; delta: number; mapping: string; anchors: Record<string, string> }>;
+  };
+}

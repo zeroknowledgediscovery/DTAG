@@ -21,6 +21,8 @@ pip install --upgrade pip
 pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 ```
 
+(Experimental features are developed on the `dev` branch: install with `@dev` to try them.)
+
 This installs the `dtag-web` command (plus `dtag`, `dtag-models`, `dtag-doctor`).
 
 **Updating later:** stop the server, then
@@ -85,6 +87,12 @@ the public internet, also put it behind HTTPS.)
    has a **Model evidence** panel showing which survey questions were used and
    the native response distributions behind the answer. The respondent's
    survey state carries forward from question to question.
+
+   To ask many questions at once, click **Run sequence…** and upload a text
+   file with one question per line (e.g. `assets/question_sets/demo/gss2024_ideology_walk.csv`
+   from the repository). The questions run in order on the same respondent;
+   for GSS respondents the card on the right shows how the ideology index
+   changed over the sequence and which questions moved it most.
 
 5. On the right: the respondent's model, conditioning, **ideology trajectory**
    (GSS respondents), the session timeline and the current survey state.

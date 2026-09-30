@@ -210,6 +210,7 @@ export function Chat({
   onAsk,
   emptyHint,
   suggestions = [],
+  onSequence,
 }: {
   history: QuestionResult[];
   pending: string | null;
@@ -217,6 +218,7 @@ export function Chat({
   onAsk: (q: string) => void;
   emptyHint: React.ReactNode;
   suggestions?: Suggestion[];
+  onSequence?: () => void;
 }) {
   const [q, setQ] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
@@ -330,6 +332,11 @@ export function Chat({
           <button className="btn primary" disabled={!canAsk || !q.trim()}>
             Ask
           </button>
+          {onSequence && (
+            <button type="button" className="btn" disabled={!canAsk} onClick={onSequence} title="Run many questions in order from a file or pasted list">
+              Run sequence…
+            </button>
+          )}
         </form>
       </div>
     </>

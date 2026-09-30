@@ -67,6 +67,15 @@ class QuestionIn(BaseModel):
     question: str = Field(..., min_length=1, max_length=2000)
 
 
+class SequenceIn(BaseModel):
+    model_config = ConfigDict(extra="forbid", protected_namespaces=())
+
+    questions: Optional[List[str]] = Field(None, max_length=500)
+    text: Optional[str] = Field(None, max_length=500_000)
+    name: str = Field("", max_length=200)
+    reset_first: bool = False
+
+
 class Health(BaseModel):
     status: str
     dtag_version: str
