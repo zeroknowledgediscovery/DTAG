@@ -2,10 +2,40 @@ import { useState } from "react";
 import { fmtNum, fmtSigned } from "../api";
 import type { SequenceStatus } from "../types";
 
-/** Same rules as the server: one per line; skip blanks, # comments, a "question" header. */
-export function parseQuestions(text: string): string[] {
+/** Split one CSV line, honouring double quotes ("" is a literal quote). */
+function csvCells(line: string): string[] {
   const out: string[] = [];
-  text.split(/\r?\n/).forEach((line, i) => {
+  let cur = "", quoted = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (quoted) {
+      if (c === '"' && line[i + 1] === '"') { cur += '"'; i++; }
+      else if (c === '"') quoted = false;
+      else cur += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ",") { out.push(cur); cur = ""; }
+    else cur += c;
+  }
+  out.push(cur);
+  return out;
+}
+
+/** Same rules as the server: one per line; skip blanks, # comments, a "question" header;
+ *  a CSV with a "question" column (e.g. step,question) is read by that column. */
+export function parseQuestions(text: string): string[] {
+  const lines = text.split(/\r?\n/);
+  const first = lines.find((l) => l.trim()) ?? "";
+  const header = csvCells(first.trim()).map((h) => h.trim().toLowerCase());
+  if (header.length > 1 && header.includes("question")) {
+    const col = header.indexOf("question");
+    return lines
+      .filter((l) => l.trim())
+      .slice(1)
+      .map((l) => (csvCells(l)[col] ?? "").trim())
+      .filter((q) => q && !q.startsWith("#"));
+  }
+  const out: string[] = [];
+  lines.forEach((line, i) => {
     const q = line.trim().replace(/^"|"$/g, "").trim();
     if (!q || q.startsWith("#")) return;
     if (i === 0 && q.toLowerCase() === "question") return;
@@ -64,7 +94,7 @@ export function SequenceDialog({
         </div>
 
         <label className="field">
-          <span>Upload a text file — one question per line (blank lines and lines starting with # are ignored)</span>
+          <span>Upload a text file — one question per line (blank lines and # comments are ignored) — or a CSV with a “question” column</span>
           <input type="file" accept=".txt,.csv,text/plain,text/csv" onChange={(e) => onFile(e.target.files?.[0])} />
         </label>
         <label className="field">

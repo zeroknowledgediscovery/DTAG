@@ -200,8 +200,10 @@ process-level (`dtag-web` does this).
 **Run sequence…** (next to *Ask*) runs many questions, in order, through the
 current respondent. Upload a text file with one question per line, or paste
 them (blank lines and lines starting with `#` are ignored; a first line
-`question` is treated as a header, so the files in `assets/question_sets/`
-work as-is; up to 500 questions). Optionally reset the respondent first;
+`question` is treated as a header, and a CSV with a `question` column such as
+`step,question` is read by that column, so the files in `assets/question_sets/`
+work as-is; up to 500 questions). `assets/question_sets/optimized/` has GSS 2024
+sets chosen to move the CM and WF personas in the same or opposite directions. Optionally reset the respondent first;
 otherwise the sequence continues from the current state.
 
 Each question goes through the normal path (same native anchors, fallback
