@@ -7,7 +7,7 @@ time, validated with confidence intervals on held-out, perturbed personas.
 
 **Recommended: `gss2024_polarize_cm_wf_draw_10.csv`** (10 questions). The 12-question version
 is kept for reference; its extra two questions move WF further but cost CM its significance on
-fresh data. `variables.csv` maps each step to its GSS 2024 item.
+fresh data. The table below (and `sequence` in the validation JSON) maps each step to its GSS 2024 item.
 
 | Step | Item | Question (short) |
 |---:|---|---|
