@@ -4,8 +4,6 @@ colcom,R,fired,"yes, fired","GSS 2021+ label 'yes, fired' (communist teacher sho
 colmil,R,not fired,"allowed | yes, allowed to teach","Source error: 'not fired' is a colcom label and never exists for colmil in any wave; R = allow the militarist to teach, mirroring libmil/spkmil"
 grass,L,legal,should be legal,GSS 2022+ label for marijuana 'should be made legal'
 grass,R,not legal,should not be legal,GSS 2022+ label for marijuana 'should not be made legal'
-religcon,R,strongly disagree,strong disagree,GSS 1998/2008/2018 label spelling
-religint,R,strongly disagree,strong disagree,GSS 1998/2008/2018 label spelling
 spkcom,L,allowed,"yes, allowed to speak","GSS 2021+ label 'yes, allowed to speak'"
 spkmil,R,allowed,"yes, allowed to speak","GSS 2021+ label 'yes, allowed to speak'"
 viruses,L,definitely not true,false,Model support is true/false in every wave that has the item (2006-2021)

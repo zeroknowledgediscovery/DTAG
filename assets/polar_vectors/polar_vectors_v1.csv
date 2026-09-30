@@ -2,6 +2,7 @@
 abany,no,yes
 abdefctw,always wrong,not wrong at all
 abdefect,no,yes
+abhlth,no,yes
 abnomore,no,yes
 abpoor,no,yes
 abpoorw,always wrong,not wrong at all
@@ -22,14 +23,14 @@ libhomo,remove,not remove
 libmslm,remove,not remove
 maboygrl,true,false
 owngun,yes,no
-pillok,disagree,strongly agree
-pilloky,disagree,strongly agree
+pillok,strongly disagree,strongly agree
+pilloky,strongly disagree,strongly agree
 polabuse,no,yes
 pray,several times a day,never
 prayer,disapprove,approve
 prayfreq,several times a day,never
-religcon,disagree,strongly agree
-religint,disagree,strongly agree
+religcon,strongly disagree,strongly agree
+religint,strongly disagree,strongly agree
 reliten,strong,no religion
 rowngun,yes,no
 shotgun,yes,no
@@ -38,7 +39,7 @@ spkmil,allowed,not allowed
 taxrich,about right,much too low
 viruses,definitely true,definitely not true
 confed,hardly any,a great deal
-natsoc,about right,too little
-natenvir,about right,too little
+natsoc,too much,too little
+natenvir,too much,too little
 natarms,about right,too much
 natfare,too much,too little

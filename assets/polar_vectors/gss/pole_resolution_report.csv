@@ -2,7 +2,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1972,abany,,dropped,item not in wave,yes,,no,
 1972,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1972,abdefect,abdefect,kept,,yes,yes,no,no
-1972,abhlth,abhlth,kept,,yes,yes,no,no
 1972,abnomore,abnomore,kept,,yes,yes,no,no
 1972,abpoor,abpoor,kept,,yes,yes,no,no
 1972,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -24,18 +23,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1972,libmslm,,dropped,item not in wave,not remove,,remove,
 1972,maboygrl,,dropped,item not in wave,false,,true,
 1972,natarms,,dropped,item not in wave,too much,,about right,
-1972,natenvir,,dropped,item not in wave,too little,,too much,
+1972,natenvir,,dropped,item not in wave,too little,,about right,
 1972,natfare,,dropped,item not in wave,too little,,too much,
-1972,natsoc,,dropped,item not in wave,too little,,too much,
+1972,natsoc,,dropped,item not in wave,too little,,about right,
 1972,owngun,,dropped,item not in wave,no,,yes,
-1972,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1972,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1972,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1972,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1972,polabuse,,dropped,item not in wave,yes,,no,
 1972,pray,,dropped,item not in wave,never,,several times a day,
 1972,prayer,,dropped,item not in wave,approve,,disapprove,
 1972,prayfreq,,dropped,item not in wave,never,,several times a day,
-1972,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1972,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1972,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1972,religint,,dropped,item not in wave,strongly agree,,disagree,
 1972,reliten,,dropped,item not in wave,no religion,,strong,
 1972,rowngun,,dropped,item not in wave,no,,yes,
 1972,shotgun,,dropped,item not in wave,no,,yes,
@@ -46,7 +45,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1973,abany,,dropped,item not in wave,yes,,no,
 1973,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1973,abdefect,abdefect,kept,,yes,yes,no,no
-1973,abhlth,abhlth,kept,,yes,yes,no,no
 1973,abnomore,abnomore,kept,,yes,yes,no,no
 1973,abpoor,abpoor,kept,,yes,yes,no,no
 1973,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -68,18 +66,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1973,libmslm,,dropped,item not in wave,not remove,,remove,
 1973,maboygrl,,dropped,item not in wave,false,,true,
 1973,natarms,natarms,kept,,too much,too much,about right,about right
-1973,natenvir,natenvir,kept,,too little,too little,too much,too much
+1973,natenvir,natenvir,kept,,too little,too little,about right,about right
 1973,natfare,natfare,kept,,too little,too little,too much,too much
-1973,natsoc,,dropped,item not in wave,too little,,too much,
+1973,natsoc,,dropped,item not in wave,too little,,about right,
 1973,owngun,owngun,kept,,no,no,yes,yes
-1973,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1973,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1973,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1973,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1973,polabuse,polabuse,kept,,yes,yes,no,no
 1973,pray,,dropped,item not in wave,never,,several times a day,
 1973,prayer,,dropped,item not in wave,approve,,disapprove,
 1973,prayfreq,,dropped,item not in wave,never,,several times a day,
-1973,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1973,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1973,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1973,religint,,dropped,item not in wave,strongly agree,,disagree,
 1973,reliten,,dropped,item not in wave,no religion,,strong,
 1973,rowngun,,dropped,item not in wave,no,,yes,
 1973,shotgun,shotgun,kept,,no,no,yes,yes
@@ -90,7 +88,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1974,abany,,dropped,item not in wave,yes,,no,
 1974,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1974,abdefect,abdefect,kept,,yes,yes,no,no
-1974,abhlth,abhlth,kept,,yes,yes,no,no
 1974,abnomore,abnomore,kept,,yes,yes,no,no
 1974,abpoor,abpoor,kept,,yes,yes,no,no
 1974,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -112,18 +109,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1974,libmslm,,dropped,item not in wave,not remove,,remove,
 1974,maboygrl,,dropped,item not in wave,false,,true,
 1974,natarms,natarms,kept,,too much,too much,about right,about right
-1974,natenvir,natenvir,kept,,too little,too little,too much,too much
+1974,natenvir,natenvir,kept,,too little,too little,about right,about right
 1974,natfare,natfare,kept,,too little,too little,too much,too much
-1974,natsoc,,dropped,item not in wave,too little,,too much,
+1974,natsoc,,dropped,item not in wave,too little,,about right,
 1974,owngun,owngun,kept,,no,no,yes,yes
-1974,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1974,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1974,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1974,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1974,polabuse,,dropped,item not in wave,yes,,no,
 1974,pray,,dropped,item not in wave,never,,several times a day,
 1974,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1974,prayfreq,,dropped,item not in wave,never,,several times a day,
-1974,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1974,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1974,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1974,religint,,dropped,item not in wave,strongly agree,,disagree,
 1974,reliten,reliten,kept,,no religion,no religion,strong,strong
 1974,rowngun,,dropped,item not in wave,no,,yes,
 1974,shotgun,shotgun,kept,,no,no,yes,yes
@@ -134,7 +131,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1975,abany,,dropped,item not in wave,yes,,no,
 1975,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1975,abdefect,abdefect,kept,,yes,yes,no,no
-1975,abhlth,abhlth,kept,,yes,yes,no,no
 1975,abnomore,abnomore,kept,,yes,yes,no,no
 1975,abpoor,abpoor,kept,,yes,yes,no,no
 1975,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -156,18 +152,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1975,libmslm,,dropped,item not in wave,not remove,,remove,
 1975,maboygrl,,dropped,item not in wave,false,,true,
 1975,natarms,natarms,kept,,too much,too much,about right,about right
-1975,natenvir,natenvir,kept,,too little,too little,too much,too much
+1975,natenvir,natenvir,kept,,too little,too little,about right,about right
 1975,natfare,natfare,kept,,too little,too little,too much,too much
-1975,natsoc,,dropped,item not in wave,too little,,too much,
+1975,natsoc,,dropped,item not in wave,too little,,about right,
 1975,owngun,,dropped,item not in wave,no,,yes,
-1975,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1975,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1975,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1975,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1975,polabuse,polabuse,kept,,yes,yes,no,no
 1975,pray,,dropped,item not in wave,never,,several times a day,
 1975,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1975,prayfreq,,dropped,item not in wave,never,,several times a day,
-1975,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1975,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1975,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1975,religint,,dropped,item not in wave,strongly agree,,disagree,
 1975,reliten,reliten,kept,,no religion,no religion,strong,strong
 1975,rowngun,,dropped,item not in wave,no,,yes,
 1975,shotgun,,dropped,item not in wave,no,,yes,
@@ -178,7 +174,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1976,abany,,dropped,item not in wave,yes,,no,
 1976,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1976,abdefect,abdefect,kept,,yes,yes,no,no
-1976,abhlth,abhlth,kept,,yes,yes,no,no
 1976,abnomore,abnomore,kept,,yes,yes,no,no
 1976,abpoor,abpoor,kept,,yes,yes,no,no
 1976,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -200,18 +195,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1976,libmslm,,dropped,item not in wave,not remove,,remove,
 1976,maboygrl,,dropped,item not in wave,false,,true,
 1976,natarms,natarms,kept,,too much,too much,about right,about right
-1976,natenvir,natenvir,kept,,too little,too little,too much,too much
+1976,natenvir,natenvir,kept,,too little,too little,about right,about right
 1976,natfare,natfare,kept,,too little,too little,too much,too much
-1976,natsoc,,dropped,item not in wave,too little,,too much,
+1976,natsoc,,dropped,item not in wave,too little,,about right,
 1976,owngun,owngun,kept,,no,no,yes,yes
-1976,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1976,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1976,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1976,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1976,polabuse,polabuse,kept,,yes,yes,no,no
 1976,pray,,dropped,item not in wave,never,,several times a day,
 1976,prayer,,dropped,item not in wave,approve,,disapprove,
 1976,prayfreq,,dropped,item not in wave,never,,several times a day,
-1976,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1976,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1976,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1976,religint,,dropped,item not in wave,strongly agree,,disagree,
 1976,reliten,reliten,kept,,no religion,no religion,strong,strong
 1976,rowngun,,dropped,item not in wave,no,,yes,
 1976,shotgun,shotgun,kept,,no,no,yes,yes
@@ -222,7 +217,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1977,abany,abany,kept,,yes,yes,no,no
 1977,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1977,abdefect,abdefect,kept,,yes,yes,no,no
-1977,abhlth,abhlth,kept,,yes,yes,no,no
 1977,abnomore,abnomore,kept,,yes,yes,no,no
 1977,abpoor,abpoor,kept,,yes,yes,no,no
 1977,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -244,18 +238,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1977,libmslm,,dropped,item not in wave,not remove,,remove,
 1977,maboygrl,,dropped,item not in wave,false,,true,
 1977,natarms,natarms,kept,,too much,too much,about right,about right
-1977,natenvir,natenvir,kept,,too little,too little,too much,too much
+1977,natenvir,natenvir,kept,,too little,too little,about right,about right
 1977,natfare,natfare,kept,,too little,too little,too much,too much
-1977,natsoc,,dropped,item not in wave,too little,,too much,
+1977,natsoc,,dropped,item not in wave,too little,,about right,
 1977,owngun,owngun,kept,,no,no,yes,yes
-1977,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1977,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1977,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1977,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1977,polabuse,,dropped,item not in wave,yes,,no,
 1977,pray,,dropped,item not in wave,never,,several times a day,
 1977,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1977,prayfreq,,dropped,item not in wave,never,,several times a day,
-1977,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1977,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1977,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1977,religint,,dropped,item not in wave,strongly agree,,disagree,
 1977,reliten,reliten,kept,,no religion,no religion,strong,strong
 1977,rowngun,,dropped,item not in wave,no,,yes,
 1977,shotgun,shotgun,kept,,no,no,yes,yes
@@ -266,7 +260,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1978,abany,abany,kept,,yes,yes,no,no
 1978,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1978,abdefect,abdefect,kept,,yes,yes,no,no
-1978,abhlth,abhlth,kept,,yes,yes,no,no
 1978,abnomore,abnomore,kept,,yes,yes,no,no
 1978,abpoor,abpoor,kept,,yes,yes,no,no
 1978,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -288,18 +281,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1978,libmslm,,dropped,item not in wave,not remove,,remove,
 1978,maboygrl,,dropped,item not in wave,false,,true,
 1978,natarms,natarms,kept,,too much,too much,about right,about right
-1978,natenvir,natenvir,kept,,too little,too little,too much,too much
+1978,natenvir,natenvir,kept,,too little,too little,about right,about right
 1978,natfare,natfare,kept,,too little,too little,too much,too much
-1978,natsoc,,dropped,item not in wave,too little,,too much,
+1978,natsoc,,dropped,item not in wave,too little,,about right,
 1978,owngun,,dropped,item not in wave,no,,yes,
-1978,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1978,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1978,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1978,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1978,polabuse,polabuse,kept,,yes,yes,no,no
 1978,pray,,dropped,item not in wave,never,,several times a day,
 1978,prayer,,dropped,item not in wave,approve,,disapprove,
 1978,prayfreq,,dropped,item not in wave,never,,several times a day,
-1978,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1978,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1978,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1978,religint,,dropped,item not in wave,strongly agree,,disagree,
 1978,reliten,reliten,kept,,no religion,no religion,strong,strong
 1978,rowngun,,dropped,item not in wave,no,,yes,
 1978,shotgun,,dropped,item not in wave,no,,yes,
@@ -310,7 +303,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1980,abany,abany,kept,,yes,yes,no,no
 1980,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1980,abdefect,abdefect,kept,,yes,yes,no,no
-1980,abhlth,abhlth,kept,,yes,yes,no,no
 1980,abnomore,abnomore,kept,,yes,yes,no,no
 1980,abpoor,abpoor,kept,,yes,yes,no,no
 1980,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -332,18 +324,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1980,libmslm,,dropped,item not in wave,not remove,,remove,
 1980,maboygrl,,dropped,item not in wave,false,,true,
 1980,natarms,natarms,kept,,too much,too much,about right,about right
-1980,natenvir,natenvir,kept,,too little,too little,too much,too much
+1980,natenvir,natenvir,kept,,too little,too little,about right,about right
 1980,natfare,natfare,kept,,too little,too little,too much,too much
-1980,natsoc,,dropped,item not in wave,too little,,too much,
+1980,natsoc,,dropped,item not in wave,too little,,about right,
 1980,owngun,owngun,kept,,no,no,yes,yes
-1980,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1980,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1980,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1980,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1980,polabuse,polabuse,kept,,yes,yes,no,no
 1980,pray,,dropped,item not in wave,never,,several times a day,
 1980,prayer,,dropped,item not in wave,approve,,disapprove,
 1980,prayfreq,,dropped,item not in wave,never,,several times a day,
-1980,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1980,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1980,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1980,religint,,dropped,item not in wave,strongly agree,,disagree,
 1980,reliten,reliten,kept,,no religion,no religion,strong,strong
 1980,rowngun,rowngun,kept,,no,no,yes,yes
 1980,shotgun,shotgun,kept,,no,no,yes,yes
@@ -354,7 +346,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1982,abany,abany,kept,,yes,yes,no,no
 1982,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1982,abdefect,abdefect,kept,,yes,yes,no,no
-1982,abhlth,abhlth,kept,,yes,yes,no,no
 1982,abnomore,abnomore,kept,,yes,yes,no,no
 1982,abpoor,abpoor,kept,,yes,yes,no,no
 1982,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -376,18 +367,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1982,libmslm,,dropped,item not in wave,not remove,,remove,
 1982,maboygrl,,dropped,item not in wave,false,,true,
 1982,natarms,natarms,kept,,too much,too much,about right,about right
-1982,natenvir,natenvir,kept,,too little,too little,too much,too much
+1982,natenvir,natenvir,kept,,too little,too little,about right,about right
 1982,natfare,natfare,kept,,too little,too little,too much,too much
-1982,natsoc,,dropped,item not in wave,too little,,too much,
+1982,natsoc,,dropped,item not in wave,too little,,about right,
 1982,owngun,owngun,kept,,no,no,yes,yes
-1982,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1982,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1982,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1982,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1982,polabuse,,dropped,item not in wave,yes,,no,
 1982,pray,,dropped,item not in wave,never,,several times a day,
 1982,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1982,prayfreq,,dropped,item not in wave,never,,several times a day,
-1982,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1982,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1982,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1982,religint,,dropped,item not in wave,strongly agree,,disagree,
 1982,reliten,reliten,kept,,no religion,no religion,strong,strong
 1982,rowngun,rowngun,kept,,no,no,yes,yes
 1982,shotgun,shotgun,kept,,no,no,yes,yes
@@ -398,7 +389,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1983,abany,abany,kept,,yes,yes,no,no
 1983,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1983,abdefect,abdefect,kept,,yes,yes,no,no
-1983,abhlth,abhlth,kept,,yes,yes,no,no
 1983,abnomore,abnomore,kept,,yes,yes,no,no
 1983,abpoor,abpoor,kept,,yes,yes,no,no
 1983,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -420,18 +410,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1983,libmslm,,dropped,item not in wave,not remove,,remove,
 1983,maboygrl,,dropped,item not in wave,false,,true,
 1983,natarms,natarms,kept,,too much,too much,about right,about right
-1983,natenvir,natenvir,kept,,too little,too little,too much,too much
+1983,natenvir,natenvir,kept,,too little,too little,about right,about right
 1983,natfare,natfare,kept,,too little,too little,too much,too much
-1983,natsoc,,dropped,item not in wave,too little,,too much,
+1983,natsoc,,dropped,item not in wave,too little,,about right,
 1983,owngun,,dropped,item not in wave,no,,yes,
-1983,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1983,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1983,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1983,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1983,polabuse,polabuse,kept,,yes,yes,no,no
 1983,pray,pray,kept,,never,never,several times a day,several times a day
 1983,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1983,prayfreq,,dropped,item not in wave,never,,several times a day,
-1983,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1983,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1983,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1983,religint,,dropped,item not in wave,strongly agree,,disagree,
 1983,reliten,reliten,kept,,no religion,no religion,strong,strong
 1983,rowngun,,dropped,item not in wave,no,,yes,
 1983,shotgun,,dropped,item not in wave,no,,yes,
@@ -442,7 +432,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1984,abany,abany,kept,,yes,yes,no,no
 1984,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1984,abdefect,abdefect,kept,,yes,yes,no,no
-1984,abhlth,abhlth,kept,,yes,yes,no,no
 1984,abnomore,abnomore,kept,,yes,yes,no,no
 1984,abpoor,abpoor,kept,,yes,yes,no,no
 1984,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -464,18 +453,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1984,libmslm,,dropped,item not in wave,not remove,,remove,
 1984,maboygrl,,dropped,item not in wave,false,,true,
 1984,natarms,natarms,kept,,too much,too much,about right,about right
-1984,natenvir,natenvir,kept,,too little,too little,too much,too much
+1984,natenvir,natenvir,kept,,too little,too little,about right,about right
 1984,natfare,natfare,kept,,too little,too little,too much,too much
-1984,natsoc,natsoc,kept,,too little,too little,too much,too much
+1984,natsoc,natsoc,kept,,too little,too little,about right,about right
 1984,owngun,owngun,kept,,no,no,yes,yes
-1984,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1984,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1984,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1984,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1984,polabuse,polabuse,kept,,yes,yes,no,no
 1984,pray,pray,kept,,never,never,several times a day,several times a day
 1984,prayer,,dropped,item not in wave,approve,,disapprove,
 1984,prayfreq,,dropped,item not in wave,never,,several times a day,
-1984,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1984,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1984,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1984,religint,,dropped,item not in wave,strongly agree,,disagree,
 1984,reliten,reliten,kept,,no religion,no religion,strong,strong
 1984,rowngun,rowngun,kept,,no,no,yes,yes
 1984,shotgun,shotgun,kept,,no,no,yes,yes
@@ -486,7 +475,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1985,abany,abany,kept,,yes,yes,no,no
 1985,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1985,abdefect,abdefect,kept,,yes,yes,no,no
-1985,abhlth,abhlth,kept,,yes,yes,no,no
 1985,abnomore,abnomore,kept,,yes,yes,no,no
 1985,abpoor,abpoor,kept,,yes,yes,no,no
 1985,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -508,18 +496,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1985,libmslm,,dropped,item not in wave,not remove,,remove,
 1985,maboygrl,,dropped,item not in wave,false,,true,
 1985,natarms,natarms,kept,,too much,too much,about right,about right
-1985,natenvir,natenvir,kept,,too little,too little,too much,too much
+1985,natenvir,natenvir,kept,,too little,too little,about right,about right
 1985,natfare,natfare,kept,,too little,too little,too much,too much
-1985,natsoc,natsoc,kept,,too little,too little,too much,too much
+1985,natsoc,natsoc,kept,,too little,too little,about right,about right
 1985,owngun,owngun,kept,,no,no,yes,yes
-1985,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1985,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1985,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1985,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1985,polabuse,,dropped,item not in wave,yes,,no,
 1985,pray,pray,kept,,never,never,several times a day,several times a day
 1985,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1985,prayfreq,,dropped,item not in wave,never,,several times a day,
-1985,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1985,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1985,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1985,religint,,dropped,item not in wave,strongly agree,,disagree,
 1985,reliten,reliten,kept,,no religion,no religion,strong,strong
 1985,rowngun,rowngun,kept,,no,no,yes,yes
 1985,shotgun,shotgun,kept,,no,no,yes,yes
@@ -530,7 +518,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1986,abany,,dropped,item not in wave,yes,,no,
 1986,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1986,abdefect,,dropped,item not in wave,yes,,no,
-1986,abhlth,,dropped,item not in wave,yes,,no,
 1986,abnomore,,dropped,item not in wave,yes,,no,
 1986,abpoor,,dropped,item not in wave,yes,,no,
 1986,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -552,18 +539,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1986,libmslm,,dropped,item not in wave,not remove,,remove,
 1986,maboygrl,,dropped,item not in wave,false,,true,
 1986,natarms,natarms,kept,,too much,too much,about right,about right
-1986,natenvir,natenvir,kept,,too little,too little,too much,too much
+1986,natenvir,natenvir,kept,,too little,too little,about right,about right
 1986,natfare,natfare,kept,,too little,too little,too much,too much
-1986,natsoc,natsoc,kept,,too little,too little,too much,too much
+1986,natsoc,natsoc,kept,,too little,too little,about right,about right
 1986,owngun,,dropped,item not in wave,no,,yes,
-1986,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1986,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1986,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1986,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1986,polabuse,polabuse,kept,,yes,yes,no,no
 1986,pray,,dropped,item not in wave,never,,several times a day,
 1986,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1986,prayfreq,,dropped,item not in wave,never,,several times a day,
-1986,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1986,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1986,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1986,religint,,dropped,item not in wave,strongly agree,,disagree,
 1986,reliten,reliten,kept,,no religion,no religion,strong,strong
 1986,rowngun,,dropped,item not in wave,no,,yes,
 1986,shotgun,,dropped,item not in wave,no,,yes,
@@ -574,7 +561,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1987,abany,abany,kept,,yes,yes,no,no
 1987,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1987,abdefect,abdefect,kept,,yes,yes,no,no
-1987,abhlth,abhlth,kept,,yes,yes,no,no
 1987,abnomore,abnomore,kept,,yes,yes,no,no
 1987,abpoor,abpoor,kept,,yes,yes,no,no
 1987,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -596,18 +582,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1987,libmslm,,dropped,item not in wave,not remove,,remove,
 1987,maboygrl,,dropped,item not in wave,false,,true,
 1987,natarms,natarms,kept,,too much,too much,about right,about right
-1987,natenvir,natenvir,kept,,too little,too little,too much,too much
+1987,natenvir,natenvir,kept,,too little,too little,about right,about right
 1987,natfare,natfare,kept,,too little,too little,too much,too much
-1987,natsoc,natsoc,kept,,too little,too little,too much,too much
+1987,natsoc,natsoc,kept,,too little,too little,about right,about right
 1987,owngun,owngun,kept,,no,no,yes,yes
-1987,pillok,,dropped,item not in wave,strongly agree,,strongly disagree,
-1987,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1987,pillok,,dropped,item not in wave,strongly agree,,disagree,
+1987,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1987,polabuse,polabuse,kept,,yes,yes,no,no
 1987,pray,pray,kept,,never,never,several times a day,several times a day
 1987,prayer,,dropped,item not in wave,approve,,disapprove,
 1987,prayfreq,,dropped,item not in wave,never,,several times a day,
-1987,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1987,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1987,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1987,religint,,dropped,item not in wave,strongly agree,,disagree,
 1987,reliten,reliten,kept,,no religion,no religion,strong,strong
 1987,rowngun,rowngun,kept,,no,no,yes,yes
 1987,shotgun,shotgun,kept,,no,no,yes,yes
@@ -618,7 +604,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1988,abany,abany,kept,,yes,yes,no,no
 1988,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1988,abdefect,abdefect,kept,,yes,yes,no,no
-1988,abhlth,abhlth,kept,,yes,yes,no,no
 1988,abnomore,abnomore,kept,,yes,yes,no,no
 1988,abpoor,abpoor,kept,,yes,yes,no,no
 1988,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -640,18 +625,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1988,libmslm,,dropped,item not in wave,not remove,,remove,
 1988,maboygrl,,dropped,item not in wave,false,,true,
 1988,natarms,natarms,kept,,too much,too much,about right,about right
-1988,natenvir,natenvir,kept,,too little,too little,too much,too much
+1988,natenvir,natenvir,kept,,too little,too little,about right,about right
 1988,natfare,natfare,kept,,too little,too little,too much,too much
-1988,natsoc,natsoc,kept,,too little,too little,too much,too much
+1988,natsoc,natsoc,kept,,too little,too little,about right,about right
 1988,owngun,owngun,kept,,no,no,yes,yes
-1988,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1988,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1988,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1988,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1988,polabuse,polabuse,kept,,yes,yes,no,no
 1988,pray,pray,kept,,never,never,several times a day,several times a day
 1988,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1988,prayfreq,,dropped,item not in wave,never,,several times a day,
-1988,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1988,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1988,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1988,religint,,dropped,item not in wave,strongly agree,,disagree,
 1988,reliten,reliten,kept,,no religion,no religion,strong,strong
 1988,rowngun,rowngun,kept,,no,no,yes,yes
 1988,shotgun,shotgun,kept,,no,no,yes,yes
@@ -662,7 +647,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1989,abany,abany,kept,,yes,yes,no,no
 1989,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1989,abdefect,abdefect,kept,,yes,yes,no,no
-1989,abhlth,abhlth,kept,,yes,yes,no,no
 1989,abnomore,abnomore,kept,,yes,yes,no,no
 1989,abpoor,abpoor,kept,,yes,yes,no,no
 1989,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -684,18 +668,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1989,libmslm,,dropped,item not in wave,not remove,,remove,
 1989,maboygrl,,dropped,item not in wave,false,,true,
 1989,natarms,natarms,kept,,too much,too much,about right,about right
-1989,natenvir,natenvir,kept,,too little,too little,too much,too much
+1989,natenvir,natenvir,kept,,too little,too little,about right,about right
 1989,natfare,natfare,kept,,too little,too little,too much,too much
-1989,natsoc,natsoc,kept,,too little,too little,too much,too much
+1989,natsoc,natsoc,kept,,too little,too little,about right,about right
 1989,owngun,owngun,kept,,no,no,yes,yes
-1989,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1989,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1989,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1989,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1989,polabuse,polabuse,kept,,yes,yes,no,no
 1989,pray,pray,kept,,never,never,several times a day,several times a day
 1989,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1989,prayfreq,,dropped,item not in wave,never,,several times a day,
-1989,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1989,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1989,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1989,religint,,dropped,item not in wave,strongly agree,,disagree,
 1989,reliten,reliten,kept,,no religion,no religion,strong,strong
 1989,rowngun,rowngun,kept,,no,no,yes,yes
 1989,shotgun,shotgun,kept,,no,no,yes,yes
@@ -706,7 +690,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1990,abany,abany,kept,,yes,yes,no,no
 1990,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1990,abdefect,abdefect,kept,,yes,yes,no,no
-1990,abhlth,abhlth,kept,,yes,yes,no,no
 1990,abnomore,abnomore,kept,,yes,yes,no,no
 1990,abpoor,abpoor,kept,,yes,yes,no,no
 1990,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -728,18 +711,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1990,libmslm,,dropped,item not in wave,not remove,,remove,
 1990,maboygrl,,dropped,item not in wave,false,,true,
 1990,natarms,natarms,kept,,too much,too much,about right,about right
-1990,natenvir,natenvir,kept,,too little,too little,too much,too much
+1990,natenvir,natenvir,kept,,too little,too little,about right,about right
 1990,natfare,natfare,kept,,too little,too little,too much,too much
-1990,natsoc,natsoc,kept,,too little,too little,too much,too much
+1990,natsoc,natsoc,kept,,too little,too little,about right,about right
 1990,owngun,owngun,kept,,no,no,yes,yes
-1990,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1990,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1990,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1990,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1990,polabuse,polabuse,kept,,yes,yes,no,no
 1990,pray,pray,dropped,"L answer 'never' not in labels ['lt once a week', 'once a day', 'once a week', 'several times a day', 'several times a week']",never,,several times a day,several times a day
 1990,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1990,prayfreq,,dropped,item not in wave,never,,several times a day,
-1990,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1990,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1990,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1990,religint,,dropped,item not in wave,strongly agree,,disagree,
 1990,reliten,reliten,kept,,no religion,no religion,strong,strong
 1990,rowngun,rowngun,kept,,no,no,yes,yes
 1990,shotgun,shotgun,kept,,no,no,yes,yes
@@ -750,7 +733,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1991,abany,abany,kept,,yes,yes,no,no
 1991,abdefctw,abdefctw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
 1991,abdefect,abdefect,kept,,yes,yes,no,no
-1991,abhlth,abhlth,kept,,yes,yes,no,no
 1991,abnomore,abnomore,kept,,yes,yes,no,no
 1991,abpoor,abpoor,kept,,yes,yes,no,no
 1991,abpoorw,abpoorw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
@@ -772,18 +754,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1991,libmslm,,dropped,item not in wave,not remove,,remove,
 1991,maboygrl,,dropped,item not in wave,false,,true,
 1991,natarms,natarms,kept,,too much,too much,about right,about right
-1991,natenvir,natenvir,kept,,too little,too little,too much,too much
+1991,natenvir,natenvir,kept,,too little,too little,about right,about right
 1991,natfare,natfare,kept,,too little,too little,too much,too much
-1991,natsoc,natsoc,kept,,too little,too little,too much,too much
+1991,natsoc,natsoc,kept,,too little,too little,about right,about right
 1991,owngun,owngun,kept,,no,no,yes,yes
-1991,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1991,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1991,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1991,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1991,polabuse,polabuse,kept,,yes,yes,no,no
 1991,pray,,dropped,item not in wave,never,,several times a day,
 1991,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1991,prayfreq,prayfreq,kept,,never,never,several times a day,several times a day
-1991,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1991,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1991,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1991,religint,,dropped,item not in wave,strongly agree,,disagree,
 1991,reliten,reliten,kept,,no religion,no religion,strong,strong
 1991,rowngun,rowngun,kept,,no,no,yes,yes
 1991,shotgun,shotgun,kept,,no,no,yes,yes
@@ -794,7 +776,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1993,abany,abany,kept,,yes,yes,no,no
 1993,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1993,abdefect,abdefect,kept,,yes,yes,no,no
-1993,abhlth,abhlth,kept,,yes,yes,no,no
 1993,abnomore,abnomore,kept,,yes,yes,no,no
 1993,abpoor,abpoor,kept,,yes,yes,no,no
 1993,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -816,18 +797,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1993,libmslm,,dropped,item not in wave,not remove,,remove,
 1993,maboygrl,,dropped,item not in wave,false,,true,
 1993,natarms,natarms,kept,,too much,too much,about right,about right
-1993,natenvir,natenvir,kept,,too little,too little,too much,too much
+1993,natenvir,natenvir,kept,,too little,too little,about right,about right
 1993,natfare,natfare,kept,,too little,too little,too much,too much
-1993,natsoc,natsoc,kept,,too little,too little,too much,too much
+1993,natsoc,natsoc,kept,,too little,too little,about right,about right
 1993,owngun,owngun,kept,,no,no,yes,yes
-1993,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1993,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1993,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1993,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1993,polabuse,polabuse,kept,,yes,yes,no,no
 1993,pray,pray,kept,,never,never,several times a day,several times a day
 1993,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1993,prayfreq,,dropped,item not in wave,never,,several times a day,
-1993,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1993,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1993,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1993,religint,,dropped,item not in wave,strongly agree,,disagree,
 1993,reliten,reliten,kept,,no religion,no religion,strong,strong
 1993,rowngun,rowngun,kept,,no,no,yes,yes
 1993,shotgun,shotgun,kept,,no,no,yes,yes
@@ -838,7 +819,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1994,abany,abany,kept,,yes,yes,no,no
 1994,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1994,abdefect,abdefect,kept,,yes,yes,no,no
-1994,abhlth,abhlth,kept,,yes,yes,no,no
 1994,abnomore,abnomore,kept,,yes,yes,no,no
 1994,abpoor,abpoor,kept,,yes,yes,no,no
 1994,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -860,18 +840,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1994,libmslm,,dropped,item not in wave,not remove,,remove,
 1994,maboygrl,,dropped,item not in wave,false,,true,
 1994,natarms,natarms,kept,,too much,too much,about right,about right
-1994,natenvir,natenvir,kept,,too little,too little,too much,too much
+1994,natenvir,natenvir,kept,,too little,too little,about right,about right
 1994,natfare,natfare,kept,,too little,too little,too much,too much
-1994,natsoc,natsoc,kept,,too little,too little,too much,too much
+1994,natsoc,natsoc,kept,,too little,too little,about right,about right
 1994,owngun,owngun,kept,,no,no,yes,yes
-1994,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1994,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1994,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1994,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1994,polabuse,polabuse,kept,,yes,yes,no,no
 1994,pray,pray,kept,,never,never,several times a day,several times a day
 1994,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1994,prayfreq,,dropped,item not in wave,never,,several times a day,
-1994,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1994,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1994,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1994,religint,,dropped,item not in wave,strongly agree,,disagree,
 1994,reliten,reliten,kept,,no religion,no religion,strong,strong
 1994,rowngun,rowngun,kept,,no,no,yes,yes
 1994,shotgun,shotgun,kept,,no,no,yes,yes
@@ -882,7 +862,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1996,abany,abany,kept,,yes,yes,no,no
 1996,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 1996,abdefect,abdefect,kept,,yes,yes,no,no
-1996,abhlth,abhlth,kept,,yes,yes,no,no
 1996,abnomore,abnomore,kept,,yes,yes,no,no
 1996,abpoor,abpoor,kept,,yes,yes,no,no
 1996,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -904,18 +883,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1996,libmslm,,dropped,item not in wave,not remove,,remove,
 1996,maboygrl,,dropped,item not in wave,false,,true,
 1996,natarms,natarms,kept,,too much,too much,about right,about right
-1996,natenvir,natenvir,kept,,too little,too little,too much,too much
+1996,natenvir,natenvir,kept,,too little,too little,about right,about right
 1996,natfare,natfare,kept,,too little,too little,too much,too much
-1996,natsoc,natsoc,kept,,too little,too little,too much,too much
+1996,natsoc,natsoc,kept,,too little,too little,about right,about right
 1996,owngun,owngun,kept,,no,no,yes,yes
-1996,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1996,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1996,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1996,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1996,polabuse,polabuse,kept,,yes,yes,no,no
 1996,pray,pray,kept,,never,never,several times a day,several times a day
 1996,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1996,prayfreq,,dropped,item not in wave,never,,several times a day,
-1996,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-1996,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+1996,religcon,,dropped,item not in wave,strongly agree,,disagree,
+1996,religint,,dropped,item not in wave,strongly agree,,disagree,
 1996,reliten,reliten,kept,,no religion,no religion,strong,strong
 1996,rowngun,rowngun,kept,,no,no,yes,yes
 1996,shotgun,shotgun,kept,,no,no,yes,yes
@@ -926,7 +905,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1998,abany,abany,kept,,yes,yes,no,no
 1998,abdefctw,abdefctw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
 1998,abdefect,abdefect,kept,,yes,yes,no,no
-1998,abhlth,abhlth,kept,,yes,yes,no,no
 1998,abnomore,abnomore,kept,,yes,yes,no,no
 1998,abpoor,abpoor,kept,,yes,yes,no,no
 1998,abpoorw,abpoorw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
@@ -948,18 +926,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 1998,libmslm,,dropped,item not in wave,not remove,,remove,
 1998,maboygrl,,dropped,item not in wave,false,,true,
 1998,natarms,natarms,kept,,too much,too much,about right,about right
-1998,natenvir,natenvir,kept,,too little,too little,too much,too much
+1998,natenvir,natenvir,kept,,too little,too little,about right,about right
 1998,natfare,natfare,kept,,too little,too little,too much,too much
-1998,natsoc,natsoc,kept,,too little,too little,too much,too much
+1998,natsoc,natsoc,kept,,too little,too little,about right,about right
 1998,owngun,owngun,kept,,no,no,yes,yes
-1998,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-1998,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+1998,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+1998,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 1998,polabuse,polabuse,kept,,yes,yes,no,no
 1998,pray,pray,kept,,never,never,several times a day,several times a day
 1998,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 1998,prayfreq,prayfreq,kept,,never,never,several times a day,several times a day
-1998,religcon,religcon,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
-1998,religint,religint,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+1998,religcon,religcon,kept,,strongly agree,strongly agree,disagree,disagree
+1998,religint,religint,kept,,strongly agree,strongly agree,disagree,disagree
 1998,reliten,reliten,kept,,no religion,no religion,strong,strong
 1998,rowngun,rowngun,kept,,no,no,yes,yes
 1998,shotgun,shotgun,kept,,no,no,yes,yes
@@ -970,7 +948,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2000,abany,abany,kept,,yes,yes,no,no
 2000,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2000,abdefect,abdefect,kept,,yes,yes,no,no
-2000,abhlth,abhlth,kept,,yes,yes,no,no
 2000,abnomore,abnomore,kept,,yes,yes,no,no
 2000,abpoor,abpoor,kept,,yes,yes,no,no
 2000,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -992,18 +969,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2000,libmslm,,dropped,item not in wave,not remove,,remove,
 2000,maboygrl,,dropped,item not in wave,false,,true,
 2000,natarms,natarms,kept,,too much,too much,about right,about right
-2000,natenvir,natenvir,kept,,too little,too little,too much,too much
+2000,natenvir,natenvir,kept,,too little,too little,about right,about right
 2000,natfare,natfare,kept,,too little,too little,too much,too much
-2000,natsoc,natsoc,kept,,too little,too little,too much,too much
+2000,natsoc,natsoc,kept,,too little,too little,about right,about right
 2000,owngun,owngun,kept,,no,no,yes,yes
-2000,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2000,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2000,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2000,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2000,polabuse,polabuse,kept,,yes,yes,no,no
 2000,pray,pray,kept,,never,never,several times a day,several times a day
 2000,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2000,prayfreq,,dropped,item not in wave,never,,several times a day,
-2000,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2000,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2000,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2000,religint,,dropped,item not in wave,strongly agree,,disagree,
 2000,reliten,reliten,kept,,no religion,no religion,strong,strong
 2000,rowngun,rowngun,kept,,no,no,yes,yes
 2000,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1014,7 +991,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2002,abany,abany,kept,,yes,yes,no,no
 2002,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2002,abdefect,abdefect,kept,,yes,yes,no,no
-2002,abhlth,abhlth,kept,,yes,yes,no,no
 2002,abnomore,abnomore,kept,,yes,yes,no,no
 2002,abpoor,abpoor,kept,,yes,yes,no,no
 2002,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1036,18 +1012,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2002,libmslm,,dropped,item not in wave,not remove,,remove,
 2002,maboygrl,,dropped,item not in wave,false,,true,
 2002,natarms,natarms,kept,,too much,too much,about right,about right
-2002,natenvir,natenvir,kept,,too little,too little,too much,too much
+2002,natenvir,natenvir,kept,,too little,too little,about right,about right
 2002,natfare,natfare,kept,,too little,too little,too much,too much
-2002,natsoc,natsoc,kept,,too little,too little,too much,too much
+2002,natsoc,natsoc,kept,,too little,too little,about right,about right
 2002,owngun,owngun,kept,,no,no,yes,yes
-2002,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2002,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2002,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2002,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2002,polabuse,polabuse,kept,,yes,yes,no,no
 2002,pray,pray,kept,,never,never,several times a day,several times a day
 2002,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2002,prayfreq,,dropped,item not in wave,never,,several times a day,
-2002,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2002,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2002,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2002,religint,,dropped,item not in wave,strongly agree,,disagree,
 2002,reliten,reliten,kept,,no religion,no religion,strong,strong
 2002,rowngun,rowngun,kept,,no,no,yes,yes
 2002,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1058,7 +1034,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2004,abany,abany,kept,,yes,yes,no,no
 2004,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2004,abdefect,abdefect,kept,,yes,yes,no,no
-2004,abhlth,abhlth,kept,,yes,yes,no,no
 2004,abnomore,abnomore,kept,,yes,yes,no,no
 2004,abpoor,abpoor,kept,,yes,yes,no,no
 2004,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1080,18 +1055,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2004,libmslm,,dropped,item not in wave,not remove,,remove,
 2004,maboygrl,,dropped,item not in wave,false,,true,
 2004,natarms,natarms,kept,,too much,too much,about right,about right
-2004,natenvir,natenvir,kept,,too little,too little,too much,too much
+2004,natenvir,natenvir,kept,,too little,too little,about right,about right
 2004,natfare,natfare,kept,,too little,too little,too much,too much
-2004,natsoc,natsoc,kept,,too little,too little,too much,too much
+2004,natsoc,natsoc,kept,,too little,too little,about right,about right
 2004,owngun,owngun,kept,,no,no,yes,yes
-2004,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2004,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2004,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2004,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2004,polabuse,polabuse,kept,,yes,yes,no,no
 2004,pray,pray,kept,,never,never,several times a day,several times a day
 2004,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2004,prayfreq,,dropped,item not in wave,never,,several times a day,
-2004,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2004,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2004,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2004,religint,,dropped,item not in wave,strongly agree,,disagree,
 2004,reliten,reliten,kept,,no religion,no religion,strong,strong
 2004,rowngun,rowngun,kept,,no,no,yes,yes
 2004,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1102,7 +1077,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2006,abany,abany,kept,,yes,yes,no,no
 2006,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2006,abdefect,abdefect,kept,,yes,yes,no,no
-2006,abhlth,abhlth,kept,,yes,yes,no,no
 2006,abnomore,abnomore,kept,,yes,yes,no,no
 2006,abpoor,abpoor,kept,,yes,yes,no,no
 2006,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1124,18 +1098,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2006,libmslm,,dropped,item not in wave,not remove,,remove,
 2006,maboygrl,,dropped,item not in wave,false,,true,
 2006,natarms,natarms,kept,,too much,too much,about right,about right
-2006,natenvir,natenvir,kept,,too little,too little,too much,too much
+2006,natenvir,natenvir,kept,,too little,too little,about right,about right
 2006,natfare,natfare,kept,,too little,too little,too much,too much
-2006,natsoc,natsoc,kept,,too little,too little,too much,too much
+2006,natsoc,natsoc,kept,,too little,too little,about right,about right
 2006,owngun,owngun,kept,,no,no,yes,yes
-2006,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2006,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2006,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2006,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2006,polabuse,polabuse,kept,,yes,yes,no,no
 2006,pray,pray,kept,,never,never,several times a day,several times a day
 2006,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2006,prayfreq,,dropped,item not in wave,never,,several times a day,
-2006,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2006,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2006,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2006,religint,,dropped,item not in wave,strongly agree,,disagree,
 2006,reliten,reliten,kept,,no religion,no religion,strong,strong
 2006,rowngun,rowngun,kept,,no,no,yes,yes
 2006,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1146,7 +1120,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2008,abany,abany,kept,,yes,yes,no,no
 2008,abdefctw,abdefctw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
 2008,abdefect,abdefect,kept,,yes,yes,no,no
-2008,abhlth,abhlth,kept,,yes,yes,no,no
 2008,abnomore,abnomore,kept,,yes,yes,no,no
 2008,abpoor,abpoor,kept,,yes,yes,no,no
 2008,abpoorw,abpoorw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
@@ -1168,18 +1141,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2008,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2008,maboygrl,maboygrl,kept,,false,false,true,true
 2008,natarms,natarms,kept,,too much,too much,about right,about right
-2008,natenvir,natenvir,kept,,too little,too little,too much,too much
+2008,natenvir,natenvir,kept,,too little,too little,about right,about right
 2008,natfare,natfare,kept,,too little,too little,too much,too much
-2008,natsoc,natsoc,kept,,too little,too little,too much,too much
+2008,natsoc,natsoc,kept,,too little,too little,about right,about right
 2008,owngun,owngun,kept,,no,no,yes,yes
-2008,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2008,pilloky,pilloky,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
+2008,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2008,pilloky,pilloky,kept,,strongly agree,strongly agree,disagree,disagree
 2008,polabuse,polabuse,kept,,yes,yes,no,no
 2008,pray,pray,kept,,never,never,several times a day,several times a day
 2008,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2008,prayfreq,prayfreq,kept,,never,never,several times a day,several times a day
-2008,religcon,religcon,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
-2008,religint,religint,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+2008,religcon,religcon,kept,,strongly agree,strongly agree,disagree,disagree
+2008,religint,religint,kept,,strongly agree,strongly agree,disagree,disagree
 2008,reliten,reliten,kept,,no religion,no religion,strong,strong
 2008,rowngun,rowngun,kept,,no,no,yes,yes
 2008,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1190,7 +1163,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2010,abany,abany,kept,,yes,yes,no,no
 2010,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2010,abdefect,abdefect,kept,,yes,yes,no,no
-2010,abhlth,abhlth,kept,,yes,yes,no,no
 2010,abnomore,abnomore,kept,,yes,yes,no,no
 2010,abpoor,abpoor,kept,,yes,yes,no,no
 2010,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1212,18 +1184,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2010,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2010,maboygrl,,dropped,item not in wave,false,,true,
 2010,natarms,natarms,kept,,too much,too much,about right,about right
-2010,natenvir,natenvir,kept,,too little,too little,too much,too much
+2010,natenvir,natenvir,kept,,too little,too little,about right,about right
 2010,natfare,natfare,kept,,too little,too little,too much,too much
-2010,natsoc,natsoc,kept,,too little,too little,too much,too much
+2010,natsoc,natsoc,kept,,too little,too little,about right,about right
 2010,owngun,owngun,kept,,no,no,yes,yes
-2010,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2010,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2010,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2010,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2010,polabuse,polabuse,kept,,yes,yes,no,no
 2010,pray,pray,kept,,never,never,several times a day,several times a day
 2010,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2010,prayfreq,,dropped,item not in wave,never,,several times a day,
-2010,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2010,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2010,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2010,religint,,dropped,item not in wave,strongly agree,,disagree,
 2010,reliten,reliten,kept,,no religion,no religion,strong,strong
 2010,rowngun,rowngun,kept,,no,no,yes,yes
 2010,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1234,7 +1206,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2012,abany,abany,kept,,yes,yes,no,no
 2012,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2012,abdefect,abdefect,kept,,yes,yes,no,no
-2012,abhlth,abhlth,kept,,yes,yes,no,no
 2012,abnomore,abnomore,kept,,yes,yes,no,no
 2012,abpoor,abpoor,kept,,yes,yes,no,no
 2012,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1256,18 +1227,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2012,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2012,maboygrl,,dropped,item not in wave,false,,true,
 2012,natarms,natarms,kept,,too much,too much,about right,about right
-2012,natenvir,natenvir,kept,,too little,too little,too much,too much
+2012,natenvir,natenvir,kept,,too little,too little,about right,about right
 2012,natfare,natfare,kept,,too little,too little,too much,too much
-2012,natsoc,natsoc,kept,,too little,too little,too much,too much
+2012,natsoc,natsoc,kept,,too little,too little,about right,about right
 2012,owngun,owngun,kept,,no,no,yes,yes
-2012,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2012,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2012,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2012,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2012,polabuse,polabuse,kept,,yes,yes,no,no
 2012,pray,pray,kept,,never,never,several times a day,several times a day
 2012,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2012,prayfreq,,dropped,item not in wave,never,,several times a day,
-2012,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2012,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2012,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2012,religint,,dropped,item not in wave,strongly agree,,disagree,
 2012,reliten,reliten,kept,,no religion,no religion,strong,strong
 2012,rowngun,rowngun,kept,,no,no,yes,yes
 2012,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1278,7 +1249,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2014,abany,abany,kept,,yes,yes,no,no
 2014,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2014,abdefect,abdefect,kept,,yes,yes,no,no
-2014,abhlth,abhlth,kept,,yes,yes,no,no
 2014,abnomore,abnomore,kept,,yes,yes,no,no
 2014,abpoor,abpoor,kept,,yes,yes,no,no
 2014,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1300,18 +1270,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2014,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2014,maboygrl,,dropped,item not in wave,false,,true,
 2014,natarms,natarms,kept,,too much,too much,about right,about right
-2014,natenvir,natenvir,kept,,too little,too little,too much,too much
+2014,natenvir,natenvir,kept,,too little,too little,about right,about right
 2014,natfare,natfare,kept,,too little,too little,too much,too much
-2014,natsoc,natsoc,kept,,too little,too little,too much,too much
+2014,natsoc,natsoc,kept,,too little,too little,about right,about right
 2014,owngun,owngun,kept,,no,no,yes,yes
-2014,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2014,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2014,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2014,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2014,polabuse,polabuse,kept,,yes,yes,no,no
 2014,pray,pray,kept,,never,never,several times a day,several times a day
 2014,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2014,prayfreq,,dropped,item not in wave,never,,several times a day,
-2014,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2014,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2014,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2014,religint,,dropped,item not in wave,strongly agree,,disagree,
 2014,reliten,reliten,kept,,no religion,no religion,strong,strong
 2014,rowngun,rowngun,kept,,no,no,yes,yes
 2014,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1322,7 +1292,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2016,abany,abany,kept,,yes,yes,no,no
 2016,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2016,abdefect,abdefect,kept,,yes,yes,no,no
-2016,abhlth,abhlth,kept,,yes,yes,no,no
 2016,abnomore,abnomore,kept,,yes,yes,no,no
 2016,abpoor,abpoor,kept,,yes,yes,no,no
 2016,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1344,18 +1313,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2016,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2016,maboygrl,,dropped,item not in wave,false,,true,
 2016,natarms,natarms,kept,,too much,too much,about right,about right
-2016,natenvir,natenvir,kept,,too little,too little,too much,too much
+2016,natenvir,natenvir,kept,,too little,too little,about right,about right
 2016,natfare,natfare,kept,,too little,too little,too much,too much
-2016,natsoc,natsoc,kept,,too little,too little,too much,too much
+2016,natsoc,natsoc,kept,,too little,too little,about right,about right
 2016,owngun,owngun,kept,,no,no,yes,yes
-2016,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2016,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2016,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2016,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2016,polabuse,polabuse,kept,,yes,yes,no,no
 2016,pray,pray,kept,,never,never,several times a day,several times a day
 2016,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2016,prayfreq,,dropped,item not in wave,never,,several times a day,
-2016,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2016,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2016,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2016,religint,,dropped,item not in wave,strongly agree,,disagree,
 2016,reliten,reliten,kept,,no religion,no religion,strong,strong
 2016,rowngun,rowngun,kept,,no,no,yes,yes
 2016,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1366,7 +1335,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2018,abany,abany,kept,,yes,yes,no,no
 2018,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2018,abdefect,abdefect,kept,,yes,yes,no,no
-2018,abhlth,abhlth,kept,,yes,yes,no,no
 2018,abnomore,abnomore,kept,,yes,yes,no,no
 2018,abpoor,abpoor,kept,,yes,yes,no,no
 2018,abpoorw,abpoorw,kept,,not wrong at all,not wrong at all,always wrong,always wrong
@@ -1388,18 +1356,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2018,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2018,maboygrl,,dropped,item not in wave,false,,true,
 2018,natarms,natarms,kept,,too much,too much,about right,about right
-2018,natenvir,natenvir,kept,,too little,too little,too much,too much
+2018,natenvir,natenvir,kept,,too little,too little,about right,about right
 2018,natfare,natfare,kept,,too little,too little,too much,too much
-2018,natsoc,natsoc,kept,,too little,too little,too much,too much
+2018,natsoc,natsoc,kept,,too little,too little,about right,about right
 2018,owngun,owngun,kept,,no,no,yes,yes
-2018,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2018,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2018,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2018,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2018,polabuse,polabuse,kept,,yes,yes,no,no
 2018,pray,pray,kept,,never,never,several times a day,several times a day
 2018,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2018,prayfreq,prayfreq,dropped,"R answer 'several times a day' not in labels ['2-3 times a month', 'about once a month', 'about once or twice a year', 'every week', 'less than once a year', 'nearly every week', 'never', 'several times a week', 'several times a year']",never,never,several times a day,
-2018,religcon,religcon,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
-2018,religint,religint,corrected,R: 'strongly disagree' -> 'strong disagree',strongly agree,strongly agree,strongly disagree,strong disagree
+2018,religcon,religcon,kept,,strongly agree,strongly agree,disagree,disagree
+2018,religint,religint,kept,,strongly agree,strongly agree,disagree,disagree
 2018,reliten,reliten,kept,,no religion,no religion,strong,strong
 2018,rowngun,rowngun,kept,,no,no,yes,yes
 2018,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1410,7 +1378,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2021,abany,abany,kept,,yes,yes,no,no
 2021,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2021,abdefect,abdefect,kept,,yes,yes,no,no
-2021,abhlth,abhlth,kept,,yes,yes,no,no
 2021,abnomore,abnomore,kept,,yes,yes,no,no
 2021,abpoor,abpoor,kept,,yes,yes,no,no
 2021,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1434,19 +1401,19 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2021,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2021,maboygrl,,dropped,item not in wave,false,,true,
 2021,natarms,natarms,kept,,too much,too much,about right,about right
-2021,natenvir,natenvir,kept,,too little,too little,too much,too much
+2021,natenvir,natenvir,kept,,too little,too little,about right,about right
 2021,natfare,natfare,kept,,too little,too little,too much,too much
-2021,natsoc,natsoc,kept,,too little,too little,too much,too much
+2021,natsoc,natsoc,kept,,too little,too little,about right,about right
 2021,owngun,owngun,kept,,no,no,yes,yes
-2021,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2021,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2021,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2021,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2021,polabuse,polabuse,kept,,yes,yes,no,no
 2021,pray,pray,kept,,never,never,several times a day,several times a day
 2021,prayer,prayerv,renamed,item 'prayer' is split into 'prayerv' in this wave,approve,approve,disapprove,disapprove
 2021,prayer,prayernv,renamed,item 'prayer' is split into 'prayernv' in this wave,approve,approve,disapprove,disapprove
 2021,prayfreq,,dropped,item not in wave,never,,several times a day,
-2021,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2021,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2021,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2021,religint,,dropped,item not in wave,strongly agree,,disagree,
 2021,reliten,relitenv,renamed,item 'reliten' is split into 'relitenv' in this wave,no religion,no religion,strong,strong
 2021,reliten,relitennv,renamed,item 'reliten' is split into 'relitennv' in this wave,no religion,no religion,strong,strong
 2021,rowngun,rowngun,kept,,no,no,yes,yes
@@ -1458,7 +1425,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2022,abany,abany,kept,,yes,yes,no,no
 2022,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2022,abdefect,abdefect,kept,,yes,yes,no,no
-2022,abhlth,abhlth,kept,,yes,yes,no,no
 2022,abnomore,abnomore,kept,,yes,yes,no,no
 2022,abpoor,abpoor,kept,,yes,yes,no,no
 2022,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1480,18 +1446,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2022,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2022,maboygrl,,dropped,item not in wave,false,,true,
 2022,natarms,natarms,kept,,too much,too much,about right,about right
-2022,natenvir,natenvir,kept,,too little,too little,too much,too much
+2022,natenvir,natenvir,kept,,too little,too little,about right,about right
 2022,natfare,natfare,kept,,too little,too little,too much,too much
-2022,natsoc,natsoc,kept,,too little,too little,too much,too much
+2022,natsoc,natsoc,kept,,too little,too little,about right,about right
 2022,owngun,owngun,kept,,no,no,yes,yes
-2022,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2022,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2022,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2022,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2022,polabuse,polabuse,kept,,yes,yes,no,no
 2022,pray,pray,kept,,never,never,several times a day,several times a day
 2022,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2022,prayfreq,,dropped,item not in wave,never,,several times a day,
-2022,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2022,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2022,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2022,religint,,dropped,item not in wave,strongly agree,,disagree,
 2022,reliten,,dropped,item not in wave,no religion,,strong,
 2022,rowngun,rowngun,kept,,no,no,yes,yes
 2022,shotgun,shotgun,kept,,no,no,yes,yes
@@ -1502,7 +1468,6 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2024,abany,abany,kept,,yes,yes,no,no
 2024,abdefctw,,dropped,item not in wave,not wrong at all,,always wrong,
 2024,abdefect,abdefect,kept,,yes,yes,no,no
-2024,abhlth,abhlth,kept,,yes,yes,no,no
 2024,abnomore,abnomore,kept,,yes,yes,no,no
 2024,abpoor,abpoor,kept,,yes,yes,no,no
 2024,abpoorw,,dropped,item not in wave,not wrong at all,,always wrong,
@@ -1524,18 +1489,18 @@ wave,item,variable,status,reason,L_original,L_used,R_original,R_used
 2024,libmslm,libmslm,kept,,not remove,not remove,remove,remove
 2024,maboygrl,,dropped,item not in wave,false,,true,
 2024,natarms,natarms,kept,,too much,too much,about right,about right
-2024,natenvir,natenvir,kept,,too little,too little,too much,too much
+2024,natenvir,natenvir,kept,,too little,too little,about right,about right
 2024,natfare,natfare,kept,,too little,too little,too much,too much
-2024,natsoc,natsoc,kept,,too little,too little,too much,too much
+2024,natsoc,natsoc,kept,,too little,too little,about right,about right
 2024,owngun,owngun,kept,,no,no,yes,yes
-2024,pillok,pillok,kept,,strongly agree,strongly agree,strongly disagree,strongly disagree
-2024,pilloky,,dropped,item not in wave,strongly agree,,strongly disagree,
+2024,pillok,pillok,kept,,strongly agree,strongly agree,disagree,disagree
+2024,pilloky,,dropped,item not in wave,strongly agree,,disagree,
 2024,polabuse,polabuse,kept,,yes,yes,no,no
 2024,pray,pray,kept,,never,never,several times a day,several times a day
 2024,prayer,prayer,kept,,approve,approve,disapprove,disapprove
 2024,prayfreq,,dropped,item not in wave,never,,several times a day,
-2024,religcon,,dropped,item not in wave,strongly agree,,strongly disagree,
-2024,religint,,dropped,item not in wave,strongly agree,,strongly disagree,
+2024,religcon,,dropped,item not in wave,strongly agree,,disagree,
+2024,religint,,dropped,item not in wave,strongly agree,,disagree,
 2024,reliten,reliten,kept,,no religion,no religion,strong,strong
 2024,rowngun,rowngun,kept,,no,no,yes,yes
 2024,shotgun,shotgun,kept,,no,no,yes,yes

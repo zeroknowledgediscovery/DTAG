@@ -2,7 +2,6 @@ variable,R,L
 abany,no,yes
 abdefctw,always wrong,not wrong at all
 abdefect,no,yes
-abhlth,no,yes
 abnomore,no,yes
 abpoor,no,yes
 abpoorw,always wrong,not wrong at all
@@ -20,11 +19,11 @@ libcom,remove,not remove
 libhomo,remove,not remove
 libmil,not remove,remove
 natarms,about right,too much
-natenvir,too much,too little
+natenvir,about right,too little
 natfare,too much,too little
-natsoc,too much,too little
+natsoc,about right,too little
 owngun,yes,no
-pillok,strongly disagree,strongly agree
+pillok,disagree,strongly agree
 polabuse,no,yes
 prayer,disapprove,approve
 prayfreq,several times a day,never
