@@ -401,6 +401,7 @@ def main() -> None:
     ap.add_argument("--pool", default="", help="candidate variables for local search (default: all opinion items)")
     ap.add_argument("--budget", type=int, default=40, help="local-search evaluations")
     ap.add_argument("--ls-n", type=int, default=60, help="simulated runs per persona per local-search evaluation")
+    ap.add_argument("--val-seed", type=int, default=100000, help="first seed of the held-out validation block")
     ap.add_argument("--rich", action="store_true", help="personas include party, religion, attendance, marital status, education")
     ap.add_argument("--n-val", type=int, default=300, help="held-out validation runs per persona")
     ap.add_argument("--baselines", type=int, default=20, help="random opinion-item sequences for comparison")
@@ -439,7 +440,7 @@ def main() -> None:
             seq = [c["variable"] for c in chosen]
         log("sequence: " + ",".join(seq))
         results = {}
-        traj = validate(pool, w, seq, args.n_val, seed0=100000)
+        traj = validate(pool, w, seq, args.n_val, seed0=args.val_seed)
         np.savez(out / "validation_trajectories.npz", CM=traj["CM"], WF=traj["WF"])
         results["optimized"] = summarize(traj, rng)
         results["optimized"]["per_step"] = {s: [ci(traj[s][:, k] - traj[s][:, 0], rng) for k in range(traj[s].shape[1])] for s in SIGN}
@@ -450,7 +451,7 @@ def main() -> None:
         log(f"optimized: {json.dumps({k: v for k, v in results['optimized'].items() if k != 'per_step'})}")
         for spec in args.compare:
             name, vs = spec.split("=", 1)
-            t = validate(pool, w, [v for v in vs.split(",") if v in feat], args.n_val, seed0=100000)
+            t = validate(pool, w, [v for v in vs.split(",") if v in feat], args.n_val, seed0=args.val_seed)
             results[f"compare:{name}"] = summarize(t, rng)
             log(f"compare {name}: {json.dumps(results[f'compare:{name}'])}")
         base = []
