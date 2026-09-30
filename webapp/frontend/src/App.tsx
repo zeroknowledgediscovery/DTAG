@@ -5,6 +5,7 @@ import { Controls, Section, type Geography } from "./components/Controls";
 import { ModelChooser } from "./components/ModelChooser";
 import { ModelPanel } from "./components/ModelPanel";
 import { ProfileBuilder } from "./components/ProfileBuilder";
+import { SequenceCard, SequenceDialog } from "./components/Sequence";
 import { StatePanel } from "./components/StatePanel";
 import type {
   CountryInfo,
@@ -16,6 +17,7 @@ import type {
   QuestionResult,
   Readiness,
   Recommendation,
+  SequenceStatus,
   SessionInfo,
   Suggestion,
 } from "./types";
@@ -108,6 +110,9 @@ export default function App() {
   const [phase, setPhase] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [builder, setBuilder] = useState(false);
+  const [seqOpen, setSeqOpen] = useState(false);
+  const [seq, setSeq] = useState<SequenceStatus | null>(null);
+  const seqTimer = useRef<number | null>(null);
   const polling = useRef<Set<string>>(new Set());
 
   const loadReadiness = (refresh = false) => api.readiness(refresh).then(setReadiness).catch((e) => setError(String(e.message)));
@@ -292,6 +297,7 @@ export default function App() {
       });
       setSession(s);
       setHistory([]);
+      setSeq(null);
       refreshSuggestions(s.session_id);
     } catch (e) {
       setError(String((e as Error).message));
@@ -317,6 +323,50 @@ export default function App() {
       setPending(null);
     }
   };
+
+  // -- question sequences ------------------------------------------------------
+  const pollSequence = useCallback(async (sid: string, offset: number) => {
+    try {
+      const st = await api.sequence(sid, offset);
+      if (st.results.length) {
+        setHistory((h) => {
+          const have = new Set(h.map((r) => r.query_idx));
+          return [...h, ...st.results.filter((r) => !have.has(r.query_idx))];
+        });
+      }
+      setSeq((prev) => ({ ...st, results: [...(prev?.job_id === st.job_id ? prev.results : []), ...st.results] }));
+      setSession(await api.session(sid));
+      if (st.status === "queued" || st.status === "running") {
+        seqTimer.current = window.setTimeout(() => pollSequence(sid, offset + st.results.length), 900);
+      } else {
+        seqTimer.current = null;
+        refreshSuggestions(sid);
+      }
+    } catch (e) {
+      seqTimer.current = null;
+      setError(String((e as Error).message));
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => () => {
+    if (seqTimer.current) window.clearTimeout(seqTimer.current);
+  }, []);
+
+  const runSequence = async (text: string, name: string, resetFirst: boolean) => {
+    if (!session) return;
+    setSeqOpen(false);
+    setError(null);
+    try {
+      const st = await api.startSequence(session.session_id, { text, name, reset_first: resetFirst });
+      if (resetFirst) setHistory([]);
+      setSeq({ ...st, results: [] });
+      pollSequence(session.session_id, 0);
+    } catch (e) {
+      setError(String((e as Error).message));
+    }
+  };
+
+  const seqRunning = seq !== null && (seq.status === "queued" || seq.status === "running") && seq.session_id === session?.session_id;
 
   const reset = async () => {
     if (!session) return;
@@ -348,7 +398,7 @@ export default function App() {
     }
   };
 
-  const busy = Boolean(phase) || Boolean(pending);
+  const busy = Boolean(phase) || Boolean(pending) || seqRunning;
   const modelBusy = effectiveKey ? BUSY_STATES.includes(liveState[effectiveKey] || "") : false;
   const src = rec?.resolved.sources;
 
@@ -571,6 +621,7 @@ export default function App() {
             pending={pending}
             canAsk={Boolean(session) && !busy}
             onAsk={ask}
+            onSequence={session ? () => setSeqOpen(true) : undefined}
             suggestions={session ? suggestions : []}
             emptyHint={
               session ? (
@@ -590,9 +641,26 @@ export default function App() {
         </div>
 
         <div className="col right">
+          {seq && session && seq.session_id === session.session_id && (
+            <SequenceCard
+              seq={seq}
+              onCancel={() => api.cancelSequence(seq.session_id).catch((e) => setError(String(e.message)))}
+              onJump={(i) => document.getElementById(`q-${i}`)?.scrollIntoView({ behavior: "smooth" })}
+            />
+          )}
           <StatePanel session={session} history={history} />
         </div>
       </div>
+
+      {seqOpen && session && (
+        <SequenceDialog
+          modelLabel={session.resolved_profile.model_label}
+          ideology={session.ideology.enabled}
+          questionCount={session.question_count}
+          onClose={() => setSeqOpen(false)}
+          onRun={runSequence}
+        />
+      )}
 
       {builder && (
         <ProfileBuilder

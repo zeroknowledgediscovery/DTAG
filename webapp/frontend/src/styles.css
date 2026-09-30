@@ -179,7 +179,7 @@ table.kv td.num { text-align: right; font-family: var(--mono); white-space: nowr
 
 .composer { border-top: 1px solid var(--border); background: var(--panel); padding: 10px 16px; }
 .composer form { display: flex; gap: 8px; max-width: 900px; margin: 0 auto; }
-.composer input { flex: 1; padding: 8px 10px; }
+.composer input { flex: 1; width: auto; min-width: 0; padding: 8px 10px; }
 .spinner { display: inline-block; width: 10px; height: 10px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; vertical-align: -1px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -231,3 +231,12 @@ a.btn:hover { border-color: var(--accent); }
 .suggest:disabled { opacity: 0.5; cursor: not-allowed; }
 .suggest.small { padding: 3px 8px; font-size: 11.5px; max-width: 260px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .suggest-row { display: flex; gap: 6px; align-items: center; max-width: 900px; margin: 0 auto 8px; overflow-x: auto; }
+
+/* question sequences */
+.seq-card { margin-bottom: 12px; }
+.seq-preview { margin: 6px 0 0; padding-left: 22px; font-size: 12px; color: var(--muted); max-height: 140px; overflow: auto; }
+.movers { list-style: none; padding: 0; margin: 4px 0 0; }
+.movers li { display: grid; grid-template-columns: 34px 64px 1fr; gap: 6px; font-size: 12px; padding: 2px 0; cursor: pointer; border-bottom: 1px dashed var(--border); }
+.movers li .qt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.movers .pos { color: var(--warn); }
+.movers .neg { color: var(--accent); }

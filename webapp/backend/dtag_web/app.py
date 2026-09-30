@@ -22,10 +22,12 @@ from .schemas import (
     QuestionIn,
     QuestionResult,
     RecommendIn,
+    SequenceIn,
     SessionCreate,
     SessionOut,
 )
 from .auth import PasswordAuth, install as install_auth
+from .sequences import SequenceManager, parse_question_lines
 from .sessions import SessionStore
 
 import dtag_paths  # noqa: E402
@@ -64,6 +66,8 @@ def create_app(
     )
     app.state.engine = engine
     app.state.sessions = store
+    sequences = SequenceManager()
+    app.state.sequences = sequences
     # Shared-password protection when DTAG_PASSWORD is set (see auth.py).
     install_auth(app, auth if auth is not None else PasswordAuth.from_env())
 
@@ -313,6 +317,8 @@ def create_app(
     @app.post("/api/sessions/{session_id}/questions", response_model=QuestionResult, tags=["sessions"])
     def ask(session_id: str, body: QuestionIn) -> Dict[str, Any]:
         es = _session(session_id)
+        if sequences.active(session_id):
+            raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")
         try:
             return es.ask(body.question)
         except ValueError as e:
@@ -323,14 +329,62 @@ def create_app(
         """Starter questions that map directly onto the session's survey map."""
         return engine.suggestions(_session(session_id), n=n)
 
+    @app.post("/api/sessions/{session_id}/sequence", tags=["sessions"])
+    def start_sequence(session_id: str, body: SequenceIn) -> Dict[str, Any]:
+        """Run a question sequence through this respondent (background job).
+
+        Provide ``questions`` (list) or ``text`` (one question per line; blank
+        lines, ``#`` comments and a leading ``question`` header are skipped).
+        The survey state carries forward across the sequence. Poll
+        ``GET .../sequence`` for progress; ``DELETE .../sequence`` cancels.
+        """
+        es = _session(session_id)
+        qs = [q.strip() for q in (body.questions or []) if q and q.strip()]
+        if body.text:
+            qs += parse_question_lines(body.text)
+        if not qs:
+            raise HTTPException(400, "No questions found (one question per line).")
+        if len(qs) > 500:
+            raise HTTPException(400, "At most 500 questions per sequence.")
+        too_long = [i + 1 for i, q in enumerate(qs) if len(q) > 2000]
+        if too_long:
+            raise HTTPException(400, f"Questions longer than 2000 characters at lines {too_long[:5]}")
+        try:
+            job = sequences.start(es, qs, name=body.name, reset_first=body.reset_first)
+        except RuntimeError as e:
+            raise HTTPException(409, str(e))
+        return job.snapshot()
+
+    @app.get("/api/sessions/{session_id}/sequence", tags=["sessions"])
+    def sequence_status(session_id: str, since: int = Query(0, ge=0)) -> Dict[str, Any]:
+        """Progress of the latest sequence; ``since`` returns only newer results."""
+        _session(session_id)
+        job = sequences.get(session_id)
+        if job is None:
+            raise HTTPException(404, "No question sequence has been run for this respondent.")
+        return job.snapshot(since=since)
+
+    @app.delete("/api/sessions/{session_id}/sequence", tags=["sessions"])
+    def cancel_sequence(session_id: str) -> Dict[str, Any]:
+        """Stop after the question currently being answered."""
+        _session(session_id)
+        job = sequences.active(session_id)
+        if job is None:
+            raise HTTPException(404, "No running question sequence.")
+        job.cancel()
+        return {"cancelling": job.id}
+
     @app.post("/api/sessions/{session_id}/reset", response_model=SessionOut, tags=["sessions"])
     def reset(session_id: str) -> Dict[str, Any]:
         es = _session(session_id)
+        if sequences.active(session_id):
+            raise HTTPException(409, "A question sequence is running; cancel it before resetting.")
         es.reset()
         return es.describe()
 
     @app.delete("/api/sessions/{session_id}", tags=["sessions"])
     def delete(session_id: str) -> Dict[str, Any]:
+        sequences.drop(session_id)
         if not store.remove(session_id):
             raise HTTPException(404, f"Unknown session: {session_id}")
         return {"deleted": session_id}
