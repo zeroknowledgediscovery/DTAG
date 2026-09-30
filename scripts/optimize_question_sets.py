@@ -324,6 +324,37 @@ def optimize(pool: mp.Pool, w: World, cands: List[str], n_pop: int, length: int,
         pop = {s: [(st, I, starts[s][i]) for i, (st, I) in enumerate(adv[j * n_pop:(j + 1) * n_pop])] for j, s in enumerate(SIGN)}
     return chosen
 
+def local_search(pool: mp.Pool, w: World, init: List[str], cand_pool: List[str], n: int, budget: int,
+                 seed: int, log) -> List[str]:
+    """Replace one question at a time from ``cand_pool``; keep a swap if it raises min(t_CM, t_WF),
+    t = mean signed change / standard error over n simulated runs per persona. Every candidate set
+    is evaluated on the same perturbed personas and draw seeds (common random numbers), disjoint
+    from the validation seeds."""
+    def objective(seq: List[str]) -> Tuple[float, Dict]:
+        traj = validate(pool, w, seq, n, seed0=seed)
+        t = {}
+        for s in SIGN:
+            d = SIGN[s] * (traj[s][:, -1] - traj[s][:, 0])
+            t[s] = (float(d.mean() / (d.std(ddof=1) / np.sqrt(len(d)) + 1e-12)), float(d.mean()))
+        return min(x[0] for x in t.values()), t
+
+    cur = list(init)
+    best, info = objective(cur)
+    log(f"local search start: min t={best:+.2f}  CM t={info['CM'][0]:+.2f} ({info['CM'][1]:+.4f})  WF t={info['WF'][0]:+.2f} ({info['WF'][1]:+.4f})")
+    rng = random.Random(seed)
+    options = [v for v in cand_pool if v in w.ctx.feat]
+    for it in range(budget):
+        pos = rng.randrange(len(cur))
+        new = rng.choice([v for v in options if v not in cur])
+        trial = cur[:pos] + [new] + cur[pos + 1:]
+        sc, inf = objective(trial)
+        if sc > best:
+            cur, best, info = trial, sc, inf
+            log(f"  eval {it + 1}: pos {pos + 1} -> {new}: min t={best:+.2f}  CM t={inf['CM'][0]:+.2f} ({inf['CM'][1]:+.4f})"
+                f"  WF t={inf['WF'][0]:+.2f} ({inf['WF'][1]:+.4f})  [accepted]")
+    log(f"local search end: min t={best:+.2f}  sequence {','.join(cur)}")
+    return cur
+
 # -------------------------------------------------------------------------- validation
 
 def validate(pool: mp.Pool, w: World, seq: List[str], n: int, seed0: int) -> Dict[str, np.ndarray]:
@@ -366,6 +397,10 @@ def main() -> None:
     ap.add_argument("--min-gain", type=float, default=0.02, help="stop when no item raises the robust score (z) this much")
     ap.add_argument("--sd-floor", type=float, default=0.01, help="minimum spread (index units) in the robustness score")
     ap.add_argument("--force-length", action="store_true", help="always build --length questions (add the best item even if it does not raise z)")
+    ap.add_argument("--local-search", default="", help="start sequence (comma-separated variables) for local search")
+    ap.add_argument("--pool", default="", help="candidate variables for local search (default: all opinion items)")
+    ap.add_argument("--budget", type=int, default=40, help="local-search evaluations")
+    ap.add_argument("--ls-n", type=int, default=60, help="simulated runs per persona per local-search evaluation")
     ap.add_argument("--rich", action="store_true", help="personas include party, religion, attendance, marital status, education")
     ap.add_argument("--n-val", type=int, default=300, help="held-out validation runs per persona")
     ap.add_argument("--baselines", type=int, default=20, help="random opinion-item sequences for comparison")
@@ -392,7 +427,11 @@ def main() -> None:
     log(f"GSS {args.wave}: {len(cands)} opinion items; poles {Path(w.g.path).name} ({len(w.g.left_map)} items)")
     rng = np.random.default_rng(12345)
     with mp.get_context("fork").Pool(args.workers, initializer=_init, initargs=(args.wave, args.model_root, assets)) as pool:
-        if args.sequence:
+        if args.local_search:
+            init = args.local_search.split(",")
+            seq = local_search(pool, w, init, args.pool.split(",") if args.pool else cands, args.ls_n,
+                               args.budget, 50000, log)
+        elif args.sequence:
             seq = args.sequence.split(",")
         else:
             chosen = optimize(pool, w, cands, args.pop, args.length, args.prescreen, args.rescreen_every, args.screen_pop, args.min_gain, args.force_length, log)
