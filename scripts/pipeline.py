@@ -1668,6 +1668,13 @@ def main() -> None:
             sys.exit(2)
         if not ideology_enabled:
             print(f"INFO: Ideology tracking disabled: {ideology_disable_reason}", file=sys.stderr)
+        else:
+            if polar.path != polar.requested_path:
+                print(f"INFO: using wave-specific poles {polar.path}", file=sys.stderr)
+            bad = [d for d in polar.dropped if d["reason"] != "item not in model"]
+            if bad:
+                print(f"WARNING: pole items dropped (answer not in model labels): "
+                      f"{[(d['variable'], d['reason']) for d in bad][:10]}", file=sys.stderr)
 
         timings_init["possible_cache"] = ctx.timings["possible_cache"]
         meta["paths"]["possible_cache_path"] = ctx.possible_cache_path

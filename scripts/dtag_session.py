@@ -236,14 +236,19 @@ class PolarGeometry:
     sR: Optional[np.ndarray] = None
     dLR: float = 0.0
     seconds: float = 0.0
+    requested_path: str = ""
+    dropped: List[Dict[str, str]] = field(default_factory=list)
 
     def summary(self) -> Dict[str, Any]:
         return {
             "enabled": bool(self.enabled),
             "disable_reason": "" if self.enabled else self.disable_reason,
             "path": core._abspath(self.path) if self.path else "",
+            "requested_path": core._abspath(self.requested_path) if self.requested_path else "",
+            "wave_specific": bool(self.path and self.requested_path and self.path != self.requested_path),
             "n_left_assignments": len(self.left_map),
             "n_right_assignments": len(self.right_map),
+            "dropped_items": list(self.dropped),
             "dLR": float(self.dLR) if np.isfinite(self.dLR) else None,
         }
 
@@ -252,8 +257,19 @@ def build_polar_geometry(ctx: ModelContext, polar_path: str, no_ideology: bool =
     """Port of the polar-vector block of ``pipeline.main()``."""
     tpol = time.time()
     polar_path = str(polar_path or "").strip()
-    g = PolarGeometry(path=polar_path)
+    g = PolarGeometry(path=polar_path, requested_path=polar_path)
     model = ctx.model
+
+    # The canonical GSS poles are written in one wording; each GSS wave has a
+    # corrected pole file (assets/polar_vectors/gss/, built by
+    # scripts/build_gss_polar_vectors.py). Use it for the matching wave.
+    if polar_path and not no_ideology:
+        import polar_vectors as pv
+        if pv.is_canonical(polar_path):
+            wave = pv.wave_file(ctx.model_path)
+            if wave is not None:
+                polar_path = str(wave)
+                g.path = polar_path
 
     if no_ideology:
         g.disable_reason = "--no_ideology was set"
@@ -264,8 +280,22 @@ def build_polar_geometry(ctx: ModelContext, polar_path: str, no_ideology: bool =
     else:
         try:
             left_loaded, right_loaded = core.load_polar_vectors_csv(polar_path)
-            g.left_map = {v: val for v, val in left_loaded.items() if v in ctx.feat}
-            g.right_map = {v: val for v, val in right_loaded.items() if v in ctx.feat}
+            # Keep an item only if BOTH pole answers are real labels of this
+            # model; never write an unrecognised answer into a pole state.
+            for v in sorted(set(left_loaded) | set(right_loaded)):
+                lv, rv = left_loaded.get(v), right_loaded.get(v)
+                labels = ctx.possible.get(v, [])
+                if v not in ctx.feat:
+                    reason = "item not in model"
+                elif lv is None or rv is None:
+                    reason = "pole defines only one side"
+                elif lv not in labels or rv not in labels:
+                    bad = [f"{side} answer {val!r} not in labels" for side, val in (("L", lv), ("R", rv)) if val not in labels]
+                    reason = "; ".join(bad)
+                else:
+                    g.left_map[v], g.right_map[v] = lv, rv
+                    continue
+                g.dropped.append({"variable": v, "L": lv or "", "R": rv or "", "reason": reason})
             if not g.left_map or not g.right_map:
                 g.disable_reason = "polar vectors have no usable overlap with this qnet model"
             else:
