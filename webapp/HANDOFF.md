@@ -148,6 +148,14 @@ thread (each via `EngineSession.ask`, so inference is unchanged) and reports
 the ideology change; UI in `webapp/frontend/src/components/Sequence.tsx`;
 tests in `webapp/tests/test_sequence.py`.
 
+**Two respondents** (on `dev`): frontend only. Per-respondent state lives in
+`webapp/frontend/src/useRespondent.ts` (`useRespondent`; `useModelLoader`
+shares one download/load job per model between respondents); the setup form
+is `components/RespondentSetup.tsx`; `Chat.tsx` exports `ChatLog` (one per
+respondent) and a shared `Composer`; `StatePanel.tsx` exports a multi-series
+`IdeologyChart` and `IdeologyCompare`. Each respondent is an ordinary backend
+session, so the API is unchanged.
+
 **Access control:** shared-password protection is implemented
 (`webapp/backend/dtag_web/auth.py`, enabled by `DTAG_PASSWORD`; tests in
 `webapp/tests/test_auth.py`). Unset = open (local use).
