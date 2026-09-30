@@ -15,8 +15,11 @@ Method (all native, no LLM; one GSS survey item per question):
    stated facts. Optimization and validation use disjoint seeds.
 2. Greedy search under ``draw``. A population of perturbed initial states per persona is
    advanced question by question. A candidate item is scored at each state by its exact
-   expected ideology change, summing over its answer distribution; the item whose worse
-   side has the best lower quartile is added, then every state draws its answer.
+   distribution of ideology change over its answers. The item is added that maximizes, for the
+   worse of the two personas, mean/sd of the signed net change (so far + this question) over
+   the mixture of population states and sampled answers, i.e. the share of runs expected to
+   move the right way; every state then draws its answer. The search stops when no item
+   raises that score by --min-gain.
    Candidates are the survey's opinion items (no respondent facts, identity or
    self-placement), re-screened in full every few steps.
 3. Validation. The chosen sequence is replayed end-to-end in ``draw`` mode on held-out
@@ -70,15 +73,26 @@ URBAN = ["a large central city (over 250,000)", "a medium size central city (50,
          "a suburb of a large central city"]
 
 
-def sample_persona(side: str, seed: int, perturb: bool = True) -> Dict[str, str]:
-    """Initial survey state for gss2024_cm ('CM') or gss2024_wf ('WF'); seed 0 with perturb=False is the base."""
+RICH_BASE = {"CM": {"partyid": "strong republican", "relig": "protestant", "attend": "every week",
+                    "marital": "married", "degree": "high school"},
+             "WF": {"partyid": "strong democrat", "relig": "none", "attend": "never",
+                    "marital": "never married", "degree": "bachelor's"}}
+
+
+def sample_persona(side: str, seed: int, perturb: bool = True, rich: bool = False) -> Dict[str, str]:
+    """Initial survey state for gss2024_cm ('CM') or gss2024_wf ('WF').
+
+    perturb=False gives the base persona (stated facts only, or with ``rich`` also the usual
+    inferences: party, religion, attendance, marital status, education). With perturb=True the
+    facts vary, stated facts are sometimes omitted, and inferences are added with probability
+    0.4 (0.8 when ``rich``) with varied values."""
     rng = random.Random(f"{side}-{seed}")
     if side == "CM":  # 45 year old white male with children in rural Alabama, regular news consumer,
         # working in farming, veteran, conservative
         if not perturb:
             return {"sex": "male", "age": "45.0", "race": "white", "region": "south", "childs": "2.0",
                     "xnorcsiz": RURAL[0], "news": "every day", "wrkstat": "working full time",
-                    "vetyears": "yes, 2-4 years", "polviews": "conservative"}
+                    "vetyears": "yes, 2-4 years", "polviews": "conservative", **(RICH_BASE["CM"] if rich else {})}
         st = {"sex": "male", "age": f"{rng.randint(38, 55)}.0", "race": "white", "region": "south",
               "childs": f"{rng.choice([1, 2, 2, 3, 4])}.0", "xnorcsiz": rng.choice(RURAL),
               "news": _pick(rng, [("every day", .7), ("a few times a week", .3)]),
@@ -96,7 +110,7 @@ def sample_persona(side: str, seed: int, perturb: bool = True) -> Dict[str, str]
         if not perturb:
             return {"sex": "female", "age": "22.0", "race": "white", "region": "northeast", "childs": "0.0",
                     "xnorcsiz": URBAN[0], "news": "every day", "wrkstat": "working full time",
-                    "vetyears": "no active duty", "polviews": "extremely liberal"}
+                    "vetyears": "no active duty", "polviews": "extremely liberal", **(RICH_BASE["WF"] if rich else {})}
         st = {"sex": "female", "age": f"{rng.randint(19, 27)}.0", "race": "white", "region": "northeast",
               "childs": _pick(rng, [("0.0", .9), ("1.0", .1)]), "xnorcsiz": rng.choice(URBAN),
               "news": _pick(rng, [("every day", .7), ("a few times a week", .3)]),
@@ -113,7 +127,7 @@ def sample_persona(side: str, seed: int, perturb: bool = True) -> Dict[str, str]
         if k not in ("sex", "polviews") and rng.random() < 0.15:
             del st[k]
     for k, v in extras.items():  # ...and may infer more
-        if rng.random() < 0.4:
+        if rng.random() < (0.8 if rich else 0.4):
             st[k] = v
     return st
 
@@ -198,20 +212,16 @@ def _init(wave: str, model_root: str, assets_dir: str) -> None:
     W = World(wave, model_root, assets_dir)
 
 
-def _expected(args) -> Dict[str, Tuple[float, float]]:
-    """Exact E[dI] and P(dI in the wanted direction) for each candidate at one state (answers with p>=2%, top 8)."""
-    st, I0, vars_, sign = args
+def _expected(args) -> Dict[str, List[Tuple[float, float]]]:
+    """Exact outcome distribution of dI for each candidate at one state: [(dI, p)] over its answers
+    (answers with p >= 2%, at most the 8 likeliest, renormalized)."""
+    st, I0, vars_ = args
     out = {}
     for v, d in W.dists(st, [v for v in vars_ if v not in st]).items():
         opts = sorted(d.items(), key=lambda x: -x[1])[:8]
         opts = [(a, p) for a, p in opts if p >= 0.02] or opts[:1]
         z = sum(p for _, p in opts)
-        e = good = 0.0
-        for a, p in opts:
-            dI = W.I({**st, v: a}) - I0
-            e += p / z * dI
-            good += p / z * (sign * dI > 0)
-        out[v] = (e, good)
+        out[v] = [(W.I({**st, v: a}) - I0, p / z) for a, p in opts]
     return out
 
 
@@ -242,38 +252,54 @@ def _simulate(args) -> List[float]:
 SIGN = {"CM": +1, "WF": -1}  # polarization: CM toward R (+), WF toward L (-)
 
 
-def score(stats: Dict[str, List[Tuple[float, float]]]) -> Tuple[float, Dict]:
-    """Worse side's lower quartile of signed expected change (robust across the population)."""
+RICH = False  # persona definition: stated facts only, or with the usual inferences (--rich)
+SD_FLOOR = 0.01  # index units; below this, differences are not practically detectable
+
+
+def score(stats: Dict[str, List[List[Tuple[float, float]]]], offset: Dict[str, List[float]]) -> Tuple[float, Dict]:
+    """Robustness of the signed net change after this question, per persona, over the mixture of
+    population states x sampled answers (net = change so far + this question's change).
+    Score = worse persona's mean/sd (z), which tracks the share of runs moving the right way."""
     per = {}
-    for side, vals in stats.items():
-        e = np.array([SIGN[side] * x[0] for x in vals])
-        per[side] = {"q25": float(np.quantile(e, 0.25)), "mean": float(e.mean()),
-                     "p_good": float(np.mean([x[1] for x in vals]))}
-    return min(p["q25"] for p in per.values()), per
+    for side, per_state in stats.items():
+        vals, wts = [], []
+        for off, dist in zip(offset[side], per_state):
+            for dI, p in dist:
+                vals.append(off + SIGN[side] * dI)
+                wts.append(p / len(per_state))
+        x, wt = np.array(vals), np.array(wts)
+        m = float(np.sum(wt * x))
+        sd = float(np.sqrt(np.sum(wt * (x - m) ** 2)))
+        step = float(np.sum(wt * (x - np.repeat(offset[side], [len(d) for d in per_state]))))
+        per[side] = {"z": m / max(sd, SD_FLOOR), "mean_net": m, "sd_net": sd, "mean_step": step,
+                     "share_right": float(np.sum(wt * (x > 0)))}
+    return min(p["z"] for p in per.values()), per
 
 
 def _score_items(pool: mp.Pool, pop: Dict, vars_: List[str], n: int) -> List[Tuple[float, str, Dict]]:
-    jobs = [(st, I0, vars_, SIGN[s]) for s in SIGN for st, I0 in pop[s][:n]]
+    jobs = [(st, I, vars_) for s in SIGN for st, I, _ in pop[s][:n]]
     res = pool.map(_expected, jobs, chunksize=1)
     per_side = {s: res[i * n:(i + 1) * n] for i, s in enumerate(SIGN)}
+    offset = {s: [SIGN[s] * (I - I_start) for _, I, I_start in pop[s][:n]] for s in SIGN}
     scored = []
     for v in vars_:
-        stats = {s: [r[v] for r in per_side[s] if v in r] for s in SIGN}
-        if all(len(x) >= max(1, n // 2) for x in stats.values()):
-            sc, per = score(stats)
-            scored.append((sc, v, per))
+        stats = {s: [r.get(v, [(0.0, 1.0)]) for r in per_side[s]] for s in SIGN}  # item already fixed: no change
+        sc, per = score(stats, offset)
+        scored.append((sc, v, per))
     return sorted(scored, key=lambda x: -x[0])
 
 
 def optimize(pool: mp.Pool, w: World, cands: List[str], n_pop: int, length: int, prescreen: int,
-             rescreen_every: int, screen_pop: int, log) -> List[Dict]:
+             rescreen_every: int, screen_pop: int, min_gain: float, log) -> List[Dict]:
     pop = {s: [] for s in SIGN}
     for s in SIGN:
         for i in range(n_pop):
-            st = w.valid(sample_persona(s, i, perturb=i > 0))
-            pop[s].append((st, w.I(st)))
+            st = w.valid(sample_persona(s, i, perturb=i > 0, rich=RICH))
+            I = w.I(st)
+            pop[s].append((st, I, I))
     chosen: List[Dict] = []
     shortlist: List[str] = []
+    current = 0.0  # z of the empty sequence
     for step in range(length):
         used = {c["variable"] for c in chosen}
         full = step % rescreen_every == 0
@@ -281,16 +307,18 @@ def optimize(pool: mp.Pool, w: World, cands: List[str], n_pop: int, length: int,
             rough = _score_items(pool, pop, [v for v in cands if v not in used], screen_pop)
             shortlist = [v for _, v, _ in rough[:prescreen]]
         scored = _score_items(pool, pop, [v for v in shortlist if v not in used], n_pop)
-        if not scored or scored[0][0] <= 0:
-            log(f"step {step + 1}: no item with a positive robust score; stopping at {len(chosen)} questions")
+        if not scored or scored[0][0] < current + min_gain:
+            log(f"step {step + 1}: no item raises the robust score (z) by {min_gain}; stopping at {len(chosen)} questions")
             break
+        current = scored[0][0]
         sc, v, per = scored[0]
         chosen.append({"variable": v, "text": w.text.get(v, ""), "score": sc, **{f"{s}_{k}": per[s][k] for s in SIGN for k in per[s]}})
-        log(f"step {step + 1}: {v:12s} score={sc:+.4f}  CM mean={per['CM']['mean']:+.4f} p={per['CM']['p_good']:.2f}"
-            f"  WF mean={per['WF']['mean']:+.4f} p={per['WF']['p_good']:.2f} | {w.text.get(v, '')[:60]}"
+        log(f"step {step + 1}: {v:12s} z={sc:+.2f}  CM net={per['CM']['mean_net']:+.4f}±{per['CM']['sd_net']:.4f} right={per['CM']['share_right']:.2f}"
+            f"  WF net={per['WF']['mean_net']:+.4f}±{per['WF']['sd_net']:.4f} right={per['WF']['share_right']:.2f} (signed) | {w.text.get(v, '')[:50]}"
             + ("  [after full screen]" if full else ""))
-        adv = pool.map(_draw, [(st, v, 1_000_003 * step + 2 * i + (s == 'WF')) for s in SIGN for i, (st, _) in enumerate(pop[s])])
-        pop = {s: adv[i * n_pop:(i + 1) * n_pop] for i, s in enumerate(SIGN)}
+        adv = pool.map(_draw, [(st, v, 1_000_003 * step + 2 * i + (s == 'WF')) for s in SIGN for i, (st, _, _) in enumerate(pop[s])])
+        starts = {s: [x[2] for x in pop[s]] for s in SIGN}
+        pop = {s: [(st, I, starts[s][i]) for i, (st, I) in enumerate(adv[j * n_pop:(j + 1) * n_pop])] for j, s in enumerate(SIGN)}
     return chosen
 
 # -------------------------------------------------------------------------- validation
@@ -299,7 +327,7 @@ def validate(pool: mp.Pool, w: World, seq: List[str], n: int, seed0: int) -> Dic
     """Trajectories (n x len+1) per side on held-out perturbed personas, fresh draw seeds."""
     out = {}
     for s in SIGN:
-        jobs = [(w.valid(sample_persona(s, seed0 + i)), seq, seed0 * 7919 + i) for i in range(n)]
+        jobs = [(w.valid(sample_persona(s, seed0 + i, rich=RICH)), seq, seed0 * 7919 + i) for i in range(n)]
         out[s] = np.array(pool.map(_simulate, jobs, chunksize=4))
     return out
 
@@ -331,6 +359,9 @@ def main() -> None:
     ap.add_argument("--prescreen", type=int, default=30, help="shortlist size from each full screen")
     ap.add_argument("--screen-pop", type=int, default=4, help="states per persona for the full screen")
     ap.add_argument("--rescreen-every", type=int, default=4)
+    ap.add_argument("--min-gain", type=float, default=0.02, help="stop when no item raises the robust score (z) this much")
+    ap.add_argument("--sd-floor", type=float, default=0.01, help="minimum spread (index units) in the robustness score")
+    ap.add_argument("--rich", action="store_true", help="personas include party, religion, attendance, marital status, education")
     ap.add_argument("--n-val", type=int, default=300, help="held-out validation runs per persona")
     ap.add_argument("--baselines", type=int, default=20, help="random opinion-item sequences for comparison")
     ap.add_argument("--n-base", type=int, default=30)
@@ -339,6 +370,9 @@ def main() -> None:
     ap.add_argument("--workers", type=int, default=max(1, (os.cpu_count() or 2)))
     args = ap.parse_args()
 
+    global SD_FLOOR, RICH
+    SD_FLOOR = args.sd_floor
+    RICH = args.rich
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
     logf = open(out / "log.txt", "a", encoding="utf-8")
 
@@ -356,7 +390,7 @@ def main() -> None:
         if args.sequence:
             seq = args.sequence.split(",")
         else:
-            chosen = optimize(pool, w, cands, args.pop, args.length, args.prescreen, args.rescreen_every, args.screen_pop, log)
+            chosen = optimize(pool, w, cands, args.pop, args.length, args.prescreen, args.rescreen_every, args.screen_pop, args.min_gain, log)
             json.dump(chosen, open(out / "search.json", "w"), indent=1)
             seq = [c["variable"] for c in chosen]
         log("sequence: " + ",".join(seq))
