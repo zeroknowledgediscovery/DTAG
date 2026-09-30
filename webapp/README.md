@@ -219,6 +219,33 @@ background run; `GET /api/sessions/{id}/sequence[?since=N]` returns progress,
 new results and the ideology summary; `DELETE` cancels. While a sequence runs,
 interactive questions and reset return 409.
 
+### Two respondents side by side
+
+The **Respondents 1 | 2** switch in the top bar adds a second respondent (the
+choice is remembered in the browser). Each respondent is fully independent:
+its own description (who / where / when), its own recommended or hand-picked
+native model (A can be GSS 2024 while B is GSS 2018 or another survey), its
+own behaviour settings and its own server session. Respondent A opens on the
+`gss2024_cm` preset and B on `gss2024_wf`.
+
+- **Left**: tabs *Respondent A* / *Respondent B* switch which setup is shown;
+  *Start both respondents* starts (or restarts) both, and each tab keeps its
+  own *Start* / *Reset*.
+- **Centre**: the chat splits into two columns, blue for A and orange for B,
+  each headed by its model, description and current ideology index. The
+  composer's **Both / A only / B only** selector decides who gets the
+  question; *Both* sends it to both at the same time and each answers from
+  its own model and state. *Run sequence…* runs the list on the selected
+  respondent(s) in parallel.
+- **Right**: *Ideology · A vs B* plots both trajectories on one chart (A: solid
+  line, circles; B: dashed line, squares — so color is never the only cue),
+  with current / initial / change for each and the gap A − B. When the two
+  use different waves, each index is measured against its own wave's poles
+  (noted under the chart). Below it, tabs show each respondent's model,
+  timeline, state and exports.
+
+Switching back to one respondent hides B without ending its session.
+
 “Save as custom profile” stores the current respondent (never in the config
 file); “Advanced profile builder…” also lets you choose the semantic map.
 
