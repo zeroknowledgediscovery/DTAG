@@ -781,6 +781,13 @@ class EngineSession:
             ),
             "polar_set": self.spec.polar_set if s.ideology_enabled else None,
             "convention": "I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR); native LSM qdistance; L/R are the columns of the registered polar-vector file.",
+            "poles": {
+                "file": Path(s.polar.path).name if s.polar.path else None,
+                "wave_specific": bool(s.polar.path and s.polar.path != s.polar.requested_path),
+                "items": len(s.polar.left_map),
+                "dropped": [d for d in s.polar.dropped if d["reason"] != "item not in model"],
+                "not_in_model": sorted(d["variable"] for d in s.polar.dropped if d["reason"] == "item not in model"),
+            } if s.ideology_enabled else None,
             "trajectory": s.ideology_trajectory() if s.ideology_enabled else [],
         }
 

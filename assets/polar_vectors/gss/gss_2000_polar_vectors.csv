@@ -1,0 +1,32 @@
+variable,R,L
+abany,no,yes
+abdefect,no,yes
+abhlth,no,yes
+abnomore,no,yes
+abpoor,no,yes
+abrape,no,yes
+absingle,no,yes
+bible,inspired word,book of fables
+colcom,fired,not fired
+colmil,allowed,not allowed
+confed,hardly any,a great deal
+conlabor,hardly any,a great deal
+grass,not legal,legal
+gunlaw,oppose,favor
+libcom,remove,not remove
+libhomo,remove,not remove
+libmil,not remove,remove
+natarms,about right,too much
+natenvir,too much,too little
+natfare,too much,too little
+natsoc,too much,too little
+owngun,yes,no
+pillok,strongly disagree,strongly agree
+polabuse,no,yes
+pray,several times a day,never
+prayer,disapprove,approve
+reliten,strong,no religion
+rowngun,yes,no
+shotgun,yes,no
+spkcom,not allowed,allowed
+spkmil,allowed,not allowed
