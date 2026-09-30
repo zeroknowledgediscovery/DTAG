@@ -4,7 +4,9 @@
 in particular to deploy it on Google Cloud. Read this file first; it is the
 single source for *what exists, what must not break, and what to do next*.
 
-Branch: `main` (developed on `native-lsm-clean`) · Repo: `zeroknowledgediscovery/DTAG`
+Branches: `main` (stable; developed on `native-lsm-clean`) and `dev`
+(experimental web-app/DTAG features, merged into `main` when ready) ·
+Repo: `zeroknowledgediscovery/DTAG`
 
 Related documents (read as needed):
 
@@ -139,6 +141,12 @@ Done and verified in a Linux container (Python 3.13):
 
 **Not yet verified:** a live session with a real `OPENAI_API_KEY` (only the
 deterministic mock LLM was available during development).
+
+**Question sequences** (on `dev`): `webapp/backend/dtag_web/sequences.py`
+runs an uploaded list of questions through one respondent in a background
+thread (each via `EngineSession.ask`, so inference is unchanged) and reports
+the ideology change; UI in `webapp/frontend/src/components/Sequence.tsx`;
+tests in `webapp/tests/test_sequence.py`.
 
 **Access control:** shared-password protection is implemented
 (`webapp/backend/dtag_web/auth.py`, enabled by `DTAG_PASSWORD`; tests in

@@ -195,6 +195,30 @@ process-level (`dtag-web` does this).
    `SEMANTIC / STATE UPDATE`, `NO MATCH`), current and initial survey state,
    JSON/CSV export.
 
+### Question sequences
+
+**Run sequence…** (next to *Ask*) runs many questions, in order, through the
+current respondent. Upload a text file with one question per line, or paste
+them (blank lines and lines starting with `#` are ignored; a first line
+`question` is treated as a header, so the files in `assets/question_sets/`
+work as-is; up to 500 questions). Optionally reset the respondent first;
+otherwise the sequence continues from the current state.
+
+Each question goes through the normal path (same native anchors, fallback
+rules and state updates), so the survey state carries forward from one answer
+to the next. Answers appear in the chat as they arrive, the ideology chart
+updates live, and the **Question sequence** card shows progress, lets you
+cancel after the current question, and — when the survey has an ideology
+index (GSS) — reports the index at the start and end of the sequence, the net
+change, the range, and the questions that moved it most (click to jump). The
+full per-question record is in the session's JSON/CSV export.
+
+API: `POST /api/sessions/{id}/sequence` with `{"text": "...one per line...",
+"name": "...", "reset_first": false}` (or `{"questions": [...]}`) starts a
+background run; `GET /api/sessions/{id}/sequence[?since=N]` returns progress,
+new results and the ideology summary; `DELETE` cancels. While a sequence runs,
+interactive questions and reset return 409.
+
 “Save as custom profile” stores the current respondent (never in the config
 file); “Advanced profile builder…” also lets you choose the semantic map.
 
@@ -229,6 +253,7 @@ GET    /api/models[?family=]               GET  /api/models/{family}/{name}
 GET    /api/models/{family}/{name}/status  POST /api/models/{family}/{name}/install[?load=&wait=]
 GET    /api/maps                           GET  /api/polar-vectors   GET /api/geography
 POST   /api/recommend                      GET  /api/countries       GET /api/sessions/{id}/suggestions
+POST   /api/sessions/{id}/sequence         GET  /api/sessions/{id}/sequence[?since=N]   DELETE /api/sessions/{id}/sequence
 GET    /api/eurobarometer/waves[?year=]    GET  /api/eurobarometer/resolve?date=|za=|year=
 POST   /api/sessions                       GET  /api/sessions        GET /api/sessions/{id}
 POST   /api/sessions/{id}/questions        POST /api/sessions/{id}/reset

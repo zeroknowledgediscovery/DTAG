@@ -8,6 +8,7 @@ import type {
   QuestionResult,
   Readiness,
   Recommendation,
+  SequenceStatus,
   SessionInfo,
   Suggestion,
 } from "./types";
@@ -87,6 +88,10 @@ export const api = {
   createSession: (body: { profile?: string; model_key?: string; overrides: Overrides }) =>
     post<SessionInfo>("/api/sessions", { ...body, overrides: cleanOverrides(body.overrides) }),
   session: (id: string) => request<SessionInfo>(`/api/sessions/${id}`),
+  startSequence: (id: string, body: { text: string; name?: string; reset_first?: boolean }) =>
+    post<SequenceStatus>(`/api/sessions/${id}/sequence`, body),
+  sequence: (id: string, since = 0) => request<SequenceStatus>(`/api/sessions/${id}/sequence?since=${since}`),
+  cancelSequence: (id: string) => request(`/api/sessions/${id}/sequence`, { method: "DELETE" }),
   suggestions: (id: string, n = 6) => request<Suggestion[]>(`/api/sessions/${id}/suggestions?n=${n}`),
   countries: () => request<CountryInfo[]>("/api/countries"),
   recommend: (body: { persona: string; country: string; year?: number | null; date?: string | null; preferred_model?: string | null }) =>
