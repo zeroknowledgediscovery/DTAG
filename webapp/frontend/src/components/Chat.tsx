@@ -203,14 +203,14 @@ function Evidence({ r }: { r: QuestionResult }) {
   );
 }
 
-export function Chat({
+export function ChatLog({
   history,
   pending,
   canAsk,
   onAsk,
   emptyHint,
   suggestions = [],
-  onSequence,
+  idPrefix = "",
 }: {
   history: QuestionResult[];
   pending: string | null;
@@ -218,127 +218,150 @@ export function Chat({
   onAsk: (q: string) => void;
   emptyHint: React.ReactNode;
   suggestions?: Suggestion[];
-  onSequence?: () => void;
+  /** Prefix for message anchors (`${idPrefix}q-N`) so two logs on one page never collide. */
+  idPrefix?: string;
 }) {
-  const [q, setQ] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [history.length, pending]);
 
   return (
-    <>
-      <div className="chat">
-        {history.length === 0 && !pending && (
-          <div className="empty">
-            {emptyHint}
-            {suggestions.length > 0 && (
-              <div className="suggest-grid">
-                {suggestions.map((sg) => (
-                  <button
-                    key={sg.question}
-                    className="suggest"
-                    disabled={!canAsk}
-                    title={`Maps directly to: ${sg.top_variables.join(", ")}`}
-                    onClick={() => onAsk(sg.question)}
-                  >
-                    {sg.question}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-        {history.map((r) => {
-          const cls = r.mapping.label === "NO MATCH" ? "nomatch" : r.mapping.label.startsWith("SEMANTIC") ? "sem" : "";
-          return (
-            <div className="msg" key={r.query_idx} id={`q-${r.query_idx}`}>
-              <div className="msg-q">
-                <span className="qn">Q{r.query_idx}</span>
-                <span className="qt">{r.question}</span>
-              </div>
-              <div className={`msg-a ${cls}`}>
-                <div className="meta">
-                  <span className={`badge ${mappingBadge(r.mapping.label)}`}>{r.mapping.label}</span>
-                  <span className={`badge ${r.state_changed ? "b-neutral" : "b-muted"}`}>
-                    {r.state_changed ? "STATE CHANGED" : "STATE UNCHANGED"}
-                  </span>
-                  {r.anchors.slice(0, 4).map((a) => (
-                    <span key={a.variable} className="mono">
-                      {a.variable}={a.response}
-                    </span>
-                  ))}
-                  <span style={{ marginLeft: "auto" }}>{r.timings.total?.toFixed(2)} s</span>
-                </div>
-                <div className="answer">
-                  {r.answer || (
-                    <i className="note">
-                      No semantically relevant survey variable was found. The respondent state was not updated.
-                    </i>
-                  )}
-                </div>
-                <Evidence r={r} />
-              </div>
+    <div className="chat">
+      {history.length === 0 && !pending && (
+        <div className="empty">
+          {emptyHint}
+          {suggestions.length > 0 && (
+            <div className="suggest-grid">
+              {suggestions.map((sg) => (
+                <button
+                  key={sg.question}
+                  className="suggest"
+                  disabled={!canAsk}
+                  title={`Maps directly to: ${sg.top_variables.join(", ")}`}
+                  onClick={() => onAsk(sg.question)}
+                >
+                  {sg.question}
+                </button>
+              ))}
             </div>
-          );
-        })}
-        {pending && (
-          <div className="msg">
-            <div className="msg-q">
-              <span className="qn">Q{history.length + 1}</span>
-              <span className="qt">{pending}</span>
-            </div>
-            <div className="msg-a">
-              <span className="spinner" /> selecting survey variables · native LSM inference · rendering answer…
-            </div>
-          </div>
-        )}
-        <div ref={endRef} />
-      </div>
-      <div className="composer">
-        {history.length > 0 && suggestions.length > 0 && (
-          <div className="suggest-row">
-            <span className="note">Try:</span>
-            {suggestions.slice(0, 4).map((sg) => (
-              <button
-                key={sg.question}
-                className="suggest small"
-                disabled={!canAsk}
-                title={`Maps directly to: ${sg.top_variables.join(", ")}`}
-                onClick={() => onAsk(sg.question)}
-              >
-                {sg.question}
-              </button>
-            ))}
-          </div>
-        )}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            const t = q.trim();
-            if (!t || !canAsk) return;
-            onAsk(t);
-            setQ("");
-          }}
-        >
-          <input
-            type="text"
-            placeholder="Ask this respondent a question..."
-            value={q}
-            disabled={!canAsk}
-            onChange={(e) => setQ(e.target.value)}
-            maxLength={2000}
-          />
-          <button className="btn primary" disabled={!canAsk || !q.trim()}>
-            Ask
-          </button>
-          {onSequence && (
-            <button type="button" className="btn" disabled={!canAsk} onClick={onSequence} title="Run many questions in order from a file or pasted list">
-              Run sequence…
-            </button>
           )}
-        </form>
-      </div>
-    </>
+        </div>
+      )}
+      {history.map((r) => {
+        const cls = r.mapping.label === "NO MATCH" ? "nomatch" : r.mapping.label.startsWith("SEMANTIC") ? "sem" : "";
+        return (
+          <div className="msg" key={r.query_idx} id={`${idPrefix}q-${r.query_idx}`}>
+            <div className="msg-q">
+              <span className="qn">Q{r.query_idx}</span>
+              <span className="qt">{r.question}</span>
+            </div>
+            <div className={`msg-a ${cls}`}>
+              <div className="meta">
+                <span className={`badge ${mappingBadge(r.mapping.label)}`}>{r.mapping.label}</span>
+                <span className={`badge ${r.state_changed ? "b-neutral" : "b-muted"}`}>
+                  {r.state_changed ? "STATE CHANGED" : "STATE UNCHANGED"}
+                </span>
+                {r.ideology.enabled && r.ideology.delta !== null && r.ideology.delta !== 0 && (
+                  <span className="mono">I {fmtSigned(r.ideology.delta)}</span>
+                )}
+                {r.anchors.slice(0, 4).map((a) => (
+                  <span key={a.variable} className="mono">
+                    {a.variable}={a.response}
+                  </span>
+                ))}
+                <span style={{ marginLeft: "auto" }}>{r.timings.total?.toFixed(2)} s</span>
+              </div>
+              <div className="answer">
+                {r.answer || (
+                  <i className="note">
+                    No semantically relevant survey variable was found. The respondent state was not updated.
+                  </i>
+                )}
+              </div>
+              <Evidence r={r} />
+            </div>
+          </div>
+        );
+      })}
+      {pending && (
+        <div className="msg">
+          <div className="msg-q">
+            <span className="qn">Q{history.length + 1}</span>
+            <span className="qt">{pending}</span>
+          </div>
+          <div className="msg-a">
+            <span className="spinner" /> selecting survey variables · native LSM inference · rendering answer…
+          </div>
+        </div>
+      )}
+      <div ref={endRef} />
+    </div>
+  );
+}
+
+export function Composer({
+  canAsk,
+  onAsk,
+  suggestions = [],
+  onSequence,
+  placeholder = "Ask this respondent a question...",
+  target,
+}: {
+  canAsk: boolean;
+  onAsk: (q: string) => void;
+  suggestions?: Suggestion[];
+  onSequence?: () => void;
+  placeholder?: string;
+  /** Optional "ask whom" selector shown before the input (two-respondent mode). */
+  target?: React.ReactNode;
+}) {
+  const [q, setQ] = useState("");
+  return (
+    <div className="composer">
+      {suggestions.length > 0 && (
+        <div className="suggest-row">
+          <span className="note">Try:</span>
+          {suggestions.slice(0, 4).map((sg) => (
+            <button
+              key={sg.question}
+              className="suggest small"
+              disabled={!canAsk}
+              title={`Maps directly to: ${sg.top_variables.join(", ")}`}
+              onClick={() => onAsk(sg.question)}
+            >
+              {sg.question}
+            </button>
+          ))}
+        </div>
+      )}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          const t = q.trim();
+          if (!t || !canAsk) return;
+          onAsk(t);
+          setQ("");
+        }}
+      >
+        {target}
+        <input
+          type="text"
+          placeholder={placeholder}
+          value={q}
+          disabled={!canAsk}
+          onChange={(e) => setQ(e.target.value)}
+          maxLength={2000}
+        />
+        <button className="btn primary" disabled={!canAsk || !q.trim()}>
+          Ask
+        </button>
+        {onSequence && (
+          <button type="button" className="btn" disabled={!canAsk} onClick={onSequence} title="Run many questions in order from a file or pasted list">
+            Run sequence…
+          </button>
+        )}
+      </form>
+    </div>
   );
 }

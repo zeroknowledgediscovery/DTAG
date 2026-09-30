@@ -5,25 +5,68 @@ import { Section } from "./Controls";
 import { mappingBadge } from "./Chat";
 import { statusLabel } from "./ModelPanel";
 
-function IdeologyChart({ points }: { points: TrajectoryPoint[] }) {
-  const [hover, setHover] = useState<{ p: TrajectoryPoint; x: number; y: number } | null>(null);
-  const pts = points.filter((p) => p.ideology !== null) as Array<TrajectoryPoint & { ideology: number }>;
-  if (pts.length === 0) return <div className="note">No ideology values yet.</div>;
-  const W = 330, H = 170, L = 44, R = 10, T = 10, B = 26;
-  const vals = pts.map((p) => p.ideology);
+export interface IdeologySeries {
+  name: string;
+  /** CSS color (token) for the line and markers. */
+  color: string;
+  marker?: "circle" | "square";
+  dashed?: boolean;
+  points: TrajectoryPoint[];
+}
+
+type Pt = TrajectoryPoint & { ideology: number };
+
+export function IdeologyChart({ series }: { series: IdeologySeries[] }) {
+  const [hover, setHover] = useState<{ s: IdeologySeries; p: Pt; x: number; y: number } | null>(null);
+  const all = series.map((s) => ({ s, pts: s.points.filter((p) => p.ideology !== null) as Pt[] })).filter((x) => x.pts.length);
+  if (all.length === 0) return <div className="note">No ideology values yet.</div>;
+  const multi = series.length > 1;
+  const W = 330, H = 180, L = 44, R = multi ? 22 : 10, T = 10, B = 26;
+  const vals = all.flatMap((x) => x.pts.map((p) => p.ideology));
   let lo = Math.min(...vals), hi = Math.max(...vals);
   const pad = Math.max((hi - lo) * 0.2, 0.002);
   lo -= pad; hi += pad;
-  const maxStep = Math.max(1, ...pts.map((p) => p.step));
+  const steps = all.flatMap((x) => x.pts.map((p) => p.step));
+  const maxStep = Math.max(1, ...steps);
   const x = (s: number) => L + ((W - L - R) * s) / maxStep;
   const y = (v: number) => T + ((H - T - B) * (hi - v)) / (hi - lo);
   const ticks = [lo + pad, (lo + hi) / 2, hi - pad];
-  const path = pts.map((p, i) => `${i ? "L" : "M"}${x(p.step).toFixed(1)},${y(p.ideology).toFixed(1)}`).join(" ");
-  const stepTicks = Array.from(new Set([0, ...pts.map((p) => p.step)])).filter((_s, i, a) => a.length <= 12 || i % Math.ceil(a.length / 12) === 0);
+  const uniq = Array.from(new Set([0, ...steps])).sort((p, q) => p - q);
+  const stepTicks = uniq.filter((_s, i, a) => a.length <= 12 || i % Math.ceil(a.length / 12) === 0);
+
+  const marker = (s: IdeologySeries, p: Pt, active: boolean) => {
+    const cx = x(p.step), cy = y(p.ideology);
+    const hollow = p.mapping === "NO MATCH" || (p.delta === 0 && p.step > 0);
+    const common = {
+      fill: hollow ? "var(--panel)" : s.color,
+      stroke: s.color,
+      strokeWidth: 1.5,
+      onMouseEnter: () => setHover({ s, p, x: cx, y: cy }),
+    };
+    const r = active ? 5 : 3.4;
+    return s.marker === "square" ? (
+      <rect key={p.step} x={cx - r} y={cy - r} width={2 * r} height={2 * r} rx={1} {...common} />
+    ) : (
+      <circle key={p.step} cx={cx} cy={cy} r={r} {...common} />
+    );
+  };
 
   return (
     <div className="chart" onMouseLeave={() => setHover(null)}>
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Ideology index trajectory">
+      {multi && (
+        <div className="legend">
+          {series.map((s) => (
+            <span key={s.name}>
+              <svg width="22" height="10" aria-hidden="true">
+                <line x1="1" x2="21" y1="5" y2="5" stroke={s.color} strokeWidth="2" strokeDasharray={s.dashed ? "4 3" : undefined} />
+                {s.marker === "square" ? <rect x="7.5" y="1.5" width="7" height="7" fill={s.color} /> : <circle cx="11" cy="5" r="3.5" fill={s.color} />}
+              </svg>
+              {s.name}
+            </span>
+          ))}
+        </div>
+      )}
+      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Ideology index trajectory: ${series.map((s) => s.name).join(" vs ")}`}>
         {ticks.map((t) => (
           <g key={t}>
             <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="var(--chart-grid)" />
@@ -32,9 +75,7 @@ function IdeologyChart({ points }: { points: TrajectoryPoint[] }) {
             </text>
           </g>
         ))}
-        {lo < 0 && hi > 0 && (
-          <line x1={L} x2={W - R} y1={y(0)} y2={y(0)} stroke="var(--faint)" strokeDasharray="3 3" />
-        )}
+        {lo < 0 && hi > 0 && <line x1={L} x2={W - R} y1={y(0)} y2={y(0)} stroke="var(--faint)" strokeDasharray="3 3" />}
         {stepTicks.map((s) => (
           <text key={s} x={x(s)} y={H - B + 12} fontSize="9" textAnchor="middle" fill="var(--muted)" fontFamily="var(--mono)">
             {s === 0 ? "init" : `Q${s}`}
@@ -43,28 +84,34 @@ function IdeologyChart({ points }: { points: TrajectoryPoint[] }) {
         <text x={(L + W - R) / 2} y={H - 3} fontSize="9" textAnchor="middle" fill="var(--muted)">
           question number
         </text>
-        <path d={path} fill="none" stroke="var(--chart-line)" strokeWidth={1.8} />
-        {pts.map((p) => (
-          <circle
-            key={p.step}
-            cx={x(p.step)}
-            cy={y(p.ideology)}
-            r={hover?.p.step === p.step ? 5 : 3.2}
-            fill={p.mapping === "NO MATCH" || (p.delta === 0 && p.step > 0) ? "var(--panel)" : "var(--chart-line)"}
-            stroke="var(--chart-line)"
-            strokeWidth={1.5}
-            onMouseEnter={() => setHover({ p, x: x(p.step), y: y(p.ideology) })}
+        {all.map(({ s, pts }) => (
+          <path
+            key={s.name}
+            d={pts.map((p, i) => `${i ? "L" : "M"}${x(p.step).toFixed(1)},${y(p.ideology).toFixed(1)}`).join(" ")}
+            fill="none"
+            stroke={s.color}
+            strokeWidth={2}
+            strokeDasharray={s.dashed ? "5 3" : undefined}
           />
         ))}
+        {all.map(({ s, pts }) => (
+          <g key={s.name}>{pts.map((p) => marker(s, p, hover?.s.name === s.name && hover.p.step === p.step))}</g>
+        ))}
+        {multi &&
+          all.map(({ s, pts }) => {
+            const last = pts[pts.length - 1];
+            return (
+              <text key={s.name} x={x(last.step) + 7} y={y(last.ideology) + 3} fontSize="10" fontWeight="700" fill="var(--text)">
+                {s.name.split(" ").pop()}
+              </text>
+            );
+          })}
       </svg>
       {hover && (
-        <div
-          className="tooltip"
-          style={{ left: `${Math.min(55, (hover.x / W) * 100)}%`, top: `${(hover.y / H) * 100 + 6}%` }}
-        >
+        <div className="tooltip" style={{ left: `${Math.min(55, (hover.x / W) * 100)}%`, top: `${(hover.y / H) * 100 + 6}%` }}>
           <div>
-            <b>{hover.p.step === 0 ? "Initial state" : `Q${hover.p.step}`}</b> · I = {fmtNum(hover.p.ideology)} (
-            {fmtSigned(hover.p.delta)})
+            {multi && <b>{hover.s.name} · </b>}
+            <b>{hover.p.step === 0 ? "Initial state" : `Q${hover.p.step}`}</b> · I = {fmtNum(hover.p.ideology)} ({fmtSigned(hover.p.delta)})
           </div>
           {hover.p.question && <div>{hover.p.question}</div>}
           <div className="note">{hover.p.mapping}</div>
@@ -77,12 +124,85 @@ function IdeologyChart({ points }: { points: TrajectoryPoint[] }) {
           )}
         </div>
       )}
-      <div className="note">Filled points: state-updating steps; hollow: state unchanged (value carried forward).</div>
+      <div className="note">Filled markers: state-updating steps; hollow: state unchanged (value carried forward).</div>
     </div>
   );
 }
 
-function Ideology({ ide }: { ide: IdeologySummary }) {
+const CONVENTION_NOTE = (polarSet: string | null) => (
+  <>
+    I(s) = (d(s<sub>L</sub>, s) − d(s<sub>R</sub>, s)) / d(s<sub>L</sub>, s<sub>R</sub>) with native qdistance; negative is nearer
+    the L pole, positive nearer the R pole of the registered polar-vector set ({polarSet}).
+  </>
+);
+
+/** Both respondents' ideology on one chart, in contrasting colors. */
+export function IdeologyCompare({ items }: { items: Array<{ label: string; color: string; marker: "circle" | "square"; dashed?: boolean; session: SessionInfo | null }> }) {
+  const on = items.filter((i) => i.session?.ideology.enabled);
+  const off = items.filter((i) => i.session && !i.session.ideology.enabled);
+  if (on.length === 0) {
+    return (
+      <div className="note">
+        {items.some((i) => i.session)
+          ? "Ideology tracking is not available for the started respondent(s) (GSS models only)."
+          : "Start the respondents to compare their ideology trajectories."}
+      </div>
+    );
+  }
+  const a = on[0]?.session?.ideology.current;
+  const b = on[1]?.session?.ideology.current;
+  return (
+    <div>
+      <table className="kv compare">
+        <thead>
+          <tr>
+            <th />
+            <th>current</th>
+            <th>initial</th>
+            <th>change</th>
+          </tr>
+        </thead>
+        <tbody>
+          {on.map((i) => (
+            <tr key={i.label}>
+              <td>
+                <span className="swatch" style={{ background: i.color }} /> {i.label}
+              </td>
+              <td className="num">{fmtNum(i.session!.ideology.current)}</td>
+              <td className="num">{fmtNum(i.session!.ideology.initial)}</td>
+              <td className="num">{fmtSigned(i.session!.ideology.change_from_initial)}</td>
+            </tr>
+          ))}
+          {on.length === 2 && (
+            <tr>
+              <td className="note">gap ({on[0].label.split(" ").pop()} − {on[1].label.split(" ").pop()})</td>
+              <td className="num">{fmtSigned(a !== null && b !== null && a !== undefined && b !== undefined ? a - b : null)}</td>
+              <td />
+              <td />
+            </tr>
+          )}
+        </tbody>
+      </table>
+      <IdeologyChart
+        series={on.map((i) => ({ name: i.label, color: i.color, marker: i.marker, dashed: i.dashed, points: i.session!.ideology.trajectory }))}
+      />
+      {off.map((i) => (
+        <div key={i.label} className="note">
+          {i.label}: ideology not available for {i.session!.resolved_profile.model_label}.
+        </div>
+      ))}
+      {on.length === 2 && on[0].session!.model.key !== on[1].session!.model.key && (
+        <div className="note">
+          The respondents use different models ({on[0].session!.model.key} vs {on[1].session!.model.key}); each index is
+          measured against its own wave's poles.
+        </div>
+      )}
+      <div className="note">{CONVENTION_NOTE(on[0].session!.ideology.polar_set)}</div>
+    </div>
+  );
+}
+
+function Ideology({ ide, color }: { ide: IdeologySummary; color?: string }) {
   if (!ide.enabled) {
     return (
       <div className="note">
@@ -109,10 +229,9 @@ function Ideology({ ide }: { ide: IdeologySummary }) {
           <div className="mono">{fmtSigned(ide.change_from_initial)}</div>
         </div>
       </div>
-      <IdeologyChart points={ide.trajectory} />
+      <IdeologyChart series={[{ name: "Ideology", color: color ?? "var(--chart-line)", points: ide.trajectory }]} />
       <div className="note" title={ide.convention}>
-        I(s) = (d(s<sub>L</sub>, s) − d(s<sub>R</sub>, s)) / d(s<sub>L</sub>, s<sub>R</sub>) with native qdistance; negative is
-        nearer the L pole, positive nearer the R pole of the registered polar-vector set ({ide.polar_set}).
+        {CONVENTION_NOTE(ide.polar_set)}
       </div>
     </div>
   );
@@ -136,7 +255,18 @@ function StateTable({ state, highlight }: { state: Record<string, string>; highl
   );
 }
 
-export function StatePanel({ session, history }: { session: SessionInfo | null; history: QuestionResult[] }) {
+export function StatePanel({
+  session,
+  history,
+  idPrefix = "",
+  color,
+}: {
+  session: SessionInfo | null;
+  history: QuestionResult[];
+  /** Must match the ChatLog's idPrefix so timeline clicks scroll to the right message. */
+  idPrefix?: string;
+  color?: string;
+}) {
   if (!session) {
     return (
       <div className="note">
@@ -220,7 +350,7 @@ export function StatePanel({ session, history }: { session: SessionInfo | null; 
       </Section>
 
       <Section title="Ideology">
-        <Ideology ide={session.ideology} />
+        <Ideology ide={session.ideology} color={color} />
       </Section>
 
       <Section title="Session timeline">
@@ -229,7 +359,7 @@ export function StatePanel({ session, history }: { session: SessionInfo | null; 
         ) : (
           <ul className="timeline">
             {history.map((r) => (
-              <li key={r.query_idx} onClick={() => document.getElementById(`q-${r.query_idx}`)?.scrollIntoView({ behavior: "smooth" })}>
+              <li key={r.query_idx} onClick={() => document.getElementById(`${idPrefix}q-${r.query_idx}`)?.scrollIntoView({ behavior: "smooth" })}>
                 <span className="qn">Q{r.query_idx}</span>
                 <span className={`badge ${mappingBadge(r.mapping.label)}`}>{r.mapping.label}</span>
                 <span className={`badge ${r.state_changed ? "b-neutral" : "b-muted"}`}>{r.state_changed ? "Δ" : "="}</span>

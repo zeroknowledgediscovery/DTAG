@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { fmtBytes } from "../api";
 import type { Candidate, Family, ModelRecord, Recommendation } from "../types";
 
@@ -44,6 +45,7 @@ export function ModelChooser({
   models: ModelRecord[];
   disabled?: boolean;
 }) {
+  const group = useId(); // one radio group per chooser (two respondents can be on the page)
   const families: Family[] = ["gss", "afrobarometer", "wvs", "eurobarometer"];
   const manualRec = manual ? models.find((m) => m.key === manual) : undefined;
 
@@ -80,7 +82,7 @@ export function ModelChooser({
           return (
             <label key={c.model_key} className={`cand ${sel ? "selected" : ""}`}>
               <div className="cand-h">
-                <input type="radio" name="dtag-model" checked={sel} disabled={disabled} onChange={() => onChoose(c.model_key)} />
+                <input type="radio" name={`dtag-model-${group}`} checked={sel} disabled={disabled} onChange={() => onChoose(c.model_key)} />
                 <b>{c.label}</b>
                 {isDefault && <span className="badge b-direct">DEFAULT</span>}
                 <span style={{ marginLeft: "auto" }}>{stateBadge(c, liveState[c.model_key])}</span>

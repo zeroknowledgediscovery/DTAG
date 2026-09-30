@@ -1,33 +1,20 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "./api";
-import { Chat } from "./components/Chat";
-import { Controls, Section, type Geography } from "./components/Controls";
-import { ModelChooser } from "./components/ModelChooser";
-import { ModelPanel } from "./components/ModelPanel";
+import { ChatLog, Composer } from "./components/Chat";
+import { Section, type Geography } from "./components/Controls";
 import { ProfileBuilder } from "./components/ProfileBuilder";
+import { RespondentSetup } from "./components/RespondentSetup";
 import { SequenceCard, SequenceDialog } from "./components/Sequence";
-import { StatePanel } from "./components/StatePanel";
-import type {
-  CountryInfo,
-  EBWave,
-  ModelRecord,
-  ModelStatus,
-  Overrides,
-  Profile,
-  QuestionResult,
-  Readiness,
-  Recommendation,
-  SequenceStatus,
-  SessionInfo,
-  Suggestion,
-} from "./types";
+import { IdeologyCompare, StatePanel } from "./components/StatePanel";
+import type { CountryInfo, EBWave, ModelRecord, Profile, Readiness } from "./types";
+import { useModelLoader, useRespondent, type Respondent } from "./useRespondent";
 
-const familyOf = (key: string) => key.split("/", 1)[0];
-const gssYear = (key: string) => {
-  const m = /^gss\/gss_(\d{4})$/.exec(key);
-  return m ? Number(m[1]) : undefined;
-};
-const BUSY_STATES = ["downloading", "verifying", "extracting", "loading"];
+/** Respondent identity: label, color token and marker (color is never the only cue). */
+const SLOTS = [
+  { id: "A", label: "Respondent A", color: "var(--resp-a)", marker: "circle" as const, dashed: false, prefix: "a-" },
+  { id: "B", label: "Respondent B", color: "var(--resp-b)", marker: "square" as const, dashed: true, prefix: "b-" },
+];
+type Target = "both" | "A" | "B";
 
 function ReadinessBar({ r, onRefresh }: { r: Readiness | null; onRefresh: () => void }) {
   if (!r) return <div className="readiness">checking readiness…</div>;
@@ -79,45 +66,16 @@ export default function App() {
   const [ebDates, setEbDates] = useState(false);
   const [geography, setGeography] = useState<Geography>({ countries: [], continents: [] });
   const [countries, setCountries] = useState<CountryInfo[]>([]);
+  const [globalError, setGlobalError] = useState<string | null>(null);
 
-  // respondent: who / where / when
-  const [preset, setPreset] = useState<string>("");
-  const [persona, setPersona] = useState("");
-  const [country, setCountry] = useState("");
-  const [continent, setContinent] = useState("");
-  const [year, setYear] = useState<string>("");
-  const [date, setDate] = useState<string>("");
-
-  // model choice
-  const [rec, setRec] = useState<Recommendation | null>(null);
-  const [recLoading, setRecLoading] = useState(false);
-  const [chosen, setChosen] = useState<string | null>(null);
-  const [manual, setManual] = useState<string | null>(null);
-  const [liveState, setLiveState] = useState<Record<string, string>>({});
-  const [status, setStatus] = useState<ModelStatus | undefined>();
-
-  // behaviour + validation
-  const [behaviour, setBehaviour] = useState<Overrides>({});
-  const [resolved, setResolved] = useState<Profile | null>(null);
-  const [validationError, setValidationError] = useState<string | null>(null);
-  const [validating, setValidating] = useState(false);
-
-  // session
-  const [session, setSession] = useState<SessionInfo | null>(null);
-  const [history, setHistory] = useState<QuestionResult[]>([]);
-  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
-  const [pending, setPending] = useState<string | null>(null);
-  const [phase, setPhase] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [builder, setBuilder] = useState(false);
-  const [seqOpen, setSeqOpen] = useState(false);
-  const [seq, setSeq] = useState<SequenceStatus | null>(null);
-  const seqTimer = useRef<number | null>(null);
-  const polling = useRef<Set<string>>(new Set());
-
-  const loadReadiness = (refresh = false) => api.readiness(refresh).then(setReadiness).catch((e) => setError(String(e.message)));
+  const loadReadiness = (refresh = false) =>
+    api.readiness(refresh).then(setReadiness).catch((e) => setGlobalError(String(e.message)));
   const loadProfiles = () => api.profiles().then(setProfiles);
   const loadModels = () => api.models().then(setModels);
+  const refreshCatalog = () => {
+    loadModels();
+    loadReadiness();
+  };
 
   useEffect(() => {
     loadReadiness();
@@ -135,272 +93,107 @@ export default function App() {
       .catch(() => undefined);
   }, []);
 
-  const presetProfile = profiles.find((p) => p.name === preset);
+  // One shared model loader; two fully independent respondents.
+  const loader = useModelLoader(refreshCatalog);
+  const A = useRespondent({ profiles, models, loader, defaultPreset: "gss2024_cm", onChanged: refreshCatalog });
+  const B = useRespondent({ profiles, models, loader, defaultPreset: "gss2024_wf", onChanged: refreshCatalog });
 
-  const applyPreset = (name: string) => {
-    setPreset(name);
-    setManual(null);
-    setChosen(null);
-    setBehaviour({});
-    const p = profiles.find((x) => x.name === name);
-    if (!p) return;
-    setPersona(p.persona || "");
-    setCountry(p.country || "");
-    setContinent(p.continent || "");
-    setYear(p.year ? String(p.year) : "");
-    setDate(p.date || "");
-  };
-
-  // Start from the first configured preset so the page opens ready to go.
-  useEffect(() => {
-    if (!preset && !persona && profiles.length) {
-      const first = profiles.find((p) => p.name === "gss2024_cm") || profiles.find((p) => !p.error);
-      if (first) applyPreset(first.name);
-    }
-  }, [profiles]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Recommend native models whenever who/where/when changes.
-  useEffect(() => {
-    if (!persona && !country && !year && !date) return;
-    let cancelled = false;
-    setRecLoading(true);
-    const t = setTimeout(() => {
-      api
-        .recommend({
-          persona,
-          country,
-          year: year ? Number(year) : null,
-          date: date || null,
-          preferred_model: presetProfile?.model_key ?? null,
-        })
-        .then((r) => {
-          if (cancelled) return;
-          setRec(r);
-          setChosen((c) => (c && r.candidates.some((x) => x.model_key === c) ? c : null));
-        })
-        .catch((e) => !cancelled && setError(String(e.message || e)))
-        .finally(() => !cancelled && setRecLoading(false));
-    }, 350);
-    return () => {
-      cancelled = true;
-      clearTimeout(t);
-    };
-  }, [persona, country, year, date, presetProfile?.model_key]);
-
-  const effectiveKey: string | null = manual ?? (chosen && rec?.candidates.some((c) => c.model_key === chosen) ? chosen : rec?.default ?? null);
-  const candidate = rec?.candidates.find((c) => c.model_key === effectiveKey);
-  const model = models.find((m) => m.key === effectiveKey);
-
-  // The exact session request for the chosen model.
-  const request = useMemo(() => {
-    if (!effectiveKey) return null;
-    const fam = familyOf(effectiveKey);
-    const base = presetProfile && presetProfile.family === fam ? presetProfile.name : undefined;
-    const ov: Overrides = { ...behaviour, model_key: effectiveKey };
-    if (persona.trim()) ov.persona = persona;
-    const resolvedCountry = country.trim() || (rec?.resolved.sources.country === "description" ? rec.resolved.country : "");
-    if (resolvedCountry) ov.country = resolvedCountry;
-    if (base && continent) ov.continent = continent;
-    if (!manual && candidate) Object.assign(ov, candidate.overrides);
-    if (fam === "gss") ov.year = gssYear(effectiveKey);
-    else if (!ov.year && !manual && year && fam !== "eurobarometer") ov.year = Number(year);
-    return { base_profile: base, model_key: base ? undefined : effectiveKey, overrides: ov };
-  }, [effectiveKey, presetProfile, behaviour, persona, country, continent, year, manual, candidate, rec]);
-
-  // Resolve/validate the request (warnings, run defaults, capabilities).
-  useEffect(() => {
-    if (!request) return;
-    let cancelled = false;
-    setValidating(true);
-    const t = setTimeout(() => {
-      api
-        .validateProfile(request)
-        .then((r) => {
-          if (cancelled) return;
-          setResolved(r);
-          setValidationError(null);
-        })
-        .catch((e) => !cancelled && setValidationError(String(e.message || e)))
-        .finally(() => !cancelled && setValidating(false));
-    }, 250);
-    return () => {
-      cancelled = true;
-      clearTimeout(t);
-    };
-  }, [request]);
-
-  // Poll a model install/load job until it settles.
-  const pollModel = useCallback(async (key: string): Promise<ModelStatus> => {
-    polling.current.add(key);
+  const [count, setCount] = useState<1 | 2>(() => {
     try {
-      for (;;) {
-        const st = await api.modelStatus(key);
-        setLiveState((s) => ({ ...s, [key]: st.state }));
-        setStatus((cur) => (cur?.key === key || !cur ? st : cur));
-        if (!st.job_running && !BUSY_STATES.includes(st.state)) return st;
-        await new Promise((r) => setTimeout(r, 600));
-      }
-    } finally {
-      polling.current.delete(key);
+      return window.localStorage.getItem("dtag.respondents") === "2" ? 2 : 1;
+    } catch {
+      return 1;
     }
-  }, []);
+  });
+  const [tab, setTab] = useState<"A" | "B">("A");
+  const [target, setTarget] = useState<Target>("both");
+  const [builder, setBuilder] = useState(false);
+  const [seqOpen, setSeqOpen] = useState(false);
 
-  const ensureLoaded = useCallback(
-    async (key: string): Promise<void> => {
-      let st = await api.modelStatus(key);
-      setStatus(st);
-      if (st.state === "loaded") return;
-      if (!st.job_running) st = await api.installModel(key, true);
-      st = await pollModel(key);
-      if (st.state === "error") throw new Error(st.error || "model install failed");
-      if (st.state !== "loaded") {
-        await api.installModel(key, true);
-        st = await pollModel(key);
-        if (st.state !== "loaded") throw new Error(st.error || `model ${key} did not load`);
-      }
-      loadModels();
-      loadReadiness();
-    },
-    [pollModel]
-  );
-
-  // Automatically download (if needed) and load the chosen model.
-  useEffect(() => {
-    if (!effectiveKey) return;
-    let cancelled = false;
-    setStatus(undefined);
-    const t = setTimeout(() => {
-      if (cancelled || polling.current.has(effectiveKey)) return;
-      ensureLoaded(effectiveKey).catch((e) => !cancelled && setError(String(e.message || e)));
-    }, 700);
-    return () => {
-      cancelled = true;
-      clearTimeout(t);
-    };
-  }, [effectiveKey, ensureLoaded]);
-
-  const refreshSuggestions = (sid: string) =>
-    api.suggestions(sid).then(setSuggestions).catch(() => setSuggestions([]));
-
-  const start = async () => {
-    if (!request || !effectiveKey) return;
-    setError(null);
+  const setMode = (n: 1 | 2) => {
+    setCount(n);
+    if (n === 1) setTab("A");
     try {
-      setPhase("Getting the native model ready…");
-      await ensureLoaded(effectiveKey);
-      setPhase("Initializing respondent (persona interpretation, conditioning, initial ideology)…");
-      if (session) api.deleteSession(session.session_id).catch(() => undefined);
-      const s = await api.createSession({
-        profile: request.base_profile,
-        model_key: request.model_key,
-        overrides: request.overrides,
-      });
-      setSession(s);
-      setHistory([]);
-      setSeq(null);
-      refreshSuggestions(s.session_id);
-    } catch (e) {
-      setError(String((e as Error).message));
-    } finally {
-      setPhase(null);
-      loadModels();
-      loadReadiness();
+      window.localStorage.setItem("dtag.respondents", String(n));
+    } catch {
+      /* per-viewer convenience only */
     }
   };
 
-  const ask = async (q: string) => {
-    if (!session) return;
-    setPending(q);
-    setError(null);
-    try {
-      const r = await api.ask(session.session_id, q);
-      setHistory((h) => [...h, r]);
-      setSession(await api.session(session.session_id));
-      refreshSuggestions(session.session_id);
-    } catch (e) {
-      setError(String((e as Error).message));
-    } finally {
-      setPending(null);
-    }
+  const pair: Array<[Respondent, (typeof SLOTS)[number]]> = [[A, SLOTS[0]], [B, SLOTS[1]]];
+  const active = count === 2 ? pair : pair.slice(0, 1);
+  const editing = tab === "B" && count === 2 ? B : A;
+
+  // Who a question goes to: in single mode A; in split mode the target selector.
+  const targets = (): Respondent[] => {
+    if (count === 1) return [A];
+    const want = target === "both" ? [A, B] : target === "A" ? [A] : [B];
+    return want.filter((r) => r.session);
+  };
+  const askTargets = targets();
+  const canAsk = askTargets.length > 0 && askTargets.every((r) => r.session && !r.busy);
+  const ask = (q: string) => {
+    // Simultaneous: each respondent answers independently on its own session.
+    askTargets.forEach((r) => r.ask(q));
   };
 
-  // -- question sequences ------------------------------------------------------
-  const pollSequence = useCallback(async (sid: string, offset: number) => {
-    try {
-      const st = await api.sequence(sid, offset);
-      if (st.results.length) {
-        setHistory((h) => {
-          const have = new Set(h.map((r) => r.query_idx));
-          return [...h, ...st.results.filter((r) => !have.has(r.query_idx))];
-        });
-      }
-      setSeq((prev) => ({ ...st, results: [...(prev?.job_id === st.job_id ? prev.results : []), ...st.results] }));
-      setSession(await api.session(sid));
-      if (st.status === "queued" || st.status === "running") {
-        seqTimer.current = window.setTimeout(() => pollSequence(sid, offset + st.results.length), 900);
-      } else {
-        seqTimer.current = null;
-        refreshSuggestions(sid);
-      }
-    } catch (e) {
-      seqTimer.current = null;
-      setError(String((e as Error).message));
-    }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => () => {
-    if (seqTimer.current) window.clearTimeout(seqTimer.current);
-  }, []);
-
-  const runSequence = async (text: string, name: string, resetFirst: boolean) => {
-    if (!session) return;
-    setSeqOpen(false);
-    setError(null);
-    try {
-      const st = await api.startSequence(session.session_id, { text, name, reset_first: resetFirst });
-      if (resetFirst) setHistory([]);
-      setSeq({ ...st, results: [] });
-      pollSequence(session.session_id, 0);
-    } catch (e) {
-      setError(String((e as Error).message));
-    }
-  };
-
-  const seqRunning = seq !== null && (seq.status === "queued" || seq.status === "running") && seq.session_id === session?.session_id;
-
-  const reset = async () => {
-    if (!session) return;
-    try {
-      setSession(await api.reset(session.session_id));
-      setHistory([]);
-      refreshSuggestions(session.session_id);
-    } catch (e) {
-      setError(String((e as Error).message));
-    }
-  };
-
-  const saveCurrent = async () => {
-    if (!request) return;
+  const saveCurrent = async (r: Respondent) => {
+    if (!r.request) return;
     const name = window.prompt("Name for the custom profile (letters, digits, _ - .):");
     if (!name) return;
     try {
       await api.saveProfile({
         name,
-        base_profile: request.base_profile,
-        model_key: request.model_key,
-        overrides: request.overrides,
-        description: `${resolved?.model_label ?? effectiveKey} · ${country || rec?.resolved.country || ""}`,
+        base_profile: r.request.base_profile,
+        model_key: r.request.model_key,
+        overrides: r.request.overrides,
+        description: `${r.resolved?.model_label ?? r.effectiveKey} · ${r.country || r.rec?.resolved.country || ""}`,
       });
       await loadProfiles();
-      setPreset(name);
+      r.setPreset(name);
     } catch (e) {
-      setError(String((e as Error).message));
+      r.setError(String((e as Error).message));
     }
   };
 
-  const busy = Boolean(phase) || Boolean(pending) || seqRunning;
-  const modelBusy = effectiveKey ? BUSY_STATES.includes(liveState[effectiveKey] || "") : false;
-  const src = rec?.resolved.sources;
+  const deletePreset = async (r: Respondent) => {
+    const p = r.presetProfile;
+    if (!p || !window.confirm(`Delete custom profile ${p.name}?`)) return;
+    await api.deleteProfile(p.name);
+    r.setPreset("");
+    loadProfiles();
+  };
+
+  const startBoth = () => {
+    [A, B].forEach((r) => {
+      if (!r.busy && r.request && !r.validationError && !r.validating) r.start();
+    });
+  };
+  const canStartBoth = [A, B].every((r) => !r.busy && r.request && !r.validationError);
+
+  const emptyHint = (r: Respondent, label: string) =>
+    r.session ? (
+      <>
+        {label} ready ({r.session.resolved_profile.model_label}). Ask a question below
+        {count === 1 ? " or pick one of the suggested questions" : ""}; every answer is anchored to native LSM conditional
+        survey-response distributions and the survey state carries forward between questions.
+      </>
+    ) : (
+      <>
+        Describe {count === 2 ? label.toLowerCase() : "the respondent"} (<b>who</b>, <b>where</b>, <b>when</b>). DTAG picks the
+        matching native survey model, downloads it once if needed and loads it; then start the respondent.
+      </>
+    );
+
+  // Suggestions for the composer row: from A in single mode or when targeting A; from B when targeting B.
+  const sugSource = count === 2 && target === "B" ? B : A;
+  const composerSuggestions =
+    count === 1 ? (A.history.length > 0 ? A.suggestions : []) : sugSource.session ? sugSource.suggestions : [];
+
+  const seqTargets = askTargets;
+  const seqLabel = seqTargets
+    .map((r) => `${count === 2 ? (r === A ? "A: " : "B: ") : ""}${r.session?.resolved_profile.model_label ?? ""}`)
+    .join(" and ");
 
   return (
     <div className="app">
@@ -410,255 +203,185 @@ export default function App() {
         </div>
         <ReadinessBar r={readiness} onRefresh={() => loadReadiness(true)} />
         <span className="spacer" />
+        <div className="seg" role="radiogroup" aria-label="Number of respondents">
+          <span className="note">Respondents</span>
+          {[1, 2].map((n) => (
+            <button
+              key={n}
+              role="radio"
+              aria-checked={count === n}
+              className={count === n ? "on" : ""}
+              disabled={n === 1 && B.busy}
+              onClick={() => setMode(n as 1 | 2)}
+            >
+              {n}
+            </button>
+          ))}
+        </div>
         <a href="/docs" target="_blank" rel="noreferrer">
           API docs
         </a>
-        {readiness && (readiness as unknown as { auth?: string }).auth === "password" && (
-          <a href="/api/logout">Sign out</a>
-        )}
+        {readiness && (readiness as unknown as { auth?: string }).auth === "password" && <a href="/api/logout">Sign out</a>}
       </div>
 
-      <div className="main">
+      <div className={`main ${count === 2 ? "two" : ""}`}>
         <div className="col left">
-          <Section title="Respondent">
-            <label className="field">
-              <span>Start from a preset (optional)</span>
-              <select value={preset} disabled={busy} onChange={(e) => applyPreset(e.target.value)}>
-                <option value="">(none — describe the respondent below)</option>
-                <optgroup label="Configured">
-                  {profiles
-                    .filter((p) => p.source === "configured" && !p.error)
-                    .map((p) => (
-                      <option key={p.name} value={p.name}>
-                        {p.name} — {p.description}
-                      </option>
-                    ))}
-                </optgroup>
-                {profiles.some((p) => p.source === "custom") && (
-                  <optgroup label="Custom">
-                    {profiles
-                      .filter((p) => p.source === "custom" && !p.error)
-                      .map((p) => (
-                        <option key={p.name} value={p.name}>
-                          {p.name}
-                        </option>
-                      ))}
-                  </optgroup>
-                )}
-              </select>
-            </label>
-            <label className="field">
-              <span>Who — description</span>
-              <textarea
-                rows={3}
-                disabled={busy}
-                value={persona}
-                placeholder="e.g. 35 year old teacher in Nairobi, Kenya, regular news consumer"
-                onChange={(e) => setPersona(e.target.value)}
-              />
-            </label>
-            <div className="row">
-              <label className="field">
-                <span>Where — country</span>
-                <input
-                  type="text"
-                  list="dtag-country-list"
-                  disabled={busy}
-                  value={country}
-                  placeholder={src?.country === "description" ? `${rec?.resolved.country} (from description)` : "any country"}
-                  onChange={(e) => setCountry(e.target.value)}
-                />
-                <datalist id="dtag-country-list">
-                  {countries.map((c) => (
-                    <option key={c.key} value={c.name}>
-                      {c.families.join(", ")}
-                    </option>
-                  ))}
-                </datalist>
-              </label>
-              <label className="field" style={{ maxWidth: 92 }}>
-                <span>When — year</span>
-                <input
-                  type="number"
-                  min={1950}
-                  max={2035}
-                  disabled={busy}
-                  value={year}
-                  placeholder={src?.year === "description" ? String(rec?.resolved.year) : "latest"}
-                  onChange={(e) => setYear(e.target.value)}
-                />
-              </label>
-            </div>
-            <details open={Boolean(date)}>
-              <summary className="note" style={{ cursor: "pointer" }}>
-                Exact date (routes Eurobarometer to one fieldwork wave)
-              </summary>
-              <input type="date" disabled={busy} value={date} onChange={(e) => setDate(e.target.value)} />
-            </details>
-            {rec && (src?.country === "description" || src?.year === "description") && (
-              <div className="note" style={{ marginTop: 4 }}>
-                From the description:{" "}
-                {src?.country === "description" && (
-                  <span className="badge b-neutral">
-                    country {rec.resolved.country} ← “{rec.detected.country_evidence}”
-                  </span>
-                )}{" "}
-                {src?.year === "description" && (
-                  <span className="badge b-neutral">
-                    year {rec.resolved.year} ← “{rec.detected.year_evidence}”
-                  </span>
-                )}{" "}
-                (type in the fields to override)
+          {count === 2 && (
+            <>
+              <div className="tabs" role="tablist">
+                {SLOTS.map((sl) => {
+                  const r = sl.id === "A" ? A : B;
+                  return (
+                    <button
+                      key={sl.id}
+                      role="tab"
+                      aria-selected={tab === sl.id}
+                      className={tab === sl.id ? "on" : ""}
+                      onClick={() => setTab(sl.id as "A" | "B")}
+                    >
+                      <span className="swatch" style={{ background: sl.color }} />
+                      {sl.label}
+                      {r.session ? <span className="tab-ok" title="started">✓</span> : r.phase ? <span className="spinner" /> : null}
+                    </button>
+                  );
+                })}
               </div>
-            )}
-          </Section>
-
-          <Section title="Survey model">
-            <ModelChooser
-              rec={rec}
-              loading={recLoading}
-              chosen={effectiveKey}
-              manual={manual}
-              onChoose={(k) => {
-                setManual(null);
-                setChosen(k);
-              }}
-              onManual={setManual}
-              liveState={liveState}
-              models={models}
-              disabled={busy}
-            />
-            {(liveState[effectiveKey ?? ""] ?? model?.status.state) !== "loaded" && (
-            <div style={{ marginTop: 8 }}>
-              <ModelPanel
-                model={model}
-                status={status && status.key === effectiveKey ? status : undefined}
-                onInstall={() => effectiveKey && ensureLoaded(effectiveKey).catch((e) => setError(String(e.message)))}
-                busy={busy || modelBusy}
+              <div className="actions" style={{ marginBottom: 10 }}>
+                <button className="btn primary" onClick={startBoth} disabled={!canStartBoth}>
+                  {A.session || B.session ? "Restart both" : "Start both respondents"}
+                </button>
+              </div>
+            </>
+          )}
+          {pair.map(([r, sl]) => (
+            <div key={sl.id} className="setup" hidden={editing !== r}>
+              <RespondentSetup
+                r={r}
+                label={count === 2 ? sl.id : undefined}
+                profiles={profiles}
+                models={models}
+                ebWaves={ebWaves}
+                ebDates={ebDates}
+                geography={geography}
+                liveState={loader.liveState}
+                onSave={() => saveCurrent(r)}
+                onBuilder={() => setBuilder(true)}
+                onDeletePreset={() => deletePreset(r)}
               />
             </div>
-            )}
-          </Section>
-
-          <Controls
-            only={["behaviour"]}
-            resolved={resolved}
-            overrides={behaviour}
-            onChange={setBehaviour}
-            models={models}
-            ebWaves={ebWaves}
-            ebDatesAvailable={ebDates}
-            capabilities={resolved?.capabilities}
-            geography={geography}
-            disabled={busy}
-          />
-
-          {validationError && <div className="error">{validationError}</div>}
-          {resolved && resolved.warnings.length > 0 && (
-            <details>
-              <summary className="note" style={{ cursor: "pointer" }}>
-                Conditioning details ({resolved.warnings.length})
-              </summary>
-              <ul className="warn-list">
-                {resolved.warnings.map((w) => (
-                  <li key={w} className={/hard-conditioned|resolves to/.test(w) ? "info" : ""}>
-                    {w}
-                  </li>
-                ))}
-              </ul>
-            </details>
-          )}
-
-          <div className="actions" style={{ marginTop: 10 }}>
-            <button
-              className="btn primary"
-              onClick={start}
-              disabled={busy || validating || !request || !!validationError}
-              title={modelBusy ? "The model is still downloading/loading; starting will wait for it." : ""}
-            >
-              {session ? "Start new respondent" : "Start respondent"}
-            </button>
-            <button className="btn" onClick={reset} disabled={busy || !session}>
-              Reset respondent
-            </button>
-          </div>
-          <div className="actions" style={{ marginTop: 6 }}>
-            <button className="link" onClick={saveCurrent} disabled={busy || !request || !!validationError}>
-              Save as custom profile
-            </button>
-            <button className="link" onClick={() => setBuilder(true)} disabled={busy}>
-              Advanced profile builder…
-            </button>
-            {presetProfile?.source === "custom" && (
-              <button
-                className="link"
-                onClick={async () => {
-                  if (!window.confirm(`Delete custom profile ${presetProfile.name}?`)) return;
-                  await api.deleteProfile(presetProfile.name);
-                  setPreset("");
-                  loadProfiles();
-                }}
-              >
-                Delete preset
-              </button>
-            )}
-          </div>
-          {phase && (
-            <div className="box" style={{ marginTop: 8 }}>
-              <span className="spinner" /> {phase}
-            </div>
-          )}
-          {error && (
+          ))}
+          <datalist id="dtag-country-list">
+            {countries.map((c) => (
+              <option key={c.key} value={c.name}>
+                {c.families.join(", ")}
+              </option>
+            ))}
+          </datalist>
+          {globalError && (
             <div className="error" style={{ marginTop: 8 }}>
-              {error}
+              {globalError}
             </div>
           )}
         </div>
 
         <div className="center">
-          <Chat
-            history={history}
-            pending={pending}
-            canAsk={Boolean(session) && !busy}
+          <div className={count === 2 ? "split" : "single"}>
+            {active.map(([r, sl]) => (
+              <div key={sl.id} className="pane" style={count === 2 ? ({ "--pane": sl.color } as React.CSSProperties) : undefined}>
+                {count === 2 && (
+                  <div className="pane-h">
+                    <span className="swatch" style={{ background: sl.color }} />
+                    <b>{sl.label}</b>
+                    <span className="note pane-sub" title={r.persona}>
+                      {r.session ? r.session.resolved_profile.model_label : r.effectiveKey ?? "no model yet"} · {r.persona || "—"}
+                    </span>
+                    {r.session?.ideology.enabled && r.session.ideology.current !== null && (
+                      <span className="mono pane-i">I {r.session.ideology.current.toFixed(4)}</span>
+                    )}
+                  </div>
+                )}
+                <ChatLog
+                  history={r.history}
+                  pending={r.pending}
+                  canAsk={Boolean(r.session) && !r.busy}
+                  onAsk={r.ask}
+                  idPrefix={sl.prefix}
+                  suggestions={r.session && count === 1 ? r.suggestions : []}
+                  emptyHint={emptyHint(r, sl.label)}
+                />
+              </div>
+            ))}
+          </div>
+          <Composer
+            canAsk={canAsk}
             onAsk={ask}
-            onSequence={session ? () => setSeqOpen(true) : undefined}
-            suggestions={session ? suggestions : []}
-            emptyHint={
-              session ? (
-                <>
-                  Respondent ready ({session.resolved_profile.model_label}). Ask a question below or pick one of the suggested
-                  questions; every answer is anchored to native LSM conditional survey-response distributions and the survey
-                  state carries forward between questions.
-                </>
-              ) : (
-                <>
-                  Describe the respondent (<b>who</b>, <b>where</b>, <b>when</b>). DTAG picks the matching native survey model,
-                  downloads it once if needed and loads it; then start the respondent.
-                </>
-              )
+            suggestions={composerSuggestions}
+            onSequence={askTargets.length ? () => setSeqOpen(true) : undefined}
+            placeholder={
+              count === 1 ? "Ask this respondent a question..." : target === "both" ? "Ask both respondents the same question..." : `Ask respondent ${target} only...`
+            }
+            target={
+              count === 2 ? (
+                <select className="target" value={target} onChange={(e) => setTarget(e.target.value as Target)} aria-label="Ask whom">
+                  <option value="both">Both</option>
+                  <option value="A">A only</option>
+                  <option value="B">B only</option>
+                </select>
+              ) : undefined
             }
           />
         </div>
 
         <div className="col right">
-          {seq && session && seq.session_id === session.session_id && (
-            <SequenceCard
-              seq={seq}
-              onCancel={() => api.cancelSequence(seq.session_id).catch((e) => setError(String(e.message)))}
-              onJump={(i) => document.getElementById(`q-${i}`)?.scrollIntoView({ behavior: "smooth" })}
-            />
+          {active.map(([r, sl]) =>
+            r.seq && r.session && r.seq.session_id === r.session.session_id ? (
+              <div key={sl.id}>
+                {count === 2 && <div className="note"><span className="swatch" style={{ background: sl.color }} /> {sl.label}</div>}
+                <SequenceCard
+                  seq={r.seq}
+                  onCancel={r.cancelSequence}
+                  onJump={(i) => document.getElementById(`${sl.prefix}q-${i}`)?.scrollIntoView({ behavior: "smooth" })}
+                />
+              </div>
+            ) : null
           )}
-          <StatePanel session={session} history={history} />
+          {count === 2 ? (
+            <>
+              <Section title="Ideology · A vs B">
+                <IdeologyCompare
+                  items={pair.map(([r, sl]) => ({ label: sl.label, color: sl.color, marker: sl.marker, dashed: sl.dashed, session: r.session }))}
+                />
+              </Section>
+              <div className="tabs" role="tablist">
+                {SLOTS.map((sl) => (
+                  <button key={sl.id} role="tab" aria-selected={tab === sl.id} className={tab === sl.id ? "on" : ""} onClick={() => setTab(sl.id as "A" | "B")}>
+                    <span className="swatch" style={{ background: sl.color }} />
+                    {sl.label}
+                  </button>
+                ))}
+              </div>
+              {pair.map(([r, sl]) => (
+                <div key={sl.id} hidden={tab !== sl.id}>
+                  <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} />
+                </div>
+              ))}
+            </>
+          ) : (
+            <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix} />
+          )}
         </div>
       </div>
 
-      {seqOpen && session && (
+      {seqOpen && seqTargets.length > 0 && (
         <SequenceDialog
-          modelLabel={session.resolved_profile.model_label}
-          ideology={session.ideology.enabled}
-          questionCount={session.question_count}
+          modelLabel={seqLabel}
+          ideology={seqTargets.some((r) => r.session?.ideology.enabled)}
+          questionCount={Math.max(...seqTargets.map((r) => r.session?.question_count ?? 0))}
           onClose={() => setSeqOpen(false)}
-          onRun={runSequence}
+          onRun={(text, name, resetFirst) => {
+            setSeqOpen(false);
+            seqTargets.forEach((r) => r.runSequence(text, name, resetFirst));
+          }}
         />
       )}
 
@@ -674,16 +397,16 @@ export default function App() {
           onSaved={async (name) => {
             setBuilder(false);
             await loadProfiles();
-            applyPreset(name);
+            editing.applyPreset(name);
           }}
           onUse={(d) => {
             setBuilder(false);
             const o = d.overrides;
-            if (o.persona) setPersona(o.persona);
-            if (o.country !== undefined) setCountry(o.country);
-            setDate(o.date || "");
-            setYear(o.year ? String(o.year) : "");
-            setManual(d.model_key || o.model_key || null);
+            if (o.persona) editing.setPersona(o.persona);
+            if (o.country !== undefined) editing.setCountry(o.country);
+            editing.setDate(o.date || "");
+            editing.setYear(o.year ? String(o.year) : "");
+            editing.setManual(d.model_key || o.model_key || null);
           }}
         />
       )}
