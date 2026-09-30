@@ -36,6 +36,18 @@ def test_parse_question_lines():
     assert parse_question_lines("\n\n") == []
 
 
+def test_parse_step_question_csv():
+    text = 'step,question\n1,"Should X, or Y?"\n2,Plain question?\n'
+    assert parse_question_lines(text) == ["Should X, or Y?", "Plain question?"]
+    from conftest import ROOT
+    sets = sorted((ROOT / "assets" / "question_sets").glob("*/*.csv"))
+    assert sets
+    for f in sets:
+        qs = parse_question_lines(f.read_text(encoding="utf-8"))
+        assert qs and all(not q[:1].isdigit() or not q[1:3].startswith(",") for q in qs), f.name
+        assert all(q.lower() not in ("question", "step,question") for q in qs), f.name
+
+
 def test_sequence_runs_in_order_and_tracks_ideology(fake_client):
     sid = _session(fake_client)
     start = fake_client.get(f"/api/sessions/{sid}").json()["ideology"]["current"]

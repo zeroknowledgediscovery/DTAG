@@ -8,6 +8,8 @@ for progress and results, and may cancel between questions.
 """
 from __future__ import annotations
 
+import csv
+import io
 import threading
 import time
 import uuid
@@ -15,9 +17,25 @@ from typing import Any, Dict, List, Optional
 
 
 def parse_question_lines(text: str) -> List[str]:
-    """One question per line; skip blanks, ``#`` comments and a ``question`` header."""
+    """One question per line; skip blanks, ``#`` comments and a ``question`` header.
+
+    A CSV whose header row has a ``question`` column (e.g. ``step,question``, the
+    format of ``assets/question_sets``) is read by that column instead.
+    """
+    lines = str(text).splitlines()
+    first = next((ln.strip() for ln in lines if ln.strip()), "")
+    header = [h.strip().strip('"').lower() for h in next(csv.reader([first]))] if first else []
+    if len(header) > 1 and "question" in header:
+        col = header.index("question")
+        out = []
+        for row in csv.reader(io.StringIO("\n".join(ln for ln in lines if ln.strip())) ):
+            if len(row) > col and row[col].strip() and row[col].strip().lower() != "question":
+                q = row[col].strip()
+                if not q.startswith("#"):
+                    out.append(q)
+        return out
     out: List[str] = []
-    for i, line in enumerate(str(text).splitlines()):
+    for i, line in enumerate(lines):
         q = line.strip().strip('"').strip()
         if not q or q.startswith("#"):
             continue
