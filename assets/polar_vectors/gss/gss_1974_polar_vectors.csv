@@ -1,6 +1,5 @@
 variable,R,L
 abdefect,no,yes
-abhlth,no,yes
 abnomore,no,yes
 abpoor,no,yes
 abrape,no,yes
@@ -12,7 +11,7 @@ gunlaw,oppose,favor
 libcom,remove,not remove
 libhomo,remove,not remove
 natarms,about right,too much
-natenvir,too much,too little
+natenvir,about right,too little
 natfare,too much,too little
 owngun,yes,no
 prayer,disapprove,approve

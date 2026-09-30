@@ -95,4 +95,4 @@ def test_real_model_poles_all_valid(native_engine):
     assert [d for d in g.dropped if d["reason"] != "item not in model"] == []
     for v in g.left_map:
         assert g.left_map[v] in ctx.possible[v] and g.right_map[v] in ctx.possible[v]
-    assert len(g.left_map) == 28
+    assert len(g.left_map) == 27
