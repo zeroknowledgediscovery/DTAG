@@ -290,7 +290,7 @@ def _score_items(pool: mp.Pool, pop: Dict, vars_: List[str], n: int) -> List[Tup
 
 
 def optimize(pool: mp.Pool, w: World, cands: List[str], n_pop: int, length: int, prescreen: int,
-             rescreen_every: int, screen_pop: int, min_gain: float, log) -> List[Dict]:
+             rescreen_every: int, screen_pop: int, min_gain: float, force: bool, log) -> List[Dict]:
     pop = {s: [] for s in SIGN}
     for s in SIGN:
         for i in range(n_pop):
@@ -307,7 +307,10 @@ def optimize(pool: mp.Pool, w: World, cands: List[str], n_pop: int, length: int,
             rough = _score_items(pool, pop, [v for v in cands if v not in used], screen_pop)
             shortlist = [v for _, v, _ in rough[:prescreen]]
         scored = _score_items(pool, pop, [v for v in shortlist if v not in used], n_pop)
-        if not scored or scored[0][0] < current + min_gain:
+        if not scored:
+            break
+        forced = scored[0][0] < current + min_gain
+        if forced and not force:
             log(f"step {step + 1}: no item raises the robust score (z) by {min_gain}; stopping at {len(chosen)} questions")
             break
         current = scored[0][0]
@@ -315,7 +318,7 @@ def optimize(pool: mp.Pool, w: World, cands: List[str], n_pop: int, length: int,
         chosen.append({"variable": v, "text": w.text.get(v, ""), "score": sc, **{f"{s}_{k}": per[s][k] for s in SIGN for k in per[s]}})
         log(f"step {step + 1}: {v:12s} z={sc:+.2f}  CM net={per['CM']['mean_net']:+.4f}±{per['CM']['sd_net']:.4f} right={per['CM']['share_right']:.2f}"
             f"  WF net={per['WF']['mean_net']:+.4f}±{per['WF']['sd_net']:.4f} right={per['WF']['share_right']:.2f} (signed) | {w.text.get(v, '')[:50]}"
-            + ("  [after full screen]" if full else ""))
+            + ("  [after full screen]" if full else "") + ("  [forced: no item improved z]" if forced else ""))
         adv = pool.map(_draw, [(st, v, 1_000_003 * step + 2 * i + (s == 'WF')) for s in SIGN for i, (st, _, _) in enumerate(pop[s])])
         starts = {s: [x[2] for x in pop[s]] for s in SIGN}
         pop = {s: [(st, I, starts[s][i]) for i, (st, I) in enumerate(adv[j * n_pop:(j + 1) * n_pop])] for j, s in enumerate(SIGN)}
@@ -337,9 +340,10 @@ def ci(x: np.ndarray, rng: np.random.Generator, B: int = 2000) -> Tuple[float, f
     return float(x.mean()), float(np.quantile(boots, 0.025)), float(np.quantile(boots, 0.975))
 
 
-def summarize(traj: Dict[str, np.ndarray], rng: np.random.Generator) -> Dict:
-    dC = traj["CM"][:, -1] - traj["CM"][:, 0]
-    dW = traj["WF"][:, -1] - traj["WF"][:, 0]
+def summarize(traj: Dict[str, np.ndarray], rng: np.random.Generator, k: int = -1) -> Dict:
+    """Change after k questions (default: the whole sequence) with bootstrap 95% CIs."""
+    dC = traj["CM"][:, k] - traj["CM"][:, 0]
+    dW = traj["WF"][:, k] - traj["WF"][:, 0]
     m = min(len(dC), len(dW))
     gap = dC[:m] - dW[:m]
     return {"n": int(len(dC)),
@@ -358,9 +362,10 @@ def main() -> None:
     ap.add_argument("--pop", type=int, default=16, help="perturbed initial states per persona during search")
     ap.add_argument("--prescreen", type=int, default=30, help="shortlist size from each full screen")
     ap.add_argument("--screen-pop", type=int, default=4, help="states per persona for the full screen")
-    ap.add_argument("--rescreen-every", type=int, default=4)
+    ap.add_argument("--rescreen-every", type=int, default=2)
     ap.add_argument("--min-gain", type=float, default=0.02, help="stop when no item raises the robust score (z) this much")
     ap.add_argument("--sd-floor", type=float, default=0.01, help="minimum spread (index units) in the robustness score")
+    ap.add_argument("--force-length", action="store_true", help="always build --length questions (add the best item even if it does not raise z)")
     ap.add_argument("--rich", action="store_true", help="personas include party, religion, attendance, marital status, education")
     ap.add_argument("--n-val", type=int, default=300, help="held-out validation runs per persona")
     ap.add_argument("--baselines", type=int, default=20, help="random opinion-item sequences for comparison")
@@ -390,7 +395,7 @@ def main() -> None:
         if args.sequence:
             seq = args.sequence.split(",")
         else:
-            chosen = optimize(pool, w, cands, args.pop, args.length, args.prescreen, args.rescreen_every, args.screen_pop, args.min_gain, log)
+            chosen = optimize(pool, w, cands, args.pop, args.length, args.prescreen, args.rescreen_every, args.screen_pop, args.min_gain, args.force_length, log)
             json.dump(chosen, open(out / "search.json", "w"), indent=1)
             seq = [c["variable"] for c in chosen]
         log("sequence: " + ",".join(seq))
@@ -399,6 +404,10 @@ def main() -> None:
         np.savez(out / "validation_trajectories.npz", CM=traj["CM"], WF=traj["WF"])
         results["optimized"] = summarize(traj, rng)
         results["optimized"]["per_step"] = {s: [ci(traj[s][:, k] - traj[s][:, 0], rng) for k in range(traj[s].shape[1])] for s in SIGN}
+        results["optimized"]["per_length"] = [dict(length=k, **summarize(traj, rng, k)) for k in range(1, len(seq) + 1)]
+        for r in results["optimized"]["per_length"]:
+            log(f"  first {r['length']:2d}: CM {r['CM_change'][0]:+.4f} [{r['CM_change'][1]:+.4f},{r['CM_change'][2]:+.4f}] up {r['CM_share_up']:.2f}"
+                f" | WF {r['WF_change'][0]:+.4f} [{r['WF_change'][1]:+.4f},{r['WF_change'][2]:+.4f}] down {r['WF_share_down']:.2f} | both {r['share_both']:.2f}")
         log(f"optimized: {json.dumps({k: v for k, v in results['optimized'].items() if k != 'per_step'})}")
         for spec in args.compare:
             name, vs = spec.split("=", 1)
