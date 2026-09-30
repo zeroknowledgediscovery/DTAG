@@ -1,0 +1,53 @@
+set,step,variable,question,CM_answer,WF_answer,dI_CM,dI_WF,I_CM,I_WF
+same_both_up,1,confed,"How much confidence do you have in the people running the executive branch of the federal government: a great deal, only some, or hardly any?",hardly any,hardly any,+0.0653,+0.0664,+0.0740,-0.0295
+same_both_up,2,relpersn,"Would you describe yourself as a very religious, moderately religious, slightly religious, or not at all religious person?",moderately religious,moderately religious,+0.0394,+0.0446,+0.1134,+0.0151
+same_both_up,3,colmslm,Should a Muslim clergyman who preaches hatred of the United States be allowed to teach in a college or university?,not allowed,not allowed,+0.0249,+0.0248,+0.1383,+0.0399
+same_both_up,4,spkmslm,"If a Muslim clergyman who preaches hatred of the United States wanted to make a speech in your community, should he be allowed to speak?",not allowed,not allowed,+0.0261,+0.0261,+0.1643,+0.0659
+same_both_up,5,spkrac,"If a person who believes that Black people are genetically inferior wanted to make a speech in your community, should he be allowed to speak?",not allowed,not allowed,+0.0135,+0.0135,+0.1778,+0.0794
+same_both_up,6,chngdocs,"Should the law allow people to change the sex listed on their official documents, such as passports and driver's licenses?","no, the law should not allow","no, the law should not allow",+0.0138,+0.0130,+0.1916,+0.0924
+same_both_up,7,teensex,"If teenagers aged 14 to 16 have sex relations before marriage, is that always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",always wrong,always wrong,+0.0087,+0.0089,+0.2003,+0.1013
+same_both_up,8,natsci,"Are we spending too much, too little, or about the right amount on supporting scientific research?",about right,about right,+0.0082,+0.0081,+0.2085,+0.1095
+same_both_up,9,rateincumb24,"On a scale from 0 to 100, how would you rate Joe Biden?",0.0,0.0,+0.0078,+0.0073,+0.2163,+0.1167
+same_both_up,10,raterepp,"On a scale from 0 to 100, how would you rate the Republican Party?",50.0,50.0,+0.0049,+0.0057,+0.2212,+0.1224
+same_both_up,11,colrac,Should a person who believes that Black people are genetically inferior be allowed to teach in a college or university?,not allowed,not allowed,+0.0047,+0.0047,+0.2259,+0.1271
+same_both_up,12,bible,"Which is closest to your feelings about the Bible: it is the actual word of God, the inspired word of God, or an ancient book of fables, legends, history and moral precepts?",inspired word,inspired word,+0.0044,+0.0045,+0.2303,+0.1316
+same_both_down,1,abany,Should it be possible for a pregnant woman to obtain a legal abortion if she wants it for any reason?,yes,yes,-0.1237,-0.0953,-0.1150,-0.1912
+same_both_down,2,libmslm,"If some people in your community suggested that a book by a Muslim clergyman who preaches hatred of the United States be taken out of your public library, would you favor removing it?",not remove,not remove,-0.0447,-0.0447,-0.1598,-0.2359
+same_both_down,3,absingle,Should it be possible for a pregnant woman to obtain a legal abortion if she is not married and does not want to marry the man?,yes,yes,-0.0438,-0.0441,-0.2036,-0.2800
+same_both_down,4,abpoor,Should it be possible for a pregnant woman to obtain a legal abortion if the family has a very low income and cannot afford any more children?,yes,yes,-0.0304,-0.0302,-0.2339,-0.3102
+same_both_down,5,libcom,"If some people in your community suggested that a book by an admitted Communist be taken out of your public library, would you favor removing it?",not remove,not remove,-0.0271,-0.0271,-0.2611,-0.3374
+same_both_down,6,abnomore,Should it be possible for a pregnant woman to obtain a legal abortion if she is married and does not want any more children?,yes,yes,-0.0241,-0.0249,-0.2851,-0.3623
+same_both_down,7,homosex,"What about sexual relations between two adults of the same sex: is it always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",not wrong at all,not wrong at all,-0.0251,-0.0240,-0.3103,-0.3863
+same_both_down,8,spkcom,"If an admitted Communist wanted to make a speech in your community, should he be allowed to speak?","yes, allowed to speak","yes, allowed to speak",-0.0239,-0.0240,-0.3341,-0.4103
+same_both_down,9,natenvir,"Are we spending too much, too little, or about the right amount on improving and protecting the environment?",too little,too little,-0.0180,-0.0192,-0.3522,-0.4295
+same_both_down,10,natfare,"Are we spending too much, too little, or about the right amount on welfare?",too little,too little,-0.0205,-0.0150,-0.3727,-0.4445
+same_both_down,11,pillok,Do you agree or disagree that methods of birth control should be available to teenagers between the ages of 14 and 16 if their parents do not approve?,strongly agree,strongly agree,-0.0239,-0.0135,-0.3966,-0.4580
+same_both_down,12,natsoc,"Are we spending too much, too little, or about the right amount on Social Security?",too little,too little,-0.0118,-0.0121,-0.4083,-0.4701
+opposite_wf_up_cm_down,1,pillok,Do you agree or disagree that methods of birth control should be available to teenagers between the ages of 14 and 16 if their parents do not approve?,strongly agree,strongly agree,-0.0253,-0.0149,-0.0166,-0.1108
+opposite_wf_up_cm_down,2,premarsx,"If a man and a woman have sex relations before marriage, is that always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",not wrong at all,not wrong at all,-0.0065,-0.0059,-0.0231,-0.1167
+opposite_wf_up_cm_down,3,befair,"Do you think most people would try to take advantage of you if they got a chance, or would they try to be fair?",try to be fair most of the time,try to be fair most of the time,-0.0066,-0.0017,-0.0297,-0.1184
+opposite_wf_up_cm_down,4,god,Which comes closest to your belief about God: you don't believe; you don't know and can't find out; you believe in a higher power; you believe sometimes; you believe but have doubts; or you know God exists and have no doubts?,no doubts,no doubts,+0.0163,+0.0204,-0.0134,-0.0979
+opposite_wf_up_cm_down,5,ratechall224,"On a scale from 0 to 100, how would you rate Kamala Harris?",0.0,0.0,+0.0093,+0.0139,-0.0040,-0.0841
+opposite_wf_up_cm_down,6,conpow,Do you agree or disagree that in America there is conflict between ordinary people and those in power?,agree,agree,-0.0019,-0.0019,-0.0060,-0.0860
+opposite_wf_up_cm_down,7,cappun,Do you favor or oppose the death penalty for persons convicted of murder?,favor,favor,+0.0022,+0.0049,-0.0037,-0.0812
+opposite_wf_up_cm_down,8,helppoor,"Should the government in Washington do everything possible to improve the standard of living of all poor Americans, or should each person take care of themselves?",agree with both,agree with both,-0.0012,+0.0004,-0.0049,-0.0807
+opposite_wf_up_cm_down,9,workhsps,"On a scale from 1 (hard-working) to 7 (lazy), where would you place Hispanic Americans in general?",4.0,4.0,-0.0009,+0.0009,-0.0057,-0.0798
+opposite_wf_up_cm_down,10,wrkwayup,"Do you agree or disagree: Irish, Italians, Jewish people and many other minorities overcame prejudice and worked their way up; Black people should do the same without special favors?",agree strongly,agree strongly,+0.0026,+0.0027,-0.0031,-0.0771
+opposite_wf_up_cm_down,11,rateincumb24,"On a scale from 0 to 100, how would you rate Joe Biden?",0.0,0.0,+0.0070,+0.0066,+0.0038,-0.0705
+opposite_wf_up_cm_down,12,colcom,Should an admitted Communist who is teaching in a college be fired?,not fired,not fired,-0.0106,-0.0106,-0.0067,-0.0810
+opposite_cm_up_wf_down,1,pray,About how often do you pray?,several times a day,never,+0.0950,-0.1930,+0.1036,-0.2889
+opposite_cm_up_wf_down,2,confed,"How much confidence do you have in the people running the executive branch of the federal government: a great deal, only some, or hardly any?",hardly any,hardly any,+0.0653,+0.0664,+0.1690,-0.2226
+opposite_cm_up_wf_down,3,relpersn,"Would you describe yourself as a very religious, moderately religious, slightly religious, or not at all religious person?",moderately religious,not religious at all,+0.0049,-0.0273,+0.1738,-0.2499
+opposite_cm_up_wf_down,4,bible,"Which is closest to your feelings about the Bible: it is the actual word of God, the inspired word of God, or an ancient book of fables, legends, history and moral precepts?",inspired word,ancient book,+0.0104,-0.0330,+0.1842,-0.2829
+opposite_cm_up_wf_down,5,amchrstn,How important is being a Christian for being truly American?,very important,not important at all,+0.0104,-0.0019,+0.1946,-0.2848
+opposite_cm_up_wf_down,6,natarms,"Are we spending too much, too little, or about the right amount on the military, armaments and defense?",about right,too much,+0.0070,-0.0211,+0.2016,-0.3060
+opposite_cm_up_wf_down,7,natsci,"Are we spending too much, too little, or about the right amount on supporting scientific research?",about right,about right,+0.0082,+0.0081,+0.2098,-0.2978
+opposite_cm_up_wf_down,8,dsndntpay,Should the government pay reparations to the descendants of enslaved people?,no,yes,+0.0063,-0.0097,+0.2161,-0.3076
+opposite_cm_up_wf_down,9,religinf,Do you agree or disagree: the United States would be a better country if religion had less influence?,disagree,strongly agree,+0.0056,-0.0103,+0.2218,-0.3179
+opposite_cm_up_wf_down,10,polabuse,Would you approve of a policeman striking an adult male citizen who had said vulgar and obscene things to the policeman?,no,no,+0.0043,+0.0016,+0.2261,-0.3164
+opposite_cm_up_wf_down,11,affrmact,Are you for or against preferential hiring and promotion of Black people to make up for past discrimination?,strongly opposes,strongly opposes,+0.0027,+0.0006,+0.2288,-0.3157
+opposite_cm_up_wf_down,12,wrkwayup,"Do you agree or disagree: Irish, Italians, Jewish people and many other minorities overcame prejudice and worked their way up; Black people should do the same without special favors?",agree strongly,disagree strongly,+0.0017,-0.0051,+0.2305,-0.3208
+opposite_cm_up_wf_down_strict,1,pray,About how often do you pray?,several times a day,never,+0.0950,-0.1930,+0.1036,-0.2889
+opposite_cm_up_wf_down_strict,2,natarms,"Are we spending too much, too little, or about the right amount on the military, armaments and defense?",about right,too much,+0.0064,-0.0208,+0.1101,-0.3097
+opposite_cm_up_wf_down_strict,3,dsndntpay,Should the government pay reparations to the descendants of enslaved people?,no,yes,+0.0063,-0.0097,+0.1164,-0.3195
+opposite_cm_up_wf_down_strict,4,religinf,Do you agree or disagree: the United States would be a better country if religion had less influence?,strongly disagree,strongly agree,+0.0021,-0.0133,+0.1184,-0.3327
