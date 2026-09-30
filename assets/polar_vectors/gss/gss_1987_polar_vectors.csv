@@ -1,7 +1,6 @@
 variable,R,L
 abany,no,yes
 abdefect,no,yes
-abhlth,no,yes
 abnomore,no,yes
 abpoor,no,yes
 abrape,no,yes
@@ -17,9 +16,9 @@ libcom,remove,not remove
 libhomo,remove,not remove
 libmil,not remove,remove
 natarms,about right,too much
-natenvir,too much,too little
+natenvir,about right,too little
 natfare,too much,too little
-natsoc,too much,too little
+natsoc,about right,too little
 owngun,yes,no
 polabuse,no,yes
 pray,several times a day,never

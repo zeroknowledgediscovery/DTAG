@@ -45,3 +45,40 @@ that wave's file automatically, and it validates every pole pair against the
 loaded model. Unrecognised answers are dropped and reported in the run's
 metadata (`polar_vectors_summary.dropped_items`) and in the web app's ideology
 details.
+
+## Right-pole revision (v2)
+
+The original right pole used several answers that only a small minority of
+GSS respondents give, which placed the R pole far from the population and
+pushed the model's average respondent (and most conservative personas) to a
+negative index. The canonical R pole was revised with one rule, applied once
+and used unchanged in every wave:
+
+> A right-pole answer given by fewer than 15% of respondents (model marginal,
+> averaged over GSS 2014, 2016, 2018, 2022 and 2024) moves one step toward
+> the centre of its answer scale, never past the middle category. If no such
+> answer exists (yes/no items), the item is dropped from both poles.
+
+| Item | R (v1) | R (v2) | Share giving the v1 answer |
+|---|---|---|---:|
+| `natsoc` | too much | about right | ~6% |
+| `natenvir` | too much | about right | ~10% |
+| `pillok`, `pilloky` | strongly disagree | disagree | ~14% |
+| `religcon`, `religint` | strongly disagree | disagree | ~3–4% |
+| `abhlth` | no | dropped (both poles) | ~8% |
+
+The left pole is unchanged. The previous definition is kept as
+`polar_vectors_v1.csv` so earlier runs can be reproduced
+(`--polar_vectors assets/polar_vectors/polar_vectors_v1.csv`; the wave-specific
+switch applies only to the canonical `polar_vectors.csv`).
+
+Effect on the ideology index (average respondent / conservative-male persona /
+progressive-female persona, persona states fixed):
+
+| Wave | v1 | v2 |
+|---|---|---|
+| 2014 | −0.117 / −0.058 / −0.192 | −0.039 / +0.017 / −0.126 |
+| 2016 | −0.060 / −0.031 / −0.123 | +0.046 / +0.063 / −0.031 |
+| 2018 | −0.057 / −0.045 / −0.083 | +0.060 / +0.071 / +0.027 |
+| 2022 | −0.193 / −0.091 / −0.270 | −0.100 / −0.001 / −0.196 |
+| 2024 | −0.138 / −0.054 / −0.251 | −0.052 / +0.020 / −0.196 |
