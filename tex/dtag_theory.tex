@@ -1,0 +1,682 @@
+\documentclass[journal]{IEEEtran}
+
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,array}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{enumitem}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+\newtheorem{assumption}{Assumption}
+
+\DeclareMathOperator{\JS}{JS}
+\DeclareMathOperator{\KL}{KL}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\argmax}{arg\,max}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\Sset}{\mathcal{S}}
+\newcommand{\DeltaS}{\Delta}
+\newcommand{\botv}{\perp}
+\newcommand{\1}{\mathbf{1}}
+
+\title{Digital Twin Anchored Generation (DTAG):\\
+A Mathematical Theory and Implementation Correspondence within the Large Science Model Framework}
+
+\author{Ishanu Chattopadhyay%
+\thanks{Technical report. Implementation alignment snapshot: DTAG main commit \texttt{a0904225a4fcfb225b844089fb8456eb58267cd5} and LSM main commit \texttt{2c07b57665a443ca05f5e4bf5d86f49943c60ba2}, 29 September 2026.}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Digital Twin Anchored Generation (DTAG) is a stateful generative system in which free-form natural-language interaction is constrained by a Large Science Model (LSM) learned from a categorical observational system. This report gives a mathematical specification that is deliberately aligned with the current DTAG and native LSM implementations. An LSM is represented as a family of target-specific conditional inference trees. Each tree maps a partially specified system state to a categorical probability distribution; unspecified coordinates are recursively marginalized by branch-mass mixtures. DTAG composes this conditional field with (i) a semantic map from model variables to human-readable survey constructs, (ii) a question-to-variable selection operator, (iii) an anchor-response operator, (iv) a bounded persistent-state transition, and (v) a language rendering operator. We formalize the native LSM geometry used by DTAG and prove that the implemented mean square-root Jensen--Shannon distance is a bounded pseudometric on partial states and a metric on the corresponding quotient space. We then show that the implemented two-pole ideology coordinate is calibrated to $-1$ and $+1$ at its reference poles and is bounded in $[-1,1]$ by the reverse triangle inequality. The report distinguishes DTAG batch anchoring from sequential LSM qsampling, states precisely when a family of learned conditionals can be interpreted as arising from a joint distribution, and separates observational conditioning from causal intervention. We contrast DTAG with retrieval-augmented generation by distinguishing retrieval of extant evidence from model-admissible conditional perturbation, and we specify the current survey web application as an inspectable experimental workbench over the same respondent runtime. Finally, every mathematical object is mapped to the current code path, including model learning, marginal inference, semantic fallback, state eviction, geographic and temporal conditioning, and ideology tracking.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Large Science Models, digital twins, conditional distributions, categorical models, Jensen--Shannon distance, stateful generation, survey modeling, conditional specification.
+\end{IEEEkeywords}
+
+\section{Scope and Design Principle}
+\label{sec:scope}
+
+DTAG is not a language model that is merely prompted to imitate a demographic profile. Its defining operation is to interpose a learned, data-derived conditional model between a natural-language query and the generated answer. The current implementation therefore has three mathematically distinct layers \cite{dtag2026}: an LSM layer that supplies conditional distributions and a state geometry; a semantic layer that maps LSM variables to human-readable survey constructs and maps queries back to those constructs; and a generation layer that renders selected model responses as natural language.
+
+The central object in this report is consequently not a text completion distribution. It is a \emph{partially observed categorical system state} acted on by a learned family of conditional kernels. Natural language serves as an interface into, and a renderer out of, that state space. This separation is important because the statistical content of a DTAG answer is created before the final prose generation step: the native LSM produces response distributions, a response label is selected from each distribution, and only those selected response labels are supplied as the factual anchors for rendering.
+
+The theory below follows the implementation rather than imposing a more convenient but different probabilistic model. In particular, the native DTAG runtime marginalizes an unspecified split using recursively computed subtree target mass; its distance is the arithmetic mean of per-target square-root Jensen--Shannon distances; a multi-variable query is evaluated against one common pre-update state and is then applied as a batch state update; and semantic fallback has modes that may answer without modifying persistent state. These details are structural, not cosmetic.
+
+\section{Finite Categorical System and Partial States}
+\label{sec:states}
+
+Consider $d$ categorical variables
+\begin{equation}
+  X=(X_1,\ldots,X_d), \qquad X_i\in\A_i,
+\end{equation}
+where every $\A_i$ is a finite, nonempty alphabet. Define the complete state space
+\begin{equation}
+  \X = \prod_{i=1}^d \A_i.
+\end{equation}
+DTAG operates more generally on partial states. Introduce an unspecified symbol $\botv$ and the extended alphabet $\bar\A_i=\A_i\cup\{\botv\}$.
+
+\begin{definition}[Partial LSM state]
+A partial state is
+\begin{equation}
+  s=(s_1,\ldots,s_d)\in\bar\X:=\prod_{i=1}^d\bar\A_i.
+\end{equation}
+Its observed domain is $\operatorname{dom}(s)=\{i:s_i\neq\botv\}$.
+\end{definition}
+
+In the implementation, a partial state is constructed as a vector of empty strings and then filled at currently assigned coordinates. The native source-map encoder maps an unknown token, including the empty string when it has no supported category, to code $0$. The inference runtime treats code $0$ as unobserved and marginalizes at any tree split that depends on that coordinate \cite{dtag2026}. Thus $\botv$ is the mathematical counterpart of the runtime's zero/unknown state.
+
+A DTAG respondent also retains an \emph{ordered} finite assignment memory. We therefore distinguish the mathematical partial vector $s_t$ from an ordered assignment sequence
+\begin{equation}
+  \sigma_t=((i_1,a_1),\ldots,(i_m,a_m)), \qquad m\le H,
+\end{equation}
+where $H$ is the configured state-retention limit. The vectorization map $V(\sigma_t)=s_t$ places the most recent retained value for each listed variable into the corresponding coordinate and sets all others to $\botv$.
+
+\section{The LSM Conditional Field}
+\label{sec:lsm}
+
+\subsection{One learned tree per target variable}
+
+The native LSM represents the system by a family of target-specific binary trees
+\begin{equation}
+  \mathfrak{T}=\{T_i:i\in\mathcal{I}\},
+\end{equation}
+where $\mathcal{I}\subseteq\{1,\ldots,d\}$ is the set of usable target trees. In DTAG, a tree is usable only when the corresponding target variable has nonempty categorical source-map support. Each $T_i$ estimates the conditional behavior of target $X_i$ using splits on variables $X_j$, $j\neq i$ \cite{lsm2026,dtag2026}.
+
+At a leaf $\ell$ of $T_i$, let $n_{\ell i}(a)$ be the training count for target category $a\in\A_i$, excluding the native missing code. Let
+\begin{equation}
+  N_{\ell i}=\sum_{a\in\A_i}n_{\ell i}(a).
+\end{equation}
+For every runtime-usable leaf, $N_{\ell i}>0$, and its output distribution is
+\begin{equation}
+  p_{\ell i}(a)=\frac{n_{\ell i}(a)}{N_{\ell i}}.
+  \label{eq:leafdist}
+\end{equation}
+
+A split node $\nu$ stores a feature index $j(\nu)$ and a partition of observed feature codes into left and right subsets, $L_\nu$ and $R_\nu$. The current DTAG runtime defines a recursive target mass $M_i(\nu)$ by
+\begin{align}
+  M_i(\ell) &= N_{\ell i}, && \ell\text{ a leaf},\\
+  M_i(\nu) &= M_i(\nu_L)+M_i(\nu_R), && \nu\text{ a split}.
+  \label{eq:subtreemass}
+\end{align}
+The branch weight at $\nu$ is
+\begin{equation}
+  \pi_{i\nu}=\frac{M_i(\nu_L)}{M_i(\nu_L)+M_i(\nu_R)}.
+  \label{eq:branchweight}
+\end{equation}
+
+\begin{definition}[Implemented tree inference operator]
+For a target $i$, node $\nu$ of $T_i$, and partial state $s$, define $K_{i,\nu}(\cdot\mid s)\in\Delta(\A_i)$ recursively. At a leaf, $K_{i,\ell}(\cdot\mid s)=p_{\ell i}$. At a split on coordinate $j=j(\nu)$, write $K_L=K_{i,\nu_L}(\cdot\mid s)$ and $K_R=K_{i,\nu_R}(\cdot\mid s)$. Then
+\begin{equation}
+K_{i,\nu}(\cdot\mid s)=
+\begin{cases}
+K_L, & s_j\in L_\nu,\\
+K_R, & s_j\in R_\nu,\\
+\pi_{i\nu}K_L+(1-\pi_{i\nu})K_R,
+  & \text{otherwise.}
+\end{cases}
+\label{eq:treeinference}
+\end{equation}
+The target kernel is the root output
+\begin{equation}
+  K_i(\cdot\mid s):=K_{i,r_i}(\cdot\mid s).
+\end{equation}
+\end{definition}
+
+The third case of \eqref{eq:treeinference} includes an unspecified coordinate $s_j=\botv$ and any encoded value that does not belong to either learned subset. It is therefore a recursive local marginalization rule. It should not automatically be identified with exact marginalization under a globally defined joint law; that stronger interpretation requires compatibility conditions discussed in Section~\ref{sec:joint}.
+
+\begin{remark}[DTAG runtime versus the generic LSM runtime]
+At the analyzed commits, the bundled DTAG inference runtime weights an unresolved split by recursively computed subtree target mass as in \eqref{eq:subtreemass}--\eqref{eq:branchweight}. The generic LSM \texttt{main} prediction source instead uses the split's stored left/right row counts for this unresolved-branch mixture. The serialized categorical tree is otherwise the same kind of object, but these two weighting rules can differ for a partial state. All DTAG equations and results in this report follow the bundled DTAG runtime because that is the code executed by the current application. This discrepancy is worth keeping explicit when asserting cross-runtime numerical parity.
+\end{remark}
+
+\begin{proposition}[Normalization]
+\label{prop:normalization}
+Assume every leaf of a usable target tree has positive target mass. Then, for every partial state $s$ and every node $\nu$ of $T_i$, $K_{i,\nu}(\cdot\mid s)$ is a normalized probability mass function on $\A_i$.
+\end{proposition}
+
+\emph{Proof.} At a leaf the claim follows from \eqref{eq:leafdist}. Assume it holds for both children of a split node. Equation~\eqref{eq:subtreemass} implies $0<\pi_{i\nu}<1$. Each branch-selected case is normalized by induction. The marginal case is a convex combination of two normalized probability mass functions and is therefore normalized. Induction to the root completes the proof. $\square$
+
+The LSM model available to DTAG is thus the conditional field
+\begin{equation}
+  \K(s)=\big(K_i(\cdot\mid s)\big)_{i\in\mathcal{I}}.
+  \label{eq:conditionalfield}
+\end{equation}
+This is the primary statistical object used by DTAG.
+
+\subsection{Training criterion in the current LSM}
+\label{sec:training}
+
+The tree learner is significance driven. At a node with currently enabled training rows, fix target $i$ and candidate feature $j\neq i$. Missing codes are omitted from the target--feature contingency table. If $n_{ab}$ denotes the observed count for feature level $a$ and target level $b$, the code computes Pearson's statistic \cite{pearson1900criterion}
+\begin{equation}
+  \chi^2_{ij}=\sum_{a,b}\frac{(n_{ab}-e_{ab})^2}{e_{ab}},
+  \qquad
+  e_{ab}=\frac{n_{a\cdot}n_{\cdot b}}{N},
+  \label{eq:chisq}
+\end{equation}
+with degrees of freedom $(r_j-1)(c_i-1)$. Candidate-feature $p$-values are sorted, and a Holm sequential correction is applied at level $\alpha$ \cite{holm1979sequential}.
+
+For a feature that survives this screen, the exact subset search considers every nonempty proper oriented subset $S\subset\A_j$. It collapses $X_j$ into the binary event $X_j\in S$, computes a $2\times |\A_i|$ Pearson statistic, and retains the smallest $p$-value. If $k_j$ distinct feature levels are present, the implementation uses
+\begin{equation}
+  m_j=2^{k_j}-2
+\end{equation}
+as the multiplicity count and accepts the split when
+\begin{equation}
+  m_j\,p_{\min,j}\le\alpha.
+  \label{eq:subsetcriterion}
+\end{equation}
+The tree takes the first feature, in the significance ordering returned by the feature screen, whose best subset satisfies \eqref{eq:subsetcriterion}, then recursively repeats the procedure on each branch. If no significant split is available, the node becomes a target-frequency leaf. This is a conditional inference tree in the broad sense, but the exact split criterion is the implementation-specific two-stage procedure above rather than the impurity-minimization objective of classical CART \cite{breiman1984cart,lsm2026}.
+
+For high-cardinality features, LSM also implements a fast search. With a binary target, feature levels are ordered by their conditional event rate and only the $k_j-1$ contiguous cuts are evaluated. With a multiclass target, each feature level is represented by its empirical $P(X_i\mid X_j=a)$ vector, levels are grouped around Jensen--Shannon-separated centers, and the compressed alphabet is searched exhaustively. Crucially, the significance threshold remains conservatively corrected by the original $2^{k_j}-2$ candidate count, and the serialized split is expanded back to original feature values. DTAG inference therefore sees the same type of categorical tree regardless of which split-search mode constructed it \cite{lsm2026}.
+
+\section{Native LSM Geometry}
+\label{sec:geometry}
+
+\subsection{Per-target Jensen--Shannon metric}
+
+For probability mass functions $p$ and $q$ on a finite alphabet, define the base-2 Jensen--Shannon divergence \cite{lin1991js}
+\begin{align}
+  \JS_2(p,q)
+  &=\frac{1}{2}\KL_2(p\Vert m)+\frac{1}{2}\KL_2(q\Vert m),\\
+  m&=\frac{p+q}{2}.
+\end{align}
+The native function named \texttt{jensen\_shannon\_bits} returns its square root,
+\begin{equation}
+  d_{\mathrm{JS}}(p,q)=\sqrt{\JS_2(p,q)}.
+  \label{eq:sqrtjs}
+\end{equation}
+The square-root Jensen--Shannon divergence is a metric on the probability simplex \cite{endres2003metric}. Because base-2 JSD is at most one bit,
+\begin{equation}
+  0\le d_{\mathrm{JS}}(p,q)\le 1.
+\end{equation}
+
+For each usable target tree $i$, DTAG pulls back this distributional metric to partial state space:
+\begin{equation}
+  \delta_i(s,t)
+   =d_{\mathrm{JS}}\!\left(K_i(\cdot\mid s),K_i(\cdot\mid t)\right).
+  \label{eq:pertargetdist}
+\end{equation}
+
+\subsection{Implemented qdistance}
+
+Let $m=|\mathcal{I}|$. The native DTAG qdistance is
+\begin{equation}
+  d_Q(s,t)=\frac{1}{m}\sum_{i\in\mathcal{I}}\delta_i(s,t).
+  \label{eq:qdistance}
+\end{equation}
+Equation~\eqref{eq:qdistance} is an \emph{arithmetic mean of square-root JSDs}. It is not $\sqrt{m^{-1}\sum_i\JS_2(\cdot,\cdot)}$. This distinction exactly follows the current C++ runtime \cite{dtag2026}.
+
+\begin{proposition}[qdistance is a bounded pseudometric]
+\label{prop:pseudometric}
+On the partial state space $\bar\X$, $d_Q$ is nonnegative, symmetric, satisfies the triangle inequality, and obeys $0\le d_Q\le1$. Distinct partial states may nevertheless have zero distance. Define
+\begin{equation}
+  s\sim t \iff K_i(\cdot\mid s)=K_i(\cdot\mid t)
+  \quad\forall i\in\mathcal{I}.
+  \label{eq:equiv}
+\end{equation}
+Then $d_Q$ induces a metric on the quotient $\bar\X/\!\sim$.
+\end{proposition}
+
+\emph{Proof.} Since $d_{\mathrm{JS}}$ is a metric on each target simplex, its composition with $s\mapsto K_i(\cdot\mid s)$ is a pseudometric: identity of indiscernibles can fail only because two distinct states can induce the same target distribution. A nonnegative weighted sum of pseudometrics is a pseudometric, and division by $m>0$ preserves this property. Each $\delta_i\le1$, hence $d_Q\le1$. Finally, $d_Q(s,t)=0$ iff every nonnegative summand is zero, which is precisely relation \eqref{eq:equiv}; quotienting by that equivalence restores identity of indiscernibles. $\square$
+
+\begin{remark}[Geometry is predictive, not coordinate Hamming distance]
+A coordinate change can have zero qdistance if it is invisible to every usable target tree, while a single assignment can move many conditional distributions and therefore produce a substantial distance. The geometry measures changes in the field of model-predicted distributions rather than literal disagreement between raw labels.
+\end{remark}
+
+\section{DTAG as a Stateful Operator over the LSM}
+\label{sec:dtag}
+
+\subsection{Semantic map}
+
+For a selected survey/model wave, let
+\begin{equation}
+  \mu:i\mapsto z_i
+\end{equation}
+map model variable $i$ to human-readable survey text $z_i$. DTAG intersects the map with the native model feature set, and stores provenance metadata when available. The LSM remains authoritative for the variable alphabet and conditional distributions; the semantic map is an interface layer and does not modify $K_i$.
+
+Given a user question $q_t$, the direct mapper first applies a deterministic lexical retrieval gate. Let $T(q_t)$ denote the content-token set after normalization and removal of generic prompt words. The implementation scores variable $i$ by
+\begin{equation}
+  r_i(q_t)=|T(q_t)\cap T(z_i)|
+  +\frac{1}{4}\sum_{w\in T(q_t)}\1\{|w|\ge5,\ w\subset z_i\}.
+  \label{eq:lexscore}
+\end{equation}
+Only variables above a configured threshold are offered to a structured language-model selector, which chooses at most $k$ variables and is explicitly permitted to return the empty set. Denote the resulting direct set by
+\begin{equation}
+  C_t=M(q_t;\mu).
+  \label{eq:directmap}
+\end{equation}
+The language model in $M$ is therefore a semantic routing mechanism; it does not supply the survey response distribution.
+
+\subsection{Native anchor distributions}
+
+Let $s_t=V(\sigma_t)$ be the pre-question DTAG state. For every $i\in C_t$, the anchor distribution is
+\begin{equation}
+  p_{t,i}=K_i(\cdot\mid s_t).
+  \label{eq:anchor}
+\end{equation}
+All $p_{t,i}$ are computed against the \emph{same} $s_t$. This common-state batch evaluation is a defining distinction from the sequential qsampling operator in Section~\ref{sec:qsample}.
+
+The response-selection operator is either deterministic maximum probability,
+\begin{equation}
+  a_{t,i}=\argmax_{a\in\A_i} p_{t,i}(a),
+  \label{eq:argmax}
+\end{equation}
+or a categorical draw
+\begin{equation}
+  a_{t,i}\sim p_{t,i}.
+  \label{eq:draw}
+\end{equation}
+The configured DTAG default is the maximum-probability rule. Draw mode is available and uses a reproducible query-indexed random seed when a fixed session seed is supplied.
+
+\subsection{Bounded persistent-state transition}
+
+Let $A_t=\{(i,a_{t,i}):i\in C_t\}$ contain only assignments whose labels belong to the native support for their variables. The implementation updates the ordered state by moving any reassigned variable to the end, appending new assignments, then retaining only the most recent $H$ assignments. Let this operator be
+\begin{equation}
+  \sigma_{t+1}=U_H(\sigma_t,A_t).
+  \label{eq:update}
+\end{equation}
+
+\begin{proposition}[State-cap invariant]
+If $|\sigma_0|\le H$, then $|\sigma_t|\le H$ for all $t\ge0$ under \eqref{eq:update}.
+\end{proposition}
+
+\emph{Proof.} Before truncation, the update creates a finite ordered map with at most one value per retained variable. The implementation repeatedly removes the oldest entry while its size exceeds $H$. The resulting size is therefore at most $H$. Induction over $t$ proves the claim. $\square$
+
+This transition should be interpreted as a controlled memory of model-state constraints. It is not Bayesian posterior updating: assigned coordinates become hard conditions for later tree inference until replaced or evicted.
+
+\subsection{Language rendering}
+
+For direct mapping, the final text renderer receives the persona, the user question, and anchor triples consisting of variable name, mapped survey question, and selected response. It does \emph{not} receive the full native distribution. Abstractly,
+\begin{equation}
+  y_t=G\!\left(q_t,\,\rho,\,
+       \{(i,z_i,a_{t,i}):i\in C_t\}\right),
+  \label{eq:render}
+\end{equation}
+where $\rho$ is the persona/context text. The implementation prompt requires first-person language, consistency with $\rho$, and use of the responses as the factual spine. Thus, conditional on the selected variables and selected anchor labels, final prose generation cannot alter the already-computed LSM distributions or state transition.
+
+\section{Persona, Time, and Place Conditioning}
+\label{sec:context}
+
+DTAG initializes a respondent through two different mechanisms that should not be conflated.
+
+First, persona text is mapped by a structured language-model call into a small number of variable assignments chosen only from supported model responses. Unsupported variables and unsupported values are discarded. Second, deterministic context logic may impose hard assignments for time or geography. Forced assignments supersede persona assignments at the same coordinate.
+
+Let $P(\rho)$ denote the validated persona-assignment operator and $F(c,\tau)$ the deterministic context assignment operator for place $c$ and time $\tau$. The initial ordered state is, schematically,
+\begin{equation}
+  \sigma_0=\operatorname{merge}\big(P(\rho),F(c,\tau)\big),
+  \label{eq:init}
+\end{equation}
+with $F$ taking precedence on collisions.
+
+For geography, the current localized runtime uses the following hierarchy: a categorical country feature is used when a unique supported value can be resolved; otherwise WVS-style longitude/latitude proxy fields are snapped to their nearest supported values; otherwise geography remains text context and does not constrain the native LSM. Older Eurobarometer maps can identify a categorical nation variable through documented semantic hints, and ISO-country variables are recognized explicitly. For time, GSS uses a wave-specific model, WVS can hard-condition an available year field, and Eurobarometer routes a calendar date to a discrete fieldwork wave before country conditioning \cite{dtag2026}.
+
+This yields a clean distinction: context appearing only in $\rho$ can influence semantic routing and language rendering, but only coordinates placed into $\sigma_0$ alter the native kernels $K_i(\cdot\mid s_0)$.
+
+\section{Semantic Fallback as an Epistemically Weaker Path}
+\label{sec:fallback}
+
+When lexical retrieval returns no candidate or the direct selector returns no defensible variable, DTAG may invoke an embedding-based semantic bridge. Let $e(q)$ and $e_i=e(z_i)$ be normalized text embeddings. Candidate retrieval ranks
+\begin{equation}
+  c_i(q)=e(q)^\top e_i,
+  \label{eq:cosine}
+\end{equation}
+which is cosine similarity because both vectors are normalized. A second structured selector labels candidate relations as \emph{related construct}, \emph{background attitude}, \emph{value orientation}, or \emph{weak}, assigns a semantic confidence score, and may declare the question unanswerable from the available model surface.
+
+Let $B_t$ denote the accepted bridge-variable set. Native anchors are still
+\begin{equation}
+  p_{t,i}=K_i(\cdot\mid s_t), \qquad i\in B_t,
+\end{equation}
+and responses are still chosen by the same maximum or draw operators. Hence semantic fallback changes \emph{which native conditionals are consulted}; it does not replace them with language-model probabilities.
+
+There are three implemented fallback policies:
+\begin{align}
+  \texttt{off}:&\quad B_t=\varnothing\Rightarrow\text{no answer},\\
+  \texttt{answer\_only}:&\quad \sigma_{t+1}=\sigma_t,\\
+  \texttt{update\_state}:&\quad \sigma_{t+1}=U_H(\sigma_t,A_t^{(B)}).
+  \label{eq:fallbackmodes}
+\end{align}
+The default is \texttt{answer\_only}. In addition, if the bridge selector says the question is answerable but no candidate reaches the ordinary confidence threshold, non-weak bridge items may be used for a low-confidence answer-only path; this path never changes persistent state.
+
+\begin{proposition}[Answer-only invariance]
+\label{prop:answeronly}
+Under semantic fallback mode \texttt{answer\_only}, the native state vector and any state-derived ideology coordinate are unchanged by the query.
+\end{proposition}
+
+\emph{Proof.} The implementation computes bridge anchor distributions and response labels but bypasses the state-update operator. It records $\sigma_{t+1}=\sigma_t$ and carries the previous ideology value forward. $\square$
+
+This asymmetry is deliberate: semantic bridges are treated as weaker evidence than direct survey-variable matches. They can support language generation without silently converting an indirect semantic relation into a durable model-state assertion.
+
+\section{Polar Geometry and the Implemented Ideology Coordinate}
+\label{sec:ideology}
+
+For models with a registered polar-vector file, let $s_L,s_R\in\bar\X$ be partial reference states assembled from the file's left and right columns. Define
+\begin{equation}
+  D_{LR}=d_Q(s_L,s_R), \qquad D_{LR}>0.
+\end{equation}
+For a DTAG state $s$, the implementation computes
+\begin{equation}
+  I(s)=\frac{d_Q(s_L,s)-d_Q(s_R,s)}{d_Q(s_L,s_R)}.
+  \label{eq:ideology}
+\end{equation}
+The sign convention is therefore determined entirely by the registered pole file: the left pole maps to negative and the right pole to positive values.
+
+\begin{proposition}[Pole calibration and boundedness]
+\label{prop:ideology}
+If $D_{LR}>0$, then
+\begin{equation}
+  I(s_L)=-1,\qquad I(s_R)=+1,
+\end{equation}
+and, for every partial state $s$,
+\begin{equation}
+  -1\le I(s)\le1.
+  \label{eq:ibound}
+\end{equation}
+\end{proposition}
+
+\emph{Proof.} Pseudometric self-distance gives $d_Q(s_L,s_L)=d_Q(s_R,s_R)=0$ and symmetry gives the pole values immediately. By the triangle inequality,
+\begin{equation}
+ d_Q(s_L,s)\le D_{LR}+d_Q(s_R,s),
+\end{equation}
+so $d_Q(s_L,s)-d_Q(s_R,s)\le D_{LR}$. Interchanging $L$ and $R$ gives the opposite inequality. Divide by positive $D_{LR}$. $\square$
+
+The coordinate is therefore a normalized difference-of-distances coordinate in the LSM predictive geometry. It is not a latent factor learned by linear projection, nor is it a claim that political opinion is intrinsically one-dimensional. The polar vectors are externally registered reference states, and $I(s)$ reports where the current predictive state lies relative to those references. When a query changes persistent state, DTAG recomputes $I$; when a query leaves state unchanged, the value is carried forward.
+
+
+\section{DTAG versus Retrieval-Augmented Generation}
+\label{sec:rag}
+
+Retrieval-augmented generation (RAG) and DTAG both constrain language generation with an external computational object, but the objects and operations are fundamentally different. In a canonical RAG system, let a fixed corpus be
+\begin{equation}
+  \mathcal{C}=\{d_1,\ldots,d_N\}.
+\end{equation}
+A retriever maps a query $q$ to a subset of already existing records,
+\begin{equation}
+  \mathcal{R}(q;\mathcal{C})=\{d_{j_1},\ldots,d_{j_k}\},
+  \label{eq:ragretrieve}
+\end{equation}
+and a generator conditions on those retrieved records,
+\begin{equation}
+  y\sim G_{\mathrm{RAG}}\!\left(q,\mathcal{R}(q;\mathcal{C})\right).
+  \label{eq:raggenerate}
+\end{equation}
+The grounding object in \eqref{eq:ragretrieve} is therefore \emph{extant evidence}: text, records, or other stored observations that existed before the query. RAG improves access to and use of such evidence, but retrieval itself does not define a state transition of the underlying system and does not construct a new system state \cite{lewis2020rag}.
+
+DTAG instead queries a learned conditional field. Given current partial state $s_t$ and selected model variables $C_t$, it computes
+\begin{equation}
+  p_{t,i}=K_i(\cdot\mid s_t),\qquad i\in C_t,
+  \label{eq:dtagperturbdist}
+\end{equation}
+then chooses an anchor value
+\begin{equation}
+  a_{t,i}=R(p_{t,i}),
+\end{equation}
+and may commit those assignments to a new persistent state. The native evidence object is therefore
+\begin{equation}
+  E_t^{\mathrm{DTAG}}
+  =\left\{\left(i,K_i(\cdot\mid s_t),a_{t,i}\right):i\in C_t\right\}.
+  \label{eq:dtagevidence}
+\end{equation}
+Unlike a retrieved document, $a_{t,i}$ need not correspond to a previously observed row. It is generated from the learned conditional support of the LSM.
+
+\begin{definition}[LSM-admissible perturbation]
+For a partial state $s$ and target coordinate $i$, an assignment $X_i\leftarrow a$ is LSM-admissible when
+\begin{equation}
+  a\in\operatorname{supp}K_i(\cdot\mid s).
+  \label{eq:admissible}
+\end{equation}
+Its model support is quantified by $K_i(a\mid s)$.
+\end{definition}
+
+Thus RAG and DTAG answer different computational questions. RAG asks, in effect, ``which existing evidence is relevant to this query?'' DTAG asks ``which model-supported responses or state perturbations are admissible from the present system state, and how do they alter subsequent predictions?'' The former is retrieval-grounded generation; the latter is state-constrained generation over a learned system model.
+
+This distinction does not imply that DTAG perturbations are causal interventions. Equation~\eqref{eq:admissible} defines validity only relative to the learned LSM conditional field. A model-admissible state may be an unobserved combination of categorical values, and its downstream consequences remain observational conditional predictions rather than $\operatorname{do}$-interventional effects. Likewise, RAG retrieval of an exact source passage does not by itself guarantee that the final generated prose is an exact or entailed restatement of that passage; provenance and generation faithfulness remain separate questions.
+
+\begin{table*}[t]
+\centering
+\caption{Conceptual distinction between retrieval-augmented generation and DTAG.}
+\label{tab:ragdtag}
+\footnotesize
+\begin{tabular}{p{0.20\textwidth} p{0.34\textwidth} p{0.36\textwidth}}
+\toprule
+Property & RAG & DTAG \\
+\midrule
+Primary knowledge object & External corpus or record store $\mathcal C$ & Learned LSM conditional field $\{K_i\}$ \\
+Grounding operation & Retrieve pre-existing evidence & Evaluate state-conditioned response distributions \\
+Native evidence returned & Documents, passages, records, or database entries & Full categorical distribution $K_i(\cdot\mid s)$ plus a selected supported anchor \\
+Persistent modeled state & Not intrinsic to retrieval & Explicit $s_t\rightarrow s_{t+1}$ transition \\
+Novel state combinations & Not a primitive operation & May construct previously unobserved but LSM-supported partial states \\
+Uncertainty object & Retrieval/relevance scores and source uncertainty & Conditional probability distribution over the target alphabet \\
+Sequential dynamics & Optional application logic & Native to DTAG session state \\
+Validity criterion & Source provenance, relevance, and entailment & Conditional support, model compatibility, and provenance of the semantic map \\
+Counterfactual-style probe & Retrieve evidence about a hypothetical & Perturb a model state and recompute the conditional field \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{DTAG versus Sequential LSM qsampling}
+\label{sec:qsample}
+
+The broader LSM implementation also exposes a qsampling operator. Given a current complete-or-partial state $x$, choose target coordinate $i$, draw
+\begin{equation}
+  X_i'\sim K_i(\cdot\mid x),
+\end{equation}
+and immediately replace coordinate $i$ before choosing the next target. For a scan sequence $i_1,\ldots,i_r$, the resulting Markov transition is the composition
+\begin{equation}
+  Q_{i_r}\circ\cdots\circ Q_{i_1}.
+  \label{eq:qsample}
+\end{equation}
+The current native qsample implementation re-encodes the state after every draw, so later conditionals see earlier sampled values \cite{lsm2026}.
+
+DTAG's ordinary multi-anchor question path is different. If $C_t=\{i_1,\ldots,i_r\}$, it first computes
+\begin{equation}
+  \{K_{i_j}(\cdot\mid s_t):j=1,\ldots,r\}
+\end{equation}
+from one fixed pre-question state $s_t$, selects all anchor responses, and then applies one batch update $U_H$. Consequently, the within-question ordering of selected variables does not induce the same conditional cascade as qsampling. This design is appropriate for interpreting several survey variables as simultaneous evidence for one natural-language question, while qsampling is the natural operator for constructing a sequential generative chain over LSM coordinates.
+
+\section{Conditional Specification, Joint Laws, and Dobrushin Conditions}
+\label{sec:joint}
+
+A family of learned kernels should not be called a joint distribution without an additional compatibility argument. Let $\pi$ be a strictly positive probability mass function on $\X$. A family of full conditional kernels $\{\Gamma_i\}$ is compatible with $\pi$ if
+\begin{equation}
+  \Gamma_i(a\mid x_{-i})
+  =\pi(X_i=a\mid X_{-i}=x_{-i})
+  \label{eq:compatibility}
+\end{equation}
+for all states in the relevant support. If the LSM kernels are compatible in this sense, sequential qsampling is a Gibbs-type sampler for the associated law under standard scan assumptions \cite{geman1984gibbs}. If compatibility has not been established, the kernels still define valid local prediction operators and scan-dependent Markov transitions, but one should not infer the existence of a unique global $\pi$ having all of them as its full conditionals.
+
+A classical sufficient route to uniqueness for a compatible conditional specification is Dobrushin contraction \cite{dobrushin1970conditional}. For complete states, define an influence coefficient
+\begin{equation}
+ c_{ij}=\sup_{\substack{x,x'\in\X\\x_k=x'_k\ \forall k\neq j}}
+ \TV\!\left(K_i(\cdot\mid x),K_i(\cdot\mid x')\right),
+ \label{eq:dobrushin}
+\end{equation}
+where $\TV(p,q)=\frac12\sum_a|p(a)-q(a)|$. If a proper compatible specification satisfies, for example,
+\begin{equation}
+  \max_i\sum_{j\neq i}c_{ij}<1,
+  \label{eq:dobrushincondition}
+\end{equation}
+then the associated system lies in a uniqueness/contraction regime. The current DTAG runtime does not require or test \eqref{eq:compatibility} or \eqref{eq:dobrushincondition}. Its predictions, qdistance, and state transitions are defined directly from the learned trees. Accordingly, the mathematically safe description is that LSM supplies a learned \emph{conditional field}; a global joint-distribution interpretation is an additional property to be tested, not an automatic consequence of fitting one tree per target.
+
+This distinction also clarifies the role of recursive branch marginalization in \eqref{eq:treeinference}. The mixture is an exact inference rule for the learned tree object itself. It equals marginalization under a global system law only when the tree weights and compatible joint law support that identification.
+
+\section{Observational Conditioning is not Intervention}
+\label{sec:causal}
+
+The current LSM and DTAG operators are observational. Setting a state coordinate to $X_j=a$ changes later predictions by evaluating conditional trees under that assignment. Mathematically this is the operation
+\begin{equation}
+  K_i(\cdot\mid s_j=a),
+\end{equation}
+not Pearl's interventional distribution $P(X_i\mid\operatorname{do}(X_j=a))$. No structural causal graph, intervention semantics, or adjustment criterion is introduced by the DTAG state update. Therefore a change in predicted distributions after a DTAG state assignment measures model-conditioned association within the learned conditional field; it does not by itself estimate a causal effect.
+
+The same caution applies to ideology trajectories. A question sequence can move the retained model state and therefore move $I(s_t)$, but this is a trajectory under the DTAG interaction/update policy, not a claim that exposure to the question causally changed a real person's ideology.
+
+\section{End-to-End Operator Factorization}
+\label{sec:factorization}
+
+For a direct-mapping query, the implemented computation can be summarized as
+\begin{align}
+  C_t &= M(q_t;\mu),\label{eq:fac1}\\
+  p_{t,i} &= K_i(\cdot\mid V(\sigma_t)),\quad i\in C_t,\label{eq:fac2}\\
+  a_{t,i} &= R(p_{t,i}),\quad i\in C_t,\label{eq:fac3}\\
+  \sigma_{t+1} &= U_H\!\left(\sigma_t,\{(i,a_{t,i})\}_{i\in C_t}\right),\label{eq:fac4}\\
+  I_{t+1} &= I(V(\sigma_{t+1}))\quad\text{when enabled},\label{eq:fac5}\\
+  y_t &= G\!\left(q_t,\rho,\{(i,\mu(i),a_{t,i})\}_{i\in C_t}\right).
+  \label{eq:fac6}
+\end{align}
+Here $M$ is semantic routing, $\K$ is the native statistical model, $R$ is either argmax or categorical draw, $U_H$ is persistent-state memory, $I$ is an optional geometry-derived scalar coordinate, and $G$ is language rendering.
+
+This factorization exposes two separations that are central to DTAG. First, semantic selection does not estimate response probabilities: $M$ chooses which $K_i$ to query. Second, prose generation does not decide the anchor response: $G$ receives $a_{t,i}$ after the native inference and response-selection stages have completed. These separations are testable at the software boundary and make it possible to audit native evidence independently of the final generated prose.
+
+For semantic fallback, replace $M$ by a bridge selector $B$ and choose whether $U_H$ is applied according to \eqref{eq:fallbackmodes}. For a no-match outcome, $C_t=B_t=\varnothing$, $y_t$ is empty in the current runtime, and the state is unchanged.
+
+\section{Implementation Correspondence}
+\label{sec:correspondence}
+
+Table~\ref{tab:correspondence} maps the formal objects above to the implementation snapshot used for this report.
+
+\begin{table*}[t]
+\centering
+\caption{Mathematical objects and their current implementation correspondence.}
+\label{tab:correspondence}
+\footnotesize
+\begin{tabular}{p{0.14\textwidth} p{0.25\textwidth} p{0.52\textwidth}}
+\toprule
+Object & Mathematical role & Current implementation correspondence \\
+\midrule
+$T_i$ & Target-specific conditional inference tree & LSM \texttt{ModelBuilder}; serialized \texttt{tree\_i.bin}; DTAG vendored binary tree reader. \\
+$K_i(\cdot\mid s)$ & Partial-state conditional distribution & \path{native/lsm_runtime/src/PredictDistribution/PredictDistribution.cpp}; branch selection on observed codes and subtree-mass marginalization otherwise. \\
+$\botv$ & Unspecified coordinate & Empty/unknown token encoded as zero by \texttt{SourceMapStore}; zero causes split marginalization. \\
+$\K(s)$ & Conditional field & \path{NativeLSMBackend.predict_distributions}; target-tree restriction avoids an unnecessary all-column pass. \\
+$d_Q$ & Predictive state pseudometric & \texttt{qdistance.cpp}; mean over usable trees of $\sqrt{\JS_2}$, with tree-level parallelism in the persistent binding. \\
+$\mu$ & Variable-to-question semantic map & \texttt{ModelContext.var\_map}; map provenance retained per variable. \\
+$M(q)$ & Direct query routing & \texttt{lexical\_prefilter} followed by structured \texttt{llm\_select\_variables}. \\
+$B(q)$ & Indirect semantic bridge & Normalized text embeddings, cosine ranking, then structured \path{llm_select_semantic_bridge_variables}. \\
+$R$ & Anchor response selection & \path{responses_for_vars_from_distributions}: maximum probability by default or categorical draw. \\
+$\sigma_t$ & Ordered retained respondent state & \texttt{DTAGSession.state} as an \texttt{OrderedDict}; reassignment moves a variable to the end. \\
+$U_H$ & Bounded state update & \path{DTAGSession._evict_to_limit}; oldest assignments removed until \texttt{state\_keep} is met. \\
+$F(c,\tau)$ & Deterministic place/time constraints & \path{pipeline_localized.build_forced_assignments}; categorical country, coordinate proxy, or context-only; model/wave-specific time routing in \texttt{dtag\_engine.py}. \\
+$s_L,s_R$ & Registered reference poles & \texttt{PolarGeometry}; values read from a registered polar-vector CSV and intersected with native model features. \\
+$I(s)$ & Normalized two-pole coordinate & \path{ideology_index_from_vectors}; two qdistances are evaluated together by the persistent native runtime when available. \\
+$G$ & Natural-language rendering & \path{llm_craft_human_answer} or semantic-bridge renderer; receives selected response anchors, not authority to modify the native state. \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The web application and command-line interface share this respondent/session logic through \texttt{DTAGSession} and \texttt{DTAGEngine}. The persistent native binding owns the source-map store and preloads usable trees once per resident model, so repeated predictions and geometry calls reuse the same in-memory runtime rather than reconstructing tree objects on every query \cite{dtag2026}.
+
+
+\section{Survey Web Application Implementation}
+\label{sec:webapp}
+
+The current DTAG web application is a survey-specific experimental workbench rather than a domain-general DTAG front end. It exposes the same respondent and native-LSM implementation used by the command-line runtime, but adds model routing, session management, inspectable evidence, reproducible exports, and browser-based control of respondent construction \cite{dtag2026}.
+
+The deployed computational stack is
+\begin{equation}
+\begin{aligned}
+\text{React/TypeScript} &\rightarrow \text{FastAPI} \rightarrow \texttt{DTAGEngine} \\
+&\rightarrow \texttt{DTAGSession} \rightarrow \texttt{NativeLSMBackend} \\
+&\rightarrow \texttt{dtag\_lsm.Runtime}.
+\end{aligned}
+\label{eq:webstack}
+\end{equation}
+The browser therefore does not implement an alternate inference path. Session creation and question answering ultimately call the same state and anchor operators formalized above.
+
+\subsection{Survey model resolution and respondent initialization}
+
+A browser session begins from a survey respondent specification consisting of persona text and optional place/time constraints. The engine resolves an available survey model and semantic map, including discrete GSS wave selection, Eurobarometer fieldwork-wave routing, pooled WVS year conditioning when supported, and survey-specific geographic conditioning. The resulting profile determines the native model, map, optional pole geometry, response mode, semantic-fallback mode, and seed. A \texttt{DTAGSession} then constructs the initial retained state from validated persona-derived assignments together with deterministic geographic or temporal assignments.
+
+The native model registry is process-persistent. A missing model can be downloaded, checksum-verified, extracted, validated, and loaded once. The resident \texttt{dtag\_lsm.Runtime} and tree cache are shared by sessions using the same model, while each respondent owns an isolated mutable $\sigma_t$. This separation is important experimentally: multiple digital twins can be run against one identical population model without sharing respondent state.
+
+\subsection{Question execution and inspectable evidence}
+
+For an active respondent, the endpoint
+\begin{center}
+\path{POST /api/sessions/{session_id}/questions}
+\end{center}
+executes the same direct or semantic-fallback transition described in Sections~\ref{sec:factorization} and \ref{sec:fallback}. The returned object includes the generated answer but also exposes the scientific trace: selected survey variables, original survey wording, full native conditional distributions, selected anchor labels, direct-versus-semantic mapping class, semantic rationale and provenance, state updates and evictions, geographic and temporal conditioning, ideology before and after the transition when enabled, and stage timings.
+
+The browser presents these quantities as a model-evidence panel and respondent-state panel rather than hiding them behind the generated text. Hence a DTAG answer in the survey workbench is inspectable as the tuple
+\begin{equation}
+  \left(q_t,s_t,C_t,\{K_i(\cdot\mid s_t)\}_{i\in C_t},A_t,s_{t+1},I_t,I_{t+1},y_t\right),
+  \label{eq:webtrace}
+\end{equation}
+with ideology terms omitted for models without registered pole vectors.
+
+\subsection{Session lifecycle, reproducibility, and export}
+
+Respondent sessions are isolated in an in-memory session store with configurable capacity and time-to-live. Reset restores the initialized respondent without rerunning persona interpretation. JSON and CSV exports preserve the profile, model and map identifiers, model release information, persona, requested and resolved place/time constraints, seed, response policy, semantic-fallback mode, initial state, per-question anchors and full distributions, state transitions, ideology trajectory, and timings. These exports make the browser interaction a reproducible experimental trace rather than only a conversational transcript.
+
+The server additionally exposes health/readiness status, model and map inventories, model installation state, survey-country coverage, Eurobarometer wave resolution, registered polar-vector sets, starter questions, profile validation, and optional shared-password authentication. Browser-supplied configuration fields are schema-whitelisted; arbitrary paths, commands, modules, and URLs are not accepted by the API.
+
+The scientific significance of this architecture is that the web interface is a measurement surface over a survey LSM. Natural language supplies experimental inputs, while the observable outputs include both the human-facing response and the underlying model-native state transition. This makes the current application specifically suitable for controlled survey-response and opinion-dynamics experiments, while leaving domain-general DTAG interfaces as a separate future abstraction.
+
+\section{Mathematical Guarantees and Explicit Non-Guarantees}
+\label{sec:guarantees}
+
+Under the positivity assumptions of Proposition~\ref{prop:normalization}, the implementation supplies normalized target distributions for partial states. Under the established metric property of square-root JSD, the native qdistance is a bounded pseudometric and gives a well-defined quotient geometry by Proposition~\ref{prop:pseudometric}. The state-cap invariant holds mechanically, answer-only semantic fallback leaves model state invariant, and the two-pole ideology index is bounded and pole-calibrated when its reference distance is positive.
+
+Several stronger interpretations are \emph{not} guaranteed merely by the runtime. The learned target kernels need not have been proven mutually compatible with one global joint law; tree marginalization need not equal marginalization under such a law; DTAG conditioning is not a causal intervention; a semantic bridge is not equivalent to a directly observed survey item; the rendered answer is a language interpretation of model anchors rather than a literal survey response; and a DTAG respondent is a model-conditioned digital twin of response behavior rather than an identified real individual. These limitations are not defects in the formalization; they specify precisely what object the implementation computes.
+
+\section{Consequences for Validation and Experiment Design}
+\label{sec:validation}
+
+The factorization in Section~\ref{sec:factorization} suggests that DTAG should be validated at separable interfaces rather than only by judging final prose. At the LSM layer, one can test conditional calibration, null-state distributions, support validity, self-distance $d_Q(s,s)=0$, geometry stability, and model-map overlap. At the semantic layer, one can independently measure direct-map precision/recall, fallback bridge validity, confidence calibration, and provenance quality. At the transition layer, one can verify deterministic replay under maximum-response mode, batch-versus-sequential behavior, bounded state size, and the invariance guaranteed by answer-only fallback. At the rendering layer, one can test whether generated prose faithfully expresses the already-selected anchors without adding unsupported claims.
+
+The theory also defines useful controlled perturbation experiments. If $s$ is a baseline state and $s^{(j\leftarrow a)}$ differs by one hard assignment, then
+\begin{equation}
+  \Omega_j(a;s)=d_Q\!\left(s,s^{(j\leftarrow a)}\right)
+  \label{eq:perturbation}
+\end{equation}
+measures the global predictive displacement caused by that conditioning event within the learned LSM field. The per-target decomposition $\delta_i$ identifies which conditional response surfaces moved. This is an observational sensitivity measure and should remain labeled as such, but it gives a direct bridge between interactive DTAG state changes and the intrinsic LSM geometry.
+
+Likewise, a question sequence $q_{1:T}$ induces a trajectory
+\begin{equation}
+  \sigma_0\to\sigma_1\to\cdots\to\sigma_T,
+\end{equation}
+which can be studied through $d_Q(s_t,s_{t+1})$, distance from the initial state, per-target displacement, and optional pole coordinate $I(s_t)$. Because semantic answer-only steps leave $s_t$ unchanged, the trajectory can distinguish language-only inference from persistent model-state movement.
+
+\section{Conclusion}
+
+DTAG can be stated compactly as a semantic interface around an LSM conditional field with persistent state. The LSM converts a partial categorical state into a vector of conditional distributions. DTAG selects which coordinates are relevant to a natural-language question, obtains model-native anchor distributions, selects supported response labels, optionally commits those labels to a bounded state memory, tracks movement in the native predictive geometry, and only then renders language. This construction preserves a clear boundary between statistical inference and linguistic expression.
+
+The implementation-aligned formulation is stronger than a generic description of a ``survey-conditioned LLM'' because it exposes the actual mathematical objects that can be tested: conditional trees, partial-state mixture inference, a bounded Jensen--Shannon pseudometric, explicit state-transition rules, provenance-bearing semantic maps, and reference-state geometry. It is also more conservative than claiming an automatically valid global joint distribution or causal digital twin. Those stronger properties can be investigated as additional hypotheses---for example through conditional-compatibility tests or Dobrushin influence bounds---without changing the core DTAG definition.
+
+\appendices
+
+\section{Reference Runtime Defaults}
+\label{app:defaults}
+
+The following values are implementation defaults in the analyzed DTAG snapshot and are not mathematical necessities: direct variable cap $k=6$; lexical candidate cap $160$; minimum lexical score $1.0$; semantic bridge cap $6$; semantic candidate cap $80$; semantic confidence threshold $0.35$; semantic fallback mode \texttt{answer\_only}; direct and semantic response mode \texttt{max}; persona-assignment cap $8$; and retained-state cap $H=50$. Changing these values changes an interaction policy, not the definitions of the native LSM kernels or qdistance.
+
+\section{Direct DTAG Transition in Pseudocode}
+\label{app:pseudocode}
+
+For clarity, the direct path can be written as the following implementation-equivalent mathematical pseudocode.
+\begin{enumerate}[leftmargin=1.5em]
+\item Build direct semantic candidates from $(q_t,\mu)$; if none, invoke semantic fallback.
+\item Select $C_t$ from those candidates; if empty, invoke semantic fallback.
+\item Construct $s_t=V(\sigma_t)$ with $\botv$ in every unassigned coordinate.
+\item For all $i\in C_t$, evaluate $p_{t,i}=K_i(\cdot\mid s_t)$. No response is committed yet.
+\item For all $i\in C_t$, choose $a_{t,i}=R(p_{t,i})$.
+\item Apply the valid assignments as one bounded update $\sigma_{t+1}=U_H(\sigma_t,A_t)$.
+\item If polar geometry is enabled, compute $I(V(\sigma_{t+1}))$.
+\item Render $y_t$ from persona, question, mapped variable text, and selected anchor labels.
+\end{enumerate}
+
+\section{Implementation Snapshot and Reproducibility}
+\label{app:snapshot}
+
+This report is aligned to DTAG repository \texttt{main} commit \texttt{a0904225a4fc} and LSM repository \texttt{main} commit \texttt{2c07b57665a4}; the bibliography records the full commit identifiers. The DTAG runtime files most directly defining the mathematics are \path{scripts/dtag_session.py}, \path{scripts/pipeline.py}, \path{scripts/pipeline_localized.py}, \path{scripts/model_backend.py}, \path{scripts/dtag_engine.py}, and the C++ sources under \path{native/lsm_runtime}. The LSM training specification is principally implemented under \path{src/ModelBuilder}, \path{src/ColumnSelector}, and \path{src/FeatureSubsetSelector} \cite{dtag2026,lsm2026}.
+
+\bibliographystyle{IEEEtran}
+\bibliography{dtag_theory}
+
+\end{document}
