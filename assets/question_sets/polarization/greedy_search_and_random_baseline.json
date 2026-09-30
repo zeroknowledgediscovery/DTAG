@@ -1,0 +1,934 @@
+{
+ "optimized": {
+  "n": 300,
+  "CM_change": [
+   8.382842143248868e-05,
+   -0.0011565847829339971,
+   0.0012855302783296879
+  ],
+  "CM_share_up": 0.5666666666666667,
+  "WF_change": [
+   -0.006184234299581701,
+   -0.007621813957299627,
+   -0.004687154918593899
+  ],
+  "WF_share_down": 0.6733333333333333,
+  "gap_change": [
+   0.006268062721014189,
+   0.004913880908133465,
+   0.00772760967084355
+  ],
+  "share_both": 0.30666666666666664,
+  "per_step": {
+   "CM": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.0007166723233790667,
+     5.14749146481015e-05,
+     0.0013390484832617375
+    ],
+    [
+     0.0021792257940957236,
+     0.0011806709451959532,
+     0.003193303432631057
+    ],
+    [
+     0.0013644039308954078,
+     0.0003081039917339154,
+     0.0023990129790621255
+    ],
+    [
+     0.0012177719097576105,
+     9.46232097407755e-05,
+     0.0022791739181529953
+    ],
+    [
+     0.0012771348590487025,
+     0.0001432322972722112,
+     0.0023966136905235426
+    ],
+    [
+     0.00025523084404713254,
+     -0.0009740230673271067,
+     0.00138320580477945
+    ],
+    [
+     5.4854892723787384e-05,
+     -0.001142560672394327,
+     0.0012154079308747173
+    ],
+    [
+     -0.00026210719387748983,
+     -0.0014077674746199409,
+     0.000861063523604272
+    ],
+    [
+     0.00037218966280664923,
+     -0.000883076128758601,
+     0.001583022221296398
+    ],
+    [
+     0.00046786007554696095,
+     -0.0007737864849362678,
+     0.001660688274942576
+    ],
+    [
+     9.248338085726877e-05,
+     -0.0011249569512160617,
+     0.001239148992732815
+    ],
+    [
+     8.382842143248868e-05,
+     -0.0011935894637668872,
+     0.0013096778107308164
+    ]
+   ],
+   "WF": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     -0.005540667613342857,
+     -0.006343097963567888,
+     -0.004749613388914704
+    ],
+    [
+     -0.003248767766956227,
+     -0.00448284575410179,
+     -0.001957480057979878
+    ],
+    [
+     -0.00432138678681786,
+     -0.005614339278302128,
+     -0.00308214360589792
+    ],
+    [
+     -0.004046634964068788,
+     -0.005407378340432746,
+     -0.00267367655172554
+    ],
+    [
+     -0.004455020010207398,
+     -0.005870560788652511,
+     -0.003083066826220398
+    ],
+    [
+     -0.005458299456310608,
+     -0.006870379461824256,
+     -0.004093687679590166
+    ],
+    [
+     -0.005725286376415098,
+     -0.007207294841549679,
+     -0.004292406114825352
+    ],
+    [
+     -0.006015303552794733,
+     -0.007541872338132961,
+     -0.004624545562661886
+    ],
+    [
+     -0.005850226557631803,
+     -0.007269331111667704,
+     -0.004410660990182716
+    ],
+    [
+     -0.0058218947378608785,
+     -0.007307946226777926,
+     -0.004397161909858335
+    ],
+    [
+     -0.006190273424607303,
+     -0.007615670759883583,
+     -0.00470115976722999
+    ],
+    [
+     -0.006184234299581701,
+     -0.007733230390528387,
+     -0.004701929263160134
+    ]
+   ]
+  },
+  "per_length": [
+   {
+    "length": 1,
+    "n": 300,
+    "CM_change": [
+     0.0007166723233790667,
+     3.5127356371774515e-05,
+     0.0013718473081233324
+    ],
+    "CM_share_up": 0.67,
+    "WF_change": [
+     -0.005540667613342857,
+     -0.006392527266597195,
+     -0.004762239543189556
+    ],
+    "WF_share_down": 0.78,
+    "gap_change": [
+     0.006257339936721923,
+     0.005401155981014121,
+     0.007130196352911725
+    ],
+    "share_both": 0.46
+   },
+   {
+    "length": 2,
+    "n": 300,
+    "CM_change": [
+     0.0021792257940957236,
+     0.001123279221965138,
+     0.003245753188780488
+    ],
+    "CM_share_up": 0.6466666666666666,
+    "WF_change": [
+     -0.003248767766956227,
+     -0.004529953738280305,
+     -0.0019175199735869636
+    ],
+    "WF_share_down": 0.68,
+    "gap_change": [
+     0.00542799356105195,
+     0.0041282981158426175,
+     0.006718483378012478
+    ],
+    "share_both": 0.36333333333333334
+   },
+   {
+    "length": 3,
+    "n": 300,
+    "CM_change": [
+     0.0013644039308954078,
+     0.0003571037245759784,
+     0.0024540263965224522
+    ],
+    "CM_share_up": 0.62,
+    "WF_change": [
+     -0.00432138678681786,
+     -0.005623244662983269,
+     -0.0030173836133543276
+    ],
+    "WF_share_down": 0.71,
+    "gap_change": [
+     0.005685790717713269,
+     0.004437683269813189,
+     0.006896215146815512
+    ],
+    "share_both": 0.36333333333333334
+   },
+   {
+    "length": 4,
+    "n": 300,
+    "CM_change": [
+     0.0012177719097576105,
+     0.00012100372258433119,
+     0.0022184120121385687
+    ],
+    "CM_share_up": 0.6066666666666667,
+    "WF_change": [
+     -0.004046634964068788,
+     -0.005386479105938773,
+     -0.002696739956191269
+    ],
+    "WF_share_down": 0.6766666666666666,
+    "gap_change": [
+     0.0052644068738263985,
+     0.003861979585186776,
+     0.0066579120508308415
+    ],
+    "share_both": 0.33666666666666667
+   },
+   {
+    "length": 5,
+    "n": 300,
+    "CM_change": [
+     0.0012771348590487025,
+     0.00016721384556594307,
+     0.002351305020224296
+    ],
+    "CM_share_up": 0.6033333333333334,
+    "WF_change": [
+     -0.004455020010207398,
+     -0.0058267527455006275,
+     -0.0031111296111193836
+    ],
+    "WF_share_down": 0.66,
+    "gap_change": [
+     0.0057321548692561,
+     0.004346445772870818,
+     0.00711272282396831
+    ],
+    "share_both": 0.32666666666666666
+   },
+   {
+    "length": 6,
+    "n": 300,
+    "CM_change": [
+     0.00025523084404713254,
+     -0.0009097928381562651,
+     0.0013915416860257133
+    ],
+    "CM_share_up": 0.5433333333333333,
+    "WF_change": [
+     -0.005458299456310608,
+     -0.006930338932277506,
+     -0.0040119210663185955
+    ],
+    "WF_share_down": 0.67,
+    "gap_change": [
+     0.005713530300357741,
+     0.004337614943384468,
+     0.007042943770275316
+    ],
+    "share_both": 0.3
+   },
+   {
+    "length": 7,
+    "n": 300,
+    "CM_change": [
+     5.4854892723787384e-05,
+     -0.0012332859742263786,
+     0.0012598850695026305
+    ],
+    "CM_share_up": 0.5333333333333333,
+    "WF_change": [
+     -0.005725286376415098,
+     -0.007183810392864388,
+     -0.004228553597946145
+    ],
+    "WF_share_down": 0.6733333333333333,
+    "gap_change": [
+     0.0057801412691388864,
+     0.004367999276464023,
+     0.0071137095401110585
+    ],
+    "share_both": 0.2866666666666667
+   },
+   {
+    "length": 8,
+    "n": 300,
+    "CM_change": [
+     -0.00026210719387748983,
+     -0.0013976320412122517,
+     0.0009380504990017422
+    ],
+    "CM_share_up": 0.5266666666666666,
+    "WF_change": [
+     -0.006015303552794733,
+     -0.007397064639350483,
+     -0.004506535854458262
+    ],
+    "WF_share_down": 0.68,
+    "gap_change": [
+     0.0057531963589172435,
+     0.004438391636553379,
+     0.007144305412947772
+    ],
+    "share_both": 0.2833333333333333
+   },
+   {
+    "length": 9,
+    "n": 300,
+    "CM_change": [
+     0.00037218966280664923,
+     -0.0009093215490691539,
+     0.0016209531469041098
+    ],
+    "CM_share_up": 0.5766666666666667,
+    "WF_change": [
+     -0.005850226557631803,
+     -0.007328177508157177,
+     -0.004348608498933167
+    ],
+    "WF_share_down": 0.67,
+    "gap_change": [
+     0.006222416220438453,
+     0.004812494984357621,
+     0.007511061927719162
+    ],
+    "share_both": 0.30666666666666664
+   },
+   {
+    "length": 10,
+    "n": 300,
+    "CM_change": [
+     0.00046786007554696095,
+     -0.000768847357566779,
+     0.0016383840037475696
+    ],
+    "CM_share_up": 0.5833333333333334,
+    "WF_change": [
+     -0.0058218947378608785,
+     -0.007367004032930767,
+     -0.004351153965445815
+    ],
+    "WF_share_down": 0.6666666666666666,
+    "gap_change": [
+     0.00628975481340784,
+     0.0049834943888369555,
+     0.0076914953741203
+    ],
+    "share_both": 0.30666666666666664
+   },
+   {
+    "length": 11,
+    "n": 300,
+    "CM_change": [
+     9.248338085726877e-05,
+     -0.0011510444539977636,
+     0.001290863263615453
+    ],
+    "CM_share_up": 0.5633333333333334,
+    "WF_change": [
+     -0.006190273424607303,
+     -0.007675795656413279,
+     -0.004718785521338978
+    ],
+    "WF_share_down": 0.6733333333333333,
+    "gap_change": [
+     0.006282756805464571,
+     0.004916192806039974,
+     0.007624775089520153
+    ],
+    "share_both": 0.30333333333333334
+   },
+   {
+    "length": 12,
+    "n": 300,
+    "CM_change": [
+     8.382842143248868e-05,
+     -0.0010935362340163423,
+     0.0013348594149143016
+    ],
+    "CM_share_up": 0.5666666666666667,
+    "WF_change": [
+     -0.006184234299581701,
+     -0.007669187828684557,
+     -0.004619408974650139
+    ],
+    "WF_share_down": 0.6733333333333333,
+    "gap_change": [
+     0.006268062721014189,
+     0.0048976575746298295,
+     0.007688243127435607
+    ],
+    "share_both": 0.30666666666666664
+   }
+  ]
+ },
+ "compare:max_set_v1": {
+  "n": 300,
+  "CM_change": [
+   0.01882402339753132,
+   0.00703783714366091,
+   0.030447359695446347
+  ],
+  "CM_share_up": 0.5933333333333334,
+  "WF_change": [
+   -0.004117857293650329,
+   -0.016645923887883867,
+   0.009050192358275437
+  ],
+  "WF_share_down": 0.48,
+  "gap_change": [
+   0.022941880691181648,
+   0.01362507701832983,
+   0.03257770716968722
+  ],
+  "share_both": 0.16333333333333333
+ },
+ "random_baseline": {
+  "sets": 20,
+  "CM_mean_range": [
+   -0.07752611743183237,
+   0.02972432107640117
+  ],
+  "WF_mean_range": [
+   -0.05793861154892292,
+   0.02758448335215656
+  ],
+  "gap_mean_median": -0.003103266273927708,
+  "gap_mean_max": 0.029973691692866827,
+  "share_both_median": 0.0,
+  "sets_detail": [
+   {
+    "sequence": [
+     "proudhis",
+     "divlaw",
+     "marwht",
+     "racdif1",
+     "natarms",
+     "urbantech",
+     "grass",
+     "amownway",
+     "abrape",
+     "ratechall324",
+     "raterepp",
+     "amshamed"
+    ],
+    "CM_mean": 0.0020976486862394877,
+    "WF_mean": 0.0002710857151107119,
+    "gap_mean": 0.001826562971128776,
+    "share_both": 0.1
+   },
+   {
+    "sequence": [
+     "amgovt",
+     "satdemoc",
+     "emonitor1",
+     "librac",
+     "marasian",
+     "corruptn",
+     "infodeal",
+     "polint",
+     "racdif1x",
+     "trcourts",
+     "rateincumb24",
+     "proudeco"
+    ],
+    "CM_mean": -0.012381328185361137,
+    "WF_mean": -0.011189066422365715,
+    "gap_mean": -0.0011922617629954201,
+    "share_both": 0.1
+   },
+   {
+    "sequence": [
+     "teensex",
+     "ratemaga",
+     "confed",
+     "thnkself",
+     "owndecns",
+     "letinasn",
+     "raterepp",
+     "proudeco",
+     "spkath",
+     "marwht",
+     "natarms",
+     "eductech"
+    ],
+    "CM_mean": -0.0016344312673733858,
+    "WF_mean": 0.013250988437121143,
+    "gap_mean": -0.014885419704494526,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "immideas1",
+     "racdif3",
+     "spkrac",
+     "fepol",
+     "imports",
+     "corruptn",
+     "colmslm",
+     "helpful",
+     "dem10pst",
+     "dsndntpay",
+     "chldidel",
+     "conmedic"
+    ],
+    "CM_mean": 0.01618240583765376,
+    "WF_mean": 0.01891714836717635,
+    "gap_mean": -0.0027347425295225877,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "adoptus",
+     "demtoday",
+     "abany",
+     "reliten",
+     "immassim",
+     "dsndntpay",
+     "immfate",
+     "meovrwrk",
+     "incgap1",
+     "abrape",
+     "servpub",
+     "watchgov"
+    ],
+    "CM_mean": -0.07752611743183237,
+    "WF_mean": -0.05793861154892292,
+    "gap_mean": -0.019587505882909438,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "consci",
+     "ratemaga",
+     "proudeco",
+     "tvnews1",
+     "experts",
+     "religinf",
+     "demtoday",
+     "helpnot",
+     "prouddem",
+     "pillok",
+     "wlthblks",
+     "gunlaw"
+    ],
+    "CM_mean": -0.014066063824483633,
+    "WF_mean": -0.004470181174556622,
+    "gap_mean": -0.009595882649927008,
+    "share_both": 0.03333333333333333
+   },
+   {
+    "sequence": [
+     "raterepp",
+     "cctv",
+     "workhsps",
+     "smnews",
+     "natenvir",
+     "trcong",
+     "abany",
+     "bible",
+     "usmca2",
+     "feovrwrk",
+     "natcity",
+     "spkath"
+    ],
+    "CM_mean": -0.01376068370817238,
+    "WF_mean": 0.01796903456470548,
+    "gap_mean": -0.03172971827287786,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "smnews",
+     "suicide4",
+     "acpttg",
+     "spkcom",
+     "fehire",
+     "econstat",
+     "helpsick",
+     "helpoth",
+     "urbantech",
+     "dem10pst",
+     "natsci",
+     "corruptn"
+    ],
+    "CM_mean": 0.001610868317421615,
+    "WF_mean": 0.0045443933697423685,
+    "gap_mean": -0.0029335250523207525,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "poleff11",
+     "goodlife",
+     "spkcom",
+     "divlaw",
+     "ratechall224",
+     "corruptn",
+     "radionews",
+     "natchld",
+     "immcrime",
+     "ifwrong",
+     "racdif3",
+     "dsndntpay"
+    ],
+    "CM_mean": 0.006060944940048563,
+    "WF_mean": 0.003110178809007359,
+    "gap_mean": 0.002950766131041205,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "solok",
+     "discaffm",
+     "wlthblks",
+     "spkcom",
+     "techesy",
+     "colath",
+     "natfare",
+     "religinf",
+     "immassim",
+     "webnews",
+     "cctv",
+     "infodeal"
+    ],
+    "CM_mean": 0.013821020939177,
+    "WF_mean": 0.015478902635243907,
+    "gap_mean": -0.00165788169606691,
+    "share_both": 0.03333333333333333
+   },
+   {
+    "sequence": [
+     "letin1",
+     "racdif1x",
+     "suicide2",
+     "polmurdr",
+     "bible",
+     "befair",
+     "consci",
+     "proudeco",
+     "ratechall124",
+     "courts",
+     "natcrime",
+     "abpoor"
+    ],
+    "CM_mean": -0.0027326849060128615,
+    "WF_mean": -0.006372369514750437,
+    "gap_mean": 0.003639684608737574,
+    "share_both": 0.1
+   },
+   {
+    "sequence": [
+     "spkath",
+     "demtoday",
+     "grass",
+     "econstat",
+     "relpersn",
+     "affrmact",
+     "harmgood1",
+     "natchld",
+     "eqwlth",
+     "trust",
+     "ratedemp",
+     "abnomore"
+    ],
+    "CM_mean": 0.009946282503718894,
+    "WF_mean": 0.013665209739804191,
+    "gap_mean": -0.003718927236085299,
+    "share_both": 0.03333333333333333
+   },
+   {
+    "sequence": [
+     "belikeus",
+     "sprtprsn",
+     "helpblk",
+     "acpttg",
+     "proudeco",
+     "liveblks",
+     "conpow",
+     "helpsick",
+     "aiworry",
+     "workhard",
+     "natenvir",
+     "marwht"
+    ],
+    "CM_mean": -0.0037300915227369722,
+    "WF_mean": 0.0025315090266080156,
+    "gap_mean": -0.006261600549344989,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "abhlth",
+     "religinf",
+     "natcity",
+     "poleff11",
+     "econstat",
+     "natspac",
+     "servpub",
+     "proudpol",
+     "wlthwhts",
+     "discaffm",
+     "immjobs1",
+     "fejobaff"
+    ],
+    "CM_mean": -0.002192694529115251,
+    "WF_mean": -0.0015061430347012383,
+    "gap_mean": -0.000686551494414013,
+    "share_both": 0.1
+   },
+   {
+    "sequence": [
+     "servpub",
+     "proudpol",
+     "bizmoney",
+     "papernews",
+     "letdie1",
+     "demtoday",
+     "discaff",
+     "amancstr",
+     "divlaw",
+     "ambetter",
+     "homosex",
+     "letinhsp"
+    ],
+    "CM_mean": -0.020116028645369374,
+    "WF_mean": -0.011513383062438431,
+    "gap_mean": -0.008602645582930947,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "amancstr",
+     "confinan",
+     "spanking",
+     "libmslm",
+     "amchrstn",
+     "abany",
+     "amcit",
+     "relpersn",
+     "obeylaws",
+     "letin1a",
+     "corruptn",
+     "helpnot"
+    ],
+    "CM_mean": -0.027177614839782736,
+    "WF_mean": -0.01169123214534178,
+    "gap_mean": -0.015486382694440944,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "wrldgovt",
+     "sprtprsn",
+     "ratemaga",
+     "nataid",
+     "god",
+     "polescap",
+     "spkrac",
+     "natsci",
+     "tvnews1",
+     "marsame",
+     "colrac",
+     "workhard"
+    ],
+    "CM_mean": 0.014077925024672651,
+    "WF_mean": 0.02758448335215656,
+    "gap_mean": -0.013506558327483905,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "conarmy",
+     "cctv",
+     "usmca2",
+     "demtoday",
+     "webnews",
+     "conmedic",
+     "abhlth",
+     "marwht",
+     "natspac",
+     "reliten",
+     "marhisp",
+     "popular"
+    ],
+    "CM_mean": -0.004349155990948495,
+    "WF_mean": -0.00107614849541383,
+    "gap_mean": -0.0032730074955346637,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "natspac",
+     "proudeco",
+     "meovrwrk",
+     "infodeal",
+     "racdif5x",
+     "racdif4x",
+     "natenrgy",
+     "conlabor",
+     "spkcom",
+     "natsoc",
+     "conarmy",
+     "reliten"
+    ],
+    "CM_mean": -0.002143440955526861,
+    "WF_mean": -0.0020946244803575495,
+    "gap_mean": -4.881647516931248e-05,
+    "share_both": 0.0
+   },
+   {
+    "sequence": [
+     "pray",
+     "relactiv",
+     "divlaw",
+     "amownway",
+     "natdrug",
+     "ratechall324",
+     "abdefect",
+     "premarsx",
+     "urbantech",
+     "racdif5x",
+     "rghtsmin",
+     "popular"
+    ],
+    "CM_mean": 0.02972432107640117,
+    "WF_mean": -0.000249370616465656,
+    "gap_mean": 0.029973691692866827,
+    "share_both": 0.23333333333333334
+   }
+  ]
+ },
+ "sequence": [
+  {
+   "variable": "relactiv",
+   "text": "how often does r take part in relig activities"
+  },
+  {
+   "variable": "religinf",
+   "text": "the u.s. would be a better country if religion had less influence"
+  },
+  {
+   "variable": "poleff11",
+   "text": "don't have any say about what the government does"
+  },
+  {
+   "variable": "acpttg",
+   "text": "accepting people"
+  },
+  {
+   "variable": "reliten",
+   "text": "strength of affiliation"
+  },
+  {
+   "variable": "polattak",
+   "text": "citizen attacking policeman with fists"
+  },
+  {
+   "variable": "spanking",
+   "text": "favor spanking to discipline child"
+  },
+  {
+   "variable": "watchgov",
+   "text": "how important to keep watch on action of govt"
+  },
+  {
+   "variable": "affrmact",
+   "text": "favor preference in hiring black people"
+  },
+  {
+   "variable": "racdif4x",
+   "text": "differences due to lack of will"
+  },
+  {
+   "variable": "papernews",
+   "text": "reliability of newspapers"
+  },
+  {
+   "variable": "smnews",
+   "text": "reliability of news on social media"
+  }
+ ],
+ "config": {
+  "wave": "2024",
+  "model_root": "/home/user/dtag-models",
+  "out": "/tmp/claude-0/-home-user-DTAG/a58e4dbb-0db6-5d74-be02-40dd0a0cf683/scratchpad/pol_rich",
+  "length": 12,
+  "pop": 16,
+  "prescreen": 30,
+  "screen_pop": 4,
+  "rescreen_every": 2,
+  "min_gain": 0.02,
+  "sd_floor": 0.01,
+  "force_length": true,
+  "rich": true,
+  "n_val": 300,
+  "baselines": 20,
+  "n_base": 30,
+  "compare": [
+   "max_set_v1=pray,confed,relpersn,bible,amchrstn,natarms,natsci,dsndntpay,religinf,polabuse,affrmact,wrkwayup"
+  ],
+  "sequence": "",
+  "workers": 4
+ }
+}
