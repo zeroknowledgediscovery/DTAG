@@ -49,7 +49,7 @@ def default_magics_data_root() -> Path:
 
 
 def resolve_data_for_model_key(model_key: str, data_root: Path) -> Path:
-    """Map a public DTAG model key to the matching MAGICS_research training CSV."""
+    """Map the canonical public DTAG model key to its MAGICS_research training CSV."""
     key = fetch_models.validate_model_key(model_key)
     family, name = key.split("/", 1)
 
@@ -57,8 +57,11 @@ def resolve_data_for_model_key(model_key: str, data_root: Path) -> Path:
     if family == "gss":
         candidates = [data_root / "gss" / f"{name}.csv"]
     elif family == "afrobarometer":
+        # Public model keys are afrobarometer/r1 ... /r9, while the cleaned
+        # LSM training files are named merged_rN_data.csv.
+        round_name = name.removeprefix("merged_")
         candidates = [
-            data_root / "afrobarometer" / "merged_csvs_lsm" / f"{name}_data.csv"
+            data_root / "afrobarometer" / "merged_csvs_lsm" / f"merged_{round_name}_data.csv"
         ]
     elif family == "wvs":
         if name in {"wave7", "wvs7_pooled", "wvs_wave7"}:
@@ -84,16 +87,47 @@ def resolve_data_for_model_key(model_key: str, data_root: Path) -> Path:
     )
 
 
+def resolve_manifest_model_key(requested: str, manifest: Dict[str, object]) -> str:
+    """Resolve user-facing/local aliases to the exact key published in GCS."""
+    requested = fetch_models.validate_model_key(requested)
+    models = manifest.get("models", {})
+    if not isinstance(models, dict):
+        raise RuntimeError("DTAG model manifest has no models dictionary")
+    if requested in models:
+        return requested
+
+    family, name = requested.split("/", 1)
+    aliases: List[str] = []
+    if family == "afrobarometer" and name.startswith("merged_"):
+        aliases.append(f"{family}/{name.removeprefix('merged_')}")
+    if family == "wvs" and name in {"wave7", "wvs_wave7"}:
+        aliases.append("wvs/wvs7_pooled")
+
+    hits = [k for k in aliases if k in models]
+    if len(hits) == 1:
+        return hits[0]
+
+    family_keys = sorted(k for k in models if str(k).startswith(f"{family}/"))
+    nearby = ", ".join(family_keys[:20])
+    raise KeyError(
+        f"Model not found in manifest: {requested!r}. "
+        f"Available {family} keys include: {nearby}"
+    )
+
+
 def resolve_model(model: Path | None, model_key: str) -> Tuple[Path, str]:
-    """Use an explicit model path or fetch a public native model from GCS."""
+    """Use an explicit model path or fetch the canonical public native model from GCS."""
     if model is not None:
         return model.expanduser().resolve(), model_key
     if not model_key:
         raise ValueError("provide --model-key (preferred) or --model")
     manifest = fetch_models.load_manifest()
+    canonical_key = resolve_manifest_model_key(model_key, manifest)
+    if canonical_key != model_key:
+        print(f"model-key alias: {model_key} -> {canonical_key}")
     root = fetch_models.default_root()
-    path = fetch_models.fetch_one(root, manifest, model_key)
-    return path.resolve(), model_key
+    path = fetch_models.fetch_one(root, manifest, canonical_key)
+    return path.resolve(), canonical_key
 
 
 def _state_hash(row: Sequence[str]) -> str:
@@ -441,7 +475,7 @@ def write_outputs(
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Discover empirical DTAG poles with native-LSM qdistance.")
-    ap.add_argument("--model-key", default="", help="public DTAG key, e.g. afrobarometer/merged_r5; fetched from GCS")
+    ap.add_argument("--model-key", default="", help="public DTAG key (e.g. afrobarometer/r5); common local aliases such as afrobarometer/merged_r5 are accepted")
     ap.add_argument("--model", type=Path, help="override: existing local native LSM model directory")
     ap.add_argument("--data", type=Path, help="override: CSV used for this survey/model wave")
     ap.add_argument("--data-root", type=Path, help="override MAGICS_research/survey/data root")
