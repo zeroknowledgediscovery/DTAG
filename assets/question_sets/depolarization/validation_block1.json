@@ -1,0 +1,536 @@
+{
+ "optimized": {
+  "n": 300,
+  "CM_change": [
+   -0.011682834629366352,
+   -0.024335438062503056,
+   0.0016690615136497819
+  ],
+  "CM_share_up": 0.43333333333333335,
+  "WF_change": [
+   0.0223658849967186,
+   0.010110534118495476,
+   0.03539860869745499
+  ],
+  "WF_share_down": 0.54,
+  "CM_share_intended": 0.5666666666666667,
+  "WF_share_intended": 0.46,
+  "gap_change": [
+   -0.034048719626084946,
+   -0.03646286121711693,
+   -0.03169940143901216
+  ],
+  "share_both": 0.02666666666666667,
+  "per_step": {
+   "CM": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     -0.002409824518085358,
+     -0.003945181492077357,
+     -0.0009052919722048814
+    ],
+    [
+     -0.009583596368523397,
+     -0.022682743424636765,
+     0.0036426781279747973
+    ],
+    [
+     0.000582318613578301,
+     -0.013088285076324327,
+     0.014047206753863409
+    ],
+    [
+     0.006157924484289568,
+     -0.007100094200328832,
+     0.020571211714256212
+    ],
+    [
+     0.005040941063348885,
+     -0.008329972205628857,
+     0.01801254151620518
+    ],
+    [
+     -0.0018229439646748734,
+     -0.015087386981719993,
+     0.01172573510229591
+    ],
+    [
+     -0.0044005469458005585,
+     -0.017265435497122436,
+     0.008524551167407754
+    ],
+    [
+     -0.004615250450523027,
+     -0.0169550216230386,
+     0.008118078118427711
+    ],
+    [
+     -0.004792762640960526,
+     -0.018264515147164862,
+     0.007927447950620916
+    ],
+    [
+     -0.006643323889154162,
+     -0.020068420599931913,
+     0.00696787580298657
+    ],
+    [
+     -0.007504738716214066,
+     -0.01975903485004904,
+     0.004986982769066503
+    ],
+    [
+     -0.011682834629366352,
+     -0.02487899431936294,
+     0.001109104189377775
+    ]
+   ],
+   "WF": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.002749977600054329,
+     0.0011372609674467863,
+     0.004372835269646314
+    ],
+    [
+     0.013182166063555,
+     -0.0010069315014283348,
+     0.026907200180200194
+    ],
+    [
+     0.023212573310966232,
+     0.009280879714183302,
+     0.037051707740503266
+    ],
+    [
+     0.029554374342835064,
+     0.015474844641527482,
+     0.04404393268549085
+    ],
+    [
+     0.02961193763252813,
+     0.015820856524325286,
+     0.0429467013773735
+    ],
+    [
+     0.027986901209546767,
+     0.014934762493278657,
+     0.04158649684802624
+    ],
+    [
+     0.026418308745060532,
+     0.013595869870618461,
+     0.03953707914668425
+    ],
+    [
+     0.027131156329548614,
+     0.013495271131733473,
+     0.04056234130360981
+    ],
+    [
+     0.02714686826025352,
+     0.013992519777169787,
+     0.04170670224784363
+    ],
+    [
+     0.027303992226535623,
+     0.013841840019208275,
+     0.04069114672765336
+    ],
+    [
+     0.02635987970543555,
+     0.013497863879878912,
+     0.0386228342213136
+    ],
+    [
+     0.0223658849967186,
+     0.009805268169679424,
+     0.03512372594284034
+    ]
+   ]
+  },
+  "per_length": [
+   {
+    "length": 1,
+    "n": 300,
+    "CM_change": [
+     -0.002409824518085358,
+     -0.0038330205029121125,
+     -0.0009372109692782076
+    ],
+    "CM_share_up": 0.5966666666666667,
+    "WF_change": [
+     0.002749977600054329,
+     0.001098252372639738,
+     0.0044486146308089876
+    ],
+    "WF_share_down": 0.4033333333333333,
+    "CM_share_intended": 0.4033333333333333,
+    "WF_share_intended": 0.5966666666666667,
+    "gap_change": [
+     -0.005159802118139687,
+     -0.005606117368131156,
+     -0.004714833582005776
+    ],
+    "share_both": 0.0
+   },
+   {
+    "length": 2,
+    "n": 300,
+    "CM_change": [
+     -0.009583596368523397,
+     -0.023244848065150384,
+     0.003674397120751033
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.013182166063555,
+     -0.0006864409909375014,
+     0.026834888408183367
+    ],
+    "WF_share_down": 0.5633333333333334,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.43666666666666665,
+    "gap_change": [
+     -0.0227657624320784,
+     -0.024272254748536597,
+     -0.021199196936470693
+    ],
+    "share_both": 0.0
+   },
+   {
+    "length": 3,
+    "n": 300,
+    "CM_change": [
+     0.000582318613578301,
+     -0.013562883013774592,
+     0.014600967377105855
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.023212573310966232,
+     0.008967878460418483,
+     0.03615392211532145
+    ],
+    "WF_share_down": 0.5633333333333334,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.43666666666666665,
+    "gap_change": [
+     -0.022630254697387928,
+     -0.024197571927690963,
+     -0.021015155382760147
+    ],
+    "share_both": 0.0
+   },
+   {
+    "length": 4,
+    "n": 300,
+    "CM_change": [
+     0.006157924484289568,
+     -0.008221226389094246,
+     0.0203101681330567
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.029554374342835064,
+     0.015582651511428456,
+     0.04326136845324736
+    ],
+    "WF_share_down": 0.5633333333333334,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.43666666666666665,
+    "gap_change": [
+     -0.02339644985854549,
+     -0.02535692495225774,
+     -0.021378892803502424
+    ],
+    "share_both": 0.0
+   },
+   {
+    "length": 5,
+    "n": 300,
+    "CM_change": [
+     0.005040941063348885,
+     -0.008544709196328845,
+     0.017941168533886137
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.02961193763252813,
+     0.016284250738828318,
+     0.043680373859855494
+    ],
+    "WF_share_down": 0.5633333333333334,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.43666666666666665,
+    "gap_change": [
+     -0.024570996569179243,
+     -0.026548564877605405,
+     -0.022549982314903145
+    ],
+    "share_both": 0.0
+   },
+   {
+    "length": 6,
+    "n": 300,
+    "CM_change": [
+     -0.0018229439646748734,
+     -0.014590100395118346,
+     0.01150279864831246
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.027986901209546767,
+     0.014827056646282649,
+     0.04046172038049218
+    ],
+    "WF_share_down": 0.56,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.44,
+    "gap_change": [
+     -0.02980984517422164,
+     -0.03199336554230479,
+     -0.027406871070061435
+    ],
+    "share_both": 0.0033333333333333335
+   },
+   {
+    "length": 7,
+    "n": 300,
+    "CM_change": [
+     -0.0044005469458005585,
+     -0.017269437075486057,
+     0.007902865889095285
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.026418308745060532,
+     0.013390781318131505,
+     0.03966831013577217
+    ],
+    "WF_share_down": 0.5633333333333334,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.43666666666666665,
+    "gap_change": [
+     -0.03081885569086109,
+     -0.03302365317240109,
+     -0.02852475551245344
+    ],
+    "share_both": 0.0
+   },
+   {
+    "length": 8,
+    "n": 300,
+    "CM_change": [
+     -0.004615250450523027,
+     -0.01752040141330588,
+     0.008460751653454073
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.027131156329548614,
+     0.013690645765182521,
+     0.04021369369503174
+    ],
+    "WF_share_down": 0.56,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.44,
+    "gap_change": [
+     -0.03174640678007164,
+     -0.0339390621084594,
+     -0.02953860193149026
+    ],
+    "share_both": 0.0033333333333333335
+   },
+   {
+    "length": 9,
+    "n": 300,
+    "CM_change": [
+     -0.004792762640960526,
+     -0.01779339670006917,
+     0.008716662327709852
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.02714686826025352,
+     0.013226609987202513,
+     0.04051103838814656
+    ],
+    "WF_share_down": 0.56,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.44,
+    "gap_change": [
+     -0.03193963090121405,
+     -0.03425902762193946,
+     -0.029696424063568518
+    ],
+    "share_both": 0.0033333333333333335
+   },
+   {
+    "length": 10,
+    "n": 300,
+    "CM_change": [
+     -0.006643323889154162,
+     -0.02085519671142884,
+     0.006069032045935178
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.027303992226535623,
+     0.013989266387035095,
+     0.040719791331125514
+    ],
+    "WF_share_down": 0.56,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.44,
+    "gap_change": [
+     -0.033947316115689775,
+     -0.03632398162147154,
+     -0.0317098528037329
+    ],
+    "share_both": 0.0033333333333333335
+   },
+   {
+    "length": 11,
+    "n": 300,
+    "CM_change": [
+     -0.007504738716214066,
+     -0.019869251469375758,
+     0.005217044238325819
+    ],
+    "CM_share_up": 0.43666666666666665,
+    "WF_change": [
+     0.02635987970543555,
+     0.01402645314540009,
+     0.03946815897900931
+    ],
+    "WF_share_down": 0.55,
+    "CM_share_intended": 0.5633333333333334,
+    "WF_share_intended": 0.45,
+    "gap_change": [
+     -0.033864618421649624,
+     -0.03627538321391717,
+     -0.03140690406894055
+    ],
+    "share_both": 0.013333333333333334
+   },
+   {
+    "length": 12,
+    "n": 300,
+    "CM_change": [
+     -0.011682834629366352,
+     -0.023897861951038768,
+     0.001432838396759949
+    ],
+    "CM_share_up": 0.43333333333333335,
+    "WF_change": [
+     0.0223658849967186,
+     0.00982395041959794,
+     0.03581013556671274
+    ],
+    "WF_share_down": 0.54,
+    "CM_share_intended": 0.5666666666666667,
+    "WF_share_intended": 0.46,
+    "gap_change": [
+     -0.034048719626084946,
+     -0.03638740525773944,
+     -0.03173176247071417
+    ],
+    "share_both": 0.02666666666666667
+   }
+  ]
+ },
+ "random_baseline": {
+  "sets": 0,
+  "CM_mean_range": null,
+  "WF_mean_range": null,
+  "gap_mean_median": null,
+  "gap_mean_max": null,
+  "share_both_median": null,
+  "sets_detail": []
+ },
+ "sequence": [
+  {
+   "variable": "natfare",
+   "text": "welfare"
+  },
+  {
+   "variable": "abany",
+   "text": "abortion if woman wants for any reason"
+  },
+  {
+   "variable": "colmslm",
+   "text": "allow anti-american muslim clergymen teaching in college"
+  },
+  {
+   "variable": "god",
+   "text": "r's confidence in the existence of god"
+  },
+  {
+   "variable": "ratechall124",
+   "text": "rating of donald trump"
+  },
+  {
+   "variable": "pillok",
+   "text": "birth control to teenagers 14-16"
+  },
+  {
+   "variable": "wrkwayup",
+   "text": "black people overcome prejudice without favors"
+  },
+  {
+   "variable": "cappun",
+   "text": "favor or oppose death penalty for murder"
+  },
+  {
+   "variable": "sexeduc",
+   "text": "sex education in public schools"
+  },
+  {
+   "variable": "conmedic",
+   "text": "confidence in medicine"
+  },
+  {
+   "variable": "ratechall224",
+   "text": "rating of kamala harris"
+  },
+  {
+   "variable": "spkath",
+   "text": "allow anti-religionist to speak"
+  }
+ ],
+ "config": {
+  "wave": "2024",
+  "model_root": "/home/user/dtag-models",
+  "out": "/tmp/claude-0/-home-user-DTAG/a58e4dbb-0db6-5d74-be02-40dd0a0cf683/scratchpad/dep_ls",
+  "length": 12,
+  "pop": 16,
+  "prescreen": 30,
+  "screen_pop": 4,
+  "rescreen_every": 2,
+  "min_gain": 0.02,
+  "sd_floor": 0.01,
+  "force_length": false,
+  "local_search": "natfare,abany,colmslm,god,ratechall124,pillok,obey,cappun,popular,conmedic,ratechall224,conbus",
+  "pool": "natfare,abany,colmslm,god,ratechall124,pillok,obey,cappun,popular,conmedic,ratechall224,conbus,premarsx,sprtprsn,conclerg,abnomore,amancstr,natsoc,conjudge,raterepp,ratechall324,abhlth,spkath,letin1,suicide2,imports,classtech,usmca2,natcrime,chngdocs,helpsick,thnkself,trcong,trppl,radionews,trust,racdif3,colrac,immjobs,teensex,immcrime1,natsci,ratemaga,amchrstn,spkmslm,polescap,natenvir,polmurdr,belikeus,helppoor,sexeduc,immcrime,helpblk,helpoth,homosex,letin1a,conarmy,conpow,colath,consci,absingle,poltalk,demtoday,conlegis,librac,natheal,wrkwayup,abdefect,pornlaw,poleff18,contv,corruptn,prayer,workwhts,natenrgy,satdemoc,marwht,biasnews,marblk,immameco,amshamed,conscrp,urbantech,gendtech,marsame,agetech,discaffw,fepol,grass,racdif3x,getahead,racdif5x,racdif5,amcitizn,immassim,workhard,befair,helpnot,goodlife,solok,emonitor1,nextgen1,eductech,ambetter,cantrust,fair,ifwrong,natroad,owndecns,proudeco,experts",
+  "budget": 40,
+  "ls_n": 60,
+  "val_seed": 100000,
+  "goal": "depolarize",
+  "rich": true,
+  "n_val": 300,
+  "baselines": 0,
+  "n_base": 30,
+  "compare": [],
+  "sequence": "",
+  "workers": 4
+ }
+}

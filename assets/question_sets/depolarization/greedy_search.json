@@ -1,0 +1,1656 @@
+{
+ "chosen": [
+  {
+   "variable": "natfare",
+   "text": "welfare",
+   "score": 0.13392568756793635,
+   "CM_z": 0.13392568756793635,
+   "CM_mean_net": 0.0017102207114380237,
+   "CM_sd_net": 0.012769922951267148,
+   "CM_mean_step": 0.0017102207114380237,
+   "CM_share_right": 0.37756875,
+   "WF_z": 0.2376217206018224,
+   "WF_mean_net": 0.0034691905689160345,
+   "WF_sd_net": 0.014599635757748267,
+   "WF_mean_step": 0.0034691905689160345,
+   "WF_share_right": 0.6224445
+  },
+  {
+   "variable": "abany",
+   "text": "abortion if woman wants for any reason",
+   "score": 0.0006438195692120499,
+   "CM_z": 0.17331553278702824,
+   "CM_mean_net": 0.020815666846791828,
+   "CM_sd_net": 0.12010271965854506,
+   "CM_mean_step": 0.02225276190599078,
+   "CM_share_right": 0.5990358124999999,
+   "WF_z": 0.0006438195692120499,
+   "WF_mean_net": 7.779652728066508e-05,
+   "WF_sd_net": 0.12083591583877723,
+   "WF_mean_step": 0.0021006781369168337,
+   "WF_share_right": 0.40119768749999996
+  },
+  {
+   "variable": "colmslm",
+   "text": "allow anti-american muslim clergymen teaching in college",
+   "score": -0.0980422721827531,
+   "CM_z": 0.4222833538877815,
+   "CM_mean_net": 0.04597643326283421,
+   "CM_sd_net": 0.1088757888265046,
+   "CM_mean_step": -0.011276654824091828,
+   "CM_share_right": 0.75,
+   "WF_z": -0.0980422721827531,
+   "WF_mean_net": -0.011757264835444398,
+   "WF_sd_net": 0.11992036265263803,
+   "WF_mean_step": 0.011254961123264549,
+   "WF_share_right": 0.3125
+  },
+  {
+   "variable": "god",
+   "text": "r's confidence in the existence of god",
+   "score": -0.050368255685160936,
+   "CM_z": 0.345039221324752,
+   "CM_mean_net": 0.036808236497743854,
+   "CM_sd_net": 0.10667841283788379,
+   "CM_mean_step": -0.004743711256866223,
+   "CM_share_right": 0.75,
+   "WF_z": -0.050368255685160936,
+   "WF_mean_net": -0.006208850810235339,
+   "WF_sd_net": 0.12326912508237878,
+   "WF_mean_step": 0.007135293261365159,
+   "WF_share_right": 0.3125
+  },
+  {
+   "variable": "ratechall124",
+   "text": "rating of donald trump",
+   "score": -0.0784575070310454,
+   "CM_z": 0.3660653397233314,
+   "CM_mean_net": 0.03712121231614485,
+   "CM_sd_net": 0.10140597398322578,
+   "CM_mean_step": 0.0003149069708240429,
+   "CM_share_right": 0.75,
+   "WF_z": -0.0784575070310454,
+   "WF_mean_net": -0.009218633192175415,
+   "WF_sd_net": 0.11749842100549575,
+   "WF_mean_step": 0.0003396932021819527,
+   "WF_share_right": 0.3125
+  },
+  {
+   "variable": "pillok",
+   "text": "birth control to teenagers 14-16",
+   "score": -0.03522361523088105,
+   "CM_z": 0.40115573749873706,
+   "CM_mean_net": 0.04288451028769908,
+   "CM_sd_net": 0.10690239794422507,
+   "CM_mean_step": 0.00622912965113679,
+   "CM_share_right": 0.75,
+   "WF_z": -0.03522361523088105,
+   "WF_mean_net": -0.004175099844321905,
+   "WF_sd_net": 0.11853126991523388,
+   "WF_mean_step": 0.0009644337395297981,
+   "WF_share_right": 0.3125
+  },
+  {
+   "variable": "obey",
+   "text": "to obey",
+   "score": -0.04481668754555794,
+   "CM_z": 0.3770629549488853,
+   "CM_mean_net": 0.041085693022958496,
+   "CM_sd_net": 0.10896242254434163,
+   "CM_mean_step": -0.0004440284692420303,
+   "CM_share_right": 0.75,
+   "WF_z": -0.04481668754555794,
+   "WF_mean_net": -0.00524101789907465,
+   "WF_sd_net": 0.11694344642822939,
+   "WF_mean_step": 0.001307721656713189,
+   "WF_share_right": 0.3125
+  },
+  {
+   "variable": "cappun",
+   "text": "favor or oppose death penalty for murder",
+   "score": -0.041854017243831955,
+   "CM_z": 0.37789133217508053,
+   "CM_mean_net": 0.040761932601449,
+   "CM_sd_net": 0.10786681019336962,
+   "CM_mean_step": -1.732549421101337e-05,
+   "CM_share_right": 0.75,
+   "WF_z": -0.041854017243831955,
+   "WF_mean_net": -0.004988888996607652,
+   "WF_sd_net": 0.11919737518966274,
+   "WF_mean_step": 0.0009872836667143272,
+   "WF_share_right": 0.3125
+  },
+  {
+   "variable": "popular",
+   "text": "to be well liked or popular",
+   "score": -0.0371140277599119,
+   "CM_z": 0.38005818695436355,
+   "CM_mean_net": 0.04066615981762111,
+   "CM_sd_net": 0.10699982585167729,
+   "CM_mean_step": -0.00025841919750869865,
+   "CM_share_right": 0.7500000000000001,
+   "WF_z": -0.0371140277599119,
+   "WF_mean_net": -0.004377208540288488,
+   "WF_sd_net": 0.11793946398392409,
+   "WF_mean_step": 0.0011846471873204385,
+   "WF_share_right": 0.3125
+  },
+  {
+   "variable": "conmedic",
+   "text": "confidence in medicine",
+   "score": -0.033439534435843944,
+   "CM_z": 0.3828200366370638,
+   "CM_mean_net": 0.041179970272560526,
+   "CM_sd_net": 0.1075700494527709,
+   "CM_mean_step": 0.0012888623018507033,
+   "CM_share_right": 0.75,
+   "WF_z": -0.033439534435843944,
+   "WF_mean_net": -0.003939508649021865,
+   "WF_sd_net": 0.11780991319063022,
+   "WF_mean_step": 0.0005290440754419572,
+   "WF_share_right": 0.3125
+  },
+  {
+   "variable": "ratechall224",
+   "text": "rating of kamala harris",
+   "score": -0.00038939117633466985,
+   "CM_z": 0.3786828426463444,
+   "CM_mean_net": 0.03824857218193165,
+   "CM_sd_net": 0.10100423857241499,
+   "CM_mean_step": -0.0006795915321433913,
+   "CM_share_right": 0.75,
+   "WF_z": -0.00038939117633466985,
+   "WF_mean_net": -4.4653114452339175e-05,
+   "WF_sd_net": 0.11467418155865243,
+   "WF_mean_step": 0.000509696012271309,
+   "WF_share_right": 0.3351742031831297
+  },
+  {
+   "variable": "conbus",
+   "text": "confidence in major companies",
+   "score": 0.002798579863994487,
+   "CM_z": 0.3827952087807392,
+   "CM_mean_net": 0.03941612975555748,
+   "CM_sd_net": 0.10296923485825184,
+   "CM_mean_step": 0.0001783805233877082,
+   "CM_share_right": 0.75,
+   "WF_z": 0.002798579863994487,
+   "WF_mean_net": 0.00031860078663815614,
+   "WF_sd_net": 0.11384373579512891,
+   "WF_mean_step": -0.00021025231081693295,
+   "WF_share_right": 0.3666909375
+  }
+ ],
+ "screens": [
+  {
+   "step": 1,
+   "top": [
+    {
+     "variable": "natfare",
+     "z": 0.1105010106098995
+    },
+    {
+     "variable": "premarsx",
+     "z": 0.10686879925033918
+    },
+    {
+     "variable": "conmedic",
+     "z": 0.09606664224525804
+    },
+    {
+     "variable": "sprtprsn",
+     "z": 0.08637967740454783
+    },
+    {
+     "variable": "ratechall224",
+     "z": 0.06293056612628009
+    },
+    {
+     "variable": "conclerg",
+     "z": 0.04276267722440887
+    },
+    {
+     "variable": "abnomore",
+     "z": 0.03182142734657992
+    },
+    {
+     "variable": "amancstr",
+     "z": 0.03090420045890052
+    },
+    {
+     "variable": "natsoc",
+     "z": 0.0297847284656745
+    },
+    {
+     "variable": "abany",
+     "z": 0.028945658334987415
+    },
+    {
+     "variable": "obey",
+     "z": 0.02643080817795279
+    },
+    {
+     "variable": "conjudge",
+     "z": 0.023656388491268204
+    },
+    {
+     "variable": "raterepp",
+     "z": 0.021913858623569864
+    },
+    {
+     "variable": "ratechall324",
+     "z": 0.015536800952638182
+    },
+    {
+     "variable": "abhlth",
+     "z": 0.012333615890521666
+    },
+    {
+     "variable": "spkath",
+     "z": 0.012132583943846347
+    },
+    {
+     "variable": "letin1",
+     "z": 0.0109394564963551
+    },
+    {
+     "variable": "suicide2",
+     "z": 0.007132601866188327
+    },
+    {
+     "variable": "imports",
+     "z": 0.006561903253909746
+    },
+    {
+     "variable": "classtech",
+     "z": 0.0056026538081352896
+    },
+    {
+     "variable": "usmca2",
+     "z": 0.004232077053834758
+    },
+    {
+     "variable": "natcrime",
+     "z": 0.0037624364685447135
+    },
+    {
+     "variable": "chngdocs",
+     "z": 0.00315977781869293
+    },
+    {
+     "variable": "helpsick",
+     "z": 0.0029562696825502412
+    },
+    {
+     "variable": "thnkself",
+     "z": 0.0021564485721621766
+    },
+    {
+     "variable": "trcong",
+     "z": 0.0011632461795894923
+    },
+    {
+     "variable": "trppl",
+     "z": 0.0007614234691496256
+    },
+    {
+     "variable": "radionews",
+     "z": 0.0001687540719367215
+    },
+    {
+     "variable": "trust",
+     "z": 6.2928100230674736e-15
+    },
+    {
+     "variable": "racdif3",
+     "z": 0.0
+    },
+    {
+     "variable": "grass",
+     "z": 0.0
+    },
+    {
+     "variable": "racdif5",
+     "z": -2.5907942458047727e-15
+    },
+    {
+     "variable": "racdif3x",
+     "z": -9.656078454184368e-15
+    },
+    {
+     "variable": "getahead",
+     "z": -1.224779271058463e-14
+    },
+    {
+     "variable": "racdif5x",
+     "z": -1.640864007168563e-14
+    },
+    {
+     "variable": "cctv",
+     "z": -7.818718069130623e-05
+    },
+    {
+     "variable": "aiworry",
+     "z": -0.00019548113560988924
+    },
+    {
+     "variable": "fepol",
+     "z": -0.0002379765134792071
+    },
+    {
+     "variable": "dem10pst",
+     "z": -0.0006748592594709249
+    },
+    {
+     "variable": "infoprofit",
+     "z": -0.0008985041645696029
+    },
+    {
+     "variable": "gendtech",
+     "z": -0.001295398926214178
+    },
+    {
+     "variable": "agetech",
+     "z": -0.0014431331667624488
+    },
+    {
+     "variable": "conscrp",
+     "z": -0.0014442306681788635
+    },
+    {
+     "variable": "letinhsp",
+     "z": -0.0018625056610267585
+    },
+    {
+     "variable": "urbantech",
+     "z": -0.0023708161721507524
+    },
+    {
+     "variable": "polint",
+     "z": -0.0024805859218650604
+    },
+    {
+     "variable": "discaffw",
+     "z": -0.002533309628451118
+    },
+    {
+     "variable": "harmgood1",
+     "z": -0.0027279940512133635
+    },
+    {
+     "variable": "helpful",
+     "z": -0.0032874338460390957
+    },
+    {
+     "variable": "befair",
+     "z": -0.0035733118594029377
+    },
+    {
+     "variable": "letinasn",
+     "z": -0.004452464635966087
+    },
+    {
+     "variable": "rghtsmin",
+     "z": -0.0044731349603209115
+    },
+    {
+     "variable": "meovrwrk",
+     "z": -0.004479056982665886
+    },
+    {
+     "variable": "natspac",
+     "z": -0.004575921053862675
+    },
+    {
+     "variable": "helpusa",
+     "z": -0.0046007305593095925
+    },
+    {
+     "variable": "amshamed",
+     "z": -0.004743194034324755
+    },
+    {
+     "variable": "obeylaws",
+     "z": -0.005657922245739674
+    },
+    {
+     "variable": "libmslm",
+     "z": -0.005919386870733471
+    },
+    {
+     "variable": "cappun",
+     "z": -0.0062312934319459275
+    },
+    {
+     "variable": "homosex",
+     "z": -0.0076413874252934935
+    }
+   ]
+  },
+  {
+   "step": 3,
+   "top": [
+    {
+     "variable": "colmslm",
+     "z": 0.3404280380949137
+    },
+    {
+     "variable": "colrac",
+     "z": 0.30578737046340265
+    },
+    {
+     "variable": "god",
+     "z": 0.2967404524030664
+    },
+    {
+     "variable": "immjobs",
+     "z": 0.2835100483308816
+    },
+    {
+     "variable": "raterepp",
+     "z": 0.27554820324751034
+    },
+    {
+     "variable": "teensex",
+     "z": 0.27468410192715786
+    },
+    {
+     "variable": "immcrime1",
+     "z": 0.2717133539811884
+    },
+    {
+     "variable": "natsci",
+     "z": 0.2677211022236124
+    },
+    {
+     "variable": "ratemaga",
+     "z": 0.2674669642634129
+    },
+    {
+     "variable": "obey",
+     "z": 0.2651454411478998
+    },
+    {
+     "variable": "amchrstn",
+     "z": 0.2631195888616186
+    },
+    {
+     "variable": "spkmslm",
+     "z": 0.2630088338074117
+    },
+    {
+     "variable": "polescap",
+     "z": 0.2627091955516857
+    },
+    {
+     "variable": "natenvir",
+     "z": 0.26066766116035295
+    },
+    {
+     "variable": "popular",
+     "z": 0.25890567428984496
+    },
+    {
+     "variable": "polmurdr",
+     "z": 0.2581739774031473
+    },
+    {
+     "variable": "conmedic",
+     "z": 0.2575354079659303
+    },
+    {
+     "variable": "premarsx",
+     "z": 0.2574239420585389
+    },
+    {
+     "variable": "natsoc",
+     "z": 0.2573449723087173
+    },
+    {
+     "variable": "cappun",
+     "z": 0.257246172074571
+    },
+    {
+     "variable": "belikeus",
+     "z": 0.2563238314923253
+    },
+    {
+     "variable": "sprtprsn",
+     "z": 0.25627246100413337
+    },
+    {
+     "variable": "helppoor",
+     "z": 0.2562163818513298
+    },
+    {
+     "variable": "conjudge",
+     "z": 0.2558357156078716
+    },
+    {
+     "variable": "sexeduc",
+     "z": 0.2557232103926507
+    },
+    {
+     "variable": "immcrime",
+     "z": 0.2556511422385327
+    },
+    {
+     "variable": "chngdocs",
+     "z": 0.2554417645315269
+    },
+    {
+     "variable": "letin1",
+     "z": 0.25538131013248416
+    },
+    {
+     "variable": "helpblk",
+     "z": 0.2552978647535296
+    },
+    {
+     "variable": "helpoth",
+     "z": 0.2548870051408221
+    },
+    {
+     "variable": "workhard",
+     "z": 0.25486259685012685
+    },
+    {
+     "variable": "religinf",
+     "z": 0.25479240624349564
+    },
+    {
+     "variable": "techesy",
+     "z": 0.2543421254640168
+    },
+    {
+     "variable": "marhisp",
+     "z": 0.2542541680009103
+    },
+    {
+     "variable": "spkrac",
+     "z": 0.2537783803210158
+    },
+    {
+     "variable": "relpersn",
+     "z": 0.2534678827711728
+    },
+    {
+     "variable": "natdrug",
+     "z": 0.2534058847009991
+    },
+    {
+     "variable": "suicide4",
+     "z": 0.25291414655428635
+    },
+    {
+     "variable": "letdie1",
+     "z": 0.2528961995980096
+    },
+    {
+     "variable": "incgap1",
+     "z": 0.25286749431597555
+    },
+    {
+     "variable": "discaff",
+     "z": 0.2528076399547238
+    },
+    {
+     "variable": "suicide2",
+     "z": 0.2527730264395189
+    },
+    {
+     "variable": "fefam",
+     "z": 0.25261205526371516
+    },
+    {
+     "variable": "racdif1",
+     "z": 0.2520040981722995
+    },
+    {
+     "variable": "conclerg",
+     "z": 0.25165431650543674
+    },
+    {
+     "variable": "colcom",
+     "z": 0.25160546224976943
+    },
+    {
+     "variable": "spkcom",
+     "z": 0.2514942470861475
+    },
+    {
+     "variable": "polopts",
+     "z": 0.2514678856624092
+    },
+    {
+     "variable": "letinasn",
+     "z": 0.25120156780439995
+    },
+    {
+     "variable": "immideas1",
+     "z": 0.25101286500561126
+    },
+    {
+     "variable": "courts",
+     "z": 0.25095151574137764
+    },
+    {
+     "variable": "suicide1",
+     "z": 0.25076127773028656
+    },
+    {
+     "variable": "fehire",
+     "z": 0.25075975817233775
+    },
+    {
+     "variable": "rghtsmin",
+     "z": 0.2507196406074224
+    },
+    {
+     "variable": "ratedemp",
+     "z": 0.25051815904777824
+    },
+    {
+     "variable": "wlthwhts",
+     "z": 0.25044364471052893
+    },
+    {
+     "variable": "oppsegov",
+     "z": 0.2503950337443771
+    },
+    {
+     "variable": "amancstr",
+     "z": 0.25034278547991495
+    },
+    {
+     "variable": "immjobs1",
+     "z": 0.25032782911490375
+    },
+    {
+     "variable": "amownway",
+     "z": 0.2502247661184182
+    }
+   ]
+  },
+  {
+   "step": 5,
+   "top": [
+    {
+     "variable": "pillok",
+     "z": 0.362153260462939
+    },
+    {
+     "variable": "sprtprsn",
+     "z": 0.3473861523155674
+    },
+    {
+     "variable": "homosex",
+     "z": 0.3435656160255572
+    },
+    {
+     "variable": "letin1a",
+     "z": 0.3399117219133489
+    },
+    {
+     "variable": "conarmy",
+     "z": 0.3385341035171624
+    },
+    {
+     "variable": "spkath",
+     "z": 0.3365508768717811
+    },
+    {
+     "variable": "conpow",
+     "z": 0.3318650262074991
+    },
+    {
+     "variable": "colath",
+     "z": 0.33085814449945156
+    },
+    {
+     "variable": "consci",
+     "z": 0.3307920268436472
+    },
+    {
+     "variable": "absingle",
+     "z": 0.3290303485909747
+    },
+    {
+     "variable": "poltalk",
+     "z": 0.32768244406154245
+    },
+    {
+     "variable": "demtoday",
+     "z": 0.3269158075584122
+    },
+    {
+     "variable": "conlegis",
+     "z": 0.32375222699751666
+    },
+    {
+     "variable": "librac",
+     "z": 0.3233234232480813
+    },
+    {
+     "variable": "natheal",
+     "z": 0.32284919107956106
+    },
+    {
+     "variable": "wrkwayup",
+     "z": 0.3215930029500274
+    },
+    {
+     "variable": "abdefect",
+     "z": 0.3201755747344259
+    },
+    {
+     "variable": "ratechall124",
+     "z": 0.3197653227422457
+    },
+    {
+     "variable": "pornlaw",
+     "z": 0.3184244805317893
+    },
+    {
+     "variable": "poleff18",
+     "z": 0.31649299570931205
+    },
+    {
+     "variable": "contv",
+     "z": 0.3149613822829113
+    },
+    {
+     "variable": "corruptn",
+     "z": 0.3148622138384798
+    },
+    {
+     "variable": "prayer",
+     "z": 0.31442557836676543
+    },
+    {
+     "variable": "ratechall224",
+     "z": 0.31412507089105035
+    },
+    {
+     "variable": "workwhts",
+     "z": 0.31406202827418306
+    },
+    {
+     "variable": "natenrgy",
+     "z": 0.31402319047862737
+    },
+    {
+     "variable": "satdemoc",
+     "z": 0.312860490898047
+    },
+    {
+     "variable": "marwht",
+     "z": 0.3128011710347563
+    },
+    {
+     "variable": "biasnews",
+     "z": 0.3113418243448906
+    },
+    {
+     "variable": "marblk",
+     "z": 0.31098725111593106
+    },
+    {
+     "variable": "proudeco",
+     "z": 0.31096774827322704
+    },
+    {
+     "variable": "conbus",
+     "z": 0.31096203298779607
+    },
+    {
+     "variable": "experts",
+     "z": 0.31021635873211806
+    },
+    {
+     "variable": "polabuse",
+     "z": 0.3094102115768787
+    },
+    {
+     "variable": "workhsps",
+     "z": 0.30939531824446553
+    },
+    {
+     "variable": "libath",
+     "z": 0.3091381572721536
+    },
+    {
+     "variable": "proudhis",
+     "z": 0.30861581419842476
+    },
+    {
+     "variable": "bizmoney",
+     "z": 0.3083753564217755
+    },
+    {
+     "variable": "poleff11",
+     "z": 0.30806121380910223
+    },
+    {
+     "variable": "natcrime",
+     "z": 0.3080046085494223
+    },
+    {
+     "variable": "conpress",
+     "z": 0.3078715609302119
+    },
+    {
+     "variable": "coneduc",
+     "z": 0.3077951822231719
+    },
+    {
+     "variable": "conmedic",
+     "z": 0.30771162142357106
+    },
+    {
+     "variable": "premarsx",
+     "z": 0.30755074526767806
+    },
+    {
+     "variable": "amgovt",
+     "z": 0.30740825165108776
+    },
+    {
+     "variable": "liveblks",
+     "z": 0.3073944440475308
+    },
+    {
+     "variable": "natcity",
+     "z": 0.3072583118658436
+    },
+    {
+     "variable": "prouddem",
+     "z": 0.3063301717003657
+    },
+    {
+     "variable": "immameco",
+     "z": 0.30576305693810435
+    },
+    {
+     "variable": "confinan",
+     "z": 0.3057526255552602
+    },
+    {
+     "variable": "amancstr",
+     "z": 0.3053835134016048
+    },
+    {
+     "variable": "marsame",
+     "z": 0.30531826982373145
+    },
+    {
+     "variable": "racdif1x",
+     "z": 0.30526173604959983
+    },
+    {
+     "variable": "natchld",
+     "z": 0.30520433605163966
+    },
+    {
+     "variable": "immassim",
+     "z": 0.3051570107802799
+    },
+    {
+     "variable": "proudspt",
+     "z": 0.3049731773095658
+    },
+    {
+     "variable": "polattak",
+     "z": 0.3046540568434703
+    },
+    {
+     "variable": "rateincumb24",
+     "z": 0.30442852895544487
+    },
+    {
+     "variable": "proudpol",
+     "z": 0.3036017406446461
+    },
+    {
+     "variable": "marasian",
+     "z": 0.3035081374671026
+    }
+   ]
+  },
+  {
+   "step": 7,
+   "top": [
+    {
+     "variable": "conmedic",
+     "z": 0.4170952191349538
+    },
+    {
+     "variable": "sexeduc",
+     "z": 0.4111347201318112
+    },
+    {
+     "variable": "conclerg",
+     "z": 0.4110613743950465
+    },
+    {
+     "variable": "amancstr",
+     "z": 0.40873015409687374
+    },
+    {
+     "variable": "cappun",
+     "z": 0.40854351660552385
+    },
+    {
+     "variable": "helpsick",
+     "z": 0.4082070951768138
+    },
+    {
+     "variable": "immameco",
+     "z": 0.4078869289198236
+    },
+    {
+     "variable": "amshamed",
+     "z": 0.40787047024989154
+    },
+    {
+     "variable": "obey",
+     "z": 0.40758144644068584
+    },
+    {
+     "variable": "classtech",
+     "z": 0.40756554524726935
+    },
+    {
+     "variable": "usmca2",
+     "z": 0.4075219548501095
+    },
+    {
+     "variable": "ratechall324",
+     "z": 0.40743101446874536
+    },
+    {
+     "variable": "trcong",
+     "z": 0.4072226964879685
+    },
+    {
+     "variable": "trppl",
+     "z": 0.40721106916740774
+    },
+    {
+     "variable": "imports",
+     "z": 0.40720477924990833
+    },
+    {
+     "variable": "conscrp",
+     "z": 0.4071782093105212
+    },
+    {
+     "variable": "radionews",
+     "z": 0.4071227634402324
+    },
+    {
+     "variable": "urbantech",
+     "z": 0.40709530016746304
+    },
+    {
+     "variable": "gendtech",
+     "z": 0.40706391363386385
+    },
+    {
+     "variable": "marsame",
+     "z": 0.4070587800594913
+    },
+    {
+     "variable": "agetech",
+     "z": 0.4070507102954202
+    },
+    {
+     "variable": "racdif3",
+     "z": 0.40703880047222696
+    },
+    {
+     "variable": "discaffw",
+     "z": 0.406976274119565
+    },
+    {
+     "variable": "fepol",
+     "z": 0.4069653853917651
+    },
+    {
+     "variable": "grass",
+     "z": 0.4069468199344024
+    },
+    {
+     "variable": "racdif3x",
+     "z": 0.40694681993440185
+    },
+    {
+     "variable": "getahead",
+     "z": 0.4069468199344016
+    },
+    {
+     "variable": "racdif5x",
+     "z": 0.40694681993440146
+    },
+    {
+     "variable": "racdif5",
+     "z": 0.40694681993440074
+    },
+    {
+     "variable": "trust",
+     "z": 0.40694681993440013
+    },
+    {
+     "variable": "dem10pst",
+     "z": 0.4069349249742673
+    },
+    {
+     "variable": "aiworry",
+     "z": 0.40693077247948783
+    },
+    {
+     "variable": "obeylaws",
+     "z": 0.40692539447603376
+    },
+    {
+     "variable": "harmgood1",
+     "z": 0.40690242099506996
+    },
+    {
+     "variable": "happy",
+     "z": 0.4068551668545354
+    },
+    {
+     "variable": "thnkself",
+     "z": 0.4068133770023867
+    },
+    {
+     "variable": "polint",
+     "z": 0.406739071812692
+    },
+    {
+     "variable": "immideas1",
+     "z": 0.40672489731811967
+    },
+    {
+     "variable": "nataid",
+     "z": 0.4067117805433975
+    },
+    {
+     "variable": "helpful",
+     "z": 0.4066734092252889
+    },
+    {
+     "variable": "amcitizn",
+     "z": 0.4066286223476263
+    },
+    {
+     "variable": "paytaxes",
+     "z": 0.406578784625898
+    },
+    {
+     "variable": "racdif4",
+     "z": 0.4065447926249967
+    },
+    {
+     "variable": "spanking",
+     "z": 0.40650513333508703
+    },
+    {
+     "variable": "natspac",
+     "z": 0.40647608948869823
+    },
+    {
+     "variable": "wrldgovt",
+     "z": 0.40642035470096355
+    },
+    {
+     "variable": "fair",
+     "z": 0.4063395741238343
+    },
+    {
+     "variable": "wlthhsps",
+     "z": 0.4062953895538177
+    },
+    {
+     "variable": "ifwrong",
+     "z": 0.40628284937297965
+    },
+    {
+     "variable": "immassim",
+     "z": 0.40627395316348847
+    },
+    {
+     "variable": "solok",
+     "z": 0.40623955156030944
+    },
+    {
+     "variable": "befair",
+     "z": 0.4062084779587635
+    },
+    {
+     "variable": "letinasn",
+     "z": 0.40617934565634317
+    },
+    {
+     "variable": "marhisp",
+     "z": 0.4061756068388996
+    },
+    {
+     "variable": "emonitor1",
+     "z": 0.40605318689962716
+    },
+    {
+     "variable": "eductech",
+     "z": 0.4060456993431013
+    },
+    {
+     "variable": "postlife",
+     "z": 0.4060447698037025
+    },
+    {
+     "variable": "infoprofit",
+     "z": 0.4060400215346726
+    },
+    {
+     "variable": "meovrwrk",
+     "z": 0.4060370288765567
+    },
+    {
+     "variable": "helpnot",
+     "z": 0.40600498252350015
+    }
+   ]
+  },
+  {
+   "step": 9,
+   "top": [
+    {
+     "variable": "conmedic",
+     "z": 0.4466993034036382
+    },
+    {
+     "variable": "conclerg",
+     "z": 0.4460419843621073
+    },
+    {
+     "variable": "amancstr",
+     "z": 0.44451371465659234
+    },
+    {
+     "variable": "sexeduc",
+     "z": 0.4439769126579481
+    },
+    {
+     "variable": "helpsick",
+     "z": 0.44395924230712114
+    },
+    {
+     "variable": "immameco",
+     "z": 0.44362053789962075
+    },
+    {
+     "variable": "amshamed",
+     "z": 0.44341539519989914
+    },
+    {
+     "variable": "popular",
+     "z": 0.44319354855209625
+    },
+    {
+     "variable": "marsame",
+     "z": 0.4428604975193897
+    },
+    {
+     "variable": "ratechall324",
+     "z": 0.4428188053560795
+    },
+    {
+     "variable": "ratechall224",
+     "z": 0.4427770216591831
+    },
+    {
+     "variable": "amcitizn",
+     "z": 0.4424270073498141
+    },
+    {
+     "variable": "immassim",
+     "z": 0.4422635295175601
+    },
+    {
+     "variable": "workhard",
+     "z": 0.44214074034916095
+    },
+    {
+     "variable": "usmca2",
+     "z": 0.44196390434998745
+    },
+    {
+     "variable": "trcong",
+     "z": 0.44191316611091763
+    },
+    {
+     "variable": "befair",
+     "z": 0.44183565207655373
+    },
+    {
+     "variable": "helpnot",
+     "z": 0.4416680361990085
+    },
+    {
+     "variable": "goodlife",
+     "z": 0.44148729478044413
+    },
+    {
+     "variable": "solok",
+     "z": 0.44135068622951423
+    },
+    {
+     "variable": "emonitor1",
+     "z": 0.44133127472578404
+    },
+    {
+     "variable": "thnkself",
+     "z": 0.44125213583183875
+    },
+    {
+     "variable": "nextgen1",
+     "z": 0.44121750890474604
+    },
+    {
+     "variable": "eductech",
+     "z": 0.44121069667029506
+    },
+    {
+     "variable": "ambetter",
+     "z": 0.4411845740297744
+    },
+    {
+     "variable": "cantrust",
+     "z": 0.4411094022148909
+    },
+    {
+     "variable": "fair",
+     "z": 0.4410295112051246
+    },
+    {
+     "variable": "ifwrong",
+     "z": 0.44093885786794
+    },
+    {
+     "variable": "natroad",
+     "z": 0.44086964763192693
+    },
+    {
+     "variable": "owndecns",
+     "z": 0.4408217034899523
+    },
+    {
+     "variable": "wlthhsps",
+     "z": 0.44078203701713015
+    },
+    {
+     "variable": "amcit",
+     "z": 0.4407674724989083
+    },
+    {
+     "variable": "infodeal",
+     "z": 0.4407413998090328
+    },
+    {
+     "variable": "sprtprsn",
+     "z": 0.4407227188884752
+    },
+    {
+     "variable": "natspac",
+     "z": 0.4407110177495016
+    },
+    {
+     "variable": "natcrime",
+     "z": 0.44070223171257045
+    },
+    {
+     "variable": "fulldem",
+     "z": 0.4406840592668982
+    },
+    {
+     "variable": "classtech",
+     "z": 0.44063953460329935
+    },
+    {
+     "variable": "trppl",
+     "z": 0.4405452329475309
+    },
+    {
+     "variable": "proudart",
+     "z": 0.44054426278440484
+    },
+    {
+     "variable": "cctv",
+     "z": 0.4405210396501945
+    },
+    {
+     "variable": "teensex",
+     "z": 0.44045865287859715
+    },
+    {
+     "variable": "helpful",
+     "z": 0.4402874685727819
+    },
+    {
+     "variable": "nataid",
+     "z": 0.4400701262749854
+    },
+    {
+     "variable": "polint",
+     "z": 0.4400668425067369
+    },
+    {
+     "variable": "imports",
+     "z": 0.44002829021686346
+    },
+    {
+     "variable": "obeylaws",
+     "z": 0.43992567499597984
+    },
+    {
+     "variable": "aiworry",
+     "z": 0.43990421371097116
+    },
+    {
+     "variable": "radionews",
+     "z": 0.43988194649788465
+    },
+    {
+     "variable": "trust",
+     "z": 0.43987992313267443
+    },
+    {
+     "variable": "racdif5",
+     "z": 0.43987992313267366
+    },
+    {
+     "variable": "racdif3x",
+     "z": 0.4398799231326729
+    },
+    {
+     "variable": "getahead",
+     "z": 0.4398799231326722
+    },
+    {
+     "variable": "racdif5x",
+     "z": 0.4398799231326717
+    },
+    {
+     "variable": "racdif3",
+     "z": 0.4398799231326711
+    },
+    {
+     "variable": "grass",
+     "z": 0.43987992313267077
+    },
+    {
+     "variable": "fepol",
+     "z": 0.43984916271349267
+    },
+    {
+     "variable": "conscrp",
+     "z": 0.4398008761108336
+    },
+    {
+     "variable": "natcity",
+     "z": 0.439785416027094
+    },
+    {
+     "variable": "amtv",
+     "z": 0.4397413724004258
+    }
+   ]
+  },
+  {
+   "step": 11,
+   "top": [
+    {
+     "variable": "sprtprsn",
+     "z": 0.47413805454323615
+    },
+    {
+     "variable": "letin1a",
+     "z": 0.47315164888466543
+    },
+    {
+     "variable": "homosex",
+     "z": 0.4693078483055858
+    },
+    {
+     "variable": "conarmy",
+     "z": 0.4654588495119238
+    },
+    {
+     "variable": "conpow",
+     "z": 0.45964886860956666
+    },
+    {
+     "variable": "spkath",
+     "z": 0.4590538745471391
+    },
+    {
+     "variable": "poltalk",
+     "z": 0.45641110604805807
+    },
+    {
+     "variable": "colath",
+     "z": 0.4563633616137134
+    },
+    {
+     "variable": "demtoday",
+     "z": 0.45363023132118757
+    },
+    {
+     "variable": "consci",
+     "z": 0.45078551118976556
+    },
+    {
+     "variable": "conlegis",
+     "z": 0.4485868272067213
+    },
+    {
+     "variable": "librac",
+     "z": 0.4478710761544568
+    },
+    {
+     "variable": "wrkwayup",
+     "z": 0.4465470995589759
+    },
+    {
+     "variable": "natheal",
+     "z": 0.44604785028886834
+    },
+    {
+     "variable": "contv",
+     "z": 0.44577755229800603
+    },
+    {
+     "variable": "abdefect",
+     "z": 0.4439411411561951
+    },
+    {
+     "variable": "poleff18",
+     "z": 0.4435950845504522
+    },
+    {
+     "variable": "ratechall224",
+     "z": 0.4435646845211344
+    },
+    {
+     "variable": "pornlaw",
+     "z": 0.44345222362842557
+    },
+    {
+     "variable": "corruptn",
+     "z": 0.4423544181722316
+    },
+    {
+     "variable": "conbus",
+     "z": 0.4417223953045027
+    },
+    {
+     "variable": "natenrgy",
+     "z": 0.4408790058874233
+    },
+    {
+     "variable": "prayer",
+     "z": 0.4404021618852743
+    },
+    {
+     "variable": "workwhts",
+     "z": 0.44010933159652704
+    },
+    {
+     "variable": "marwht",
+     "z": 0.44002524570114104
+    },
+    {
+     "variable": "satdemoc",
+     "z": 0.4376241298472765
+    },
+    {
+     "variable": "biasnews",
+     "z": 0.43753381923086204
+    },
+    {
+     "variable": "marblk",
+     "z": 0.43711276905432506
+    },
+    {
+     "variable": "proudeco",
+     "z": 0.43659785182147137
+    },
+    {
+     "variable": "experts",
+     "z": 0.435795620968858
+    },
+    {
+     "variable": "workhsps",
+     "z": 0.435166577512491
+    },
+    {
+     "variable": "natcrime",
+     "z": 0.43501316717632
+    },
+    {
+     "variable": "proudhis",
+     "z": 0.43467413484006084
+    },
+    {
+     "variable": "polabuse",
+     "z": 0.43453139372090455
+    },
+    {
+     "variable": "bizmoney",
+     "z": 0.43445554283208343
+    },
+    {
+     "variable": "poleff11",
+     "z": 0.4344207684890167
+    },
+    {
+     "variable": "rateincumb24",
+     "z": 0.43415585860352446
+    },
+    {
+     "variable": "libath",
+     "z": 0.43352157942573893
+    },
+    {
+     "variable": "natcity",
+     "z": 0.4335044694291378
+    },
+    {
+     "variable": "amgovt",
+     "z": 0.43346491161226514
+    },
+    {
+     "variable": "liveblks",
+     "z": 0.4334518260216466
+    },
+    {
+     "variable": "prouddem",
+     "z": 0.43254385518827176
+    },
+    {
+     "variable": "immameco",
+     "z": 0.4321257409941093
+    },
+    {
+     "variable": "coneduc",
+     "z": 0.43185373186213905
+    },
+    {
+     "variable": "marsame",
+     "z": 0.4317649026194192
+    },
+    {
+     "variable": "amancstr",
+     "z": 0.43134553029319844
+    },
+    {
+     "variable": "immassim",
+     "z": 0.43128711074379333
+    },
+    {
+     "variable": "conjudge",
+     "z": 0.4311386433898819
+    },
+    {
+     "variable": "proudspt",
+     "z": 0.430927718493973
+    },
+    {
+     "variable": "racdif1x",
+     "z": 0.4304367481084204
+    },
+    {
+     "variable": "polattak",
+     "z": 0.43013799595454055
+    },
+    {
+     "variable": "spkmslm",
+     "z": 0.4300642963612661
+    },
+    {
+     "variable": "marasian",
+     "z": 0.42957009901378657
+    },
+    {
+     "variable": "tvnews1",
+     "z": 0.42955908447118096
+    },
+    {
+     "variable": "fejobaff",
+     "z": 0.42948914815073996
+    },
+    {
+     "variable": "helpsick",
+     "z": 0.4294075066260502
+    },
+    {
+     "variable": "smnews",
+     "z": 0.4293257407969004
+    },
+    {
+     "variable": "proudpol",
+     "z": 0.4292606455736005
+    },
+    {
+     "variable": "confinan",
+     "z": 0.42915336698391093
+    },
+    {
+     "variable": "reliten",
+     "z": 0.42820822052556284
+    }
+   ]
+  }
+ ]
+}
