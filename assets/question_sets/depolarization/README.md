@@ -1,5 +1,7 @@
 # Depolarizing question set, GSS 2024 (state updates on, sampled answers)
 
+> Background and the full analysis history: [`QUESTION_OPTIMIZATION.md`](../../../QUESTION_OPTIMIZATION.md).
+
 A 12-question sequence that, asked in order to both personas with **state updates on** and
 **`draw`** (answers sampled from the native conditional distribution), moves the conservative
 persona (CM) toward the L pole and the progressive persona (WF) toward the R pole, i.e. toward
