@@ -1,6 +1,7 @@
 # Polarizing question set, GSS 2024 (state updates on, sampled answers)
 
 > Background and the full analysis history: [`QUESTION_OPTIMIZATION.md`](../../../QUESTION_OPTIMIZATION.md).
+> Persona descriptions to use with this set: [`../personas/`](../personas/).
 
 A question sequence that, asked in order to both personas with **state updates on** and
 **`draw`** (answers sampled from the native conditional distribution), moves the conservative

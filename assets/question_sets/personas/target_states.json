@@ -1,0 +1,44 @@
+{
+ "model": "gss/gss_2024",
+ "note": "Base initial survey state assumed in the polarization and depolarization searches (sample_persona(side, 0, perturb=False, rich=True)). The persona texts should decode to these assignments.",
+ "CM": {
+  "text_file": "gss2024_cm_rich.txt",
+  "state": {
+   "sex": "male",
+   "age": "45.0",
+   "race": "white",
+   "region": "south",
+   "childs": "2.0",
+   "xnorcsiz": "open country within larger civil divisions (division, township, etc.)",
+   "news": "every day",
+   "wrkstat": "working full time",
+   "vetyears": "yes, 2-4 years",
+   "polviews": "conservative",
+   "partyid": "strong republican",
+   "relig": "protestant",
+   "attend": "every week",
+   "marital": "married",
+   "degree": "high school"
+  }
+ },
+ "WF": {
+  "text_file": "gss2024_wf_rich.txt",
+  "state": {
+   "sex": "female",
+   "age": "22.0",
+   "race": "white",
+   "region": "northeast",
+   "childs": "0.0",
+   "xnorcsiz": "a large central city (over 250,000)",
+   "news": "every day",
+   "wrkstat": "working full time",
+   "vetyears": "no active duty",
+   "polviews": "extremely liberal",
+   "partyid": "strong democrat",
+   "relig": "none",
+   "attend": "never",
+   "marital": "never married",
+   "degree": "bachelor's"
+  }
+ }
+}
