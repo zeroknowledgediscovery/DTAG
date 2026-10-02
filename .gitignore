@@ -57,3 +57,6 @@ webapp/data/*
 !webapp/data/.gitkeep
 !webapp/data/README.md
 webapp/.env
+
+# Local empirical-pole discovery artifacts
+poles/results/
