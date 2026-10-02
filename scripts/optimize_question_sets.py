@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Find question sequences that robustly polarize two GSS personas, and validate them.
+"""Find question sequences that robustly polarize or depolarize two GSS personas, and validate them.
 
 Goal: a 10-12 question sequence that, with state updates on and sampled (``draw``)
-answers, moves the conservative persona (CM) toward the R pole (ideology up) and the
-progressive persona (WF) toward the L pole (ideology down) at the same time, robustly
-across answer sampling and across perturbations of the initial persona.
+answers, moves the conservative persona (CM) and the progressive persona (WF) in chosen
+directions at the same time, robustly across answer sampling and across perturbations of
+the initial persona: ``--goal polarize`` (CM toward the R pole, WF toward the L pole) or
+``--goal depolarize`` (CM toward L, WF toward R: toward each other).
 
 Method (all native, no LLM; one GSS survey item per question):
 
@@ -249,7 +250,10 @@ def _simulate(args) -> List[float]:
 
 # ------------------------------------------------------------------------------ search
 
-SIGN = {"CM": +1, "WF": -1}  # polarization: CM toward R (+), WF toward L (-)
+GOALS = {"polarize": {"CM": +1, "WF": -1},    # CM toward R (+), WF toward L (-): apart
+         "depolarize": {"CM": -1, "WF": +1}}  # CM toward L, WF toward R: toward each other
+SIGN = dict(GOALS["polarize"])  # intended direction per persona (set by --goal)
+SCREENS: List[Dict] = []  # full-screen rankings, saved with the search
 
 
 RICH = False  # persona definition: stated facts only, or with the usual inferences (--rich)
@@ -306,6 +310,7 @@ def optimize(pool: mp.Pool, w: World, cands: List[str], n_pop: int, length: int,
         if full:  # cheap screen of every opinion item on a sub-population
             rough = _score_items(pool, pop, [v for v in cands if v not in used], screen_pop)
             shortlist = [v for _, v, _ in rough[:prescreen]]
+            SCREENS.append({"step": step + 1, "top": [{"variable": v, "z": sc} for sc, v, _ in rough[:60]]})
         scored = _score_items(pool, pop, [v for v in shortlist if v not in used], n_pop)
         if not scored:
             break
@@ -377,11 +382,13 @@ def summarize(traj: Dict[str, np.ndarray], rng: np.random.Generator, k: int = -1
     dW = traj["WF"][:, k] - traj["WF"][:, 0]
     m = min(len(dC), len(dW))
     gap = dC[:m] - dW[:m]
+    okC, okW = SIGN["CM"] * dC > 0, SIGN["WF"] * dW > 0
     return {"n": int(len(dC)),
             "CM_change": ci(dC, rng), "CM_share_up": float(np.mean(dC > 0)),
             "WF_change": ci(dW, rng), "WF_share_down": float(np.mean(dW < 0)),
+            "CM_share_intended": float(np.mean(okC)), "WF_share_intended": float(np.mean(okW)),
             "gap_change": ci(gap, rng),
-            "share_both": float(np.mean((dC[:m] > 0) & (dW[:m] < 0)))}
+            "share_both": float(np.mean(okC[:m] & okW[:m]))}  # both moved in the intended direction
 
 
 def main() -> None:
@@ -402,6 +409,8 @@ def main() -> None:
     ap.add_argument("--budget", type=int, default=40, help="local-search evaluations")
     ap.add_argument("--ls-n", type=int, default=60, help="simulated runs per persona per local-search evaluation")
     ap.add_argument("--val-seed", type=int, default=100000, help="first seed of the held-out validation block")
+    ap.add_argument("--goal", choices=sorted(GOALS), default="polarize",
+                    help="polarize: CM right, WF left; depolarize: CM left, WF right (toward each other)")
     ap.add_argument("--rich", action="store_true", help="personas include party, religion, attendance, marital status, education")
     ap.add_argument("--n-val", type=int, default=300, help="held-out validation runs per persona")
     ap.add_argument("--baselines", type=int, default=20, help="random opinion-item sequences for comparison")
@@ -414,6 +423,7 @@ def main() -> None:
     global SD_FLOOR, RICH
     SD_FLOOR = args.sd_floor
     RICH = args.rich
+    SIGN.clear(); SIGN.update(GOALS[args.goal])
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
     logf = open(out / "log.txt", "a", encoding="utf-8")
 
@@ -436,7 +446,7 @@ def main() -> None:
             seq = args.sequence.split(",")
         else:
             chosen = optimize(pool, w, cands, args.pop, args.length, args.prescreen, args.rescreen_every, args.screen_pop, args.min_gain, args.force_length, log)
-            json.dump(chosen, open(out / "search.json", "w"), indent=1)
+            json.dump({"chosen": chosen, "screens": SCREENS}, open(out / "search.json", "w"), indent=1)
             seq = [c["variable"] for c in chosen]
         log("sequence: " + ",".join(seq))
         results = {}
@@ -446,8 +456,9 @@ def main() -> None:
         results["optimized"]["per_step"] = {s: [ci(traj[s][:, k] - traj[s][:, 0], rng) for k in range(traj[s].shape[1])] for s in SIGN}
         results["optimized"]["per_length"] = [dict(length=k, **summarize(traj, rng, k)) for k in range(1, len(seq) + 1)]
         for r in results["optimized"]["per_length"]:
-            log(f"  first {r['length']:2d}: CM {r['CM_change'][0]:+.4f} [{r['CM_change'][1]:+.4f},{r['CM_change'][2]:+.4f}] up {r['CM_share_up']:.2f}"
-                f" | WF {r['WF_change'][0]:+.4f} [{r['WF_change'][1]:+.4f},{r['WF_change'][2]:+.4f}] down {r['WF_share_down']:.2f} | both {r['share_both']:.2f}")
+            log(f"  first {r['length']:2d}: CM {r['CM_change'][0]:+.4f} [{r['CM_change'][1]:+.4f},{r['CM_change'][2]:+.4f}] intended {r['CM_share_intended']:.2f}"
+                f" | WF {r['WF_change'][0]:+.4f} [{r['WF_change'][1]:+.4f},{r['WF_change'][2]:+.4f}] intended {r['WF_share_intended']:.2f}"
+                f" | gap {r['gap_change'][0]:+.4f} [{r['gap_change'][1]:+.4f},{r['gap_change'][2]:+.4f}] | both {r['share_both']:.2f}")
         log(f"optimized: {json.dumps({k: v for k, v in results['optimized'].items() if k != 'per_step'})}")
         for spec in args.compare:
             name, vs = spec.split("=", 1)
