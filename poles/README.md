@@ -66,8 +66,8 @@ Then, for one survey wave, specify the public DTAG model key:
 
 ```bash
 python poles/discover_poles.py \
-  --model-key afrobarometer/merged_r5 \
-  --out poles/results/afrobarometer/merged_r5 \
+  --model-key afrobarometer/r5 \
+  --out poles/results/afrobarometer/r5 \
   --sample-size 256 \
   --seed 1
 ```
@@ -85,7 +85,7 @@ The normal workflow deliberately uses the same sources as DTAG itself:
 Known automatic data mappings include:
 
 - `gss/gss_YYYY` -> `survey/data/gss/gss_YYYY.csv`
-- `afrobarometer/merged_rN` ->
+- `afrobarometer/rN` ->
   `survey/data/afrobarometer/merged_csvs_lsm/merged_rN_data.csv`
 - WVS7 -> the cleaned Wave 7 CSV under `survey/data/wvs_cleaned/`
 - `eurobarometer/ZAxxxx` -> the matching `ZAxxxx_*.csv` in
@@ -121,3 +121,5 @@ At minimum, inspect silhouette, cluster balance, pole separation, observed-data
 coverage, and whether cluster membership is driven by administrative IDs or
 missingness.  If the split is mostly missingness or a high-cardinality
 identifier, clean/retrain the survey LSM before accepting the poles.
+
+For backward convenience, `afrobarometer/merged_rN` is accepted as an alias for the public GCS key `afrobarometer/rN`.
