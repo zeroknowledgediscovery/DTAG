@@ -29,28 +29,41 @@ fresh data. The table below (and `sequence` in the validation JSON) maps each st
 Each run: a perturbed persona, the questions in order, every answer sampled and written into
 the state. Two disjoint validation blocks, never used in the search.
 
-| Set | Block (runs per persona) | CM → right | WF → left | Gap widens | Both right in a run |
+| Set | Block (runs per persona) | CM → right | WF → left | Gap widens | Both as intended* |
 |---|---|---|---|---|---:|
-| **10 questions** | 1 (300) | **+0.019** [+0.008, +0.029], 61% up | **−0.014** [−0.026, −0.002], 48% down | **+0.033** [+0.024, +0.042] | 15% |
-| **10 questions** | 2, untouched (400) | **+0.012** [+0.003, +0.021], 58% up | **−0.016** [−0.028, −0.006], 51% down | **+0.028** [+0.021, +0.037] | 15% |
-| 12 questions | 1 (300) | +0.014 [+0.003, +0.024] | −0.020 [−0.032, −0.008] | +0.034 [+0.025, +0.044] | 15% |
-| 12 questions | 2, untouched (400) | +0.006 [−0.004, +0.016] | −0.022 [−0.032, −0.012] | +0.028 [+0.021, +0.036] | 15% |
-| Greedy search (earlier) | 1 (300) | +0.000 [−0.001, +0.001] | −0.006 [−0.008, −0.005] | +0.006 [+0.005, +0.008] | 31% |
-| Deterministic set v1 (`../optimized/`) | 1 (300) | +0.019 [+0.007, +0.030] | −0.004 [−0.017, +0.009] | +0.023 [+0.013, +0.033] | 16% |
-| 20 random 12-item sets | 30 each | means −0.078 … +0.030 | means −0.058 … +0.028 | median −0.003, max +0.030 | median 0% |
+| **10 questions** | 1 (300) | **+0.019** [+0.008, +0.029], 61% up | **−0.014** [−0.027, −0.003], 48% down | **+0.033** [+0.017, +0.049] | 29% |
+| **10 questions** | 2, untouched (400) | **+0.012** [+0.003, +0.021], 58% up | **−0.016** [−0.027, −0.006], 51% down | **+0.028** [+0.013, +0.042] | 30% |
+| 12 questions | 1 (300) | +0.014 [+0.004, +0.024] | −0.020 [−0.031, −0.008] | +0.034 [+0.018, +0.049] | 30% |
+| 12 questions | 2, untouched (400) | +0.006 [−0.003, +0.015] | −0.022 [−0.034, −0.011] | +0.028 [+0.014, +0.043] | 30% |
+| Greedy search (earlier) | 1 (300) | +0.000 [−0.001, +0.001] | −0.006 [−0.008, −0.005] | +0.006 [+0.004, +0.008] | 38% |
+| Deterministic set v1 (`../optimized/`) | 1 (300) | +0.019 [+0.007, +0.030] | −0.004 [−0.017, +0.009] | +0.023 [+0.006, +0.040]† | 28% |
+| 20 random 12-item sets | 30 each | means −0.078 … +0.030 | means −0.058 … +0.028 | median −0.003, max +0.030 | — |
+
+\* Probability that an independently drawn conservative run and progressive run both move the
+intended way (product of the two shares). † Normal approximation from the per-persona CIs
+(trajectories not kept).
+
+**Correction (2026-10-02).** The first version of this table computed the gap CI and the "both"
+share from runs paired by index, and those pairs shared one answer-sampling stream, so CM and WF
+tended to draw the same answers. That made the gap CIs about half as wide as they should be and
+the "both" share too low (15%). The numbers above treat the two groups as independent samples,
+as in a real survey; the per-persona means and CIs were not affected. `corrected_summary.json`
+has the corrected per-length results; the `gap_change` and `share_both` fields in the other JSON
+files predate this correction. The script now samples the two personas independently.
 
 Per-length results (1–12 questions) are in `validation_block1.json` and
-`validation_block2_fresh.json` (`optimized.per_length`). Both personas move significantly on
+`validation_block2_fresh.json` (`optimized.per_length`; gap and "both" corrected in
+`corrected_summary.json`); the raw trajectories are in the `*_trajectories.npz` files. Both personas move significantly on
 both blocks for the first 2, 3, and 7–10 questions (block 1 also 11–12; block 2 also 5–6).
 
 ## How to read this
 
 - **As a population effect it is robust:** averaged over respondents like these, the 10
   questions move conservatives right and progressives left, with both CIs excluding zero on
-  two independent validation blocks, and widen the gap by about 0.03 (random question sets
-  move both personas together, median gap change −0.003).
+  two independent validation blocks, and widen the gap by about 0.03 [≈0.015, 0.045] (random
+  question sets move both personas together, median gap change −0.003).
 - **For a single respondent it is not:** CM moves right in ~60% of runs and WF left in ~50%;
-  both move the intended way in only ~15% of runs. Answer sampling dominates individual
+  an independently drawn pair both moves the intended way only ~30% of the time. Answer sampling dominates individual
   trajectories. A real-survey validation should compare **group means** (conservative vs
   progressive respondents, before vs after the question block), not individual respondents,
   and needs samples in the hundreds per group for effects of this size (≈0.01–0.02 index
