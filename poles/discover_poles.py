@@ -11,6 +11,7 @@ import argparse
 import hashlib
 import json
 import math
+import os
 import sys
 import time
 from pathlib import Path
@@ -25,6 +26,74 @@ if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 from model_backend import load_model  # noqa: E402
+import fetch_models  # noqa: E402
+
+
+def default_magics_data_root() -> Path:
+    """Resolve the locally synced MAGICS_research survey-data directory."""
+    override = os.environ.get("MAGICS_RESEARCH_DATA_ROOT", "").strip()
+    candidates = []
+    if override:
+        candidates.append(Path(override).expanduser())
+    candidates += [
+        Path("~/Dropbox/ZED/Research/MAGICS_research/survey/data").expanduser(),
+        Path("~/Dropbox/zed/Research/MAGICS_research/survey/data").expanduser(),
+    ]
+    for p in candidates:
+        if p.is_dir():
+            return p.resolve()
+    raise FileNotFoundError(
+        "Could not find MAGICS_research/survey/data in the local Dropbox sync. "
+        "Set MAGICS_RESEARCH_DATA_ROOT to the survey/data directory."
+    )
+
+
+def resolve_data_for_model_key(model_key: str, data_root: Path) -> Path:
+    """Map a public DTAG model key to the matching MAGICS_research training CSV."""
+    key = fetch_models.validate_model_key(model_key)
+    family, name = key.split("/", 1)
+
+    candidates: List[Path] = []
+    if family == "gss":
+        candidates = [data_root / "gss" / f"{name}.csv"]
+    elif family == "afrobarometer":
+        candidates = [
+            data_root / "afrobarometer" / "merged_csvs_lsm" / f"{name}_data.csv"
+        ]
+    elif family == "wvs":
+        if name in {"wave7", "wvs7_pooled", "wvs_wave7"}:
+            candidates = [
+                data_root / "wvs_cleaned" / "WVS_Cross-National_Wave_7_csv_v6_0.csv",
+                data_root / "wvs" / "wvs_wave7.csv",
+                data_root / "wvs" / "WVS_Cross-National_Wave_7_csv_v6_0.csv",
+            ]
+    elif family == "eurobarometer":
+        eb = data_root / "eurobarometer"
+        exact = eb / f"{name}.csv"
+        candidates = [exact] + sorted(eb.glob(f"{name}_*.csv"))
+
+    for p in candidates:
+        if p.is_file():
+            return p.resolve()
+
+    shown = "\n  ".join(str(p) for p in candidates) if candidates else "(no family-specific candidates)"
+    raise FileNotFoundError(
+        f"Could not resolve a MAGICS_research CSV for model key {model_key!r}. "
+        f"Checked:\n  {shown}\n"
+        "Pass --data explicitly if this wave uses a nonstandard filename."
+    )
+
+
+def resolve_model(model: Path | None, model_key: str) -> Tuple[Path, str]:
+    """Use an explicit model path or fetch a public native model from GCS."""
+    if model is not None:
+        return model.expanduser().resolve(), model_key
+    if not model_key:
+        raise ValueError("provide --model-key (preferred) or --model")
+    manifest = fetch_models.load_manifest()
+    root = fetch_models.default_root()
+    path = fetch_models.fetch_one(root, manifest, model_key)
+    return path.resolve(), model_key
 
 
 def _state_hash(row: Sequence[str]) -> str:
@@ -372,8 +441,10 @@ def write_outputs(
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Discover empirical DTAG poles with native-LSM qdistance.")
-    ap.add_argument("--data", required=True, type=Path, help="CSV used for this survey/model wave")
-    ap.add_argument("--model", required=True, type=Path, help="native LSM model directory")
+    ap.add_argument("--model-key", default="", help="public DTAG key, e.g. afrobarometer/merged_r5; fetched from GCS")
+    ap.add_argument("--model", type=Path, help="override: existing local native LSM model directory")
+    ap.add_argument("--data", type=Path, help="override: CSV used for this survey/model wave")
+    ap.add_argument("--data-root", type=Path, help="override MAGICS_research/survey/data root")
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--sample-size", type=int, default=256)
     ap.add_argument("--seed", type=int, default=1)
@@ -387,11 +458,26 @@ def main() -> None:
     if args.sample_size < 4:
         raise SystemExit("--sample-size must be >= 4")
 
-    print(f"loading native model: {args.model}")
-    model = load_model(args.model)
+    if args.model is None and not args.model_key:
+        ap.error("provide --model-key (preferred) or --model")
+
+    model_path, model_key = resolve_model(args.model, args.model_key)
+    if args.data is not None:
+        data_path = args.data.expanduser().resolve()
+    else:
+        if not model_key:
+            ap.error("--data is required when --model is used without --model-key")
+        data_root = args.data_root.expanduser().resolve() if args.data_root else default_magics_data_root()
+        data_path = resolve_data_for_model_key(model_key, data_root)
+
+    print(f"model: {model_path}")
+    if model_key:
+        print(f"model key: {model_key}")
+    print(f"data:  {data_path}")
+    model = load_model(model_path)
 
     states, source_rows, data_meta = load_sample_states(
-        args.data,
+        data_path,
         model,
         sample_size=args.sample_size,
         seed=args.seed,
@@ -417,8 +503,9 @@ def main() -> None:
     print(f"k=2 silhouette={k2['silhouette']:.4f} sizes={k2['cluster_sizes']}")
 
     summary: Dict[str, object] = {
-        "data": str(args.data.resolve()),
-        "model": str(args.model.resolve()),
+        "data": str(data_path),
+        "model": str(model_path),
+        "model_key": model_key,
         "sample_size": int(args.sample_size),
         "seed": int(args.seed),
         "data_diagnostics": data_meta,
