@@ -366,7 +366,9 @@ def validate(pool: mp.Pool, w: World, seq: List[str], n: int, seed0: int) -> Dic
     """Trajectories (n x len+1) per side on held-out perturbed personas, fresh draw seeds."""
     out = {}
     for s in SIGN:
-        jobs = [(w.valid(sample_persona(s, seed0 + i, rich=RICH)), seq, seed0 * 7919 + i) for i in range(n)]
+        # independent answer-sampling streams per persona (like two independent survey samples)
+        jobs = [(w.valid(sample_persona(s, seed0 + i, rich=RICH)), seq, seed0 * 7919 + i + (1_000_000_007 if s == "WF" else 0))
+                for i in range(n)]
         out[s] = np.array(pool.map(_simulate, jobs, chunksize=4))
     return out
 
@@ -380,15 +382,18 @@ def summarize(traj: Dict[str, np.ndarray], rng: np.random.Generator, k: int = -1
     """Change after k questions (default: the whole sequence) with bootstrap 95% CIs."""
     dC = traj["CM"][:, k] - traj["CM"][:, 0]
     dW = traj["WF"][:, k] - traj["WF"][:, 0]
-    m = min(len(dC), len(dW))
-    gap = dC[:m] - dW[:m]
     okC, okW = SIGN["CM"] * dC > 0, SIGN["WF"] * dW > 0
+    # The two groups are independent samples: bootstrap each separately for the gap (CM - WF).
+    B = 2000
+    bg = rng.choice(dC, (B, len(dC))).mean(1) - rng.choice(dW, (B, len(dW))).mean(1)
+    gap = (float(dC.mean() - dW.mean()), float(np.quantile(bg, 0.025)), float(np.quantile(bg, 0.975)))
     return {"n": int(len(dC)),
             "CM_change": ci(dC, rng), "CM_share_up": float(np.mean(dC > 0)),
             "WF_change": ci(dW, rng), "WF_share_down": float(np.mean(dW < 0)),
             "CM_share_intended": float(np.mean(okC)), "WF_share_intended": float(np.mean(okW)),
-            "gap_change": ci(gap, rng),
-            "share_both": float(np.mean(okC[:m] & okW[:m]))}  # both moved in the intended direction
+            "gap_change": gap,
+            # P(a random CM run and an independent random WF run both move as intended)
+            "share_both": float(np.mean(okC) * np.mean(okW))}
 
 
 def main() -> None:
