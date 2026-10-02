@@ -62,16 +62,36 @@ Build the bundled native runtime first:
 bash scripts/build_native_bindings.sh
 ```
 
-Then, for one survey wave:
+Then, for one survey wave, specify the public DTAG model key:
 
 ```bash
 python poles/discover_poles.py \
-  --data /path/to/the_training_wave.csv \
-  --model models/lsm/<family>/<wave> \
-  --out poles/results/<family>/<wave> \
+  --model-key afrobarometer/merged_r5 \
+  --out poles/results/afrobarometer/merged_r5 \
   --sample-size 256 \
   --seed 1
 ```
+
+The normal workflow deliberately uses the same sources as DTAG itself:
+
+- **Model:** `scripts/fetch_models.py` resolves the public release manifest and
+  downloads/verifies the native model from the DTAG GCS bucket if it is not
+  already installed locally.
+- **Data:** the corresponding training CSV is resolved from the locally synced
+  Dropbox tree `~/Dropbox/ZED/Research/MAGICS_research/survey/data`.
+  Set `MAGICS_RESEARCH_DATA_ROOT` (or pass `--data-root`) only if the local
+  Dropbox mount is elsewhere.
+
+Known automatic data mappings include:
+
+- `gss/gss_YYYY` -> `survey/data/gss/gss_YYYY.csv`
+- `afrobarometer/merged_rN` ->
+  `survey/data/afrobarometer/merged_csvs_lsm/merged_rN_data.csv`
+- WVS7 -> the cleaned Wave 7 CSV under `survey/data/wvs_cleaned/`
+- `eurobarometer/ZAxxxx` -> the matching `ZAxxxx_*.csv` in
+  `survey/data/eurobarometer/`
+
+`--model` and `--data` remain available only as explicit local overrides.
 
 Outputs:
 
