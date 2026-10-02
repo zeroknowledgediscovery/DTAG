@@ -1,0 +1,968 @@
+{
+ "optimized": {
+  "n": 400,
+  "CM_change": [
+   -0.02615192782216072,
+   -0.037404197237905695,
+   -0.015197729460532093
+  ],
+  "CM_share_up": 0.3625,
+  "WF_change": [
+   0.017753114980776398,
+   0.007329016333790612,
+   0.027769248978537747
+  ],
+  "WF_share_down": 0.5875,
+  "CM_share_intended": 0.6375,
+  "WF_share_intended": 0.4125,
+  "gap_change": [
+   -0.04390504280293712,
+   -0.05877199669055866,
+   -0.028327805758587496
+  ],
+  "share_both": 0.26296875,
+  "per_step": {
+   "CM": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     -0.002166394441042905,
+     -0.0034760070101402946,
+     -0.000915771088206826
+    ],
+    [
+     -0.026033046076224746,
+     -0.03782645344623529,
+     -0.014314972334873208
+    ],
+    [
+     -0.014923504891050331,
+     -0.02634831066373901,
+     -0.003284556540934045
+    ],
+    [
+     -0.01001175724521764,
+     -0.02158862383833673,
+     0.0019178176354424964
+    ],
+    [
+     -0.010923577463637573,
+     -0.021672472967929717,
+     0.00024452083789331015
+    ],
+    [
+     -0.016653223238265732,
+     -0.02806569408561054,
+     -0.0053208175767359995
+    ],
+    [
+     -0.01951373926030996,
+     -0.030931765852043304,
+     -0.007531007477549574
+    ],
+    [
+     -0.019496724216269867,
+     -0.030276667547172446,
+     -0.008337852205899198
+    ],
+    [
+     -0.019257058664932245,
+     -0.02967141247799014,
+     -0.008339470806350615
+    ],
+    [
+     -0.020660904235633118,
+     -0.03216826463082426,
+     -0.009132274442130528
+    ],
+    [
+     -0.02128709391069559,
+     -0.03229835345303484,
+     -0.010360912858799956
+    ],
+    [
+     -0.02615192782216072,
+     -0.037480548642400566,
+     -0.014550056696355996
+    ]
+   ],
+   "WF": [
+    [
+     0.0,
+     0.0,
+     0.0
+    ],
+    [
+     0.005189600669043544,
+     0.003835247270030879,
+     0.006532656625342893
+    ],
+    [
+     0.006680558232509002,
+     -0.005116226405590157,
+     0.017314633099718972
+    ],
+    [
+     0.016649845021829673,
+     0.005027315397583424,
+     0.028312333685891613
+    ],
+    [
+     0.02458563013906949,
+     0.012325410538117467,
+     0.035945367391385
+    ],
+    [
+     0.024470124748778615,
+     0.013202537111943058,
+     0.03587839575026115
+    ],
+    [
+     0.02191395256839457,
+     0.01086373354622636,
+     0.032908446653420576
+    ],
+    [
+     0.020183612973785667,
+     0.008944738170338128,
+     0.03075684753033721
+    ],
+    [
+     0.02137074987018741,
+     0.010553852553796404,
+     0.03252257359312776
+    ],
+    [
+     0.021612547624949817,
+     0.01026788215686091,
+     0.03292734328408304
+    ],
+    [
+     0.022676447758798096,
+     0.012084938524582357,
+     0.034021189225701846
+    ],
+    [
+     0.02243603248009404,
+     0.011565756807542899,
+     0.0330353550331778
+    ],
+    [
+     0.017753114980776398,
+     0.007353051956501147,
+     0.02819153953598685
+    ]
+   ]
+  },
+  "per_length": [
+   {
+    "length": 1,
+    "n": 400,
+    "CM_change": [
+     -0.002166394441042905,
+     -0.0034566610613823495,
+     -0.0008712384009651471
+    ],
+    "CM_share_up": 0.595,
+    "WF_change": [
+     0.005189600669043544,
+     0.0037777192276148928,
+     0.006571581288167289
+    ],
+    "WF_share_down": 0.3375,
+    "CM_share_intended": 0.405,
+    "WF_share_intended": 0.6625,
+    "gap_change": [
+     -0.007355995110086449,
+     -0.009150514174925593,
+     -0.0055234754364456825
+    ],
+    "share_both": 0.2683125
+   },
+   {
+    "length": 2,
+    "n": 400,
+    "CM_change": [
+     -0.026033046076224746,
+     -0.03707984321916209,
+     -0.014346890111974238
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.006680558232509002,
+     -0.005444143510682547,
+     0.01825961608145645
+    ],
+    "WF_share_down": 0.6025,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.3975,
+    "gap_change": [
+     -0.03271360430873375,
+     -0.048816705696840795,
+     -0.016917786510726167
+    ],
+    "share_both": 0.25340625
+   },
+   {
+    "length": 3,
+    "n": 400,
+    "CM_change": [
+     -0.014923504891050331,
+     -0.02683532005221171,
+     -0.003344536686238819
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.016649845021829673,
+     0.004922568191766396,
+     0.02841043308945764
+    ],
+    "WF_share_down": 0.6025,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.3975,
+    "gap_change": [
+     -0.03157334991288001,
+     -0.047586419653377544,
+     -0.015143808008514743
+    ],
+    "share_both": 0.25340625
+   },
+   {
+    "length": 4,
+    "n": 400,
+    "CM_change": [
+     -0.01001175724521764,
+     -0.02169358180579428,
+     0.0015326448196178281
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.02458563013906949,
+     0.013151775658975323,
+     0.036599332034828194
+    ],
+    "WF_share_down": 0.6025,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.3975,
+    "gap_change": [
+     -0.03459738738428713,
+     -0.05135054630563315,
+     -0.017921915591553313
+    ],
+    "share_both": 0.25340625
+   },
+   {
+    "length": 5,
+    "n": 400,
+    "CM_change": [
+     -0.010923577463637573,
+     -0.022353976954355162,
+     -4.2620047605927814e-05
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.024470124748778615,
+     0.01383922997187364,
+     0.03613221421791773
+    ],
+    "WF_share_down": 0.6025,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.3975,
+    "gap_change": [
+     -0.03539370221241619,
+     -0.05151265072859611,
+     -0.01950550640887201
+    ],
+    "share_both": 0.25340625
+   },
+   {
+    "length": 6,
+    "n": 400,
+    "CM_change": [
+     -0.016653223238265732,
+     -0.027537321015395837,
+     -0.005209515533048738
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.02191395256839457,
+     0.011445688633423169,
+     0.032806953557217494
+    ],
+    "WF_share_down": 0.6025,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.3975,
+    "gap_change": [
+     -0.0385671758066603,
+     -0.05476814517858859,
+     -0.02309147769313626
+    ],
+    "share_both": 0.25340625
+   },
+   {
+    "length": 7,
+    "n": 400,
+    "CM_change": [
+     -0.01951373926030996,
+     -0.031021395727668995,
+     -0.008227412660925653
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.020183612973785667,
+     0.009760658995363792,
+     0.030976017928516064
+    ],
+    "WF_share_down": 0.6025,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.3975,
+    "gap_change": [
+     -0.03969735223409562,
+     -0.05537408151856176,
+     -0.02328588053459544
+    ],
+    "share_both": 0.25340625
+   },
+   {
+    "length": 8,
+    "n": 400,
+    "CM_change": [
+     -0.019496724216269867,
+     -0.03008043347127833,
+     -0.0073854978406627005
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.02137074987018741,
+     0.009876358377200073,
+     0.03265231179364834
+    ],
+    "WF_share_down": 0.6025,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.3975,
+    "gap_change": [
+     -0.04086747408645727,
+     -0.057256584941453324,
+     -0.025597995186075917
+    ],
+    "share_both": 0.25340625
+   },
+   {
+    "length": 9,
+    "n": 400,
+    "CM_change": [
+     -0.019257058664932245,
+     -0.029499540787455814,
+     -0.007973330369001552
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.021612547624949817,
+     0.011026225810126225,
+     0.03272288158326451
+    ],
+    "WF_share_down": 0.6025,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.3975,
+    "gap_change": [
+     -0.040869606289882066,
+     -0.05675278769826681,
+     -0.025921181553796788
+    ],
+    "share_both": 0.25340625
+   },
+   {
+    "length": 10,
+    "n": 400,
+    "CM_change": [
+     -0.020660904235633118,
+     -0.03223728807708587,
+     -0.00861228747321983
+    ],
+    "CM_share_up": 0.36,
+    "WF_change": [
+     0.022676447758798096,
+     0.011869476620257677,
+     0.03379806772142876
+    ],
+    "WF_share_down": 0.5975,
+    "CM_share_intended": 0.64,
+    "WF_share_intended": 0.4025,
+    "gap_change": [
+     -0.043337351994431214,
+     -0.05900716347110904,
+     -0.026786412390024134
+    ],
+    "share_both": 0.2576
+   },
+   {
+    "length": 11,
+    "n": 400,
+    "CM_change": [
+     -0.02128709391069559,
+     -0.03241591769633491,
+     -0.010308327779515281
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.02243603248009404,
+     0.011334413716385189,
+     0.03326754123684295
+    ],
+    "WF_share_down": 0.5875,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.4125,
+    "gap_change": [
+     -0.043723126390789624,
+     -0.058965075588919134,
+     -0.028519695757831396
+    ],
+    "share_both": 0.26296875
+   },
+   {
+    "length": 12,
+    "n": 400,
+    "CM_change": [
+     -0.02615192782216072,
+     -0.036833716487439376,
+     -0.014342749870150117
+    ],
+    "CM_share_up": 0.3625,
+    "WF_change": [
+     0.017753114980776398,
+     0.007371826035501003,
+     0.028415184649772576
+    ],
+    "WF_share_down": 0.5875,
+    "CM_share_intended": 0.6375,
+    "WF_share_intended": 0.4125,
+    "gap_change": [
+     -0.04390504280293712,
+     -0.05926060234324986,
+     -0.0283803928471862
+    ],
+    "share_both": 0.26296875
+   }
+  ]
+ },
+ "compare:greedy": {
+  "n": 400,
+  "CM_change": [
+   -0.017880558393047388,
+   -0.028649094590506345,
+   -0.0070770000857406645
+  ],
+  "CM_share_up": 0.365,
+  "WF_change": [
+   0.025598710265029224,
+   0.01509622666382148,
+   0.036047575359927995
+  ],
+  "WF_share_down": 0.5825,
+  "CM_share_intended": 0.635,
+  "WF_share_intended": 0.4175,
+  "gap_change": [
+   -0.04347926865807661,
+   -0.05914342590957149,
+   -0.028347761063934707
+  ],
+  "share_both": 0.2651125
+ },
+ "random_baseline": {
+  "sets": 20,
+  "CM_mean_range": [
+   -0.05884975835874294,
+   0.012890868924733427
+  ],
+  "WF_mean_range": [
+   -0.0193259437789994,
+   0.015712378171985945
+  ],
+  "gap_mean_median": -0.001225586816316792,
+  "gap_mean_max": 0.012678157415038534,
+  "share_both_median": 0.23944444444444446,
+  "sets_detail": [
+   {
+    "sequence": [
+     "natsci",
+     "poleff18",
+     "demtoday",
+     "acpttg",
+     "divlaw",
+     "radionews",
+     "immideas1",
+     "letin1a",
+     "dem10pst",
+     "sprtprsn",
+     "marwht",
+     "conlabor"
+    ],
+    "CM_mean": -0.004614470313920148,
+    "WF_mean": -0.0071979142802118925,
+    "gap_mean": 0.002583443966291744,
+    "share_both": 0.19555555555555554
+   },
+   {
+    "sequence": [
+     "wlthblks",
+     "techesy",
+     "amchrstn",
+     "helpoth",
+     "letdie1",
+     "helpnot",
+     "libmslm",
+     "marhisp",
+     "conpow",
+     "workwhts",
+     "conmedic",
+     "dsndntpay"
+    ],
+    "CM_mean": -0.00414314185812776,
+    "WF_mean": -0.016821299273166293,
+    "gap_mean": 0.012678157415038534,
+    "share_both": 0.18
+   },
+   {
+    "sequence": [
+     "confed",
+     "natdrug",
+     "proudart",
+     "consci",
+     "amownway",
+     "colmslm",
+     "marwht",
+     "dsndntpay",
+     "confinan",
+     "demtoday",
+     "divlaw",
+     "spkath"
+    ],
+    "CM_mean": -0.009811493604015287,
+    "WF_mean": 0.009282709878776182,
+    "gap_mean": -0.01909420348279147,
+    "share_both": 0.28444444444444444
+   },
+   {
+    "sequence": [
+     "spanking",
+     "abnomore",
+     "natroad",
+     "prayer",
+     "spkmslm",
+     "helpnot",
+     "suicide2",
+     "econstat",
+     "ratechall124",
+     "feovrwrk",
+     "bible",
+     "courts"
+    ],
+    "CM_mean": 0.010507737578014952,
+    "WF_mean": 0.008049970411638031,
+    "gap_mean": 0.0024577671663769205,
+    "share_both": 0.2
+   },
+   {
+    "sequence": [
+     "racdif5",
+     "rateincumb24",
+     "polhitok",
+     "wlthhsps",
+     "nateduc",
+     "feovrwrk",
+     "usmca2",
+     "discaffm",
+     "spkcom",
+     "dem10pst",
+     "fulldem",
+     "helppoor"
+    ],
+    "CM_mean": 0.0017525938761488778,
+    "WF_mean": 0.00962466101059785,
+    "gap_mean": -0.007872067134448973,
+    "share_both": 0.26
+   },
+   {
+    "sequence": [
+     "workblks",
+     "natdrug",
+     "dsndntpay",
+     "tvnews1",
+     "wrkwayup",
+     "goodlife",
+     "rateincumb24",
+     "infodeal",
+     "harmgood1",
+     "marasian",
+     "cappun",
+     "raterepp"
+    ],
+    "CM_mean": -0.002054030932901661,
+    "WF_mean": -0.0010841288259977114,
+    "gap_mean": -0.0009699021069039496,
+    "share_both": 0.27999999999999997
+   },
+   {
+    "sequence": [
+     "marwht",
+     "premarsx",
+     "natrace",
+     "infoprofit",
+     "relpersn",
+     "rghtsmin",
+     "polhitok",
+     "trppl",
+     "libath",
+     "postlife",
+     "god",
+     "confinan"
+    ],
+    "CM_mean": 0.01117115373081003,
+    "WF_mean": 0.012652425256539665,
+    "gap_mean": -0.0014812715257296345,
+    "share_both": 0.13999999999999999
+   },
+   {
+    "sequence": [
+     "infoprofit",
+     "marblk",
+     "fair",
+     "abhlth",
+     "immameco",
+     "racdif4x",
+     "obeylaws",
+     "biasnews",
+     "radionews",
+     "ratechall124",
+     "racdif3x",
+     "helpnot"
+    ],
+    "CM_mean": -0.005411952504962487,
+    "WF_mean": 0.0006176829747965795,
+    "gap_mean": -0.006029635479759067,
+    "share_both": 0.28444444444444444
+   },
+   {
+    "sequence": [
+     "watchgov",
+     "fejobaff",
+     "abhlth",
+     "poleff18",
+     "servpub",
+     "helpnot",
+     "bizmoney",
+     "proudhis",
+     "adoptus",
+     "befair",
+     "abnomore",
+     "feovrwrk"
+    ],
+    "CM_mean": 0.004820992112851328,
+    "WF_mean": 0.008662748912872217,
+    "gap_mean": -0.003841756800020889,
+    "share_both": 0.24555555555555555
+   },
+   {
+    "sequence": [
+     "conbus",
+     "colrac",
+     "cappun",
+     "abhlth",
+     "workhsps",
+     "helpusa",
+     "belikeus",
+     "goodlife",
+     "nateduc",
+     "immcrime",
+     "premarsx",
+     "libmslm"
+    ],
+    "CM_mean": -0.005748755855683114,
+    "WF_mean": 0.015712378171985945,
+    "gap_mean": -0.02146113402766906,
+    "share_both": 0.33777777777777773
+   },
+   {
+    "sequence": [
+     "coneduc",
+     "conpow",
+     "natcrime",
+     "relactiv",
+     "trppl",
+     "amcit",
+     "workblks",
+     "dsndntpay",
+     "oppsegov",
+     "sexeduc",
+     "immfate",
+     "proudpol"
+    ],
+    "CM_mean": -0.0030674658594038394,
+    "WF_mean": -0.011859041614842641,
+    "gap_mean": 0.008791575755438801,
+    "share_both": 0.11666666666666667
+   },
+   {
+    "sequence": [
+     "confinan",
+     "rateincumb24",
+     "immideas1",
+     "racdif4x",
+     "homosex",
+     "natenrgy",
+     "ambetter",
+     "proudhis",
+     "incgap1",
+     "suicide4",
+     "cantrust",
+     "teensex"
+    ],
+    "CM_mean": -0.014076051779457864,
+    "WF_mean": 0.0009712296308537996,
+    "gap_mean": -0.015047281410311664,
+    "share_both": 0.31666666666666665
+   },
+   {
+    "sequence": [
+     "paytaxes",
+     "ratedemp",
+     "ratechall224",
+     "fair",
+     "dsndntpay",
+     "emonitor1",
+     "marsame",
+     "obeylaws",
+     "prouddem",
+     "amancstr",
+     "relpersn",
+     "demtoday"
+    ],
+    "CM_mean": 0.005106374169526027,
+    "WF_mean": 0.0002442524256538741,
+    "gap_mean": 0.004862121743872153,
+    "share_both": 0.14222222222222222
+   },
+   {
+    "sequence": [
+     "polint",
+     "goodlife",
+     "god",
+     "watchgov",
+     "racdif4x",
+     "thnkself",
+     "fulldem",
+     "eductech",
+     "ratemaga",
+     "colrac",
+     "polmurdr",
+     "workhard"
+    ],
+    "CM_mean": 0.012890868924733427,
+    "WF_mean": 0.012414807115671197,
+    "gap_mean": 0.00047606180906223025,
+    "share_both": 0.17777777777777776
+   },
+   {
+    "sequence": [
+     "fulldem",
+     "eductech",
+     "experts",
+     "classtech",
+     "absingle",
+     "rateincumb24",
+     "solok",
+     "imports",
+     "poleff18",
+     "natenvir",
+     "immjobs1",
+     "natarms"
+    ],
+    "CM_mean": -0.012246336020315017,
+    "WF_mean": -0.0193259437789994,
+    "gap_mean": 0.007079607758684384,
+    "share_both": 0.21111111111111108
+   },
+   {
+    "sequence": [
+     "imports",
+     "nataid",
+     "immcrime1",
+     "popular",
+     "helpsick",
+     "polhitok",
+     "polopts",
+     "homosex",
+     "eqwlth",
+     "racdif5x",
+     "helpnot",
+     "infodeal"
+    ],
+    "CM_mean": -0.02020766036438014,
+    "WF_mean": 0.010198603451161147,
+    "gap_mean": -0.030406263815541287,
+    "share_both": 0.43444444444444447
+   },
+   {
+    "sequence": [
+     "religinf",
+     "ratedemp",
+     "natdrug",
+     "conscrp",
+     "abany",
+     "polescap",
+     "natroad",
+     "racdif3x",
+     "tvnews1",
+     "pornlaw",
+     "gendtech",
+     "amancstr"
+    ],
+    "CM_mean": -0.05884975835874294,
+    "WF_mean": -0.003255990440409263,
+    "gap_mean": -0.055593767918333675,
+    "share_both": 0.2811111111111111
+   },
+   {
+    "sequence": [
+     "discaffw",
+     "premarsx",
+     "libath",
+     "rateincumb24",
+     "immcrime",
+     "courts",
+     "polint",
+     "demtoday",
+     "thnkself",
+     "wlthhsps",
+     "ratechall324",
+     "racdif1x"
+    ],
+    "CM_mean": -0.0062524701761107184,
+    "WF_mean": -0.006393641433673827,
+    "gap_mean": 0.0001411712575631087,
+    "share_both": 0.19555555555555554
+   },
+   {
+    "sequence": [
+     "thnkself",
+     "dsndntpay",
+     "discaffm",
+     "libmslm",
+     "corruptn",
+     "contv",
+     "polattak",
+     "forland",
+     "abhlth",
+     "colath",
+     "discaffw",
+     "wlthhsps"
+    ],
+    "CM_mean": -0.013920415517332103,
+    "WF_mean": -0.004361116917173929,
+    "gap_mean": -0.009559298600158174,
+    "share_both": 0.23333333333333334
+   },
+   {
+    "sequence": [
+     "liveblks",
+     "spkrac",
+     "poleff18",
+     "letin1a",
+     "poleff11",
+     "sprtprsn",
+     "natheal",
+     "smnews",
+     "radionews",
+     "corruptn",
+     "natchld",
+     "racdif1x"
+    ],
+    "CM_mean": -0.004326316701167776,
+    "WF_mean": -0.006724578364678896,
+    "gap_mean": 0.00239826166351112,
+    "share_both": 0.27999999999999997
+   }
+  ]
+ },
+ "sequence": [
+  {
+   "variable": "natfare",
+   "text": "welfare"
+  },
+  {
+   "variable": "abany",
+   "text": "abortion if woman wants for any reason"
+  },
+  {
+   "variable": "colmslm",
+   "text": "allow anti-american muslim clergymen teaching in college"
+  },
+  {
+   "variable": "god",
+   "text": "r's confidence in the existence of god"
+  },
+  {
+   "variable": "ratechall124",
+   "text": "rating of donald trump"
+  },
+  {
+   "variable": "pillok",
+   "text": "birth control to teenagers 14-16"
+  },
+  {
+   "variable": "wrkwayup",
+   "text": "black people overcome prejudice without favors"
+  },
+  {
+   "variable": "cappun",
+   "text": "favor or oppose death penalty for murder"
+  },
+  {
+   "variable": "sexeduc",
+   "text": "sex education in public schools"
+  },
+  {
+   "variable": "conmedic",
+   "text": "confidence in medicine"
+  },
+  {
+   "variable": "ratechall224",
+   "text": "rating of kamala harris"
+  },
+  {
+   "variable": "spkath",
+   "text": "allow anti-religionist to speak"
+  }
+ ],
+ "config": {
+  "wave": "2024",
+  "model_root": "/home/user/dtag-models",
+  "out": "/tmp/claude-0/-home-user-DTAG/a58e4dbb-0db6-5d74-be02-40dd0a0cf683/scratchpad/dep_fresh",
+  "length": 12,
+  "pop": 16,
+  "prescreen": 30,
+  "screen_pop": 4,
+  "rescreen_every": 2,
+  "min_gain": 0.02,
+  "sd_floor": 0.01,
+  "force_length": false,
+  "local_search": "",
+  "pool": "",
+  "budget": 40,
+  "ls_n": 60,
+  "val_seed": 300000,
+  "goal": "depolarize",
+  "rich": true,
+  "n_val": 400,
+  "baselines": 20,
+  "n_base": 30,
+  "compare": [
+   "greedy=natfare,abany,colmslm,god,ratechall124,pillok,obey,cappun,popular,conmedic,ratechall224,conbus"
+  ],
+  "sequence": "natfare,abany,colmslm,god,ratechall124,pillok,wrkwayup,cappun,sexeduc,conmedic,ratechall224,spkath",
+  "workers": 4
+ }
+}

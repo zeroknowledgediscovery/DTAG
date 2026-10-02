@@ -204,8 +204,8 @@ them (blank lines and lines starting with `#` are ignored; a first line
 `step,question` is read by that column, so the files in `assets/question_sets/`
 work as-is; up to 500 questions). `assets/question_sets/optimized/` has GSS 2024
 sets chosen to move the CM and WF personas in the same or opposite directions, and
-`assets/question_sets/polarization/` a set validated (with confidence intervals) to polarize
-them with sampled answers. Optionally reset the respondent first;
+`assets/question_sets/polarization/` and `assets/question_sets/depolarization/` sets validated
+(with confidence intervals) to push them apart or toward each other with sampled answers. Optionally reset the respondent first;
 otherwise the sequence continues from the current state.
 
 Each question goes through the normal path (same native anchors, fallback
