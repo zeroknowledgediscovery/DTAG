@@ -24,6 +24,7 @@ import hashlib
 import json
 import os
 import shlex
+import shutil
 import subprocess
 import sys
 import time
@@ -408,6 +409,15 @@ def main() -> None:
             output_dir = resolve_repo_path(output_rel, ROOT)
         else:
             output_dir = output_root / family / name
+
+        if args.force and output_dir.exists():
+            # A forced retrain must start from a clean model directory.
+            # Native LSM writes tree_<id>.bin files but does not guarantee
+            # removal of obsolete files from a previous wider model. Leaving
+            # stale trees behind can make the serialized model width disagree
+            # with the newly prepared training feature set.
+            print(f"REMOVE stale model directory: {output_dir}")
+            shutil.rmtree(output_dir)
 
         sample_size = int(job.get("sample_size", args.sample_size) or 0)
         index_column = str(job.get("index_column", args.index_column))
