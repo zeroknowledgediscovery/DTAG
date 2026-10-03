@@ -115,15 +115,15 @@ def main() -> None:
     print(f"semantic donor years: {donor_years}")
 
     summary = []
-    for model_path in models:
-        year = year_from_name(model_path.name)
+    for model_dir in models:
+        year = year_from_name(model_dir.name)
         out = outdir / f"gss_{year}_map.csv"
 
         if out.exists() and not args.force and year not in {2022, 2024}:
             print(f"SKIP {year}: {out} exists")
             continue
 
-        model = load_model(model_path, backend="native_lsm", preload=False)
+        model = load_model(model_dir, backend="native_lsm", preload=False)
         features = [str(x) for x in model.feature_names]
 
         year_specific = read_semantic_map(
