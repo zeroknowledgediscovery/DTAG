@@ -36,7 +36,7 @@ def sha256_file(path: Path) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--model-root", default="models/lsm")
-    ap.add_argument("--release", default="v0.2.0")
+    ap.add_argument("--release", default="v0.2.1")
     ap.add_argument("--bucket", default="git-zeroknowledgediscovery-dtag")
     ap.add_argument("--out", default="")
     args = ap.parse_args()
