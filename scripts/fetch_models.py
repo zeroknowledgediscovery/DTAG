@@ -29,7 +29,7 @@ import zstandard as zstd
 
 from dtag_paths import model_root
 
-DEFAULT_RELEASE = os.environ.get("DTAG_MODEL_RELEASE", "v0.2.0")
+DEFAULT_RELEASE = os.environ.get("DTAG_MODEL_RELEASE", "v0.2.1")
 DEFAULT_BUCKET = os.environ.get(
     "DTAG_PUBLIC_BUCKET", "git-zeroknowledgediscovery-dtag"
 )
