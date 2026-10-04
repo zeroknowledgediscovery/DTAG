@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-RELEASE="${1:-v0.2.0}"
+RELEASE="${1:-v0.2.1}"
 MODE="${2:-}"
 BUCKET="${DTAG_PUBLIC_BUCKET:-git-zeroknowledgediscovery-dtag}"
 MODEL_ROOT="${DTAG_MODEL_ROOT:-$ROOT/models/lsm}"
