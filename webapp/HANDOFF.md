@@ -79,9 +79,9 @@ console commands `dtag-web`, `dtag`, `dtag-models`, `dtag-doctor`
 4. **CLI and web run the same code** (`DTAGSession`). `scripts/pipeline.py`
    output was verified identical to the pre-refactor implementation; keep it so.
 5. **Never commit models** (`models/lsm/**` is git-ignored). Models come from the
-   public bucket `gs://git-zeroknowledgediscovery-dtag/models/v0.2.0/`
+   public bucket `gs://git-zeroknowledgediscovery-dtag/models/v0.2.1/`
    (anonymous HTTPS; manifest at
-   `https://storage.googleapis.com/git-zeroknowledgediscovery-dtag/models/v0.2.0/manifest.json`).
+   `https://storage.googleapis.com/git-zeroknowledgediscovery-dtag/models/v0.2.1/manifest.json`).
 6. **No secrets in images or Git.** `OPENAI_API_KEY` is read only by the server.
 7. **Browser input is whitelisted** (`schemas.py`): no paths, commands or URLs;
    model/map keys are validated against the catalog/map inventory.
@@ -119,7 +119,7 @@ Health endpoints: `GET /api/health` (cheap, use for probes),
 | `DTAG_MODEL_ROOT` | `~/.cache/dtag/models` | container: `/data/models` on a persistent volume |
 | `DTAG_ASSETS_DIR` | `~/.cache/dtag/assets` | container: `/data/assets` |
 | `DTAG_WEB_DATA_DIR` | `~/.cache/dtag/webapp` | custom profiles; container: `/data/webapp` |
-| `DTAG_MODEL_RELEASE`, `DTAG_PUBLIC_BUCKET`, `DTAG_MODEL_MANIFEST_URL` | `v0.2.0`, public bucket | leave defaults |
+| `DTAG_MODEL_RELEASE`, `DTAG_PUBLIC_BUCKET`, `DTAG_MODEL_MANIFEST_URL` | `v0.2.1`, public bucket | leave defaults |
 | `DTAG_MAX_LOADED_MODELS` | `6` | lower on small machines |
 | `DTAG_MAX_SESSIONS`, `DTAG_SESSION_TTL_HOURS` | `200`, `24` | in-memory session limits |
 | `DTAG_CONFIG`, `DTAG_EURODATES` | repo files | leave defaults |
