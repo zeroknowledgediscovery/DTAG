@@ -120,7 +120,7 @@ Resolution order (shared by the CLI, `dtag-models` and the web server):
 3. `~/.cache/dtag/models/`.
 
 Missing models are downloaded from the public release manifest
-(`DTAG_MODEL_RELEASE`, default `v0.2.0`), SHA256-verified, safely extracted
+(`DTAG_MODEL_RELEASE`, default `v0.2.1`), SHA256-verified, safely extracted
 once, validated (`source_maps/` + `trees/binary/`), then loaded **once per
 server process** into a persistent `dtag_lsm.Runtime`. Every later respondent
 using that model shares the resident runtime; each respondent keeps its own
