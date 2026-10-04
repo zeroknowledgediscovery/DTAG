@@ -163,7 +163,7 @@ def test_api_end_to_end_on_native_model(native_engine):
     traj = client.get(f"/api/sessions/{sid}").json()["ideology"]["trajectory"]
     assert len(traj) == 3
     ex = client.get(f"/api/sessions/{sid}/export?format=json").json()
-    assert ex["model"]["sha256"] and ex["model"]["release"] == "v0.2.0"
+    assert ex["model"]["sha256"] and ex["model"]["release"] == "v0.2.1"
     assert ex["dtag"]["native_runtime"] == "bundled_persistent"
     assert client.get(f"/api/sessions/{sid}/export?format=csv").text.count("\n") == 3
     assert client.post(f"/api/sessions/{sid}/reset").json()["question_count"] == 0
