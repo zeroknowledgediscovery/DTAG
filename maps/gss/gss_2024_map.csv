@@ -1,814 +1,812 @@
 variable,question_text,question_text_filled,source,source_year,codebook_page,map_provenance
-year,gss year for this respondent,gss year for this respondent,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-id,respondent id number,respondent id number,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wrkstat,labor force status,labor force status,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hrs1,number of hours worked last week,number of hours worked last week,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hrs2,number of hours usually work a week,number of hours usually work a week,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-evwork,ever work as long as one year,ever work as long as one year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wrkslf,r self-emp or works for somebody,r self-emp or works for somebody,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-occ10,r's census occupation code (2010),r's census occupation code (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-prestg10,r's occupational prestige score (2010),r's occupational prestige score (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-prestg105plus,r's occupational prestige score using threshold method (2010),r's occupational prestige score using threshold method (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-indus10,r's industry code (naics 2007),r's industry code (naics 2007),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-marital,marital status,marital status,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-martype,marital type,marital type,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-divorce,ever been divorced or separated,ever been divorced or separated,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-widowed,ever been widowed,ever been widowed,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spwrksta,spouse labor force status,spouse labor force status,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sphrs1,number of hrs spouse worked last week,number of hrs spouse worked last week,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sphrs2,no. of hrs spouse usually works a week,no. of hrs spouse usually works a week,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spevwork,spouse ever work as long as a year,spouse ever work as long as a year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cowrksta,partner's labor force status,partner's labor force status,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cowrkslf,partner self-emp. or works for somebody else,partner self-emp. or works for somebody else,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-coevwork,partner ever work as long as a year,partner ever work as long as a year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cohrs1,number of hours partner worked last week,number of hours partner worked last week,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cohrs2,no. of hours partner usually works a week,no. of hours partner usually works a week,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spwrkslf,spouse self-emp. or works for somebody,spouse self-emp. or works for somebody,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spocc10,spouse census occupation code (2010),spouse census occupation code (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sppres10,spouse occupational prestige score (2010),spouse occupational prestige score (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sppres105plus,spouse occupational prestige score using threshold method (2010),spouse occupational prestige score using threshold method (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spind10,spouse's industry code (naics 2007),spouse's industry code (naics 2007),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-coocc10,partner's census occupation code (2010),partner's census occupation code (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-coind10,partner's industry code (2010),partner's industry code (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pawrkslf,father (or oldest same-sex parent) self-emp. or worked for somebody,father (or oldest same-sex parent) self-emp. or worked for somebody,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-paocc10,father's (or oldest same-sex parent's) occupatoin code (2010),father's (or oldest same-sex parent's) occupatoin code (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-papres10,father's (or oldest same-sex parent's) occupational prestige score (2010),father's (or oldest same-sex parent's) occupational prestige score (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-papres105plus,father's (or oldest same-sex parent's) occupational prestige score using thresho,father's (or oldest same-sex parent's) occupational prestige score using thresho,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-paind10,father's (or oldest same-sex parent's) industry code (naics 2007),father's (or oldest same-sex parent's) industry code (naics 2007),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mawrkslf,mother (or youngest same-sex parent) self-emp. or worked for somebody,mother (or youngest same-sex parent) self-emp. or worked for somebody,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-maocc10,mother's (or youngest same-sex parent's) occupatoin code (2010),mother's (or youngest same-sex parent's) occupatoin code (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mapres10,mother's (or youngest same-sex parent's) occupational prestige score (2010),mother's (or youngest same-sex parent's) occupational prestige score (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mapres105plus,mother's (or youngest same-sex parent's) occupational prestige score using thres,mother's (or youngest same-sex parent's) occupational prestige score using thres,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-maind10,mother's (or youngest same-sex parent's) industry code (naics 2007),mother's (or youngest same-sex parent's) industry code (naics 2007),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sibs,number of siblings (including step- and adopted),number of siblings (including step- and adopted),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-childs,number of children,number of children,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-age,age of respondent,age of respondent,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-agekdbrn,r's age when 1st child born,r's age when 1st child born,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-educ,highest year of school completed,highest year of school completed,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-paeduc,"highest year school completed, father (or oldest same-sex parent)","highest year school completed, father (or oldest same-sex parent)",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-maeduc,"highest year school completed, mother (or youngest same-sex parent)","highest year school completed, mother (or youngest same-sex parent)",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-speduc,"highest year school completed, spouse","highest year school completed, spouse",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-coeduc,"highest year school completed, partner","highest year school completed, partner",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-codeg,partner's highest degree,partner's highest degree,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-degree,r's highest degree,r's highest degree,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-padeg,father's (or oldest same-sex parent's) highest degree,father's (or oldest same-sex parent's) highest degree,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-madeg,mother's (or youngest same-sex parent's) highest degree,mother's (or youngest same-sex parent's) highest degree,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spdeg,spouse's highest degree,spouse's highest degree,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-major1,college major 1,college major 1,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-major2,college major 2,college major 2,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dipged,"diploma, ged, or other","diploma, ged, or other",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sex,respondents sex,respondents sex,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-race,race of respondent,race of respondent,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-res16,type of place lived in when 16 yrs old,type of place lived in when 16 yrs old,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-reg16,"region of residence, age 16","region of residence, age 16",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mobile16,geographic mobility since age 16,geographic mobility since age 16,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-family16,living with parents when 16 yrs old,living with parents when 16 yrs old,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-famdif16,reason not living with parents,reason not living with parents,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mawrkgrw,did mother (or youngest same-sex parent) ever work for pay for as long as a year,did mother (or youngest same-sex parent) ever work for pay for as long as a year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-incom16,r's family income when 16 yrs old,r's family income when 16 yrs old,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-born,was r born in this country,was r born in this country,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-parborn,were r's parents born in this country,were r's parents born in this country,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-granborn,how many grandparents born outside u.s.,how many grandparents born outside u.s.,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hompop,number of persons in household,number of persons in household,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-babies,household members less than 6 yrs old,household members less than 6 yrs old,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-preteen,household members 6 thru 12 yrs old,household members 6 thru 12 yrs old,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-teens,household members 13 thru 17 yrs old,household members 13 thru 17 yrs old,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-adults,household members 18 yrs and older (household roster),household members 18 yrs and older (household roster),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-unrelat,number in household not related,number in household not related,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-earnrs,how many in family earned money?,how many in family earned money?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-income,total family income,total family income,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rincome,respondents income,respondents income,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-income16,total family income,total family income,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rincom16,respondents income,respondents income,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-region,region of interview,region of interview,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-xnorcsiz,expanded norc size code,expanded norc size code,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-partyid,political party affiliation,political party affiliation,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vote16,remember if voted in 2016 election,remember if voted in 2016 election,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pres16,vote clinton or trump,vote clinton or trump,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-if16who,who you would have voted for,who you would have voted for,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polviews,think of self as liberal or conservative,think of self as liberal or conservative,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natspac,space exploration program,space exploration program,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natenvir,improving & protecting environment,improving & protecting environment,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natheal,improving & protecting nations health,improving & protecting nations health,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natcity,solving problems of big cities,solving problems of big cities,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natcrime,halting rising crime rate,halting rising crime rate,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natdrug,dealing with drug addiction,dealing with drug addiction,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nateduc,improving nations education system,improving nations education system,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natrace,improving the conditions of black people,improving the conditions of black people,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natarms,"military, armaments, and defense","military, armaments, and defense",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nataid,foreign aid,foreign aid,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natfare,welfare,welfare,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natroad,highways and bridges,highways and bridges,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natsoc,social security,social security,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natchld,assistance for childcare,assistance for childcare,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natsci,supporting scientific research,supporting scientific research,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natenrgy,developing alternative energy sources,developing alternative energy sources,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natspacy,space exploration:version y,space exploration:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natenviy,the environment:version y,the environment:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nathealy,health:version y,health:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natcityy,assistance to big cities:version y,assistance to big cities:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natcrimy,law enforcement:version y,law enforcement:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natdrugy,drug rehabilitation:version y,drug rehabilitation:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nateducy,education:version y,education:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natracey,assistance to black people: version y,assistance to black people: version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natarmsy,national defense:version y,national defense:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nataidy,assistance to other countries:ver y,assistance to other countries:ver y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-natfarey,assistance to the poor:version y,assistance to the poor:version y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-eqwlth,should govt reduce income differences,should govt reduce income differences,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-tax,r's federal income tax,r's federal income tax,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spkath,allow anti-religionist to speak,allow anti-religionist to speak,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-colath,allow anti-religionist to teach,allow anti-religionist to teach,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-libath,allow anti-religious book in library,allow anti-religious book in library,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spkrac,allow racist to speak,allow racist to speak,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-colrac,allow racist to teach,allow racist to teach,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-librac,allow racists book in library,allow racists book in library,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spkcom,allow communist to speak,allow communist to speak,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-colcom,should communist teacher be fired,should communist teacher be fired,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-libcom,allow communists book in library,allow communists book in library,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spkmslm,allow muslim clergymen preaching hatred of the us,allow muslim clergymen preaching hatred of the us,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-colmslm,allow anti-american muslim clergymen teaching in college,allow anti-american muslim clergymen teaching in college,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-libmslm,allow anti-american muslim clergymen's books in library,allow anti-american muslim clergymen's books in library,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cappun,favor or oppose death penalty for murder,favor or oppose death penalty for murder,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-gunlaw,favor or oppose gun permits,favor or oppose gun permits,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-courts,courts dealing with criminals,courts dealing with criminals,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-grass,should marijuana be made legal,should marijuana be made legal,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-relig,r's religious preference,r's religious preference,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-denom,specific denomination,specific denomination,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fund,how fundamentalist is r currently,how fundamentalist is r currently,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-attend,how often r attends religious services,how often r attends religious services,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-reliten,strength of affiliation,strength of affiliation,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-postlife,belief in life after death,belief in life after death,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pray,how often does r pray,how often does r pray,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-relig16,religion in which raised,religion in which raised,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-denom16,denomination in which r was raised,denomination in which r was raised,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fund16,how fundamentalist was r at age 16,how fundamentalist was r at age 16,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sprel,spouse's religious preference,spouse's religious preference,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spden,"specific denomination, spouse","specific denomination, spouse",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spfund,how fundamentalist is spouse currently,how fundamentalist is spouse currently,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-corel,partner's religious preference,partner's religious preference,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-coden,partner's denomination,partner's denomination,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cofund,how fundamentalist is partner's current religion,how fundamentalist is partner's current religion,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-prayer,bible prayer in public schools,bible prayer in public schools,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-bible,feelings about the bible,feelings about the bible,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racopen,vote on open housing law,vote on open housing law,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raclive,any opp. race in neighborhood,any opp. race in neighborhood,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-affrmact,favor preference in hiring black people,favor preference in hiring black people,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wrkwayup,black people overcome prejudice without favors,black people overcome prejudice without favors,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-happy,general happiness,general happiness,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hapmar,happiness of marriage,happiness of marriage,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hapcohab,happiness of relt with partner,happiness of relt with partner,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-health,condition of health,condition of health,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-life,is life exciting or dull,is life exciting or dull,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helpful,people helpful or looking out for selves,people helpful or looking out for selves,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fair,people fair or try to take advantage,people fair or try to take advantage,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-trust,can people be trusted,can people be trusted,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-confinan,confid in banks & financial institutions,confid in banks & financial institutions,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conbus,confidence in major companies,confidence in major companies,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conclerg,confidence in organized religion,confidence in organized religion,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-coneduc,confidence in education,confidence in education,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-confed,confid. in exec branch of fed govt,confid. in exec branch of fed govt,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conlabor,confidence in organized labor,confidence in organized labor,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conpress,confidence in press,confidence in press,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conmedic,confidence in medicine,confidence in medicine,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-contv,confidence in television,confidence in television,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conjudge,confid. in united states supreme court,confid. in united states supreme court,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-consci,confidence in scientific community,confidence in scientific community,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conlegis,confidence in congress,confidence in congress,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conarmy,confidence in military,confidence in military,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-obey,to obey,to obey,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-popular,to be well liked or popular,to be well liked or popular,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-thnkself,to think for ones self,to think for ones self,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-workhard,to work hard,to work hard,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helpoth,to help others,to help others,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-socrel,spend evening with relatives,spend evening with relatives,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-socommun,spend evening with neighbor,spend evening with neighbor,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-socfrend,spend evening with friends,spend evening with friends,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-socbar,spend evening at bar,spend evening at bar,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-weekswrk,weeks r worked last year,weeks r worked last year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-partfull,was r's work part-time or full-time?,was r's work part-time or full-time?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-joblose,is r likely to lose job,is r likely to lose job,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-jobfind,could r find equally good job,could r find equally good job,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-satjob,work satisfaction,work satisfaction,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-richwork,"if rich, continue or stop working","if rich, continue or stop working",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-class,subjective class identification,subjective class identification,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rank,r's self ranking of social position,r's self ranking of social position,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-satfin,satisfaction with financial situation,satisfaction with financial situation,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-finalter,change in financial situation,change in financial situation,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-finrela,opinion of family income,opinion of family income,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wksub,does r or spouse have supervisor,does r or spouse have supervisor,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wksubs,does supervisor have supervisor,does supervisor have supervisor,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wksub1,does r or spouse or partner have a supervisor,does r or spouse or partner have a supervisor,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wksubs1,does supervisor have supervisor,does supervisor have supervisor,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wksup,does r or spouse supervise anyone,does r or spouse supervise anyone,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wksups,does subordinate supervise anyone,does subordinate supervise anyone,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wksup1,does r or spouse or partner supervise anyone,does r or spouse or partner supervise anyone,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wksups1,does subordinant supervise anyone,does subordinant supervise anyone,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-unemp,ever unemployed in last ten yrs,ever unemployed in last ten yrs,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-union,does r or spouse belong to union,does r or spouse belong to union,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-union1,does r or spouse or partner belong to union,does r or spouse or partner belong to union,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-getahead,opinion of how people get ahead,opinion of how people get ahead,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-parsol,r's living standard compared to parents,r's living standard compared to parents,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-kidssol,r's kids living standard compared to r,r's kids living standard compared to r,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fepol,women not suited for politics,women not suited for politics,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abdefect,strong chance of serious defect,strong chance of serious defect,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abnomore,married--wants no more children,married--wants no more children,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abhlth,woman's health seriously endangered,woman's health seriously endangered,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abpoor,low income--cant afford more children,low income--cant afford more children,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abrape,pregnant as result of rape,pregnant as result of rape,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-absingle,not married,not married,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abany,abortion if woman wants for any reason,abortion if woman wants for any reason,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldidel,ideal number of children,ideal number of children,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pillok,birth control to teenagers 14-16,birth control to teenagers 14-16,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sexeduc,sex education in public schools,sex education in public schools,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-divlaw,divorce laws,divorce laws,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-premarsx,sex before marriage,sex before marriage,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-teensex,sex before marriage:teens 14-16,sex before marriage:teens 14-16,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-xmarsex,sex with person other than spouse,sex with person other than spouse,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-homosex,homosexual sex relations,homosexual sex relations,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pornlaw,feelings about pornography laws,feelings about pornography laws,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-xmovie,seen x-rated movie in last year,seen x-rated movie in last year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spanking,favor spanking to discipline child,favor spanking to discipline child,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-letdie1,allow incurable patients to die,allow incurable patients to die,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-suicide1,suicide if incurable disease,suicide if incurable disease,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-suicide2,suicide if bankrupt,suicide if bankrupt,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-suicide4,suicide if tired of living,suicide if tired of living,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polhitok,ever approve of police striking citizen,ever approve of police striking citizen,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polabuse,citizen said vulgar or obscene things,citizen said vulgar or obscene things,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polmurdr,citizen questioned as murder suspect,citizen questioned as murder suspect,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polescap,citizen attempting to escape custody,citizen attempting to escape custody,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polattak,citizen attacking policeman with fists,citizen attacking policeman with fists,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fear,afraid to walk at night in neighborhood,afraid to walk at night in neighborhood,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-owngun,have gun in home,have gun in home,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pistol,pistol or revolver in home,pistol or revolver in home,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-shotgun,shotgun in home,shotgun in home,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rifle,rifle in home,rifle in home,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rowngun,does gun belong to r,does gun belong to r,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hunt,does r or spouse hunt,does r or spouse hunt,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hunt1,does r or spouse or partner hunt,does r or spouse or partner hunt,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-news,how often does r read newspaper,how often does r read newspaper,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-tvhours,hours per day watching tv,hours per day watching tv,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-phone,does r have telephone,does r have telephone,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-form,form of split questionnaire asked,form of split questionnaire asked,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fechld,mother working doesn't hurt children,mother working doesn't hurt children,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fepresch,preschool kids suffer if mother works,preschool kids suffer if mother works,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fefam,"better for man to work, woman tend home","better for man to work, woman tend home",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif1,differences due to discrimination,differences due to discrimination,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif2,differences due to in-born learning ability,differences due to in-born learning ability,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif3,differences due to lack of education,differences due to lack of education,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif4,differences due to lack of will,differences due to lack of will,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helppoor,should govt improve standard of living?,should govt improve standard of living?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helpnot,should govt do more or less?,should govt do more or less?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helpsick,should govt help pay for medical care?,should govt help pay for medical care?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helpblk,should govt aid black people?,should govt aid black people?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-god,r's confidence in the existence of god,r's confidence in the existence of god,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-reborn,has r ever had a 'born again' experience,has r ever had a 'born again' experience,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wlthwhts,rich - poor,rich - poor,DONOR_MAP,2022,,DONOR_MAP
-wlthblks,rich - poor,rich - poor,DONOR_MAP,2022,,DONOR_MAP
-wlthhsps,rich - poor,rich - poor,DONOR_MAP,2022,,DONOR_MAP
-workwhts,hard working - lazy,hard working - lazy,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-workblks,hard working - lazy,hard working - lazy,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-workhsps,hard working -lazy,hard working -lazy,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-liveblks,neighborhood half black,neighborhood half black,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-marblk,close relative marry black person,close relative marry black person,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-marasian,close relative marry asian,close relative marry asian,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-marhisp,close relative marry hispanic,close relative marry hispanic,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-marwht,r favor close relative marrying white person,r favor close relative marrying white person,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racwork,racial makeup of workplace,racial makeup of workplace,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-discaff,whites hurt by aff. action,whites hurt by aff. action,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-yousup,how many people do you supervise directly,how many people do you supervise directly,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spwksup,does spouse supervise anyone,does spouse supervise anyone,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fejobaff,for or against preferential hiring of women,for or against preferential hiring of women,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-refpromo,refuse a job promotion?,refuse a job promotion?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-refmorwk,take on additional paid work?,take on additional paid work?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-workless,cut back on your work?,cut back on your work?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-noathome,miss a family occasion or holiday?,miss a family occasion or holiday?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nonurse,unable to care for a sick child-relative?,unable to care for a sick child-relative?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-discaffm,a man won't get a job or promotion,a man won't get a job or promotion,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-discaffw,a woman won't get a job or promotion,a woman won't get a job or promotion,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fehire,should hire and promote women,should hire and promote women,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vigversn,vignette version number,vignette version number,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-seriousp,how serious x s situation is,how serious x s situation is,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-charactr,how likely x s situation caused by bad character,how likely x s situation caused by bad character,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-imbalnce,how likely x s situation caused by imbalance in brain,how likely x s situation caused by imbalance in brain,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wayraise,how likely x s situation caused by the way raised,how likely x s situation caused by the way raised,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-stresses,how likely x s situation caused by stress,how likely x s situation caused by stress,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-genetics,how likely x s situation caused by genetic problem,how likely x s situation caused by genetic problem,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-godswill,how likely x s situation caused by god s will,how likely x s situation caused by god s will,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-upsdowns,how likely x is experiencing normal ups-and-downs of life,how likely x is experiencing normal ups-and-downs of life,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-breakdwn,how likely x is experiencing nervous breakdown,how likely x is experiencing nervous breakdown,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mentlill,how likely x is experiencing mental illness,how likely x is experiencing mental illness,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-physill,how likely x is experiencing physical illness,how likely x is experiencing physical illness,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-viglabel,how likely x is experiencing vignettes,how likely x is experiencing vignettes,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dectreat,how able is x to decide receive treatment,how able is x to decide receive treatment,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-decmoney,how able is x to decide managing own money,how able is x to decide managing own money,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-imprvown,how likely x s situation will improve on its own,how likely x s situation will improve on its own,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-imprvtrt,how likely x s situation will improve with treatment,how likely x s situation will improve with treatment,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vignei,how willing r would have x as a neighbor,how willing r would have x as a neighbor,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vigsoc,how willing r would spend time socializing with x,how willing r would spend time socializing with x,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vigfrnd,how willing r would make friends with x,how willing r would make friends with x,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vigwork,how willing r would work closely with x on a job,how willing r would work closely with x on a job,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-viggrp,how willing r would have a group home for x,how willing r would have a group home for x,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vigmar,how willing r would have x marry in r's family,how willing r would have x marry in r's family,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hurtoth,how likely x violent toward other people,how likely x violent toward other people,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hurtself,how likely x violent toward oneself,how likely x violent toward oneself,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-tlkfam,x should talk to family and friends,x should talk to family and friends,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-tlkclrgy,x should talk to religious leader,x should talk to religious leader,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-meddoc,x should go to general medical doctor for help,x should go to general medical doctor for help,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mentldoc,x should go to psychiatrist for help,x should go to psychiatrist for help,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mentloth,x should go to other mental health professional for help,x should go to other mental health professional for help,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sphealer,x should go to spiritual healer for help,x should go to spiritual healer for help,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-selfhelp,x should join a self-group with similar problem,x should join a self-group with similar problem,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-otcmed,x should take non-prescription medication,x should take non-prescription medication,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rxmed,x should take prescription medication,x should take prescription medication,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mentlhos,x should check into a mental hospital,x should check into a mental hospital,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dofirst,here are the things you said {#secl_name} should do... interviewer: read list,here are the things you said {#secl_name} should do... interviewer: read list,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mustdoc,x should be forced to be examined at a clinic by law,x should be forced to be examined at a clinic by law,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mustmed,x should be forced to take prescribed medication by law,x should be forced to take prescribed medication by law,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-musthosp,x should be admitted to be hospitalized for treatment by law,x should be admitted to be hospitalized for treatment by law,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dangrslf,x should be admitted to be hospitalized for treatment if dangerous to x,x should be admitted to be hospitalized for treatment if dangerous to x,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dangroth,x should be admitted to be hospitalized for treatment if dangerous to others,x should be admitted to be hospitalized for treatment if dangerous to others,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-knwmhosp,know anyone who was in a hospital,know anyone who was in a hospital,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-knwpatnt,known anyone seeing a psychologist etc?,known anyone seeing a psychologist etc?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fammhneg,r's family's negative attitudes about mh problems,r's family's negative attitudes about mh problems,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-othmhneg,r's other acquaintences negative attitudes about mh problems,r's other acquaintences negative attitudes about mh problems,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-diagnosd,r ever diagnosed with mh problem,r ever diagnosed with mh problem,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mhtreatd,r ever treated for mh problem,r ever treated for mh problem,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-relpersn,r consider self a religious person,r consider self a religious person,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sprtprsn,r consider self a spiritual person,r consider self a spiritual person,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-othlang,can r speak language other than english/spanish,can r speak language other than english/spanish,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-othlang1,what other languages does r speak,what other languages does r speak,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-othlang2,what other languages does r speak,what other languages does r speak,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spklang,how well does r speak other language,how well does r speak other language,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-letinhsp,immigration from latin america should be increased,immigration from latin america should be increased,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-letinasn,immigration from asia should be increased,immigration from asia should be increased,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-compuse,r use computer,r use computer,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-webmob,r uses home internet through mobile device,r uses home internet through mobile device,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-satdemoc,r satisfied with way democracy works in america,r satisfied with way democracy works in america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-disrspct,r is treated with less courtesy or respect than others,r is treated with less courtesy or respect than others,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-poorserv,r recieves poorer service in restaurants or stores,r recieves poorer service in restaurants or stores,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-notsmart,people act as if they think r is not smart,people act as if they think r is not smart,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-afraidof,people act as if they are afraid of r,people act as if they are afraid of r,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-threaten,r is threatened or harassed,r is threatened or harassed,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldvig,vignette asked,vignette asked,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldprob,how serious r consider his or her problem,how serious r consider his or her problem,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-badchar,situation caused by own bad character,situation caused by own bad character,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chembal,situation by a chemical imbalance in the brain,situation by a chemical imbalance in the brain,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-stressfl,situation caused by stressful circumstances,situation caused by stressful circumstances,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-geneprob,situation caused by a genetic or inherited problem,situation caused by a genetic or inherited problem,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raised,situation caused by the way he or she was raised,situation caused by the way he or she was raised,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-violtv,situation caused by watching violent tv,situation caused by watching violent tv,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-discipln,situation caused by lacking discipline in the,situation caused by lacking discipline in the,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-allergic,situation caused by food or chemical allergies,situation caused by food or chemical allergies,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-imprvdis,situation will improve with strict discipline,situation will improve with strict discipline,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-imprveat,situation will improve with some changes in diet,situation will improve with some changes in diet,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-imprvmed,situation will improve with medical treatment,situation will improve with medical treatment,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nextdoor,how willing r move next door to child's family,how willing r move next door to child's family,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spendeve,how willing r spend evening with child's family,how willing r spend evening with child's family,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldfrnd,how willing r have children make friends with ch,how willing r have children make friends with ch,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldsch,how willing r have child in same class of r's ch,how willing r have child in same class of r's ch,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-adfam,would r get advice from family if child was r's,would r get advice from family if child was r's,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-adtch,would r get advice from teachers child if was r's,would r get advice from teachers child if was r's,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-addoc,would go to a medical doctor if he was r's child,would go to a medical doctor if he was r's child,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-adcoumed,would r have child on med by counselor's advice,would r have child on med by counselor's advice,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-adpsy,would r go to a psychiatrist if child was r's,would r go to a psychiatrist if child was r's,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-grwingup,is child experiencing normal ups and downs,is child experiencing normal ups and downs,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mntlill,is child experiencing a mental illness,is child experiencing a mental illness,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-violpeop,would child do something violent toward other,would child do something violent toward other,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-violself,would child do something violent to own self,would child do something violent to own self,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-numemps,"if self employed, number of other employees","if self employed, number of other employees",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wrkslffam,does r work in family business or farm,does r work in family business or farm,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mhunsure,people like x are unpredictable,people like x are unpredictable,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mhtrtot2,r knows someone who received treatment for mental health,r knows someone who received treatment for mental health,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polint,your interest in politics,your interest in politics,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-poleff11,don't have any say about what the government does,don't have any say about what the government does,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cctv,civil liberties - video surveillance,civil liberties - video surveillance,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-posslq,does r have marital partner,does r have marital partner,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-posslqy,relationship status and cohabitation or not,relationship status and cohabitation or not,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-marcohab,cohabitation status,cohabitation status,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-trcourts,how much trust r has in american courts,how much trust r has in american courts,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-goodlife,standard of living of r will improve,standard of living of r will improve,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-marsame,homosexual couples should have the right to marry one another,homosexual couples should have the right to marry one another,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-meovrwrk,men hurt family when focus on work too much,men hurt family when focus on work too much,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-localnum,number of employees: r's work site,number of employees: r's work site,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-relactiv,how often does r take part in relig activities,how often does r take part in relig activities,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-befair,how often do you think people take advantage,how often do you think people take advantage,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cantrust,people can be trusted or cant be too careful,people can be trusted or cant be too careful,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-religinf,the u.s. would be a better country if religion had less influence,the u.s. would be a better country if religion had less influence,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ambornin,how important to have been born in america,how important to have been born in america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amcit,how important to have american citizenship,how important to have american citizenship,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amchrstn,how important to be a christian,how important to be a christian,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amgovt,how important to respect america's laws etc,how important to respect america's laws etc,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amfeel,how important to feel american,how important to feel american,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amcitizn,agree i would rather be a citizen of america,agree i would rather be a citizen of america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amshamed,agree there are things make me ashamed,agree there are things make me ashamed,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-belikeus,agree better if people were more like americans,agree better if people were more like americans,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ambetter,agree america is a better country,agree america is a better country,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ifwrong,agree people should support their country,agree people should support their country,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-prouddem,how proud the way democracy works,how proud the way democracy works,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-proudpol,how proud its political influence in the world,how proud its political influence in the world,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-proudeco,how proud america's economic achievements,how proud america's economic achievements,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-proudspt,how proud its achievements in sports,how proud its achievements in sports,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-proudart,how proud its achievements in the arts & lit.,how proud its achievements in the arts & lit.,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-proudhis,how proud its history,how proud its history,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-imports,america should limit the import,america should limit the import,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wrldgovt,international bodies should enforce environment,international bodies should enforce environment,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amownway,america should follow its own interests,america should follow its own interests,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-forland,foreigner's should not be allowed to buy land,foreigner's should not be allowed to buy land,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amtv,tv should give preference to american films,tv should give preference to american films,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immcrime,immigrants increase crime rates,immigrants increase crime rates,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immameco,immigrants good for america,immigrants good for america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immjobs,immigrants take jobs away,immigrants take jobs away,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-letin1,number of immigrants to america nowadays should be,number of immigrants to america nowadays should be,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-citizen,are you a citizen of america?,are you a citizen of america?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-amancstr,how important to have american ancestry,how important to have american ancestry,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intlincs,large intl company damage to local business,large intl company damage to local business,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-letin1a,number of immigrants nowadays should be,number of immigrants nowadays should be,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immassim,what statement about immigrants matches view,what statement about immigrants matches view,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-paytaxes,how important never to try to evade taxes,how important never to try to evade taxes,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-obeylaws,how important always to obey laws,how important always to obey laws,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-watchgov,how important to keep watch on action of govt,how important to keep watch on action of govt,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helpusa,how important to help worse off ppl in america,how important to help worse off ppl in america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-solok,how important: citizens have adequate standard of living,how important: citizens have adequate standard of living,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rghtsmin,how important: govt protect right of minorities,how important: govt protect right of minorities,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polopts,how important: ppl given chance to participate in decsns,how important: ppl given chance to participate in decsns,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-oppsegov,how important: citizen engage in acts of civil disobeyed,how important: citizen engage in acts of civil disobeyed,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-poleff18,govt do not care much what ppl like r think,govt do not care much what ppl like r think,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-corruptn,how widespread corruption is in pub service in america,how widespread corruption is in pub service in america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-demtoday,how well democracy work in america,how well democracy work in america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dem10pst,how well did democracy work in america ten yrs ago,how well did democracy work in america ten yrs ago,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dem10fut,how well will democracy work in america in ten yrs,how well will democracy work in america in ten yrs,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polnews,how often use media to get political news,how often use media to get political news,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-leftrght,how left or right in politics,how left or right in politics,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-partners,how many sex partner's r had in last year,how many sex partner's r had in last year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sexsex,sex of sex partner's in last year,sex of sex partner's in last year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sexfreq,frequency of sex during last year,frequency of sex during last year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hivtest,have you ever been tested for hiv,have you ever been tested for hiv,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hivtest1,in what year was your last hiv test,in what year was your last hiv test,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hivtest2,where did you have your last hiv test,where did you have your last hiv test,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sexornt,sexual orientation,sexual orientation,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-realinc,family income in constant $,family income in constant $,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-realrinc,r's income in constant $,r's income in constant $,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-coninc,family income in constant dollars,family income in constant dollars,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conrinc,respondent income in constant dollars,respondent income in constant dollars,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethnic,country of family origin,country of family origin,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-eth1,1st mentioned country of origin,1st mentioned country of origin,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hispanic,r hispanic specific,r hispanic specific,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racecen1,"what is r's race, first mention","what is r's race, first mention",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racecen2,"what is r's race, second mention","what is r's race, second mention",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racecen3,"what is r's race, third mention","what is r's race, third mention",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-uscitzn,"if not born in us, is r a us citizen","if not born in us, is r a us citizen",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vetyears,years in armed forces,years in armed forces,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dwelown,does r own or rent home?,does r own or rent home?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dwelown16,did rs family own or rent home when r was age 16,did rs family own or rent home when r was age 16,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-worda,word a,word a,DONOR_MAP,2022,,DONOR_MAP
-wordb,word b,word b,DONOR_MAP,2022,,DONOR_MAP
-wordc,word c,word c,DONOR_MAP,2022,,DONOR_MAP
-wordd,word d,word d,DONOR_MAP,2022,,DONOR_MAP
-worde,word e,word e,DONOR_MAP,2022,,DONOR_MAP
-wordf,word f,word f,DONOR_MAP,2022,,DONOR_MAP
-wordg,word g,word g,DONOR_MAP,2022,,DONOR_MAP
-wordh,word h,word h,DONOR_MAP,2022,,DONOR_MAP
-wordi,word i,word i,DONOR_MAP,2022,,DONOR_MAP
-wordj,word j,word j,DONOR_MAP,2022,,DONOR_MAP
-wordsum,number words correct in vocabulary test,number words correct in vocabulary test,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hhtype1,household type (condensed),household type (condensed),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-famgen,number of family generations in household,number of family generations in household,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rplace,r's relationship to household head,r's relationship to household head,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-visitors,number of visitor's in household,number of visitor's in household,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dateintv,date of interview,date of interview,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sei10,r's socioeconomic index (2010),r's socioeconomic index (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sei10educ,percentage of some college educ in occ10 based on acs 2010,percentage of some college educ in occ10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sei10inc,percentage of $45k+ earners in occ10 based on acs 2010,percentage of $45k+ earners in occ10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pasei10,r's father's (or oldest same-sex parent's) socioeconomic index (2010),r's father's (or oldest same-sex parent's) socioeconomic index (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pasei10educ,percentage of some college educ in paocc10 based on acs 2010,percentage of some college educ in paocc10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pasei10inc,percentage of $45k+ earners in paocc10 based on acs 2010,percentage of $45k+ earners in paocc10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-masei10,r's mother's (or youngest same-sex parent's) socioeconomic index (2010),r's mother's (or youngest same-sex parent's) socioeconomic index (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-masei10educ,percentage of some college educ in maocc10 based on acs 2010,percentage of some college educ in maocc10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-masei10inc,percentage of $45k+ earners in maocc10 based on acs 2010,percentage of $45k+ earners in maocc10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spsei10,r's spouse's socioeconomic index (2010),r's spouse's socioeconomic index (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spsei10educ,percentage of some college educ in spocc10 based on acs 2010,percentage of some college educ in spocc10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spsei10inc,percentage of $45k+ earners in spocc10 based on acs 2010,percentage of $45k+ earners in spocc10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cosei10,partner's socioeconomic index (2010),partner's socioeconomic index (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cosei10educ,percentage of some college educ in coocc10 based on acs 2010,percentage of some college educ in coocc10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cosei10inc,percentage of $45k+ earners in coocc10 based on acs 2010,percentage of $45k+ earners in coocc10 based on acs 2010,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-copres10,partner's occupational prestige score (2010),partner's occupational prestige score (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-copres105plus,partner's occupational prestige score using threshold method (2010),partner's occupational prestige score using threshold method (2010),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cohort,year of birth,year of birth,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mode,interview done in-person or over the phone,interview done in-person or over the phone,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-letdie1y,allow incurable patients to die (form 2),allow incurable patients to die (form 2),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ballot,ballot used for interview,ballot used for interview,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-issp,filter for issp cases,filter for issp cases,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sampcode,sampling error code,sampling error code,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sample,sampling frame and method,sampling frame and method,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-phase,subsampling: two-phase design.,subsampling: two-phase design.,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spanself,"if this interview had only been available in english, would you...","if this interview had only been available in english, would you...",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spaneng,interviews conducted in spanish or english,interviews conducted in spanish or english,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vstrat,variance stratum,variance stratum,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vpsu,variance primary sampling unit,variance primary sampling unit,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-kish,kish,kish,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-famdif16y,which of the following best describes your situation?,which of the following best describes your situation?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pawrkslf2,"at this job, was father (or oldest same-sex parent) an employee, self-employed w","at this job, was father (or oldest same-sex parent) an employee, self-employed w",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pawrkslffam,father (or oldest same-sex parent) owned family business or farm,father (or oldest same-sex parent) owned family business or farm,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mawrkslf2,"at this job, was mother (or youngest same-sex parent) an employee, self-employed","at this job, was mother (or youngest same-sex parent) an employee, self-employed",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mawrkslffam,mother (or youngest same-sex parent) owned family business or farm,mother (or youngest same-sex parent) owned family business or farm,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld1,from what part of the world did your ancestors come? europe,from what part of the world did your ancestors come? europe,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld2,from what part of the world did your ancestors come? africa,from what part of the world did your ancestors come? africa,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld3,from what part of the world did your ancestors come? asia,from what part of the world did your ancestors come? asia,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld4,from what part of the world did your ancestors come? middle east,from what part of the world did your ancestors come? middle east,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld5,from what part of the world did your ancestors come? south america,from what part of the world did your ancestors come? south america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld6,from what part of the world did your ancestors come? central america,from what part of the world did your ancestors come? central america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld7,from what part of the world did your ancestors come? north america,from what part of the world did your ancestors come? north america,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld8,from what part of the world did your ancestors come? caribbean,from what part of the world did your ancestors come? caribbean,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ethworld9,from what part of the world did your ancestors come? oceania,from what part of the world did your ancestors come? oceania,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wrkgovt1,govt employee,govt employee,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wrkgovt2,private employee,private employee,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spkathy,allow anti-religionist to speak y,allow anti-religionist to speak y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-libathy,allow anti-religionist to teach y,allow anti-religionist to teach y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spkracy,allow racist to speak y,allow racist to speak y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-libracy,allow racists book in library y,allow racists book in library y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spkcomy,allow communist to speak y,allow communist to speak y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-colcomy,should communist teacher be fired y,should communist teacher be fired y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-libcomy,allow communists book in library y,allow communists book in library y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spkmslmy,allow muslim clergymen preaching hatred of the us y,allow muslim clergymen preaching hatred of the us y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-libmslmy,allow anti-american muslim clergymen's books in library y,allow anti-american muslim clergymen's books in library y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polhitoky,ever approve of police striking citizen y,ever approve of police striking citizen y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polabusey,citizen said vulgar or obscene things y,citizen said vulgar or obscene things y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polattaky,citizen attacking policeman with fists y,citizen attacking policeman with fists y,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs1,white,white,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs2,black,black,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs3,american indian or alaska native,american indian or alaska native,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs4,asian indian,asian indian,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs5,chinese,chinese,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs6,filipino,filipino,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs7,japanese,japanese,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs8,korean,korean,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs9,vietnamese,vietnamese,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs10,other asian,other asian,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs14,native hawaiian or other pacific islander,native hawaiian or other pacific islander,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs15,some other race,some other race,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raceacs16,hispanic,hispanic,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abdefectg,strong chance of serious defect (grid on web),strong chance of serious defect (grid on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abnomoreg,married--wants no more children (grid on web),married--wants no more children (grid on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abhlthg,woman's health seriously endangered (grid on web),woman's health seriously endangered (grid on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abpoorg,low income--cant afford more children (grid on web),low income--cant afford more children (grid on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abrapeg,pregnant as result of rape (grid on web),pregnant as result of rape (grid on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-absingleg,not married (grid on web),not married (grid on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-suicide1g,suicide if incurable disease,suicide if incurable disease,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-suicide2g,suicide if bankrupt,suicide if bankrupt,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-suicide4g,suicide if tired of living,suicide if tired of living,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-maborn,was r's mother (or youngest same-sex parent) born in this country?,was r's mother (or youngest same-sex parent) born in this country?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-paborn,was r's father (or oldest same-sex parent) born in this country?,was r's father (or oldest same-sex parent) born in this country?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sexbirth1,r's sex assigned at birth (2021),r's sex assigned at birth (2021),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-norelgsp,is r atheist or agnostic,is r atheist or agnostic,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hivafraid,afraid to be around a person with hiv,afraid to be around a person with hiv,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hivimmrl,people with hiv have participated in immoral activities,people with hiv have participated in immoral activities,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hivdscrm,there is a lot of discrimination against people with hiv,there is a lot of discrimination against people with hiv,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ptnrornt,recent partner's sexual orientation,recent partner's sexual orientation,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ptnrsxbrth,recent partner's sex at birth,recent partner's sex at birth,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wtssps,person post-stratification weight,person post-stratification weight,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wtssnrps,"person post-stratification weight, nonrespondents adjusted","person post-stratification weight, nonrespondents adjusted",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-prayerv,bible prayer in public schools (with volunteered response on web),bible prayer in public schools (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-courtsv,courts dealing with criminals (with volunteered response on web),courts dealing with criminals (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-discaffwv,a woman won't get a job or promotion (with volunteered response on web),a woman won't get a job or promotion (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racopenv,vote on open housing law (with volunteered response on web),vote on open housing law (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-getaheadv,opinion of how people get ahead (with volunteered response on web),opinion of how people get ahead (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-divlawv,divorce laws (with volunteered response on web),divorce laws (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helpfulv,people helpful or looking out for selves (with volunteered response on web),people helpful or looking out for selves (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fairv,people fair or try to take advantage (with volunteered resposne on web),people fair or try to take advantage (with volunteered resposne on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-trustv,can people be trusted (with volunteered response on web),can people be trusted (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-grassv,should marijuana be made legal (with volunteered response on web),should marijuana be made legal (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-relitenv,strength of affiliation (with volunteered response on web),strength of affiliation (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-biblev,feelings about the bible (with volunteered response on web),feelings about the bible (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-postlifev,belief in life after death (with volunteered response on web),belief in life after death (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-kidssolv,r's kids living standard compared to r (with volunteered response on web),r's kids living standard compared to r (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fepolv,women not suited for politics (with volunteered response on web),women not suited for politics (with volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-prayernv,bible prayer in public schools (no volunteered response on web),bible prayer in public schools (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-courtsnv,courts dealing with criminals (no volunteered response on web),courts dealing with criminals (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-discaffwnv,a woman won't get a job or promotion (no volunteered response on web),a woman won't get a job or promotion (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racopennv,vote on open housing law (no volunteered response on web),vote on open housing law (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-getaheadnv,opinion of how people get ahead (no volunteered response on web),opinion of how people get ahead (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-divlawnv,divorce laws (no volunteered response on web),divorce laws (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-helpfulnv,people helpful or looking out for selves (no volunteered response on web),people helpful or looking out for selves (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fairnv,people fair or try to take advantage (no volunteered response on web),people fair or try to take advantage (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-trustnv,can people be trusted (no volunteered response on web),can people be trusted (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-grassnv,should marijuana be made legal (no volunteered response on web),should marijuana be made legal (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-relitennv,strength of affiliation (no volunteered response on web),strength of affiliation (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-biblenv,feelings about the bible (no volunteered response on web),feelings about the bible (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-postlifenv,belief in life after death (no volunteered response on web),belief in life after death (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-kidssolnv,r's kids living standard compared to r (no volunteered response on web),r's kids living standard compared to r (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fepolnv,women not suited for politics (no volunteered response on web),women not suited for politics (no volunteered response on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-abanyg,abortion if woman wants for any reason (grid on web),abortion if woman wants for any reason (grid on web),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fileversion,gss data file version,gss data file version,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spwrkslf2,"spouse self-employed, with employees, or work for someone else","spouse self-employed, with employees, or work for someone else",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spwrkslffam,spouse work at family business or on family farm,spouse work at family business or on family farm,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-childsinhh,total children in hh (household composition version),total children in hh (household composition version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-adultsinhh,total adults in hh (household composition version),total adults in hh (household composition version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-whatsp2,classify place where spouse works,classify place where spouse works,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cowrkslf2,"partner self-employed, with employees, or work for someone else","partner self-employed, with employees, or work for someone else",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cowrkslffam,partner work at family business or on family farm,partner work at family business or on family farm,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cowksup,does partner supervise anyone,does partner supervise anyone,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-whatco2,classify place where partners works,classify place where partners works,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-whatpa2,how would you classify the place where father (or oldest same-sex parent) worked,how would you classify the place where father (or oldest same-sex parent) worked,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-whatma2,how would you classify the place where mother (or youngest same-sex parent) work,how would you classify the place where mother (or youngest same-sex parent) work,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-whatslf2,how would you classify the place where you {#whatslf2fill}? was this mainly...?,how would you classify the place where you {#whatslf2fill}? was this mainly...?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racerank1,first race selected,first race selected,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racerank2,second race selected,second race selected,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racerank3,third race selected,third race selected,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-adoptus,immigrants living in us should adopt us culture,immigrants living in us should adopt us culture,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immfate,fate of illegal immigrants,fate of illegal immigrants,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-xmoviey,seen pornography in past year,seen pornography in past year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-vote20,remember if voted in 2020 election,remember if voted in 2020 election,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pres20,voted trump or biden,voted trump or biden,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-if20who,who you would have voted for in 2020,who you would have voted for in 2020,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-wordk,word k,word k,DONOR_MAP,2022,,DONOR_MAP
-wordl,word l,word l,DONOR_MAP,2022,,DONOR_MAP
-wordn,word n,word n,DONOR_MAP,2022,,DONOR_MAP
-svyenjoy,enjoy taking surveys,enjoy taking surveys,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-svyid1,willingness to use video chat,willingness to use video chat,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-svyid2,willingnes for in-person survey,willingnes for in-person survey,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif1x,differences due to discrimination (longer intro),differences due to discrimination (longer intro),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif2x,differences due to in-born learning ability,differences due to in-born learning ability,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif3x,differences due to lack of education,differences due to lack of education,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif4x,differences due to lack of will,differences due to lack of will,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hompop_exp,total people in hh (experimental version),total people in hh (experimental version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-modesequence,initial mode of contact for respondent,initial mode of contact for respondent,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-babies_exp,kids 0-6 in hh(experimental version),kids 0-6 in hh(experimental version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-preteen_exp,kids 7-12 in hh(experimental version),kids 7-12 in hh(experimental version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-teens_exp,kids 13-17 in hh(experimental version),kids 13-17 in hh(experimental version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-adults_exp,adults 18+ in hh(experimental version),adults 18+ in hh(experimental version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-prnt,r is a parent in some capacity in hh,r is a parent in some capacity in hh,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-childs_exp,total children under 18 in hh (experimental verison),total children under 18 in hh (experimental verison),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-famgen_exp,number of family generations in household (experimental version),number of family generations in household (experimental version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-hhtype1_exp,household type (condensed) (experimental version),household type (condensed) (experimental version),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-subsamprate,subsampling rate corresponding to two-phase design,subsampling rate corresponding to two-phase design,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-pawrkgrw,did father (or oldest same-sex parent) ever work for pay for as long as a year w,did father (or oldest same-sex parent) ever work for pay for as long as a year w,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conlabory,confidence in labor unions,confidence in labor unions,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif5,differences due mainly to unbringing,differences due mainly to unbringing,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-marsamey,same-sex couples should have the right to marry one another,same-sex couples should have the right to marry one another,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-norelgsp16,r no religion age 16,r no religion age 16,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-spnorelgsp,spouse no religion,spouse no religion,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mobiledata,household has access to internet using cellular data plan,household has access to internet using cellular data plan,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-broadband,household has access to internet using broadband internet service,household has access to internet using broadband internet service,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rateincumb24,rating of joe biden,rating of joe biden,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ratechall124,rating of donald trump,rating of donald trump,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ratechall224,rating of kamala harris,rating of kamala harris,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ratechall324,rating of nikki haley,rating of nikki haley,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ratedemp,rating of democratic party,rating of democratic party,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-raterepp,rating of republican party,rating of republican party,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ratemaga,rating of maga republicans,rating of maga republicans,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-lkelyvot,likelihood to vote in 2024 election,likelihood to vote in 2024 election,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-whovote24a,voting intention in 2024 election (post july 25 2024),voting intention in 2024 election (post july 25 2024),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-econstat,what do you think about the state of the economy these days in the united states,what do you think about the state of the economy these days in the united states,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polintrst,interested in campaigns this year,interested in campaigns this year,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intrnetuse,frequency of internet use over past 12 months,frequency of internet use over past 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint1,no internet use over past 12 months due to unavaliblity,no internet use over past 12 months due to unavaliblity,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint2,no internet use over past 12 months due to poor quality of connection,no internet use over past 12 months due to poor quality of connection,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint3,no internet use over past 12 months due to cost,no internet use over past 12 months due to cost,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint4,no internet use over past 12 months due to security and privacy,no internet use over past 12 months due to security and privacy,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint5,no internet use over past 12 months due to lack of utility/importance,no internet use over past 12 months due to lack of utility/importance,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint6,no internet use over past 12 months due to age,no internet use over past 12 months due to age,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint7,no internet use over past 12 months due to usability,no internet use over past 12 months due to usability,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint8,no internet use over past 12 months due to lack of desire,no internet use over past 12 months due to lack of desire,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint9,no internet use over past 12 months due to literacy,no internet use over past 12 months due to literacy,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint10,no internet use over past 12 months due to lack of time,no internet use over past 12 months due to lack of time,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint11,no internet use over past 12 months due to government restriction,no internet use over past 12 months due to government restriction,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nouseint12,no internet use over past 12 months due to other reasons,no internet use over past 12 months due to other reasons,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intaccprxy,how often r asked someone to use the internet on their behalf,how often r asked someone to use the internet on their behalf,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-prxyuse,likelihood r ask someone to use the internet on their behalf in near future,likelihood r ask someone to use the internet on their behalf in near future,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ftruse,likelihood r uses internet in next 12 months,likelihood r uses internet in next 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-inthome,frequency r has home internet access,frequency r has home internet access,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intprfssnl,frequency r has work/school internet access,frequency r has work/school internet access,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intpub,frequency r has internet access in public,frequency r has internet access in public,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intbhlf,frequency r was asked to use internet for someone else,frequency r was asked to use internet for someone else,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-unplug,amount r reduced time spent on internet in last 12 months,amount r reduced time spent on internet in last 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-unplgrsn,reason r reduced time spent on internet,reason r reduced time spent on internet,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intskill,r's skill at using the internet,r's skill at using the internet,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intsurf,r's skill at online searches,r's skill at online searches,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intliteracy,r's knowledge of online information discretion,r's knowledge of online information discretion,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intapps,r's skill at learning new software,r's skill at learning new software,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intcomm,how often r uses internet for communication,how often r uses internet for communication,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intshare,how often r uses internet for sharing photos/videos,how often r uses internet for sharing photos/videos,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intsearch,how often r uses internet for search,how often r uses internet for search,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intgame,how often r uses internet for video games,how often r uses internet for video games,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intstream,how often r uses internet for music/video,how often r uses internet for music/video,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intfncl,how often r uses internet for financial transactions,how often r uses internet for financial transactions,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intmeet,r more comfortable meeting people online?,r more comfortable meeting people online?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intlnly,r would feel lonely without internet?,r would feel lonely without internet?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-inttrig,how often r reads political opinions they disagree with online,how often r reads political opinions they disagree with online,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intnews,how often r accesses non-routine political news sources,how often r accesses non-routine political news sources,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intcnfrm,how often r tries to confirm information with other sources,how often r tries to confirm information with other sources,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intrust,how much r trusts people they've only met online,how much r trusts people they've only met online,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intpolview,trend of online contact with politically similar,trend of online contact with politically similar,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intoppo,trend of online contact with politically different,trend of online contact with politically different,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intviews,how often r talks about politics online,how often r talks about politics online,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-techesy,does technology make our lives easier?,does technology make our lives easier?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-harmgood1,does technology do more harm than good?,does technology do more harm than good?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nextgen1,does technology provide more opportunities?,does technology provide more opportunities?,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-intscam,has r or someone they know been a victim of online scam,has r or someone they know been a victim of online scam,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-inthrss,has r or someone they know been harassed online,has r or someone they know been harassed online,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-polnewsfrom,where r gets political news,where r gets political news,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-smnews,reliability of news on social media,reliability of news on social media,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-tvnews1,reliability of news on tv,reliability of news on tv,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-papernews,reliability of newspapers,reliability of newspapers,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-radionews,"reliability of news on podcasts, radio","reliability of news on podcasts, radio",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-webnews,reliability of news on web,reliability of news on web,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-modepet,has r signed a petition in last 12 months,has r signed a petition in last 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-modeprot,has r participated in a protest in last 12 months,has r participated in a protest in last 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-modelobby,has r contacted a politician in last 12 months,has r contacted a politician in last 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-modeorgprot,has r organized a protest in last 12 months,has r organized a protest in last 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-modeorg,has r belonged to an activist group in last 12 months,has r belonged to an activist group in last 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-trppl,"trust in others, 10 point scale","trust in others, 10 point scale",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-trcong,"trust in congress, 10 point scale","trust in congress, 10 point scale",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dataprot,responsibility for internet data protection,responsibility for internet data protection,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-emonitor1,should government be able to monitor online communication,should government be able to monitor online communication,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-infodeal,"would r provide info for discounts, free products","would r provide info for discounts, free products",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-infoprofit,would r provide info companies could profit from,would r provide info companies could profit from,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-gendtech,are women or men benefiting more from digital tech,are women or men benefiting more from digital tech,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-agetech,are older or younger people benefiting more from digital tech,are older or younger people benefiting more from digital tech,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-urbantech,are cities or countryside benefiting more from digital tech,are cities or countryside benefiting more from digital tech,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-eductech,are educated or uneducated benefiting more from digital tech,are educated or uneducated benefiting more from digital tech,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-classtech,are poor or rich benefiting more from digital tech,are poor or rich benefiting more from digital tech,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-aiworry,r worried that ai will take over many jobs done by humans,r worried that ai will take over many jobs done by humans,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-aimed,r's comfort with medical operation by robot,r's comfort with medical operation by robot,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-aidrive,r's comfort with driverless car,r's comfort with driverless car,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-owndecns,best if every nation had its own country,best if every nation had its own country,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-brneffrt,possible to become american if born elsewhere,possible to become american if born elsewhere,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immcrime1,immigrants increase crime rates,immigrants increase crime rates,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immjobs1,immigrants take jobs away,immigrants take jobs away,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immideas1,immigrants bring new ideas and cultures,immigrants bring new ideas and cultures,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-immwlfare,people born in america should be given preference over immigrants when it comes,people born in america should be given preference over immigrants when it comes,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conscrp,importance of military service,importance of military service,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-incgap1,government's responsibility to reduce economic inequality,government's responsibility to reduce economic inequality,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-leftrght1,how left or right in politics,how left or right in politics,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-servpub,how much the public service serves people,how much the public service serves people,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fulldem,"the people, not politicians, should make important decisions","the people, not politicians, should make important decisions",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-poltalk,politicians talk too much and don't take action,politicians talk too much and don't take action,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conpow,conflict between ordinary people and those in power,conflict between ordinary people and those in power,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-bizmoney,business leaders make money at expense of ordinary people,business leaders make money at expense of ordinary people,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-experts,better to rely on opinions of experts than ordinary people,better to rely on opinions of experts than ordinary people,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-biasnews,news coverage about politics in america is biased,news coverage about politics in america is biased,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-usmca1,r's familiarity with usmca,r's familiarity with usmca,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-usmca2,does the us benefit from usmca,does the us benefit from usmca,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-morextrm,everyone is like x but x's case is just a bit more extreme and ongoing,everyone is like x but x's case is just a bit more extreme and ongoing,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-bullied,situation caused by having been bullied,situation caused by having been bullied,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-smedia,situation caused by exposure to social media,situation caused by exposure to social media,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-imprvown1,how likely child x situation will improve on its own,how likely child x situation will improve on its own,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mustdoc1,x's parents should be forced by law to have x examined at a clinic,x's parents should be forced by law to have x examined at a clinic,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mustmed1,x's parents should be forced by law to have x take prescribed medication,x's parents should be forced by law to have x take prescribed medication,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-musthosp1,x's parents should be forced by law to admit x to be hospitalized for treatment,x's parents should be forced by law to admit x to be hospitalized for treatment,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-physill1,how likely child x is experiencing physical illness,how likely child x is experiencing physical illness,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-bullpeer,would x bully peers,would x bully peers,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rumopeer,would x spread rumors about peers,would x spread rumors about peers,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-fighpeer,would x get into fights with peers,would x get into fights with peers,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-schshoot,would x carry out a school shooting,would x carry out a school shooting,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-cutself,would x intentionally cut self,would x intentionally cut self,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-negself,would x intentionally neglect own health,would x intentionally neglect own health,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-foodalc,would x engage in excessive and uncontrolled food or alcohol consumption,would x engage in excessive and uncontrolled food or alcohol consumption,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-risklife,would x at risk for taking their own life,would x at risk for taking their own life,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-takelife,would x actually take own life,would x actually take own life,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-dsndntpay,reparations for descendants of slaves,reparations for descendants of slaves,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-acpttg,accepting people,accepting people,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chngdocs,changing official documents,changing official documents,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-feovrwrk,family life suffers when women work,family life suffers when women work,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sexornt1,"sexual orientation (reask, self-administered)","sexual orientation (reask, self-administered)",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sexpaid,ever had sex with a person you paid or who paid you for sex,ever had sex with a person you paid or who paid you for sex,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nocondom,had vaginal or anal sex without a condom in past 12 months,had vaginal or anal sex without a condom in past 12 months,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-nodocidu,ever injected any drugs other than those prescribed for you,ever injected any drugs other than those prescribed for you,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-femself1,how feminine r sees self (0 to 6 scale),how feminine r sees self (0 to 6 scale),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mascself1,how masculine r sees self (0 to 6 scale),how masculine r sees self (0 to 6 scale),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-femsee1,how feminine others see r (0 to 6 scale),how feminine others see r (0 to 6 scale),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-mascsee1,how masculine others see r (0 to 6 scale),how masculine others see r (0 to 6 scale),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-devtype,are you taking this survey on a...,are you taking this survey on a...,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-family16sex,sex of two parents living with when 16 yrs old,sex of two parents living with when 16 yrs old,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-racdif5x,differences due mainly to upbringing (longer intro),differences due mainly to upbringing (longer intro),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-reltrad,religious tradition,religious tradition,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-conorelgsp,partner no religion,partner no religion,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-sexnow2,r's sex now (3 category),r's sex now (3 category),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-whovote24,voting intention in 2024 election (pre july 25 2024),voting intention in 2024 election (pre july 25 2024),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-whovotets,voting intention - time series,voting intention - time series,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-voteprob,voting problem in us elections,voting problem in us elections,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-rateincumbts,rating of incumbent president - time series,rating of incumbent president - time series,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ratechall1ts,rating of presidential challenger 1 - time series,rating of presidential challenger 1 - time series,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ratechall2ts,rating of presidential challenger 2 - time series,rating of presidential challenger 2 - time series,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ratechall3ts,rating of presidential challenger 3 - time series,rating of presidential challenger 3 - time series,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldfam_asn,percent of family during childhood who were asian,percent of family during childhood who were asian,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldfam_blk,percent of family during childhood who were black,percent of family during childhood who were black,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldfam_hisp,percent of family during childhood who were latino,percent of family during childhood who were latino,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldfam_wht,percent of family during childhood who were white,percent of family during childhood who were white,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldfam_oth,percent of family during childhood who were some other race,percent of family during childhood who were some other race,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldadlt_asn,"percent of adults you knew (friends, care takers, neighbors) during childhood wh","percent of adults you knew (friends, care takers, neighbors) during childhood wh",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldadlt_blk,"percent of adults you knew (friends, care takers, neighbors) during childhood wh","percent of adults you knew (friends, care takers, neighbors) during childhood wh",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldadlt_hisp,"percent of adults you knew (friends, care takers, neighbors) during childhood wh","percent of adults you knew (friends, care takers, neighbors) during childhood wh",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldadlt_wht,"percent of adults you knew (friends, care takers, neighbors) during childhood wh","percent of adults you knew (friends, care takers, neighbors) during childhood wh",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldadlt_oth,"percent of adults you knew (friends, care takers, neighbors) during childhood wh","percent of adults you knew (friends, care takers, neighbors) during childhood wh",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldchld_asn,"percent of children you knew (friends, classmates) during childhood who were asi","percent of children you knew (friends, classmates) during childhood who were asi",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldchld_blk,"percent of children you knew (friends, classmates) during childhood who were bla","percent of children you knew (friends, classmates) during childhood who were bla",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldchld_hisp,"percent of children you knew (friends, classmates) during childhood who were lat","percent of children you knew (friends, classmates) during childhood who were lat",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldchld_wht,"percent of children you knew (friends, classmates) during childhood who were whi","percent of children you knew (friends, classmates) during childhood who were whi",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldchld_oth,"percent of children you knew (friends, classmates) during childhood who were som","percent of children you knew (friends, classmates) during childhood who were som",YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldshop_asn,percent of people who shopped at the supermarket during childhood who were asian,percent of people who shopped at the supermarket during childhood who were asian,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldshop_blk,percent of people who shopped at the supermarket during childhood who were black,percent of people who shopped at the supermarket during childhood who were black,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldshop_hisp,percent of people who shopped at the supermarket during childhood who were latin,percent of people who shopped at the supermarket during childhood who were latin,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldshop_wht,percent of people who shopped at the supermarket during childhood who were white,percent of people who shopped at the supermarket during childhood who were white,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-chldshop_oth,percent of people who shopped at the supermarket during childhood who were some,percent of people who shopped at the supermarket during childhood who were some,YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
-ptnrsxnow1,recent partner's sex now (3 category),recent partner's sex now (3 category),YEAR_SPECIFIC,2024,,YEAR_SPECIFIC
+year,year,year,NATIVE_NAME,,,NATIVE_NAME
+wrkstat,wrkstat,wrkstat,DONOR_MAP,2018,,DONOR_MAP
+hrs1,HRS1,HRS1,DONOR_MAP,2018,,DONOR_MAP
+hrs2,HRS2,HRS2,DONOR_MAP,2018,,DONOR_MAP
+evwork,evwork,evwork,DONOR_MAP,2018,,DONOR_MAP
+wrkslf,wrkslf,wrkslf,DONOR_MAP,2018,,DONOR_MAP
+occ10,OCC10,OCC10,DONOR_MAP,2018,,DONOR_MAP
+prestg10,PRESTG10,PRESTG10,DONOR_MAP,2018,,DONOR_MAP
+prestg105plus,PRESTG105PLUS,PRESTG105PLUS,DONOR_MAP,2018,,DONOR_MAP
+indus10,INDUS10,INDUS10,DONOR_MAP,2018,,DONOR_MAP
+marital,marital,marital,DONOR_MAP,2018,,DONOR_MAP
+martype,martype,martype,DONOR_MAP,2018,,DONOR_MAP
+divorce,divorce,divorce,DONOR_MAP,2018,,DONOR_MAP
+widowed,widowed,widowed,DONOR_MAP,2018,,DONOR_MAP
+spwrksta,spwrksta,spwrksta,DONOR_MAP,2018,,DONOR_MAP
+sphrs1,SPHRS1,SPHRS1,DONOR_MAP,2018,,DONOR_MAP
+sphrs2,SPHRS2,SPHRS2,DONOR_MAP,2018,,DONOR_MAP
+spevwork,spevwork,spevwork,DONOR_MAP,2018,,DONOR_MAP
+cowrksta,cowrksta,cowrksta,DONOR_MAP,2018,,DONOR_MAP
+cowrkslf,cowrkslf,cowrkslf,DONOR_MAP,2018,,DONOR_MAP
+coevwork,coevwork,coevwork,DONOR_MAP,2018,,DONOR_MAP
+cohrs1,COHRS1,COHRS1,DONOR_MAP,2018,,DONOR_MAP
+cohrs2,COHRS2,COHRS2,DONOR_MAP,2018,,DONOR_MAP
+spwrkslf,spwrkslf,spwrkslf,DONOR_MAP,2018,,DONOR_MAP
+spocc10,SPOCC10,SPOCC10,DONOR_MAP,2018,,DONOR_MAP
+sppres10,SPPRES10,SPPRES10,DONOR_MAP,2018,,DONOR_MAP
+sppres105plus,SPPRES105PLUS,SPPRES105PLUS,DONOR_MAP,2018,,DONOR_MAP
+spind10,SPIND10,SPIND10,DONOR_MAP,2018,,DONOR_MAP
+coocc10,COOCC10,COOCC10,DONOR_MAP,2018,,DONOR_MAP
+coind10,COIND10,COIND10,DONOR_MAP,2018,,DONOR_MAP
+pawrkslf,pawrkslf,pawrkslf,DONOR_MAP,2018,,DONOR_MAP
+paocc10,PAOCC10,PAOCC10,DONOR_MAP,2018,,DONOR_MAP
+papres10,PAPRES10,PAPRES10,DONOR_MAP,2018,,DONOR_MAP
+papres105plus,PAPRES105PLUS,PAPRES105PLUS,DONOR_MAP,2018,,DONOR_MAP
+paind10,PAIND10,PAIND10,DONOR_MAP,2018,,DONOR_MAP
+mawrkslf,mawrkslf,mawrkslf,DONOR_MAP,2018,,DONOR_MAP
+maocc10,MAOCC10,MAOCC10,DONOR_MAP,2018,,DONOR_MAP
+mapres10,MAPRES10,MAPRES10,DONOR_MAP,2018,,DONOR_MAP
+mapres105plus,MAPRES105PLUS,MAPRES105PLUS,DONOR_MAP,2018,,DONOR_MAP
+maind10,MAIND10,MAIND10,DONOR_MAP,2018,,DONOR_MAP
+sibs,sibs,sibs,DONOR_MAP,2018,,DONOR_MAP
+childs,childs,childs,DONOR_MAP,2018,,DONOR_MAP
+age,age,age,DONOR_MAP,2018,,DONOR_MAP
+agekdbrn,agekdbrn,agekdbrn,DONOR_MAP,2018,,DONOR_MAP
+educ,educ,educ,DONOR_MAP,2018,,DONOR_MAP
+paeduc,paeduc,paeduc,DONOR_MAP,2018,,DONOR_MAP
+maeduc,maeduc,maeduc,DONOR_MAP,2018,,DONOR_MAP
+speduc,speduc,speduc,DONOR_MAP,2018,,DONOR_MAP
+coeduc,coeduc,coeduc,DONOR_MAP,2018,,DONOR_MAP
+codeg,codeg,codeg,DONOR_MAP,2018,,DONOR_MAP
+degree,degree,degree,DONOR_MAP,2018,,DONOR_MAP
+padeg,padeg,padeg,DONOR_MAP,2018,,DONOR_MAP
+madeg,madeg,madeg,DONOR_MAP,2018,,DONOR_MAP
+spdeg,spdeg,spdeg,DONOR_MAP,2018,,DONOR_MAP
+major1,MAJOR1,MAJOR1,DONOR_MAP,2018,,DONOR_MAP
+major2,MAJOR2,MAJOR2,DONOR_MAP,2018,,DONOR_MAP
+dipged,dipged,dipged,DONOR_MAP,2018,,DONOR_MAP
+sex,sex,sex,DONOR_MAP,2018,,DONOR_MAP
+race,race,race,DONOR_MAP,2018,,DONOR_MAP
+res16,RES16,RES16,DONOR_MAP,2018,,DONOR_MAP
+reg16,REG16,REG16,DONOR_MAP,2018,,DONOR_MAP
+mobile16,MOBILE16,MOBILE16,DONOR_MAP,2018,,DONOR_MAP
+family16,FAMILY16,FAMILY16,DONOR_MAP,2018,,DONOR_MAP
+famdif16,FAMDIF16,FAMDIF16,DONOR_MAP,2018,,DONOR_MAP
+mawrkgrw,mawrkgrw,mawrkgrw,DONOR_MAP,2018,,DONOR_MAP
+incom16,INCOM16,INCOM16,DONOR_MAP,2018,,DONOR_MAP
+born,born,born,DONOR_MAP,2018,,DONOR_MAP
+parborn,parborn,parborn,DONOR_MAP,2018,,DONOR_MAP
+granborn,granborn,granborn,DONOR_MAP,2018,,DONOR_MAP
+hompop,hompop,hompop,DONOR_MAP,2018,,DONOR_MAP
+babies,babies,babies,DONOR_MAP,2018,,DONOR_MAP
+preteen,preteen,preteen,DONOR_MAP,2018,,DONOR_MAP
+teens,teens,teens,DONOR_MAP,2018,,DONOR_MAP
+adults,adults,adults,DONOR_MAP,2018,,DONOR_MAP
+unrelat,unrelat,unrelat,DONOR_MAP,2018,,DONOR_MAP
+earnrs,earnrs,earnrs,DONOR_MAP,2018,,DONOR_MAP
+income,income,income,DONOR_MAP,2018,,DONOR_MAP
+rincome,rincome,rincome,DONOR_MAP,2018,,DONOR_MAP
+income16,INCOME16,INCOME16,DONOR_MAP,2018,,DONOR_MAP
+rincom16,RINCOM16,RINCOM16,DONOR_MAP,2018,,DONOR_MAP
+region,region,region,DONOR_MAP,2018,,DONOR_MAP
+xnorcsiz,xnorcsiz,xnorcsiz,DONOR_MAP,2018,,DONOR_MAP
+partyid,partyid,partyid,DONOR_MAP,2018,,DONOR_MAP
+vote16,VOTE16,VOTE16,DONOR_MAP,2018,,DONOR_MAP
+pres16,PRES16,PRES16,DONOR_MAP,2018,,DONOR_MAP
+if16who,IF16WHO,IF16WHO,DONOR_MAP,2018,,DONOR_MAP
+polviews,polviews,polviews,DONOR_MAP,2018,,DONOR_MAP
+natspac,natspac,natspac,DONOR_MAP,2018,,DONOR_MAP
+natenvir,natenvir,natenvir,DONOR_MAP,2018,,DONOR_MAP
+natheal,natheal,natheal,DONOR_MAP,2018,,DONOR_MAP
+natcity,natcity,natcity,DONOR_MAP,2018,,DONOR_MAP
+natcrime,natcrime,natcrime,DONOR_MAP,2018,,DONOR_MAP
+natdrug,natdrug,natdrug,DONOR_MAP,2018,,DONOR_MAP
+nateduc,nateduc,nateduc,DONOR_MAP,2018,,DONOR_MAP
+natrace,natrace,natrace,DONOR_MAP,2018,,DONOR_MAP
+natarms,natarms,natarms,DONOR_MAP,2018,,DONOR_MAP
+nataid,nataid,nataid,DONOR_MAP,2018,,DONOR_MAP
+natfare,natfare,natfare,DONOR_MAP,2018,,DONOR_MAP
+natroad,natroad,natroad,DONOR_MAP,2018,,DONOR_MAP
+natsoc,natsoc,natsoc,DONOR_MAP,2018,,DONOR_MAP
+natchld,natchld,natchld,DONOR_MAP,2018,,DONOR_MAP
+natsci,natsci,natsci,DONOR_MAP,2018,,DONOR_MAP
+natenrgy,natenrgy,natenrgy,DONOR_MAP,2018,,DONOR_MAP
+natspacy,natspacy,natspacy,DONOR_MAP,2018,,DONOR_MAP
+natenviy,natenviy,natenviy,DONOR_MAP,2018,,DONOR_MAP
+nathealy,nathealy,nathealy,DONOR_MAP,2018,,DONOR_MAP
+natcityy,natcityy,natcityy,DONOR_MAP,2018,,DONOR_MAP
+natcrimy,natcrimy,natcrimy,DONOR_MAP,2018,,DONOR_MAP
+natdrugy,natdrugy,natdrugy,DONOR_MAP,2018,,DONOR_MAP
+nateducy,nateducy,nateducy,DONOR_MAP,2018,,DONOR_MAP
+natracey,natracey,natracey,DONOR_MAP,2018,,DONOR_MAP
+natarmsy,natarmsy,natarmsy,DONOR_MAP,2018,,DONOR_MAP
+nataidy,nataidy,nataidy,DONOR_MAP,2018,,DONOR_MAP
+natfarey,natfarey,natfarey,DONOR_MAP,2018,,DONOR_MAP
+eqwlth,eqwlth,eqwlth,DONOR_MAP,2018,,DONOR_MAP
+tax,tax,tax,DONOR_MAP,2018,,DONOR_MAP
+spkath,spkath,spkath,DONOR_MAP,2018,,DONOR_MAP
+colath,colath,colath,DONOR_MAP,2018,,DONOR_MAP
+libath,libath,libath,DONOR_MAP,2018,,DONOR_MAP
+spkrac,spkrac,spkrac,DONOR_MAP,2018,,DONOR_MAP
+colrac,colrac,colrac,DONOR_MAP,2018,,DONOR_MAP
+librac,librac,librac,DONOR_MAP,2018,,DONOR_MAP
+spkcom,spkcom,spkcom,DONOR_MAP,2018,,DONOR_MAP
+colcom,colcom,colcom,DONOR_MAP,2018,,DONOR_MAP
+libcom,libcom,libcom,DONOR_MAP,2018,,DONOR_MAP
+spkmslm,spkmslm,spkmslm,DONOR_MAP,2018,,DONOR_MAP
+colmslm,colmslm,colmslm,DONOR_MAP,2018,,DONOR_MAP
+libmslm,libmslm,libmslm,DONOR_MAP,2018,,DONOR_MAP
+cappun,cappun,cappun,DONOR_MAP,2018,,DONOR_MAP
+gunlaw,gunlaw,gunlaw,DONOR_MAP,2018,,DONOR_MAP
+courts,courts,courts,DONOR_MAP,2018,,DONOR_MAP
+grass,grass,grass,DONOR_MAP,2018,,DONOR_MAP
+relig,relig,relig,DONOR_MAP,2018,,DONOR_MAP
+denom,denom,denom,DONOR_MAP,2018,,DONOR_MAP
+fund,fund,fund,DONOR_MAP,2018,,DONOR_MAP
+attend,attend,attend,DONOR_MAP,2018,,DONOR_MAP
+reliten,reliten,reliten,DONOR_MAP,2018,,DONOR_MAP
+postlife,postlife,postlife,DONOR_MAP,2018,,DONOR_MAP
+pray,pray,pray,DONOR_MAP,2018,,DONOR_MAP
+relig16,RELIG16,RELIG16,DONOR_MAP,2018,,DONOR_MAP
+denom16,DENOM16,DENOM16,DONOR_MAP,2018,,DONOR_MAP
+fund16,FUND16,FUND16,DONOR_MAP,2018,,DONOR_MAP
+sprel,sprel,sprel,DONOR_MAP,2018,,DONOR_MAP
+spden,spden,spden,DONOR_MAP,2018,,DONOR_MAP
+spfund,spfund,spfund,DONOR_MAP,2018,,DONOR_MAP
+corel,corel,corel,DONOR_MAP,2018,,DONOR_MAP
+coden,coden,coden,DONOR_MAP,2018,,DONOR_MAP
+cofund,cofund,cofund,DONOR_MAP,2018,,DONOR_MAP
+prayer,prayer,prayer,DONOR_MAP,2018,,DONOR_MAP
+bible,bible,bible,DONOR_MAP,2018,,DONOR_MAP
+racopen,racopen,racopen,DONOR_MAP,2018,,DONOR_MAP
+raclive,raclive,raclive,DONOR_MAP,2018,,DONOR_MAP
+affrmact,affrmact,affrmact,DONOR_MAP,2018,,DONOR_MAP
+wrkwayup,wrkwayup,wrkwayup,DONOR_MAP,2018,,DONOR_MAP
+happy,happy,happy,DONOR_MAP,2018,,DONOR_MAP
+hapmar,hapmar,hapmar,DONOR_MAP,2018,,DONOR_MAP
+hapcohab,hapcohab,hapcohab,DONOR_MAP,2018,,DONOR_MAP
+health,health,health,DONOR_MAP,2018,,DONOR_MAP
+life,life,life,DONOR_MAP,2018,,DONOR_MAP
+helpful,helpful,helpful,DONOR_MAP,2018,,DONOR_MAP
+fair,fair,fair,DONOR_MAP,2018,,DONOR_MAP
+trust,trust,trust,DONOR_MAP,2018,,DONOR_MAP
+confinan,confinan,confinan,DONOR_MAP,2018,,DONOR_MAP
+conbus,conbus,conbus,DONOR_MAP,2018,,DONOR_MAP
+conclerg,conclerg,conclerg,DONOR_MAP,2018,,DONOR_MAP
+coneduc,coneduc,coneduc,DONOR_MAP,2018,,DONOR_MAP
+confed,confed,confed,DONOR_MAP,2018,,DONOR_MAP
+conlabor,conlabor,conlabor,DONOR_MAP,2018,,DONOR_MAP
+conpress,conpress,conpress,DONOR_MAP,2018,,DONOR_MAP
+conmedic,conmedic,conmedic,DONOR_MAP,2018,,DONOR_MAP
+contv,contv,contv,DONOR_MAP,2018,,DONOR_MAP
+conjudge,conjudge,conjudge,DONOR_MAP,2018,,DONOR_MAP
+consci,consci,consci,DONOR_MAP,2018,,DONOR_MAP
+conlegis,conlegis,conlegis,DONOR_MAP,2018,,DONOR_MAP
+conarmy,conarmy,conarmy,DONOR_MAP,2018,,DONOR_MAP
+obey,obey,obey,DONOR_MAP,2018,,DONOR_MAP
+popular,popular,popular,DONOR_MAP,2018,,DONOR_MAP
+thnkself,thnkself,thnkself,DONOR_MAP,2018,,DONOR_MAP
+workhard,workhard,workhard,DONOR_MAP,2018,,DONOR_MAP
+helpoth,helpoth,helpoth,DONOR_MAP,2018,,DONOR_MAP
+socrel,socrel,socrel,DONOR_MAP,2018,,DONOR_MAP
+socommun,socommun,socommun,DONOR_MAP,2018,,DONOR_MAP
+socfrend,socfrend,socfrend,DONOR_MAP,2018,,DONOR_MAP
+socbar,socbar,socbar,DONOR_MAP,2018,,DONOR_MAP
+weekswrk,weekswrk,weekswrk,DONOR_MAP,2018,,DONOR_MAP
+partfull,partfull,partfull,DONOR_MAP,2018,,DONOR_MAP
+joblose,joblose,joblose,DONOR_MAP,2018,,DONOR_MAP
+jobfind,jobfind,jobfind,DONOR_MAP,2018,,DONOR_MAP
+satjob,satjob,satjob,DONOR_MAP,2018,,DONOR_MAP
+richwork,richwork,richwork,DONOR_MAP,2018,,DONOR_MAP
+class,class,class,DONOR_MAP,2018,,DONOR_MAP
+rank,rank,rank,DONOR_MAP,2018,,DONOR_MAP
+satfin,satfin,satfin,DONOR_MAP,2018,,DONOR_MAP
+finalter,finalter,finalter,DONOR_MAP,2018,,DONOR_MAP
+finrela,finrela,finrela,DONOR_MAP,2018,,DONOR_MAP
+wksub,wksub,wksub,DONOR_MAP,2018,,DONOR_MAP
+wksubs,wksubs,wksubs,DONOR_MAP,2018,,DONOR_MAP
+wksub1,WKSUB1,WKSUB1,DONOR_MAP,2018,,DONOR_MAP
+wksubs1,WKSUBS1,WKSUBS1,DONOR_MAP,2018,,DONOR_MAP
+wksup,wksup,wksup,DONOR_MAP,2018,,DONOR_MAP
+wksups,wksups,wksups,DONOR_MAP,2018,,DONOR_MAP
+wksup1,WKSUP1,WKSUP1,DONOR_MAP,2018,,DONOR_MAP
+wksups1,WKSUPS1,WKSUPS1,DONOR_MAP,2018,,DONOR_MAP
+unemp,unemp,unemp,DONOR_MAP,2018,,DONOR_MAP
+union,union,union,DONOR_MAP,2018,,DONOR_MAP
+union1,UNION1,UNION1,DONOR_MAP,2018,,DONOR_MAP
+getahead,getahead,getahead,DONOR_MAP,2018,,DONOR_MAP
+parsol,parsol,parsol,DONOR_MAP,2018,,DONOR_MAP
+kidssol,kidssol,kidssol,DONOR_MAP,2018,,DONOR_MAP
+fepol,fepol,fepol,DONOR_MAP,2018,,DONOR_MAP
+abdefect,abdefect,abdefect,DONOR_MAP,2018,,DONOR_MAP
+abnomore,abnomore,abnomore,DONOR_MAP,2018,,DONOR_MAP
+abhlth,abhlth,abhlth,DONOR_MAP,2018,,DONOR_MAP
+abpoor,abpoor,abpoor,DONOR_MAP,2018,,DONOR_MAP
+abrape,abrape,abrape,DONOR_MAP,2018,,DONOR_MAP
+absingle,absingle,absingle,DONOR_MAP,2018,,DONOR_MAP
+abany,abany,abany,DONOR_MAP,2018,,DONOR_MAP
+chldidel,chldidel,chldidel,DONOR_MAP,2018,,DONOR_MAP
+pillok,pillok,pillok,DONOR_MAP,2018,,DONOR_MAP
+sexeduc,sexeduc,sexeduc,DONOR_MAP,2018,,DONOR_MAP
+divlaw,divlaw,divlaw,DONOR_MAP,2018,,DONOR_MAP
+premarsx,premarsx,premarsx,DONOR_MAP,2018,,DONOR_MAP
+teensex,teensex,teensex,DONOR_MAP,2018,,DONOR_MAP
+xmarsex,xmarsex,xmarsex,DONOR_MAP,2018,,DONOR_MAP
+homosex,homosex,homosex,DONOR_MAP,2018,,DONOR_MAP
+pornlaw,pornlaw,pornlaw,DONOR_MAP,2018,,DONOR_MAP
+xmovie,xmovie,xmovie,DONOR_MAP,2018,,DONOR_MAP
+spanking,spanking,spanking,DONOR_MAP,2018,,DONOR_MAP
+letdie1,LETDIE1,LETDIE1,DONOR_MAP,2018,,DONOR_MAP
+suicide1,SUICIDE1,SUICIDE1,DONOR_MAP,2018,,DONOR_MAP
+suicide2,SUICIDE2,SUICIDE2,DONOR_MAP,2018,,DONOR_MAP
+suicide4,SUICIDE4,SUICIDE4,DONOR_MAP,2018,,DONOR_MAP
+polhitok,polhitok,polhitok,DONOR_MAP,2018,,DONOR_MAP
+polabuse,polabuse,polabuse,DONOR_MAP,2018,,DONOR_MAP
+polmurdr,polmurdr,polmurdr,DONOR_MAP,2018,,DONOR_MAP
+polescap,polescap,polescap,DONOR_MAP,2018,,DONOR_MAP
+polattak,polattak,polattak,DONOR_MAP,2018,,DONOR_MAP
+fear,fear,fear,DONOR_MAP,2018,,DONOR_MAP
+owngun,owngun,owngun,DONOR_MAP,2018,,DONOR_MAP
+pistol,pistol,pistol,DONOR_MAP,2018,,DONOR_MAP
+shotgun,shotgun,shotgun,DONOR_MAP,2018,,DONOR_MAP
+rifle,rifle,rifle,DONOR_MAP,2018,,DONOR_MAP
+rowngun,rowngun,rowngun,DONOR_MAP,2018,,DONOR_MAP
+hunt,hunt,hunt,DONOR_MAP,2018,,DONOR_MAP
+hunt1,HUNT1,HUNT1,DONOR_MAP,2018,,DONOR_MAP
+news,news,news,DONOR_MAP,2018,,DONOR_MAP
+tvhours,tvhours,tvhours,DONOR_MAP,2018,,DONOR_MAP
+phone,phone,phone,DONOR_MAP,2018,,DONOR_MAP
+form,form,form,DONOR_MAP,2018,,DONOR_MAP
+fechld,fechld,fechld,DONOR_MAP,2018,,DONOR_MAP
+fepresch,fepresch,fepresch,DONOR_MAP,2018,,DONOR_MAP
+fefam,fefam,fefam,DONOR_MAP,2018,,DONOR_MAP
+racdif1,RACDIF1,RACDIF1,DONOR_MAP,2018,,DONOR_MAP
+racdif2,RACDIF2,RACDIF2,DONOR_MAP,2018,,DONOR_MAP
+racdif3,RACDIF3,RACDIF3,DONOR_MAP,2018,,DONOR_MAP
+racdif4,RACDIF4,RACDIF4,DONOR_MAP,2018,,DONOR_MAP
+helppoor,helppoor,helppoor,DONOR_MAP,2018,,DONOR_MAP
+helpnot,helpnot,helpnot,DONOR_MAP,2018,,DONOR_MAP
+helpsick,helpsick,helpsick,DONOR_MAP,2018,,DONOR_MAP
+helpblk,helpblk,helpblk,DONOR_MAP,2018,,DONOR_MAP
+god,god,god,DONOR_MAP,2018,,DONOR_MAP
+reborn,reborn,reborn,DONOR_MAP,2018,,DONOR_MAP
+wlthwhts,wlthwhts,wlthwhts,DONOR_MAP,2018,,DONOR_MAP
+wlthblks,wlthblks,wlthblks,DONOR_MAP,2018,,DONOR_MAP
+wlthhsps,wlthhsps,wlthhsps,DONOR_MAP,2018,,DONOR_MAP
+workwhts,workwhts,workwhts,DONOR_MAP,2018,,DONOR_MAP
+workblks,workblks,workblks,DONOR_MAP,2018,,DONOR_MAP
+workhsps,workhsps,workhsps,DONOR_MAP,2018,,DONOR_MAP
+liveblks,liveblks,liveblks,DONOR_MAP,2018,,DONOR_MAP
+marblk,marblk,marblk,DONOR_MAP,2018,,DONOR_MAP
+marasian,MARAsian,MARAsian,DONOR_MAP,2018,,DONOR_MAP
+marhisp,marhisp,marhisp,DONOR_MAP,2018,,DONOR_MAP
+marwht,marwht,marwht,DONOR_MAP,2018,,DONOR_MAP
+discaff,discaff,discaff,DONOR_MAP,2018,,DONOR_MAP
+yousup,yousup,yousup,DONOR_MAP,2018,,DONOR_MAP
+spwksup,spwksup,spwksup,DONOR_MAP,2018,,DONOR_MAP
+fejobaff,fejobaff,fejobaff,DONOR_MAP,2018,,DONOR_MAP
+refpromo,refpromo,refpromo,NATIVE_NAME,,,NATIVE_NAME
+refmorwk,refmorwk,refmorwk,NATIVE_NAME,,,NATIVE_NAME
+workless,workless,workless,NATIVE_NAME,,,NATIVE_NAME
+noathome,noathome,noathome,NATIVE_NAME,,,NATIVE_NAME
+nonurse,nonurse,nonurse,NATIVE_NAME,,,NATIVE_NAME
+discaffm,discaffm,discaffm,DONOR_MAP,2018,,DONOR_MAP
+discaffw,discaffw,discaffw,DONOR_MAP,2018,,DONOR_MAP
+fehire,fehire,fehire,DONOR_MAP,2018,,DONOR_MAP
+vigversn,vigversn,vigversn,DONOR_MAP,2018,,DONOR_MAP
+seriousp,seriousp,seriousp,DONOR_MAP,2018,,DONOR_MAP
+charactr,charactr,charactr,DONOR_MAP,2018,,DONOR_MAP
+imbalnce,imbalnce,imbalnce,DONOR_MAP,2018,,DONOR_MAP
+wayraise,wayraise,wayraise,DONOR_MAP,2018,,DONOR_MAP
+stresses,stresses,stresses,DONOR_MAP,2018,,DONOR_MAP
+genetics,genetics,genetics,DONOR_MAP,2018,,DONOR_MAP
+godswill,godswill,godswill,DONOR_MAP,2018,,DONOR_MAP
+upsdowns,upsdowns,upsdowns,DONOR_MAP,2018,,DONOR_MAP
+breakdwn,breakdwn,breakdwn,DONOR_MAP,2018,,DONOR_MAP
+mentlill,mentlill,mentlill,DONOR_MAP,2018,,DONOR_MAP
+physill,physill,physill,DONOR_MAP,2018,,DONOR_MAP
+viglabel,viglabel,viglabel,DONOR_MAP,2018,,DONOR_MAP
+dectreat,dectreat,dectreat,DONOR_MAP,2018,,DONOR_MAP
+decmoney,decmoney,decmoney,DONOR_MAP,2018,,DONOR_MAP
+imprvown,imprvown,imprvown,DONOR_MAP,2018,,DONOR_MAP
+imprvtrt,imprvtrt,imprvtrt,DONOR_MAP,2018,,DONOR_MAP
+vignei,vignei,vignei,DONOR_MAP,2018,,DONOR_MAP
+vigsoc,vigsoc,vigsoc,DONOR_MAP,2018,,DONOR_MAP
+vigfrnd,vigfrnd,vigfrnd,DONOR_MAP,2018,,DONOR_MAP
+vigwork,vigwork,vigwork,DONOR_MAP,2018,,DONOR_MAP
+viggrp,viggrp,viggrp,DONOR_MAP,2018,,DONOR_MAP
+vigmar,vigmar,vigmar,DONOR_MAP,2018,,DONOR_MAP
+hurtoth,hurtoth,hurtoth,DONOR_MAP,2018,,DONOR_MAP
+hurtself,hurtself,hurtself,DONOR_MAP,2018,,DONOR_MAP
+tlkfam,tlkfam,tlkfam,DONOR_MAP,2018,,DONOR_MAP
+tlkclrgy,tlkclrgy,tlkclrgy,DONOR_MAP,2018,,DONOR_MAP
+meddoc,meddoc,meddoc,DONOR_MAP,2018,,DONOR_MAP
+mentldoc,mentldoc,mentldoc,DONOR_MAP,2018,,DONOR_MAP
+mentloth,mentloth,mentloth,DONOR_MAP,2018,,DONOR_MAP
+sphealer,sphealer,sphealer,DONOR_MAP,2018,,DONOR_MAP
+selfhelp,selfhelp,selfhelp,DONOR_MAP,2018,,DONOR_MAP
+otcmed,otcmed,otcmed,DONOR_MAP,2018,,DONOR_MAP
+rxmed,rxmed,rxmed,DONOR_MAP,2018,,DONOR_MAP
+mentlhos,mentlhos,mentlhos,DONOR_MAP,2018,,DONOR_MAP
+dofirst,dofirst,dofirst,DONOR_MAP,2018,,DONOR_MAP
+mustdoc,mustdoc,mustdoc,DONOR_MAP,2018,,DONOR_MAP
+mustmed,mustmed,mustmed,DONOR_MAP,2018,,DONOR_MAP
+musthosp,musthosp,musthosp,DONOR_MAP,2018,,DONOR_MAP
+dangrslf,dangrslf,dangrslf,DONOR_MAP,2018,,DONOR_MAP
+dangroth,dangroth,dangroth,DONOR_MAP,2018,,DONOR_MAP
+knwmhosp,knwmhosp,knwmhosp,NATIVE_NAME,,,NATIVE_NAME
+knwpatnt,knwpatnt,knwpatnt,NATIVE_NAME,,,NATIVE_NAME
+fammhneg,fammhneg,fammhneg,DONOR_MAP,2018,,DONOR_MAP
+othmhneg,othmhneg,othmhneg,DONOR_MAP,2018,,DONOR_MAP
+diagnosd,diagnosd,diagnosd,DONOR_MAP,2018,,DONOR_MAP
+mhtreatd,mhtreatd,mhtreatd,DONOR_MAP,2018,,DONOR_MAP
+relpersn,relpersn,relpersn,DONOR_MAP,2018,,DONOR_MAP
+sprtprsn,sprtprsn,sprtprsn,DONOR_MAP,2018,,DONOR_MAP
+othlang,othlang,othlang,DONOR_MAP,2018,,DONOR_MAP
+othlang1,OTHLANG1,OTHLANG1,DONOR_MAP,2018,,DONOR_MAP
+othlang2,OTHLANG2,OTHLANG2,DONOR_MAP,2018,,DONOR_MAP
+spklang,spklang,spklang,DONOR_MAP,2018,,DONOR_MAP
+letinhsp,letinhsp,letinhsp,NATIVE_NAME,,,NATIVE_NAME
+letinasn,letinasn,letinasn,NATIVE_NAME,,,NATIVE_NAME
+compuse,compuse,compuse,DONOR_MAP,2018,,DONOR_MAP
+webmob,webmob,webmob,DONOR_MAP,2018,,DONOR_MAP
+satdemoc,satdemoc,satdemoc,NATIVE_NAME,,,NATIVE_NAME
+disrspct,disrspct,disrspct,DONOR_MAP,2018,,DONOR_MAP
+poorserv,poorserv,poorserv,DONOR_MAP,2018,,DONOR_MAP
+notsmart,notsmart,notsmart,DONOR_MAP,2018,,DONOR_MAP
+afraidof,afraidof,afraidof,DONOR_MAP,2018,,DONOR_MAP
+threaten,threaten,threaten,DONOR_MAP,2018,,DONOR_MAP
+chldvig,chldvig,chldvig,NATIVE_NAME,,,NATIVE_NAME
+chldprob,chldprob,chldprob,NATIVE_NAME,,,NATIVE_NAME
+badchar,badchar,badchar,NATIVE_NAME,,,NATIVE_NAME
+chembal,chembal,chembal,NATIVE_NAME,,,NATIVE_NAME
+stressfl,stressfl,stressfl,NATIVE_NAME,,,NATIVE_NAME
+geneprob,geneprob,geneprob,NATIVE_NAME,,,NATIVE_NAME
+raised,raised,raised,NATIVE_NAME,,,NATIVE_NAME
+violtv,violtv,violtv,NATIVE_NAME,,,NATIVE_NAME
+discipln,discipln,discipln,NATIVE_NAME,,,NATIVE_NAME
+allergic,allergic,allergic,NATIVE_NAME,,,NATIVE_NAME
+imprvdis,imprvdis,imprvdis,NATIVE_NAME,,,NATIVE_NAME
+imprveat,imprveat,imprveat,NATIVE_NAME,,,NATIVE_NAME
+imprvmed,imprvmed,imprvmed,NATIVE_NAME,,,NATIVE_NAME
+nextdoor,nextdoor,nextdoor,NATIVE_NAME,,,NATIVE_NAME
+spendeve,spendeve,spendeve,NATIVE_NAME,,,NATIVE_NAME
+chldfrnd,chldfrnd,chldfrnd,NATIVE_NAME,,,NATIVE_NAME
+chldsch,chldsch,chldsch,NATIVE_NAME,,,NATIVE_NAME
+adfam,adfam,adfam,NATIVE_NAME,,,NATIVE_NAME
+adtch,adtch,adtch,NATIVE_NAME,,,NATIVE_NAME
+addoc,addoc,addoc,NATIVE_NAME,,,NATIVE_NAME
+adcoumed,adcoumed,adcoumed,NATIVE_NAME,,,NATIVE_NAME
+adpsy,adpsy,adpsy,NATIVE_NAME,,,NATIVE_NAME
+grwingup,grwingup,grwingup,NATIVE_NAME,,,NATIVE_NAME
+mntlill,mntlill,mntlill,NATIVE_NAME,,,NATIVE_NAME
+violpeop,violpeop,violpeop,NATIVE_NAME,,,NATIVE_NAME
+violself,violself,violself,NATIVE_NAME,,,NATIVE_NAME
+numemps,numemps,numemps,DONOR_MAP,2018,,DONOR_MAP
+wrkslffam,wrkslffam,wrkslffam,DONOR_MAP,2018,,DONOR_MAP
+mhunsure,mhunsure,mhunsure,DONOR_MAP,2018,,DONOR_MAP
+mhtrtot2,mhtrtot2,mhtrtot2,NATIVE_NAME,,,NATIVE_NAME
+polint,polint,polint,NATIVE_NAME,,,NATIVE_NAME
+poleff11,POLEFF11,POLEFF11,DONOR_MAP,2018,,DONOR_MAP
+cctv,cctv,cctv,NATIVE_NAME,,,NATIVE_NAME
+posslq,posslq,posslq,DONOR_MAP,2018,,DONOR_MAP
+posslqy,posslqy,posslqy,DONOR_MAP,2018,,DONOR_MAP
+marcohab,marcohab,marcohab,DONOR_MAP,2018,,DONOR_MAP
+trcourts,trcourts,trcourts,DONOR_MAP,2018,,DONOR_MAP
+goodlife,goodlife,goodlife,DONOR_MAP,2018,,DONOR_MAP
+marsame,marsame,marsame,NATIVE_NAME,,,NATIVE_NAME
+meovrwrk,meovrwrk,meovrwrk,DONOR_MAP,2018,,DONOR_MAP
+localnum,localnum,localnum,DONOR_MAP,2018,,DONOR_MAP
+relactiv,relactiv,relactiv,DONOR_MAP,2018,,DONOR_MAP
+befair,befair,befair,DONOR_MAP,2018,,DONOR_MAP
+cantrust,cantrust,cantrust,DONOR_MAP,2018,,DONOR_MAP
+religinf,religinf,religinf,NATIVE_NAME,,,NATIVE_NAME
+ambornin,ambornin,ambornin,NATIVE_NAME,,,NATIVE_NAME
+amcit,amcit,amcit,NATIVE_NAME,,,NATIVE_NAME
+amchrstn,amchrstn,amchrstn,NATIVE_NAME,,,NATIVE_NAME
+amgovt,amgovt,amgovt,NATIVE_NAME,,,NATIVE_NAME
+amfeel,amfeel,amfeel,NATIVE_NAME,,,NATIVE_NAME
+amcitizn,amcitizn,amcitizn,NATIVE_NAME,,,NATIVE_NAME
+amshamed,amshamed,amshamed,NATIVE_NAME,,,NATIVE_NAME
+belikeus,belikeus,belikeus,NATIVE_NAME,,,NATIVE_NAME
+ambetter,ambetter,ambetter,NATIVE_NAME,,,NATIVE_NAME
+ifwrong,ifwrong,ifwrong,NATIVE_NAME,,,NATIVE_NAME
+prouddem,prouddem,prouddem,NATIVE_NAME,,,NATIVE_NAME
+proudpol,proudpol,proudpol,NATIVE_NAME,,,NATIVE_NAME
+proudeco,proudeco,proudeco,NATIVE_NAME,,,NATIVE_NAME
+proudspt,proudspt,proudspt,NATIVE_NAME,,,NATIVE_NAME
+proudart,proudart,proudart,NATIVE_NAME,,,NATIVE_NAME
+proudhis,proudhis,proudhis,NATIVE_NAME,,,NATIVE_NAME
+imports,imports,imports,NATIVE_NAME,,,NATIVE_NAME
+wrldgovt,wrldgovt,wrldgovt,NATIVE_NAME,,,NATIVE_NAME
+amownway,amownway,amownway,NATIVE_NAME,,,NATIVE_NAME
+forland,forland,forland,NATIVE_NAME,,,NATIVE_NAME
+amtv,amtv,amtv,NATIVE_NAME,,,NATIVE_NAME
+immcrime,immcrime,immcrime,NATIVE_NAME,,,NATIVE_NAME
+immameco,immameco,immameco,NATIVE_NAME,,,NATIVE_NAME
+immjobs,immjobs,immjobs,NATIVE_NAME,,,NATIVE_NAME
+letin1,letin1,letin1,NATIVE_NAME,,,NATIVE_NAME
+citizen,citizen,citizen,NATIVE_NAME,,,NATIVE_NAME
+amancstr,amancstr,amancstr,NATIVE_NAME,,,NATIVE_NAME
+intlincs,intlincs,intlincs,NATIVE_NAME,,,NATIVE_NAME
+letin1a,LETIN1A,LETIN1A,DONOR_MAP,2018,,DONOR_MAP
+immassim,immassim,immassim,NATIVE_NAME,,,NATIVE_NAME
+paytaxes,paytaxes,paytaxes,NATIVE_NAME,,,NATIVE_NAME
+obeylaws,obeylaws,obeylaws,NATIVE_NAME,,,NATIVE_NAME
+watchgov,watchgov,watchgov,NATIVE_NAME,,,NATIVE_NAME
+helpusa,helpusa,helpusa,NATIVE_NAME,,,NATIVE_NAME
+solok,solok,solok,NATIVE_NAME,,,NATIVE_NAME
+rghtsmin,rghtsmin,rghtsmin,NATIVE_NAME,,,NATIVE_NAME
+polopts,polopts,polopts,NATIVE_NAME,,,NATIVE_NAME
+oppsegov,oppsegov,oppsegov,NATIVE_NAME,,,NATIVE_NAME
+poleff18,poleff18,poleff18,NATIVE_NAME,,,NATIVE_NAME
+corruptn,corruptn,corruptn,NATIVE_NAME,,,NATIVE_NAME
+demtoday,demtoday,demtoday,NATIVE_NAME,,,NATIVE_NAME
+dem10pst,dem10pst,dem10pst,NATIVE_NAME,,,NATIVE_NAME
+dem10fut,dem10fut,dem10fut,NATIVE_NAME,,,NATIVE_NAME
+polnews,polnews,polnews,NATIVE_NAME,,,NATIVE_NAME
+leftrght,leftrght,leftrght,NATIVE_NAME,,,NATIVE_NAME
+partners,partners,partners,DONOR_MAP,2018,,DONOR_MAP
+sexsex,sexsex,sexsex,DONOR_MAP,2018,,DONOR_MAP
+sexfreq,sexfreq,sexfreq,DONOR_MAP,2018,,DONOR_MAP
+hivtest,hivtest,hivtest,DONOR_MAP,2018,,DONOR_MAP
+hivtest1,HIVTEST1,HIVTEST1,DONOR_MAP,2018,,DONOR_MAP
+hivtest2,HIVTEST2,HIVTEST2,DONOR_MAP,2018,,DONOR_MAP
+sexornt,sexornt,sexornt,DONOR_MAP,2018,,DONOR_MAP
+realinc,realinc,realinc,DONOR_MAP,2018,,DONOR_MAP
+realrinc,realrinc,realrinc,DONOR_MAP,2018,,DONOR_MAP
+coninc,coninc,coninc,DONOR_MAP,2018,,DONOR_MAP
+conrinc,conrinc,conrinc,DONOR_MAP,2018,,DONOR_MAP
+ethnic,ethnic,ethnic,DONOR_MAP,2018,,DONOR_MAP
+eth1,ETH1,ETH1,DONOR_MAP,2018,,DONOR_MAP
+hispanic,hispanic,hispanic,DONOR_MAP,2018,,DONOR_MAP
+racecen1,RACECEN1,RACECEN1,DONOR_MAP,2018,,DONOR_MAP
+racecen2,RACECEN2,RACECEN2,DONOR_MAP,2018,,DONOR_MAP
+racecen3,RACECEN3,RACECEN3,DONOR_MAP,2018,,DONOR_MAP
+uscitzn,uscitzn,uscitzn,DONOR_MAP,2018,,DONOR_MAP
+vetyears,vetyears,vetyears,DONOR_MAP,2018,,DONOR_MAP
+dwelown,dwelown,dwelown,DONOR_MAP,2018,,DONOR_MAP
+dwelown16,DWELOWN16,DWELOWN16,DONOR_MAP,2018,,DONOR_MAP
+worda,worda,worda,DONOR_MAP,2018,,DONOR_MAP
+wordb,wordb,wordb,DONOR_MAP,2018,,DONOR_MAP
+wordc,wordc,wordc,DONOR_MAP,2018,,DONOR_MAP
+wordd,wordd,wordd,DONOR_MAP,2018,,DONOR_MAP
+worde,worde,worde,DONOR_MAP,2018,,DONOR_MAP
+wordf,wordf,wordf,DONOR_MAP,2018,,DONOR_MAP
+wordg,wordg,wordg,DONOR_MAP,2018,,DONOR_MAP
+wordh,wordh,wordh,DONOR_MAP,2018,,DONOR_MAP
+wordi,wordi,wordi,DONOR_MAP,2018,,DONOR_MAP
+wordj,wordj,wordj,DONOR_MAP,2018,,DONOR_MAP
+wordsum,wordsum,wordsum,DONOR_MAP,2018,,DONOR_MAP
+hhtype1,HHTYPE1,HHTYPE1,DONOR_MAP,2018,,DONOR_MAP
+famgen,famgen,famgen,DONOR_MAP,2018,,DONOR_MAP
+rplace,rplace,rplace,DONOR_MAP,2018,,DONOR_MAP
+visitors,visitors,visitors,DONOR_MAP,2018,,DONOR_MAP
+dateintv,dateintv,dateintv,DONOR_MAP,2018,,DONOR_MAP
+sei10,SEI10,SEI10,DONOR_MAP,2018,,DONOR_MAP
+sei10educ,SEI10EDUC,SEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
+sei10inc,SEI10INC,SEI10INC,DONOR_MAP,2018,,DONOR_MAP
+pasei10,PASEI10,PASEI10,DONOR_MAP,2018,,DONOR_MAP
+pasei10educ,PASEI10EDUC,PASEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
+pasei10inc,PASEI10INC,PASEI10INC,DONOR_MAP,2018,,DONOR_MAP
+masei10,MASEI10,MASEI10,DONOR_MAP,2018,,DONOR_MAP
+masei10educ,MASEI10EDUC,MASEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
+masei10inc,MASEI10INC,MASEI10INC,DONOR_MAP,2018,,DONOR_MAP
+spsei10,SPSEI10,SPSEI10,DONOR_MAP,2018,,DONOR_MAP
+spsei10educ,SPSEI10EDUC,SPSEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
+spsei10inc,SPSEI10INC,SPSEI10INC,DONOR_MAP,2018,,DONOR_MAP
+cosei10,COSEI10,COSEI10,DONOR_MAP,2018,,DONOR_MAP
+cosei10educ,COSEI10EDUC,COSEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
+cosei10inc,COSEI10INC,COSEI10INC,DONOR_MAP,2018,,DONOR_MAP
+copres10,COPRES10,COPRES10,DONOR_MAP,2018,,DONOR_MAP
+copres105plus,COPRES105PLUS,COPRES105PLUS,DONOR_MAP,2018,,DONOR_MAP
+cohort,cohort,cohort,DONOR_MAP,2018,,DONOR_MAP
+mode,mode,mode,DONOR_MAP,2018,,DONOR_MAP
+letdie1y,letdie1y,letdie1y,NATIVE_NAME,,,NATIVE_NAME
+ballot,ballot,ballot,DONOR_MAP,2018,,DONOR_MAP
+issp,issp,issp,DONOR_MAP,2018,,DONOR_MAP
+sampcode,sampcode,sampcode,DONOR_MAP,2018,,DONOR_MAP
+sample,sample,sample,NATIVE_NAME,,,NATIVE_NAME
+phase,phase,phase,DONOR_MAP,2018,,DONOR_MAP
+spanself,spanself,spanself,DONOR_MAP,2018,,DONOR_MAP
+spaneng,spaneng,spaneng,DONOR_MAP,2018,,DONOR_MAP
+vstrat,vstrat,vstrat,DONOR_MAP,2018,,DONOR_MAP
+vpsu,vpsu,vpsu,DONOR_MAP,2018,,DONOR_MAP
+kish,kish,kish,NATIVE_NAME,,,NATIVE_NAME
+famdif16y,famdif16y,famdif16y,NATIVE_NAME,,,NATIVE_NAME
+pawrkslf2,pawrkslf2,pawrkslf2,NATIVE_NAME,,,NATIVE_NAME
+pawrkslffam,pawrkslffam,pawrkslffam,NATIVE_NAME,,,NATIVE_NAME
+mawrkslf2,mawrkslf2,mawrkslf2,NATIVE_NAME,,,NATIVE_NAME
+mawrkslffam,mawrkslffam,mawrkslffam,NATIVE_NAME,,,NATIVE_NAME
+ethworld1,ethworld1,ethworld1,NATIVE_NAME,,,NATIVE_NAME
+ethworld2,ethworld2,ethworld2,NATIVE_NAME,,,NATIVE_NAME
+ethworld3,ethworld3,ethworld3,NATIVE_NAME,,,NATIVE_NAME
+ethworld4,ethworld4,ethworld4,NATIVE_NAME,,,NATIVE_NAME
+ethworld5,ethworld5,ethworld5,NATIVE_NAME,,,NATIVE_NAME
+ethworld6,ethworld6,ethworld6,NATIVE_NAME,,,NATIVE_NAME
+ethworld7,ethworld7,ethworld7,NATIVE_NAME,,,NATIVE_NAME
+ethworld8,ethworld8,ethworld8,NATIVE_NAME,,,NATIVE_NAME
+ethworld9,ethworld9,ethworld9,NATIVE_NAME,,,NATIVE_NAME
+wrkgovt1,wrkgovt1,wrkgovt1,NATIVE_NAME,,,NATIVE_NAME
+wrkgovt2,wrkgovt2,wrkgovt2,NATIVE_NAME,,,NATIVE_NAME
+spkathy,spkathy,spkathy,NATIVE_NAME,,,NATIVE_NAME
+libathy,libathy,libathy,NATIVE_NAME,,,NATIVE_NAME
+spkracy,spkracy,spkracy,NATIVE_NAME,,,NATIVE_NAME
+libracy,libracy,libracy,NATIVE_NAME,,,NATIVE_NAME
+spkcomy,spkcomy,spkcomy,NATIVE_NAME,,,NATIVE_NAME
+colcomy,colcomy,colcomy,NATIVE_NAME,,,NATIVE_NAME
+libcomy,libcomy,libcomy,NATIVE_NAME,,,NATIVE_NAME
+spkmslmy,spkmslmy,spkmslmy,NATIVE_NAME,,,NATIVE_NAME
+libmslmy,libmslmy,libmslmy,NATIVE_NAME,,,NATIVE_NAME
+polhitoky,polhitoky,polhitoky,NATIVE_NAME,,,NATIVE_NAME
+polabusey,polabusey,polabusey,NATIVE_NAME,,,NATIVE_NAME
+polattaky,polattaky,polattaky,NATIVE_NAME,,,NATIVE_NAME
+raceacs1,raceacs1,raceacs1,NATIVE_NAME,,,NATIVE_NAME
+raceacs2,raceacs2,raceacs2,NATIVE_NAME,,,NATIVE_NAME
+raceacs3,raceacs3,raceacs3,NATIVE_NAME,,,NATIVE_NAME
+raceacs4,raceacs4,raceacs4,NATIVE_NAME,,,NATIVE_NAME
+raceacs5,raceacs5,raceacs5,NATIVE_NAME,,,NATIVE_NAME
+raceacs6,raceacs6,raceacs6,NATIVE_NAME,,,NATIVE_NAME
+raceacs7,raceacs7,raceacs7,NATIVE_NAME,,,NATIVE_NAME
+raceacs8,raceacs8,raceacs8,NATIVE_NAME,,,NATIVE_NAME
+raceacs9,raceacs9,raceacs9,NATIVE_NAME,,,NATIVE_NAME
+raceacs10,raceacs10,raceacs10,NATIVE_NAME,,,NATIVE_NAME
+raceacs14,raceacs14,raceacs14,NATIVE_NAME,,,NATIVE_NAME
+raceacs15,raceacs15,raceacs15,NATIVE_NAME,,,NATIVE_NAME
+raceacs16,raceacs16,raceacs16,NATIVE_NAME,,,NATIVE_NAME
+abdefectg,abdefectg,abdefectg,NATIVE_NAME,,,NATIVE_NAME
+abnomoreg,abnomoreg,abnomoreg,NATIVE_NAME,,,NATIVE_NAME
+abhlthg,abhlthg,abhlthg,NATIVE_NAME,,,NATIVE_NAME
+abpoorg,abpoorg,abpoorg,NATIVE_NAME,,,NATIVE_NAME
+abrapeg,abrapeg,abrapeg,NATIVE_NAME,,,NATIVE_NAME
+absingleg,absingleg,absingleg,NATIVE_NAME,,,NATIVE_NAME
+suicide1g,suicide1g,suicide1g,NATIVE_NAME,,,NATIVE_NAME
+suicide2g,suicide2g,suicide2g,NATIVE_NAME,,,NATIVE_NAME
+suicide4g,suicide4g,suicide4g,NATIVE_NAME,,,NATIVE_NAME
+maborn,maborn,maborn,NATIVE_NAME,,,NATIVE_NAME
+paborn,paborn,paborn,NATIVE_NAME,,,NATIVE_NAME
+sexbirth1,sexbirth1,sexbirth1,NATIVE_NAME,,,NATIVE_NAME
+norelgsp,norelgsp,norelgsp,NATIVE_NAME,,,NATIVE_NAME
+hivafraid,hivafraid,hivafraid,NATIVE_NAME,,,NATIVE_NAME
+hivimmrl,hivimmrl,hivimmrl,NATIVE_NAME,,,NATIVE_NAME
+hivdscrm,hivdscrm,hivdscrm,NATIVE_NAME,,,NATIVE_NAME
+ptnrornt,ptnrornt,ptnrornt,NATIVE_NAME,,,NATIVE_NAME
+ptnrsxbrth,ptnrsxbrth,ptnrsxbrth,NATIVE_NAME,,,NATIVE_NAME
+wtssps,wtssps,wtssps,NATIVE_NAME,,,NATIVE_NAME
+wtssnrps,wtssnrps,wtssnrps,NATIVE_NAME,,,NATIVE_NAME
+prayerv,prayerv,prayerv,NATIVE_NAME,,,NATIVE_NAME
+courtsv,courtsv,courtsv,NATIVE_NAME,,,NATIVE_NAME
+discaffwv,discaffwv,discaffwv,NATIVE_NAME,,,NATIVE_NAME
+racopenv,racopenv,racopenv,NATIVE_NAME,,,NATIVE_NAME
+getaheadv,getaheadv,getaheadv,NATIVE_NAME,,,NATIVE_NAME
+divlawv,divlawv,divlawv,NATIVE_NAME,,,NATIVE_NAME
+helpfulv,helpfulv,helpfulv,NATIVE_NAME,,,NATIVE_NAME
+fairv,fairv,fairv,NATIVE_NAME,,,NATIVE_NAME
+trustv,trustv,trustv,NATIVE_NAME,,,NATIVE_NAME
+grassv,grassv,grassv,NATIVE_NAME,,,NATIVE_NAME
+relitenv,relitenv,relitenv,NATIVE_NAME,,,NATIVE_NAME
+biblev,biblev,biblev,NATIVE_NAME,,,NATIVE_NAME
+postlifev,postlifev,postlifev,NATIVE_NAME,,,NATIVE_NAME
+kidssolv,kidssolv,kidssolv,NATIVE_NAME,,,NATIVE_NAME
+fepolv,fepolv,fepolv,NATIVE_NAME,,,NATIVE_NAME
+prayernv,prayernv,prayernv,NATIVE_NAME,,,NATIVE_NAME
+courtsnv,courtsnv,courtsnv,NATIVE_NAME,,,NATIVE_NAME
+discaffwnv,discaffwnv,discaffwnv,NATIVE_NAME,,,NATIVE_NAME
+racopennv,racopennv,racopennv,NATIVE_NAME,,,NATIVE_NAME
+getaheadnv,getaheadnv,getaheadnv,NATIVE_NAME,,,NATIVE_NAME
+divlawnv,divlawnv,divlawnv,NATIVE_NAME,,,NATIVE_NAME
+helpfulnv,helpfulnv,helpfulnv,NATIVE_NAME,,,NATIVE_NAME
+fairnv,fairnv,fairnv,NATIVE_NAME,,,NATIVE_NAME
+trustnv,trustnv,trustnv,NATIVE_NAME,,,NATIVE_NAME
+grassnv,grassnv,grassnv,NATIVE_NAME,,,NATIVE_NAME
+relitennv,relitennv,relitennv,NATIVE_NAME,,,NATIVE_NAME
+biblenv,biblenv,biblenv,NATIVE_NAME,,,NATIVE_NAME
+postlifenv,postlifenv,postlifenv,NATIVE_NAME,,,NATIVE_NAME
+kidssolnv,kidssolnv,kidssolnv,NATIVE_NAME,,,NATIVE_NAME
+fepolnv,fepolnv,fepolnv,NATIVE_NAME,,,NATIVE_NAME
+abanyg,abanyg,abanyg,NATIVE_NAME,,,NATIVE_NAME
+fileversion,fileversion,fileversion,NATIVE_NAME,,,NATIVE_NAME
+spwrkslf2,spwrkslf2,spwrkslf2,NATIVE_NAME,,,NATIVE_NAME
+spwrkslffam,spwrkslffam,spwrkslffam,NATIVE_NAME,,,NATIVE_NAME
+childsinhh,childsinhh,childsinhh,NATIVE_NAME,,,NATIVE_NAME
+adultsinhh,adultsinhh,adultsinhh,NATIVE_NAME,,,NATIVE_NAME
+whatsp2,whatsp2,whatsp2,NATIVE_NAME,,,NATIVE_NAME
+cowrkslf2,cowrkslf2,cowrkslf2,NATIVE_NAME,,,NATIVE_NAME
+cowrkslffam,cowrkslffam,cowrkslffam,NATIVE_NAME,,,NATIVE_NAME
+cowksup,cowksup,cowksup,NATIVE_NAME,,,NATIVE_NAME
+whatco2,whatco2,whatco2,NATIVE_NAME,,,NATIVE_NAME
+whatpa2,whatpa2,whatpa2,NATIVE_NAME,,,NATIVE_NAME
+whatma2,whatma2,whatma2,NATIVE_NAME,,,NATIVE_NAME
+whatslf2,whatslf2,whatslf2,NATIVE_NAME,,,NATIVE_NAME
+racerank1,racerank1,racerank1,NATIVE_NAME,,,NATIVE_NAME
+racerank2,racerank2,racerank2,NATIVE_NAME,,,NATIVE_NAME
+racerank3,racerank3,racerank3,NATIVE_NAME,,,NATIVE_NAME
+adoptus,adoptus,adoptus,NATIVE_NAME,,,NATIVE_NAME
+immfate,immfate,immfate,NATIVE_NAME,,,NATIVE_NAME
+xmoviey,xmoviey,xmoviey,NATIVE_NAME,,,NATIVE_NAME
+vote20,vote20,vote20,NATIVE_NAME,,,NATIVE_NAME
+pres20,pres20,pres20,NATIVE_NAME,,,NATIVE_NAME
+if20who,if20who,if20who,NATIVE_NAME,,,NATIVE_NAME
+wordk,wordk,wordk,NATIVE_NAME,,,NATIVE_NAME
+wordl,wordl,wordl,NATIVE_NAME,,,NATIVE_NAME
+wordn,wordn,wordn,NATIVE_NAME,,,NATIVE_NAME
+svyenjoy,svyenjoy,svyenjoy,NATIVE_NAME,,,NATIVE_NAME
+svyid1,svyid1,svyid1,NATIVE_NAME,,,NATIVE_NAME
+svyid2,svyid2,svyid2,NATIVE_NAME,,,NATIVE_NAME
+racdif1x,racdif1x,racdif1x,NATIVE_NAME,,,NATIVE_NAME
+racdif2x,racdif2x,racdif2x,NATIVE_NAME,,,NATIVE_NAME
+racdif3x,racdif3x,racdif3x,NATIVE_NAME,,,NATIVE_NAME
+racdif4x,racdif4x,racdif4x,NATIVE_NAME,,,NATIVE_NAME
+hompop_exp,hompop_exp,hompop_exp,NATIVE_NAME,,,NATIVE_NAME
+modesequence,modesequence,modesequence,NATIVE_NAME,,,NATIVE_NAME
+babies_exp,babies_exp,babies_exp,NATIVE_NAME,,,NATIVE_NAME
+preteen_exp,preteen_exp,preteen_exp,NATIVE_NAME,,,NATIVE_NAME
+teens_exp,teens_exp,teens_exp,NATIVE_NAME,,,NATIVE_NAME
+adults_exp,adults_exp,adults_exp,NATIVE_NAME,,,NATIVE_NAME
+prnt,prnt,prnt,NATIVE_NAME,,,NATIVE_NAME
+childs_exp,childs_exp,childs_exp,NATIVE_NAME,,,NATIVE_NAME
+famgen_exp,famgen_exp,famgen_exp,NATIVE_NAME,,,NATIVE_NAME
+hhtype1_exp,hhtype1_exp,hhtype1_exp,NATIVE_NAME,,,NATIVE_NAME
+subsamprate,subsamprate,subsamprate,NATIVE_NAME,,,NATIVE_NAME
+pawrkgrw,pawrkgrw,pawrkgrw,NATIVE_NAME,,,NATIVE_NAME
+conlabory,conlabory,conlabory,NATIVE_NAME,,,NATIVE_NAME
+racdif5,racdif5,racdif5,NATIVE_NAME,,,NATIVE_NAME
+marsamey,marsamey,marsamey,NATIVE_NAME,,,NATIVE_NAME
+norelgsp16,norelgsp16,norelgsp16,NATIVE_NAME,,,NATIVE_NAME
+spnorelgsp,spnorelgsp,spnorelgsp,NATIVE_NAME,,,NATIVE_NAME
+mobiledata,mobiledata,mobiledata,NATIVE_NAME,,,NATIVE_NAME
+broadband,broadband,broadband,NATIVE_NAME,,,NATIVE_NAME
+rateincumb24,rateincumb24,rateincumb24,NATIVE_NAME,,,NATIVE_NAME
+ratechall124,ratechall124,ratechall124,NATIVE_NAME,,,NATIVE_NAME
+ratechall224,ratechall224,ratechall224,NATIVE_NAME,,,NATIVE_NAME
+ratechall324,ratechall324,ratechall324,NATIVE_NAME,,,NATIVE_NAME
+ratedemp,ratedemp,ratedemp,NATIVE_NAME,,,NATIVE_NAME
+raterepp,raterepp,raterepp,NATIVE_NAME,,,NATIVE_NAME
+ratemaga,ratemaga,ratemaga,NATIVE_NAME,,,NATIVE_NAME
+lkelyvot,lkelyvot,lkelyvot,NATIVE_NAME,,,NATIVE_NAME
+whovote24a,whovote24a,whovote24a,NATIVE_NAME,,,NATIVE_NAME
+econstat,econstat,econstat,NATIVE_NAME,,,NATIVE_NAME
+polintrst,polintrst,polintrst,NATIVE_NAME,,,NATIVE_NAME
+intrnetuse,intrnetuse,intrnetuse,NATIVE_NAME,,,NATIVE_NAME
+nouseint1,nouseint1,nouseint1,NATIVE_NAME,,,NATIVE_NAME
+nouseint2,nouseint2,nouseint2,NATIVE_NAME,,,NATIVE_NAME
+nouseint3,nouseint3,nouseint3,NATIVE_NAME,,,NATIVE_NAME
+nouseint4,nouseint4,nouseint4,NATIVE_NAME,,,NATIVE_NAME
+nouseint5,nouseint5,nouseint5,NATIVE_NAME,,,NATIVE_NAME
+nouseint6,nouseint6,nouseint6,NATIVE_NAME,,,NATIVE_NAME
+nouseint7,nouseint7,nouseint7,NATIVE_NAME,,,NATIVE_NAME
+nouseint8,nouseint8,nouseint8,NATIVE_NAME,,,NATIVE_NAME
+nouseint9,nouseint9,nouseint9,NATIVE_NAME,,,NATIVE_NAME
+nouseint10,nouseint10,nouseint10,NATIVE_NAME,,,NATIVE_NAME
+nouseint11,nouseint11,nouseint11,NATIVE_NAME,,,NATIVE_NAME
+nouseint12,nouseint12,nouseint12,NATIVE_NAME,,,NATIVE_NAME
+intaccprxy,intaccprxy,intaccprxy,NATIVE_NAME,,,NATIVE_NAME
+prxyuse,prxyuse,prxyuse,NATIVE_NAME,,,NATIVE_NAME
+ftruse,ftruse,ftruse,NATIVE_NAME,,,NATIVE_NAME
+inthome,inthome,inthome,NATIVE_NAME,,,NATIVE_NAME
+intprfssnl,intprfssnl,intprfssnl,NATIVE_NAME,,,NATIVE_NAME
+intpub,intpub,intpub,NATIVE_NAME,,,NATIVE_NAME
+intbhlf,intbhlf,intbhlf,NATIVE_NAME,,,NATIVE_NAME
+unplug,unplug,unplug,NATIVE_NAME,,,NATIVE_NAME
+unplgrsn,unplgrsn,unplgrsn,NATIVE_NAME,,,NATIVE_NAME
+intskill,intskill,intskill,NATIVE_NAME,,,NATIVE_NAME
+intsurf,intsurf,intsurf,NATIVE_NAME,,,NATIVE_NAME
+intliteracy,intliteracy,intliteracy,NATIVE_NAME,,,NATIVE_NAME
+intapps,intapps,intapps,NATIVE_NAME,,,NATIVE_NAME
+intcomm,intcomm,intcomm,NATIVE_NAME,,,NATIVE_NAME
+intshare,intshare,intshare,NATIVE_NAME,,,NATIVE_NAME
+intsearch,intsearch,intsearch,NATIVE_NAME,,,NATIVE_NAME
+intgame,intgame,intgame,NATIVE_NAME,,,NATIVE_NAME
+intstream,intstream,intstream,NATIVE_NAME,,,NATIVE_NAME
+intfncl,intfncl,intfncl,NATIVE_NAME,,,NATIVE_NAME
+intmeet,intmeet,intmeet,NATIVE_NAME,,,NATIVE_NAME
+intlnly,intlnly,intlnly,NATIVE_NAME,,,NATIVE_NAME
+inttrig,inttrig,inttrig,NATIVE_NAME,,,NATIVE_NAME
+intnews,intnews,intnews,NATIVE_NAME,,,NATIVE_NAME
+intcnfrm,intcnfrm,intcnfrm,NATIVE_NAME,,,NATIVE_NAME
+intrust,intrust,intrust,NATIVE_NAME,,,NATIVE_NAME
+intpolview,intpolview,intpolview,NATIVE_NAME,,,NATIVE_NAME
+intoppo,intoppo,intoppo,NATIVE_NAME,,,NATIVE_NAME
+intviews,intviews,intviews,NATIVE_NAME,,,NATIVE_NAME
+techesy,techesy,techesy,NATIVE_NAME,,,NATIVE_NAME
+harmgood1,harmgood1,harmgood1,NATIVE_NAME,,,NATIVE_NAME
+nextgen1,nextgen1,nextgen1,NATIVE_NAME,,,NATIVE_NAME
+intscam,intscam,intscam,NATIVE_NAME,,,NATIVE_NAME
+inthrss,inthrss,inthrss,NATIVE_NAME,,,NATIVE_NAME
+polnewsfrom,polnewsfrom,polnewsfrom,NATIVE_NAME,,,NATIVE_NAME
+smnews,smnews,smnews,NATIVE_NAME,,,NATIVE_NAME
+tvnews1,tvnews1,tvnews1,NATIVE_NAME,,,NATIVE_NAME
+papernews,papernews,papernews,NATIVE_NAME,,,NATIVE_NAME
+radionews,radionews,radionews,NATIVE_NAME,,,NATIVE_NAME
+webnews,webnews,webnews,NATIVE_NAME,,,NATIVE_NAME
+modepet,modepet,modepet,NATIVE_NAME,,,NATIVE_NAME
+modeprot,modeprot,modeprot,NATIVE_NAME,,,NATIVE_NAME
+modelobby,modelobby,modelobby,NATIVE_NAME,,,NATIVE_NAME
+modeorgprot,modeorgprot,modeorgprot,NATIVE_NAME,,,NATIVE_NAME
+modeorg,modeorg,modeorg,NATIVE_NAME,,,NATIVE_NAME
+trppl,trppl,trppl,NATIVE_NAME,,,NATIVE_NAME
+trcong,trcong,trcong,NATIVE_NAME,,,NATIVE_NAME
+dataprot,dataprot,dataprot,NATIVE_NAME,,,NATIVE_NAME
+emonitor1,emonitor1,emonitor1,NATIVE_NAME,,,NATIVE_NAME
+infodeal,infodeal,infodeal,NATIVE_NAME,,,NATIVE_NAME
+infoprofit,infoprofit,infoprofit,NATIVE_NAME,,,NATIVE_NAME
+gendtech,gendtech,gendtech,NATIVE_NAME,,,NATIVE_NAME
+agetech,agetech,agetech,NATIVE_NAME,,,NATIVE_NAME
+urbantech,urbantech,urbantech,NATIVE_NAME,,,NATIVE_NAME
+eductech,eductech,eductech,NATIVE_NAME,,,NATIVE_NAME
+classtech,classtech,classtech,NATIVE_NAME,,,NATIVE_NAME
+aiworry,aiworry,aiworry,NATIVE_NAME,,,NATIVE_NAME
+aimed,aimed,aimed,NATIVE_NAME,,,NATIVE_NAME
+aidrive,aidrive,aidrive,NATIVE_NAME,,,NATIVE_NAME
+owndecns,owndecns,owndecns,NATIVE_NAME,,,NATIVE_NAME
+brneffrt,brneffrt,brneffrt,NATIVE_NAME,,,NATIVE_NAME
+immcrime1,immcrime1,immcrime1,NATIVE_NAME,,,NATIVE_NAME
+immjobs1,immjobs1,immjobs1,NATIVE_NAME,,,NATIVE_NAME
+immideas1,immideas1,immideas1,NATIVE_NAME,,,NATIVE_NAME
+immwlfare,immwlfare,immwlfare,NATIVE_NAME,,,NATIVE_NAME
+conscrp,conscrp,conscrp,NATIVE_NAME,,,NATIVE_NAME
+incgap1,incgap1,incgap1,NATIVE_NAME,,,NATIVE_NAME
+leftrght1,leftrght1,leftrght1,NATIVE_NAME,,,NATIVE_NAME
+servpub,servpub,servpub,NATIVE_NAME,,,NATIVE_NAME
+fulldem,fulldem,fulldem,NATIVE_NAME,,,NATIVE_NAME
+poltalk,poltalk,poltalk,NATIVE_NAME,,,NATIVE_NAME
+conpow,conpow,conpow,NATIVE_NAME,,,NATIVE_NAME
+bizmoney,bizmoney,bizmoney,NATIVE_NAME,,,NATIVE_NAME
+experts,experts,experts,NATIVE_NAME,,,NATIVE_NAME
+biasnews,biasnews,biasnews,NATIVE_NAME,,,NATIVE_NAME
+usmca1,usmca1,usmca1,NATIVE_NAME,,,NATIVE_NAME
+usmca2,usmca2,usmca2,NATIVE_NAME,,,NATIVE_NAME
+morextrm,morextrm,morextrm,NATIVE_NAME,,,NATIVE_NAME
+bullied,bullied,bullied,NATIVE_NAME,,,NATIVE_NAME
+smedia,smedia,smedia,NATIVE_NAME,,,NATIVE_NAME
+imprvown1,imprvown1,imprvown1,NATIVE_NAME,,,NATIVE_NAME
+mustdoc1,mustdoc1,mustdoc1,NATIVE_NAME,,,NATIVE_NAME
+mustmed1,mustmed1,mustmed1,NATIVE_NAME,,,NATIVE_NAME
+musthosp1,musthosp1,musthosp1,NATIVE_NAME,,,NATIVE_NAME
+physill1,physill1,physill1,NATIVE_NAME,,,NATIVE_NAME
+bullpeer,bullpeer,bullpeer,NATIVE_NAME,,,NATIVE_NAME
+rumopeer,rumopeer,rumopeer,NATIVE_NAME,,,NATIVE_NAME
+fighpeer,fighpeer,fighpeer,NATIVE_NAME,,,NATIVE_NAME
+schshoot,schshoot,schshoot,NATIVE_NAME,,,NATIVE_NAME
+cutself,cutself,cutself,NATIVE_NAME,,,NATIVE_NAME
+negself,negself,negself,NATIVE_NAME,,,NATIVE_NAME
+foodalc,foodalc,foodalc,NATIVE_NAME,,,NATIVE_NAME
+risklife,risklife,risklife,NATIVE_NAME,,,NATIVE_NAME
+takelife,takelife,takelife,NATIVE_NAME,,,NATIVE_NAME
+dsndntpay,dsndntpay,dsndntpay,NATIVE_NAME,,,NATIVE_NAME
+acpttg,acpttg,acpttg,NATIVE_NAME,,,NATIVE_NAME
+chngdocs,chngdocs,chngdocs,NATIVE_NAME,,,NATIVE_NAME
+feovrwrk,feovrwrk,feovrwrk,NATIVE_NAME,,,NATIVE_NAME
+sexornt1,sexornt1,sexornt1,NATIVE_NAME,,,NATIVE_NAME
+sexpaid,sexpaid,sexpaid,NATIVE_NAME,,,NATIVE_NAME
+nocondom,nocondom,nocondom,NATIVE_NAME,,,NATIVE_NAME
+nodocidu,nodocidu,nodocidu,NATIVE_NAME,,,NATIVE_NAME
+femself1,femself1,femself1,NATIVE_NAME,,,NATIVE_NAME
+mascself1,mascself1,mascself1,NATIVE_NAME,,,NATIVE_NAME
+femsee1,femsee1,femsee1,NATIVE_NAME,,,NATIVE_NAME
+mascsee1,mascsee1,mascsee1,NATIVE_NAME,,,NATIVE_NAME
+devtype,devtype,devtype,NATIVE_NAME,,,NATIVE_NAME
+family16sex,family16sex,family16sex,NATIVE_NAME,,,NATIVE_NAME
+racdif5x,racdif5x,racdif5x,NATIVE_NAME,,,NATIVE_NAME
+reltrad,reltrad,reltrad,NATIVE_NAME,,,NATIVE_NAME
+conorelgsp,conorelgsp,conorelgsp,NATIVE_NAME,,,NATIVE_NAME
+sexnow2,sexnow2,sexnow2,NATIVE_NAME,,,NATIVE_NAME
+whovote24,whovote24,whovote24,NATIVE_NAME,,,NATIVE_NAME
+whovotets,whovotets,whovotets,NATIVE_NAME,,,NATIVE_NAME
+voteprob,voteprob,voteprob,NATIVE_NAME,,,NATIVE_NAME
+rateincumbts,rateincumbts,rateincumbts,NATIVE_NAME,,,NATIVE_NAME
+ratechall1ts,ratechall1ts,ratechall1ts,NATIVE_NAME,,,NATIVE_NAME
+ratechall2ts,ratechall2ts,ratechall2ts,NATIVE_NAME,,,NATIVE_NAME
+ratechall3ts,ratechall3ts,ratechall3ts,NATIVE_NAME,,,NATIVE_NAME
+chldfam_asn,chldfam_asn,chldfam_asn,NATIVE_NAME,,,NATIVE_NAME
+chldfam_blk,chldfam_blk,chldfam_blk,NATIVE_NAME,,,NATIVE_NAME
+chldfam_hisp,chldfam_hisp,chldfam_hisp,NATIVE_NAME,,,NATIVE_NAME
+chldfam_wht,chldfam_wht,chldfam_wht,NATIVE_NAME,,,NATIVE_NAME
+chldfam_oth,chldfam_oth,chldfam_oth,NATIVE_NAME,,,NATIVE_NAME
+chldadlt_asn,chldadlt_asn,chldadlt_asn,NATIVE_NAME,,,NATIVE_NAME
+chldadlt_blk,chldadlt_blk,chldadlt_blk,NATIVE_NAME,,,NATIVE_NAME
+chldadlt_hisp,chldadlt_hisp,chldadlt_hisp,NATIVE_NAME,,,NATIVE_NAME
+chldadlt_wht,chldadlt_wht,chldadlt_wht,NATIVE_NAME,,,NATIVE_NAME
+chldadlt_oth,chldadlt_oth,chldadlt_oth,NATIVE_NAME,,,NATIVE_NAME
+chldchld_asn,chldchld_asn,chldchld_asn,NATIVE_NAME,,,NATIVE_NAME
+chldchld_blk,chldchld_blk,chldchld_blk,NATIVE_NAME,,,NATIVE_NAME
+chldchld_hisp,chldchld_hisp,chldchld_hisp,NATIVE_NAME,,,NATIVE_NAME
+chldchld_wht,chldchld_wht,chldchld_wht,NATIVE_NAME,,,NATIVE_NAME
+chldchld_oth,chldchld_oth,chldchld_oth,NATIVE_NAME,,,NATIVE_NAME
+chldshop_asn,chldshop_asn,chldshop_asn,NATIVE_NAME,,,NATIVE_NAME
+chldshop_blk,chldshop_blk,chldshop_blk,NATIVE_NAME,,,NATIVE_NAME
+chldshop_hisp,chldshop_hisp,chldshop_hisp,NATIVE_NAME,,,NATIVE_NAME
+chldshop_wht,chldshop_wht,chldshop_wht,NATIVE_NAME,,,NATIVE_NAME
+chldshop_oth,chldshop_oth,chldshop_oth,NATIVE_NAME,,,NATIVE_NAME
+ptnrsxnow1,ptnrsxnow1,ptnrsxnow1,NATIVE_NAME,,,NATIVE_NAME

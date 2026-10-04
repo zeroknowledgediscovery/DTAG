@@ -1,6 +1,6 @@
 {
  "schema": "dtag-model-coverage/1",
- "release": "v0.2.0",
+ "release": "v0.2.1",
  "generated_by": "scripts/build_model_coverage.py",
  "note": "Derived from native model source maps and semantic maps. Country conditioning uses, in order: country_feature, iso_feature (ISO 3166), nation_features (map-labelled NATION variables).",
  "models": {
@@ -10741,7 +10741,7 @@
    "features": 880
   },
   "gss/gss_2024": {
-   "features": 813,
+   "features": 811,
    "year_feature": "year",
    "year_values": [
     "2024"
