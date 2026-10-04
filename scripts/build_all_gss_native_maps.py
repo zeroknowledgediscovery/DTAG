@@ -80,9 +80,6 @@ def main() -> None:
     outdir = rp(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
 
-    if not codebook.is_file():
-        raise SystemExit(f"GSS codebook not found: {codebook}")
-
     models = sorted(
         p for p in model_root.iterdir()
         if p.is_dir() and re.fullmatch(r"gss_\d{4}", p.name)
@@ -90,15 +87,22 @@ def main() -> None:
     if not models:
         raise SystemExit(f"No gss_YYYY native model directories under {model_root}")
 
-    print(f"Parsing cumulative codebook once: {codebook}")
-    docs = parse_codebook(codebook)
     codebook_lookup: Dict[str, Tuple[str, str]] = {}
-    for r in docs.itertuples(index=False):
-        key = str(r.variable_key).lower()
-        txt = norm(str(r.question_text or ""))
-        page = str(r.codebook_page or "")
-        if txt:
-            codebook_lookup[key] = (txt, page)
+    if codebook.is_file():
+        print(f"Parsing cumulative codebook once: {codebook}")
+        docs = parse_codebook(codebook)
+        for r in docs.itertuples(index=False):
+            key = str(r.variable_key).lower()
+            txt = norm(str(r.question_text or ""))
+            page = str(r.codebook_page or "")
+            if txt:
+                codebook_lookup[key] = (txt, page)
+    else:
+        print(
+            f"WARNING: cumulative GSS codebook not found: {codebook}. "
+            "Continuing with year-specific maps, donor maps, and native "
+            "feature-name fallback."
+        )
 
     existing_by_year: Dict[int, Dict[str, str]] = {}
     candidate_maps = {
