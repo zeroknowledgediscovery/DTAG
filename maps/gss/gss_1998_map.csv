@@ -1,909 +1,909 @@
-variable,question_text,question_text_filled,source,source_year,codebook_page,map_provenance
-wrkstat,wrkstat,wrkstat,DONOR_MAP,2018,,DONOR_MAP
-HRS1,HRS1,HRS1,DONOR_MAP,2018,,DONOR_MAP
-HRS2,HRS2,HRS2,DONOR_MAP,2018,,DONOR_MAP
-evwork,evwork,evwork,DONOR_MAP,2018,,DONOR_MAP
-wrkslf,wrkslf,wrkslf,DONOR_MAP,2018,,DONOR_MAP
-OCC80,OCC80,OCC80,NATIVE_NAME,,,NATIVE_NAME
-PRESTG80,PRESTG80,PRESTG80,NATIVE_NAME,,,NATIVE_NAME
-INDUS80,INDUS80,INDUS80,NATIVE_NAME,,,NATIVE_NAME
-found,found,found,NATIVE_NAME,,,NATIVE_NAME
-OCC10,OCC10,OCC10,DONOR_MAP,2018,,DONOR_MAP
-occindv,occindv,occindv,NATIVE_NAME,,,NATIVE_NAME
-occstatus,occstatus,occstatus,NATIVE_NAME,,,NATIVE_NAME
-occtag,occtag,occtag,NATIVE_NAME,,,NATIVE_NAME
-PRESTG10,PRESTG10,PRESTG10,DONOR_MAP,2018,,DONOR_MAP
-PRESTG105PLUS,PRESTG105PLUS,PRESTG105PLUS,DONOR_MAP,2018,,DONOR_MAP
-INDUS10,INDUS10,INDUS10,DONOR_MAP,2018,,DONOR_MAP
-indstatus,indstatus,indstatus,NATIVE_NAME,,,NATIVE_NAME
-indtag,indtag,indtag,NATIVE_NAME,,,NATIVE_NAME
-marital,marital,marital,DONOR_MAP,2018,,DONOR_MAP
-divorce,divorce,divorce,DONOR_MAP,2018,,DONOR_MAP
-widowed,widowed,widowed,DONOR_MAP,2018,,DONOR_MAP
-spwrksta,spwrksta,spwrksta,DONOR_MAP,2018,,DONOR_MAP
-SPHRS1,SPHRS1,SPHRS1,DONOR_MAP,2018,,DONOR_MAP
-SPHRS2,SPHRS2,SPHRS2,DONOR_MAP,2018,,DONOR_MAP
-spevwork,spevwork,spevwork,DONOR_MAP,2018,,DONOR_MAP
-spwrkslf,spwrkslf,spwrkslf,DONOR_MAP,2018,,DONOR_MAP
-SPOCC80,SPOCC80,SPOCC80,NATIVE_NAME,,,NATIVE_NAME
-SPPRES80,SPPRES80,SPPRES80,NATIVE_NAME,,,NATIVE_NAME
-SPIND80,SPIND80,SPIND80,NATIVE_NAME,,,NATIVE_NAME
-SPOCC10,SPOCC10,SPOCC10,DONOR_MAP,2018,,DONOR_MAP
-spoccindv,spoccindv,spoccindv,NATIVE_NAME,,,NATIVE_NAME
-spoccstatus,spoccstatus,spoccstatus,NATIVE_NAME,,,NATIVE_NAME
-spocctag,spocctag,spocctag,NATIVE_NAME,,,NATIVE_NAME
-SPPRES10,SPPRES10,SPPRES10,DONOR_MAP,2018,,DONOR_MAP
-SPPRES105PLUS,SPPRES105PLUS,SPPRES105PLUS,DONOR_MAP,2018,,DONOR_MAP
-SPIND10,SPIND10,SPIND10,DONOR_MAP,2018,,DONOR_MAP
-spindstatus,spindstatus,spindstatus,NATIVE_NAME,,,NATIVE_NAME
-spindtag,spindtag,spindtag,NATIVE_NAME,,,NATIVE_NAME
-pawrkslf,pawrkslf,pawrkslf,DONOR_MAP,2018,,DONOR_MAP
-PAOCC80,PAOCC80,PAOCC80,NATIVE_NAME,,,NATIVE_NAME
-PAPRES80,PAPRES80,PAPRES80,NATIVE_NAME,,,NATIVE_NAME
-PAIND80,PAIND80,PAIND80,NATIVE_NAME,,,NATIVE_NAME
-PAOCC10,PAOCC10,PAOCC10,DONOR_MAP,2018,,DONOR_MAP
-paoccindv,paoccindv,paoccindv,NATIVE_NAME,,,NATIVE_NAME
-paoccstatus,paoccstatus,paoccstatus,NATIVE_NAME,,,NATIVE_NAME
-paocctag,paocctag,paocctag,NATIVE_NAME,,,NATIVE_NAME
-PAPRES10,PAPRES10,PAPRES10,DONOR_MAP,2018,,DONOR_MAP
-PAPRES105PLUS,PAPRES105PLUS,PAPRES105PLUS,DONOR_MAP,2018,,DONOR_MAP
-PAIND10,PAIND10,PAIND10,DONOR_MAP,2018,,DONOR_MAP
-paindstatus,paindstatus,paindstatus,NATIVE_NAME,,,NATIVE_NAME
-paindtag,paindtag,paindtag,NATIVE_NAME,,,NATIVE_NAME
-MAOCC80,MAOCC80,MAOCC80,NATIVE_NAME,,,NATIVE_NAME
-MAPRES80,MAPRES80,MAPRES80,NATIVE_NAME,,,NATIVE_NAME
-mawrkslf,mawrkslf,mawrkslf,DONOR_MAP,2018,,DONOR_MAP
-MAIND80,MAIND80,MAIND80,NATIVE_NAME,,,NATIVE_NAME
-MAOCC10,MAOCC10,MAOCC10,DONOR_MAP,2018,,DONOR_MAP
-maoccindv,maoccindv,maoccindv,NATIVE_NAME,,,NATIVE_NAME
-maoccstatus,maoccstatus,maoccstatus,NATIVE_NAME,,,NATIVE_NAME
-maocctag,maocctag,maocctag,NATIVE_NAME,,,NATIVE_NAME
-MAPRES10,MAPRES10,MAPRES10,DONOR_MAP,2018,,DONOR_MAP
-MAPRES105PLUS,MAPRES105PLUS,MAPRES105PLUS,DONOR_MAP,2018,,DONOR_MAP
-MAIND10,MAIND10,MAIND10,DONOR_MAP,2018,,DONOR_MAP
-maindstatus,maindstatus,maindstatus,NATIVE_NAME,,,NATIVE_NAME
-maindtag,maindtag,maindtag,NATIVE_NAME,,,NATIVE_NAME
-sibs,sibs,sibs,DONOR_MAP,2018,,DONOR_MAP
-childs,childs,childs,DONOR_MAP,2018,,DONOR_MAP
-age,age,age,DONOR_MAP,2018,,DONOR_MAP
-agekdbrn,agekdbrn,agekdbrn,DONOR_MAP,2018,,DONOR_MAP
-educ,educ,educ,DONOR_MAP,2018,,DONOR_MAP
-paeduc,paeduc,paeduc,DONOR_MAP,2018,,DONOR_MAP
-maeduc,maeduc,maeduc,DONOR_MAP,2018,,DONOR_MAP
-speduc,speduc,speduc,DONOR_MAP,2018,,DONOR_MAP
-degree,degree,degree,DONOR_MAP,2018,,DONOR_MAP
-padeg,padeg,padeg,DONOR_MAP,2018,,DONOR_MAP
-madeg,madeg,madeg,DONOR_MAP,2018,,DONOR_MAP
-spdeg,spdeg,spdeg,DONOR_MAP,2018,,DONOR_MAP
-sex,sex,sex,DONOR_MAP,2018,,DONOR_MAP
-race,race,race,DONOR_MAP,2018,,DONOR_MAP
-RES16,RES16,RES16,DONOR_MAP,2018,,DONOR_MAP
-REG16,REG16,REG16,DONOR_MAP,2018,,DONOR_MAP
-MOBILE16,MOBILE16,MOBILE16,DONOR_MAP,2018,,DONOR_MAP
-FAMILY16,FAMILY16,FAMILY16,DONOR_MAP,2018,,DONOR_MAP
-FAMDIF16,FAMDIF16,FAMDIF16,DONOR_MAP,2018,,DONOR_MAP
-mawrkgrw,mawrkgrw,mawrkgrw,DONOR_MAP,2018,,DONOR_MAP
-born,born,born,DONOR_MAP,2018,,DONOR_MAP
-parborn,parborn,parborn,DONOR_MAP,2018,,DONOR_MAP
-granborn,granborn,granborn,DONOR_MAP,2018,,DONOR_MAP
-hompop,hompop,hompop,DONOR_MAP,2018,,DONOR_MAP
-babies,babies,babies,DONOR_MAP,2018,,DONOR_MAP
-preteen,preteen,preteen,DONOR_MAP,2018,,DONOR_MAP
-teens,teens,teens,DONOR_MAP,2018,,DONOR_MAP
-adults,adults,adults,DONOR_MAP,2018,,DONOR_MAP
-unrelat,unrelat,unrelat,DONOR_MAP,2018,,DONOR_MAP
-earnrs,earnrs,earnrs,DONOR_MAP,2018,,DONOR_MAP
-income,income,income,DONOR_MAP,2018,,DONOR_MAP
-rincome,rincome,rincome,DONOR_MAP,2018,,DONOR_MAP
-INCOME98,INCOME98,INCOME98,NATIVE_NAME,,,NATIVE_NAME
-RINCOM98,RINCOM98,RINCOM98,NATIVE_NAME,,,NATIVE_NAME
-region,region,region,DONOR_MAP,2018,,DONOR_MAP
-xnorcsiz,xnorcsiz,xnorcsiz,DONOR_MAP,2018,,DONOR_MAP
-srcbelt,srcbelt,srcbelt,DONOR_MAP,2018,,DONOR_MAP
-size,size,size,DONOR_MAP,2018,,DONOR_MAP
-partyid,partyid,partyid,DONOR_MAP,2018,,DONOR_MAP
-VOTE92,VOTE92,VOTE92,NATIVE_NAME,,,NATIVE_NAME
-PRES92,PRES92,PRES92,NATIVE_NAME,,,NATIVE_NAME
-IF92WHO,IF92WHO,IF92WHO,NATIVE_NAME,,,NATIVE_NAME
-VOTE96,VOTE96,VOTE96,NATIVE_NAME,,,NATIVE_NAME
-PRES96,PRES96,PRES96,NATIVE_NAME,,,NATIVE_NAME
-IF96WHO,IF96WHO,IF96WHO,NATIVE_NAME,,,NATIVE_NAME
-polviews,polviews,polviews,DONOR_MAP,2018,,DONOR_MAP
-natspac,natspac,natspac,DONOR_MAP,2018,,DONOR_MAP
-natenvir,natenvir,natenvir,DONOR_MAP,2018,,DONOR_MAP
-natheal,natheal,natheal,DONOR_MAP,2018,,DONOR_MAP
-natcity,natcity,natcity,DONOR_MAP,2018,,DONOR_MAP
-natcrime,natcrime,natcrime,DONOR_MAP,2018,,DONOR_MAP
-natdrug,natdrug,natdrug,DONOR_MAP,2018,,DONOR_MAP
-nateduc,nateduc,nateduc,DONOR_MAP,2018,,DONOR_MAP
-natrace,natrace,natrace,DONOR_MAP,2018,,DONOR_MAP
-natarms,natarms,natarms,DONOR_MAP,2018,,DONOR_MAP
-nataid,nataid,nataid,DONOR_MAP,2018,,DONOR_MAP
-natfare,natfare,natfare,DONOR_MAP,2018,,DONOR_MAP
-natroad,natroad,natroad,DONOR_MAP,2018,,DONOR_MAP
-natsoc,natsoc,natsoc,DONOR_MAP,2018,,DONOR_MAP
-natmass,natmass,natmass,DONOR_MAP,2018,,DONOR_MAP
-natpark,natpark,natpark,DONOR_MAP,2018,,DONOR_MAP
-natspacy,natspacy,natspacy,DONOR_MAP,2018,,DONOR_MAP
-natenviy,natenviy,natenviy,DONOR_MAP,2018,,DONOR_MAP
-nathealy,nathealy,nathealy,DONOR_MAP,2018,,DONOR_MAP
-natcityy,natcityy,natcityy,DONOR_MAP,2018,,DONOR_MAP
-natcrimy,natcrimy,natcrimy,DONOR_MAP,2018,,DONOR_MAP
-natdrugy,natdrugy,natdrugy,DONOR_MAP,2018,,DONOR_MAP
-nateducy,nateducy,nateducy,DONOR_MAP,2018,,DONOR_MAP
-natracey,natracey,natracey,DONOR_MAP,2018,,DONOR_MAP
-natarmsy,natarmsy,natarmsy,DONOR_MAP,2018,,DONOR_MAP
-nataidy,nataidy,nataidy,DONOR_MAP,2018,,DONOR_MAP
-natfarey,natfarey,natfarey,DONOR_MAP,2018,,DONOR_MAP
-eqwlth,eqwlth,eqwlth,DONOR_MAP,2018,,DONOR_MAP
-tax,tax,tax,DONOR_MAP,2018,,DONOR_MAP
-spkath,spkath,spkath,DONOR_MAP,2018,,DONOR_MAP
-colath,colath,colath,DONOR_MAP,2018,,DONOR_MAP
-libath,libath,libath,DONOR_MAP,2018,,DONOR_MAP
-spkrac,spkrac,spkrac,DONOR_MAP,2018,,DONOR_MAP
-colrac,colrac,colrac,DONOR_MAP,2018,,DONOR_MAP
-librac,librac,librac,DONOR_MAP,2018,,DONOR_MAP
-spkcom,spkcom,spkcom,DONOR_MAP,2018,,DONOR_MAP
-colcom,colcom,colcom,DONOR_MAP,2018,,DONOR_MAP
-libcom,libcom,libcom,DONOR_MAP,2018,,DONOR_MAP
-spkmil,spkmil,spkmil,DONOR_MAP,2018,,DONOR_MAP
-colmil,colmil,colmil,DONOR_MAP,2018,,DONOR_MAP
-libmil,libmil,libmil,DONOR_MAP,2018,,DONOR_MAP
-spkhomo,spkhomo,spkhomo,DONOR_MAP,2018,,DONOR_MAP
-colhomo,colhomo,colhomo,DONOR_MAP,2018,,DONOR_MAP
-libhomo,libhomo,libhomo,DONOR_MAP,2018,,DONOR_MAP
-cappun,cappun,cappun,DONOR_MAP,2018,,DONOR_MAP
-gunlaw,gunlaw,gunlaw,DONOR_MAP,2018,,DONOR_MAP
-courts,courts,courts,DONOR_MAP,2018,,DONOR_MAP
-grass,grass,grass,DONOR_MAP,2018,,DONOR_MAP
-relig,relig,relig,DONOR_MAP,2018,,DONOR_MAP
-denom,denom,denom,DONOR_MAP,2018,,DONOR_MAP
-other,other,other,DONOR_MAP,2018,,DONOR_MAP
-Jew,Jew,Jew,DONOR_MAP,2018,,DONOR_MAP
-fund,fund,fund,DONOR_MAP,2018,,DONOR_MAP
-attend,attend,attend,DONOR_MAP,2018,,DONOR_MAP
-reliten,reliten,reliten,DONOR_MAP,2018,,DONOR_MAP
-postlife,postlife,postlife,DONOR_MAP,2018,,DONOR_MAP
-pray,pray,pray,DONOR_MAP,2018,,DONOR_MAP
-mapa,mapa,mapa,NATIVE_NAME,,,NATIVE_NAME
-mastersp,mastersp,mastersp,NATIVE_NAME,,,NATIVE_NAME
-judgeluv,judgeluv,judgeluv,NATIVE_NAME,,,NATIVE_NAME
-frndking,frndking,frndking,NATIVE_NAME,,,NATIVE_NAME
-RELIG16,RELIG16,RELIG16,DONOR_MAP,2018,,DONOR_MAP
-DENOM16,DENOM16,DENOM16,DONOR_MAP,2018,,DONOR_MAP
-OTH16,OTH16,OTH16,DONOR_MAP,2018,,DONOR_MAP
-Jew16,Jew16,Jew16,DONOR_MAP,2018,,DONOR_MAP
-FUND16,FUND16,FUND16,DONOR_MAP,2018,,DONOR_MAP
-prayer,prayer,prayer,DONOR_MAP,2018,,DONOR_MAP
-bible,bible,bible,DONOR_MAP,2018,,DONOR_MAP
-WORLD1,WORLD1,WORLD1,NATIVE_NAME,,,NATIVE_NAME
-WORLD4,WORLD4,WORLD4,NATIVE_NAME,,,NATIVE_NAME
-racmar,racmar,racmar,NATIVE_NAME,,,NATIVE_NAME
-racpush,racpush,racpush,NATIVE_NAME,,,NATIVE_NAME
-raclive,raclive,raclive,DONOR_MAP,2018,,DONOR_MAP
-affrmact,affrmact,affrmact,DONOR_MAP,2018,,DONOR_MAP
-wrkwayup,wrkwayup,wrkwayup,DONOR_MAP,2018,,DONOR_MAP
-blksimp,blksimp,blksimp,NATIVE_NAME,,,NATIVE_NAME
-closeblk,closeblk,closeblk,NATIVE_NAME,,,NATIVE_NAME
-closewht,closewht,closewht,NATIVE_NAME,,,NATIVE_NAME
-happy,happy,happy,DONOR_MAP,2018,,DONOR_MAP
-hapmar,hapmar,hapmar,DONOR_MAP,2018,,DONOR_MAP
-health,health,health,DONOR_MAP,2018,,DONOR_MAP
-life,life,life,DONOR_MAP,2018,,DONOR_MAP
-helpful,helpful,helpful,DONOR_MAP,2018,,DONOR_MAP
-fair,fair,fair,DONOR_MAP,2018,,DONOR_MAP
-trust,trust,trust,DONOR_MAP,2018,,DONOR_MAP
-confinan,confinan,confinan,DONOR_MAP,2018,,DONOR_MAP
-conbus,conbus,conbus,DONOR_MAP,2018,,DONOR_MAP
-conclerg,conclerg,conclerg,DONOR_MAP,2018,,DONOR_MAP
-coneduc,coneduc,coneduc,DONOR_MAP,2018,,DONOR_MAP
-confed,confed,confed,DONOR_MAP,2018,,DONOR_MAP
-conlabor,conlabor,conlabor,DONOR_MAP,2018,,DONOR_MAP
-conpress,conpress,conpress,DONOR_MAP,2018,,DONOR_MAP
-conmedic,conmedic,conmedic,DONOR_MAP,2018,,DONOR_MAP
-contv,contv,contv,DONOR_MAP,2018,,DONOR_MAP
-conjudge,conjudge,conjudge,DONOR_MAP,2018,,DONOR_MAP
-consci,consci,consci,DONOR_MAP,2018,,DONOR_MAP
-conlegis,conlegis,conlegis,DONOR_MAP,2018,,DONOR_MAP
-conarmy,conarmy,conarmy,DONOR_MAP,2018,,DONOR_MAP
-obey,obey,obey,DONOR_MAP,2018,,DONOR_MAP
-popular,popular,popular,DONOR_MAP,2018,,DONOR_MAP
-thnkself,thnkself,thnkself,DONOR_MAP,2018,,DONOR_MAP
-workhard,workhard,workhard,DONOR_MAP,2018,,DONOR_MAP
-helpoth,helpoth,helpoth,DONOR_MAP,2018,,DONOR_MAP
-socrel,socrel,socrel,DONOR_MAP,2018,,DONOR_MAP
-socommun,socommun,socommun,DONOR_MAP,2018,,DONOR_MAP
-socfrend,socfrend,socfrend,DONOR_MAP,2018,,DONOR_MAP
-socbar,socbar,socbar,DONOR_MAP,2018,,DONOR_MAP
-aged,aged,aged,DONOR_MAP,2018,,DONOR_MAP
-weekswrk,weekswrk,weekswrk,DONOR_MAP,2018,,DONOR_MAP
-partfull,partfull,partfull,DONOR_MAP,2018,,DONOR_MAP
-joblose,joblose,joblose,DONOR_MAP,2018,,DONOR_MAP
-jobfind,jobfind,jobfind,DONOR_MAP,2018,,DONOR_MAP
-satjob,satjob,satjob,DONOR_MAP,2018,,DONOR_MAP
-richwork,richwork,richwork,DONOR_MAP,2018,,DONOR_MAP
-class,class,class,DONOR_MAP,2018,,DONOR_MAP
-satfin,satfin,satfin,DONOR_MAP,2018,,DONOR_MAP
-finalter,finalter,finalter,DONOR_MAP,2018,,DONOR_MAP
-finrela,finrela,finrela,DONOR_MAP,2018,,DONOR_MAP
-wksub,wksub,wksub,DONOR_MAP,2018,,DONOR_MAP
-wksubs,wksubs,wksubs,DONOR_MAP,2018,,DONOR_MAP
-wksup,wksup,wksup,DONOR_MAP,2018,,DONOR_MAP
-wksups,wksups,wksups,DONOR_MAP,2018,,DONOR_MAP
-unemp,unemp,unemp,DONOR_MAP,2018,,DONOR_MAP
-union,union,union,DONOR_MAP,2018,,DONOR_MAP
-getahead,getahead,getahead,DONOR_MAP,2018,,DONOR_MAP
-parsol,parsol,parsol,DONOR_MAP,2018,,DONOR_MAP
-kidssol,kidssol,kidssol,DONOR_MAP,2018,,DONOR_MAP
-fehome,fehome,fehome,NATIVE_NAME,,,NATIVE_NAME
-fework,fework,fework,NATIVE_NAME,,,NATIVE_NAME
-fepres,fepres,fepres,NATIVE_NAME,,,NATIVE_NAME
-fepol,fepol,fepol,DONOR_MAP,2018,,DONOR_MAP
-abdefect,abdefect,abdefect,DONOR_MAP,2018,,DONOR_MAP
-abnomore,abnomore,abnomore,DONOR_MAP,2018,,DONOR_MAP
-abhlth,abhlth,abhlth,DONOR_MAP,2018,,DONOR_MAP
-abpoor,abpoor,abpoor,DONOR_MAP,2018,,DONOR_MAP
-abrape,abrape,abrape,DONOR_MAP,2018,,DONOR_MAP
-absingle,absingle,absingle,DONOR_MAP,2018,,DONOR_MAP
-abany,abany,abany,DONOR_MAP,2018,,DONOR_MAP
-chldidel,chldidel,chldidel,DONOR_MAP,2018,,DONOR_MAP
-pillok,pillok,pillok,DONOR_MAP,2018,,DONOR_MAP
-sexeduc,sexeduc,sexeduc,DONOR_MAP,2018,,DONOR_MAP
-divlaw,divlaw,divlaw,DONOR_MAP,2018,,DONOR_MAP
-premarsx,premarsx,premarsx,DONOR_MAP,2018,,DONOR_MAP
-teensex,teensex,teensex,DONOR_MAP,2018,,DONOR_MAP
-xmarsex,xmarsex,xmarsex,DONOR_MAP,2018,,DONOR_MAP
-homosex,homosex,homosex,DONOR_MAP,2018,,DONOR_MAP
-pornlaw,pornlaw,pornlaw,DONOR_MAP,2018,,DONOR_MAP
-xmovie,xmovie,xmovie,DONOR_MAP,2018,,DONOR_MAP
-spanking,spanking,spanking,DONOR_MAP,2018,,DONOR_MAP
-LETDIE1,LETDIE1,LETDIE1,DONOR_MAP,2018,,DONOR_MAP
-SUICIDE1,SUICIDE1,SUICIDE1,DONOR_MAP,2018,,DONOR_MAP
-SUICIDE2,SUICIDE2,SUICIDE2,DONOR_MAP,2018,,DONOR_MAP
-SUICIDE3,SUICIDE3,SUICIDE3,DONOR_MAP,2018,,DONOR_MAP
-SUICIDE4,SUICIDE4,SUICIDE4,DONOR_MAP,2018,,DONOR_MAP
-polhitok,polhitok,polhitok,DONOR_MAP,2018,,DONOR_MAP
-polabuse,polabuse,polabuse,DONOR_MAP,2018,,DONOR_MAP
-polmurdr,polmurdr,polmurdr,DONOR_MAP,2018,,DONOR_MAP
-polescap,polescap,polescap,DONOR_MAP,2018,,DONOR_MAP
-polattak,polattak,polattak,DONOR_MAP,2018,,DONOR_MAP
-fear,fear,fear,DONOR_MAP,2018,,DONOR_MAP
-owngun,owngun,owngun,DONOR_MAP,2018,,DONOR_MAP
-pistol,pistol,pistol,DONOR_MAP,2018,,DONOR_MAP
-shotgun,shotgun,shotgun,DONOR_MAP,2018,,DONOR_MAP
-rifle,rifle,rifle,DONOR_MAP,2018,,DONOR_MAP
-rowngun,rowngun,rowngun,DONOR_MAP,2018,,DONOR_MAP
-hunt,hunt,hunt,DONOR_MAP,2018,,DONOR_MAP
-news,news,news,DONOR_MAP,2018,,DONOR_MAP
-tvhours,tvhours,tvhours,DONOR_MAP,2018,,DONOR_MAP
-phone,phone,phone,DONOR_MAP,2018,,DONOR_MAP
-coop,coop,coop,DONOR_MAP,2018,,DONOR_MAP
-comprend,comprend,comprend,DONOR_MAP,2018,,DONOR_MAP
-form,form,form,DONOR_MAP,2018,,DONOR_MAP
-fechld,fechld,fechld,DONOR_MAP,2018,,DONOR_MAP
-fehelp,fehelp,fehelp,NATIVE_NAME,,,NATIVE_NAME
-fepresch,fepresch,fepresch,DONOR_MAP,2018,,DONOR_MAP
-fefam,fefam,fefam,DONOR_MAP,2018,,DONOR_MAP
-RACDIF1,RACDIF1,RACDIF1,DONOR_MAP,2018,,DONOR_MAP
-RACDIF2,RACDIF2,RACDIF2,DONOR_MAP,2018,,DONOR_MAP
-RACDIF3,RACDIF3,RACDIF3,DONOR_MAP,2018,,DONOR_MAP
-RACDIF4,RACDIF4,RACDIF4,DONOR_MAP,2018,,DONOR_MAP
-helppoor,helppoor,helppoor,DONOR_MAP,2018,,DONOR_MAP
-helpnot,helpnot,helpnot,DONOR_MAP,2018,,DONOR_MAP
-helpsick,helpsick,helpsick,DONOR_MAP,2018,,DONOR_MAP
-helpblk,helpblk,helpblk,DONOR_MAP,2018,,DONOR_MAP
-SUNSCH16,SUNSCH16,SUNSCH16,NATIVE_NAME,,,NATIVE_NAME
-tvrelig,tvrelig,tvrelig,NATIVE_NAME,,,NATIVE_NAME
-god,god,god,DONOR_MAP,2018,,DONOR_MAP
-reborn,reborn,reborn,DONOR_MAP,2018,,DONOR_MAP
-savesoul,savesoul,savesoul,DONOR_MAP,2018,,DONOR_MAP
-readword,readword,readword,NATIVE_NAME,,,NATIVE_NAME
-gochurch,gochurch,gochurch,NATIVE_NAME,,,NATIVE_NAME
-believe,believe,believe,NATIVE_NAME,,,NATIVE_NAME
-follow,follow,follow,NATIVE_NAME,,,NATIVE_NAME
-goownway,goownway,goownway,NATIVE_NAME,,,NATIVE_NAME
-DOUBTS1,DOUBTS1,DOUBTS1,NATIVE_NAME,,,NATIVE_NAME
-DOUBTS2,DOUBTS2,DOUBTS2,NATIVE_NAME,,,NATIVE_NAME
-FAITH1,FAITH1,FAITH1,NATIVE_NAME,,,NATIVE_NAME
-FAITH2,FAITH2,FAITH2,NATIVE_NAME,,,NATIVE_NAME
-FRNDCON1,FRNDCON1,FRNDCON1,NATIVE_NAME,,,NATIVE_NAME
-FRNDCON2,FRNDCON2,FRNDCON2,NATIVE_NAME,,,NATIVE_NAME
-FRNDCON3,FRNDCON3,FRNDCON3,NATIVE_NAME,,,NATIVE_NAME
-FRNDCON4,FRNDCON4,FRNDCON4,NATIVE_NAME,,,NATIVE_NAME
-FRNDCON5,FRNDCON5,FRNDCON5,NATIVE_NAME,,,NATIVE_NAME
-FRNDREL1,FRNDREL1,FRNDREL1,NATIVE_NAME,,,NATIVE_NAME
-FRNDREL2,FRNDREL2,FRNDREL2,NATIVE_NAME,,,NATIVE_NAME
-FRNDREL3,FRNDREL3,FRNDREL3,NATIVE_NAME,,,NATIVE_NAME
-FRNDREL4,FRNDREL4,FRNDREL4,NATIVE_NAME,,,NATIVE_NAME
-FRNDREL5,FRNDREL5,FRNDREL5,NATIVE_NAME,,,NATIVE_NAME
-FRNDDEN1,FRNDDEN1,FRNDDEN1,NATIVE_NAME,,,NATIVE_NAME
-FRNDDEN2,FRNDDEN2,FRNDDEN2,NATIVE_NAME,,,NATIVE_NAME
-FRNDDEN3,FRNDDEN3,FRNDDEN3,NATIVE_NAME,,,NATIVE_NAME
-FRNDDEN4,FRNDDEN4,FRNDDEN4,NATIVE_NAME,,,NATIVE_NAME
-FRNDDEN5,FRNDDEN5,FRNDDEN5,NATIVE_NAME,,,NATIVE_NAME
-FRNDOTH1,FRNDOTH1,FRNDOTH1,NATIVE_NAME,,,NATIVE_NAME
-FRNDOTH2,FRNDOTH2,FRNDOTH2,NATIVE_NAME,,,NATIVE_NAME
-FRNDOTH3,FRNDOTH3,FRNDOTH3,NATIVE_NAME,,,NATIVE_NAME
-FRNDOTH4,FRNDOTH4,FRNDOTH4,NATIVE_NAME,,,NATIVE_NAME
-FRNDOTH5,FRNDOTH5,FRNDOTH5,NATIVE_NAME,,,NATIVE_NAME
-FRNDFND1,FRNDFND1,FRNDFND1,NATIVE_NAME,,,NATIVE_NAME
-FRNDFND2,FRNDFND2,FRNDFND2,NATIVE_NAME,,,NATIVE_NAME
-FRNDFND3,FRNDFND3,FRNDFND3,NATIVE_NAME,,,NATIVE_NAME
-FRNDFND4,FRNDFND4,FRNDFND4,NATIVE_NAME,,,NATIVE_NAME
-FRNDFND5,FRNDFND5,FRNDFND5,NATIVE_NAME,,,NATIVE_NAME
-FRNDRAC1,FRNDRAC1,FRNDRAC1,NATIVE_NAME,,,NATIVE_NAME
-FRNDRAC2,FRNDRAC2,FRNDRAC2,NATIVE_NAME,,,NATIVE_NAME
-FRNDRAC3,FRNDRAC3,FRNDRAC3,NATIVE_NAME,,,NATIVE_NAME
-FRNDRAC4,FRNDRAC4,FRNDRAC4,NATIVE_NAME,,,NATIVE_NAME
-FRNDRAC5,FRNDRAC5,FRNDRAC5,NATIVE_NAME,,,NATIVE_NAME
-friends,friends,friends,NATIVE_NAME,,,NATIVE_NAME
-numfrend,numfrend,numfrend,NATIVE_NAME,,,NATIVE_NAME
-numbwfrd,numbwfrd,numbwfrd,NATIVE_NAME,,,NATIVE_NAME
-bwfriend,bwfriend,bwfriend,NATIVE_NAME,,,NATIVE_NAME
-godsells,godsells,godsells,NATIVE_NAME,,,NATIVE_NAME
-godsport,godsport,godsport,NATIVE_NAME,,,NATIVE_NAME
-givecong,givecong,givecong,NATIVE_NAME,,,NATIVE_NAME
-giverel,giverel,giverel,NATIVE_NAME,,,NATIVE_NAME
-giveoth,giveoth,giveoth,NATIVE_NAME,,,NATIVE_NAME
-givearts,givearts,givearts,NATIVE_NAME,,,NATIVE_NAME
-RELHRS1,RELHRS1,RELHRS1,NATIVE_NAME,,,NATIVE_NAME
-RELHRS2,RELHRS2,RELHRS2,NATIVE_NAME,,,NATIVE_NAME
-numcong,numcong,numcong,DONOR_MAP,2018,,DONOR_MAP
-KID5UP,KID5UP,KID5UP,NATIVE_NAME,,,NATIVE_NAME
-pubsch,pubsch,pubsch,NATIVE_NAME,,,NATIVE_NAME
-homesch,homesch,homesch,NATIVE_NAME,,,NATIVE_NAME
-cathsch,cathsch,cathsch,NATIVE_NAME,,,NATIVE_NAME
-chrissch,chrissch,chrissch,NATIVE_NAME,,,NATIVE_NAME
-relsch,relsch,relsch,NATIVE_NAME,,,NATIVE_NAME
-privsch,privsch,privsch,NATIVE_NAME,,,NATIVE_NAME
-othsch,othsch,othsch,NATIVE_NAME,,,NATIVE_NAME
-shoprel,shoprel,shoprel,NATIVE_NAME,,,NATIVE_NAME
-shopmove,shopmove,shopmove,NATIVE_NAME,,,NATIVE_NAME
-shopnum,shopnum,shopnum,NATIVE_NAME,,,NATIVE_NAME
-wlthwhts,wlthwhts,wlthwhts,DONOR_MAP,2018,,DONOR_MAP
-wlthblks,wlthblks,wlthblks,DONOR_MAP,2018,,DONOR_MAP
-workwhts,workwhts,workwhts,DONOR_MAP,2018,,DONOR_MAP
-workblks,workblks,workblks,DONOR_MAP,2018,,DONOR_MAP
-intlwhts,intlwhts,intlwhts,DONOR_MAP,2018,,DONOR_MAP
-intlblks,intlblks,intlblks,DONOR_MAP,2018,,DONOR_MAP
-liveblks,liveblks,liveblks,DONOR_MAP,2018,,DONOR_MAP
-marblk,marblk,marblk,DONOR_MAP,2018,,DONOR_MAP
-racwork,racwork,racwork,DONOR_MAP,2018,,DONOR_MAP
-discaff,discaff,discaff,DONOR_MAP,2018,,DONOR_MAP
-visitart,visitart,visitart,NATIVE_NAME,,,NATIVE_NAME
-makeart,makeart,makeart,NATIVE_NAME,,,NATIVE_NAME
-dance,dance,dance,NATIVE_NAME,,,NATIVE_NAME
-gomusic,gomusic,gomusic,NATIVE_NAME,,,NATIVE_NAME
-perform,perform,perform,NATIVE_NAME,,,NATIVE_NAME
-seemovie,seemovie,seemovie,NATIVE_NAME,,,NATIVE_NAME
-plymusic,plymusic,plymusic,NATIVE_NAME,,,NATIVE_NAME
-judgeart,judgeart,judgeart,NATIVE_NAME,,,NATIVE_NAME
-trstprof,trstprof,trstprof,NATIVE_NAME,,,NATIVE_NAME
-modpaint,modpaint,modpaint,NATIVE_NAME,,,NATIVE_NAME
-pclit,pclit,pclit,NATIVE_NAME,,,NATIVE_NAME
-romance,romance,romance,NATIVE_NAME,,,NATIVE_NAME
-livewith,livewith,livewith,NATIVE_NAME,,,NATIVE_NAME
-WILLWED1,WILLWED1,WILLWED1,NATIVE_NAME,,,NATIVE_NAME
-WILLWED2,WILLWED2,WILLWED2,NATIVE_NAME,,,NATIVE_NAME
-privpray,privpray,privpray,NATIVE_NAME,,,NATIVE_NAME
-meditate,meditate,meditate,NATIVE_NAME,,,NATIVE_NAME
-CONGHLP1,CONGHLP1,CONGHLP1,NATIVE_NAME,,,NATIVE_NAME
-CONGHLP2,CONGHLP2,CONGHLP2,NATIVE_NAME,,,NATIVE_NAME
-CONGHRM1,CONGHRM1,CONGHRM1,NATIVE_NAME,,,NATIVE_NAME
-CONGHRM2,CONGHRM2,CONGHRM2,NATIVE_NAME,,,NATIVE_NAME
-COPE1,COPE1,COPE1,NATIVE_NAME,,,NATIVE_NAME
-COPE2,COPE2,COPE2,NATIVE_NAME,,,NATIVE_NAME
-COPE3,COPE3,COPE3,NATIVE_NAME,,,NATIVE_NAME
-COPE4,COPE4,COPE4,NATIVE_NAME,,,NATIVE_NAME
-COPE5,COPE5,COPE5,NATIVE_NAME,,,NATIVE_NAME
-COPE6,COPE6,COPE6,NATIVE_NAME,,,NATIVE_NAME
-godwatch,godwatch,godwatch,NATIVE_NAME,,,NATIVE_NAME
-lesspain,lesspain,lesspain,NATIVE_NAME,,,NATIVE_NAME
-rellife,rellife,rellife,NATIVE_NAME,,,NATIVE_NAME
-FORGIVE1,FORGIVE1,FORGIVE1,NATIVE_NAME,,,NATIVE_NAME
-FORGIVE2,FORGIVE2,FORGIVE2,NATIVE_NAME,,,NATIVE_NAME
-FORGIVE3,FORGIVE3,FORGIVE3,NATIVE_NAME,,,NATIVE_NAME
-feelgod,feelgod,feelgod,NATIVE_NAME,,,NATIVE_NAME
-relcmfrt,relcmfrt,relcmfrt,NATIVE_NAME,,,NATIVE_NAME
-harmony,harmony,harmony,NATIVE_NAME,,,NATIVE_NAME
-uniongod,uniongod,uniongod,NATIVE_NAME,,,NATIVE_NAME
-godlove,godlove,godlove,NATIVE_NAME,,,NATIVE_NAME
-beausprt,beausprt,beausprt,NATIVE_NAME,,,NATIVE_NAME
-nocheer,nocheer,nocheer,NATIVE_NAME,,,NATIVE_NAME
-nervous,nervous,nervous,NATIVE_NAME,,,NATIVE_NAME
-fidgety,fidgety,fidgety,NATIVE_NAME,,,NATIVE_NAME
-hopeless,hopeless,hopeless,NATIVE_NAME,,,NATIVE_NAME
-effort,effort,effort,NATIVE_NAME,,,NATIVE_NAME
-wrthless,wrthless,wrthless,NATIVE_NAME,,,NATIVE_NAME
-relpersn,relpersn,relpersn,DONOR_MAP,2018,,DONOR_MAP
-sprtprsn,sprtprsn,sprtprsn,DONOR_MAP,2018,,DONOR_MAP
-relexp,relexp,relexp,NATIVE_NAME,,,NATIVE_NAME
-natarts,natarts,natarts,NATIVE_NAME,,,NATIVE_NAME
-artgod,artgod,artgod,NATIVE_NAME,,,NATIVE_NAME
-artists,artists,artists,NATIVE_NAME,,,NATIVE_NAME
-irrelart,irrelart,irrelart,NATIVE_NAME,,,NATIVE_NAME
-irreloff,irreloff,irreloff,NATIVE_NAME,,,NATIVE_NAME
-aimofart,aimofart,aimofart,NATIVE_NAME,,,NATIVE_NAME
-readfict,readfict,readfict,NATIVE_NAME,,,NATIVE_NAME
-popmusic,popmusic,popmusic,NATIVE_NAME,,,NATIVE_NAME
-drama,drama,drama,NATIVE_NAME,,,NATIVE_NAME
-relart,relart,relart,NATIVE_NAME,,,NATIVE_NAME
-volarts,volarts,volarts,NATIVE_NAME,,,NATIVE_NAME
-natlart,natlart,natlart,NATIVE_NAME,,,NATIVE_NAME
-stateart,stateart,stateart,NATIVE_NAME,,,NATIVE_NAME
-localart,localart,localart,NATIVE_NAME,,,NATIVE_NAME
-occyrs,occyrs,occyrs,NATIVE_NAME,,,NATIVE_NAME
-occtrain,occtrain,occtrain,NATIVE_NAME,,,NATIVE_NAME
-trainsch,trainsch,trainsch,NATIVE_NAME,,,NATIVE_NAME
-typeorg,typeorg,typeorg,NATIVE_NAME,,,NATIVE_NAME
-wrkoth,wrkoth,wrkoth,NATIVE_NAME,,,NATIVE_NAME
-othyrs,othyrs,othyrs,NATIVE_NAME,,,NATIVE_NAME
-partorg,partorg,partorg,NATIVE_NAME,,,NATIVE_NAME
-orgsize,orgsize,orgsize,NATIVE_NAME,,,NATIVE_NAME
-genderwk,genderwk,genderwk,NATIVE_NAME,,,NATIVE_NAME
-locyrs,locyrs,locyrs,NATIVE_NAME,,,NATIVE_NAME
-samework,samework,samework,NATIVE_NAME,,,NATIVE_NAME
-siteyrs,siteyrs,siteyrs,NATIVE_NAME,,,NATIVE_NAME
-otjtrain,otjtrain,otjtrain,NATIVE_NAME,,,NATIVE_NAME
-formltrn,formltrn,formltrn,NATIVE_NAME,,,NATIVE_NAME
-formlfin,formlfin,formlfin,NATIVE_NAME,,,NATIVE_NAME
-formldys,formldys,formldys,NATIVE_NAME,,,NATIVE_NAME
-formlhrs,formlhrs,formlhrs,NATIVE_NAME,,,NATIVE_NAME
-doingtrn,doingtrn,doingtrn,NATIVE_NAME,,,NATIVE_NAME
-doingfin,doingfin,doingfin,NATIVE_NAME,,,NATIVE_NAME
-doingdys,doingdys,doingdys,NATIVE_NAME,,,NATIVE_NAME
-wojob,wojob,wojob,NATIVE_NAME,,,NATIVE_NAME
-wojobyrs,wojobyrs,wojobyrs,NATIVE_NAME,,,NATIVE_NAME
-numemp,numemp,numemp,NATIVE_NAME,,,NATIVE_NAME
-howpaid,howpaid,howpaid,NATIVE_NAME,,,NATIVE_NAME
-hourly,hourly,hourly,NATIVE_NAME,,,NATIVE_NAME
-daily,daily,daily,NATIVE_NAME,,,NATIVE_NAME
-weekly,weekly,weekly,NATIVE_NAME,,,NATIVE_NAME
-monthly,monthly,monthly,NATIVE_NAME,,,NATIVE_NAME
-yearly,yearly,yearly,NATIVE_NAME,,,NATIVE_NAME
-trusting,trusting,trusting,NATIVE_NAME,,,NATIVE_NAME
-seenmntl,seenmntl,seenmntl,NATIVE_NAME,,,NATIVE_NAME
-PSYCMED1,PSYCMED1,PSYCMED1,NATIVE_NAME,,,NATIVE_NAME
-PSYCMED2,PSYCMED2,PSYCMED2,NATIVE_NAME,,,NATIVE_NAME
-PSYCMED3,PSYCMED3,PSYCMED3,NATIVE_NAME,,,NATIVE_NAME
-PSYCMED4,PSYCMED4,PSYCMED4,NATIVE_NAME,,,NATIVE_NAME
-PSYCMED5,PSYCMED5,PSYCMED5,NATIVE_NAME,,,NATIVE_NAME
-PSYCMED6,PSYCMED6,PSYCMED6,NATIVE_NAME,,,NATIVE_NAME
-PSYCMED7,PSYCMED7,PSYCMED7,NATIVE_NAME,,,NATIVE_NAME
-USEPSYC1,USEPSYC1,USEPSYC1,NATIVE_NAME,,,NATIVE_NAME
-USEPSYC2,USEPSYC2,USEPSYC2,NATIVE_NAME,,,NATIVE_NAME
-USEPSYC3,USEPSYC3,USEPSYC3,NATIVE_NAME,,,NATIVE_NAME
-USEPSYC4,USEPSYC4,USEPSYC4,NATIVE_NAME,,,NATIVE_NAME
-PSYCKID1,PSYCKID1,PSYCKID1,NATIVE_NAME,,,NATIVE_NAME
-PSYCKID2,PSYCKID2,PSYCKID2,NATIVE_NAME,,,NATIVE_NAME
-PSYCKID3,PSYCKID3,PSYCKID3,NATIVE_NAME,,,NATIVE_NAME
-psycdrct,psycdrct,psycdrct,NATIVE_NAME,,,NATIVE_NAME
-psycfdoc,psycfdoc,psycfdoc,NATIVE_NAME,,,NATIVE_NAME
-psycpsyc,psycpsyc,psycpsyc,NATIVE_NAME,,,NATIVE_NAME
-hlthinsr,hlthinsr,hlthinsr,NATIVE_NAME,,,NATIVE_NAME
-doclist,doclist,doclist,NATIVE_NAME,,,NATIVE_NAME
-anydoc,anydoc,anydoc,NATIVE_NAME,,,NATIVE_NAME
-swithlth,swithlth,swithlth,NATIVE_NAME,,,NATIVE_NAME
-usedmntl,usedmntl,usedmntl,NATIVE_NAME,,,NATIVE_NAME
-mntlcare,mntlcare,mntlcare,NATIVE_NAME,,,NATIVE_NAME
-mntldif,mntldif,mntldif,NATIVE_NAME,,,NATIVE_NAME
-mntldeny,mntldeny,mntldeny,NATIVE_NAME,,,NATIVE_NAME
-HMO1,HMO1,HMO1,NATIVE_NAME,,,NATIVE_NAME
-HMO2,HMO2,HMO2,NATIVE_NAME,,,NATIVE_NAME
-HMO3,HMO3,HMO3,NATIVE_NAME,,,NATIVE_NAME
-HMO4,HMO4,HMO4,NATIVE_NAME,,,NATIVE_NAME
-HMO5,HMO5,HMO5,NATIVE_NAME,,,NATIVE_NAME
-HMO6,HMO6,HMO6,NATIVE_NAME,,,NATIVE_NAME
-HMO7,HMO7,HMO7,NATIVE_NAME,,,NATIVE_NAME
-DOC1,DOC1,DOC1,NATIVE_NAME,,,NATIVE_NAME
-DOC2,DOC2,DOC2,NATIVE_NAME,,,NATIVE_NAME
-DOC3,DOC3,DOC3,NATIVE_NAME,,,NATIVE_NAME
-DOC4,DOC4,DOC4,NATIVE_NAME,,,NATIVE_NAME
-DOC5,DOC5,DOC5,NATIVE_NAME,,,NATIVE_NAME
-DOC6,DOC6,DOC6,NATIVE_NAME,,,NATIVE_NAME
-DOC7,DOC7,DOC7,NATIVE_NAME,,,NATIVE_NAME
-DOC8,DOC8,DOC8,NATIVE_NAME,,,NATIVE_NAME
-DOC9,DOC9,DOC9,NATIVE_NAME,,,NATIVE_NAME
-DOC10,DOC10,DOC10,NATIVE_NAME,,,NATIVE_NAME
-DOC11,DOC11,DOC11,NATIVE_NAME,,,NATIVE_NAME
-DOC12,DOC12,DOC12,NATIVE_NAME,,,NATIVE_NAME
-DOC13,DOC13,DOC13,NATIVE_NAME,,,NATIVE_NAME
-DOC14,DOC14,DOC14,NATIVE_NAME,,,NATIVE_NAME
-DOC15,DOC15,DOC15,NATIVE_NAME,,,NATIVE_NAME
-DOC16,DOC16,DOC16,NATIVE_NAME,,,NATIVE_NAME
-DOC17,DOC17,DOC17,NATIVE_NAME,,,NATIVE_NAME
-DOC18,DOC18,DOC18,NATIVE_NAME,,,NATIVE_NAME
-DOC19,DOC19,DOC19,NATIVE_NAME,,,NATIVE_NAME
-DOC20,DOC20,DOC20,NATIVE_NAME,,,NATIVE_NAME
-prozac,prozac,prozac,NATIVE_NAME,,,NATIVE_NAME
-usedproz,usedproz,usedproz,NATIVE_NAME,,,NATIVE_NAME
-knwnproz,knwnproz,knwnproz,NATIVE_NAME,,,NATIVE_NAME
-PROZFOR1,PROZFOR1,PROZFOR1,NATIVE_NAME,,,NATIVE_NAME
-PROZFOR2,PROZFOR2,PROZFOR2,NATIVE_NAME,,,NATIVE_NAME
-PROZFOR3,PROZFOR3,PROZFOR3,NATIVE_NAME,,,NATIVE_NAME
-PROZ1,PROZ1,PROZ1,NATIVE_NAME,,,NATIVE_NAME
-PROZ2,PROZ2,PROZ2,NATIVE_NAME,,,NATIVE_NAME
-PROZ3,PROZ3,PROZ3,NATIVE_NAME,,,NATIVE_NAME
-PROZ4,PROZ4,PROZ4,NATIVE_NAME,,,NATIVE_NAME
-PROZ5,PROZ5,PROZ5,NATIVE_NAME,,,NATIVE_NAME
-PROZ6,PROZ6,PROZ6,NATIVE_NAME,,,NATIVE_NAME
-PROZ7,PROZ7,PROZ7,NATIVE_NAME,,,NATIVE_NAME
-PROZ8,PROZ8,PROZ8,NATIVE_NAME,,,NATIVE_NAME
-PROZ9,PROZ9,PROZ9,NATIVE_NAME,,,NATIVE_NAME
-PROZSLF1,PROZSLF1,PROZSLF1,NATIVE_NAME,,,NATIVE_NAME
-PROZSLF2,PROZSLF2,PROZSLF2,NATIVE_NAME,,,NATIVE_NAME
-PROZSLF3,PROZSLF3,PROZSLF3,NATIVE_NAME,,,NATIVE_NAME
-PROZSLF4,PROZSLF4,PROZSLF4,NATIVE_NAME,,,NATIVE_NAME
-PROZKID1,PROZKID1,PROZKID1,NATIVE_NAME,,,NATIVE_NAME
-PROZKID2,PROZKID2,PROZKID2,NATIVE_NAME,,,NATIVE_NAME
-PROZKID3,PROZKID3,PROZKID3,NATIVE_NAME,,,NATIVE_NAME
-socsecrt,socsecrt,socsecrt,NATIVE_NAME,,,NATIVE_NAME
-socsecfx,socsecfx,socsecfx,NATIVE_NAME,,,NATIVE_NAME
-socsecnu,socsecnu,socsecnu,NATIVE_NAME,,,NATIVE_NAME
-terminal,terminal,terminal,NATIVE_NAME,,,NATIVE_NAME
-termecon,termecon,termecon,NATIVE_NAME,,,NATIVE_NAME
-termrel,termrel,termrel,NATIVE_NAME,,,NATIVE_NAME
-termemot,termemot,termemot,NATIVE_NAME,,,NATIVE_NAME
-termpain,termpain,termpain,NATIVE_NAME,,,NATIVE_NAME
-termpay,termpay,termpay,NATIVE_NAME,,,NATIVE_NAME
-trustfam,trustfam,trustfam,NATIVE_NAME,,,NATIVE_NAME
-trustdoc,trustdoc,trustdoc,NATIVE_NAME,,,NATIVE_NAME
-trustcrt,trustcrt,trustcrt,NATIVE_NAME,,,NATIVE_NAME
-termvig,termvig,termvig,NATIVE_NAME,,,NATIVE_NAME
-rightref,rightref,rightref,NATIVE_NAME,,,NATIVE_NAME
-notreat,notreat,notreat,NATIVE_NAME,,,NATIVE_NAME
-instrctn,instrctn,instrctn,NATIVE_NAME,,,NATIVE_NAME
-hospice,hospice,hospice,NATIVE_NAME,,,NATIVE_NAME
-painmed,painmed,painmed,NATIVE_NAME,,,NATIVE_NAME
-docsui,docsui,docsui,NATIVE_NAME,,,NATIVE_NAME
-jobsall,jobsall,jobsall,NATIVE_NAME,,,NATIVE_NAME
-equalize,equalize,equalize,NATIVE_NAME,,,NATIVE_NAME
-goodlife,goodlife,goodlife,DONOR_MAP,2018,,DONOR_MAP
-famsuffr,family life suffers if mom works f-t,family life suffers if mom works f-t,DONOR_MAP,2022,,DONOR_MAP
-hubbywrk,hubbywrk,hubbywrk,DONOR_MAP,2018,,DONOR_MAP
-cohabok,living together as an acceptable option,living together as an acceptable option,DONOR_MAP,2022,,DONOR_MAP
-cohabfst,cohabfst,cohabfst,NATIVE_NAME,,,NATIVE_NAME
-timepdwk,timepdwk,timepdwk,NATIVE_NAME,,,NATIVE_NAME
-timehhwk,timehhwk,timehhwk,NATIVE_NAME,,,NATIVE_NAME
-timefam,timefam,timefam,NATIVE_NAME,,,NATIVE_NAME
-timefrnd,timefrnd,timefrnd,NATIVE_NAME,,,NATIVE_NAME
-timeleis,timeleis,timeleis,NATIVE_NAME,,,NATIVE_NAME
-wrkearn,wrkearn,wrkearn,NATIVE_NAME,,,NATIVE_NAME
-wrkenjoy,wrkenjoy,wrkenjoy,NATIVE_NAME,,,NATIVE_NAME
-wrkimp,wrkimp,wrkimp,NATIVE_NAME,,,NATIVE_NAME
-hwduties,hwduties,hwduties,NATIVE_NAME,,,NATIVE_NAME
-secjob,secjob,secjob,NATIVE_NAME,,,NATIVE_NAME
-hiinc,hiinc,hiinc,NATIVE_NAME,,,NATIVE_NAME
-promotn,promotn,promotn,NATIVE_NAME,,,NATIVE_NAME
-intjob,intjob,intjob,NATIVE_NAME,,,NATIVE_NAME
-wrkindp,wrkindp,wrkindp,NATIVE_NAME,,,NATIVE_NAME
-hlpoths,hlpoths,hlpoths,NATIVE_NAME,,,NATIVE_NAME
-hlpsoc,hlpsoc,hlpsoc,NATIVE_NAME,,,NATIVE_NAME
-flexhrs,flexhrs,flexhrs,NATIVE_NAME,,,NATIVE_NAME
-empself,empself,empself,NATIVE_NAME,,,NATIVE_NAME
-smallbig,smallbig,smallbig,NATIVE_NAME,,,NATIVE_NAME
-privgovt,privgovt,privgovt,NATIVE_NAME,,,NATIVE_NAME
-findjob,findjob,findjob,NATIVE_NAME,,,NATIVE_NAME
-iwrkhard,iwrkhard,iwrkhard,NATIVE_NAME,,,NATIVE_NAME
-hrsmoney,hrsmoney,hrsmoney,NATIVE_NAME,,,NATIVE_NAME
-rsecjob,rsecjob,rsecjob,NATIVE_NAME,,,NATIVE_NAME
-rhiinc,rhiinc,rhiinc,NATIVE_NAME,,,NATIVE_NAME
-rpromotn,rpromotn,rpromotn,NATIVE_NAME,,,NATIVE_NAME
-rintjob,rintjob,rintjob,NATIVE_NAME,,,NATIVE_NAME
-rwrkindp,rwrkindp,rwrkindp,NATIVE_NAME,,,NATIVE_NAME
-rhlpoths,rhlpoths,rhlpoths,NATIVE_NAME,,,NATIVE_NAME
-rhlpsoc,rhlpsoc,rhlpsoc,NATIVE_NAME,,,NATIVE_NAME
-xhaustn,xhaustn,xhaustn,NATIVE_NAME,,,NATIVE_NAME
-physwrk,physwrk,physwrk,NATIVE_NAME,,,NATIVE_NAME
-stress,stress,stress,DONOR_MAP,2018,,DONOR_MAP
-danger,danger,danger,NATIVE_NAME,,,NATIVE_NAME
-bossemps,bossemps,bossemps,NATIVE_NAME,,,NATIVE_NAME
-cowrkers,cowrkers,cowrkers,NATIVE_NAME,,,NATIVE_NAME
-jobsat,jobsat,jobsat,NATIVE_NAME,,,NATIVE_NAME
-localnum,localnum,localnum,DONOR_MAP,2018,,DONOR_MAP
-paydojob,paydojob,paydojob,NATIVE_NAME,,,NATIVE_NAME
-payfam,payfam,payfam,NATIVE_NAME,,,NATIVE_NAME
-payeduc,payeduc,payeduc,NATIVE_NAME,,,NATIVE_NAME
-paytime,paytime,paytime,NATIVE_NAME,,,NATIVE_NAME
-techjobs,techjobs,techjobs,NATIVE_NAME,,,NATIVE_NAME
-techwork,techwork,techwork,NATIVE_NAME,,,NATIVE_NAME
-WANTJOB1,WANTJOB1,WANTJOB1,NATIVE_NAME,,,NATIVE_NAME
-worknow,worknow,worknow,NATIVE_NAME,,,NATIVE_NAME
-sethours,sethours,sethours,NATIVE_NAME,,,NATIVE_NAME
-placewrk,placewrk,placewrk,NATIVE_NAME,,,NATIVE_NAME
-wktenure,wktenure,wktenure,NATIVE_NAME,,,NATIVE_NAME
-useskill,useskill,useskill,NATIVE_NAME,,,NATIVE_NAME
-edcskill,edcskill,edcskill,NATIVE_NAME,,,NATIVE_NAME
-jobskill,jobskill,jobskill,NATIVE_NAME,,,NATIVE_NAME
-HELPORG1,HELPORG1,HELPORG1,NATIVE_NAME,,,NATIVE_NAME
-prideorg,prideorg,prideorg,NATIVE_NAME,,,NATIVE_NAME
-chngwork,chngwork,chngwork,NATIVE_NAME,,,NATIVE_NAME
-STAYORG3,STAYORG3,STAYORG3,NATIVE_NAME,,,NATIVE_NAME
-proudwrk,proudwrk,proudwrk,NATIVE_NAME,,,NATIVE_NAME
-absent,absent,absent,NATIVE_NAME,,,NATIVE_NAME
-leavejob,leavejob,leavejob,NATIVE_NAME,,,NATIVE_NAME
-worryjob,worryjob,worryjob,NATIVE_NAME,,,NATIVE_NAME
-evjob,evjob,evjob,NATIVE_NAME,,,NATIVE_NAME
-yrjobend,yrjobend,yrjobend,NATIVE_NAME,,,NATIVE_NAME
-whyjbend,whyjbend,whyjbend,NATIVE_NAME,,,NATIVE_NAME
-WANTJOB2,WANTJOB2,WANTJOB2,NATIVE_NAME,,,NATIVE_NAME
-getjob,getjob,getjob,NATIVE_NAME,,,NATIVE_NAME
-lookjob,lookjob,lookjob,NATIVE_NAME,,,NATIVE_NAME
-pubagncy,pubagncy,pubagncy,NATIVE_NAME,,,NATIVE_NAME
-priagncy,priagncy,priagncy,NATIVE_NAME,,,NATIVE_NAME
-wantads,wantads,wantads,NATIVE_NAME,,,NATIVE_NAME
-adforjob,adforjob,adforjob,NATIVE_NAME,,,NATIVE_NAME
-appemps,appemps,appemps,NATIVE_NAME,,,NATIVE_NAME
-askhelp,askhelp,askhelp,NATIVE_NAME,,,NATIVE_NAME
-econsup,econsup,econsup,NATIVE_NAME,,,NATIVE_NAME
-hapunhap,hapunhap,hapunhap,DONOR_MAP,2018,,DONOR_MAP
-PREMARS1,PREMARS1,PREMARS1,NATIVE_NAME,,,NATIVE_NAME
-XMARSEX1,XMARSEX1,XMARSEX1,DONOR_MAP,2018,,DONOR_MAP
-HOMOSEX1,HOMOSEX1,HOMOSEX1,DONOR_MAP,2018,,DONOR_MAP
-abdefctw,abdefctw,abdefctw,NATIVE_NAME,,,NATIVE_NAME
-abpoorw,abpoorw,abpoorw,DONOR_MAP,2018,,DONOR_MAP
-taxcheat,taxcheat,taxcheat,NATIVE_NAME,,,NATIVE_NAME
-govcheat,govcheat,govcheat,NATIVE_NAME,,,NATIVE_NAME
-concong,concong,concong,DONOR_MAP,2018,,DONOR_MAP
-conbiz,conbiz,conbiz,DONOR_MAP,2018,,DONOR_MAP
-conchurh,conchurh,conchurh,DONOR_MAP,2018,,DONOR_MAP
-concourt,concourt,concourt,DONOR_MAP,2018,,DONOR_MAP
-conschls,conschls,conschls,DONOR_MAP,2018,,DONOR_MAP
-clergvte,clergvte,clergvte,DONOR_MAP,2018,,DONOR_MAP
-clerggov,clerggov,clerggov,NATIVE_NAME,,,NATIVE_NAME
-churhpow,churhpow,churhpow,DONOR_MAP,2018,,DONOR_MAP
-godchnge,godchnge,godchnge,DONOR_MAP,2018,,DONOR_MAP
-afterlif,afterlif,afterlif,DONOR_MAP,2018,,DONOR_MAP
-heaven,heaven,heaven,DONOR_MAP,2018,,DONOR_MAP
-hell,hell,hell,DONOR_MAP,2018,,DONOR_MAP
-miracles,miracles,miracles,DONOR_MAP,2018,,DONOR_MAP
-BIBLE1,BIBLE1,BIBLE1,NATIVE_NAME,,,NATIVE_NAME
-theism,theism,theism,DONOR_MAP,2018,,DONOR_MAP
-fatalism,fatalism,fatalism,DONOR_MAP,2018,,DONOR_MAP
-godmeans,godmeans,godmeans,DONOR_MAP,2018,,DONOR_MAP
-nihilism,nihilism,nihilism,DONOR_MAP,2018,,DONOR_MAP
-egomeans,egomeans,egomeans,DONOR_MAP,2018,,DONOR_MAP
-ownfate,ownfate,ownfate,NATIVE_NAME,,,NATIVE_NAME
-relexper,relexper,relexper,NATIVE_NAME,,,NATIVE_NAME
-marelkid,marelkid,marelkid,DONOR_MAP,2018,,DONOR_MAP
-madenkid,madenkid,madenkid,DONOR_MAP,2018,,DONOR_MAP
-parelkid,parelkid,parelkid,DONOR_MAP,2018,,DONOR_MAP
-padenkid,padenkid,padenkid,DONOR_MAP,2018,,DONOR_MAP
-religkid,religkid,religkid,DONOR_MAP,2018,,DONOR_MAP
-denkid,denkid,denkid,DONOR_MAP,2018,,DONOR_MAP
-religsp,religsp,religsp,NATIVE_NAME,,,NATIVE_NAME
-densp,densp,densp,NATIVE_NAME,,,NATIVE_NAME
-attendma,attendma,attendma,DONOR_MAP,2018,,DONOR_MAP
-attendpa,attendpa,attendpa,DONOR_MAP,2018,,DONOR_MAP
-ATTEND12,ATTEND12,ATTEND12,DONOR_MAP,2018,,DONOR_MAP
-prayfreq,prayfreq,prayfreq,DONOR_MAP,2018,,DONOR_MAP
-relactiv,relactiv,relactiv,DONOR_MAP,2018,,DONOR_MAP
-feelrel,feelrel,feelrel,DONOR_MAP,2018,,DONOR_MAP
-befair,befair,befair,DONOR_MAP,2018,,DONOR_MAP
-cantrust,cantrust,cantrust,DONOR_MAP,2018,,DONOR_MAP
-trustsci,trustsci,trustsci,DONOR_MAP,2018,,DONOR_MAP
-religcon,religcon,religcon,DONOR_MAP,2018,,DONOR_MAP
-religint,religint,religint,DONOR_MAP,2018,,DONOR_MAP
-religinf,the u.s. would be a better country if religion had less influence,the u.s. would be a better country if religion had less influence,DONOR_MAP,2024,,DONOR_MAP
-volwkpol,volwkpol,volwkpol,NATIVE_NAME,,,NATIVE_NAME
-volwkchr,volwkchr,volwkchr,NATIVE_NAME,,,NATIVE_NAME
-volwkrel,volwkrel,volwkrel,NATIVE_NAME,,,NATIVE_NAME
-volwkoth,volwkoth,volwkoth,NATIVE_NAME,,,NATIVE_NAME
-reltruth,reltruth,reltruth,NATIVE_NAME,,,NATIVE_NAME
-carright,carright,carright,NATIVE_NAME,,,NATIVE_NAME
-cardo,cardo,cardo,NATIVE_NAME,,,NATIVE_NAME
-harmgood,harmgood,harmgood,NATIVE_NAME,,,NATIVE_NAME
-partners,partners,partners,DONOR_MAP,2018,,DONOR_MAP
-matesex,matesex,matesex,DONOR_MAP,2018,,DONOR_MAP
-frndsex,frndsex,frndsex,DONOR_MAP,2018,,DONOR_MAP
-acqntsex,acqntsex,acqntsex,DONOR_MAP,2018,,DONOR_MAP
-pikupsex,pikupsex,pikupsex,DONOR_MAP,2018,,DONOR_MAP
-paidsex,paidsex,paidsex,DONOR_MAP,2018,,DONOR_MAP
-othersex,othersex,othersex,DONOR_MAP,2018,,DONOR_MAP
-sexsex,sexsex,sexsex,DONOR_MAP,2018,,DONOR_MAP
-sexfreq,sexfreq,sexfreq,DONOR_MAP,2018,,DONOR_MAP
-numwomen,numwomen,numwomen,DONOR_MAP,2018,,DONOR_MAP
-nummen,nummen,nummen,DONOR_MAP,2018,,DONOR_MAP
-PARTNRS5,PARTNRS5,PARTNRS5,DONOR_MAP,2018,,DONOR_MAP
-SEXSEX5,SEXSEX5,SEXSEX5,DONOR_MAP,2018,,DONOR_MAP
-evpaidsx,evpaidsx,evpaidsx,DONOR_MAP,2018,,DONOR_MAP
-evstray,evstray,evstray,DONOR_MAP,2018,,DONOR_MAP
-condom,condom,condom,DONOR_MAP,2018,,DONOR_MAP
-relatsex,relatsex,relatsex,DONOR_MAP,2018,,DONOR_MAP
-realinc,realinc,realinc,DONOR_MAP,2018,,DONOR_MAP
-realrinc,realrinc,realrinc,DONOR_MAP,2018,,DONOR_MAP
-coninc,coninc,coninc,DONOR_MAP,2018,,DONOR_MAP
-conrinc,conrinc,conrinc,DONOR_MAP,2018,,DONOR_MAP
-sectech,sectech,sectech,NATIVE_NAME,,,NATIVE_NAME
-secdocs,secdocs,secdocs,NATIVE_NAME,,,NATIVE_NAME
-askfinan,askfinan,askfinan,NATIVE_NAME,,,NATIVE_NAME
-askcrime,askcrime,askcrime,NATIVE_NAME,,,NATIVE_NAME
-askdrugs,askdrugs,askdrugs,NATIVE_NAME,,,NATIVE_NAME
-askmentl,askmentl,askmentl,NATIVE_NAME,,,NATIVE_NAME
-askforgn,askforgn,askforgn,NATIVE_NAME,,,NATIVE_NAME
-askdrink,askdrink,askdrink,NATIVE_NAME,,,NATIVE_NAME
-asksexor,asksexor,asksexor,NATIVE_NAME,,,NATIVE_NAME
-secdiplo,secdiplo,secdiplo,NATIVE_NAME,,,NATIVE_NAME
-secmilop,secmilop,secmilop,NATIVE_NAME,,,NATIVE_NAME
-secterr,secterr,secterr,NATIVE_NAME,,,NATIVE_NAME
-secbudgt,secbudgt,secbudgt,NATIVE_NAME,,,NATIVE_NAME
-chkfinan,chkfinan,chkfinan,NATIVE_NAME,,,NATIVE_NAME
-chkspfin,chkspfin,chkspfin,NATIVE_NAME,,,NATIVE_NAME
-chktaxes,chktaxes,chktaxes,NATIVE_NAME,,,NATIVE_NAME
-knomentl,knomentl,knomentl,NATIVE_NAME,,,NATIVE_NAME
-takearms,takearms,takearms,NATIVE_NAME,,,NATIVE_NAME
-leakinfo,leakinfo,leakinfo,NATIVE_NAME,,,NATIVE_NAME
-spyenemy,spyenemy,spyenemy,NATIVE_NAME,,,NATIVE_NAME
-spyfrend,spyfrend,spyfrend,NATIVE_NAME,,,NATIVE_NAME
-taketrck,taketrck,taketrck,NATIVE_NAME,,,NATIVE_NAME
-lietest,lietest,lietest,NATIVE_NAME,,,NATIVE_NAME
-testdrug,testdrug,testdrug,NATIVE_NAME,,,NATIVE_NAME
-bugging,bugging,bugging,NATIVE_NAME,,,NATIVE_NAME
-finanqs,finanqs,finanqs,NATIVE_NAME,,,NATIVE_NAME
-chkonjob,chkonjob,chkonjob,NATIVE_NAME,,,NATIVE_NAME
-chkother,chkother,chkother,NATIVE_NAME,,,NATIVE_NAME
-ethnic,ethnic,ethnic,DONOR_MAP,2018,,DONOR_MAP
-ETH1,ETH1,ETH1,DONOR_MAP,2018,,DONOR_MAP
-ETH2,ETH2,ETH2,DONOR_MAP,2018,,DONOR_MAP
-ETH3,ETH3,ETH3,DONOR_MAP,2018,,DONOR_MAP
-ethnum,ethnum,ethnum,DONOR_MAP,2018,,DONOR_MAP
-dwelling,dwelling,dwelling,DONOR_MAP,2018,,DONOR_MAP
-dwelown,dwelown,dwelown,DONOR_MAP,2018,,DONOR_MAP
-worda,worda,worda,DONOR_MAP,2018,,DONOR_MAP
-wordb,wordb,wordb,DONOR_MAP,2018,,DONOR_MAP
-wordc,wordc,wordc,DONOR_MAP,2018,,DONOR_MAP
-wordd,wordd,wordd,DONOR_MAP,2018,,DONOR_MAP
-worde,worde,worde,DONOR_MAP,2018,,DONOR_MAP
-wordf,wordf,wordf,DONOR_MAP,2018,,DONOR_MAP
-wordg,wordg,wordg,DONOR_MAP,2018,,DONOR_MAP
-wordh,wordh,wordh,DONOR_MAP,2018,,DONOR_MAP
-wordi,wordi,wordi,DONOR_MAP,2018,,DONOR_MAP
-wordj,wordj,wordj,DONOR_MAP,2018,,DONOR_MAP
-wordsum,wordsum,wordsum,DONOR_MAP,2018,,DONOR_MAP
-godoc,godoc,godoc,NATIVE_NAME,,,NATIVE_NAME
-eatout,eatout,eatout,NATIVE_NAME,,,NATIVE_NAME
-seefilm,seefilm,seefilm,NATIVE_NAME,,,NATIVE_NAME
-attrelig,attrelig,attrelig,NATIVE_NAME,,,NATIVE_NAME
-numdays,numdays,numdays,NATIVE_NAME,,,NATIVE_NAME
-sunday,sunday,sunday,NATIVE_NAME,,,NATIVE_NAME
-monday,monday,monday,NATIVE_NAME,,,NATIVE_NAME
-tuesday,tuesday,tuesday,NATIVE_NAME,,,NATIVE_NAME
-wednesdy,wednesdy,wednesdy,NATIVE_NAME,,,NATIVE_NAME
-thursday,thursday,thursday,NATIVE_NAME,,,NATIVE_NAME
-friday,friday,friday,NATIVE_NAME,,,NATIVE_NAME
-saturday,saturday,saturday,NATIVE_NAME,,,NATIVE_NAME
-attreg,attreg,attreg,NATIVE_NAME,,,NATIVE_NAME
-mediarel,mediarel,mediarel,NATIVE_NAME,,,NATIVE_NAME
-othrel,othrel,othrel,NATIVE_NAME,,,NATIVE_NAME
-OTHREL1,OTHREL1,OTHREL1,NATIVE_NAME,,,NATIVE_NAME
-OTHREL2,OTHREL2,OTHREL2,NATIVE_NAME,,,NATIVE_NAME
-religid,religid,religid,NATIVE_NAME,,,NATIVE_NAME
-cathid,cathid,cathid,NATIVE_NAME,,,NATIVE_NAME
-GENDER1,GENDER1,GENDER1,DONOR_MAP,2018,,DONOR_MAP
-OLD1,OLD1,OLD1,DONOR_MAP,2018,,DONOR_MAP
-MAR1,MAR1,MAR1,DONOR_MAP,2018,,DONOR_MAP
-WHERE1,WHERE1,WHERE1,DONOR_MAP,2018,,DONOR_MAP
-RELATE2,RELATE2,RELATE2,DONOR_MAP,2018,,DONOR_MAP
-GENDER2,GENDER2,GENDER2,DONOR_MAP,2018,,DONOR_MAP
-OLD2,OLD2,OLD2,DONOR_MAP,2018,,DONOR_MAP
-MAR2,MAR2,MAR2,DONOR_MAP,2018,,DONOR_MAP
-WHERE2,WHERE2,WHERE2,DONOR_MAP,2018,,DONOR_MAP
-RELATE3,RELATE3,RELATE3,DONOR_MAP,2018,,DONOR_MAP
-GENDER3,GENDER3,GENDER3,DONOR_MAP,2018,,DONOR_MAP
-OLD3,OLD3,OLD3,DONOR_MAP,2018,,DONOR_MAP
-MAR3,MAR3,MAR3,DONOR_MAP,2018,,DONOR_MAP
-WHERE3,WHERE3,WHERE3,DONOR_MAP,2018,,DONOR_MAP
-RELATE4,RELATE4,RELATE4,DONOR_MAP,2018,,DONOR_MAP
-GENDER4,GENDER4,GENDER4,DONOR_MAP,2018,,DONOR_MAP
-OLD4,OLD4,OLD4,DONOR_MAP,2018,,DONOR_MAP
-MAR4,MAR4,MAR4,DONOR_MAP,2018,,DONOR_MAP
-WHERE4,WHERE4,WHERE4,DONOR_MAP,2018,,DONOR_MAP
-RELATE5,RELATE5,RELATE5,DONOR_MAP,2018,,DONOR_MAP
-GENDER5,GENDER5,GENDER5,DONOR_MAP,2018,,DONOR_MAP
-OLD5,OLD5,OLD5,DONOR_MAP,2018,,DONOR_MAP
-MAR5,MAR5,MAR5,DONOR_MAP,2018,,DONOR_MAP
-WHERE5,WHERE5,WHERE5,DONOR_MAP,2018,,DONOR_MAP
-RELATE6,RELATE6,RELATE6,DONOR_MAP,2018,,DONOR_MAP
-GENDER6,GENDER6,GENDER6,DONOR_MAP,2018,,DONOR_MAP
-OLD6,OLD6,OLD6,DONOR_MAP,2018,,DONOR_MAP
-MAR6,MAR6,MAR6,DONOR_MAP,2018,,DONOR_MAP
-RELATE7,RELATE7,RELATE7,DONOR_MAP,2018,,DONOR_MAP
-GENDER7,GENDER7,GENDER7,DONOR_MAP,2018,,DONOR_MAP
-OLD7,OLD7,OLD7,DONOR_MAP,2018,,DONOR_MAP
-MAR7,marital status of 7th person,marital status of 7th person,DONOR_MAP,2022,,DONOR_MAP
-RELATE8,RELATE8,RELATE8,DONOR_MAP,2018,,DONOR_MAP
-GENDER8,GENDER8,GENDER8,DONOR_MAP,2018,,DONOR_MAP
-OLD8,OLD8,OLD8,DONOR_MAP,2018,,DONOR_MAP
-RELATE9,RELATE9,RELATE9,DONOR_MAP,2018,,DONOR_MAP
-GENDER9,GENDER9,GENDER9,DONOR_MAP,2018,,DONOR_MAP
-OLD9,OLD9,OLD9,DONOR_MAP,2018,,DONOR_MAP
-RELATE10,RELATE10,RELATE10,DONOR_MAP,2018,,DONOR_MAP
-GENDER10,gender of 10th person,gender of 10th person,DONOR_MAP,2022,,DONOR_MAP
-OLD10,OLD10,OLD10,DONOR_MAP,2018,,DONOR_MAP
-RELATE11,RELATE11,RELATE11,DONOR_MAP,2018,,DONOR_MAP
-GENDER11,GENDER11,GENDER11,DONOR_MAP,2018,,DONOR_MAP
-OLD11,OLD11,OLD11,DONOR_MAP,2018,,DONOR_MAP
-MAR11,MAR11,MAR11,DONOR_MAP,2018,,DONOR_MAP
-RELATE12,RELATE12,RELATE12,DONOR_MAP,2018,,DONOR_MAP
-GENDER12,gender of 12th person (visitor),gender of 12th person (visitor),DONOR_MAP,2022,,DONOR_MAP
-OLD12,OLD12,OLD12,DONOR_MAP,2018,,DONOR_MAP
-MAR12,MAR12,MAR12,DONOR_MAP,2018,,DONOR_MAP
-RELATE13,relation of 13th person (visitor) to head,relation of 13th person (visitor) to head,DONOR_MAP,2022,,DONOR_MAP
-GENDER13,gender of 13th person (visitor),gender of 13th person (visitor),DONOR_MAP,2022,,DONOR_MAP
-OLD13,age of 13th person (visitor),age of 13th person (visitor),DONOR_MAP,2022,,DONOR_MAP
-RELATE14,relation of 14th person (visitor) to head,relation of 14th person (visitor) to head,DONOR_MAP,2022,,DONOR_MAP
-GENDER14,gender of 14th person (visitor),gender of 14th person (visitor),DONOR_MAP,2022,,DONOR_MAP
-OLD14,age of 14th person (visitor),age of 14th person (visitor),DONOR_MAP,2022,,DONOR_MAP
-RELHHD2,RELHHD2,RELHHD2,DONOR_MAP,2018,,DONOR_MAP
-RELHHD3,RELHHD3,RELHHD3,DONOR_MAP,2018,,DONOR_MAP
-RELHHD4,RELHHD4,RELHHD4,DONOR_MAP,2018,,DONOR_MAP
-RELHHD5,RELHHD5,RELHHD5,DONOR_MAP,2018,,DONOR_MAP
-RELHHD6,RELHHD6,RELHHD6,DONOR_MAP,2018,,DONOR_MAP
-RELHHD7,RELHHD7,RELHHD7,DONOR_MAP,2018,,DONOR_MAP
-RELHHD8,RELHHD8,RELHHD8,DONOR_MAP,2018,,DONOR_MAP
-RELHHD9,RELHHD9,RELHHD9,DONOR_MAP,2018,,DONOR_MAP
-RELHHD10,RELHHD10,RELHHD10,DONOR_MAP,2018,,DONOR_MAP
-RELHHD11,RELHHD11,RELHHD11,DONOR_MAP,2018,,DONOR_MAP
-RELHHD12,RELHHD12,RELHHD12,DONOR_MAP,2018,,DONOR_MAP
-RELHHD13,relation of 13th person (visitor) to head,relation of 13th person (visitor) to head,DONOR_MAP,2022,,DONOR_MAP
-RELHHD14,relation of 14th person (visitor) to head,relation of 14th person (visitor) to head,DONOR_MAP,2022,,DONOR_MAP
-hefinfo,hefinfo,hefinfo,DONOR_MAP,2018,,DONOR_MAP
-hhrace,hhrace,hhrace,DONOR_MAP,2018,,DONOR_MAP
-respnum,respnum,respnum,DONOR_MAP,2018,,DONOR_MAP
-hhtype,hhtype,hhtype,DONOR_MAP,2018,,DONOR_MAP
-HHTYPE1,HHTYPE1,HHTYPE1,DONOR_MAP,2018,,DONOR_MAP
-famgen,famgen,famgen,DONOR_MAP,2018,,DONOR_MAP
-rplace,rplace,rplace,DONOR_MAP,2018,,DONOR_MAP
-rvisitor,rvisitor,rvisitor,DONOR_MAP,2018,,DONOR_MAP
-visitors,visitors,visitors,DONOR_MAP,2018,,DONOR_MAP
-dateintv,dateintv,dateintv,DONOR_MAP,2018,,DONOR_MAP
-ISCO681,ISCO681,ISCO681,NATIVE_NAME,,,NATIVE_NAME
-PAISC681,PAISC681,PAISC681,NATIVE_NAME,,,NATIVE_NAME
-MAISC681,MAISC681,MAISC681,NATIVE_NAME,,,NATIVE_NAME
-SPISC681,SPISC681,SPISC681,NATIVE_NAME,,,NATIVE_NAME
-ISCO88,ISCO88,ISCO88,DONOR_MAP,2018,,DONOR_MAP
-PAISCO88,PAISCO88,PAISCO88,DONOR_MAP,2018,,DONOR_MAP
-MAISCO88,MAISCO88,MAISCO88,DONOR_MAP,2018,,DONOR_MAP
-SPISCO88,SPISCO88,SPISCO88,DONOR_MAP,2018,,DONOR_MAP
-ISCO08,ISCO08,ISCO08,DONOR_MAP,2018,,DONOR_MAP
-PAISCO08,PAISCO08,PAISCO08,DONOR_MAP,2018,,DONOR_MAP
-MAISCO08,MAISCO08,MAISCO08,DONOR_MAP,2018,,DONOR_MAP
-SPISCO08,SPISCO08,SPISCO08,DONOR_MAP,2018,,DONOR_MAP
-sei,sei,sei,NATIVE_NAME,,,NATIVE_NAME
-pasei,pasei,pasei,NATIVE_NAME,,,NATIVE_NAME
-masei,masei,masei,NATIVE_NAME,,,NATIVE_NAME
-spsei,spsei,spsei,NATIVE_NAME,,,NATIVE_NAME
-SEI10,SEI10,SEI10,DONOR_MAP,2018,,DONOR_MAP
-SEI10EDUC,SEI10EDUC,SEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
-SEI10INC,SEI10INC,SEI10INC,DONOR_MAP,2018,,DONOR_MAP
-PASEI10,PASEI10,PASEI10,DONOR_MAP,2018,,DONOR_MAP
-PASEI10EDUC,PASEI10EDUC,PASEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
-PASEI10INC,PASEI10INC,PASEI10INC,DONOR_MAP,2018,,DONOR_MAP
-MASEI10,MASEI10,MASEI10,DONOR_MAP,2018,,DONOR_MAP
-MASEI10EDUC,MASEI10EDUC,MASEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
-MASEI10INC,MASEI10INC,MASEI10INC,DONOR_MAP,2018,,DONOR_MAP
-SPSEI10,SPSEI10,SPSEI10,DONOR_MAP,2018,,DONOR_MAP
-SPSEI10EDUC,SPSEI10EDUC,SPSEI10EDUC,DONOR_MAP,2018,,DONOR_MAP
-SPSEI10INC,SPSEI10INC,SPSEI10INC,DONOR_MAP,2018,,DONOR_MAP
-uswary,uswary,uswary,DONOR_MAP,2018,,DONOR_MAP
-cohort,cohort,cohort,DONOR_MAP,2018,,DONOR_MAP
-birthmo,birthmo,birthmo,NATIVE_NAME,,,NATIVE_NAME
-zodiac,zodiac,zodiac,DONOR_MAP,2018,,DONOR_MAP
-WHOELSE1,WHOELSE1,WHOELSE1,DONOR_MAP,2018,,DONOR_MAP
-WHOELSE2,WHOELSE2,WHOELSE2,DONOR_MAP,2018,,DONOR_MAP
-WHOELSE3,WHOELSE3,WHOELSE3,DONOR_MAP,2018,,DONOR_MAP
-WHOELSE4,WHOELSE4,WHOELSE4,DONOR_MAP,2018,,DONOR_MAP
-WHOELSE5,WHOELSE5,WHOELSE5,DONOR_MAP,2018,,DONOR_MAP
-WHOELSE6,WHOELSE6,WHOELSE6,DONOR_MAP,2018,,DONOR_MAP
-saqissp,saqissp,saqissp,NATIVE_NAME,,,NATIVE_NAME
-saqsex,saqsex,saqsex,NATIVE_NAME,,,NATIVE_NAME
-feeused,feeused,feeused,DONOR_MAP,2018,,DONOR_MAP
-lngthinv,lngthinv,lngthinv,DONOR_MAP,2018,,DONOR_MAP
-easyget,easyget,easyget,NATIVE_NAME,,,NATIVE_NAME
-ballot,ballot,ballot,DONOR_MAP,2018,,DONOR_MAP
-version,version,version,DONOR_MAP,2018,,DONOR_MAP
-issp,issp,issp,DONOR_MAP,2018,,DONOR_MAP
-sampcode,sampcode,sampcode,DONOR_MAP,2018,,DONOR_MAP
-wtssall,wtssall,wtssall,DONOR_MAP,2018,,DONOR_MAP
-vstrat,vstrat,vstrat,DONOR_MAP,2018,,DONOR_MAP
-vpsu,vpsu,vpsu,DONOR_MAP,2018,,DONOR_MAP
+variable,question_text,question_text_filled,source,source_year,codebook_page,codebook_source,map_provenance
+wrkstat,LABOR FORCE STATUS,LABOR FORCE STATUS,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+HRS1,NUMBER OF HOURS WORKED LAST WEEK,NUMBER OF HOURS WORKED LAST WEEK,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+HRS2,NUMBER OF HOURS USUALLY WORK A WEEK,NUMBER OF HOURS USUALLY WORK A WEEK,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+evwork,EVER WORK AS LONG AS ONE YEAR,EVER WORK AS LONG AS ONE YEAR,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+wrkslf,R SELF-EMP OR WORKS FOR SOMEBODY,R SELF-EMP OR WORKS FOR SOMEBODY,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+OCC80,R'S CENSUS OCCUPATION CODE (1980),R'S CENSUS OCCUPATION CODE (1980),CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+PRESTG80,R'S OCCUPATIONAL PRESTIGE SCORE(1980),R'S OCCUPATIONAL PRESTIGE SCORE(1980),CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+INDUS80,R'S INDUSTRY CODE (1980),R'S INDUSTRY CODE (1980),CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+found,CASE WAS RETRIEVABLE IN 2012,CASE WAS RETRIEVABLE IN 2012,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+OCC10,R'S CENSUS OCCUPATION CODE (2010),R'S CENSUS OCCUPATION CODE (2010),CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+occindv,R'S OCC/IND VERBATIM RETRIEVED,R'S OCC/IND VERBATIM RETRIEVED,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+occstatus,OCC10 CODING STATUS,OCC10 CODING STATUS,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+occtag,OCC10 CODING TAG,OCC10 CODING TAG,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+PRESTG10,R'S OCCUPATIONAL PRESTIGE SCORE (2010),R'S OCCUPATIONAL PRESTIGE SCORE (2010),CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+PRESTG105PLUS,r's occupational prestige score using threshold method (2010),r's occupational prestige score using threshold method (2010),YEAR_SPECIFIC,1998,,,YEAR_SPECIFIC
+INDUS10,R'S INDUSTRY CODE (NAICS 2007),R'S INDUSTRY CODE (NAICS 2007),CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+indstatus,INDUS10 CODING STATUS,INDUS10 CODING STATUS,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+indtag,INDUS10 CODING TAG,INDUS10 CODING TAG,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+marital,MARITAL STATUS,MARITAL STATUS,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+divorce,EVER BEEN DIVORCED OR SEPARATED,EVER BEEN DIVORCED OR SEPARATED,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+widowed,EVER BEEN WIDOWED,EVER BEEN WIDOWED,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+spwrksta,SPOUSE LABOR FORCE STATUS,SPOUSE LABOR FORCE STATUS,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPHRS1,NUMBER OF HRS SPOUSE WORKED LAST WEEK,NUMBER OF HRS SPOUSE WORKED LAST WEEK,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPHRS2,NO. OF HRS SPOUSE USUALLY WORKS A WEEK,NO. OF HRS SPOUSE USUALLY WORKS A WEEK,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+spevwork,SPOUSE EVER WORK AS LONG AS A YEAR,SPOUSE EVER WORK AS LONG AS A YEAR,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+spwrkslf,SPOUSE SELF-EMP. OR WORKS FOR SOMEBODY,SPOUSE SELF-EMP. OR WORKS FOR SOMEBODY,CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPOCC80,SPOUSE CENSUS OCCUPATION CODE (1980),SPOUSE CENSUS OCCUPATION CODE (1980),CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPPRES80,SPOUSE'S OCCUPATIONAL PRESTIGE SCORE (1980),SPOUSE'S OCCUPATIONAL PRESTIGE SCORE (1980),CUMULATIVE_CODEBOOK,,12,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPIND80,SPOUSE'S INDUSTRY CODE (1980),SPOUSE'S INDUSTRY CODE (1980),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPOCC10,SPOUSE CENSUS OCCUPATION CODE (2010),SPOUSE CENSUS OCCUPATION CODE (2010),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+spoccindv,SPOUSE'S OCC/IND VERBATIM RETRIEVED,SPOUSE'S OCC/IND VERBATIM RETRIEVED,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+spoccstatus,SPOCC10 CODING STATUS,SPOCC10 CODING STATUS,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+spocctag,SPOCC10 CODING TAG,SPOCC10 CODING TAG,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPPRES10,SPOUSE OCCUPATIONAL PRESTIGE SCORE (2010),SPOUSE OCCUPATIONAL PRESTIGE SCORE (2010),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPPRES105PLUS,spouse occupational prestige score using threshold method (2010),spouse occupational prestige score using threshold method (2010),YEAR_SPECIFIC,1998,,,YEAR_SPECIFIC
+SPIND10,SPOUSE'S INDUSTRY CODE (NAICS 2007),SPOUSE'S INDUSTRY CODE (NAICS 2007),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+spindstatus,SPIND10 CODING STATUS,SPIND10 CODING STATUS,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+spindtag,SPIND10 CODING TAG,SPIND10 CODING TAG,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+pawrkslf,FATHER SELF-EMP. OR WORKED FOR SOMEBODY,FATHER SELF-EMP. OR WORKED FOR SOMEBODY,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAOCC80,FATHER'S CENSUS OCCUPATION CODE (1980),FATHER'S CENSUS OCCUPATION CODE (1980),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAPRES80,FATHER'S OCCUPATIONAL PRESTIGE SCORE (1980),FATHER'S OCCUPATIONAL PRESTIGE SCORE (1980),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAIND80,FATHER'S INDUSTRY CODE (1980),FATHER'S INDUSTRY CODE (1980),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAOCC10,FATHER'S CENSUS OCCUPATION CODE (2010),FATHER'S CENSUS OCCUPATION CODE (2010),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+paoccindv,FATHER'S OCC/IND VERBATIM RETRIEVED,FATHER'S OCC/IND VERBATIM RETRIEVED,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+paoccstatus,PAOCC10 CODING STATUS,PAOCC10 CODING STATUS,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+paocctag,PAOCC10 CODING TAG,PAOCC10 CODING TAG,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAPRES10,FATHER'S OCCUPATIONAL PRESTIGE SCORE (2010),FATHER'S OCCUPATIONAL PRESTIGE SCORE (2010),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAPRES105PLUS,father's (or oldest same-sex parent's) occupational prestige score using thresho,father's (or oldest same-sex parent's) occupational prestige score using thresho,YEAR_SPECIFIC,1998,,,YEAR_SPECIFIC
+PAIND10,FATHER'S INDUSTRY CODE (NAICS 2007),FATHER'S INDUSTRY CODE (NAICS 2007),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+paindstatus,PAIND10 CODING STATUS,PAIND10 CODING STATUS,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+paindtag,PAIND10 CODING TAG,PAIND10 CODING TAG,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAOCC80,MOTHERS CENSUS OCCUPATION CODE (1980),MOTHERS CENSUS OCCUPATION CODE (1980),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAPRES80,MOTHERS OCCUPATIONAL PRESTIGE SCORE (1980),MOTHERS OCCUPATIONAL PRESTIGE SCORE (1980),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+mawrkslf,MOTHER SELF-EMP. OR WORKED FOR SOMEBODY,MOTHER SELF-EMP. OR WORKED FOR SOMEBODY,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAIND80,MOTHERS INDUSTRY CODE (1980),MOTHERS INDUSTRY CODE (1980),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAOCC10,MOTHERS CENSUS OCCUPATION CODE (2010),MOTHERS CENSUS OCCUPATION CODE (2010),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+maoccindv,MOTHERS OCC/IND VERBATIM RETRIEVED,MOTHERS OCC/IND VERBATIM RETRIEVED,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+maoccstatus,MAOCC10 CODING STATUS,MAOCC10 CODING STATUS,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+maocctag,MAOCC10 CODING TAG,MAOCC10 CODING TAG,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAPRES10,MOTHERS OCCUPATIONAL PRESTIGE SCORE (2010),MOTHERS OCCUPATIONAL PRESTIGE SCORE (2010),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAPRES105PLUS,4 4 4 4 4 4 4 4 4 4 4 4 4,4 4 4 4 4 4 4 4 4 4 4 4 4,CUMULATIVE_CODEBOOK,,3683,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAIND10,MOTHERS INDUSTRY CODE (NAICS 2007),MOTHERS INDUSTRY CODE (NAICS 2007),CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+maindstatus,MAIND10 CODING STATUS,MAIND10 CODING STATUS,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+maindtag,MAIND10 CODING TAG,MAIND10 CODING TAG,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+sibs,NUMBER OF BROTHERS AND SISTERS,NUMBER OF BROTHERS AND SISTERS,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+childs,NUMBER OF CHILDREN,NUMBER OF CHILDREN,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+age,AGE OF RESPONDENT,AGE OF RESPONDENT,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+agekdbrn,R'S AGE WHEN 1ST CHILD BORN,R'S AGE WHEN 1ST CHILD BORN,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+educ,HIGHEST YEAR OF SCHOOL COMPLETED,HIGHEST YEAR OF SCHOOL COMPLETED,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+paeduc,"HIGHEST YEAR SCHOOL COMPLETED, FATHER","HIGHEST YEAR SCHOOL COMPLETED, FATHER",CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+maeduc,"HIGHEST YEAR SCHOOL COMPLETED, MOTHER","HIGHEST YEAR SCHOOL COMPLETED, MOTHER",CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+speduc,"HIGHEST YEAR SCHOOL COMPLETED, SPOUSE","HIGHEST YEAR SCHOOL COMPLETED, SPOUSE",CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+degree,R'S HIGHEST DEGREE,R'S HIGHEST DEGREE,CUMULATIVE_CODEBOOK,,13,GSS_INDEX,CUMULATIVE_CODEBOOK
+padeg,FATHER'S HIGHEST DEGREE,FATHER'S HIGHEST DEGREE,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+madeg,MOTHERS HIGHEST DEGREE,MOTHERS HIGHEST DEGREE,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+spdeg,SPOUSE'S HIGHEST DEGREE,SPOUSE'S HIGHEST DEGREE,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+sex,RESPONDENTS SEX,RESPONDENTS SEX,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+race,RACE OF RESPONDENT,RACE OF RESPONDENT,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+RES16,TYPE OF PLACE LIVED IN WHEN 16 YRS OLD,TYPE OF PLACE LIVED IN WHEN 16 YRS OLD,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+REG16,"REGION OF RESIDENCE, AGE 16","REGION OF RESIDENCE, AGE 16",CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+MOBILE16,GEOGRAPHIC MOBILITY SINCE AGE 16,GEOGRAPHIC MOBILITY SINCE AGE 16,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+FAMILY16,LIVING WITH PARENTS WHEN 16 YRS OLD,LIVING WITH PARENTS WHEN 16 YRS OLD,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+FAMDIF16,REASON NOT LIVING WITH PARENTS,REASON NOT LIVING WITH PARENTS,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+mawrkgrw,MOTHERS EMPLOYMENT WHEN R WAS 16,MOTHERS EMPLOYMENT WHEN R WAS 16,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+born,WAS R BORN IN THIS COUNTRY,WAS R BORN IN THIS COUNTRY,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+parborn,WERE R'S PARENTS BORN IN THIS COUNTRY,WERE R'S PARENTS BORN IN THIS COUNTRY,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+granborn,HOW MANY GRANDPARENTS BORN OUTSIDE U.S.,HOW MANY GRANDPARENTS BORN OUTSIDE U.S.,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+hompop,NUMBER OF PERSONS IN HOUSEHOLD,NUMBER OF PERSONS IN HOUSEHOLD,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+babies,HOUSEHOLD MEMBERS LESS THAN 6 YRS OLD,HOUSEHOLD MEMBERS LESS THAN 6 YRS OLD,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+preteen,HOUSEHOLD MEMBERS 6 THRU 12 YRS OLD,HOUSEHOLD MEMBERS 6 THRU 12 YRS OLD,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+teens,HOUSEHOLD MEMBERS 13 THRU 17 YRS OLD,HOUSEHOLD MEMBERS 13 THRU 17 YRS OLD,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+adults,HOUSEHOLD MEMBERS 18 YRS AND OLDER,HOUSEHOLD MEMBERS 18 YRS AND OLDER,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+unrelat,NUMBER IN HOUSEHOLD NOT RELATED,NUMBER IN HOUSEHOLD NOT RELATED,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+earnrs,HOW MANY IN FAMILY EARNED MONEY,HOW MANY IN FAMILY EARNED MONEY,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+income,TOTAL FAMILY INCOME,TOTAL FAMILY INCOME,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+rincome,RESPONDENTS INCOME,RESPONDENTS INCOME,CUMULATIVE_CODEBOOK,,14,GSS_INDEX,CUMULATIVE_CODEBOOK
+INCOME98,TOTAL FAMILY INCOME,TOTAL FAMILY INCOME,CUMULATIVE_CODEBOOK,,15,GSS_INDEX,CUMULATIVE_CODEBOOK
+RINCOM98,RESPONDENTS INCOME,RESPONDENTS INCOME,CUMULATIVE_CODEBOOK,,15,GSS_INDEX,CUMULATIVE_CODEBOOK
+region,REGION OF INTERVIEW,REGION OF INTERVIEW,CUMULATIVE_CODEBOOK,,15,GSS_INDEX,CUMULATIVE_CODEBOOK
+xnorcsiz,EXPANDED NORC SIZE CODE,EXPANDED NORC SIZE CODE,CUMULATIVE_CODEBOOK,,15,GSS_INDEX,CUMULATIVE_CODEBOOK
+srcbelt,SRC BELTCODE,SRC BELTCODE,CUMULATIVE_CODEBOOK,,15,GSS_INDEX,CUMULATIVE_CODEBOOK
+size,SIZE OF PLACE IN 1000S,SIZE OF PLACE IN 1000S,CUMULATIVE_CODEBOOK,,15,GSS_INDEX,CUMULATIVE_CODEBOOK
+partyid,POLITICAL PARTY AFFILIATION,POLITICAL PARTY AFFILIATION,CUMULATIVE_CODEBOOK,,15,GSS_INDEX,CUMULATIVE_CODEBOOK
+VOTE92,DID R VOTE IN 1992 ELECTION,DID R VOTE IN 1992 ELECTION,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+PRES92,"VOTE FOR CLINTON, BUSH, PEROT","VOTE FOR CLINTON, BUSH, PEROT",CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+IF92WHO,WHO WOULD R HAVE VOTED FOR-1992 ELECTION,WHO WOULD R HAVE VOTED FOR-1992 ELECTION,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+VOTE96,DID R VOTE IN 1996 ELECTION,DID R VOTE IN 1996 ELECTION,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+PRES96,"VOTE FOR CLINTON, DOLE, PEROT","VOTE FOR CLINTON, DOLE, PEROT",CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+IF96WHO,WHO WOULD R HAVE VOTED FOR-1996 ELECTION,WHO WOULD R HAVE VOTED FOR-1996 ELECTION,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+polviews,THINK OF SELF AS LIBERAL OR CONSERVATIVE,THINK OF SELF AS LIBERAL OR CONSERVATIVE,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natspac,SPACE EXPLORATION PROGRAM,SPACE EXPLORATION PROGRAM,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natenvir,IMPROVING & PROTECTING ENVIRONMENT,IMPROVING & PROTECTING ENVIRONMENT,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natheal,IMPROVING & PROTECTING NATIONS HEALTH,IMPROVING & PROTECTING NATIONS HEALTH,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natcity,SOLVING PROBLEMS OF BIG CITIES,SOLVING PROBLEMS OF BIG CITIES,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natcrime,HALTING RISING CRIME RATE,HALTING RISING CRIME RATE,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natdrug,DEALING WITH DRUG ADDICTION,DEALING WITH DRUG ADDICTION,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+nateduc,IMPROVING NATIONS EDUCATION SYSTEM,IMPROVING NATIONS EDUCATION SYSTEM,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natrace,IMPROVING THE CONDITIONS OF BLACKS,IMPROVING THE CONDITIONS OF BLACKS,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natarms,"MILITARY, ARMAMENTS, AND DEFENSE","MILITARY, ARMAMENTS, AND DEFENSE",CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+nataid,FOREIGN AID,FOREIGN AID,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natfare,WELFARE,WELFARE,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natroad,HIGHWAYS AND BRIDGES,HIGHWAYS AND BRIDGES,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natsoc,SOCIAL SECURITY,SOCIAL SECURITY,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natmass,MASS TRANSPORTATION,MASS TRANSPORTATION,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natpark,PARKS AND RECREATION,PARKS AND RECREATION,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natspacy,SPACE EXPLORATION:VERSION Y,SPACE EXPLORATION:VERSION Y,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natenviy,THE ENVIRONMENT:VERSION Y,THE ENVIRONMENT:VERSION Y,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+nathealy,HEALTH:VERSION Y,HEALTH:VERSION Y,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natcityy,ASSISTANCE TO BIG CITIES:VERSION Y,ASSISTANCE TO BIG CITIES:VERSION Y,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natcrimy,LAW ENFORCEMENT:VERSION Y,LAW ENFORCEMENT:VERSION Y,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natdrugy,DRUG REHABILITATION:VERSION Y,DRUG REHABILITATION:VERSION Y,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+nateducy,EDUCATION:VERSION Y,EDUCATION:VERSION Y,CUMULATIVE_CODEBOOK,,16,GSS_INDEX,CUMULATIVE_CODEBOOK
+natracey,ASSISTANCE TO BLACKS:VERSION Y,ASSISTANCE TO BLACKS:VERSION Y,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+natarmsy,NATIONAL DEFENSE:VERSION Y,NATIONAL DEFENSE:VERSION Y,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+nataidy,ASSISTANCE TO OTHER COUNTRIES:VER Y,ASSISTANCE TO OTHER COUNTRIES:VER Y,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+natfarey,ASSISTANCE TO THE POOR:VERSION Y,ASSISTANCE TO THE POOR:VERSION Y,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+eqwlth,SHOULD GOVT REDUCE INCOME DIFFERENCES,SHOULD GOVT REDUCE INCOME DIFFERENCES,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+tax,R'S FEDERAL INCOME TAX,R'S FEDERAL INCOME TAX,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+spkath,ALLOW ANTI-RELIGIONIST TO SPEAK,ALLOW ANTI-RELIGIONIST TO SPEAK,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+colath,ALLOW ANTI-RELIGIONIST TO TEACH,ALLOW ANTI-RELIGIONIST TO TEACH,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+libath,ALLOW ANTI-RELIGIOUS BOOK IN LIBRARY,ALLOW ANTI-RELIGIOUS BOOK IN LIBRARY,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+spkrac,ALLOW RACIST TO SPEAK,ALLOW RACIST TO SPEAK,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+colrac,ALLOW RACIST TO TEACH,ALLOW RACIST TO TEACH,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+librac,ALLOW RACISTS BOOK IN LIBRARY,ALLOW RACISTS BOOK IN LIBRARY,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+spkcom,ALLOW COMMUNIST TO SPEAK,ALLOW COMMUNIST TO SPEAK,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+colcom,SHOULD COMMUNIST TEACHER BE FIRED,SHOULD COMMUNIST TEACHER BE FIRED,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+libcom,ALLOW COMMUNISTS BOOK IN LIBRARY,ALLOW COMMUNISTS BOOK IN LIBRARY,CUMULATIVE_CODEBOOK,,17,GSS_INDEX,CUMULATIVE_CODEBOOK
+spkmil,ALLOW MILITARIST TO SPEAK,ALLOW MILITARIST TO SPEAK,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+colmil,ALLOW MILITARIST TO TEACH,ALLOW MILITARIST TO TEACH,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+libmil,ALLOW MILITARISTS BOOK IN LIBRARY,ALLOW MILITARISTS BOOK IN LIBRARY,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+spkhomo,ALLOW HOMOSEXUAL TO SPEAK,ALLOW HOMOSEXUAL TO SPEAK,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+colhomo,ALLOW HOMOSEXUAL TO TEACH,ALLOW HOMOSEXUAL TO TEACH,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+libhomo,ALLOW HOMOSEXUALS BOOK IN LIBRARY,ALLOW HOMOSEXUALS BOOK IN LIBRARY,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+cappun,FAVOR OR OPPOSE DEATH PENALTY FOR MURDER,FAVOR OR OPPOSE DEATH PENALTY FOR MURDER,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+gunlaw,FAVOR OR OPPOSE GUN PERMITS,FAVOR OR OPPOSE GUN PERMITS,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+courts,COURTS DEALING WITH CRIMINALS,COURTS DEALING WITH CRIMINALS,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+grass,SHOULD MARIJUANA BE MADE LEGAL,SHOULD MARIJUANA BE MADE LEGAL,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+relig,R'S RELIGIOUS PREFERENCE,R'S RELIGIOUS PREFERENCE,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+denom,SPECIFIC DENOMINATION,SPECIFIC DENOMINATION,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+other,OTHER PROTESTANT DENOMINATIONS,OTHER PROTESTANT DENOMINATIONS,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+Jew,WHAT SORT OF JEW R IS,WHAT SORT OF JEW R IS,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+fund,HOW FUNDAMENTALIST IS R CURRENTLY,HOW FUNDAMENTALIST IS R CURRENTLY,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+attend,HOW OFTEN R ATTENDS RELIGIOUS SERVICES,HOW OFTEN R ATTENDS RELIGIOUS SERVICES,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+reliten,STRENGTH OF AFFILIATION,STRENGTH OF AFFILIATION,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+postlife,BELIEF IN LIFE AFTER DEATH,BELIEF IN LIFE AFTER DEATH,CUMULATIVE_CODEBOOK,,18,GSS_INDEX,CUMULATIVE_CODEBOOK
+pray,HOW OFTEN DOES R PRAY,HOW OFTEN DOES R PRAY,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+mapa,CONTRAST BETWEEN MOTHER AND FATHER,CONTRAST BETWEEN MOTHER AND FATHER,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+mastersp,CONTRAST BETWEEN MASTER AND SPOUSE,CONTRAST BETWEEN MASTER AND SPOUSE,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+judgeluv,CONTRAST BETWEEN JUDGE AND LOVER,CONTRAST BETWEEN JUDGE AND LOVER,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+frndking,CONTRAST BETWEEN FRIEND AND KING,CONTRAST BETWEEN FRIEND AND KING,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELIG16,RELIGION IN WHICH RAISED,RELIGION IN WHICH RAISED,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+DENOM16,DENOMINATION IN WHICH R WAS RAISED,DENOMINATION IN WHICH R WAS RAISED,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+OTH16,OTHER PROTESTANT DENOMINATIONS,OTHER PROTESTANT DENOMINATIONS,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+Jew16,WHAT SORT OF JEW R WAS AT AGE 16,WHAT SORT OF JEW R WAS AT AGE 16,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+FUND16,HOW FUNDAMENTALIST WAS R AT AGE 16,HOW FUNDAMENTALIST WAS R AT AGE 16,CUMULATIVE_CODEBOOK,,19,GSS_INDEX,CUMULATIVE_CODEBOOK
+prayer,BIBLE PRAYER IN PUBLIC SCHOOLS,BIBLE PRAYER IN PUBLIC SCHOOLS,CUMULATIVE_CODEBOOK,,20,GSS_INDEX,CUMULATIVE_CODEBOOK
+bible,FEELINGS ABOUT THE BIBLE,FEELINGS ABOUT THE BIBLE,CUMULATIVE_CODEBOOK,,20,GSS_INDEX,CUMULATIVE_CODEBOOK
+WORLD1,WORLD IMAGE:MUCH EVIL VS. MUCH GOOD,WORLD IMAGE:MUCH EVIL VS. MUCH GOOD,CUMULATIVE_CODEBOOK,,20,GSS_INDEX,CUMULATIVE_CODEBOOK
+WORLD4,WORLD IMAGE:MAN IS GOOD VS. CORRUPT,WORLD IMAGE:MAN IS GOOD VS. CORRUPT,CUMULATIVE_CODEBOOK,,20,GSS_INDEX,CUMULATIVE_CODEBOOK
+racmar,FAVOR LAW AGAINST RACIAL INTERMARRIAGE,FAVOR LAW AGAINST RACIAL INTERMARRIAGE,CUMULATIVE_CODEBOOK,,20,GSS_INDEX,CUMULATIVE_CODEBOOK
+racpush,BLACKS SHOULDN'T PUSH,BLACKS SHOULDN'T PUSH,CUMULATIVE_CODEBOOK,,20,GSS_INDEX,CUMULATIVE_CODEBOOK
+raclive,ANY OPP. RACE IN NEIGHBORHOOD,ANY OPP. RACE IN NEIGHBORHOOD,CUMULATIVE_CODEBOOK,,20,GSS_INDEX,CUMULATIVE_CODEBOOK
+affrmact,FAVOR PREFERENCE IN HIRING BLACKS,FAVOR PREFERENCE IN HIRING BLACKS,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+wrkwayup,BLACKS OVERCOME PREJUDICE WITHOUT FAVORS,BLACKS OVERCOME PREJUDICE WITHOUT FAVORS,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+blksimp,HAVE CONDITIONS FOR BLACKS IMPROVED,HAVE CONDITIONS FOR BLACKS IMPROVED,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+closeblk,HOW CLOSE FEEL TO BLACKS,HOW CLOSE FEEL TO BLACKS,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+closewht,HOW CLOSE FEEL TO WHITES,HOW CLOSE FEEL TO WHITES,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+happy,GENERAL HAPPINESS,GENERAL HAPPINESS,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+hapmar,HAPPINESS OF MARRIAGE,HAPPINESS OF MARRIAGE,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+health,CONDITION OF HEALTH,CONDITION OF HEALTH,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+life,IS LIFE EXCITING OR DULL,IS LIFE EXCITING OR DULL,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+helpful,PEOPLE HELPFUL OR LOOKING OUT FOR SELVES,PEOPLE HELPFUL OR LOOKING OUT FOR SELVES,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+fair,PEOPLE FAIR OR TRY TO TAKE ADVANTAGE,PEOPLE FAIR OR TRY TO TAKE ADVANTAGE,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+trust,CAN PEOPLE BE TRUSTED,CAN PEOPLE BE TRUSTED,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+confinan,CONFID IN BANKS & FINANCIAL INSTITUTIONS,CONFID IN BANKS & FINANCIAL INSTITUTIONS,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+conbus,CONFIDENCE IN MAJOR COMPANIES,CONFIDENCE IN MAJOR COMPANIES,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+conclerg,CONFIDENCE IN ORGANIZED RELIGION,CONFIDENCE IN ORGANIZED RELIGION,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+coneduc,CONFIDENCE IN EDUCATION,CONFIDENCE IN EDUCATION,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+confed,CONFID. IN EXEC BRANCH OF FED GOVT,CONFID. IN EXEC BRANCH OF FED GOVT,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+conlabor,CONFIDENCE IN ORGANIZED LABOR,CONFIDENCE IN ORGANIZED LABOR,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+conpress,CONFIDENCE IN PRESS,CONFIDENCE IN PRESS,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+conmedic,CONFIDENCE IN MEDICINE,CONFIDENCE IN MEDICINE,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+contv,CONFIDENCE IN TELEVISION,CONFIDENCE IN TELEVISION,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+conjudge,CONFID. IN UNITED STATES SUPREME COURT,CONFID. IN UNITED STATES SUPREME COURT,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+consci,CONFIDENCE IN SCIENTIFIC COMMUNITY,CONFIDENCE IN SCIENTIFIC COMMUNITY,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+conlegis,CONFIDENCE IN CONGRESS,CONFIDENCE IN CONGRESS,CUMULATIVE_CODEBOOK,,21,GSS_INDEX,CUMULATIVE_CODEBOOK
+conarmy,CONFIDENCE IN MILITARY,CONFIDENCE IN MILITARY,CUMULATIVE_CODEBOOK,,22,GSS_INDEX,CUMULATIVE_CODEBOOK
+obey,TO OBEY,TO OBEY,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+popular,TO BE WELL LIKED OR POPULAR,TO BE WELL LIKED OR POPULAR,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+thnkself,TO THINK FOR ONES SELF,TO THINK FOR ONES SELF,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+workhard,TO WORK HARD,TO WORK HARD,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+helpoth,TO HELP OTHERS,TO HELP OTHERS,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+socrel,SPEND EVENING WITH RELATIVES,SPEND EVENING WITH RELATIVES,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+socommun,SPEND EVENING WITH NEIGHBOR,SPEND EVENING WITH NEIGHBOR,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+socfrend,SPEND EVENING WITH FRIENDS,SPEND EVENING WITH FRIENDS,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+socbar,SPEND EVENING AT BAR,SPEND EVENING AT BAR,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+aged,SHOULD AGED LIVE WITH THEIR CHILDREN,SHOULD AGED LIVE WITH THEIR CHILDREN,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+weekswrk,WEEKS R WORKED LAST YEAR,WEEKS R WORKED LAST YEAR,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+partfull,WAS R'S WORK PART-TIME OR FULL-TIME?,WAS R'S WORK PART-TIME OR FULL-TIME?,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+joblose,IS R LIKELY TO LOSE JOB,IS R LIKELY TO LOSE JOB,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+jobfind,COULD R FIND EQUALLY GOOD JOB,COULD R FIND EQUALLY GOOD JOB,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+satjob,WORK SATISFACTION,WORK SATISFACTION,CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+richwork,"IF RICH, CONTINUE OR STOP WORKING","IF RICH, CONTINUE OR STOP WORKING",CUMULATIVE_CODEBOOK,,23,GSS_INDEX,CUMULATIVE_CODEBOOK
+class,SUBJECTIVE CLASS IDENTIFICATION,SUBJECTIVE CLASS IDENTIFICATION,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+satfin,SATISFACTION WITH FINANCIAL SITUATION,SATISFACTION WITH FINANCIAL SITUATION,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+finalter,CHANGE IN FINANCIAL SITUATION,CHANGE IN FINANCIAL SITUATION,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+finrela,OPINION OF FAMILY INCOME,OPINION OF FAMILY INCOME,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+wksub,DOES R OR SPOUSE HAVE SUPERVISOR,DOES R OR SPOUSE HAVE SUPERVISOR,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+wksubs,DOES SUPERVISOR HAVE SUPERVISOR,DOES SUPERVISOR HAVE SUPERVISOR,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+wksup,DOES R OR SPOUSE SUPERVISE ANYONE,DOES R OR SPOUSE SUPERVISE ANYONE,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+wksups,DOES SUBORDINATE SUPERVISE ANYONE,DOES SUBORDINATE SUPERVISE ANYONE,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+unemp,EVER UNEMPLOYED IN LAST TEN YRS,EVER UNEMPLOYED IN LAST TEN YRS,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+union,DOES R OR SPOUSE BELONG TO UNION,DOES R OR SPOUSE BELONG TO UNION,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+getahead,OPINION OF HOW PEOPLE GET AHEAD,OPINION OF HOW PEOPLE GET AHEAD,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+parsol,R'S LIVING STANDARD COMPARED TO PARENTS,R'S LIVING STANDARD COMPARED TO PARENTS,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+kidssol,R'S KIDS LIVING STANDARD COMPARED TO R,R'S KIDS LIVING STANDARD COMPARED TO R,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+fehome,WOMEN TAKE CARE OF HOME NOT COUNTRY,WOMEN TAKE CARE OF HOME NOT COUNTRY,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+fework,SHOULD WOMEN WORK,SHOULD WOMEN WORK,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+fepres,VOTE FOR WOMAN PRESIDENT,VOTE FOR WOMAN PRESIDENT,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+fepol,WOMEN NOT SUITED FOR POLITICS,WOMEN NOT SUITED FOR POLITICS,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+abdefect,STRONG CHANCE OF SERIOUS DEFECT,STRONG CHANCE OF SERIOUS DEFECT,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+abnomore,MARRIED--WANTS NO MORE CHILDREN,MARRIED--WANTS NO MORE CHILDREN,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+abhlth,WOMAN'S HEALTH SERIOUSLY ENDANGERED,WOMAN'S HEALTH SERIOUSLY ENDANGERED,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+abpoor,LOW INCOME--CANT AFFORD MORE CHILDREN,LOW INCOME--CANT AFFORD MORE CHILDREN,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+abrape,PREGNANT AS RESULT OF RAPE,PREGNANT AS RESULT OF RAPE,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+absingle,NOT MARRIED,NOT MARRIED,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+abany,ABORTION IF WOMAN WANTS FOR ANY REASON,ABORTION IF WOMAN WANTS FOR ANY REASON,CUMULATIVE_CODEBOOK,,24,GSS_INDEX,CUMULATIVE_CODEBOOK
+chldidel,IDEAL NUMBER OF CHILDREN,IDEAL NUMBER OF CHILDREN,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+pillok,BIRTH CONTROL TO TEENAGERS 14-16,BIRTH CONTROL TO TEENAGERS 14-16,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+sexeduc,SEX EDUCATION IN PUBLIC SCHOOLS,SEX EDUCATION IN PUBLIC SCHOOLS,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+divlaw,DIVORCE LAWS,DIVORCE LAWS,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+premarsx,SEX BEFORE MARRIAGE,SEX BEFORE MARRIAGE,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+teensex,SEX BEFORE MARRIAGE:TEENS 14-16,SEX BEFORE MARRIAGE:TEENS 14-16,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+xmarsex,SEX WITH PERSON OTHER THAN SPOUSE,SEX WITH PERSON OTHER THAN SPOUSE,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+homosex,HOMOSEXUAL SEX RELATIONS,HOMOSEXUAL SEX RELATIONS,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+pornlaw,FEELINGS ABOUT PORNOGRAPHY LAWS,FEELINGS ABOUT PORNOGRAPHY LAWS,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+xmovie,SEEN X-RATED MOVIE IN LAST YEAR,SEEN X-RATED MOVIE IN LAST YEAR,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+spanking,FAVOR SPANKING TO DISCIPLINE CHILD,FAVOR SPANKING TO DISCIPLINE CHILD,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+LETDIE1,ALLOW INCURABLE PATIENTS TO DIE,ALLOW INCURABLE PATIENTS TO DIE,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+SUICIDE1,SUICIDE IF INCURABLE DISEASE,SUICIDE IF INCURABLE DISEASE,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+SUICIDE2,SUICIDE IF BANKRUPT,SUICIDE IF BANKRUPT,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+SUICIDE3,SUICIDE IF DISHONORED FAMILY,SUICIDE IF DISHONORED FAMILY,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+SUICIDE4,SUICIDE IF TIRED OF LIVING,SUICIDE IF TIRED OF LIVING,CUMULATIVE_CODEBOOK,,25,GSS_INDEX,CUMULATIVE_CODEBOOK
+polhitok,EVER APPROVE OF POLICE STRIKING CITIZEN,EVER APPROVE OF POLICE STRIKING CITIZEN,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+polabuse,CITIZEN SAID VULGAR OR OBSCENE THINGS,CITIZEN SAID VULGAR OR OBSCENE THINGS,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+polmurdr,CITIZEN QUESTIONED AS MURDER SUSPECT,CITIZEN QUESTIONED AS MURDER SUSPECT,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+polescap,CITIZEN ATTEMPTING TO ESCAPE CUSTODY,CITIZEN ATTEMPTING TO ESCAPE CUSTODY,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+polattak,CITIZEN ATTACKING POLICEMAN WITH FISTS,CITIZEN ATTACKING POLICEMAN WITH FISTS,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+fear,AFRAID TO WALK AT NIGHT IN NEIGHBORHOOD,AFRAID TO WALK AT NIGHT IN NEIGHBORHOOD,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+owngun,HAVE GUN IN HOME,HAVE GUN IN HOME,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+pistol,PISTOL OR REVOLVER IN HOME,PISTOL OR REVOLVER IN HOME,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+shotgun,SHOTGUN IN HOME,SHOTGUN IN HOME,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+rifle,RIFLE IN HOME,RIFLE IN HOME,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+rowngun,DOES GUN BELONG TO R,DOES GUN BELONG TO R,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+hunt,DOES R OR SPOUSE HUNT,DOES R OR SPOUSE HUNT,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+news,HOW OFTEN DOES R READ NEWSPAPER,HOW OFTEN DOES R READ NEWSPAPER,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+tvhours,HOURS PER DAY WATCHING TV,HOURS PER DAY WATCHING TV,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+phone,DOES R HAVE TELEPHONE,DOES R HAVE TELEPHONE,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+coop,R'S ATTITUDE TOWARD INTERVIEW,R'S ATTITUDE TOWARD INTERVIEW,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+comprend,R'S UNDERSTANDING OF QUESTIONS,R'S UNDERSTANDING OF QUESTIONS,CUMULATIVE_CODEBOOK,,26,GSS_INDEX,CUMULATIVE_CODEBOOK
+form,FORM OF SPLIT QUESTIONNAIRE ASKED,FORM OF SPLIT QUESTIONNAIRE ASKED,CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+fechld,MOTHER WORKING DOESN'T HURT CHILDREN,MOTHER WORKING DOESN'T HURT CHILDREN,CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+fehelp,WIFE SHOULD HELP HUSBANDS CAREER FIRST,WIFE SHOULD HELP HUSBANDS CAREER FIRST,CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+fepresch,PRESCHOOL KIDS SUFFER IF MOTHER WORKS,PRESCHOOL KIDS SUFFER IF MOTHER WORKS,CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+fefam,"BETTER FOR MAN TO WORK, WOMAN TEND HOME","BETTER FOR MAN TO WORK, WOMAN TEND HOME",CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+RACDIF1,DIFFERENCES DUE TO DISCRIMINATION,DIFFERENCES DUE TO DISCRIMINATION,CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+RACDIF2,DIFFERENCES DUE TO INBORN DISABILITY,DIFFERENCES DUE TO INBORN DISABILITY,CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+RACDIF3,DIFFERENCES DUE TO LACK OF EDUCATION,DIFFERENCES DUE TO LACK OF EDUCATION,CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+RACDIF4,DIFFERENCES DUE TO LACK OF WILL,DIFFERENCES DUE TO LACK OF WILL,CUMULATIVE_CODEBOOK,,27,GSS_INDEX,CUMULATIVE_CODEBOOK
+helppoor,SHOULD GOVT IMPROVE STANDARD OF LIVING?,SHOULD GOVT IMPROVE STANDARD OF LIVING?,CUMULATIVE_CODEBOOK,,29,GSS_INDEX,CUMULATIVE_CODEBOOK
+helpnot,SHOULD GOVT DO MORE OR LESS?,SHOULD GOVT DO MORE OR LESS?,CUMULATIVE_CODEBOOK,,29,GSS_INDEX,CUMULATIVE_CODEBOOK
+helpsick,SHOULD GOVT HELP PAY FOR MEDICAL CARE?,SHOULD GOVT HELP PAY FOR MEDICAL CARE?,CUMULATIVE_CODEBOOK,,29,GSS_INDEX,CUMULATIVE_CODEBOOK
+helpblk,SHOULD GOVT AID BLACKS?,SHOULD GOVT AID BLACKS?,CUMULATIVE_CODEBOOK,,29,GSS_INDEX,CUMULATIVE_CODEBOOK
+SUNSCH16,HOW FREQUENTLY R ATTENDED SUNDAY SCHOOL,HOW FREQUENTLY R ATTENDED SUNDAY SCHOOL,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+tvrelig,HOURS PER WEEK R WATCHES RELIGIOUS TV,HOURS PER WEEK R WATCHES RELIGIOUS TV,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+god,R'S CONFIDENCE IN THE EXISTENCE OF GOD,R'S CONFIDENCE IN THE EXISTENCE OF GOD,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+reborn,HAS R EVER HAD A 'BORN AGAIN' EXPERIENCE,HAS R EVER HAD A 'BORN AGAIN' EXPERIENCE,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+savesoul,TRIED TO CONVINCE OTHERS TO ACCEPT JESUS,TRIED TO CONVINCE OTHERS TO ACCEPT JESUS,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+readword,HOW OFTEN DID R READ BIBLE LAST YEAR,HOW OFTEN DID R READ BIBLE LAST YEAR,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+gochurch,IMPORTANCE OF ATTENDING CHURCH REGULARLY,IMPORTANCE OF ATTENDING CHURCH REGULARLY,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+believe,IMPORTANCE OF BELIEVING IN GOD W O DOUBT,IMPORTANCE OF BELIEVING IN GOD W O DOUBT,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+follow,IMPORTANCE OF FOLLOWING CHURCH TEACHINGS,IMPORTANCE OF FOLLOWING CHURCH TEACHINGS,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+goownway,IMPORTANCE OF FOLLOWING OWN CONSCIENCE,IMPORTANCE OF FOLLOWING OWN CONSCIENCE,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOUBTS1,HAS EVIL IN THE WORLD CAUSED R DOUBT,HAS EVIL IN THE WORLD CAUSED R DOUBT,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOUBTS2,HAS PERSONAL SUFFERING CAUSED R DOUBT,HAS PERSONAL SUFFERING CAUSED R DOUBT,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FAITH1,HAS DEATH IN FAMILY STRENGTHENED FAITH,HAS DEATH IN FAMILY STRENGTHENED FAITH,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FAITH2,HAS BIRTH OF CHILD STRENGTHENED FAITH,HAS BIRTH OF CHILD STRENGTHENED FAITH,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDCON1,DOES FRIEND 1 BELONG TO R'S CONGREGATION,DOES FRIEND 1 BELONG TO R'S CONGREGATION,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDCON2,DOES FRIEND 2 BELONG TO R'S CONGREGATION,DOES FRIEND 2 BELONG TO R'S CONGREGATION,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDCON3,DOES FRIEND 3 BELONG TO R'S CONGREGATION,DOES FRIEND 3 BELONG TO R'S CONGREGATION,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDCON4,DOES FRIEND 4 BELONG TO R'S CONGREGATION,DOES FRIEND 4 BELONG TO R'S CONGREGATION,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDCON5,DOES FRIEND 5 BELONG TO R'S CONGREGATION,DOES FRIEND 5 BELONG TO R'S CONGREGATION,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDREL1,WHAT IS FRIEND 1S RELIGIOUS PREFERENCE,WHAT IS FRIEND 1S RELIGIOUS PREFERENCE,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDREL2,WHAT IS FRIEND 2S RELIGIOUS PREFERENCE,WHAT IS FRIEND 2S RELIGIOUS PREFERENCE,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDREL3,WHAT IS FRIEND 3S RELIGIOUS PREFERENCE,WHAT IS FRIEND 3S RELIGIOUS PREFERENCE,CUMULATIVE_CODEBOOK,,34,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDREL4,WHAT IS FRIEND 4S RELIGIOUS PREFERENCE,WHAT IS FRIEND 4S RELIGIOUS PREFERENCE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDREL5,WHAT IS FRIEND 5S RELIGIOUS PREFERENCE,WHAT IS FRIEND 5S RELIGIOUS PREFERENCE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDDEN1,WHAT IS FRIEND 1S SPECIFIC DENOMINATION,WHAT IS FRIEND 1S SPECIFIC DENOMINATION,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDDEN2,WHAT IS FRIEND 2S SPECIFIC DENOMINATION,WHAT IS FRIEND 2S SPECIFIC DENOMINATION,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDDEN3,WHAT IS FRIEND 3S SPECIFIC DENOMINATION,WHAT IS FRIEND 3S SPECIFIC DENOMINATION,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDDEN4,WHAT IS FRIEND 4S SPECIFIC DENOMINATION,WHAT IS FRIEND 4S SPECIFIC DENOMINATION,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDDEN5,WHAT IS FRIEND 5S SPECIFIC DENOMINATION,WHAT IS FRIEND 5S SPECIFIC DENOMINATION,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDOTH1,WHAT IS FRIEND 1S OTHER PROT DENOM,WHAT IS FRIEND 1S OTHER PROT DENOM,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDOTH2,WHAT IS FRIEND 2S OTHER PROT DENOM,WHAT IS FRIEND 2S OTHER PROT DENOM,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDOTH3,WHAT IS FRIEND 3S OTHER PROT DENOM,WHAT IS FRIEND 3S OTHER PROT DENOM,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDOTH4,WHAT IS FRIEND 4S OTHER PROT DENOM,WHAT IS FRIEND 4S OTHER PROT DENOM,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDOTH5,WHAT IS FRIEND 5S OTHER PROT DENOM,WHAT IS FRIEND 5S OTHER PROT DENOM,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDFND1,FUND.-LIB. OF 1ST FRIEND,FUND.-LIB. OF 1ST FRIEND,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDFND2,FUND.-LIB. OF 2ND FRIEND,FUND.-LIB. OF 2ND FRIEND,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDFND3,FUND.-LIB. OF 3RD FRIEND,FUND.-LIB. OF 3RD FRIEND,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDFND4,FUND.-LIB. OF 4TH FRIEND,FUND.-LIB. OF 4TH FRIEND,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDFND5,FUND.-LIB. OF 5TH FRIEND,FUND.-LIB. OF 5TH FRIEND,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDRAC1,WHAT IS FRIEND 1S RACE,WHAT IS FRIEND 1S RACE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDRAC2,WHAT IS FRIEND 2S RACE,WHAT IS FRIEND 2S RACE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDRAC3,WHAT IS FRIEND 3S RACE,WHAT IS FRIEND 3S RACE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDRAC4,WHAT IS FRIEND 4S RACE,WHAT IS FRIEND 4S RACE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+FRNDRAC5,WHAT IS FRIEND 5S RACE,WHAT IS FRIEND 5S RACE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+friends,HAVE ANY GOOD FRIENDS FEELING CLOSE,HAVE ANY GOOD FRIENDS FEELING CLOSE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+numfrend,ABOUT HOW MANY GOOD FRIENDS DO YOU HAVE,ABOUT HOW MANY GOOD FRIENDS DO YOU HAVE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+numbwfrd,GOOD FRIENDS WHO ARE WHITE-BLACK,GOOD FRIENDS WHO ARE WHITE-BLACK,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+bwfriend,FRIENDS BLACK OR WHITE,FRIENDS BLACK OR WHITE,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+godsells,RELIGIOUS IMAGE TO SELL PRODUCTS,RELIGIOUS IMAGE TO SELL PRODUCTS,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+godsport,PRO-ATHLETES GIVING THANKS TO GOD,PRO-ATHLETES GIVING THANKS TO GOD,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+givecong,GIVEN MONEY TO LOCAL CONGREGATION,GIVEN MONEY TO LOCAL CONGREGATION,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+giverel,GIVEN MONEY OTHER RELIGIOUS ORG,GIVEN MONEY OTHER RELIGIOUS ORG,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+giveoth,GIVEN MONEY NON-RELIGIOUS CHARITIES,GIVEN MONEY NON-RELIGIOUS CHARITIES,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+givearts,CONTRIBUTIONS TO ARTS CULTURE HUMANITIES,CONTRIBUTIONS TO ARTS CULTURE HUMANITIES,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHRS1,HOURS RELIGIOUS ACT IN HOME,HOURS RELIGIOUS ACT IN HOME,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHRS2,HOURS RELIGIOUS ACT OUTSIDE OF HOME,HOURS RELIGIOUS ACT OUTSIDE OF HOME,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+numcong,NUMBER OF MEMBERS OF THE CONGREGATION,NUMBER OF MEMBERS OF THE CONGREGATION,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+KID5UP,HAVE CHILDREN OLDER THAN 5,HAVE CHILDREN OLDER THAN 5,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+pubsch,ALL CHILDREN ATTEND PUB ELEM & HI SCHOOL,ALL CHILDREN ATTEND PUB ELEM & HI SCHOOL,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+homesch,CHILDREN ATTEND HOME SCHOOLING,CHILDREN ATTEND HOME SCHOOLING,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+cathsch,CHILDREN ATTEND CATHOLIC SCHOOL,CHILDREN ATTEND CATHOLIC SCHOOL,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+chrissch,CHILDREN ATTEND CHRISTIAN SCHOOL,CHILDREN ATTEND CHRISTIAN SCHOOL,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+relsch,CHILDREN ATTEND OTHER CHURCH SCHOOL,CHILDREN ATTEND OTHER CHURCH SCHOOL,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+privsch,CHILDREN ATTEND PRIVATE SECULAR SCHOOL,CHILDREN ATTEND PRIVATE SECULAR SCHOOL,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+othsch,CHILDREN ATTEND OTHER SCHOOL,CHILDREN ATTEND OTHER SCHOOL,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+shoprel,EVER SHOPPED AROUND FOR A CHURCH,EVER SHOPPED AROUND FOR A CHURCH,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+shopmove,SHOPPED AROUND BECAUSE HAD MOVED,SHOPPED AROUND BECAUSE HAD MOVED,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+shopnum,HOW MANY CHURCHES DID YOU VISIT,HOW MANY CHURCHES DID YOU VISIT,CUMULATIVE_CODEBOOK,,35,GSS_INDEX,CUMULATIVE_CODEBOOK
+wlthwhts,RICH - POOR,RICH - POOR,CUMULATIVE_CODEBOOK,,36,GSS_INDEX,CUMULATIVE_CODEBOOK
+wlthblks,RICH - POOR,RICH - POOR,CUMULATIVE_CODEBOOK,,36,GSS_INDEX,CUMULATIVE_CODEBOOK
+workwhts,HARD WORKING - LAZY,HARD WORKING - LAZY,CUMULATIVE_CODEBOOK,,36,GSS_INDEX,CUMULATIVE_CODEBOOK
+workblks,HARD WORKING - LAZY,HARD WORKING - LAZY,CUMULATIVE_CODEBOOK,,36,GSS_INDEX,CUMULATIVE_CODEBOOK
+intlwhts,UNINTELLIGENT -INTELLIGENT,UNINTELLIGENT -INTELLIGENT,CUMULATIVE_CODEBOOK,,36,GSS_INDEX,CUMULATIVE_CODEBOOK
+intlblks,UNINTELLIGENT - INTELLIGENT,UNINTELLIGENT - INTELLIGENT,CUMULATIVE_CODEBOOK,,36,GSS_INDEX,CUMULATIVE_CODEBOOK
+liveblks,NEIGHBORHOOD HALF BLACK,NEIGHBORHOOD HALF BLACK,CUMULATIVE_CODEBOOK,,37,GSS_INDEX,CUMULATIVE_CODEBOOK
+marblk,CLOSE RELATIVE MARRY BLACK,CLOSE RELATIVE MARRY BLACK,CUMULATIVE_CODEBOOK,,37,GSS_INDEX,CUMULATIVE_CODEBOOK
+racwork,RACIAL MAKEUP OF WORKPLACE,RACIAL MAKEUP OF WORKPLACE,CUMULATIVE_CODEBOOK,,37,GSS_INDEX,CUMULATIVE_CODEBOOK
+discaff,WHITES HURT BY AFF. ACTION,WHITES HURT BY AFF. ACTION,CUMULATIVE_CODEBOOK,,37,GSS_INDEX,CUMULATIVE_CODEBOOK
+visitart,VISITED ART MUSEUM OR GALLERY IN LST YR,VISITED ART MUSEUM OR GALLERY IN LST YR,CUMULATIVE_CODEBOOK,,40,GSS_INDEX,CUMULATIVE_CODEBOOK
+makeart,MADE ART OR CRAFT OBJECT IN LST YR,MADE ART OR CRAFT OBJECT IN LST YR,CUMULATIVE_CODEBOOK,,40,GSS_INDEX,CUMULATIVE_CODEBOOK
+dance,ATTENDED DANCE PERF IN LST YR,ATTENDED DANCE PERF IN LST YR,CUMULATIVE_CODEBOOK,,40,GSS_INDEX,CUMULATIVE_CODEBOOK
+gomusic,ATTENDED CLASSICAL OR OPERA IN LST YR,ATTENDED CLASSICAL OR OPERA IN LST YR,CUMULATIVE_CODEBOOK,,40,GSS_INDEX,CUMULATIVE_CODEBOOK
+perform,"PERFORMED MUSIC, DANCE, THEATER IN LST YR","PERFORMED MUSIC, DANCE, THEATER IN LST YR",CUMULATIVE_CODEBOOK,,40,GSS_INDEX,CUMULATIVE_CODEBOOK
+seemovie,WENT TO A MOVIE IN LST YR,WENT TO A MOVIE IN LST YR,CUMULATIVE_CODEBOOK,,40,GSS_INDEX,CUMULATIVE_CODEBOOK
+plymusic,PLAYED A MUSICAL INSTRUMENT IN LST YR,PLAYED A MUSICAL INSTRUMENT IN LST YR,CUMULATIVE_CODEBOOK,,40,GSS_INDEX,CUMULATIVE_CODEBOOK
+judgeart,ONLY A FEW PEOPLE CAN JUDGE ART,ONLY A FEW PEOPLE CAN JUDGE ART,CUMULATIVE_CODEBOOK,,41,GSS_INDEX,CUMULATIVE_CODEBOOK
+trstprof,TRUST PROFS JUDGMENTS IN ASSIGNING READING,TRUST PROFS JUDGMENTS IN ASSIGNING READING,CUMULATIVE_CODEBOOK,,41,GSS_INDEX,CUMULATIVE_CODEBOOK
+modpaint,MODERN PAINTING IS JUST SLAPPED ON,MODERN PAINTING IS JUST SLAPPED ON,CUMULATIVE_CODEBOOK,,41,GSS_INDEX,CUMULATIVE_CODEBOOK
+pclit,SHAME TRADL AMER LIT IGNORED FOR MINORITY LIT,SHAME TRADL AMER LIT IGNORED FOR MINORITY LIT,CUMULATIVE_CODEBOOK,,41,GSS_INDEX,CUMULATIVE_CODEBOOK
+romance,DO YOU HAVE A MAIN ROMANTIC INVOLVEMENT,DO YOU HAVE A MAIN ROMANTIC INVOLVEMENT,CUMULATIVE_CODEBOOK,,45,GSS_INDEX,CUMULATIVE_CODEBOOK
+livewith,DO YOU LIVE TOGETHER?,DO YOU LIVE TOGETHER?,CUMULATIVE_CODEBOOK,,45,GSS_INDEX,CUMULATIVE_CODEBOOK
+WILLWED1,HOW LIKELY YOU TWO WILL GET MARRIED?,HOW LIKELY YOU TWO WILL GET MARRIED?,CUMULATIVE_CODEBOOK,,45,GSS_INDEX,CUMULATIVE_CODEBOOK
+WILLWED2,IF RIGHT PERSON WOULD YOU MARRY?,IF RIGHT PERSON WOULD YOU MARRY?,CUMULATIVE_CODEBOOK,,45,GSS_INDEX,CUMULATIVE_CODEBOOK
+privpray,HOW OFTEN PRAY PRIVATELY,HOW OFTEN PRAY PRIVATELY,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+meditate,HOW OFTEN MEDITATE,HOW OFTEN MEDITATE,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+CONGHLP1,HOW MUCH CONGREGATION HELP OUT WITH ILL,HOW MUCH CONGREGATION HELP OUT WITH ILL,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+CONGHLP2,HOW MUCH CONGREGATION HELP OUT WITH PROB,HOW MUCH CONGREGATION HELP OUT WITH PROB,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+CONGHRM1,HOW OFTEN CONGREGATION MAKE TOO MUCH DEMAND,HOW OFTEN CONGREGATION MAKE TOO MUCH DEMAND,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+CONGHRM2,HOW OFTEN CONGREGATION CRITICAL OF THINGS R DO,HOW OFTEN CONGREGATION CRITICAL OF THINGS R DO,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+COPE1,THINK ABOUT LIFE IS PART OF LARGER FORCE,THINK ABOUT LIFE IS PART OF LARGER FORCE,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+COPE2,WORK TOGETHER WITH GOD AS PARTNER'S,WORK TOGETHER WITH GOD AS PARTNER'S,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+COPE3,LOOK TO GOD FOR STRENGTH & SUPPORT,LOOK TO GOD FOR STRENGTH & SUPPORT,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+COPE4,FEEL GOD IS PUNISHING FOR SIN,FEEL GOD IS PUNISHING FOR SIN,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+COPE5,WONDER WHETHER GOD HAS ABANDONED ME,WONDER WHETHER GOD HAS ABANDONED ME,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+COPE6,TRY TO MAKE SENSE WITHOUT RELYING ON GOD,TRY TO MAKE SENSE WITHOUT RELYING ON GOD,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+godwatch,BELIEVE IN GOD WHO WATCH OVER ME,BELIEVE IN GOD WHO WATCH OVER ME,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+lesspain,FEEL DEEP SENSE OF RESP FOR REDUCING PAIN,FEEL DEEP SENSE OF RESP FOR REDUCING PAIN,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+rellife,TRY TO CARRY BELIEFS INTO OTHER DEALINGS,TRY TO CARRY BELIEFS INTO OTHER DEALINGS,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+FORGIVE1,HAVE FORGIVEN SELF FOR MISTAKES,HAVE FORGIVEN SELF FOR MISTAKES,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+FORGIVE2,HAVE FORGIVEN THOSE WHO HURT ME,HAVE FORGIVEN THOSE WHO HURT ME,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+FORGIVE3,KNOW THAT GOD FORGIVES ME,KNOW THAT GOD FORGIVES ME,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+feelgod,FEEL GODS PRESENCE,FEEL GODS PRESENCE,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+relcmfrt,FIND STRENGTH AND COMFORT IN RELIGION,FIND STRENGTH AND COMFORT IN RELIGION,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+harmony,FEEL DEEP INNER PEACE OR HARMONY,FEEL DEEP INNER PEACE OR HARMONY,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+uniongod,DESIRE TO BE CLOSER TO GOD,DESIRE TO BE CLOSER TO GOD,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+godlove,FEEL GODS LOVE DIRECTLY OR THRU OTHERS,FEEL GODS LOVE DIRECTLY OR THRU OTHERS,CUMULATIVE_CODEBOOK,,55,GSS_INDEX,CUMULATIVE_CODEBOOK
+beausprt,SPIRITUALLY TOUCHED BY BEAUTY CREATION,SPIRITUALLY TOUCHED BY BEAUTY CREATION,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+nocheer,IN PAST 30 DAYS FEEL SAD,IN PAST 30 DAYS FEEL SAD,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+nervous,IN PAST 30 DAYS FEEL NERVOUS,IN PAST 30 DAYS FEEL NERVOUS,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+fidgety,IN PAST 30 DAYS FEEL RESTLESS OR FIDGETY,IN PAST 30 DAYS FEEL RESTLESS OR FIDGETY,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+hopeless,IN PAST 30 DAYS FEEL HOPELESS,IN PAST 30 DAYS FEEL HOPELESS,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+effort,IN PAST 30 DAYS FEEL EVERYTHING THING EFFORT,IN PAST 30 DAYS FEEL EVERYTHING THING EFFORT,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+wrthless,IN PAST 30 DAYS FEEL WORTHLESS,IN PAST 30 DAYS FEEL WORTHLESS,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+relpersn,R CONSIDER SELF A RELIGIOUS PERSON,R CONSIDER SELF A RELIGIOUS PERSON,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+sprtprsn,R CONSIDER SELF A SPIRITUAL PERSON,R CONSIDER SELF A SPIRITUAL PERSON,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+relexp,HAVE RELIGIOUS EXPERIENCE CHANGED LIFE,HAVE RELIGIOUS EXPERIENCE CHANGED LIFE,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+natarts,SPENDING RIGHT AMOUNT ON ARTS,SPENDING RIGHT AMOUNT ON ARTS,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+artgod,THRU ART AND MUSIC WE COME CLOSER TO GOD,THRU ART AND MUSIC WE COME CLOSER TO GOD,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+artists,EXCELLENT ARTISTS ABLE SUPPORT THEMSELVES,EXCELLENT ARTISTS ABLE SUPPORT THEMSELVES,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+irrelart,SHOULD ALLOW ART TO MOCK OR DEMEAN RELIGION,SHOULD ALLOW ART TO MOCK OR DEMEAN RELIGION,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+irreloff,OFFENDED ART MOCKS OR DEMEANS RELIGION,OFFENDED ART MOCKS OR DEMEANS RELIGION,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+aimofart,AIM OF ART,AIM OF ART,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+readfict,READ NOVELS POEMS OR PLAYS,READ NOVELS POEMS OR PLAYS,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+popmusic,WENT TO A LIVE PERFORMANCE OF POPULAR MUSIC,WENT TO A LIVE PERFORMANCE OF POPULAR MUSIC,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+drama,WENT TO A LIVE DRAMA,WENT TO A LIVE DRAMA,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+relart,HAD EXPERIENCE OF ART AT PLACE OF WORSHIP,HAD EXPERIENCE OF ART AT PLACE OF WORSHIP,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+volarts,VOLUNTEERED FOR ORGANIZATIONS OF ARTS,VOLUNTEERED FOR ORGANIZATIONS OF ARTS,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+natlart,FEEL FED GOV SHOULD PROVIDE ASSISTANCE TO ART,FEEL FED GOV SHOULD PROVIDE ASSISTANCE TO ART,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+stateart,FEEL STATE GOV SHOULD PROVIDE ASSISTANCE TO ART,FEEL STATE GOV SHOULD PROVIDE ASSISTANCE TO ART,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+localart,FEEL LOCAL GOV SHOULD PROVIDE ASSISTANCE TO ART,FEEL LOCAL GOV SHOULD PROVIDE ASSISTANCE TO ART,CUMULATIVE_CODEBOOK,,56,GSS_INDEX,CUMULATIVE_CODEBOOK
+occyrs,HOW MANY YEARS IN YOUR OCCUPATION,HOW MANY YEARS IN YOUR OCCUPATION,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+occtrain,GONE THRU SPECIALIZED TRAINING,GONE THRU SPECIALIZED TRAINING,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+trainsch,HOW MANY YEARS SPENT ON TRAINING,HOW MANY YEARS SPENT ON TRAINING,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+typeorg,WORK IN INDEPENDENT OR PART OF LARGER ORG,WORK IN INDEPENDENT OR PART OF LARGER ORG,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+wrkoth,EVER WORKED FULL TIME AT OTHER PARTS OF ORG,EVER WORKED FULL TIME AT OTHER PARTS OF ORG,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+othyrs,YEARS WORKED FULL TIME AT OTHER PARTS OF ORG,YEARS WORKED FULL TIME AT OTHER PARTS OF ORG,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+partorg,IN WHAT WAYS PART OF THE LARGER ORG,IN WHAT WAYS PART OF THE LARGER ORG,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+orgsize,HOW MANY PEOPLE EMPLOYED IN THE ENTIRE ORG,HOW MANY PEOPLE EMPLOYED IN THE ENTIRE ORG,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+genderwk,MOSTLY MEN OR WOMEN AT THE WORKPLACE,MOSTLY MEN OR WOMEN AT THE WORKPLACE,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+locyrs,HOW LONG HAVE WORKED AT THIS LOCATION,HOW LONG HAVE WORKED AT THIS LOCATION,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+samework,WORKED AT OTHER SITE WITH SIMILAR PRODUCT,WORKED AT OTHER SITE WITH SIMILAR PRODUCT,CUMULATIVE_CODEBOOK,,57,GSS_INDEX,CUMULATIVE_CODEBOOK
+siteyrs,HOW LONG HAVE WORKED FOR THOSE SITES,HOW LONG HAVE WORKED FOR THOSE SITES,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+otjtrain,RECEIVED ANY ON-THE-JOB TRAINING,RECEIVED ANY ON-THE-JOB TRAINING,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+formltrn,DID IT INCLUDE FORMAL TRAINING COURSE,DID IT INCLUDE FORMAL TRAINING COURSE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+formlfin,HAVE YOU FINISHED ALL THE COURSES,HAVE YOU FINISHED ALL THE COURSES,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+formldys,THE NUMBER OF DAYS IN FORMAL TRAINING,THE NUMBER OF DAYS IN FORMAL TRAINING,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+formlhrs,THE NUMBER OF HRS IN FORMAL TRAINING,THE NUMBER OF HRS IN FORMAL TRAINING,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+doingtrn,INCLUDE INFORMAL LEARNING BY DOING,INCLUDE INFORMAL LEARNING BY DOING,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+doingfin,HAVE COMPLETED THIS ON-THE-JOB TRAINING,HAVE COMPLETED THIS ON-THE-JOB TRAINING,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+doingdys,HOW LONG SPENT ON LEARNING BY DOING,HOW LONG SPENT ON LEARNING BY DOING,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+wojob,SINCE 1ST JOB EVER BEEN WITHOUT A JOB,SINCE 1ST JOB EVER BEEN WITHOUT A JOB,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+wojobyrs,HOW MANY YEARS WITHOUT A JOB,HOW MANY YEARS WITHOUT A JOB,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+numemp,FOR HOW MANY EMPLOYERS EVER WORKED FULL TIME,FOR HOW MANY EMPLOYERS EVER WORKED FULL TIME,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+howpaid,HOW GET PAID LAST WEEK,HOW GET PAID LAST WEEK,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+hourly,WHAT IS YOUR HOURLY WAGE BEFORE TAX,WHAT IS YOUR HOURLY WAGE BEFORE TAX,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+daily,WHAT IS YOUR DAILY WAGE BEFORE TAX,WHAT IS YOUR DAILY WAGE BEFORE TAX,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+weekly,WHAT IS YOUR WEEKLY WAGE BEFORE TAX,WHAT IS YOUR WEEKLY WAGE BEFORE TAX,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+monthly,WHAT IS YOUR MONTHLY WAGE BEFORE TAX,WHAT IS YOUR MONTHLY WAGE BEFORE TAX,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+yearly,WHAT IS YOUR YEARLY WAGE BEFORE TAX,WHAT IS YOUR YEARLY WAGE BEFORE TAX,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+trusting,MOST PEOPLE CAN BE TRUSTED,MOST PEOPLE CAN BE TRUSTED,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+seenmntl,YOU OR ANYONE YOU KNOW SEEN A PSYCHIATRIST,YOU OR ANYONE YOU KNOW SEEN A PSYCHIATRIST,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCMED1,PSYCHIATRIC MEDICINE IS HARMFUL TO THE BODY,PSYCHIATRIC MEDICINE IS HARMFUL TO THE BODY,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCMED2,PEOPLE SHOULD STOP TAKING IF SYMPTOMS GONE,PEOPLE SHOULD STOP TAKING IF SYMPTOMS GONE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCMED3,TAKING THESE MEDICINE INTERFERES W DAILY ACT,TAKING THESE MEDICINE INTERFERES W DAILY ACT,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCMED4,HELPS PEOPLE DEAL W DAY TO DAY STRESSES,HELPS PEOPLE DEAL W DAY TO DAY STRESSES,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCMED5,MAKES THINGS EASIER IN RELATIONS,MAKES THINGS EASIER IN RELATIONS,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCMED6,THESE MEDICATIONS HELP CONTROL SYMPTOMS,THESE MEDICATIONS HELP CONTROL SYMPTOMS,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCMED7,HELPS PEOPLE FEEL BETTER ABOUT THEMSELVES,HELPS PEOPLE FEEL BETTER ABOUT THEMSELVES,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+USEPSYC1,WILL TAKE MEDICINE BECAUSE PERSONAL TROUBLE,WILL TAKE MEDICINE BECAUSE PERSONAL TROUBLE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+USEPSYC2,WILL TAKE MEDICINE BECAUSE CANT COPE W STRESS,WILL TAKE MEDICINE BECAUSE CANT COPE W STRESS,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+USEPSYC3,WILL TAKE MEDICINE BECAUSE FEELING DEPRESSED,WILL TAKE MEDICINE BECAUSE FEELING DEPRESSED,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+USEPSYC4,WILL TAKE MEDICINE BECAUSE INTENSE FEAR,WILL TAKE MEDICINE BECAUSE INTENSE FEAR,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCKID1,WILL GIVE KID MED BECAUSE KID IS HOSTILE,WILL GIVE KID MED BECAUSE KID IS HOSTILE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCKID2,WILL GIVE KID MED BECAUSE SCHOOL TROUBLE,WILL GIVE KID MED BECAUSE SCHOOL TROUBLE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+PSYCKID3,WILL GIVE KID MED BECAUSE KID TALKED SUICIDE,WILL GIVE KID MED BECAUSE KID TALKED SUICIDE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+psycdrct,PREFER GO DIRECTLY TO A MENTAL HEALTH SPEC,PREFER GO DIRECTLY TO A MENTAL HEALTH SPEC,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+psycfdoc,WOULD TRUST FAMILY PHYSICIAN PRESCRIPTION,WOULD TRUST FAMILY PHYSICIAN PRESCRIPTION,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+psycpsyc,ONLY TRUST PSYCHIATRIST PRESCRIPTION,ONLY TRUST PSYCHIATRIST PRESCRIPTION,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+hlthinsr,HAVE HEALTH INSURANCE,HAVE HEALTH INSURANCE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+doclist,USE A DIRECTORY LIST FOR HEALTH CARE PLAN,USE A DIRECTORY LIST FOR HEALTH CARE PLAN,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+anydoc,CAN CHOOSE ANY DOCTOR I LIKE,CAN CHOOSE ANY DOCTOR I LIKE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+swithlth,EVER SWITCHED PLAN MEDICAL CARE PROVIDER,EVER SWITCHED PLAN MEDICAL CARE PROVIDER,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+usedmntl,HAVE SOUGHT CARE WITH MENTAL HEALTH SINCE PLAN,HAVE SOUGHT CARE WITH MENTAL HEALTH SINCE PLAN,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+mntlcare,WERE ABLE TO GET MENTAL HEALTH CARE,WERE ABLE TO GET MENTAL HEALTH CARE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+mntldif,HOW DIFFICULT TO GET MENTAL HEALTH CARE,HOW DIFFICULT TO GET MENTAL HEALTH CARE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+mntldeny,EVER DENIED SERVICES UNDER PLANS PACKAGE,EVER DENIED SERVICES UNDER PLANS PACKAGE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+HMO1,HMO IMPROVES THE QUALITY OF CARE,HMO IMPROVES THE QUALITY OF CARE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+HMO2,HMO PREVENT DOCTORS FROM PRESCRIBING TESTS,HMO PREVENT DOCTORS FROM PRESCRIBING TESTS,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+HMO3,HMO HELP TO CONTROL COSTS,HMO HELP TO CONTROL COSTS,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+HMO4,HMO PREVENT PEOPLE FROM GETTING NEEDED CARE,HMO PREVENT PEOPLE FROM GETTING NEEDED CARE,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+HMO5,HMO DAMAGE TRUST BTWN DOCTORS AND PATIENTS,HMO DAMAGE TRUST BTWN DOCTORS AND PATIENTS,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+HMO6,HMO TAKE MEDICAL DECISIONS FROM PHYSICIANS,HMO TAKE MEDICAL DECISIONS FROM PHYSICIANS,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+HMO7,HMO MAKE EMOTIONAL MENTAL PRBLM MORE DIFFICULT,HMO MAKE EMOTIONAL MENTAL PRBLM MORE DIFFICULT,CUMULATIVE_CODEBOOK,,58,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC1,DOCTORS AREN'T AS THOROUGH AS SHOULD BE,DOCTORS AREN'T AS THOROUGH AS SHOULD BE,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC2,DOCTORS DO BEST TO PREVENT WORRYING,DOCTORS DO BEST TO PREVENT WORRYING,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC3,DOCTORS SOMETIMES TAKE UNNECESSARY RISKS,DOCTORS SOMETIMES TAKE UNNECESSARY RISKS,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC4,DOCTORS ARE CAREFUL TO CHECK EVERYTHING,DOCTORS ARE CAREFUL TO CHECK EVERYTHING,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC5,DOCTORS TREAT PATIENTS WITH RESPECT,DOCTORS TREAT PATIENTS WITH RESPECT,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC6,I HARDLY SEE THE SAME DOCTORS EACH TIME,I HARDLY SEE THE SAME DOCTORS EACH TIME,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC7,DOCTORS AVOID UNNECESSARY PATIENT EXPENSES,DOCTORS AVOID UNNECESSARY PATIENT EXPENSES,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC8,DOCTORS CAUSE WORRY BECAUSE DON'T EXPLAIN,DOCTORS CAUSE WORRY BECAUSE DON'T EXPLAIN,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC9,DOCTORS IGNORE OLD PROBLEMS CARE NEW ONES,DOCTORS IGNORE OLD PROBLEMS CARE NEW ONES,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC10,DOCTORS RECOMMEND SURGERY IF NO OTHER WAY,DOCTORS RECOMMEND SURGERY IF NO OTHER WAY,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC11,DOCTORS WILLING TO REFER ME A SPECIALIST,DOCTORS WILLING TO REFER ME A SPECIALIST,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC12,DOCTORS UNABLE TO TELL ME ALL THE OPTIONS,DOCTORS UNABLE TO TELL ME ALL THE OPTIONS,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC13,DOCTORS DENY ME THE TREATMENT NEEDED,DOCTORS DENY ME THE TREATMENT NEEDED,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC14,DOCTORS PUT COST CONSIDERATION ABOVE CARE,DOCTORS PUT COST CONSIDERATION ABOVE CARE,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC15,DOCTOR NOT REALLY CARE ME AS A PERSON,DOCTOR NOT REALLY CARE ME AS A PERSON,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC16,DOCTORS JUDGMENT TRUSTED,DOCTORS JUDGMENT TRUSTED,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC17,DOCTOR DOES NOT DO EVERYTHING SHOULD FOR ME,DOCTOR DOES NOT DO EVERYTHING SHOULD FOR ME,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC18,DOCTOR PUT MEDICAL NEEDS ABOVE ALL OTHER,DOCTOR PUT MEDICAL NEEDS ABOVE ALL OTHER,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC19,DOCTOR A REAL EXPERT IN TAKING CARE PROBLEM,DOCTOR A REAL EXPERT IN TAKING CARE PROBLEM,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+DOC20,DOCTOR TELL ME IF A MISTAKE WAS MADE,DOCTOR TELL ME IF A MISTAKE WAS MADE,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+prozac,HAVE YOU EVER HEARD OF PROZAC,HAVE YOU EVER HEARD OF PROZAC,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+usedproz,HAVE YOU EVER TAKEN PROZAC,HAVE YOU EVER TAKEN PROZAC,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+knwnproz,HAVE YOU KNOWN ANYONE WHO TOOK PROZAC,HAVE YOU KNOWN ANYONE WHO TOOK PROZAC,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZFOR1,WHAT CAN YOU TELL ME ABOUT PROZAC IS USED FOR,WHAT CAN YOU TELL ME ABOUT PROZAC IS USED FOR,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZFOR2,WHAT CAN YOU TELL ME ABOUT PROZAC IS USED FOR,WHAT CAN YOU TELL ME ABOUT PROZAC IS USED FOR,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZFOR3,WHAT CAN YOU TELL ME ABOUT PROZAC IS USED FOR,WHAT CAN YOU TELL ME ABOUT PROZAC IS USED FOR,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ1,PROZAC IS HARMFUL TO THE BODY,PROZAC IS HARMFUL TO THE BODY,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ2,IF NO SYMPTOMS SHOULD DISCONTINUE PROZAC,IF NO SYMPTOMS SHOULD DISCONTINUE PROZAC,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ3,TAKING PROZAC INTERFERES WITH DAILY ACTIVITIES,TAKING PROZAC INTERFERES WITH DAILY ACTIVITIES,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ4,TAKING PROZAC HELPS PEOPLE DEAL WITH STRESS,TAKING PROZAC HELPS PEOPLE DEAL WITH STRESS,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ5,TAKING PROZAC MAKES RELATIONS EASIER,TAKING PROZAC MAKES RELATIONS EASIER,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ6,PROZAC HELPS PEOPLE CONTROL THEIR SYMPTOMS,PROZAC HELPS PEOPLE CONTROL THEIR SYMPTOMS,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ7,PROZAC MAKES PEOPLE FEEL BETTER ABOUT THEMSELVES,PROZAC MAKES PEOPLE FEEL BETTER ABOUT THEMSELVES,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ8,PROZAC SHOULD BE TAKEN TO ENHANCE PERSONALITIES,PROZAC SHOULD BE TAKEN TO ENHANCE PERSONALITIES,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZ9,PROZAC IS FOR THOSE DIAGNOSED WITH DEPRESSION,PROZAC IS FOR THOSE DIAGNOSED WITH DEPRESSION,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZSLF1,TAKE PROZAC IF TROUBLE IN PERSONAL LIFE,TAKE PROZAC IF TROUBLE IN PERSONAL LIFE,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZSLF2,TAKE PROZAC IF CANT COPE WITH STRESSES,TAKE PROZAC IF CANT COPE WITH STRESSES,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZSLF3,TAKE PROZAC IF FEEL DEPRESSED SLEEPLESS,TAKE PROZAC IF FEEL DEPRESSED SLEEPLESS,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZSLF4,TAKE PROZAC IF INTENSE FEAR LOSING CONTROL,TAKE PROZAC IF INTENSE FEAR LOSING CONTROL,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZKID1,GIVE KID PROZAC IF IS HOSTILE,GIVE KID PROZAC IF IS HOSTILE,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZKID2,GIVE KID PROZAC IF IS NOT PAYING ATTENTION,GIVE KID PROZAC IF IS NOT PAYING ATTENTION,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+PROZKID3,GIVE KID PROZAC IF IS TALKING ABOUT SUICIDE,GIVE KID PROZAC IF IS TALKING ABOUT SUICIDE,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+socsecrt,SOCIAL SECURITY WILL BE BETTER,SOCIAL SECURITY WILL BE BETTER,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+socsecfx,HOW SERIOUS IS SOCIAL SECURITIES PROBLEM,HOW SERIOUS IS SOCIAL SECURITIES PROBLEM,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+socsecnu,SOCIAL SECURITY PHASE OUT OR CONTINUE,SOCIAL SECURITY PHASE OUT OR CONTINUE,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+terminal,HAVE YOU OR CLOSE FRIENDS RELATIVE FACED WITH TERMINAL ILLNESS,HAVE YOU OR CLOSE FRIENDS RELATIVE FACED WITH TERMINAL ILLNESS,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+termecon,WORRY ABOUT ECONOMIC BURDEN OF TERMINAL ILLNESS,WORRY ABOUT ECONOMIC BURDEN OF TERMINAL ILLNESS,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+termrel,MY RELIGIOUS COMMUNITY VERY HELPFUL,MY RELIGIOUS COMMUNITY VERY HELPFUL,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+termemot,WORRY ABOUT EMOTIONAL BURDEN ON MY FAMILY,WORRY ABOUT EMOTIONAL BURDEN ON MY FAMILY,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+termpain,BELIEVE DOCTORS CAN CONTROL MY PAIN,BELIEVE DOCTORS CAN CONTROL MY PAIN,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+termpay,WORRY IF NO MONEY GET SECOND CLASS CARE,WORRY IF NO MONEY GET SECOND CLASS CARE,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+trustfam,WOULD TRUST MY FAMILY,WOULD TRUST MY FAMILY,CUMULATIVE_CODEBOOK,,59,GSS_INDEX,CUMULATIVE_CODEBOOK
+trustdoc,WOULD TRUST MY DOCTOR,WOULD TRUST MY DOCTOR,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+trustcrt,WOULD TRUST THE COURTS,WOULD TRUST THE COURTS,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+termvig,ONE OF THE VIGNETTES,ONE OF THE VIGNETTES,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+rightref,HAVE A RIGHT TO REFUSE FURTHER TREATMENT,HAVE A RIGHT TO REFUSE FURTHER TREATMENT,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+notreat,REFUSE TREATMENT EXCEPT PAIN RELIEF,REFUSE TREATMENT EXCEPT PAIN RELIEF,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+instrctn,PREPARE WRITTEN INSTRUCTIONS EXPLAINING FUTURE CAR,PREPARE WRITTEN INSTRUCTIONS EXPLAINING FUTURE CAR,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+hospice,CHOOSE HOSPICE UNTIL PATIENT DIES,CHOOSE HOSPICE UNTIL PATIENT DIES,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+painmed,ASK DOCTORS TO INCREASE PAIN MEDICATION,ASK DOCTORS TO INCREASE PAIN MEDICATION,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+docsui,ASK FOR PHYSICIAN-ASSISTED SUICIDE,ASK FOR PHYSICIAN-ASSISTED SUICIDE,CUMULATIVE_CODEBOOK,,60,GSS_INDEX,CUMULATIVE_CODEBOOK
+jobsall,GOVTS RESP: PROVIDE JOBS FOR ALL,GOVTS RESP: PROVIDE JOBS FOR ALL,CUMULATIVE_CODEBOOK,,97,GSS_INDEX,CUMULATIVE_CODEBOOK
+equalize,GOVTS RESP: REDUCE INCOME DIFFERENCES,GOVTS RESP: REDUCE INCOME DIFFERENCES,CUMULATIVE_CODEBOOK,,97,GSS_INDEX,CUMULATIVE_CODEBOOK
+goodlife,STANDARD OF LIVING OF R WILL IMPROVE,STANDARD OF LIVING OF R WILL IMPROVE,CUMULATIVE_CODEBOOK,,101,GSS_INDEX,CUMULATIVE_CODEBOOK
+famsuffr,FAMILY LIFE SUFFERS IF MOM WORKS F-T,FAMILY LIFE SUFFERS IF MOM WORKS F-T,CUMULATIVE_CODEBOOK,,103,GSS_INDEX,CUMULATIVE_CODEBOOK
+hubbywrk,HUSB SHLD WORK WIFE SHLD LOOK AFTER HOME,HUSB SHLD WORK WIFE SHLD LOOK AFTER HOME,CUMULATIVE_CODEBOOK,,103,GSS_INDEX,CUMULATIVE_CODEBOOK
+cohabok,LIVING TOGETHER AS AN ACCEPTABLE OPTION,LIVING TOGETHER AS AN ACCEPTABLE OPTION,CUMULATIVE_CODEBOOK,,104,GSS_INDEX,CUMULATIVE_CODEBOOK
+cohabfst,PEOPLE SHOULD LIVE TOGETHER BEFORE MARRIAGE,PEOPLE SHOULD LIVE TOGETHER BEFORE MARRIAGE,CUMULATIVE_CODEBOOK,,104,GSS_INDEX,CUMULATIVE_CODEBOOK
+timepdwk,TIME R WOULD SPEND ON PAID WORK,TIME R WOULD SPEND ON PAID WORK,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+timehhwk,TIME R WOULD SPEND ON HOUSEHOLD WORK,TIME R WOULD SPEND ON HOUSEHOLD WORK,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+timefam,TIME R WOULD SPEND ON FAMILY,TIME R WOULD SPEND ON FAMILY,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+timefrnd,TIME R WOULD SPEND ON FRIENDS,TIME R WOULD SPEND ON FRIENDS,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+timeleis,TIME R WOULD SPEND ON LEISURE,TIME R WOULD SPEND ON LEISURE,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+wrkearn,JOB IS JUST A WAY TO EARN MONEY,JOB IS JUST A WAY TO EARN MONEY,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+wrkenjoy,ENJOY JOB EVEN IF $ NOT NEEDED,ENJOY JOB EVEN IF $ NOT NEEDED,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+wrkimp,WORK IS PERSONS MOST IMPT. ACTIVITY,WORK IS PERSONS MOST IMPT. ACTIVITY,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+hwduties,IS R MAINLY RESPONS.FOR HH CHORES?,IS R MAINLY RESPONS.FOR HH CHORES?,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+secjob,IMPORTANCE OF JOB SECURITY IN A JOB,IMPORTANCE OF JOB SECURITY IN A JOB,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+hiinc,IMPORTANCE OF HIGH PR INCOME IN A JOB,IMPORTANCE OF HIGH PR INCOME IN A JOB,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+promotn,IMPORTANCE OF ADVANCEMENT IN A JOB,IMPORTANCE OF ADVANCEMENT IN A JOB,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+intjob,IMPORTANCE OF INTERESTING WORK IN A JOB,IMPORTANCE OF INTERESTING WORK IN A JOB,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+wrkindp,IMPORTANCE OF INDEPENDENT WORK IN A JOB,IMPORTANCE OF INDEPENDENT WORK IN A JOB,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+hlpoths,IMPORTANCE OF HELPING OTHERS IN A JOB,IMPORTANCE OF HELPING OTHERS IN A JOB,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+hlpsoc,IMPORTANCE OF SOCIAL USEFULNESS IN A JOB,IMPORTANCE OF SOCIAL USEFULNESS IN A JOB,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+flexhrs,IMPORTANCE OF FLEXIBLE HRS. IN A JOB,IMPORTANCE OF FLEXIBLE HRS. IN A JOB,CUMULATIVE_CODEBOOK,,106,GSS_INDEX,CUMULATIVE_CODEBOOK
+empself,DOES R PREFER SELF-EMPLOYMENT OR NOT ?,DOES R PREFER SELF-EMPLOYMENT OR NOT ?,CUMULATIVE_CODEBOOK,,107,GSS_INDEX,CUMULATIVE_CODEBOOK
+smallbig,R PREFERENCE RE: FIRM SIZE IN,R PREFERENCE RE: FIRM SIZE IN,CUMULATIVE_CODEBOOK,,107,GSS_INDEX,CUMULATIVE_CODEBOOK
+privgovt,R PREFERENCE RE: PRIVATE PUBLIC SECTOR,R PREFERENCE RE: PRIVATE PUBLIC SECTOR,CUMULATIVE_CODEBOOK,,107,GSS_INDEX,CUMULATIVE_CODEBOOK
+findjob,COULD R FIND A JOB <UNEMPLOYED R'S>,COULD R FIND A JOB <UNEMPLOYED R'S>,CUMULATIVE_CODEBOOK,,107,GSS_INDEX,CUMULATIVE_CODEBOOK
+iwrkhard,HOW HARD DOES R WORK AT JOB,HOW HARD DOES R WORK AT JOB,CUMULATIVE_CODEBOOK,,107,GSS_INDEX,CUMULATIVE_CODEBOOK
+hrsmoney,R PREFERENCE RE: WORK HRS AND MONEY,R PREFERENCE RE: WORK HRS AND MONEY,CUMULATIVE_CODEBOOK,,107,GSS_INDEX,CUMULATIVE_CODEBOOK
+rsecjob,R'S JOB IS SECURE,R'S JOB IS SECURE,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+rhiinc,R'S INCOME IS HIGH,R'S INCOME IS HIGH,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+rpromotn,R HAS OPPORTUNITY TO ADVANCE,R HAS OPPORTUNITY TO ADVANCE,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+rintjob,R'S JOB IS INTERESTING,R'S JOB IS INTERESTING,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+rwrkindp,R CAN WORK INDEPENDENTLY,R CAN WORK INDEPENDENTLY,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+rhlpoths,R HELPS OTHERS IN JOB,R HELPS OTHERS IN JOB,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+rhlpsoc,R'S JOB IS USEFUL TO SOCIETY,R'S JOB IS USEFUL TO SOCIETY,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+xhaustn,HOW OFTEN DOES WORK EXHAUST R,HOW OFTEN DOES WORK EXHAUST R,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+physwrk,HOW OFTEN MUST R DO PHYSICAL WORK,HOW OFTEN MUST R DO PHYSICAL WORK,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+stress,HOW OFTEN DOES R FIND WORK STRESSFUL,HOW OFTEN DOES R FIND WORK STRESSFUL,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+danger,HOW OFTEN DOES R WORK IN DANGEROUS CONDS,HOW OFTEN DOES R WORK IN DANGEROUS CONDS,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+bossemps,QUALITY OF MGMNT-EMPLOYEE RELS: R'S FIRM,QUALITY OF MGMNT-EMPLOYEE RELS: R'S FIRM,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+cowrkers,QUALITY OF RELS AMONG WORKERS: R'S FIRM,QUALITY OF RELS AMONG WORKERS: R'S FIRM,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+jobsat,HOW SATISFIED IS R WITH HIS/HER JOB,HOW SATISFIED IS R WITH HIS/HER JOB,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+localnum,NUMBER OF EMPLOYEES: R'S WORK SITE,NUMBER OF EMPLOYEES: R'S WORK SITE,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+paydojob,HOW IMPORTANT JOB WELL DONE IN DECIDING PAY,HOW IMPORTANT JOB WELL DONE IN DECIDING PAY,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+payfam,HOW IMPORTANT FAMILY RESPONSIBILITY IN DECIDING P,HOW IMPORTANT FAMILY RESPONSIBILITY IN DECIDING P,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+payeduc,HOW IMPORTANT EDUCATION IN DECIDING PAY,HOW IMPORTANT EDUCATION IN DECIDING PAY,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+paytime,HOW IMPORTANT BE LONG WITH THE FIRM IN DECIDING P,HOW IMPORTANT BE LONG WITH THE FIRM IN DECIDING P,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+techjobs,NEW TECHS INCREASE NUMBER OF JOBS,NEW TECHS INCREASE NUMBER OF JOBS,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+techwork,NEW TECHS MAKE WORK MORE INTERESTING,NEW TECHS MAKE WORK MORE INTERESTING,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+WANTJOB1,WHICH JOB WOULD YOU PREFER,WHICH JOB WOULD YOU PREFER,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+worknow,ARE YOU CURRENTLY WORKING FOR PAY,ARE YOU CURRENTLY WORKING FOR PAY,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+sethours,WHO SET WORKING HOURS,WHO SET WORKING HOURS,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+placewrk,WHERE DO YOU WORK,WHERE DO YOU WORK,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+wktenure,DESCRIBE YOUR PRESENT JOB SITUATION,DESCRIBE YOUR PRESENT JOB SITUATION,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+useskill,HOW MUCH PAST SKILLS CAN YOU MAKE USE IN PRESENT,HOW MUCH PAST SKILLS CAN YOU MAKE USE IN PRESENT,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+edcskill,HOW IMPORTANT SCHOOL IN DEVELOPING SKILLS,HOW IMPORTANT SCHOOL IN DEVELOPING SKILLS,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+jobskill,HOW IMPORTANT TRAINING IN DEVELOPING SKILLS,HOW IMPORTANT TRAINING IN DEVELOPING SKILLS,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+HELPORG1,WILLING TO WORK HARDER FOR THE FIRM,WILLING TO WORK HARDER FOR THE FIRM,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+prideorg,I AM PROUD WORKING FOR MY FIRM,I AM PROUD WORKING FOR MY FIRM,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+chngwork,I WOULD CHANGE MY JOB FOR SOMETHING ELSE,I WOULD CHANGE MY JOB FOR SOMETHING ELSE,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+STAYORG3,I WOULD TURN DOWN JOB OFFERING MORE PAY,I WOULD TURN DOWN JOB OFFERING MORE PAY,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+proudwrk,I AM PROUD OF THE TYPE OF WORK I DO,I AM PROUD OF THE TYPE OF WORK I DO,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+absent,HOW MANY DAYS ABSENT FROM WORK PAST 6 MONTH,HOW MANY DAYS ABSENT FROM WORK PAST 6 MONTH,CUMULATIVE_CODEBOOK,,108,GSS_INDEX,CUMULATIVE_CODEBOOK
+leavejob,HOW LIKELY WILL TRY TO FIND ANOTHER FIRM,HOW LIKELY WILL TRY TO FIND ANOTHER FIRM,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+worryjob,DO YOU WORRY ABOUT LOSING JOB,DO YOU WORRY ABOUT LOSING JOB,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+evjob,HAVE YOU EVER HAD A PAID JOB FOR 1 YEAR OR+,HAVE YOU EVER HAD A PAID JOB FOR 1 YEAR OR+,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+yrjobend,WHEN DID YOUR LAST PAID JOB END,WHEN DID YOUR LAST PAID JOB END,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+whyjbend,MAIN REASON YOUR JOB END,MAIN REASON YOUR JOB END,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+WANTJOB2,WOULD LIKE TO HAVE A JOB NOW OR IN THE FUTURE,WOULD LIKE TO HAVE A JOB NOW OR IN THE FUTURE,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+getjob,HOW LIKELY YOU WOULD FIND A JOB,HOW LIKELY YOU WOULD FIND A JOB,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+lookjob,ARE YOU LOOKING FOR A JOB,ARE YOU LOOKING FOR A JOB,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+pubagncy,REGISTERED AT A PUBLIC EMPLOYMENT AGENCY,REGISTERED AT A PUBLIC EMPLOYMENT AGENCY,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+priagncy,REGISTERED AT A PRIVATE EMPLOYMENT AGENCY,REGISTERED AT A PRIVATE EMPLOYMENT AGENCY,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+wantads,ANSWERED ADVERTISEMENTS FOR JOBS,ANSWERED ADVERTISEMENTS FOR JOBS,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+adforjob,ADVERTISED FOR A JOB IN NEWSPAPER'S,ADVERTISED FOR A JOB IN NEWSPAPER'S,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+appemps,APPLIED DIRECTLY TO EMPLOYERS,APPLIED DIRECTLY TO EMPLOYERS,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+askhelp,ASKED RELATIVES FRIENDS COLLEAGUES TO HELP,ASKED RELATIVES FRIENDS COLLEAGUES TO HELP,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+econsup,MAIN SOURCE OF ECONOMIC SUPPORT,MAIN SOURCE OF ECONOMIC SUPPORT,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+hapunhap,HAPPY OR UNHAPPY WITH LIFE TODAY,HAPPY OR UNHAPPY WITH LIFE TODAY,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+PREMARS1,IS PREMARITAL SEX WRONG?,IS PREMARITAL SEX WRONG?,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+XMARSEX1,IS EXTRAMARITAL SEX WRONG?,IS EXTRAMARITAL SEX WRONG?,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+HOMOSEX1,IS HOMOSEXUAL SEX WRONG?,IS HOMOSEXUAL SEX WRONG?,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+abdefctw,WRONG FOR WOMAN TO GET ABORTION FOR BIRTH DEFECTS,WRONG FOR WOMAN TO GET ABORTION FOR BIRTH DEFECTS,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+abpoorw,WRONG FOR WOMAN TO GET ABORTION IF LOW INCOME?,WRONG FOR WOMAN TO GET ABORTION IF LOW INCOME?,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+taxcheat,WRONG TO CHEAT ON TAXES?,WRONG TO CHEAT ON TAXES?,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+govcheat,WRONG TO GIVE GOVT FALSE INFO FOR BENEFITS?,WRONG TO GIVE GOVT FALSE INFO FOR BENEFITS?,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+concong,CONFIDENCE IN US CONGRESS,CONFIDENCE IN US CONGRESS,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+conbiz,CONFIDENCE IN BUSINESS AND INDUSTRY,CONFIDENCE IN BUSINESS AND INDUSTRY,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+conchurh,CONFIDENCE IN CHURCHES AND RELIGIOUS ORGS,CONFIDENCE IN CHURCHES AND RELIGIOUS ORGS,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+concourt,CONFIDENCE IN COURTS AND LEGAL SYSTEM,CONFIDENCE IN COURTS AND LEGAL SYSTEM,CUMULATIVE_CODEBOOK,,109,GSS_INDEX,CUMULATIVE_CODEBOOK
+conschls,CONFIDENCE IN SCHOOLS AND EDUC SYSTEM,CONFIDENCE IN SCHOOLS AND EDUC SYSTEM,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+clergvte,CLERGY SHOULDN'T TRY TO INFLUENCE VOTERS,CLERGY SHOULDN'T TRY TO INFLUENCE VOTERS,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+clerggov,CLERGY SHOULDN'T TRY TO INFLUENCE GOVT DECISIONS,CLERGY SHOULDN'T TRY TO INFLUENCE GOVT DECISIONS,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+churhpow,DO CHURCHES HAVE TOO MUCH POWER?,DO CHURCHES HAVE TOO MUCH POWER?,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+godchnge,DESCRIBE YOUR BELIEFS ABOUT GOD,DESCRIBE YOUR BELIEFS ABOUT GOD,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+afterlif,BELIEF IN LIFE AFTER DEATH,BELIEF IN LIFE AFTER DEATH,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+heaven,BELIEF IN HEAVEN,BELIEF IN HEAVEN,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+hell,BELIEF IN HELL,BELIEF IN HELL,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+miracles,BELIEF IN RELIGIOUS MIRACLES,BELIEF IN RELIGIOUS MIRACLES,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+BIBLE1,DESCRIBE YOUR FEELINGS ABOUT THE BIBLE,DESCRIBE YOUR FEELINGS ABOUT THE BIBLE,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+theism,GOD CONCERNED WITH HUMAN BEINGS PERSONALLY,GOD CONCERNED WITH HUMAN BEINGS PERSONALLY,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+fatalism,PEOPLE CAN'T CHANGE THE COURSE OF THEIR LIVES,PEOPLE CAN'T CHANGE THE COURSE OF THEIR LIVES,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+godmeans,LIFE MEANINGFUL BECAUSE GOD EXISTS,LIFE MEANINGFUL BECAUSE GOD EXISTS,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+nihilism,LIFE SERVES NO PURPOSE,LIFE SERVES NO PURPOSE,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+egomeans,LIFE MEANINGFUL ONLY IF YOU PROVIDE MEANING,LIFE MEANINGFUL ONLY IF YOU PROVIDE MEANING,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+ownfate,WE EACH MAKE OUR OWN FATE,WE EACH MAKE OUR OWN FATE,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+relexper,TURNING POINT IN LIFE FOR RELIGION,TURNING POINT IN LIFE FOR RELIGION,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+marelkid,MOTHERS RELIGION WHEN R WAS CHILD,MOTHERS RELIGION WHEN R WAS CHILD,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+madenkid,"IF PROTESTANT, MOTHERS DENOMINATION","IF PROTESTANT, MOTHERS DENOMINATION",CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+parelkid,FATHER'S RELIGION WHEN R WAS CHILD,FATHER'S RELIGION WHEN R WAS CHILD,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+padenkid,"IF PROTESTANT, FATHER'S DENOMINATION","IF PROTESTANT, FATHER'S DENOMINATION",CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+religkid,RELIGION R WAS RAISED IN,RELIGION R WAS RAISED IN,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+denkid,"IF PROTESTANT, DENOMINATION R RAISED IN","IF PROTESTANT, DENOMINATION R RAISED IN",CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+religsp,R'S SPOUSE'S RELIGION,R'S SPOUSE'S RELIGION,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+densp,"IF PROTESTANT, R'S SPOUSE'S DENOMINATION","IF PROTESTANT, R'S SPOUSE'S DENOMINATION",CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+attendma,FREQ OF R'S MOM'S RELIG SVC ATTENDANCE,FREQ OF R'S MOM'S RELIG SVC ATTENDANCE,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+attendpa,FREQ OF R'S DAD'S RELIG SVC ATTENDANCE,FREQ OF R'S DAD'S RELIG SVC ATTENDANCE,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+ATTEND12,FREQ OF R'S RELIG SVC ATTENDANCE AT AGE 12,FREQ OF R'S RELIG SVC ATTENDANCE AT AGE 12,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+prayfreq,HOW OFTEN DOES R PRAY,HOW OFTEN DOES R PRAY,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+relactiv,HOW OFTEN DOES R TAKE PART IN RELIG ACTIVITIES,HOW OFTEN DOES R TAKE PART IN RELIG ACTIVITIES,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+feelrel,HOW RELIGIOUS IS R,HOW RELIGIOUS IS R,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+befair,HOW OFTEN DO YOU THINK PEOPLE TAKE ADVANTAGE,HOW OFTEN DO YOU THINK PEOPLE TAKE ADVANTAGE,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+cantrust,PEOPLE CAN BE TRUSTED OR CANT BE TOO CAREFUL,PEOPLE CAN BE TRUSTED OR CANT BE TOO CAREFUL,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+trustsci,WE TRUST TOO MUCH IN SCIENCE,WE TRUST TOO MUCH IN SCIENCE,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+religcon,RELIGIONS BRING MORE CONFLICT,RELIGIONS BRING MORE CONFLICT,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+religint,RELIGIOUS PEOPLE ARE OFTEN TOO INTOLERANT,RELIGIOUS PEOPLE ARE OFTEN TOO INTOLERANT,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+religinf,US WOULD BE BETTER IF LESS RELIGIOUS,US WOULD BE BETTER IF LESS RELIGIOUS,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+volwkpol,VOLUNTEERED POLITICAL ACTIVITIES PAST 12 MONTH,VOLUNTEERED POLITICAL ACTIVITIES PAST 12 MONTH,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+volwkchr,VOLUNTEERED CHARITABLE PAST 12 MONTH,VOLUNTEERED CHARITABLE PAST 12 MONTH,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+volwkrel,VOLUNTEERED RELIGIOUS PAST 12 MONTH,VOLUNTEERED RELIGIOUS PAST 12 MONTH,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+volwkoth,VOLUNTEERED OTHER KINDS PAST 12 MONTH,VOLUNTEERED OTHER KINDS PAST 12 MONTH,CUMULATIVE_CODEBOOK,,110,GSS_INDEX,CUMULATIVE_CODEBOOK
+reltruth,HOW MUCH TRUTH IN RELIGION,HOW MUCH TRUTH IN RELIGION,CUMULATIVE_CODEBOOK,,111,GSS_INDEX,CUMULATIVE_CODEBOOK
+carright,WHAT YOUR FRIEND HAS A RIGHT TO EXPECT FROM YOU,WHAT YOUR FRIEND HAS A RIGHT TO EXPECT FROM YOU,CUMULATIVE_CODEBOOK,,111,GSS_INDEX,CUMULATIVE_CODEBOOK
+cardo,WHAT WOULD YOU DO IN THIS SITUATION,WHAT WOULD YOU DO IN THIS SITUATION,CUMULATIVE_CODEBOOK,,111,GSS_INDEX,CUMULATIVE_CODEBOOK
+harmgood,MODERN SCIENCE DOES MORE HARM THAN GOOD,MODERN SCIENCE DOES MORE HARM THAN GOOD,CUMULATIVE_CODEBOOK,,111,GSS_INDEX,CUMULATIVE_CODEBOOK
+partners,HOW MANY SEX PARTNER'S R HAD IN LAST YEAR,HOW MANY SEX PARTNER'S R HAD IN LAST YEAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+matesex,WAS 1 OF R'S PARTNER'S SPOUSE OR REGULAR,WAS 1 OF R'S PARTNER'S SPOUSE OR REGULAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+frndsex,R HAD SEX WITH FRIEND LAST YEAR,R HAD SEX WITH FRIEND LAST YEAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+acqntsex,R HAD SEX WITH ACQUAINTANCE LAST YEAR,R HAD SEX WITH ACQUAINTANCE LAST YEAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+pikupsex,R HAD SEX WITH CASUAL DATE LAST YEAR,R HAD SEX WITH CASUAL DATE LAST YEAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+paidsex,R HAD SEX FOR PAY LAST YEAR,R HAD SEX FOR PAY LAST YEAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+othersex,R HAD SEX WITH SOME OTHER LAST YEAR,R HAD SEX WITH SOME OTHER LAST YEAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+sexsex,SEX OF SEX PARTNER'S IN LAST YEAR,SEX OF SEX PARTNER'S IN LAST YEAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+sexfreq,FREQUENCY OF SEX DURING LAST YEAR,FREQUENCY OF SEX DURING LAST YEAR,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+numwomen,NUMBER OF FEMALE SEX PARTNER'S SINCE 18,NUMBER OF FEMALE SEX PARTNER'S SINCE 18,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+nummen,NUMBER OF MALE SEX PARTNER'S SINCE 18,NUMBER OF MALE SEX PARTNER'S SINCE 18,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+PARTNRS5,HOW MANY SEX PARTNER'S R HAD IN LAST 5 YEARS,HOW MANY SEX PARTNER'S R HAD IN LAST 5 YEARS,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+SEXSEX5,SEX OF SEX PARTNER'S LAST FIVE YEARS,SEX OF SEX PARTNER'S LAST FIVE YEARS,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+evpaidsx,EVER HAVE SEX PAID FOR OR BEING PAID SINCE 18,EVER HAVE SEX PAID FOR OR BEING PAID SINCE 18,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+evstray,HAVE SEX OTHER THAN SPOUSE WHILE MARRIED,HAVE SEX OTHER THAN SPOUSE WHILE MARRIED,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+condom,USED CONDOM LAST TIME,USED CONDOM LAST TIME,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+relatsex,RELATION TO LAST SEX PARTNER,RELATION TO LAST SEX PARTNER,CUMULATIVE_CODEBOOK,,118,GSS_INDEX,CUMULATIVE_CODEBOOK
+realinc,FAMILY INCOME IN CONSTANT $,FAMILY INCOME IN CONSTANT $,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+realrinc,R'S INCOME IN CONSTANT $,R'S INCOME IN CONSTANT $,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+coninc,FAMILY INCOME IN CONSTANT DOLLARS,FAMILY INCOME IN CONSTANT DOLLARS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+conrinc,RESPONDENT INCOME IN CONSTANT DOLLARS,RESPONDENT INCOME IN CONSTANT DOLLARS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+sectech,SHOULD GOVT MAINTAIN SECRECY OVER TECHNOLOGY,SHOULD GOVT MAINTAIN SECRECY OVER TECHNOLOGY,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+secdocs,DOES GOVT CLASSIFY TOO MANY DOCUMENTS AS SECRETS,DOES GOVT CLASSIFY TOO MANY DOCUMENTS AS SECRETS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+askfinan,GOVT INVESTIGATE WORKERS FINANCES FOR SECURITY,GOVT INVESTIGATE WORKERS FINANCES FOR SECURITY,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+askcrime,GOVT INVESTIGATE WORKERS CRIME RECORDS,GOVT INVESTIGATE WORKERS CRIME RECORDS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+askdrugs,GOVT INVESTIGATE WORKERS ILLEGAL DRUG USE,GOVT INVESTIGATE WORKERS ILLEGAL DRUG USE,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+askmentl,GOVT INVESTIGATE WORKERS MENTAL HEALTH,GOVT INVESTIGATE WORKERS MENTAL HEALTH,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+askforgn,GOVT INVESTIGATE WORKERS FOREIGN FAMILY,GOVT INVESTIGATE WORKERS FOREIGN FAMILY,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+askdrink,GOVT INVESTIGATE WORKERS ALCOHOL USE,GOVT INVESTIGATE WORKERS ALCOHOL USE,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+asksexor,GOVT INVESTIGATE WORKERS SEXUAL ORIENTATION,GOVT INVESTIGATE WORKERS SEXUAL ORIENTATION,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+secdiplo,GOVERNMENT MAINTAIN SECRECY ON DIPLOMATIC INITIATIVES,GOVERNMENT MAINTAIN SECRECY ON DIPLOMATIC INITIATIVES,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+secmilop,GOVERNMENT MAINTAIN SECRECY ON MILITARY OPERATIONS,GOVERNMENT MAINTAIN SECRECY ON MILITARY OPERATIONS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+secterr,GOVERNMENT MAINTAIN SECRECY ON DOMESTIC TERRORISM,GOVERNMENT MAINTAIN SECRECY ON DOMESTIC TERRORISM,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+secbudgt,GOVERNMENT MAINTAIN SECRECY ON THE INTELLIGENCE BUDGET,GOVERNMENT MAINTAIN SECRECY ON THE INTELLIGENCE BUDGET,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+chkfinan,GOVERNMENT SHOULD VERIFY FINANCIAL ASSETS,GOVERNMENT SHOULD VERIFY FINANCIAL ASSETS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+chkspfin,GOVERNMENT SHOULD VERIFY SPOUSE'S FINANCIAL ASSETS,GOVERNMENT SHOULD VERIFY SPOUSE'S FINANCIAL ASSETS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+chktaxes,GOVERNMENT SHOULD VERIFY TAX RECORDS,GOVERNMENT SHOULD VERIFY TAX RECORDS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+knomentl,GOV SHOULD HAVE THE RIGHT TO KNOW,GOV SHOULD HAVE THE RIGHT TO KNOW,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+takearms,PUNISHMENT FOR STEALING AND SELLING WEAPONS,PUNISHMENT FOR STEALING AND SELLING WEAPONS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+leakinfo,PUNISHMENT FOR OFFICIAL LEAKING INFORMATION,PUNISHMENT FOR OFFICIAL LEAKING INFORMATION,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+spyenemy,PUNISHMENT FOR SELLING SECRETS TO HOSTILE FOREIGN GOV,PUNISHMENT FOR SELLING SECRETS TO HOSTILE FOREIGN GOV,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+spyfrend,PUNISHMENT FOR SELLING SECRETS TO FRIEND FOREIGN GOV,PUNISHMENT FOR SELLING SECRETS TO FRIEND FOREIGN GOV,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+taketrck,PUNISHMENT FOR STEALING AND SELLING TRUCK PARTS,PUNISHMENT FOR STEALING AND SELLING TRUCK PARTS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+lietest,PEOPLE WITH SECRET SHOULD BE SUBJECT TO LIE TESTS,PEOPLE WITH SECRET SHOULD BE SUBJECT TO LIE TESTS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+testdrug,PEOPLE WITH SECRET SHOULD BE SUBJECT TO DRUG TESTS,PEOPLE WITH SECRET SHOULD BE SUBJECT TO DRUG TESTS,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+bugging,PEOPLE WITH SECRET SHOULD BE SUBJECT TO WIRETAPPING,PEOPLE WITH SECRET SHOULD BE SUBJECT TO WIRETAPPING,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+finanqs,PEOPLE WITH SECRET SHOULD BE SUBJECT TO QUES. OF FINAN,PEOPLE WITH SECRET SHOULD BE SUBJECT TO QUES. OF FINAN,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+chkonjob,PEOPLE WITH SECRET SHOULD BE SUBJECT TO MONITORING,PEOPLE WITH SECRET SHOULD BE SUBJECT TO MONITORING,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+chkother,PEOPLE WITH SECRET SHOULD BE SUBJECT TO MONITORING OF,PEOPLE WITH SECRET SHOULD BE SUBJECT TO MONITORING OF,CUMULATIVE_CODEBOOK,,121,GSS_INDEX,CUMULATIVE_CODEBOOK
+ethnic,COUNTRY OF FAMILY ORIGIN,COUNTRY OF FAMILY ORIGIN,CUMULATIVE_CODEBOOK,,122,GSS_INDEX,CUMULATIVE_CODEBOOK
+ETH1,1ST MENTIONED COUNTRY OF ORIGIN,1ST MENTIONED COUNTRY OF ORIGIN,CUMULATIVE_CODEBOOK,,122,GSS_INDEX,CUMULATIVE_CODEBOOK
+ETH2,2ND MENTIONED COUNTRY OF ORIGIN,2ND MENTIONED COUNTRY OF ORIGIN,CUMULATIVE_CODEBOOK,,122,GSS_INDEX,CUMULATIVE_CODEBOOK
+ETH3,3RD MENTIONED COUNTRY OF ORIGIN,3RD MENTIONED COUNTRY OF ORIGIN,CUMULATIVE_CODEBOOK,,122,GSS_INDEX,CUMULATIVE_CODEBOOK
+ethnum,TYPE OF RESPONSE ABOUT ETHNICITY:R,TYPE OF RESPONSE ABOUT ETHNICITY:R,CUMULATIVE_CODEBOOK,,122,GSS_INDEX,CUMULATIVE_CODEBOOK
+dwelling,TYPE OF STRUCTURE,TYPE OF STRUCTURE,CUMULATIVE_CODEBOOK,,122,GSS_INDEX,CUMULATIVE_CODEBOOK
+dwelown,DOES R OWN OR RENT HOME?,DOES R OWN OR RENT HOME?,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+worda,WORD A,WORD A,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordb,WORD B,WORD B,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordc,WORD C,WORD C,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordd,WORD D,WORD D,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+worde,WORD E,WORD E,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordf,WORD F,WORD F,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordg,WORD G,WORD G,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordh,WORD H,WORD H,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordi,WORD I,WORD I,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordj,WORD J,WORD J,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wordsum,NUMBER WORDS CORRECT IN VOCABULARY TEST,NUMBER WORDS CORRECT IN VOCABULARY TEST,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+godoc,LAST WEEK WENT TO SEE A DOCTOR?,LAST WEEK WENT TO SEE A DOCTOR?,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+eatout,LAST WEEK HAD A MEAL AT A RESTAURANT,LAST WEEK HAD A MEAL AT A RESTAURANT,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+seefilm,LAST WEEK WENT TO SEE A FILM?,LAST WEEK WENT TO SEE A FILM?,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+attrelig,LAST WEEK ATTENDED RELIGIOUS SERVICES?,LAST WEEK ATTENDED RELIGIOUS SERVICES?,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+numdays,NUMBER OF DAYS ATTENDED RELIGIOUS SERVICES,NUMBER OF DAYS ATTENDED RELIGIOUS SERVICES,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+sunday,ATTENDED RELIGIOUS SERVICES LAST SUNDAY,ATTENDED RELIGIOUS SERVICES LAST SUNDAY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+monday,ATTENDED RELIGIOUS SERVICES LAST MONDAY,ATTENDED RELIGIOUS SERVICES LAST MONDAY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+tuesday,ATTENDED RELIGIOUS SERVICES LAST TUESDAY,ATTENDED RELIGIOUS SERVICES LAST TUESDAY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+wednesdy,ATTENDED RELIGIOUS SERVICES LAST WEDNESDAY,ATTENDED RELIGIOUS SERVICES LAST WEDNESDAY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+thursday,ATTENDED RELIGIOUS SERVICES LAST THURSDAY,ATTENDED RELIGIOUS SERVICES LAST THURSDAY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+friday,ATTENDED RELIGIOUS SERVICES LAST FRIDAY,ATTENDED RELIGIOUS SERVICES LAST FRIDAY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+saturday,ATTENDED RELIGIOUS SERVICES LAST SATURDAY,ATTENDED RELIGIOUS SERVICES LAST SATURDAY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+attreg,LAST 7 DAYS ATTEND A WORSHIP SERVICE,LAST 7 DAYS ATTEND A WORSHIP SERVICE,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+mediarel,WATCH A RELIGIOUS PROGRAM ON TELEVISION-RADIO?,WATCH A RELIGIOUS PROGRAM ON TELEVISION-RADIO?,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+othrel,ATTEND SOME OTHER TYPE OF RELIGIOUS EVENT,ATTEND SOME OTHER TYPE OF RELIGIOUS EVENT,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+OTHREL1,WHAT TYPE OF RELIGIOUS EVENTS OR MEETINGS,WHAT TYPE OF RELIGIOUS EVENTS OR MEETINGS,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+OTHREL2,WHAT TYPE OF RELIGIOUS EVENTS OR MEETINGS,WHAT TYPE OF RELIGIOUS EVENTS OR MEETINGS,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+religid,R'S RELIGIOUS IDENTITY,R'S RELIGIOUS IDENTITY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+cathid,IF CATHOLIC WHAT IDENTITY,IF CATHOLIC WHAT IDENTITY,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER1,GENDER OF 1ST PERSON,GENDER OF 1ST PERSON,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD1,AGE OF 1ST PERSON,AGE OF 1ST PERSON,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR1,MARITAL STATUS OF 1ST PERSON,MARITAL STATUS OF 1ST PERSON,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHERE1,WHERE IS 1ST PERSON STAYING?,WHERE IS 1ST PERSON STAYING?,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE2,RELATIONSHIP OF 2ND PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 2ND PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER2,GENDER OF 2ND PERSON,GENDER OF 2ND PERSON,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD2,AGE OF 2ND PERSON,AGE OF 2ND PERSON,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR2,MARITAL STATUS OF 2ND PERSON,MARITAL STATUS OF 2ND PERSON,CUMULATIVE_CODEBOOK,,123,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHERE2,WHERE IS 2ND PERSON STAYING?,WHERE IS 2ND PERSON STAYING?,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE3,RELATIONSHIP OF 3RD PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 3RD PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER3,GENDER OF 3RD PERSON,GENDER OF 3RD PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD3,AGE OF 3RD PERSON,AGE OF 3RD PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR3,MARITAL STATUS OF 3RD PERSON,MARITAL STATUS OF 3RD PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHERE3,WHERE IS 3RD PERSON STAYING?,WHERE IS 3RD PERSON STAYING?,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE4,RELATIONSHIP OF 4TH PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 4TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER4,GENDER OF 4TH PERSON,GENDER OF 4TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD4,AGE OF 4TH PERSON,AGE OF 4TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR4,MARITAL STATUS OF 4TH PERSON,MARITAL STATUS OF 4TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHERE4,WHERE IS 4TH PERSON STAYING?,WHERE IS 4TH PERSON STAYING?,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE5,RELATIONSHIP OF 5TH PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 5TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER5,GENDER OF 5TH PERSON,GENDER OF 5TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD5,AGE OF 5TH PERSON,AGE OF 5TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR5,MARITAL STATUS OF 5TH PERSON,MARITAL STATUS OF 5TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHERE5,WHERE IS 5TH PERSON STAYING?,WHERE IS 5TH PERSON STAYING?,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE6,RELATIONSHIP OF 6TH PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 6TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER6,GENDER OF 6TH PERSON,GENDER OF 6TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD6,AGE OF 6TH PERSON,AGE OF 6TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR6,MARITAL STATUS OF 6TH PERSON,MARITAL STATUS OF 6TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE7,RELATIONSHIP OF 7TH PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 7TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER7,GENDER OF 7TH PERSON,GENDER OF 7TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD7,AGE OF 7TH PERSON,AGE OF 7TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR7,MARITAL STATUS OF 7TH PERSON,MARITAL STATUS OF 7TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE8,RELATIONSHIP OF 8TH PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 8TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER8,GENDER OF 8TH PERSON,GENDER OF 8TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD8,AGE OF 8TH PERSON,AGE OF 8TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE9,RELATIONSHIP OF 9TH PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 9TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER9,GENDER OF 9TH PERSON,GENDER OF 9TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD9,AGE OF 9TH PERSON,AGE OF 9TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE10,RELATIONSHIP OF 10TH PERSON TO HOUSEHOLD HEAD,RELATIONSHIP OF 10TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER10,GENDER OF 10TH PERSON,GENDER OF 10TH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD10,AGE OF 1OTH PERSON,AGE OF 1OTH PERSON,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE11,RELATION OF 11TH PERSON (VISITOR) TO HEAD,RELATION OF 11TH PERSON (VISITOR) TO HEAD,CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER11,GENDER OF 11TH PERSON (VISITOR),GENDER OF 11TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD11,AGE OF 11TH PERSON (VISITOR),AGE OF 11TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,124,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR11,MARITAL STATUS OF 11TH PERSON (VISITOR),MARITAL STATUS OF 11TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE12,RELATION OF 12TH PERSON (VISITOR) TO HEAD,RELATION OF 12TH PERSON (VISITOR) TO HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER12,GENDER OF 12TH PERSON (VISITOR),GENDER OF 12TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD12,AGE OF 12TH PERSON (VISITOR),AGE OF 12TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAR12,MARITAL STATUS OF 12TH PERSON (VISITOR),MARITAL STATUS OF 12TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE13,RELATION OF 13TH PERSON (VISITOR) TO HEAD,RELATION OF 13TH PERSON (VISITOR) TO HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER13,GENDER OF 13TH PERSON (VISITOR),GENDER OF 13TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD13,AGE OF 13TH PERSON (VISITOR),AGE OF 13TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELATE14,RELATION OF 14TH PERSON (VISITOR) TO HEAD,RELATION OF 14TH PERSON (VISITOR) TO HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+GENDER14,GENDER OF 14TH PERSON (VISITOR),GENDER OF 14TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+OLD14,AGE OF 14TH PERSON (VISITOR),AGE OF 14TH PERSON (VISITOR),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD2,RELATION OF 2ND PERSON TO HOUSEHOLD HEAD,RELATION OF 2ND PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD3,RELATION OF 3RD PERSON TO HOUSEHOLD HEAD,RELATION OF 3RD PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD4,RELATION OF 4TH PERSON TO HOUSEHOLD HEAD,RELATION OF 4TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD5,RELATION OF 5TH PERSON TO HOUSEHOLD HEAD,RELATION OF 5TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD6,RELATION OF 6TH PERSON TO HOUSEHOLD HEAD,RELATION OF 6TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD7,RELATION OF 7TH PERSON TO HOUSEHOLD HEAD,RELATION OF 7TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD8,RELATION OF 8TH PERSON TO HOUSEHOLD HEAD,RELATION OF 8TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD9,RELATION OF 9TH PERSON TO HOUSEHOLD HEAD,RELATION OF 9TH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD10,RELATION OF 1OTH PERSON TO HOUSEHOLD HEAD,RELATION OF 1OTH PERSON TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD11,RELATION OF 11TH PERSON (VISITOR) TO HEAD,RELATION OF 11TH PERSON (VISITOR) TO HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD12,RELATION OF 12TH PERSON (VISITOR) TO HEAD,RELATION OF 12TH PERSON (VISITOR) TO HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD13,RELATION OF 13TH PERSON (VISITOR) TO HEAD,RELATION OF 13TH PERSON (VISITOR) TO HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+RELHHD14,RELATION OF 14TH PERSON (VISITOR) TO HEAD,RELATION OF 14TH PERSON (VISITOR) TO HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+hefinfo,NUMBER OF HEF INFORMANT,NUMBER OF HEF INFORMANT,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+hhrace,RACE OF HOUSEHOLD,RACE OF HOUSEHOLD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+respnum,NUMBER IN FAMILY OF R,NUMBER IN FAMILY OF R,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+hhtype,HOUSEHOLD TYPE,HOUSEHOLD TYPE,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+HHTYPE1,HOUSEHOLD TYPE (CONDENSED),HOUSEHOLD TYPE (CONDENSED),CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+famgen,NUMBER OF FAMILY GENERATIONS IN HOUSEHOLD,NUMBER OF FAMILY GENERATIONS IN HOUSEHOLD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+rplace,R'S RELATIONSHIP TO HOUSEHOLD HEAD,R'S RELATIONSHIP TO HOUSEHOLD HEAD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+rvisitor,IS R A VISITOR?,IS R A VISITOR?,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+visitors,NUMBER OF VISITORS IN HOUSEHOLD,NUMBER OF VISITORS IN HOUSEHOLD,CUMULATIVE_CODEBOOK,,125,GSS_INDEX,CUMULATIVE_CODEBOOK
+dateintv,DATE OF INTERVIEW,DATE OF INTERVIEW,CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+ISCO681,"RESPONDENT'S OCCUPATION, 1980 CENSUS","RESPONDENT'S OCCUPATION, 1980 CENSUS",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAISC681,"R'S FATHER'S OCCUPATION, 1980 CENSUS","R'S FATHER'S OCCUPATION, 1980 CENSUS",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAISC681,"R'S MOTHERS OCCUPATION, 1980 CENSUS","R'S MOTHERS OCCUPATION, 1980 CENSUS",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPISC681,"R'S SPOUSE'S OCCUPATION, 1980 CENSUS","R'S SPOUSE'S OCCUPATION, 1980 CENSUS",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+ISCO88,"RESPONDENT'S OCCUPATION, 1980 CENSUS & 1988 ISCO CODE","RESPONDENT'S OCCUPATION, 1980 CENSUS & 1988 ISCO CODE",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAISCO88,"R'S FATHER'S OCCUPATION, 1980 CENSUS & 1988 ISCO CODE","R'S FATHER'S OCCUPATION, 1980 CENSUS & 1988 ISCO CODE",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAISCO88,"R'S MOTHERS OCCUPATION, 1980 CENSUS & 1988 ISCO CODE","R'S MOTHERS OCCUPATION, 1980 CENSUS & 1988 ISCO CODE",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPISCO88,"R'S SPOUSE'S OCCUPATION, 1980 CENSUS & 1988 ISCO CODE","R'S SPOUSE'S OCCUPATION, 1980 CENSUS & 1988 ISCO CODE",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+ISCO08,"RESPONDENT'S OCCUPATION, 2010 CENSUS & 2008 ISCO CODE","RESPONDENT'S OCCUPATION, 2010 CENSUS & 2008 ISCO CODE",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+PAISCO08,"R'S FATHER'S OCCUPATION, 2010 CENSUS & 2008 ISCO CODE","R'S FATHER'S OCCUPATION, 2010 CENSUS & 2008 ISCO CODE",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+MAISCO08,"R'S SPOUSE'S OCCUPATION, 2010 CENSUS & 2008 ISCO CODE","R'S SPOUSE'S OCCUPATION, 2010 CENSUS & 2008 ISCO CODE",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPISCO08,"R'S MOTHERS OCCUPATION, 2010 CENSUS & 2008 ISCO CODE","R'S MOTHERS OCCUPATION, 2010 CENSUS & 2008 ISCO CODE",CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+sei,RESPONDENT SOCIOECONOMIC INDEX (1980),RESPONDENT SOCIOECONOMIC INDEX (1980),CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+pasei,R'S FATHER'S SOCIOECONOMIC INDEX (1980),R'S FATHER'S SOCIOECONOMIC INDEX (1980),CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+masei,R'S MOTHERS SOCIOECONOMIC INDEX (1980),R'S MOTHERS SOCIOECONOMIC INDEX (1980),CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+spsei,R'S SPOUSE'S SOCIOECONOMIC INDEX (1980),R'S SPOUSE'S SOCIOECONOMIC INDEX (1980),CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+SEI10,R'S SOCIOECONOMIC INDEX (2010),R'S SOCIOECONOMIC INDEX (2010),CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+SEI10EDUC,PERCENTAGE OF SOME COLLEGE EDUC IN OCC10 BASED ON ACS 2010,PERCENTAGE OF SOME COLLEGE EDUC IN OCC10 BASED ON ACS 2010,CUMULATIVE_CODEBOOK,,126,GSS_INDEX,CUMULATIVE_CODEBOOK
+SEI10INC,PERCENTAGE OF $45K+ EARNERS IN OCC10 BASED ON ACS 2010,PERCENTAGE OF $45K+ EARNERS IN OCC10 BASED ON ACS 2010,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+PASEI10,R'S FATHER'S SOCIOECONOMIC INDEX (2010),R'S FATHER'S SOCIOECONOMIC INDEX (2010),CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+PASEI10EDUC,PERCENTAGE OF SOME COLLEGE EDUC IN PAOCC10 BASED ON ACS 2010,PERCENTAGE OF SOME COLLEGE EDUC IN PAOCC10 BASED ON ACS 2010,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+PASEI10INC,PERCENTAGE OF $45K+ EARNERS IN PAOCC10 BASED ON ACS 2010,PERCENTAGE OF $45K+ EARNERS IN PAOCC10 BASED ON ACS 2010,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+MASEI10,R'S MOTHER'S SOCIOECONOMIC INDEX (2010),R'S MOTHER'S SOCIOECONOMIC INDEX (2010),CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+MASEI10EDUC,PERCENTAGE OF SOME COLLEGE EDUC IN MAOCC10 BASED ON ACS 2010,PERCENTAGE OF SOME COLLEGE EDUC IN MAOCC10 BASED ON ACS 2010,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+MASEI10INC,PERCENTAGE OF $45K+ EARNERS IN MAOCC10 BASED ON ACS 2010,PERCENTAGE OF $45K+ EARNERS IN MAOCC10 BASED ON ACS 2010,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPSEI10,R'S SPOUSE'S SOCIOECONOMIC INDEX (2010),R'S SPOUSE'S SOCIOECONOMIC INDEX (2010),CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPSEI10EDUC,PERCENTAGE OF SOME COLLEGE EDUC IN SPOCC10 BASED ON ACS 2010,PERCENTAGE OF SOME COLLEGE EDUC IN SPOCC10 BASED ON ACS 2010,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+SPSEI10INC,PERCENTAGE OF $45K+ EARNERS IN SPOCC10 BASED ON ACS 2010,PERCENTAGE OF $45K+ EARNERS IN SPOCC10 BASED ON ACS 2010,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+uswary,EXPECT U.S. IN WORLD WAR IN 10 YEARS,EXPECT U.S. IN WORLD WAR IN 10 YEARS,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+cohort,YEAR OF BIRTH,YEAR OF BIRTH,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+birthmo,MONTH IN WHICH R WAS BORN,MONTH IN WHICH R WAS BORN,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+zodiac,RESPONDENTS ASTROLOGICAL SIGN,RESPONDENTS ASTROLOGICAL SIGN,CUMULATIVE_CODEBOOK,,127,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHOELSE1,PRESENCE OF OTHERS: CHILDREN UNDER SIX,PRESENCE OF OTHERS: CHILDREN UNDER SIX,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHOELSE2,PRESENCE OF OTHERS: OLDER CHILDREN,PRESENCE OF OTHERS: OLDER CHILDREN,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHOELSE3,PRESENCE OF OTHERS: SPOUSE PARTNER,PRESENCE OF OTHERS: SPOUSE PARTNER,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHOELSE4,PRESENCE OF OTHERS: OTHER RELATIVES,PRESENCE OF OTHERS: OTHER RELATIVES,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHOELSE5,PRESENCE OF OTHERS: OTHER ADULTS,PRESENCE OF OTHERS: OTHER ADULTS,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+WHOELSE6,PRESENCE OF OTHERS: NO ONE,PRESENCE OF OTHERS: NO ONE,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+saqissp,R DID ISSP MODULE,R DID ISSP MODULE,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+saqsex,R DID SEX MODULE,R DID SEX MODULE,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+feeused,FEE GIVEN TO GET CASE,FEE GIVEN TO GET CASE,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+lngthinv,HOW LONG WAS INTERVIEW,HOW LONG WAS INTERVIEW,CUMULATIVE_CODEBOOK,,128,GSS_INDEX,CUMULATIVE_CODEBOOK
+easyget,HOW DIFFICULT WAS CASE TO GET,HOW DIFFICULT WAS CASE TO GET,CUMULATIVE_CODEBOOK,,129,GSS_INDEX,CUMULATIVE_CODEBOOK
+ballot,BALLOT USED FOR INTERVIEW,BALLOT USED FOR INTERVIEW,CUMULATIVE_CODEBOOK,,129,GSS_INDEX,CUMULATIVE_CODEBOOK
+version,VERSION OF QUESTIONNAIRE,VERSION OF QUESTIONNAIRE,CUMULATIVE_CODEBOOK,,129,GSS_INDEX,CUMULATIVE_CODEBOOK
+issp,International Social Survey Program,International Social Survey Program,CUMULATIVE_CODEBOOK,,11,GSS_INDEX,CUMULATIVE_CODEBOOK
+sampcode,SAMPLING ERROR CODE,SAMPLING ERROR CODE,CUMULATIVE_CODEBOOK,,129,GSS_INDEX,CUMULATIVE_CODEBOOK
+wtssall,WEIGHT VARIABLE,WEIGHT VARIABLE,CUMULATIVE_CODEBOOK,,129,GSS_INDEX,CUMULATIVE_CODEBOOK
+vstrat,VARIANCE STRATUM,VARIANCE STRATUM,CUMULATIVE_CODEBOOK,,130,GSS_INDEX,CUMULATIVE_CODEBOOK
+vpsu,VARIANCE PRIMARY SAMPLING UNIT,VARIANCE PRIMARY SAMPLING UNIT,CUMULATIVE_CODEBOOK,,130,GSS_INDEX,CUMULATIVE_CODEBOOK
