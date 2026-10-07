@@ -40,6 +40,24 @@ python applications/question_sequence_optimization/generate_question_bank.py \
 The output JSONL contains `question`, `source_variables`, source survey
 items, domain and a short grounding rationale.
 
+### Optional validation: confirm webapp semantic mapping
+
+Before a long search, the generated questions can be passed once through the
+same DTAG LLM variable-selection machinery used by the interactive app. This
+checks that a natural-language question maps back to the source variables from
+which it was generated, without sampling responses or changing state.
+
+```bash
+python applications/question_sequence_optimization/validate_question_bank.py \
+  --question_bank outputs/qseq/gss2024_question_bank.jsonl \
+  --out outputs/qseq/gss2024_question_bank.validated.jsonl \
+  --min_source_recall 0.5
+```
+
+Add `--require_direct` for the strictest bank: only questions that pass the
+normal direct mapper are retained. Use the validated JSONL as the optimizer
+input when the eventual sequences are intended for the webapp.
+
 ### Stage 2: stochastic sequence search
 
 `optimize_sequences.py` initializes the standard `gss2024_cm` and
