@@ -235,7 +235,7 @@ cache.
 - [ ] Describe “teacher in Kenya”, year 2005 → Afrobarometer R3 is downloaded and used.
 - [ ] Restart the server/instance; previously downloaded models are not
       downloaded again (VM / mounted volume).
-- [ ] JSON/CSV export downloads.
+- [ ] JSON/CSV export and the ZIP session log (single and two-respondent bundle) download.
 - [ ] No secret appears in the image, the repo or the browser (`/api/health`
       shows only `openai_configured`).
 

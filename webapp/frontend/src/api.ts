@@ -105,7 +105,10 @@ export const api = {
   ask: (id: string, question: string) => post<QuestionResult>(`/api/sessions/${id}/questions`, { question }),
   reset: (id: string) => post<SessionInfo>(`/api/sessions/${id}/reset`),
   deleteSession: (id: string) => request(`/api/sessions/${id}`, { method: "DELETE" }),
-  exportUrl: (id: string, format: "json" | "csv") => `/api/sessions/${id}/export?format=${format}`,
+  exportUrl: (id: string, format: "json" | "csv" | "zip", label?: string) =>
+    `/api/sessions/${id}/export?format=${format}${label ? `&label=${encodeURIComponent(label)}` : ""}`,
+  bundleUrl: (ids: string[], labels: string[]) =>
+    `/api/export/bundle?ids=${ids.map(encodeURIComponent).join(",")}&labels=${labels.map(encodeURIComponent).join(",")}`,
 };
 
 export function fmtBytes(n: number | null | undefined): string {

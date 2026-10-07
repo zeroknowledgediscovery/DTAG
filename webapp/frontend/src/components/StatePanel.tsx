@@ -260,9 +260,12 @@ export function StatePanel({
   history,
   idPrefix = "",
   color,
+  label,
 }: {
   session: SessionInfo | null;
   history: QuestionResult[];
+  /** Respondent label (A/B) used in the ZIP archive's folder and report. */
+  label?: string;
   /** Must match the ChatLog's idPrefix so timeline clicks scroll to the right message. */
   idPrefix?: string;
   color?: string;
@@ -340,6 +343,14 @@ export function StatePanel({
           </details>
         )}
         <div className="actions" style={{ marginTop: 8 }}>
+          <a
+            className="btn primary-link"
+            href={api.exportUrl(session.session_id, "zip", label)}
+            download
+            title="Complete log since the last reset: report, persona, settings, every question, ideology trajectory, state changes"
+          >
+            Full log (ZIP)
+          </a>
           <a className="btn" href={api.exportUrl(session.session_id, "json")} download>
             Export JSON
           </a>

@@ -347,6 +347,18 @@ export default function App() {
           )}
           {count === 2 ? (
             <>
+              {A.session && B.session && (
+                <div className="actions" style={{ marginBottom: 10 }}>
+                  <a
+                    className="btn primary-link"
+                    href={api.bundleUrl([A.session.session_id, B.session.session_id], ["A", "B"])}
+                    download
+                    title="One ZIP with each respondent's complete log and an aligned ideology comparison"
+                  >
+                    Download both logs (ZIP)
+                  </a>
+                </div>
+              )}
               <Section title="Ideology · A vs B">
                 <IdeologyCompare
                   items={pair.map(([r, sl]) => ({ label: sl.label, color: sl.color, marker: sl.marker, dashed: sl.dashed, session: r.session }))}
@@ -362,7 +374,7 @@ export default function App() {
               </div>
               {pair.map(([r, sl]) => (
                 <div key={sl.id} hidden={tab !== sl.id}>
-                  <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} />
+                  <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} label={sl.id} />
                 </div>
               ))}
             </>

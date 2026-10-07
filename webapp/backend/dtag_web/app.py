@@ -26,6 +26,7 @@ from .schemas import (
     SessionCreate,
     SessionOut,
 )
+from . import archive
 from .auth import PasswordAuth, install as install_auth
 from .sequences import SequenceManager, parse_question_lines
 from .sessions import SessionStore
@@ -389,10 +390,26 @@ def create_app(
             raise HTTPException(404, f"Unknown session: {session_id}")
         return {"deleted": session_id}
 
+    def _sequence_since_reset(es) -> Optional[Dict[str, Any]]:
+        """The latest sequence job, if its questions are still in the session's history."""
+        job = sequences.get(es.id)
+        if job is None:
+            return None
+        snap = job.snapshot()
+        have = {(r["query_idx"], r["question"]) for r in es.session.results}
+        done = [(r["query_idx"], r["question"]) for r in snap["results"]]
+        return snap if done and all(d in have for d in done) else None
+
     @app.get("/api/sessions/{session_id}/export", tags=["sessions"])
-    def export(session_id: str, format: str = Query("json", pattern="^(json|csv)$")) -> Response:
+    def export(session_id: str, format: str = Query("json", pattern="^(json|csv|zip)$"),
+               label: Optional[str] = Query(None, max_length=40)) -> Response:
+        """JSON (full record), CSV (one row per question) or ZIP (complete log for reports)."""
         es = _session(session_id)
         fname = f"dtag_session_{es.spec.model_key.replace('/', '_')}_{es.id[:8]}"
+        if format == "zip":
+            data = archive.build_session_zip(engine, es, label=label, sequence=_sequence_since_reset(es))
+            return Response(data, media_type="application/zip", headers={
+                "Content-Disposition": f'attachment; filename="{archive.folder_name(es, label)}.zip"'})
         if format == "csv":
             return PlainTextResponse(
                 engine.export_csv(es),
@@ -403,6 +420,24 @@ def create_app(
             engine.export_session(es),
             headers={"Content-Disposition": f'attachment; filename="{fname}.json"'},
         )
+
+    @app.get("/api/export/bundle", tags=["sessions"])
+    def export_bundle(ids: str = Query(..., description="comma-separated session ids"),
+                      labels: str = Query("", description="comma-separated labels, same order")) -> Response:
+        """One ZIP with a complete log per respondent and an aligned ideology comparison."""
+        id_list = [i for i in ids.split(",") if i.strip()]
+        if not 1 <= len(id_list) <= 8:
+            raise HTTPException(422, "Give 1-8 session ids.")
+        lab = [x.strip() for x in labels.split(",")] if labels else []
+        lab += [chr(ord("A") + i) for i in range(len(lab), len(id_list))]
+        items = []
+        for sid, lb in zip(id_list, lab):
+            es = _session(sid.strip())
+            items.append((es, archive.safe_name(lb) or "X", _sequence_since_reset(es)))
+        data = archive.build_bundle_zip(engine, items)
+        stamp = time.strftime("%Y%m%d_%H%M%S")
+        return Response(data, media_type="application/zip", headers={
+            "Content-Disposition": f'attachment; filename="dtag_bundle_{"_".join(l for _, l, _ in items)}_{stamp}.zip"'})
 
     # -- frontend ------------------------------------------------------------------
 

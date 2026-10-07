@@ -279,3 +279,5 @@ table.compare { margin-bottom: 8px; }
 .tabs .badge { font-size: 9.5px; padding: 0 4px; }
 .chart .legend svg { width: 22px; height: 10px; flex: none; display: inline-block; }
 .tab-ok { color: var(--ok); font-weight: 700; }
+a.btn.primary-link { background: var(--accent); color: white; border-color: var(--accent); }
+@media (prefers-color-scheme: dark) { a.btn.primary-link { color: #0e1620; } }
