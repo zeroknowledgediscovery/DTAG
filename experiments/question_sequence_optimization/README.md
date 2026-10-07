@@ -4,9 +4,20 @@ This folder is the entry point for the DTAG experiment that studies how short
 question sequences alter the trajectories of two fixed synthetic GSS-2024
 respondent initializations, CM and WF, under stochastic native-LSM state updates.
 
-This is a simulation and model-sensitivity study. It is intended for analyzing
-DTAG dynamics, reproducibility, path dependence, and uncertainty in synthetic
-respondents. It is not intended for targeting or persuading real people.
+> **Scope and use disclosure**
+>
+> This is a simulation and model-sensitivity study of **synthetic DTAG respondents**.
+> CM and WF are fixed synthetic initializations derived from survey-model states; they are
+> not real individuals, user profiles, voter records, or audience segments.
+>
+> The question-sequence search is used to characterize path dependence, stochastic response,
+> controllability, robustness, and uncertainty in the learned LSM dynamics. Reported
+> directional changes refer only to movement of the DTAG ideology coordinate under the
+> GSS-2024 native model.
+>
+> This experiment is **not intended for targeting, persuasion, political campaigning,
+> behavioral manipulation, or optimizing messages/questions for use on real individuals or
+> populations**. Any interpretation or downstream use should preserve that distinction.
 
 ## Code locations
 
