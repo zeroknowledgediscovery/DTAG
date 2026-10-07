@@ -747,6 +747,9 @@ class EngineSession:
         self.id = uuid.uuid4().hex
         self.created_at = _now()
         self.last_used = time.time()
+        self.history_started_at = self.created_at  # creation, or the last reset
+        self.history_started_ts = time.time()
+        self.reset_count = 0
         self.engine = engine
         self.spec = spec
         self.session = session
@@ -767,6 +770,9 @@ class EngineSession:
     def reset(self) -> None:
         self.last_used = time.time()
         self.session.reset()
+        self.history_started_at = _now()
+        self.history_started_ts = time.time()
+        self.reset_count += 1
 
     def ideology_summary(self) -> Dict[str, Any]:
         s = self.session
@@ -1613,6 +1619,8 @@ class DTAGEngine:
             },
             "session_id": es.id,
             "created_at": es.created_at,
+            "history": {"since": es.history_started_at, "resets": es.reset_count,
+                        "note": "Questions and state changes since the session was created or last reset."},
             "profile": es.spec.as_dict(),
             "model": {
                 "key": es.spec.model_key,

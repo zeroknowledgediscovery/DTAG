@@ -215,7 +215,7 @@ updates live, and the **Question sequence** card shows progress, lets you
 cancel after the current question, and — when the survey has an ideology
 index (GSS) — reports the index at the start and end of the sequence, the net
 change, the range, and the questions that moved it most (click to jump). The
-full per-question record is in the session's JSON/CSV export.
+full per-question record is in the session's JSON/CSV export and the ZIP log.
 
 API: `POST /api/sessions/{id}/sequence` with `{"text": "...one per line...",
 "name": "...", "reset_first": false}` (or `{"questions": [...]}`) starts a
@@ -288,7 +288,8 @@ POST   /api/sessions/{id}/sequence         GET  /api/sessions/{id}/sequence[?sin
 GET    /api/eurobarometer/waves[?year=]    GET  /api/eurobarometer/resolve?date=|za=|year=
 POST   /api/sessions                       GET  /api/sessions        GET /api/sessions/{id}
 POST   /api/sessions/{id}/questions        POST /api/sessions/{id}/reset
-DELETE /api/sessions/{id}                  GET  /api/sessions/{id}/export?format=json|csv
+DELETE /api/sessions/{id}                  GET  /api/sessions/{id}/export?format=json|csv|zip[&label=A]
+GET    /api/export/bundle?ids=SID1,SID2&labels=A,B
 ```
 
 Example:
@@ -302,7 +303,31 @@ curl -s -X POST localhost:8000/api/sessions/$SID/questions -H 'content-type: app
   -d '{"question":"What are your thoughts about immigration?"}'
 
 curl -s "localhost:8000/api/sessions/$SID/export?format=csv"
+curl -s -o session.zip "localhost:8000/api/sessions/$SID/export?format=zip&label=A"
 ```
+
+### Session logs for reports (ZIP)
+
+**Full log (ZIP)** in each respondent's panel downloads everything about that respondent
+since it was started or last reset (a reset starts a new history; earlier questions are not
+kept). In two-respondent mode, **Download both logs (ZIP)** puts both in one archive with an
+aligned comparison. Each respondent folder contains:
+
+| File | Contents |
+|---|---|
+| `report.md` | readable summary: persona, model, settings, ideology start → end, largest moves, every question |
+| `questions.csv` / `questions.jsonl` | one row per question; the JSONL has the full record (answer, evidence, distributions) |
+| `ideology_trajectory.csv`, `ideology.svg` | ideology after every question (step 0 = initial state) and a chart |
+| `state_changes.csv` | every survey-state change with its previous value (and evictions) |
+| `persona.txt`, `persona_initialization.json` | the description, the LLM's raw assignments, dropped ones, rationale, forced assignments |
+| `initial_state.csv`, `final_state.csv` | survey state with each variable's question wording |
+| `settings.json`, `poles.csv` | profile, run configuration, LLM, conditioning; the exact pole file used |
+| `sequence.json` | the latest question sequence, if it ran since the last reset |
+| `session.json` | the complete engine export (same as *Export JSON*) |
+| `manifest.json` | DTAG version and commit, model checksum, counts, a checksum for every file |
+
+The two-respondent archive adds `comparison.csv` / `comparison.svg` (trajectories side by
+side, by question number) and `bundle_manifest.json`.
 
 Eurobarometer by date and country:
 

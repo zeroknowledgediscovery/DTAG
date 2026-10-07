@@ -96,7 +96,10 @@ the public internet, also put it behind HTTPS.)
 
 5. On the right: the respondent's model, conditioning, **ideology trajectory**
    (GSS respondents), the session timeline and the current survey state.
-   **Export JSON / CSV** saves the full, reproducible session record.
+   **Full log (ZIP)** saves everything since the respondent was started or last reset
+   (report, persona, settings, every question, ideology trajectory, state changes);
+   **Export JSON / CSV** saves the session record alone. With two respondents,
+   **Download both logs (ZIP)** saves both plus a side-by-side comparison.
    **Reset respondent** returns to the initial state.
 
 ## Other ways to run it
