@@ -5,9 +5,14 @@ The native model feature list is authoritative. Semantic text is resolved in
 this order:
 
 1. year-specific existing map (e.g. map2022.csv, map2024.csv);
-2. cumulative GSS 1972-2018 codebook;
-3. exact-name donor from nearby existing GSS maps;
-4. native feature name fallback.
+2. the wording already in the committed output map (maps/gss/gss_YYYY_map.csv), so a
+   rebuild in a checkout without the year-specific source keeps it;
+3. cumulative GSS 1972-2018 codebook;
+4. exact-name donor from nearby existing GSS maps;
+5. native feature name fallback.
+
+A map is never overwritten with one that has fewer variables with real wording than the
+committed map, unless --allow-fewer-texts is given.
 
 The cumulative codebook is parsed once, so all 35 maps can be generated in one
 run without reopening the 38 MB PDF for every wave.
@@ -56,6 +61,23 @@ def read_semantic_map(path: Path) -> Dict[str, str]:
     }
 
 
+def has_text(var: str, text: str) -> bool:
+    """Real question wording, not just the variable name."""
+    t = str(text or "").strip()
+    return bool(t) and t.lower() != str(var).lower()
+
+
+def read_committed_rows(path: Path) -> Dict[str, dict]:
+    """Rows of an existing output map that carry real wording, keyed by lower-case variable."""
+    if not path.is_file():
+        return {}
+    df = pd.read_csv(path, dtype=str, keep_default_na=False)
+    if "variable" not in df.columns or "question_text" not in df.columns:
+        return {}
+    return {str(r["variable"]).lower(): dict(r) for _, r in df.iterrows()
+            if has_text(r["variable"], r["question_text"])}
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument(
@@ -69,6 +91,8 @@ def main() -> None:
     )
     ap.add_argument("--outdir", default="maps/gss")
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--allow-fewer-texts", action="store_true",
+                    help="write a map even if fewer variables have real wording than in the committed map")
     args = ap.parse_args()
 
     def rp(x: str) -> Path:
@@ -135,6 +159,7 @@ def main() -> None:
         )
         if not year_specific and year in existing_by_year:
             year_specific = existing_by_year[year]
+        committed = read_committed_rows(out)
 
         rows = []
         counts = {
@@ -155,6 +180,13 @@ def main() -> None:
                 text = year_specific[key]
                 source = "YEAR_SPECIFIC"
                 source_year = str(year)
+            elif key in committed:  # keep the committed wording and its provenance
+                c = committed[key]
+                text = c["question_text"]
+                source = c.get("source") or "YEAR_SPECIFIC"
+                source_year = c.get("source_year", "")
+                page = c.get("codebook_page", "")
+                counts.setdefault(source, 0)
             else:
                 cb = codebook_lookup.get(key)
                 if cb and cb[0]:
@@ -187,6 +219,14 @@ def main() -> None:
                 }
             )
 
+        n_text = sum(has_text(r["variable"], r["question_text"]) for r in rows)
+        if n_text < len(committed) and not args.allow_fewer_texts:
+            print(
+                f"WARNING GSS {year}: NOT writing {out}: only {n_text} variables would have real "
+                f"wording vs {len(committed)} in the committed map (year-specific source or "
+                "codebook missing?). Use --allow-fewer-texts to override."
+            )
+            continue
         pd.DataFrame(rows).to_csv(out, index=False)
         unresolved = counts["NATIVE_NAME"]
         resolved = len(features) - unresolved
@@ -208,6 +248,9 @@ def main() -> None:
             }
         )
 
+    if not summary:
+        print("no maps written")
+        return
     report = ROOT / "outputs/gss_native_map_build_report.csv"
     report.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(summary).sort_values("year").to_csv(report, index=False)
