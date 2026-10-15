@@ -1,0 +1,141 @@
+# Participants for the GSS 2024 optimizer: 12 synthetic personas across the political spectrum.
+#
+# `state` pins each participant's starting survey state with GSS 2024 labels, so runs are exact
+# and need no LLM. `text` is the matching description: with participants.decode: always (or by
+# removing `state`), the LLM decodes it through DTAG's own persona decoding instead.
+# Direction (should move up or down) comes from the sign of each participant's starting ideology.
+participants:
+  - id: cm_rural_alabama
+    text: >-
+      45-year-old white man living in open country outside a small town in rural Alabama, in the South.
+      He is married and has two children. He works full time in farming. He is a veteran who served
+      2 to 4 years of active duty in the armed forces. He reads a newspaper every day. His education
+      ended with a high school diploma. He thinks of himself as conservative and is a strong Republican.
+      He is Protestant and attends religious services every week.
+    state: {sex: male, age: "45.0", race: white, region: south, childs: "2.0",
+            xnorcsiz: "open country within larger civil divisions (division, township, etc.)",
+            news: every day, wrkstat: working full time, vetyears: "yes, 2-4 years", polviews: conservative,
+            partyid: strong republican, relig: protestant, attend: every week, marital: married, degree: high school}
+
+  - id: wf_new_york_city
+    text: >-
+      22-year-old white woman living in New York City, a large central city in the Northeast. She has
+      never been married and has no children. She works full time in retail. She has never served in the
+      armed forces. She reads a newspaper every day. She has a bachelor's degree. She thinks of herself as
+      extremely liberal and is a strong Democrat. She has no religion and never attends religious services.
+    state: {sex: female, age: "22.0", race: white, region: northeast, childs: "0.0",
+            xnorcsiz: "a large central city (over 250,000)", news: every day, wrkstat: working full time,
+            vetyears: no active duty, polviews: extremely liberal, partyid: strong democrat, relig: none,
+            attend: never, marital: never married, degree: "bachelor's"}
+
+  - id: religious_conservative_woman_texas
+    text: >-
+      61-year-old white woman in a small town in Texas, in the South. She is married with three children
+      and keeps house. Her education ended with high school. She thinks of herself as extremely
+      conservative and is a strong Republican. She is Protestant and attends religious services several
+      times a week. She reads a newspaper every day.
+    state: {sex: female, age: "61.0", race: white, region: south, childs: "3.0",
+            xnorcsiz: "a town or village (2,500 to 9,999)", marital: married, wrkstat: keeping house,
+            degree: high school, polviews: extremely conservative, partyid: strong republican,
+            relig: protestant, attend: several times a week, news: every day}
+
+  - id: secular_liberal_man_seattle
+    text: >-
+      34-year-old white man living in Seattle, a large central city in the West. He has never been married
+      and has no children. He works full time and has a graduate degree. He thinks of himself as liberal
+      and is a Democrat, but not a very strong one. He has no religion and never attends religious services.
+      He reads a newspaper a few times a week.
+    state: {sex: male, age: "34.0", race: white, region: west, childs: "0.0",
+            xnorcsiz: "a large central city (over 250,000)", marital: never married, wrkstat: working full time,
+            degree: graduate, polviews: liberal, partyid: not very strong democrat, relig: none, attend: never,
+            news: a few times a week}
+
+  - id: catholic_suburban_man_ohio
+    text: >-
+      52-year-old white man living in a suburb of a large city in Ohio, in the Midwest. He is married with
+      two children and works full time. He has an associate degree. He thinks of himself as slightly
+      conservative and is an independent who leans Republican. He is Catholic and attends religious
+      services about once a month. He reads a newspaper every day.
+    state: {sex: male, age: "52.0", race: white, region: midwest, childs: "2.0",
+            xnorcsiz: a suburb of a large central city, marital: married, wrkstat: working full time,
+            degree: associate/junior college, polviews: slightly conservative,
+            partyid: "independent, close to republican", relig: catholic, attend: about once a month,
+            news: every day}
+
+  - id: suburban_teacher_new_jersey
+    text: >-
+      41-year-old white woman living in a suburb of a large city in New Jersey, in the Northeast. She is
+      married with two children and works full time as a teacher. She has a bachelor's degree. She thinks
+      of herself as slightly liberal and is a Democrat, but not a very strong one. She is Catholic and
+      attends religious services several times a year. She reads a newspaper a few times a week.
+    state: {sex: female, age: "41.0", race: white, region: northeast, childs: "2.0",
+            xnorcsiz: a suburb of a large central city, marital: married, wrkstat: working full time,
+            degree: "bachelor's", polviews: slightly liberal, partyid: not very strong democrat,
+            relig: catholic, attend: several times a year, news: a few times a week}
+
+  - id: evangelical_retiree_georgia
+    text: >-
+      72-year-old white man living in open country in rural Georgia, in the South. He is married with four
+      children and is retired. He is a veteran who served more than 4 years of active duty. His education
+      ended with high school. He thinks of himself as extremely conservative and is a strong Republican.
+      He is a Christian and attends religious services every week. He reads a newspaper every day.
+    state: {sex: male, age: "72.0", race: white, region: south, childs: "4.0",
+            xnorcsiz: "open country within larger civil divisions (division, township, etc.)",
+            marital: married, wrkstat: retired, vetyears: "yes, more than 4 years", degree: high school,
+            polviews: extremely conservative, partyid: strong republican, relig: christian, attend: every week,
+            news: every day}
+
+  - id: grad_student_woman_california
+    text: >-
+      26-year-old white woman living in Los Angeles, a large central city in the West. She has never been
+      married, has no children and is in school as a graduate student. She thinks of herself as extremely
+      liberal and is a strong Democrat. She has no religion and never attends religious services. She
+      reads a newspaper less than once a week.
+    state: {sex: female, age: "26.0", race: white, region: west, childs: "0.0",
+            xnorcsiz: "a large central city (over 250,000)", marital: never married, wrkstat: in school,
+            degree: graduate, polviews: extremely liberal, partyid: strong democrat, relig: none, attend: never,
+            news: less than once a week}
+
+  - id: black_churchgoing_woman_atlanta
+    text: >-
+      47-year-old Black woman living in Atlanta, a large central city in the South. She is divorced with two
+      children and works full time. She has a bachelor's degree. She thinks of herself as liberal and is a
+      strong Democrat. She is Protestant and attends religious services every week. She reads a newspaper
+      every day.
+    state: {sex: female, age: "47.0", race: black, region: south, childs: "2.0",
+            xnorcsiz: "a large central city (over 250,000)", marital: divorced, wrkstat: working full time,
+            degree: "bachelor's", polviews: liberal, partyid: strong democrat, relig: protestant,
+            attend: every week, news: every day}
+
+  - id: hispanic_catholic_man_arizona
+    text: >-
+      39-year-old Mexican American man living in a medium-size city in Arizona, in the West. He is married
+      with three children and works full time. His education ended with high school. He thinks of himself
+      as conservative and is a Republican, but not a very strong one. He is Catholic and attends religious
+      services nearly every week.
+    state: {sex: male, age: "39.0", race: other, hispanic: "mexican, mexican american, chicano/a", region: west,
+            childs: "3.0", xnorcsiz: "a medium size central city (50,000 to 250,000)", marital: married,
+            wrkstat: working full time, degree: high school, polviews: conservative,
+            partyid: not very strong republican, relig: catholic, attend: nearly every week}
+
+  - id: moderate_independent_man_tennessee
+    text: >-
+      29-year-old white man living in a medium-size city in Tennessee, in the South. He has never been
+      married and has one child. He works full time; his education ended with high school. He thinks of
+      himself as moderate, middle of the road, and is an independent. He is Protestant and attends
+      religious services about once or twice a year.
+    state: {sex: male, age: "29.0", race: white, region: south, childs: "1.0",
+            xnorcsiz: "a medium size central city (50,000 to 250,000)", marital: never married,
+            wrkstat: working full time, degree: high school, polviews: "moderate, middle of the road",
+            partyid: "independent (neither, no response)", relig: protestant, attend: about once or twice a year}
+
+  - id: moderate_woman_iowa
+    text: >-
+      56-year-old white woman living in a small town in Iowa, in the Midwest. She is married with two
+      children and works part time. She has an associate degree. She thinks of herself as moderate, middle
+      of the road, and is an independent who leans Democrat. She is Protestant and attends religious
+      services about once a month.
+    state: {sex: female, age: "56.0", race: white, region: midwest, childs: "2.0",
+            xnorcsiz: "a town or village (2,500 to 9,999)", marital: married, wrkstat: working part time,
+            degree: associate/junior college, polviews: "moderate, middle of the road",
+            partyid: "independent, close to democrat", relig: protestant, attend: about once a month}

@@ -348,3 +348,9 @@ commands for its set. Runs take 1–4 hours on 4 cores.
 Each validated folder contains the question CSV(s) (`step,question`, uploadable with *Run
 sequence…*), a README, `corrected_summary.json` (per-length results with independent-group CIs),
 the validation JSON files and the raw validation trajectories (`*_trajectories.npz`).
+
+## 13. Reusable optimizer
+
+`optimizer/` packages the polarization search as a configurable tool: any wave, poles,
+participants or question bank, any LLM backend (OpenAI-compatible, Anthropic, a CLI agent or a
+Python callable), held-out validation and a report. See `optimizer/README.md`.

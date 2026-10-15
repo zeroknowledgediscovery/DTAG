@@ -1,0 +1,78 @@
+# Example config for the DTAG polarization question-set optimizer.
+#   python -m optimizer check --config optimizer/config.example.yaml
+#   python -m optimizer run   --config optimizer/config.example.yaml
+# Every key is optional; anything left out takes the default shown in optimizer/__main__.py (DEFAULTS).
+
+model: gss/gss_2024            # native DTAG model key (downloaded from the public release if missing)
+download: true
+# model_root: ~/dtag-models    # default: $DTAG_MODEL_ROOT or ~/.cache/dtag/models
+# map: maps/gss/gss_2024_map.csv   # default: the model's canonical semantic map
+# poles: assets/polar_vectors/gss/gss_2024_polar_vectors.csv   # default: wave-specific GSS poles
+out: outputs/optimizer/gss2024
+workers: null                  # null = all CPU cores
+
+# ---- LLM: pick ONE block. Used for DTAG's own question->survey-item mapping, persona decoding
+# and (optionally) rewriting codebook wording into natural questions. With the defaults below
+# (pinned persona states, bank from the map, mapping: source) a run makes no LLM calls at all.
+llm:
+  provider: openai             # OpenAI or any OpenAI-compatible server
+  model: gpt-4.1-mini
+  # base_url: http://localhost:11434/v1   # Ollama / vLLM / LM Studio / OpenRouter / Together / Groq / Azure
+  # api_key_env: OPENAI_API_KEY           # name of the environment variable holding the key
+
+# llm:
+#   provider: anthropic
+#   model: claude-sonnet-5-5
+#   api_key_env: ANTHROPIC_API_KEY
+
+# llm:                          # any CLI agent: prompt on stdin, reply on stdout
+#   provider: command
+#   command: "claude -p --output-format text"
+#   timeout: 600
+
+# llm:                          # any Python function f(prompt, schema=None, schema_name=..., temperature=...) -> str
+#   provider: python
+#   callable: my_agents.router:complete
+
+# llm:
+#   provider: mock               # offline, deterministic; plumbing tests only (its mapping is not semantic)
+
+# DTAG decoding/mapping settings (same as the web app)
+dtag: {k: 50, prefilter: 200, min_map_score: 1.0, max_assign: 50, assign_prefilter: 500}
+
+participants:
+  file: optimizer/personas/gss2024_spectrum.yaml
+  decode: auto                 # auto: use `state` when given, else decode `text` with the LLM | always | never
+  neutral_band: 0.005          # |I0| below this: neutral, excluded from the objective
+  country: United States
+  core_variables: [polviews, partyid]     # never dropped or resampled by the perturbation
+  perturb: {drop: 0.15, resample: 0.15}   # per run, drop / resample this share of the other variables
+
+bank:
+  source: map                  # map: opinion items of the model's map | file: your own questions
+  # file: my_questions.csv     # CSV/JSONL with `question` and optional `source_variables` (a;b;c)
+  rewrite: false               # true: LLM rewrites codebook wording into natural questions (source: map)
+  mapping: source              # source: use the item itself | dtag: DTAG's LLM mapping | verify: both, keep if they agree
+  min_source_recall: 0.5       # verify: share of source items DTAG's mapping must recover
+  # max_items: 150
+  # include: [abany, natenvir, ...]
+  # exclude: [...]
+
+search:
+  length: 10                   # maximum set length
+  min_length: 6
+  resp_mode: draw              # draw: sample each answer | max: most likely answer
+  objective: robust            # robust: min(t_positive, t_negative) | mean: min of the two mean signed changes
+  seed: 7
+  screen_reps: 2               # runs per participant when screening single questions
+  pool: 30                     # questions kept after screening
+  per_group: 8                 # ... including the best this many for each group
+  greedy_pool: 20
+  search_reps: 4               # runs per participant during greedy/local search
+  budget: 60                   # local-search moves
+
+validate:
+  reps: 30                     # held-out runs per participant (new seeds)
+  seed: 900001
+  baselines: 20                # random sequences of the same length
+  baseline_reps: 4
