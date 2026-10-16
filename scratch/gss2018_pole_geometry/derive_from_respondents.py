@@ -286,13 +286,39 @@ def native_check(poles, out, heldout, *, no_download=False,
             record[name] = model_index(world, valid, left, right)["index"]
         outcomes.append(record)
     pd.DataFrame(outcomes).to_csv(out / "native_respondent_holdout_indices.csv", index=False)
+    measured = []
+    respondent_table = pd.DataFrame(outcomes)
+    def auc_rank(scoreL, scoreR):
+        # Mann-Whitney AUC with half-credit for tied scores.
+        # AUC = P(right-score > left-score), independent of calibration origin.
+        if len(scoreL) == 0 or len(scoreR) == 0:
+            return None
+        a = np.asarray(scoreL)[:, None]
+        b = np.asarray(scoreR)[None, :]
+        return float(np.mean((b > a) + .5*(b == a)))
+    for group_key, members in (("partyid", GROUPS), ("polviews", POLVIEWS)):
+        for name in variants:
+            left_values = respondent_table.loc[
+                respondent_table[group_key].isin(members["L"]), name].to_numpy(float)
+            right_values = respondent_table.loc[
+                respondent_table[group_key].isin(members["R"]), name].to_numpy(float)
+            measured.append({
+                "variant": name, "heldout_label": group_key,
+                "n_L": len(left_values), "n_R": len(right_values),
+                "mean_I_L": float(np.mean(left_values)) if len(left_values) else None,
+                "mean_I_R": float(np.mean(right_values)) if len(right_values) else None,
+                "mean_difference_R_minus_L": (float(np.mean(right_values)-np.mean(left_values))
+                                              if len(left_values) and len(right_values) else None),
+                "auc_right_above_left": auc_rank(left_values, right_values)})
+    pd.DataFrame(measured).to_csv(out / "native_holdout_metrics.csv", index=False)
     (out / "native_summary.json").write_text(json.dumps(
         {"personas": summary, "n_holdout_rows": len(outcomes),
+         "heldout_respondent_metrics": measured,
          "excluded_from_conditioning": sorted(BAND),
          "source": "empirical respondent rows, held out of pole construction only",
          "note": "LSM itself was trained previously; not independent of model training"},
         indent=2))
-    return summary
+    return {"persona_geometry": summary, "heldout_respondent_metrics": measured}
 
 
 def run(args):
