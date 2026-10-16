@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import copy
+import hashlib
 import csv
 import json
 import os
@@ -30,7 +31,8 @@ from . import bank as bankmod
 from . import population
 from .dtag_bridge import (DEFAULT_POLES, REPO, RUN_DEFAULTS, JsonCache, World, canonical_map, ensure_model,
                           map_question, model_record, sha256)
-from .evaluate import baselines, per_participant, report_md, summarize, write_csv, write_question_set
+from .evaluate import (baselines, order_controls, per_participant, report_md,
+                       state_diagnostics, summarize, write_csv, write_question_set)
 from .llm import DTAGClient, make_llm
 from .search import Searcher
 from .simulate import Simulator
@@ -48,16 +50,21 @@ DEFAULTS: Dict[str, Any] = {
     "dtag": dict(RUN_DEFAULTS),
     "participants": {"file": "optimizer/personas/gss2024_spectrum.yaml", "decode": "auto", "neutral_band": 0.005,
                      "country": "United States", "year": None,
-                     "core_variables": ["polviews", "partyid"], "perturb": {"drop": 0.15, "resample": 0.15}},
+                     "core_variables": ["polviews", "partyid"], "protect_mapped": True,
+                     "perturb": {"drop": 0.15, "resample": 0.15}},
     "bank": {"source": "map", "file": None, "rewrite": False, "mapping": "source", "min_source_recall": 0.5,
              "max_items": None, "include": None, "exclude": None},
     "search": {"length": 10, "min_length": 6, "resp_mode": "draw", "objective": "robust", "seed": 7,
                "screen_reps": 2, "pool": 30, "per_group": 8, "greedy_pool": 20, "search_reps": 4, "budget": 60},
-    "validate": {"reps": 30, "seed": 900001, "baselines": 20, "baseline_reps": 4},
+    "validate": {"reps": 30, "states_per_persona": 10, "reps_per_state": 20,
+                 "augment_count": 5, "order_baselines": 5,
+                 "seed": 900001, "baselines": 20, "baseline_reps": 4},
 }
 QUICK = {"bank": {"max_items": 60}, "search": {"length": 6, "min_length": 4, "screen_reps": 1, "pool": 10, "per_group": 3,
                                                 "greedy_pool": 8, "search_reps": 2, "budget": 6},
-         "validate": {"reps": 6, "baselines": 4, "baseline_reps": 2}}
+         "validate": {"reps": 6, "states_per_persona": 2, "reps_per_state": 3,
+                      "augment_count": 2, "order_baselines": 1,
+                      "baselines": 4, "baseline_reps": 2}}
 
 
 def merge(a: Dict, b: Dict) -> Dict:
@@ -127,10 +134,13 @@ class Ctx:
         self.log(f"participants from {c['file']}:")
         people = population.prepare(self.world, population.load(c["file"]), c["decode"], self.client, self.llm_model,
                                     self.cfg["dtag"], self.cache, float(c["neutral_band"]), c.get("country"), self.year(),
-                                    log=self.log)
+                                    log=self.log, protect_mapped=bool(c.get("protect_mapped", True)),
+                                    core_variables=c["core_variables"])
         write_csv(self.out / "participants.csv", [
             {"id": p["id"], "group": {1: "positive", -1: "negative", 0: "neutral"}[p["direction"]], "I0": round(p["I0"], 5),
-             "variables": len(p["state"]), "state_source": p["state_source"], "dropped": "; ".join(p["dropped"]),
+             "variables": len(p["state"]), "protected": ";".join(p["protected"]),
+             "expected_mismatches": len(p["expected_mismatches"]),
+             "state_source": p["state_source"], "dropped": "; ".join(p["dropped"]),
              "text": p["text"]} for p in people])
         (self.out / "participants.json").write_text(json.dumps(people, indent=1, ensure_ascii=False))
         return people
@@ -244,9 +254,10 @@ def cmd_run(ctx: Ctx, args) -> None:
     cfg, s = ctx.cfg, ctx.cfg["search"]
     people = ctx.participants()
     bank = ctx.bank(args.rebuild_bank, people)
-    sim = Simulator(ctx.world_args, {**cfg["participants"]["perturb"], "core": cfg["participants"]["core_variables"]}, cfg["workers"])
+    sim = ctx.simulator(people, bank)
     try:
-        se = Searcher(sim, people, bank, s["resp_mode"], s["objective"], log=ctx.log)
+        se = Searcher(sim, people, bank, s["resp_mode"], s["objective"], log=ctx.log,
+                      neutral_band=float(cfg["participants"]["neutral_band"]))
         seed = int(s["seed"])
         screen_runs = sim.make_runs(people, int(s["screen_reps"]), seed * 10 + 1)
         ctx.log(f"screening {len(bank)} questions on {len(screen_runs)} runs")
@@ -297,7 +308,7 @@ def cmd_validate(ctx: Ctx, args) -> None:
             bank = bank + [q for q in bank_all if q["id"] not in {b["id"] for b in bank}]
         except SystemExit:
             pass
-    sim = Simulator(ctx.world_args, {**cfg["participants"]["perturb"], "core": cfg["participants"]["core_variables"]}, cfg["workers"])
+    sim = ctx.simulator(people, bank)
     try:
         seq = [q["id"] for q in seq_rows if q["variables"]]
         validate_and_report(ctx, sim, people, bank, seq, len(seq), {"validated_file": str(args.sequence)})
@@ -321,6 +332,8 @@ def main(argv=None) -> None:
         ap.error("validate needs --sequence")
     os.chdir(REPO)
     cfg = load_config(args)
+    if args.command == "validate" and not args.out:
+        cfg["out"] = str(Path(cfg["out"]) / "validation" / Path(args.sequence).stem)
     probe = Ctx.__new__(Ctx)
     probe.cfg = cfg
     need_llm = args.command == "check" or probe.needs_llm() or (args.command == "validate")
