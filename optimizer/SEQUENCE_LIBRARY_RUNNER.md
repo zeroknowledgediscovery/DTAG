@@ -141,6 +141,7 @@ Default root: outputs/optimizer/sequence_library (excluded from Git).
 Each run creates:
 
     library.json                        # append-only attempt manifest
+    library.csv                         # easy-to-list one-row-per-attempt index
     sequences/TYPE_score__YEAR__NNN.csv # one outcome-labeled file per completed run
     attempts/00001/
       run_parameters.json
@@ -168,7 +169,11 @@ To list completed sets:
 
     find outputs/optimizer/sequence_library/sequences -name '*.csv' | sort
 
-To view the library manifest:
+To view the library in a readable table:
+
+    column -s, -t outputs/optimizer/sequence_library/library.csv | less -S
+
+To view the complete JSON attempt manifest:
 
     python -m json.tool outputs/optimizer/sequence_library/library.json | less
 
