@@ -785,3 +785,95 @@ def test_library_sanitation_preserves_legacy_artifacts(tmp_path):
     rows = list(csv.DictReader((output/"legacy_inventory.csv").open()))
     assert rows[0]["eligible_for_centered_catalog"] == "False"
     assert rows[1]["action"] == "missing_sequence_or_incomplete_attempt"
+
+
+
+def test_2018_centered_persona_initialization_avoids_false_raw_sign_warning(tmp_path):
+    from types import SimpleNamespace
+    from optimizer.population import prepare
+    from optimizer.dtag_bridge import JsonCache
+    from optimizer.sequence_library_runner import spec_config
+    from optimizer.ideology_coordinates import centered_persona_diagnostics
+
+    mapfile = tmp_path / "fake_map.csv"
+    mapfile.write_text("variable,question\npolviews,Political views\npartyid,Party\n")
+    class FakeWorld:
+        map_path = str(mapfile)
+        model_path = str(tmp_path / "model")
+        ctx = SimpleNamespace(
+            possible={"polviews": ["conservative", "extremely liberal"],
+                      "partyid": ["strong republican", "strong democrat"]},
+            idx_map={"polviews": 0, "partyid": 1})
+        def valid(self, state):
+            return state, []
+        def I(self, state):
+            if not state:
+                return .06005
+            return (.06624 if state["polviews"] == "conservative" else .01785)
+
+    people = [
+        {"id": "CM", "text": "", "state": {"polviews": "conservative",
+                                          "partyid": "strong republican"},
+         "expected_state": {}, "core_expected": {}},
+        {"id": "WF", "text": "", "state": {"polviews": "extremely liberal",
+                                          "partyid": "strong democrat"},
+         "expected_state": {}, "core_expected": {}}]
+    logs = []
+    result = prepare(
+        FakeWorld(), people, "auto", None, "none", {},
+        JsonCache(tmp_path / "cache.json"), .005, None, 2018,
+        log=logs.append, protect_mapped=False,
+        core_variables=["polviews", "partyid"],
+        require_both_signs=False, index_origin="empty")
+    assert [p["direction"] for p in result] == [1, -1]
+    assert result[0]["I_raw"] == pytest.approx(.06624)
+    assert result[0]["I0"] == pytest.approx(+.00619)
+    assert result[1]["I_raw"] == pytest.approx(.01785)
+    assert result[1]["I0"] == pytest.approx(-.04220)
+    assert all("WARNING: Starting-sign coverage" not in line for line in logs)
+    assert any("I_centered=+0.00619" in line for line in logs)
+    assert any("I_centered=-0.04220" in line for line in logs)
+    report = centered_persona_diagnostics(result, .06005)
+    assert [p["I_centered"] for p in report] == pytest.approx([.00619, -.04220])
+
+    conf = spec_config(2018, tmp_path / "out", tmp_path / "p.yaml",
+                       workers=2, freezeinit=False, seed=99, states=8, draws=2)
+    assert conf["participants"]["index_origin"] == "empty"
+    assert conf["participants"]["neutral_band"] == .005
+
+
+def test_centered_persona_warning_only_when_centered_signs_really_missing(tmp_path):
+    from types import SimpleNamespace
+    from optimizer.population import prepare
+    from optimizer.dtag_bridge import JsonCache
+
+    mapfile = tmp_path / "map.csv"
+    mapfile.write_text("variable,question\npolviews,Views\npartyid,Party\n")
+    class FakeWorld:
+        map_path = str(mapfile)
+        model_path = str(tmp_path / "m")
+        ctx = SimpleNamespace(possible={"polviews": ["conservative", "liberal"],
+                                        "partyid": ["republican", "democrat"]},
+                              idx_map={"polviews": 0, "partyid": 1})
+        def valid(self, state):
+            return state, []
+        def I(self, state):
+            if not state:
+                return .06
+            return .08 if state["polviews"] == "conservative" else .07
+    people = [
+        {"id": "CM", "text": "", "state": {"polviews": "conservative",
+                                          "partyid": "republican"},
+         "expected_state": {}, "core_expected": {}},
+        {"id": "WF", "text": "", "state": {"polviews": "liberal",
+                                          "partyid": "democrat"},
+         "expected_state": {}, "core_expected": {}}]
+    messages = []
+    observed = prepare(FakeWorld(), people, "auto", None, "none", {},
+                       JsonCache(tmp_path / "cache.json"), .005, None, 2018,
+                       log=messages.append, protect_mapped=False,
+                       core_variables=["polviews", "partyid"],
+                       require_both_signs=False, index_origin="empty")
+    assert [p["direction"] for p in observed] == [1, 1]
+    assert any("WARNING: Starting-sign coverage" in line
+               and "centered I(x)-I(empty)" in line for line in messages)
