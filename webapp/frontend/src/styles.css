@@ -281,3 +281,14 @@ table.compare { margin-bottom: 8px; }
 .tab-ok { color: var(--ok); font-weight: 700; }
 a.btn.primary-link { background: var(--accent); color: white; border-color: var(--accent); }
 @media (prefers-color-scheme: dark) { a.btn.primary-link { color: #0e1620; } }
+
+/* ideology push (one-step optimizer suggestions) */
+.push-card { margin-bottom: 8px; }
+.push-dir { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
+.push-delta { font-weight: 600; }
+.push-delta.pos, .push-delta.neg { color: var(--accent); }
+.push-q { font-size: 14px; margin-bottom: 4px; }
+.push-table { width: 100%; font-size: 12px; border-collapse: collapse; margin-top: 6px; }
+.push-table th, .push-table td { text-align: left; padding: 2px 4px; border-top: 1px solid var(--border); }
+.push-auto { margin-top: 6px; }
+.badge.b-push { background: var(--accent-weak); color: var(--accent); }

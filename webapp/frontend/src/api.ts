@@ -5,6 +5,7 @@ import type {
   ModelStatus,
   Overrides,
   Profile,
+  PushSuggestions,
   QuestionResult,
   Readiness,
   Recommendation,
@@ -103,6 +104,12 @@ export const api = {
       ...(body.preferred_model ? { preferred_model: body.preferred_model } : {}),
     }),
   ask: (id: string, question: string) => post<QuestionResult>(`/api/sessions/${id}/questions`, { question }),
+  ideologyPush: (id: string, includePoleItems = false) =>
+    request<PushSuggestions>(`/api/sessions/${id}/ideology-push?include_pole_items=${includePoleItems}`),
+  pushAsk: (id: string, body: { variable: string; question: string; direction?: "up" | "down" }) =>
+    post<QuestionResult>(`/api/sessions/${id}/ideology-push/ask`, body),
+  autoPush: (id: string, body: { direction: "up" | "down"; steps: number; include_pole_items: boolean; reset_first?: boolean }) =>
+    post<SequenceStatus>(`/api/sessions/${id}/ideology-push/auto`, body),
   reset: (id: string) => post<SessionInfo>(`/api/sessions/${id}/reset`),
   deleteSession: (id: string) => request(`/api/sessions/${id}`, { method: "DELETE" }),
   exportUrl: (id: string, format: "json" | "csv" | "zip", label?: string) =>

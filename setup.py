@@ -12,6 +12,7 @@ RUNTIME_DIRS = [
     "maps",
     "assets",
     "native/lsm_runtime",
+    "optimizer",
     "webapp/backend",
     "webapp/frontend/dist",
 ]

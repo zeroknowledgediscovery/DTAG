@@ -210,6 +210,57 @@ export interface QuestionResult {
   temporal_conditioning: TemporalConditioning;
   semantic_candidates?: Array<{ variable: string; similarity: number }>;
   lexical_candidates?: number;
+  targeted?: boolean;
+  question_source?: string;
+  push?: PushOutcome;
+}
+
+/** Prediction made just before a targeted (ideology-push) question, and what happened. */
+export interface PushOutcome {
+  direction: "up" | "down" | null;
+  variable: string;
+  predicted_expected_delta: number | null;
+  predicted_modal_delta: number | null;
+  predicted_modal_answer: string | null;
+  realized_delta: number | null;
+  resp_mode: string;
+}
+
+export interface PushSuggestion {
+  direction: "up" | "down";
+  variable: string;
+  survey_question: string;
+  question: string;
+  predicted_delta: number;
+  predicted_ideology: number;
+  objective: "modal" | "expected";
+  expected_delta: number;
+  sd: number;
+  P_up: number;
+  P_down: number;
+  modal_answer: string;
+  p_modal: number;
+  delta_modal: number;
+  one_sided: boolean;
+  is_pole_item: boolean;
+  exact: boolean;
+  responses: Array<{ answer: string; p: number; delta: number }>;
+}
+
+export interface PushSuggestions {
+  enabled: boolean;
+  reason: string | null;
+  objective?: "modal" | "expected";
+  resp_mode?: string;
+  current_ideology?: number;
+  n_candidates?: number;
+  include_pole_items?: boolean;
+  fast_evaluator?: boolean;
+  seconds?: number;
+  up: PushSuggestion | null;
+  down: PushSuggestion | null;
+  up_reason?: string;
+  down_reason?: string;
 }
 
 export interface TrajectoryPoint {
@@ -332,6 +383,10 @@ export interface Suggestion {
 
 export interface SequenceStatus {
   job_id: string;
+  kind?: "sequence" | "ideology_push";
+  direction?: "up" | "down";
+  stop_reason?: string | null;
+  predictions?: Array<{ variable: string; predicted_delta: number; objective: string }>;
   session_id: string;
   name: string;
   status: "queued" | "running" | "done" | "cancelled" | "error";

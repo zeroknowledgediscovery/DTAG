@@ -339,6 +339,14 @@ See [SEQUENCE_LIBRARY_RUNNER.md](SEQUENCE_LIBRARY_RUNNER.md) for concrete
 commands, Google Cloud model download behavior, score definitions,
 reproducibility controls, failure recovery and expected library contents.
 
+## Web app ideology push (`optimizer/session_push.py`)
+
+The web app's *Next question · ideology push* panel uses this optimizer on the live respondent:
+`suggest(session)` scores every askable, unanswered item at the session's current state and returns
+the item predicted to move the ideology index up and down (exact modal change for `resp_mode=max`,
+expected change for `draw`); `DTAGSession.ask(question, target_variables=[v])` then answers through
+exactly that item. See `webapp/README.md` ("Ideology push").
+
 ## One-step question geometry (`optimizer/one_step_geometry.py`)
 
 Given a native model, its poles, and the answers already known (a partial state `s`), enumerate

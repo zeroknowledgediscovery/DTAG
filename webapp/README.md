@@ -223,6 +223,46 @@ background run; `GET /api/sessions/{id}/sequence[?since=N]` returns progress,
 new results and the ideology summary; `DELETE` cancels. While a sequence runs,
 interactive questions and reset return 409.
 
+### Ideology push (suggested next questions)
+
+For respondents whose survey has an ideology index (GSS), the right column shows
+**Next question · ideology push**: two suggested questions, one predicted to move the
+index **up** (toward the R pole) and one **down** (toward the L pole), recomputed after
+every answer.
+
+How they are chosen (one-step optimizer, `optimizer/session_push.py`):
+
+* every unanswered *opinion* item is scored exactly at the respondent's current state:
+  for each native response `a` of item `v`, `Δ_v(a) = I(s ∪ {v=a}) − I(s)` and the native
+  probability `P(a | s, v)` (incremental native evaluator: a few seconds for ~550 items).
+  Administrative, demographic and factual-behaviour items are never suggested; pole-defining
+  items only when **Allow pole-defining items** is ticked;
+* with response mode **max** (the profiles' default) the session records the respondent's most
+  likely answer, so the suggestion is the item whose modal answer moves the index most and the
+  shown Δ is exact. With **draw** the suggestion maximizes the expected change
+  `μ_v = Σ_a P(a) Δ_v(a)` (the realized change then varies with the drawn answer);
+* the shown question is written by the language model for exactly that item, in neutral wording
+  (no leading language). **all answers** lists every response with its probability and Δ.
+
+**Ask this** asks the suggested question *through that survey item*: variable selection is
+skipped, and the distribution, response, state update, ideology and prose follow the normal
+path. The recorded and plotted index therefore changes by the predicted amount (chat entries are
+tagged **PUSH ↑/↓**; the tooltip shows predicted vs realized). If the respondent's state is at its
+size limit, an older answer is evicted and the card says the change may differ.
+
+**Automatic push** asks the suggestion for one direction step by step (each step re-scores at the
+new state), for a chosen number of steps; it runs like a question sequence (progress card,
+cancel, results in the log) and stops early if no item moves the index further.
+
+API: `GET /api/sessions/{id}/ideology-push[?include_pole_items=true]` → `{up, down, objective,
+n_candidates, ...}`; `POST /api/sessions/{id}/ideology-push/ask` with `{"variable", "question",
+"direction"}` → a question result with `push: {predicted_modal_delta, predicted_expected_delta,
+realized_delta}`; `POST /api/sessions/{id}/ideology-push/auto` with `{"direction": "up"|"down",
+"steps": N, "include_pole_items": false}` starts the background run (poll/cancel via
+`.../sequence`).
+
+These are information-conditioning effects of a fixed survey model, not persuasion of people.
+
 ### Two respondents side by side
 
 The **Respondents 1 | 2** switch in the top bar adds a second respondent (the
@@ -285,6 +325,8 @@ GET    /api/models/{family}/{name}/status  POST /api/models/{family}/{name}/inst
 GET    /api/maps                           GET  /api/polar-vectors   GET /api/geography
 POST   /api/recommend                      GET  /api/countries       GET /api/sessions/{id}/suggestions
 POST   /api/sessions/{id}/sequence         GET  /api/sessions/{id}/sequence[?since=N]   DELETE /api/sessions/{id}/sequence
+GET    /api/sessions/{id}/ideology-push[?include_pole_items=]   POST /api/sessions/{id}/ideology-push/ask
+POST   /api/sessions/{id}/ideology-push/auto
 GET    /api/eurobarometer/waves[?year=]    GET  /api/eurobarometer/resolve?date=|za=|year=
 POST   /api/sessions                       GET  /api/sessions        GET /api/sessions/{id}
 POST   /api/sessions/{id}/questions        POST /api/sessions/{id}/reset
