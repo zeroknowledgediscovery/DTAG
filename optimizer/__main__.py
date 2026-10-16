@@ -148,27 +148,52 @@ class Ctx:
     def bank(self, rebuild: bool = False, people=None):
         b = self.cfg["bank"]
         path = self.out / "bank.jsonl"
-        if path.is_file() and not rebuild:
-            rows = [json.loads(x) for x in path.read_text(encoding="utf-8").splitlines() if x.strip()]
-            self.log(f"bank: reusing {path} ({len(rows)} questions; --rebuild-bank to rebuild)")
-            return rows
+        manifest_path = self.out / "bank_fingerprint.json"
+        protected = sorted({v for p in (people or []) for v in p.get("protected", [])})
+        signature = {"bank": b, "model": self.cfg["model"], "map_sha256": sha256(self.map_path),
+                     "protected": protected, "llm": self.cfg["llm"], "dtag": self.cfg["dtag"]}
+        fingerprint = hashlib.sha256(json.dumps(signature, sort_keys=True, default=str).encode()).hexdigest()
+        if path.is_file() and manifest_path.is_file() and not rebuild:
+            try:
+                saved = json.loads(manifest_path.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                saved = {}
+            if saved.get("fingerprint") == fingerprint:
+                rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+                self.log(f"bank: reusing {path} ({len(rows)} questions)")
+                return rows
+            self.log("bank: source/map/persona/LLM configuration changed, rebuilding")
         if b["source"] == "file":
             rows = bankmod.load_file(b["file"])
         else:
-            pvars = {v for p in (people or []) for v in p["state"]}
-            rows = bankmod.from_map(self.world, b.get("max_items"), b.get("include"), b.get("exclude"), pvars)
+            rows = bankmod.from_map(self.world, b.get("max_items"), b.get("include"),
+                                    b.get("exclude"), set(protected))
         self.log(f"bank: {len(rows)} candidate questions from {b['source']}")
         if b["rewrite"]:
             if b["source"] != "map":
                 self.log("bank.rewrite applies to source=map only; skipped")
             else:
                 rows = bankmod.rewrite(self.world, self.llm, rows, log=self.log)
-        rows = bankmod.map_bank(self.world, self.client, self.llm_model, rows, b["mapping"], self.cfg["dtag"],
-                                self.cache, float(b["min_source_recall"]), log=self.log)
-        if not rows:
-            raise SystemExit("The bank is empty after mapping.")
-        bankmod.save(rows, path)
-        return rows
+        rows = bankmod.map_bank(self.world, self.client, self.llm_model, rows, b["mapping"],
+                                self.cfg["dtag"], self.cache, float(b["min_source_recall"]), log=self.log)
+        safe = [q for q in rows if not set(q["variables"]) & set(protected)]
+        self.log(f"bank: discarded {len(rows)-len(safe)} questions mapping to protected persona items")
+        if not safe:
+            raise SystemExit("Question bank empty after protected-anchor filtering")
+        bankmod.save(safe, path)
+        manifest_path.write_text(json.dumps({"fingerprint": fingerprint, "signature": signature},
+                                            indent=2, default=str), encoding="utf-8")
+        return safe
+
+    def simulator(self, people, bank):
+        # Augmented context must not pre-answer candidate items or alter ideology poles.
+        exclude = {v for q in bank for v in q["variables"]}
+        exclude |= {v for p in people for v in p.get("protected", [])}
+        exclude |= set(self.world.g.left_map) | set(self.world.g.right_map)
+        cfg = {**self.cfg["participants"]["perturb"],
+               "core": self.cfg["participants"]["core_variables"],
+               "exclude_vars": sorted(exclude)}
+        return Simulator(self.world_args, cfg, self.cfg["workers"])
 
     def manifest(self, bank_size: int) -> Dict[str, Any]:
         try:
