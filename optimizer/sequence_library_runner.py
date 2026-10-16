@@ -97,7 +97,13 @@ def plain_source_personas(output):
     for row in original:
         if "text_file" not in row and "text" not in row:
             raise ValueError("Input persona requires text")
+        # The original reference holds explicitly stated polviews/partyid.
+        # Only these two fields are copied into each wave's initial state;
+        # all other mappings remain wave-specific and LLM-decoded.
+        if not row.get("expected_state_ref"):
+            raise ValueError(f"Persona {row['id']} has no explicit anchor reference")
         entries.append({"id": row["id"],
+                        "core_state_ref": row["expected_state_ref"],
                         **{k: row[k] for k in ("text_file", "text") if k in row}})
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(yaml.safe_dump({"participants": entries}, sort_keys=False), encoding="utf-8")
@@ -274,15 +280,27 @@ def run_once(args):
             try:
                 if base_file.is_file():
                     base_people = json.loads(base_file.read_text(encoding="utf-8"))
+                    # Fail closed if a cache predates the two-anchor invariant.
+                    for p in base_people:
+                        if not set(CORE).issubset(p.get("state", {})):
+                            raise ValueError(
+                                f"Cached {args.year} persona {p.get('id')} lacks "
+                                f"{sorted(set(CORE) - set(p.get('state', {})))}. "
+                                f"Remove {base_file} and rerun to rebuild.")
                 else:
                     base_people = ctx.participants()
+                    for p in base_people:
+                        if not set(CORE).issubset(p["state"]):
+                            raise ValueError(
+                                f"Persona {p['id']} missing mandatory protected anchors")
                     atomic_json(base_file, base_people)
                 # Recalculate anchor protection for THIS run: the frozen
                 # decoded-state cache is shared across freezeinit settings.
                 base_people = [dict(p) for p in base_people]
                 for p in base_people:
-                    fixed = sorted(p["state"]) if args.freezeinit else sorted(
-                        set(CORE).intersection(p["state"]))
+                    if not set(CORE).issubset(p["state"]):
+                        raise ValueError(f"Missing core variables in {p['id']} state")
+                    fixed = sorted(p["state"]) if args.freezeinit else sorted(set(CORE))
                     p["protected"] = fixed
                     p["protected_values"] = {k: p["state"][k] for k in fixed}
                 bank = ctx.bank(people=base_people)
