@@ -220,6 +220,21 @@ def load_attempts(root):
     return []
 
 
+def write_library_index(root, records):
+    """One human-readable row per attempt. Never counts specifications as sets."""
+    columns = ["run_id", "year", "requested_label", "observed_label",
+               "confirmed", "quality_score", "robust_z", "actual_length",
+               "freezeinit", "status", "candidate_sha256", "sequence_file", "error"]
+    file = root / "library.csv"
+    temporary = file.with_name(file.name + ".tmp")
+    with temporary.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=columns)
+        writer.writeheader()
+        for record in records:
+            writer.writerow({k: record.get(k, "") for k in columns})
+    os.replace(temporary, file)
+
+
 def run_once(args):
     if args.length is not None:
         if not 10 <= args.length <= 20:
@@ -243,6 +258,7 @@ def run_once(args):
                   "status": "started", "folder": str(folder)}
         records.append(record)
         atomic_json(root / "library.json", {"schema": 1, "attempts": records})
+        write_library_index(root, records)
         atomic_json(folder / "run_parameters.json", {**vars(args), "resolved_seed": seed})
         try:
             source = root / "cache" / "source_personas.yaml"
@@ -399,6 +415,7 @@ def run_once(args):
             raise
         finally:
             atomic_json(root / "library.json", {"schema": 1, "attempts": records})
+            write_library_index(root, records)
 
 
 def main(argv=None):
