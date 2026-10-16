@@ -6,8 +6,8 @@ is recorded separately. No search for directional political effects is performed
 
 Examples:
  python -m optimizer.sequence_library_runner --year 2018 --type '++' --workers 4
- python -m optimizer.sequence_library_runner --year 2024 --type '-+' --freezeinit --length 12
- python -m optimizer.sequence_library_runner --year 2016 --type '--' \
+ python -m optimizer.sequence_library_runner --year 2024 --type=-+ --freezeinit --length 12
+ python -m optimizer.sequence_library_runner --year 2016 --type=-- \
     --min-length 10 --max-length 20 --plateau-tolerance .0005
 """
 from __future__ import annotations
