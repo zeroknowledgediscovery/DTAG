@@ -156,7 +156,7 @@ def choose_length(trajs, starts, minimum=10, tolerance=.0005, window=3):
     if window < 1:
         raise ValueError("window must be positive")
     stable_steps = 0
-    for length in range(minimum, maxlen + 1):
+    for length in range(1, maxlen + 1):
         # Equal sign-agnostic tolerance for both observed starting-state groups.
         increment = paths[:, length] - paths[:, length - 1]
         stable = max(abs(float(increment[positive].mean())),
@@ -164,7 +164,7 @@ def choose_length(trajs, starts, minimum=10, tolerance=.0005, window=3):
         stable_steps = (stable_steps + 1) if stable else 0
         # Evaluate a window of increments ending at the current prefix.
         # The pilot starts earlier than minimum to allow stopping at minimum.
-        if stable_steps >= window:
+        if length >= minimum and stable_steps >= window:
             return length
     return maxlen
 
@@ -261,6 +261,14 @@ def run_once(args):
                 else:
                     base_people = ctx.participants()
                     atomic_json(base_file, base_people)
+                # Recalculate anchor protection for THIS run: the frozen
+                # decoded-state cache is shared across freezeinit settings.
+                base_people = [dict(p) for p in base_people]
+                for p in base_people:
+                    fixed = sorted(p["state"]) if args.freezeinit else sorted(
+                        set(CORE).intersection(p["state"]))
+                    p["protected"] = fixed
+                    p["protected_values"] = {k: p["state"][k] for k in fixed}
                 bank = ctx.bank(people=base_people)
             finally:
                 ctx._logf.close()
@@ -365,7 +373,14 @@ def run_once(args):
             # File identifier is observed classification, NOT requested type.
             # An unstable result never receives a directional filename.
             label = true_type if record["confirmed"] else "unclassified"
-            name = f"{label}_{score}__{args.year}__{run_id}.csv"
+            sequence_number = 1 + sum(
+                1 for previous in records[:-1]
+                if previous.get("year") == args.year
+                and (previous.get("observed_label")
+                     if previous.get("confirmed") else "unclassified") == label
+                and previous.get("sequence_file"))
+            record["sequence_number"] = sequence_number
+            name = f"{label}_{score}__{args.year}__{sequence_number:03d}.csv"
             (root / "sequences").mkdir(exist_ok=True)
             exported = root / "sequences" / name
             if exported.exists():
