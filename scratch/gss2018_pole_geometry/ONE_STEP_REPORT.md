@@ -22,7 +22,7 @@ State (8 assignments, source: assets/question_sets/personas/target_states.json (
 
 Dropped by 2018 model: ['age=45.0', 'region=south', 'childs=2.0', 'xnorcsiz=open country within larger civil divisions (division, township, etc.)', 'news=every day', 'wrkstat=working full time', 'vetyears=yes, 2-4 years']
 
-I(s) = +0.08637, J(s) = +0.02633; 1026 eligible variables (38 pole items), 7149 (variable, answer) pairs; enumeration 630 s (88.1 ms/pair, workers=1).
+I(s) = +0.08637, J(s) = +0.02633; 1026 eligible variables (38 pole items), 7149 (variable, answer) pairs; enumeration 216 s (30.3 ms/pair, workers=1).
 
 ### Validation
 
@@ -37,9 +37,9 @@ I(s) = +0.08637, J(s) = +0.02633; 1026 eligible variables (38 pole items), 7149 
 
 | set | n | median range | max range | median abs(mu) | max abs(mu) | sum mu | share mu>0 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| non-pole | 988 | 0.00250 | 0.06623 | 0.000180 | 0.00881 | -0.20857 | 0.26 |
+| non-pole | 988 | 0.00251 | 0.06623 | 0.000181 | 0.00881 | -0.20475 | 0.26 |
 | pole | 38 | 0.03870 | 0.16224 | 0.001553 | 0.03790 | +0.05200 | 0.58 |
-| all | 1026 | 0.00266 | 0.16224 | 0.000199 | 0.03790 | -0.15657 | 0.27 |
+| all | 1026 | 0.00267 | 0.16224 | 0.000200 | 0.03790 | -0.15275 | 0.27 |
 
 Top 1% of |Delta| response rows (72): median P(a|s,v) = 0.226; share with P < 0.05: 0.19.
 
@@ -145,7 +145,7 @@ State (7 assignments, source: assets/question_sets/personas/target_states.json (
 
 Dropped by 2018 model: ['age=22.0', 'region=northeast', 'childs=0.0', 'xnorcsiz=a large central city (over 250,000)', 'news=every day', 'wrkstat=working full time', 'vetyears=no active duty', "degree=bachelor's"]
 
-I(s) = +0.02426, J(s) = -0.03578; 1027 eligible variables (38 pole items), 7154 (variable, answer) pairs; enumeration 630 s (88.0 ms/pair, workers=1).
+I(s) = +0.02426, J(s) = -0.03578; 1027 eligible variables (38 pole items), 7154 (variable, answer) pairs; enumeration 196 s (27.4 ms/pair, workers=1).
 
 ### Validation
 
@@ -160,9 +160,9 @@ I(s) = +0.02426, J(s) = -0.03578; 1027 eligible variables (38 pole items), 7154 
 
 | set | n | median range | max range | median abs(mu) | max abs(mu) | sum mu | share mu>0 |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| non-pole | 989 | 0.00228 | 0.06437 | 0.000180 | 0.00853 | -0.18401 | 0.38 |
+| non-pole | 989 | 0.00229 | 0.06437 | 0.000181 | 0.00853 | -0.18054 | 0.38 |
 | pole | 38 | 0.03847 | 0.14943 | 0.001336 | 0.04034 | -0.02453 | 0.63 |
-| all | 1027 | 0.00249 | 0.14943 | 0.000192 | 0.04034 | -0.20854 | 0.39 |
+| all | 1027 | 0.00251 | 0.14943 | 0.000193 | 0.04034 | -0.20508 | 0.39 |
 
 Top 1% of |Delta| response rows (72): median P(a|s,v) = 0.240; share with P < 0.05: 0.15.
 
@@ -267,15 +267,12 @@ Top 1% of |Delta| response rows (72): median P(a|s,v) = 0.240; share with P < 0.
 - 988 shared non-pole items.
 - Spearman(mu_CM, mu_WF) = 0.819; Spearman(range_CM, range_WF) = 0.977.
 - Same sign of mu in both personas: 0.82.
-- Expected convergence items (mu_CM<0, mu_WF>0; CM starts above WF): 137; expected divergence items (mu_CM>0, mu_WF<0): 21.
+- Expected convergence items (mu_CM<0, mu_WF>0; CM starts above WF): 138; expected divergence items (mu_CM>0, mu_WF<0): 20.
 - Same maximizing answer (argmax Delta) in both personas: 0.82.
 
 Since CM is right of WF in J, convergence/divergence here refers to the expected one-step displacement only; it says nothing about multi-step accumulation.
 
-## Serial vs parallel (CM)
+## Validation of implementations
 
-7149 rows; max |I_after difference| = 0.00e+00; max |P difference| = 0.00e+00.
-
-## optimizer.one_step_geometry vs reference (CM)
-
-7149 rows; max |I_after diff| = 0.00e+00; max |P diff| = 0.00e+00; max |mu diff| = 8.54e-19.
+Serial vs parallel, `optimizer.one_step_geometry` vs this reference, and the incremental
+native evaluator vs the per-state path (bit-identical on all pairs): see `ONE_STEP_FINDINGS.md`.

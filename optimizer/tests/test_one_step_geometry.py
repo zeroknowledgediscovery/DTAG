@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import math
 import sys
+import tempfile
 from pathlib import Path
 
 import pytest
@@ -62,3 +63,37 @@ def test_extremes(res):
 def test_nonfinite_index_raises():
     with pytest.raises(FloatingPointError):
         one_step_geometry({}, {"x": ["lo"]}, lambda ss: [float("nan") if s else 0.0 for s in ss], dist_fn)
+
+
+# ----------------------------------------------------------------- native (skipped without model)
+
+def _gss2018_world():
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "scripts"))
+    try:
+        import fetch_models
+        from dtag_paths import model_root
+        if not fetch_models.installed(model_root(), "gss/gss_2018"):
+            return None
+        from optimizer.dtag_bridge import DEFAULT_POLES, World, canonical_map, ensure_model
+        w = World(str(ensure_model("gss/gss_2018", None, download=False)), str(canonical_map("gss/gss_2018")),
+                  str(DEFAULT_POLES), str(Path(tempfile.gettempdir()) / "dtag_test_native_cache"))
+    except Exception:
+        return None
+    return w if getattr(w.m, "has_extension_distances", False) else None
+
+
+_W2018 = _gss2018_world()
+
+
+@pytest.mark.skipif(_W2018 is None, reason="gss/gss_2018 not installed or native binding lacks extension_distances")
+def test_native_fast_extensions_bit_exact():
+    from optimizer.one_step_geometry import native_one_step
+    state = {"polviews": "conservative", "partyid": "strong republican", "sex": "male"}
+    # relsprt has a 112-character label (exercises the no-truncation row builder)
+    only = ["relsprt", "abany", "god", "PRES16", "pistol", "MAOCC10", "coeduc"]
+    fast = native_one_step(_W2018, state, only=only, fast=True)
+    slow = native_one_step(_W2018, state, only=only, fast=False)
+    assert fast.I_before == slow.I_before
+    assert [(r["variable"], r["answer"], r["I_after"], r["conditional_probability"]) for r in fast.rows] == \
+           [(r["variable"], r["answer"], r["I_after"], r["conditional_probability"]) for r in slow.rows]
+    assert any(len(r["answer"]) > 100 for r in fast.rows)

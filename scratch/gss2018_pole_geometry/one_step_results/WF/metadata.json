@@ -30,9 +30,9 @@
   "n_pairs": 7154,
   "n_pole_items_eligible": 38,
   "eligibility": "every model variable not already assigned in s with >=1 valid label; pole items included and flagged (is_pole_item)",
-  "seconds_enumeration": 629.6467554569244,
-  "seconds_total": 647.5637407302856,
-  "seconds_per_pair": 0.0880132451016109,
+  "seconds_enumeration": 196.0165033340454,
+  "seconds_total": 204.43628573417664,
+  "seconds_per_pair": 0.027399567142024798,
   "workers": 1,
   "model": {
     "key": "gss/gss_2018",
@@ -54,7 +54,7 @@
     "sha256": "2278a9d06e35ab8c40198e2f7b0f7d3eb8306c3fe1e6fbd4b538237637cadf05"
   },
   "poles_dropped": [],
-  "native_runtime_sha256": "887ad35af3a1fb599158e988e6687412bd91f50d82c671c47c3a32d630830611",
+  "native_runtime_sha256": "e9f4aaf987752dfe0b7504c29c4e992964cc93ee9d1d082db0444130e2f0a7b0",
   "python": "3.13.16",
   "numpy": "2.5.3",
   "validation": {
@@ -75,7 +75,7 @@
     "expected_delta_identity_max_abs_err": 4.270112041737663e-18
   },
   "headline": {
-    "sum_abs_expected_delta_all": 0.6260293571033796,
+    "sum_abs_expected_delta_all": 0.6240972282201234,
     "max_range_nonpole": 0.06436627618319621,
     "max_range_pole": 0.14943350827458807
   }

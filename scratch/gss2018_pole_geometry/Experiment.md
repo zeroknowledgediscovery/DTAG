@@ -99,10 +99,16 @@ Random-run seeds differ between the left and right cases, so the random baseline
 - The random baseline uses the same 120-question pool. That pool is enriched for one-sided
   left-moving items, so the baseline is not neutral.
 - The persona states are the committed reference states, not the LLM-decoded library states.
+- These runs predate the fix for labels longer than 100 characters (see `ONE_STEP_FINDINGS.md`).
+  No greedy step was affected. 4 of 720 random-baseline steps drew a 112-character `relsprt`
+  answer, which was evaluated as missing.
+- The 120-question pool was needed only because of the old speed. With the incremental
+  evaluator, `greedy_push_runs.py` now re-scores all ~980 non-pole items each step
+  (`--pool 0`, the new default) in a few seconds.
 
 ## Possible next steps
 
-- Run 20+ greedy runs per case. The incremental-distance speedup would make this practical.
+- Run 20+ greedy runs per case. This is now practical: a 6-item greedy run takes under a minute.
 - Draw the random baseline from all non-pole questions.
 - Add an option to exclude iap / refused / don't-know answers.
 - Add a `content_only` policy that skips one-sided questions, and a variance-aware policy

@@ -45,7 +45,9 @@ Command line::
 
 The core (:func:`one_step_geometry`) is model-agnostic: it takes an index function and a
 conditional-distribution function, so it can be tested or reused without the native runtime.
-No pruning or approximation is done; a full GSS 2018 sweep (~7k pairs) takes ~4 min serially.
+No pruning or approximation is done. A full GSS 2018 sweep (~7k pairs) takes ~4-5 s with the
+incremental native evaluator (Runtime.extension_distances: pole predictions cached, only trees that
+split on the added item re-evaluated; bit-identical to the full computation), ~3 min without it.
 """
 from __future__ import annotations
 
@@ -142,7 +144,9 @@ def extremes_of(summary: Sequence[Mapping[str, Any]]) -> Dict[str, Any]:
 def one_step_geometry(state: Mapping[str, str], candidates: Mapping[str, Sequence[str]],
                       index_fn: IndexFn, dist_fn: DistFn, *, I_empty: Optional[float] = None,
                       text: Optional[Mapping[str, str]] = None,
-                      pole_items: Iterable[str] = ()) -> OneStepResult:
+                      pole_items: Iterable[str] = (),
+                      extension_fn: Optional[Callable[[State, Sequence[Tuple[str, str]]],
+                                                      Tuple[float, List[float]]]] = None) -> OneStepResult:
     """Exhaustive one-step enumeration for an arbitrary model.
 
     state       -- answers already known (variable -> label); never re-assigned.
@@ -150,14 +154,20 @@ def one_step_geometry(state: Mapping[str, str], candidates: Mapping[str, Sequenc
     index_fn    -- maps a batch of states to their ideology index I.
     dist_fn     -- (state, variables) -> {variable: {label: P}} conditional distributions.
     I_empty     -- I of the empty state; if given, centered J values are filled in.
+    extension_fn -- optional fast path: (state, [(v, a), ...]) -> (I(state), [I(state+{v=a}), ...]);
+                    must agree with index_fn. Used instead of index_fn when given.
     """
     state = {str(k): str(v) for k, v in state.items()}
     text, poles = dict(text or {}), set(pole_items)
     cand = {v: [str(a) for a in labels] for v, labels in candidates.items() if v not in state and labels}
     variables = sorted(cand)
     pairs = [(v, a) for v in variables for a in cand[v]]
-    I0 = float(index_fn([state])[0])
-    after = index_fn([{**state, v: a} for v, a in pairs])
+    if extension_fn is not None:
+        I0, after = extension_fn(state, pairs)
+        I0 = float(I0)
+    else:
+        I0 = float(index_fn([state])[0])
+        after = index_fn([{**state, v: a} for v, a in pairs])
     if len(after) != len(pairs):
         raise ValueError("index_fn returned the wrong number of values")
     dists = dist_fn(state, variables)
@@ -183,11 +193,26 @@ def one_step_geometry(state: Mapping[str, str], candidates: Mapping[str, Sequenc
 
 # --------------------------------------------------------------------------- native adapters
 
+def state_row(world, state: Mapping[str, str]):
+    """Full model row for a partial state, without truncating labels.
+
+    pipeline.build_full_vector_from_state / build_NULL_with_assignments use a fixed-width
+    numpy 'U100' array, which silently cuts labels longer than 100 characters; the cut label then
+    matches no category and is treated as MISSING (10 of 7,149 GSS 2018 item/answer pairs).
+    """
+    import numpy as np
+    x = np.full(len(world.m.feature_names), "", dtype=object)
+    for v, a in state.items():
+        j = world.ctx.idx_map.get(v)
+        if j is not None:
+            x[j] = str(a)
+    return x
+
+
 def strict_native_index(world, state: Mapping[str, str]) -> float:
     """I(s) from the native qdistance; raises instead of World.I's silent 0.0 on nonfinite values."""
-    import pipeline as core
     m, g = world.m, world.g
-    x = core.build_full_vector_from_state(m, dict(state), world.ctx.idx_map)
+    x = state_row(world, state)
     if hasattr(m, "distances_to_state"):
         dl, dr = m.distances_to_state(g.sL, g.sR, x)
     else:
@@ -198,11 +223,32 @@ def strict_native_index(world, state: Mapping[str, str]) -> float:
     return (dl - dr) / dlr
 
 
+def native_extension_indices(world, state: Mapping[str, str],
+                             pairs: Sequence[Tuple[str, str]]) -> Tuple[float, List[float]]:
+    """I(s) and I(s u {v=a}) for every pair in one native call (incremental; exact).
+
+    Only trees that split on v are re-evaluated for each pair, and pole predictions are cached,
+    so a full one-step sweep is far cheaper than calling strict_native_index per state.
+    Raises on nonfinite distances, like strict_native_index.
+    """
+    m, g = world.m, world.g
+    x = state_row(world, state)
+    dl0, dr0, dl, dr = m.extension_distances(g.sL, g.sR, x, list(pairs))
+    dlr = float(g.dLR)
+    vals = [dl0, dr0, dlr] + dl + dr
+    if not (all(math.isfinite(v) for v in vals) and dlr > 0):
+        raise FloatingPointError(f"Nonfinite native distance in extensions of {dict(state)}")
+    return (dl0 - dr0) / dlr, [(a - b) / dlr for a, b in zip(dl, dr)]
+
+
+def has_fast_extensions(world) -> bool:
+    return bool(getattr(world.m, "has_extension_distances", False))
+
+
 def native_distributions(world, state: Mapping[str, str], variables: Sequence[str]) -> Dict[str, Dict[str, float]]:
     """Unfiltered native P(. | s, v) restricted to each variable's valid labels."""
     import pipeline as core
-    N = core.build_NULL_with_assignments(world.m, dict(state), world.ctx.idx_map)
-    raw = core.qnet_conditional_distributions(world.m, N, target_vars=list(variables))
+    raw = core.qnet_conditional_distributions(world.m, state_row(world, state), target_vars=list(variables))
     return {v: {str(a): float(p) for a, p in (raw.get(v) or {}).items()
                 if str(a) in world.ctx.possible.get(v, [])} for v in variables}
 
@@ -233,19 +279,27 @@ def native_candidates(world, state: Mapping[str, str], *, exclude_poles: bool = 
 
 def native_one_step(world, state: Mapping[str, str], *, exclude_poles: bool = False,
                     exclude: Iterable[str] = (), only: Optional[Iterable[str]] = None,
-                    workers: int = 1, world_args: Optional[Tuple[str, str, str, str]] = None) -> OneStepResult:
+                    workers: int = 1, world_args: Optional[Tuple[str, str, str, str]] = None,
+                    fast: Optional[bool] = None) -> OneStepResult:
     """One-step geometry for a DTAG :class:`optimizer.dtag_bridge.World`.
 
-    ``state`` is validated against the model (invalid assignments raise). ``workers > 1``
-    needs ``world_args`` = (model_path, map_path, poles_path, assets_dir) to rebuild the
-    World in each process; results are identical to serial evaluation.
+    ``state`` is validated against the model (invalid assignments raise).
+
+    ``fast`` (default: whenever the native binding supports it) evaluates all (item, response)
+    pairs in one incremental native call: identical results, typically 10-100x faster. Otherwise
+    each extended state is evaluated separately; ``workers > 1`` then needs ``world_args`` =
+    (model_path, map_path, poles_path, assets_dir) to rebuild the World in each process.
     """
     ok, dropped = world.valid(dict(state))
     if dropped:
         raise ValueError(f"Assignments not valid for this model: {dropped}")
     cands = native_candidates(world, ok, exclude_poles=exclude_poles, exclude=exclude, only=only)
+    if fast is None:
+        fast = has_fast_extensions(world)
+    elif fast and not has_fast_extensions(world):
+        raise RuntimeError("Native binding lacks extension_distances; rebuild: bash scripts/build_native_bindings.sh")
     pool = None
-    if workers > 1:
+    if workers > 1 and not fast:
         if world_args is None:
             raise ValueError("workers > 1 requires world_args")
         pool = ProcessPoolExecutor(workers, initializer=_pool_init, initargs=(tuple(world_args),))
@@ -265,11 +319,12 @@ def native_one_step(world, state: Mapping[str, str], *, exclude_poles: bool = Fa
     try:
         res = one_step_geometry(ok, cands, index_fn, lambda s, vs: native_distributions(world, s, vs),
                                 I_empty=strict_native_index(world, {}), text=world.text,
-                                pole_items=set(world.g.left_map) | set(world.g.right_map))
+                                pole_items=set(world.g.left_map) | set(world.g.right_map),
+                                extension_fn=(lambda s, ps: native_extension_indices(world, s, ps)) if fast else None)
     finally:
         if pool is not None:
             pool.shutdown()
-    res.meta.update({"state": ok, "exclude_poles": exclude_poles, "workers": workers,
+    res.meta.update({"state": ok, "exclude_poles": exclude_poles, "workers": workers, "fast": fast,
                      "seconds": time.time() - t0, "poles": world.poles_summary(),
                      "model_path": world.model_path, "map_path": world.map_path})
     return res

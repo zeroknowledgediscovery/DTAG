@@ -278,6 +278,30 @@ class NativeLSMBackend:
         return float(d_left), float(d_right)
 
     @property
+    def has_extension_distances(self) -> bool:
+        return hasattr(self._runtime, "extension_distances")
+
+    def extension_distances(
+        self,
+        left: Sequence[str] | np.ndarray,
+        right: Sequence[str] | np.ndarray,
+        state: Sequence[str] | np.ndarray,
+        extensions: Sequence[tuple[str, str]],
+    ) -> tuple[float, float, List[float], List[float]]:
+        """Distances to both poles for ``state`` and for every ``state + {variable: answer}``.
+
+        Exactly equal to calling distances_to_state on each extended state, but only the trees
+        that split on the added variable are re-evaluated, and pole predictions are cached.
+        Returns (d_left_base, d_right_base, [d_left_ext...], [d_right_ext...]).
+        """
+        ll = ["" if x is None else str(x) for x in list(left)]
+        rr = ["" if x is None else str(x) for x in list(right)]
+        ss = ["" if x is None else str(x) for x in list(state)]
+        ext = [(self._idx[str(v)], str(a)) for v, a in extensions]
+        dl0, dr0, dl, dr = self._runtime.extension_distances(ll, rr, ss, ext, self._usable_tree_ids)
+        return float(dl0), float(dr0), [float(x) for x in dl], [float(x) for x in dr]
+
+    @property
     def runtime_kind(self) -> str:
         return self._runtime_kind
 
