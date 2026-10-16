@@ -311,3 +311,13 @@ ten-question run separately before making changes, for example:
 
 Do not label a four-way collection "complete under the current protocol" until
 all four validation outputs exist and have been checked for mapping/anchor integrity.
+
+## Multi-year descriptive results inventory
+
+For a local-first, non-optimizing coverage report spanning GSS 2016, 2018,
+and 2024 (four raw-change regimes `++`, `+-`, `-+`, `--`), see
+[MULTIYEAR_REGIME_LIBRARY.md](MULTIYEAR_REGIME_LIBRARY.md).
+The script `python -m optimizer.multiyear_regime_summary` inventories saved
+trajectory validations, reports confirmed regime counts and missing cells,
+and assigns a 0–10 methodological evidence-quality score. It does not
+select or generate question sequences by political direction.
