@@ -41,11 +41,13 @@ llm:
 dtag: {k: 50, prefilter: 200, min_map_score: 1.0, max_assign: 50, assign_prefilter: 500}
 
 participants:
-  file: optimizer/personas/gss2024_spectrum.yaml
+  file: optimizer/personas/gss2024_spectrum.yaml  # 12 pinned personas (zero LLM calls by default)
+  # file: optimizer/personas/gss2024_asset_cm_wf.yaml  # original CM/WF source descriptions: real LLM decoding
   decode: auto                 # auto: use `state` when given, else decode `text` with the LLM | always | never
   neutral_band: 0.005          # |I0| below this: neutral, excluded from the objective
   country: United States
-  core_variables: [polviews, partyid]     # never dropped or resampled by the perturbation
+  core_variables: [polviews, partyid]     # protected political identity fields
+  protect_mapped: true         # also protect every validated LLM-decoded/pinned persona assignment
   perturb: {drop: 0.15, resample: 0.15}   # per run, drop / resample this share of the other variables
 
 bank:
@@ -72,7 +74,11 @@ search:
   budget: 60                   # local-search moves
 
 validate:
-  reps: 30                     # held-out runs per participant (new seeds)
+  reps: 30                     # legacy fallback for a one-state audit
+  states_per_persona: 10       # distinct starting states around each persona
+  reps_per_state: 20           # independent answer draws from each identical state
+  augment_count: 5            # LSM-sampled non-question context fields per state
+  order_baselines: 5          # permutations of selected sequence on the held-out starts
   seed: 900001
   baselines: 20                # random sequences of the same length
   baseline_reps: 4
