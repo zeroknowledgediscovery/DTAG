@@ -367,6 +367,7 @@ The pure core `one_step_geometry(state, candidates, index_fn, dist_fn, ...)` wor
 index/distribution functions (tests: `optimizer/tests/test_one_step_geometry.py`). A full GSS 2018
 sweep is ~7k (question, answer) pairs: ~4-5 s with the incremental native evaluator
 (`Runtime.extension_distances`, used automatically when the binding has it; bit-identical results),
-~3 min without it. Rows are built without numpy `U100` truncation, so answers longer than 100
-characters are not silently treated as missing (see `scratch/gss2018_pole_geometry/ONE_STEP_FINDINGS.md`). Validated bit-for-bit against the reference
+~3 min without it. Model rows (`pipeline.blank_row`) are object arrays, so answers longer than 100
+characters are no longer silently truncated and treated as missing (see
+`scratch/gss2018_pole_geometry/ONE_STEP_FINDINGS.md`). Validated bit-for-bit against the reference
 enumeration in `scratch/gss2018_pole_geometry/` (see `ONE_STEP_REPORT.md`).

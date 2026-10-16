@@ -1092,6 +1092,16 @@ def llm_craft_semantic_bridge_answer(
 # Qnet backend helpers
 # -----------------------------
 
+def blank_row(model) -> np.ndarray:
+    """An all-missing model row ("" in every column).
+
+    Object dtype, not a fixed-width string dtype: numpy 'U100' rows used to cut answer labels
+    longer than 100 characters, so the truncated label matched no category and the answer was
+    silently treated as missing.
+    """
+    return np.full(len(model.feature_names), "", dtype=object)
+
+
 def get_possible_responses_from_model(model) -> Dict[str, List[str]]:
     """Return each model variable's original categorical support."""
     if hasattr(model, "possible_values"):
@@ -1099,7 +1109,7 @@ def get_possible_responses_from_model(model) -> Dict[str, List[str]]:
             str(k): [str(x) for x in v]
             for k, v in model.possible_values().items()
         }
-    NULL = np.array([""] * len(model.feature_names)).astype("U100")
+    NULL = blank_row(model)
     resp = model.predict_distributions(NULL)
     out: Dict[str, List[str]] = {}
     for i, v in enumerate(model.feature_names):
@@ -1161,7 +1171,7 @@ def get_possible_responses_cached(model, qnet_path: str, assets_dir: str) -> Dic
 
 
 def build_NULL_with_assignments(model, assigns: Dict[str, str], idx_map: Dict[str, int]) -> np.ndarray:
-    NULL = np.array([""] * len(model.feature_names)).astype("U100")
+    NULL = blank_row(model)
     for v, val in assigns.items():
         j = idx_map.get(v)
         if j is not None:
@@ -1315,7 +1325,7 @@ def load_polar_vectors_csv(path: str) -> Tuple[Dict[str, str], Dict[str, str]]:
 
 
 def build_full_vector_from_state(model, state: Dict[str, str], idx_map: Dict[str, int]) -> np.ndarray:
-    x = np.array([""] * len(model.feature_names)).astype("U100")
+    x = blank_row(model)
     for v, val in state.items():
         j = idx_map.get(v)
         if j is not None:
@@ -1324,7 +1334,7 @@ def build_full_vector_from_state(model, state: Dict[str, str], idx_map: Dict[str
 
 
 def build_pole_vector(model, pole_map: Dict[str, str], idx_map: Dict[str, int]) -> np.ndarray:
-    x = np.array([""] * len(model.feature_names)).astype("U100")
+    x = blank_row(model)
     for v, val in pole_map.items():
         j = idx_map.get(v)
         if j is not None:
