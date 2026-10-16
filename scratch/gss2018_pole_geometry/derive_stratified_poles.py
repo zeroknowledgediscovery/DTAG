@@ -240,9 +240,6 @@ def inspect(args):
     L, R, response_audit = construct_poles(left_dists, right_dists, pool,
                                            min_tv=args.min_tv,
                                            min_modal_prob=args.min_modal_prob)
-    if len(L) < 2:
-        raise RuntimeError(f"Only {len(L)} distinguishable modal pole pairs; "
-                           f"see conditional_responses.csv. Not constructing an axis")
     used_vars = set(L)
     print(f"Constructed {len(L)} paired, distinct modal answers from {len(pool)} "
           f"candidate variables", flush=True)
@@ -257,6 +254,10 @@ def inspect(args):
                "left_mode_margin", "right_mode_margin", "tv_distance",
                "left_distribution", "right_distribution"]
     write_csv(out / "conditional_responses.csv", response_audit, columns)
+    if len(L) < 2:
+        raise RuntimeError(
+            f"Only {len(L)} distinguishable modal pole pairs; "
+            f"review {out / 'conditional_responses.csv'}. No adequate axis.")
 
     manualL, manualR = dict(world.g.left_map), dict(world.g.right_map)
     variants = {
@@ -284,6 +285,7 @@ def inspect(args):
                "I_minus_empty", "orientation_training_variable"])
 
     loo = []
+    get_states_cached, _ = get_states(world)
     if not args.skip_loo:
         # Sensitivity check only. We do not drop poorly performing variables
         # to make any particular persona land on a desired sign.
