@@ -27,14 +27,19 @@ def load(path: str) -> List[Dict[str, Any]]:
         state = {str(k): str(v) for k, v in (p.get("state") or {}).items()}
         if not description and not state:
             raise SystemExit(f"participant #{i + 1} needs text, text_file, or state")
-        expected = {}
-        if p.get("expected_state_ref"):
-            name, sep, key = str(p["expected_state_ref"]).partition("#")
+        def read_state_ref(ref):
+            name, sep, key = str(ref).partition("#")
             document = json.loads(_path(name).read_text(encoding="utf-8"))
             entry = document[key] if sep else document
-            expected = {str(k): str(v) for k, v in entry.get("state", {}).items()}
+            return {str(k): str(v) for k, v in entry.get("state", {}).items()}
+
+        expected = read_state_ref(p["expected_state_ref"]) if p.get("expected_state_ref") else {}
+        # A core_state_ref pins only the explicitly stated political anchors
+        # across survey waves; it does not apply 2024 demographic labels to 2018.
+        core_expected = read_state_ref(p["core_state_ref"]) if p.get("core_state_ref") else {}
         out.append({"id": str(p.get("id") or f"p{i + 1:02d}"),
                     "text": description, "state": state, "expected_state": expected,
+                    "core_expected": core_expected,
                     "country": p.get("country"), "year": p.get("year")})
     return out
 
@@ -66,6 +71,24 @@ def prepare(world: World, people: List[Dict[str, Any]], decode: str, client: Any
                 cache.put(key, d)
             state = {**d["state"], **state} if decode == "auto" else dict(d["state"])
             source, dropped, rationale = "llm_decoded", d["dropped"], d["rationale"]
+        # Cross-wave runner explicitly supplies the intended core assignments.
+        # Validate labels in THIS model before overriding any incomplete LLM decode.
+        core_expected = p.get("core_expected") or {}
+        for k in core:
+            if core_expected:
+                if k not in core_expected:
+                    raise SystemExit(f"participant {p['id']}: missing required anchor {k} in core_state_ref")
+                wanted = core_expected[k]
+                allowed = world.ctx.possible.get(k, [])
+                if k not in world.ctx.idx_map or wanted not in allowed:
+                    raise SystemExit(
+                        f"participant {p['id']}: requested anchor {k}={wanted!r} "
+                        f"is not an accepted survey label for this wave. "
+                        f"Available labels: {allowed!r}")
+                if state.get(k) != wanted:
+                    log(f"  {p['id']}: pinning {k}={wanted!r} "
+                        f"(decoded={state.get(k)!r})")
+                state[k] = wanted
         valid, invalid = world.valid(state)
         if not valid:
             raise SystemExit(f"participant {p['id']}: empty state after validation ({invalid})")
@@ -80,6 +103,10 @@ def prepare(world: World, people: List[Dict[str, Any]], decode: str, client: Any
             log(f"  {p['id']}: {len(mismatches)} non-core expected-state differences")
         protected = sorted(set(valid) if protect_mapped else set(valid) & set(core))
         protected = sorted(set(protected) | (set(core) & set(valid)))
+        if core_expected and not set(core).issubset(protected):
+            raise SystemExit(
+                f"participant {p['id']}: expected all core anchors protected, "
+                f"missing {sorted(set(core) - set(protected))}")
         index = world.I(valid)
         direction = 0 if abs(index) < neutral_band else (1 if index > 0 else -1)
         out.append({**p, "state": valid, "protected": protected,
