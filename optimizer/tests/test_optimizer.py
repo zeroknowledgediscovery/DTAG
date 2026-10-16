@@ -620,3 +620,25 @@ def test_2018_model_stratified_pool_excludes_political_anchors():
     assert module.fixed_assignments(world, ["relig=none"]) == {"relig": "none"}
     with pytest.raises(ValueError, match="Unsupported"):
         module.fixed_assignments(world, ["relig=unknown"])
+
+
+
+def test_scratch_2018_orientation_ties_not_false_success():
+    import importlib.util
+    path = REPO / "scratch" / "gss2018_pole_geometry" / "derive_stratified_poles.py"
+    spec = importlib.util.spec_from_file_location("stratified_2018_poles_ties", path)
+    module = importlib.util.module_from_spec(spec)
+    sys.path.insert(0, str(path.parent))
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.path.remove(str(path.parent))
+    tied = module.pairwise_orientation([.02123, .02123, .02123, .02123])
+    assert tied["pairs"] == 6
+    assert tied["ties"] == 6
+    assert tied["concordant"] == 0
+    assert tied["fraction_concordant_with_half_ties"] == pytest.approx(.5)
+    partially = module.pairwise_orientation([1.0, 3.0, 2.0])
+    assert partially["concordant"] == 2
+    assert partially["discordant"] == 1
+    assert partially["fraction_concordant_with_half_ties"] == pytest.approx(2/3)
