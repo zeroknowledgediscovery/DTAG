@@ -47,7 +47,8 @@ def load(path: str) -> List[Dict[str, Any]]:
 def prepare(world: World, people: List[Dict[str, Any]], decode: str, client: Any, llm_model: str,
             run: Dict[str, Any], cache: JsonCache, neutral_band: float, default_country: Optional[str],
             default_year: Optional[int], log=print, protect_mapped: bool = True,
-            core_variables: Optional[List[str]] = None) -> List[Dict[str, Any]]:
+            core_variables: Optional[List[str]] = None,
+            require_both_signs: bool = True) -> List[Dict[str, Any]]:
     """Resolve persona text to actual model labels. Protect decoded assignments by default.
 
     Optional expected-state references audit the LLM decode against the historical asset.
@@ -118,7 +119,18 @@ def prepare(world: World, people: List[Dict[str, Any]], decode: str, client: Any
             f"vars={len(valid)} protected={len(protected)} ({source})")
     groups = {d: sum(p["direction"] == d for p in out) for d in (1, -1, 0)}
     if not groups[1] or not groups[-1]:
-        raise SystemExit(f"Need both starting signs; groups={groups}. Check personas and poles.")
+        details = "; ".join(
+            f"{p['id']}: I0={p['I0']:+.5f}, "
+            + ", ".join(f"{k}={p['state'].get(k)!r}" for k in core)
+            for p in out)
+        message = (f"Starting-sign coverage for wave model is insufficient: "
+                   f"groups={groups}. {details}. "
+                   f"Check year-specific pole geometry and persona decoding; "
+                   f"political self-labels do not guarantee opposite LSM index signs.")
+        if require_both_signs:
+            raise SystemExit(message)
+        log(f"  WARNING: {message} Results cannot be classified into a two-sign "
+            f"quadrant unless perturbed starting states populate both groups.")
     return out
 
 
