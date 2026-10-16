@@ -205,7 +205,7 @@ def report_md(cfg: Dict[str, Any], manifest: Dict[str, Any], people, seq_detail,
     lines += ["", f"Separation change (positive mean change − negative mean change): **{fmt_ci(s['separation_change_ci'])}**."
               f" Both groups' CIs exclude zero: **{'yes' if s['both_outward_ci_exclude_zero'] else 'no'}**.", ""]
     if base_summary:
-        lines += [f"Against {base_summary['n']} random {L}-question sequences from the same bank (own runs): the optimized set's"
+        lines += [f"Against {base_summary['n']} random {L}-question sequences from the same bank (matched starting states): the optimized set's"
                   f" objective beats {base_summary['percentile_objective']:.0%} of them and its separation change"
                   f" {base_summary['percentile_separation_change']:.0%}.", ""]
     lines += ["## Every length", "", "| Length | Positive: signed change [CI] | Negative: signed change [CI] | Separation [CI] |",
