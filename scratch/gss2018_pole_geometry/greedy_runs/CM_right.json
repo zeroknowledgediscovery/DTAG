@@ -1,0 +1,24 @@
+{
+  "persona": "CM",
+  "direction": "right",
+  "state": {
+    "sex": "male",
+    "race": "white",
+    "polviews": "conservative",
+    "partyid": "strong republican",
+    "relig": "protestant",
+    "attend": "every week",
+    "marital": "married",
+    "degree": "high school"
+  },
+  "steps": 6,
+  "pool_size": 120,
+  "seed": 2018,
+  "J0": 0.0263257751976175,
+  "audit": {
+    "full_sweep_choice": "coeduc",
+    "full_sweep_mu": 0.006584359522383627,
+    "in_pool": true,
+    "n_full_candidates": 982
+  }
+}

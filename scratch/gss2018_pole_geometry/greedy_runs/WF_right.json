@@ -1,0 +1,23 @@
+{
+  "persona": "WF",
+  "direction": "right",
+  "state": {
+    "sex": "female",
+    "race": "white",
+    "polviews": "extremely liberal",
+    "partyid": "strong democrat",
+    "relig": "none",
+    "attend": "never",
+    "marital": "never married"
+  },
+  "steps": 6,
+  "pool_size": 120,
+  "seed": 2118,
+  "J0": -0.035782422525818175,
+  "audit": {
+    "full_sweep_choice": "heaven",
+    "full_sweep_mu": 0.0031366470730885814,
+    "in_pool": true,
+    "n_full_candidates": 983
+  }
+}
