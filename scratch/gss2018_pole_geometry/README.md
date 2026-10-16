@@ -291,3 +291,14 @@ These results show model-implied conditional association is not
 equivalent to a respondent-level empirical distribution. A truly
 representative 2018 pole requires actual response rows, appropriate
 weights, and validation against data kept separate from pole construction.
+
+## Actual respondent-level 42-variable experiment
+
+See [EMPIRICAL_RESPONDENTS.md](EMPIRICAL_RESPONDENTS.md) for the
+full Dropbox CSV path, exactly 42 retained variables, the empirical
+stratified-response construction, holdout row tests, and commands to
+rebuild the pole on the complete 2018 survey. See
+[EMPIRICAL_FINDINGS.md](EMPIRICAL_FINDINGS.md) for the native LSM
+measurements of the smaller 357-row pilot, and
+[candidates/gss_2018_partyid_empirical42_probe357.csv](candidates/gss_2018_partyid_empirical42_probe357.csv)
+for the trial pole. None is yet adopted in production.
