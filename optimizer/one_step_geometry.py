@@ -280,7 +280,8 @@ def native_one_step(world, state: Mapping[str, str], *, exclude_poles: bool = Fa
 def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng, *,
                policy: str = "greedy_mu", exclude_poles: bool = True, exclude: Iterable[str] = (),
                only: Optional[Iterable[str]] = None,
-               on_step: Optional[Callable[[Dict[str, Any]], None]] = None) -> List[Dict[str, Any]]:
+               on_step: Optional[Callable[[Dict[str, Any]], None]] = None,
+               n_alternatives: int = 5) -> List[Dict[str, Any]]:
     """One sampled trajectory s_0 -> ... -> s_T under the native model.
 
     At each step the policy picks a question; the ANSWER is drawn from the native
@@ -292,7 +293,10 @@ def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng,
 
     ``rng`` is a numpy Generator. Returns one record per step (question, its mu/P_up/P_down
     at the time it was asked, drawn answer, its probability, realized Delta, J after).
-    ``on_step`` (optional) is called with each step record as soon as it is computed.
+    ``on_step`` (optional) is called with each step record as soon as it is computed. Each record
+    also carries ``detail`` (not a flat field): J_before, every answer of the asked question with
+    P and Delta (Delta only for the drawn answer under 'random'), and for 'greedy_mu' the top
+    ``n_alternatives`` candidates in the push direction.
     """
     if direction not in ("right", "left"):
         raise ValueError("direction must be 'right' or 'left'")
@@ -312,6 +316,12 @@ def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng,
             labels = [r["answer"] for r in rows]
             p = [r["conditional_probability"] for r in rows]
             I_by = {r["answer"]: r["I_after"] for r in rows}
+            alts = res.top("expected_delta", n_alternatives, reverse=direction == "right")
+            detail = {"answers": [{"answer": r["answer"], "p": r["conditional_probability"],
+                                   "delta": r["delta_I"]} for r in rows],
+                      "alternatives": [{k: x[k] for k in ("variable", "expected_delta", "P_up", "P_down",
+                                                          "one_sided", "range")} for x in alts],
+                      "n_candidates": len(res.summary)}
         elif policy == "random":
             cands = native_candidates(world, s, exclude_poles=exclude_poles, exclude=exclude, only=only)
             if not cands:
@@ -322,17 +332,20 @@ def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng,
             z = sum(d.get(a, 0.0) for a in labels)
             p = [d.get(a, 0.0) / z for a in labels]
             stats, I_by = {}, None
+            detail = {"answers": [{"answer": a_, "p": p_, "delta": None} for a_, p_ in zip(labels, p)],
+                      "alternatives": [], "n_candidates": len(cands)}
         else:
             raise ValueError(f"unknown policy {policy!r}")
         k = int(rng.choice(len(labels), p=[x / sum(p) for x in p]))
         a = labels[k]
         s = {**s, v: a}
         I_new = I_by[a] if I_by is not None else strict_native_index(world, s)
+        detail["J_before"] = I_t - I_empty
         out.append({"step": t, "variable": v, "question_text": world.text.get(v, ""), "answer": a,
                     "p_answer": p[k], "expected_delta": stats.get("expected_delta"),
                     "P_up": stats.get("P_up"), "P_down": stats.get("P_down"),
                     "one_sided": stats.get("one_sided"), "delta_I": I_new - I_t,
-                    "I_after": I_new, "J_after": I_new - I_empty})
+                    "I_after": I_new, "J_after": I_new - I_empty, "detail": detail})
         if on_step is not None:
             on_step(out[-1])
         I_t = I_new
