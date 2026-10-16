@@ -12,7 +12,7 @@ Run from DTAG root:
         --min-tv 0.05 --pool canonical
     python scratch/gss2018_pole_geometry/derive_stratified_poles.py \
         --stratify polviews --left "extremely liberal" \
-        --right "extremely conservative" --pool opinion --max-items 150
+        --right "extrmly conservative" --pool opinion --max-items 150
 
 This is MODEL-IMPLIED, not a weighted estimate from observed GSS microdata.
 """
@@ -258,7 +258,7 @@ def inspect(args):
         left, right = args.left, args.right
         if left is None or right is None:
             defaults = (("strong democrat", "strong republican") if args.stratify == "partyid"
-                        else ("extremely liberal", "extremely conservative"))
+                        else ("extremely liberal", "extrmly conservative"))
             left = left or defaults[0]
             right = right or defaults[1]
     else:
