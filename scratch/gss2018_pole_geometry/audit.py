@@ -23,6 +23,19 @@ POLE_DIR = ROOT / "assets" / "polar_vectors"
 REF = ROOT / "assets" / "question_sets" / "personas" / "target_states.json"
 CACHED = ROOT / "outputs" / "optimizer" / "sequence_library" / "cache" / "gss_2018_base_personas.json"
 CORE = ("polviews", "partyid")
+# Ordered GSS labels are an explicit, independent external orientation check,
+# not a pole-definition change. Unrecognized alternatives remain unranked.
+ANCHOR_ORDER = {
+    "polviews": [
+        "extremely liberal", "liberal", "slightly liberal",
+        "moderate, middle of the road", "slightly conservative",
+        "conservative", "extremely conservative"],
+    "partyid": [
+        "strong democrat", "not very strong democrat",
+        "independent, close to democrat", "independent (neither, no response)",
+        "independent, close to republican", "not very strong republican",
+        "strong republican"]
+}
 
 
 def read_csv(path):
@@ -187,6 +200,38 @@ def run_native(out, static, waves, args):
                ["variant", "persona", "n_state_assignments", "n_pole_pairs",
                 "index", "d_left", "d_right", "d_LR", "numerator",
                 "minus_empty_same_pole", "minus_2018_v2_all"])
+    # Externally ordered anchor sweep: test orientation without redefining poles.
+    sweep = []
+    sweep_diagnostics = {}
+    for anchor, order in ANCHOR_ORDER.items():
+        available = set(world.ctx.possible.get(anchor, []))
+        selected = [(i, value) for i, value in enumerate(order) if value in available]
+        sweep_diagnostics[anchor] = {
+            "expected_labels": order, "tested_labels": [value for _, value in selected],
+            "not_found": [value for value in order if value not in available],
+            "unranked_model_labels": sorted(available.difference(order))}
+        for rank, label in selected:
+            state = {anchor: label}
+            for variant in ("2018_v2_all", "2018_v1_matched_items",
+                            "2018_v2_common_with_2024"):
+                L, R = pairs[variant]
+                val = index(world, state, L, R)["index"]
+                sweep.append({"variable": anchor, "response_label": label,
+                              "order_liberal_to_conservative": rank,
+                              "variant": variant, "index": val,
+                              "minus_empty_same_pole": val - lookup[(variant, "empty")]})
+        ordered = [r for r in sweep if r["variable"] == anchor
+                   and r["variant"] == "2018_v2_all"]
+        actual = [r["index"] for r in ordered]
+        reversals = sum(actual[i] > actual[j]
+                        for i in range(len(actual))
+                        for j in range(i+1, len(actual)))
+        sweep_diagnostics[anchor]["pairwise_monotonicity_reversals_v2"] = reversals
+        sweep_diagnostics[anchor]["n_pairwise_comparisons"] = (
+            len(actual) * (len(actual)-1) // 2)
+    output_csv(out / "anchor_monotonicity.csv", sweep,
+               ["variable", "response_label", "order_liberal_to_conservative",
+                "variant", "index", "minus_empty_same_pole"])
     loo = []
     if not args.skip_loo:
         fullL, fullR = pairs["2018_v2_all"]
@@ -208,7 +253,8 @@ def run_native(out, static, waves, args):
                "model_manifest_entry": model_record("gss/gss_2018"),
                "variants": details, "conditioned_states": states,
                "rejected_reference_assignments": rejected,
-               "indices": results, "leave_one_out": loo}
+               "indices": results, "leave_one_out": loo,
+               "anchor_sweep": sweep, "anchor_sweep_diagnostics": sweep_diagnostics}
     (out / "native_summary.json").write_text(json.dumps(payload, indent=2, default=str))
     return payload
 
@@ -241,6 +287,8 @@ def write_report(out, static, native=None):
                 if (variant, name) in lookup else "—")
             lines.append("| " + variant + " | " + " | ".join(fmt(n) for n in names) + " |")
         lines += ["", "## Interpretation", "",
+                  "2018 v2 anchor monotonicity diagnostics: " +
+                  json.dumps(native["anchor_sweep_diagnostics"], sort_keys=True), "" ,
                   "1. Verify an empty-state offset before interpreting the absolute sign.",
                   "2. Determine whether CM > WF even if both are positive.",
                   "3. Compare v1/v2 on the matched item set; do not confuse pole",
@@ -248,7 +296,9 @@ def write_report(out, static, native=None):
                   "4. Compare 2018 full 38-item pole with its 27-item common subset.",
                   "5. Inspect the effect of removing the science-knowledge item viruses.",
                   "6. Inspect leave_one_out.csv, recognizing that changes are nonadditive.",
-                  "7. Verify observations under core and rich states, and optional",
+                  "7. Check anchor_monotonicity.csv: does the 2018 index rise",
+                  "   from liberal/Democratic to conservative/Republican survey labels?",
+                  "8. Verify observations under core and rich states, and optional",
                   "   LLM-decoded cached states. A descriptive persona is not a population sample.",
                   "", "Do not revise canonical poles solely to make a chosen persona negative."]
     (out / "REPORT.md").write_text("\n".join(lines) + "\n")
