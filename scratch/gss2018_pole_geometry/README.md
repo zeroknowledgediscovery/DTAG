@@ -167,3 +167,79 @@ polviews or partyid, so an empirical check is particularly important.
 
 No source or pole files are altered by this experiment. Do not redefine
 poles merely to force the reference liberal persona below zero.
+
+
+## Construct a model-stratified GSS 2018 pole
+
+The separate script derive_stratified_poles.py builds an exploratory pole;
+it does not alter official files under assets/polar_vectors.
+
+Default reference strata:
+
+    partyid = strong democrat
+    partyid = strong republican
+
+For each 2018 pole variable it calculates the full categorical distributions
+P(X_v = answer | partyid = strong democrat) and
+P(X_v = answer | partyid = strong republican) using the native LSM.
+
+**Important:** This is the model-implied conditional distribution, NOT a
+weighted empirical frequency table from actual 2018 survey respondent rows.
+The repository does not bundle raw microdata (see data/raw/README.md).
+
+GSS categories are strings, so the script retains the full distribution
+and uses the highest-probability response (the categorical mode) to produce
+a legal, discrete native pole state. Variables are retained when left/right
+modes differ and total variation distance is at least --min-tv (default 0.05).
+This is predetermined from the model distribution; no persona sign or
+validation statistic is used to select variables.
+
+Political anchor variables polviews and partyid are always excluded from
+the candidate pole itself. The 2018 polviews response ordering is an
+independently chosen *measurement criterion* for partyid-trained poles,
+but it is NOT an external data holdout because the LSM was trained on
+the same underlying GSS data.
+
+Run:
+
+    python scratch/gss2018_pole_geometry/derive_stratified_poles.py
+
+For a quick initial run, omit one-at-a-time pole deletions:
+
+    python scratch/gss2018_pole_geometry/derive_stratified_poles.py --skip-loo
+
+An alternative, pretrained-model-conditioned design:
+
+    python scratch/gss2018_pole_geometry/derive_stratified_poles.py \
+      --stratify polviews --left "extremely liberal" \
+      --right "extremely conservative" \
+      --out scratch/gss2018_pole_geometry/results/model_stratified_polviews
+
+This checks partyid ordering, rather than polviews ordering. For a broader
+opinion-item candidate pool, add --pool opinion --max-items 150.
+
+You may fix a *common* additional attribute in both strata, subject to
+native response label validation, for example:
+
+    python scratch/gss2018_pole_geometry/derive_stratified_poles.py \
+      --fixed 'relig=protestant' \
+      --out scratch/gss2018_pole_geometry/results/partyid_protestant
+
+The output folder contains:
+
+- gss_2018_model_stratified_poles.csv (variable,R,L; proposed trial poles)
+- conditional_responses.csv (full conditional probabilities, modes, TV)
+- persona_index_comparison.csv (existing v2 and proposed pole comparisons)
+- anchor_orientation.csv (ordered polviews / partyid response indices)
+- empirical_pole_leave_one_out.csv (sensitivity, if not --skip-loo)
+- results.json and REPORT.md (measurement provenance and interpretation)
+
+The script compares proposed and manually defined v2 poles on the same
+2018 LSM, including a common-variable subset to control composition.
+It reports absolute index, I-I(empty), and I-I(moderate). Opposite
+signs for two hand-selected personas alone are not considered sufficient
+evidence that a pole is valid. No survey question optimization is performed.
+
+Uses optimizer.dtag_bridge.ensure_model and scripts/fetch_models.py, so a
+new machine downloads missing native models from the same public GCS release
+and cache as the DTAG webapp.
