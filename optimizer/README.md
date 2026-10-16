@@ -234,3 +234,12 @@ python -m optimizer validate --config my.yaml \
 
 This matches the new asset personas and the same validation seeds, although its remapped
 questions may select different survey variables. Check `question_set_detail.csv` in both runs.
+
+## Deferred research follow-ups
+
+The four directional ideology-index regimes, explanations to investigate for the
+small observed movements, t-statistic degeneracy, persona-anchor tradeoffs,
+pole-variable overlap, matched baselines, and expanded starting-state coverage
+are tracked in [DEFERRED_RESEARCH_NOTES.md](DEFERRED_RESEARCH_NOTES.md).
+These are **future research diagnostics**, not prerequisites for the current
+reproducible CM/WF baseline or automatic changes to the optimizer configuration.
