@@ -135,7 +135,8 @@ class Ctx:
         people = population.prepare(self.world, population.load(c["file"]), c["decode"], self.client, self.llm_model,
                                     self.cfg["dtag"], self.cache, float(c["neutral_band"]), c.get("country"), self.year(),
                                     log=self.log, protect_mapped=bool(c.get("protect_mapped", True)),
-                                    core_variables=c["core_variables"])
+                                    core_variables=c["core_variables"],
+                                    require_both_signs=bool(c.get("require_both_signs", True)))
         write_csv(self.out / "participants.csv", [
             {"id": p["id"], "group": {1: "positive", -1: "negative", 0: "neutral"}[p["direction"]], "I0": round(p["I0"], 5),
              "variables": len(p["state"]), "protected": ";".join(p["protected"]),
