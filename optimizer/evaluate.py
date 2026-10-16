@@ -19,7 +19,7 @@ from typing import Any, Dict, List, Sequence
 
 import numpy as np
 
-from .search import group_stats, objective
+from .search import group_stats, objective, run_direction
 
 
 def _boot_mean(x: np.ndarray, rng: np.random.Generator, B: int = 2000):
@@ -29,40 +29,103 @@ def _boot_mean(x: np.ndarray, rng: np.random.Generator, B: int = 2000):
     return [float(x.mean()), float(np.quantile(b, 0.025)), float(np.quantile(b, 0.975))]
 
 
-def summarize(people, runs, trajs: Sequence[Sequence[float]], k: int, rng: np.random.Generator) -> Dict[str, Any]:
-    st = group_stats(people, runs, trajs, k)
-    raw = {g: np.array([t[k] - t[0] for (i, _, _, _), t in zip(runs, trajs) if people[i]["direction"] == g]) for g in (1, -1)}
+def summarize(people, runs, trajs, k, rng, neutral_band=0.005):
+    st = group_stats(people, runs, trajs, k=k, neutral_band=neutral_band)
+    raw = {g: np.array([t[k] - t[0] for r, t in zip(runs, trajs)
+                        if run_direction(r, neutral_band) == g]) for g in (1, -1)}
     for g, name in ((1, "positive"), (-1, "negative")):
         st[name]["mean_signed_change_ci"] = _boot_mean(g * raw[g], rng)
         st[name]["mean_change_ci"] = _boot_mean(raw[g], rng)
     B = 2000
     if len(raw[1]) > 1 and len(raw[-1]) > 1:
         sep_b = rng.choice(raw[1], (B, len(raw[1]))).mean(1) - rng.choice(raw[-1], (B, len(raw[-1]))).mean(1)
-        sep = [float(raw[1].mean() - raw[-1].mean()), float(np.quantile(sep_b, 0.025)), float(np.quantile(sep_b, 0.975))]
+        sep = [float(raw[1].mean() - raw[-1].mean()), float(np.quantile(sep_b, .025)),
+               float(np.quantile(sep_b, .975))]
     else:
         sep = [float("nan")] * 3
     st["separation_change_ci"] = sep
-    st["both_outward_ci_exclude_zero"] = bool(st["positive"]["mean_signed_change_ci"][1] > 0 and
-                                              st["negative"]["mean_signed_change_ci"][1] > 0)
+    st["both_outward_ci_exclude_zero"] = bool(
+        st["positive"]["mean_signed_change_ci"][1] > 0 and
+        st["negative"]["mean_signed_change_ci"][1] > 0)
     return st
 
 
-def per_participant(people, runs, trajs, k: int, rng) -> List[Dict[str, Any]]:
+def per_participant(people, runs, trajs, k, rng, neutral_band=0.005):
     rows = []
     for i, p in enumerate(people):
-        x = np.array([t[k] - t[0] for (j, _, _, _), t in zip(runs, trajs) if j == i])
-        if not len(x):
+        samples = [(r, t) for r, t in zip(runs, trajs) if r[0] == i]
+        if not samples:
             continue
-        d = p["direction"] or 1
-        ci = _boot_mean(d * x, rng)
-        rows.append({"participant": p["id"], "group": {1: "positive", -1: "negative", 0: "neutral"}[p["direction"]],
-                     "I0": round(p["I0"], 5), "runs": len(x), "mean_change": round(float(x.mean()), 5),
-                     "mean_signed_change": round(ci[0], 5), "ci_low": round(ci[1], 5), "ci_high": round(ci[2], 5),
-                     "share_outward": round(float((d * x > 0).mean()), 3) if p["direction"] else None})
+        raw = np.asarray([t[k] - t[0] for r, t in samples])
+        direction = np.asarray([run_direction(r, neutral_band) for r, t in samples])
+        signed = direction * raw
+        directed = signed[direction != 0]
+        ci = _boot_mean(directed, rng)
+        rows.append({"participant": p["id"], "group": {1:"positive",-1:"negative",0:"neutral"}[p["direction"]],
+                     "I0": round(p["I0"], 5), "runs": len(raw), "mean_change": round(float(raw.mean()),5),
+                     "mean_signed_change": ci[0], "ci_low": ci[1], "ci_high": ci[2],
+                     "share_outward": float((directed>0).mean()) if len(directed) else None})
     return rows
 
 
-def baselines(sim, people, bank, length: int, n: int, reps: int, seed0: int, mode: str, kind: str, seq_ids: List[str]):
+def state_diagnostics(people, runs, trajectories, length, rng, neutral_band=0.005):
+    """Cluster trajectories by starting state; bootstrap STATES, not answer draws."""
+    grouped, state_meta = {}, {}
+    for r, t in zip(runs, trajectories):
+        sid = r[4] if len(r) > 4 else f"{r[0]}:{r[3]}"
+        grouped.setdefault(sid, []).append(float(t[length] - t[0]))
+        state_meta[sid] = r
+    rows = []
+    for sid, values in grouped.items():
+        run = state_meta[sid]
+        p = people[run[0]]
+        direction = run_direction(run, neutral_band)
+        raw = np.asarray(values, dtype=float)
+        signed = direction * raw
+        ci = _boot_mean(signed, rng) if direction else [float("nan")] * 3
+        rows.append({"state_id": sid, "participant": p["id"], "original_group": p["direction"],
+                     "start_group": direction, "sign_flipped_or_neutral": direction != p["direction"],
+                     "I_start": float(run[2]), "draws": len(raw), "mean_change": float(raw.mean()),
+                     "mean_signed_change": float(signed.mean()) if direction else float("nan"),
+                     "ci_low": ci[1], "ci_high": ci[2],
+                     "share_outward": float((signed > 0).mean()) if direction else float("nan")})
+    groups = {}
+    for g, name in ((1,"positive"),(-1,"negative")):
+        chosen = [row for row in rows if row["start_group"] == g]
+        values = np.asarray([row["mean_signed_change"] for row in chosen], dtype=float)
+        groups[name] = {"n_states": len(values), "mean_signed_change_ci": _boot_mean(values, rng),
+                        "share_states_mean_outward": float((values > 0).mean()) if len(values) else float("nan")}
+    flips = sum(row["sign_flipped_or_neutral"] for row in rows)
+    return rows, {"n_states": len(rows), "n_sign_flips_or_neutral": flips,
+                  "groups": groups,
+                  "note": "Uncertainty across perturbed states conditional on the selected persona templates and fixed LSM."}
+
+
+def order_controls(sim, people, runs, bank, seq_ids, n, mode, neutral_band, seed):
+    if n <= 0 or len(seq_ids) < 2:
+        return []
+    by_id = {q["id"]: q for q in bank}
+    randomizer = random.Random(seed)
+    rows = []
+    for j in range(n):
+        order = list(seq_ids)
+        randomizer.shuffle(order)
+        if order == seq_ids:
+            order = order[1:] + order[:1]
+        st = group_stats(people, runs,
+                         sim.simulate(runs, [by_id[q]["variables"] for q in order], mode),
+                         neutral_band=neutral_band)
+        rows.append({"baseline": j+1, "t_positive": st["positive"]["t"],
+                     "t_negative": st["negative"]["t"],
+                     "mean_positive": st["positive"]["mean_signed_change"],
+                     "mean_negative": st["negative"]["mean_signed_change"],
+                     "separation_change": st["positive"]["mean_signed_change"]+
+                                          st["negative"]["mean_signed_change"],
+                     "sequence": ";".join(order)})
+    return rows
+
+
+def baselines(sim, people, bank, length: int, n: int, reps: int, seed0: int, mode: str, kind: str, seq_ids: List[str], neutral_band: float = 0.005):
     """Random sequences vs the optimized one, all on the same baseline runs."""
     runs = sim.make_runs(people, reps, seed0)
     by_id = {q["id"]: q for q in bank}
@@ -70,13 +133,13 @@ def baselines(sim, people, bank, length: int, n: int, reps: int, seed0: int, mod
     rows = []
     for b in range(n):
         ids = rng.sample(list(by_id), min(length, len(by_id)))
-        st = group_stats(people, runs, sim.simulate(runs, [by_id[i]["variables"] for i in ids], mode))
+        st = group_stats(people, runs, sim.simulate(runs, [by_id[i]["variables"] for i in ids], mode), neutral_band=neutral_band)
         rows.append({"baseline": b + 1, "objective": objective(st, kind), "t_positive": st["positive"]["t"],
                      "t_negative": st["negative"]["t"], "mean_positive": st["positive"]["mean_signed_change"],
                      "mean_negative": st["negative"]["mean_signed_change"],
                      "separation_change": st["positive"]["mean_signed_change"] + st["negative"]["mean_signed_change"],
                      "sequence": ";".join(ids)})
-    st = group_stats(people, runs, sim.simulate(runs, [by_id[i]["variables"] for i in seq_ids], mode))
+    st = group_stats(people, runs, sim.simulate(runs, [by_id[i]["variables"] for i in seq_ids], mode), neutral_band=neutral_band)
     opt = {"objective": objective(st, kind),
            "separation_change": st["positive"]["mean_signed_change"] + st["negative"]["mean_signed_change"]}
     pct = lambda key: float(np.mean([r[key] < opt[key] for r in rows])) if rows else float("nan")  # noqa: E731
@@ -142,8 +205,22 @@ def report_md(cfg: Dict[str, Any], manifest: Dict[str, Any], people, seq_detail,
     lines += ["", "## Participants", "", "| Participant | Group | I0 | Mean signed change [CI] | Outward |", "|---|---|---:|---|---:|"]
     lines += [f"| {r['participant']} | {r['group']} | {r['I0']:+.4f} | {r['mean_signed_change']:+.4f} [{r['ci_low']:+.4f}, {r['ci_high']:+.4f}] |"
               f" {'' if r['share_outward'] is None else format(r['share_outward'], '.0%')} |" for r in part_rows]
+    sd = val.get("state_diagnostics")
+    if sd:
+        lines += ["", "## Across distinct starting states", "",
+                  f"States={sd['n_states']}; changes of original sign or entry into neutral band="
+                  f"{sd['n_sign_flips_or_neutral']}.",
+                  "Intervals here bootstrap distinct starting states, not response draws.",
+                  "They describe variation around these persona templates, not survey-population generalization.", "",
+                  "| Actual starting side | States | State-mean signed change [95% CI] | States moving outward on average |",
+                  "|---|---:|---|---:|"]
+        for name in ("positive", "negative"):
+            g = sd["groups"][name]
+            lines.append(f"| {name} | {g['n_states']} | {fmt_ci(g['mean_signed_change_ci'])} | "
+                         f"{g['share_states_mean_outward']:.0%} |")
+        lines += ["", "See per_state.csv, starting_states.jsonl and state_diagnostics.json.", ""]
     lines += ["", "## Reading this", "",
-              "- Effects are population averages under sampled answers; individual runs vary a lot (see `share_outward`).",
+              "- Effects are fixed-model, persona-conditional averages under sampled answers; individual runs vary a lot (see `share_outward`).",
               "- Each question is answered through the survey items it maps to (`question_set_detail.csv`). In the web app,",
               "  check each answer's *Model evidence* to confirm the same items are selected.",
               "- Results depend on the model wave, the poles and the participants; re-run for other settings.", ""]
