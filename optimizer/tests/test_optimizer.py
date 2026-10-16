@@ -705,3 +705,83 @@ def test_scratch_2018_pole_always_preserves_variable_with_disclosed_fallback():
     assert recovered["L"] == "yes" and recovered["R"] == "no"
     with pytest.raises(RuntimeError):
         module.choose_pair(sparse, baseline=None, minimum_count=3)
+
+
+
+def test_empty_centered_coordinate_preserves_movement_and_reassigns_groups():
+    from optimizer.ideology_coordinates import (
+        COORDINATE, empty_state_offset, recenter_runs_and_trajectories,
+        centered_persona_diagnostics)
+    from optimizer.search import run_direction
+    class W:
+        def I(self, state):
+            assert state == {}
+            return .06005
+
+    offset = empty_state_offset(W())
+    assert offset == pytest.approx(.06005)
+    runs = [
+        (0, {"polviews": "conservative"}, .07262, 17, "a"),
+        (1, {"polviews": "liberal"}, .04441, 19, "b"),
+    ]
+    original = np.array([[.07262, .07862, .08162],
+                         [.04441, .04241, .03841]])
+    centered_runs, centered = recenter_runs_and_trajectories(runs, original, offset)
+    assert COORDINATE == "empty_centered_v1"
+    assert [run_direction(x) for x in runs] == [1, 1]
+    assert [run_direction(x) for x in centered_runs] == [1, -1]
+    np.testing.assert_allclose(centered[:, -1]-centered[:, 0],
+                               original[:, -1]-original[:, 0], atol=1e-14)
+    rows = centered_persona_diagnostics([
+        {"id": "CM", "I0": .07262}, {"id": "WF", "I0": .04441}], offset)
+    assert [r["starting_sign"] for r in rows] == [1, -1]
+    assert rows[0]["I_centered"] == pytest.approx(.01257)
+    assert rows[1]["I_centered"] == pytest.approx(-.01564)
+
+
+def test_empty_centered_and_raw_validation_same_draws_different_groups(tmp_path):
+    from optimizer.ideology_coordinates import recenter_runs_and_trajectories
+    from optimizer.four_way_audit import analyze
+    original = np.asarray([[.07262, .07462], [.04441, .04341],
+                           [.07362, .07312], [.04541, .04641]])
+    runs = [(0, {}, float(original[i, 0]), i, f"{i}")
+            for i in range(len(original))]
+    centered_runs, centered = recenter_runs_and_trajectories(runs, original, .06005)
+    for name, paths, data_runs in (
+            ("raw", original, runs), ("centered", centered, centered_runs)):
+        folder = tmp_path/name
+        folder.mkdir()
+        np.savez_compressed(folder/"validation_trajectories.npz",
+                            trajectories=paths,
+                            state_id=np.asarray([r[4] for r in data_runs]),
+                            initial_ideology=np.asarray([r[2] for r in data_runs]))
+    r = analyze(tmp_path/"raw", seed=45, nboot=100)
+    c = analyze(tmp_path/"centered", seed=45, nboot=100)
+    assert r["groups"]["negative"]["n_states"] == 0
+    assert c["groups"]["negative"]["n_states"] == 2
+    assert r["groups"]["positive"]["n_states"] == 4
+    assert c["groups"]["positive"]["n_states"] == 2
+
+
+def test_library_sanitation_preserves_legacy_artifacts(tmp_path):
+    from optimizer.sanitize_sequence_library import inventory_legacy
+    legacy, output = tmp_path/"original", tmp_path/"centered"
+    (legacy/"sequences").mkdir(parents=True)
+    seq = legacy/"sequences"/"old.csv"
+    seq.write_text("step,question,variables\\n1,Q?,age\\n", encoding="utf-8")
+    (legacy/"library.json").write_text(json.dumps({
+        "schema": 1, "attempts": [
+            {"run_id": "00001", "year": 2018, "status": "validated",
+             "observed_label": "++", "sequence_file": str(seq)},
+            {"run_id": "00002", "year": 2018, "status": "failed"}
+        ]}))
+    result = inventory_legacy(legacy, output)
+    assert result["n_prior_attempts"] == 2
+    assert result["n_prior_files_found"] == 1
+    assert result["n_unique_existing_sequences"] == 1
+    assert seq.is_file()
+    assert (legacy/"library.json").is_file()
+    import csv
+    rows = list(csv.DictReader((output/"legacy_inventory.csv").open()))
+    assert rows[0]["eligible_for_centered_catalog"] == "False"
+    assert rows[1]["action"] == "missing_sequence_or_incomplete_attempt"
