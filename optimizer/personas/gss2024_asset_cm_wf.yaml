@@ -1,0 +1,14 @@
+# Use the original CM / WF descriptions from assets/question_sets/personas.
+# With decode:auto and no pinned state, optimizer.population invokes DTAG's
+# real LLM persona mapper, records all selected model assignments, and locks
+# those assignments for all starting-state perturbations and question answers.
+# The historical target_states.json is an independent decoding audit:
+# polviews and partyid must match; other differences are explicitly reported.
+participants:
+  - id: cm_rural_alabama_asset
+    text_file: assets/question_sets/personas/gss2024_cm_rich.txt
+    expected_state_ref: assets/question_sets/personas/target_states.json#CM
+
+  - id: wf_new_york_city_asset
+    text_file: assets/question_sets/personas/gss2024_wf_rich.txt
+    expected_state_ref: assets/question_sets/personas/target_states.json#WF
