@@ -176,6 +176,23 @@ def fixed_assignments(world, raw):
     return assignment
 
 
+def pairwise_orientation(values, eps=1e-10):
+    """Concordance treats equal indexes as ties, never as a correct ordering."""
+    n = len(values)
+    result = {"concordant": 0, "discordant": 0, "ties": 0,
+              "pairs": n * (n-1) // 2}
+    for i in range(n):
+        for j in range(i+1, n):
+            delta = values[j] - values[i]
+            key = ("concordant" if delta > eps else
+                   "discordant" if delta < -eps else "ties")
+            result[key] += 1
+    result["fraction_concordant_with_half_ties"] = (
+        (result["concordant"] + .5 * result["ties"]) / result["pairs"]
+        if result["pairs"] else None)
+    return result
+
+
 def ordered_sweep(world, variants):
     """Independent anchor orientation: training variable explicitly marked."""
     rows, summaries = [], {}
@@ -196,14 +213,12 @@ def ordered_sweep(world, variants):
                              "index": i, "I_minus_empty": i-empty,
                              "orientation_training_variable": variable == "partyid"})
                 order_indices.append(i)
-            pairs = len(order_indices) * (len(order_indices) - 1) // 2
-            inversions = sum(order_indices[i] > order_indices[j]
-                             for i in range(len(order_indices))
-                             for j in range(i+1, len(order_indices)))
+            orientation = pairwise_orientation(order_indices)
             summaries[variable][name] = {
-                "n_tested": len(order_indices), "pairs": pairs,
-                "monotonicity_inversions": inversions,
-                "fraction_concordant": (1.0-inversions/pairs) if pairs else None,
+                "n_tested": len(order_indices),
+                **orientation,
+                "monotonicity_inversions": orientation["discordant"],
+                "fraction_concordant": orientation["fraction_concordant_with_half_ties"],
                 "first_to_last_delta": (order_indices[-1] - order_indices[0])
                                        if len(order_indices) >= 2 else None}
     return rows, summaries
@@ -289,7 +304,14 @@ def inspect(args):
     manualL, manualR = dict(world.g.left_map), dict(world.g.right_map)
     variants = {
         "model_stratified": (L, R),
-        "manual_2018_v2": (manualL, manualR)}
+        "manual_2018_v2": (manualL, manualR),
+        # Native partial-state poles retain the model's full conditional
+        # dependencies without discretizing marginals. This is a one-anchor
+        # geometry, not an independent measure of the training affiliation.
+        "native_affiliation_conditioning": (left_state, right_state)}
+    (out / "native_affiliation_pole_states.json").write_text(
+        json.dumps({"left": left_state, "right": right_state,
+                    "method": "native_partial_state_conditioning"}, indent=2))
     # Directly compare same columns to avoid mixing coverage with answer changes.
     common = sorted(set(L) & set(manualL))
     if len(common) >= 2:
@@ -380,8 +402,9 @@ def inspect(args):
             context = "(TRAINING ANCHOR; NOT INDEPENDENT)" if test_anchor == args.stratify else "(INDEPENDENT HELD-OUT ANCHOR)"
             report.append(
                 f"- {test_anchor} {variant} {context}: "
-                f"{entry['monotonicity_inversions']}/{entry['pairs']} "
-                f"rank-order inversions; concordance={entry['fraction_concordant']}.")
+                f"{entry['discordant']}/{entry['pairs']} "
+                f"discordant, {entry['ties']} ties; "
+                f"adjusted concordance={entry['fraction_concordant']}.")
     report += ["", "## Interpretation", "",
                "Correct opposite signs in the two example personas are neither required",
                "nor sufficient to establish pole validity.",
@@ -394,8 +417,9 @@ def inspect(args):
     print(f"Saved {file}; report {out/'REPORT.md'}", flush=True)
     for name in variants:
         key = sweep_meta["polviews" if args.stratify == "partyid" else "partyid"][name]
-        print(f"{name}: independent anchor inversions "
-              f"{key['monotonicity_inversions']}/{key['pairs']}", flush=True)
+        print(f"{name}: independent anchor concordant={key['concordant']} "
+              f"discordant={key['discordant']} ties={key['ties']} "
+              f"pairs={key['pairs']}", flush=True)
     return summary
 
 
