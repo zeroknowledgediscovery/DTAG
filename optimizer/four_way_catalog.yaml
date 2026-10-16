@@ -1,0 +1,33 @@
+# Fixed, HISTORICAL candidate sequences for descriptive four-quadrant evaluation.
+# The historical_label is from older archived experiments; it is NOT an
+# outcome established using the current LLM-decoded-persona/draw protocol.
+#
+# Do not use this as a request to optimize or target respondents.
+# A quadrant is reported as supported only after evaluation of a fixed
+# sequence using actual starting-state signs and state-cluster intervals.
+neutral_band: 0.005
+
+cases:
+  - id: contemporary_divergence
+    historical_label: divergence
+    sequence: outputs/optimizer/gss2024_cm_wf_robust/question_set.csv
+    results_dir: outputs/optimizer/gss2024_cm_wf_robust
+    source_protocol: 2026-10-16 native LSM, protected LLM-decoded CM/WF, draw
+
+  - id: historical_both_positive
+    historical_label: positive_translation
+    sequence: assets/question_sets/optimized/gss2024_same_both_up.csv
+    results_dir: outputs/optimizer/four_way_evaluations/positive_translation
+    source_protocol: historical 12-question max-response sequence, not current validation
+
+  - id: historical_both_negative
+    historical_label: negative_translation
+    sequence: assets/question_sets/optimized/gss2024_same_both_down.csv
+    results_dir: outputs/optimizer/four_way_evaluations/negative_translation
+    source_protocol: historical 12-question max-response sequence, not current validation
+
+  - id: historical_convergence
+    historical_label: convergence
+    sequence: assets/question_sets/depolarization/gss2024_depolarize_cm_wf_draw_12.csv
+    results_dir: outputs/optimizer/four_way_evaluations/convergence
+    source_protocol: historical 12-question draw-response sequence, not current validation
