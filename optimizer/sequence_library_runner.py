@@ -162,6 +162,8 @@ def choose_length(trajs, starts, minimum=10, tolerance=.0005, window=3):
         stable = max(abs(float(increment[positive].mean())),
                      abs(float(increment[negative].mean()))) <= tolerance
         stable_steps = (stable_steps + 1) if stable else 0
+        # Evaluate a window of increments ending at the current prefix.
+        # The pilot starts earlier than minimum to allow stopping at minimum.
         if stable_steps >= window:
             return length
     return maxlen
@@ -270,6 +272,9 @@ def run_once(args):
             record["model"] = f"gss/gss_{args.year}"
             outputs = []
             chosen_length = None
+            print(f"Candidate {run_id}: year={args.year}, requested label={args.type}, "
+                  f"freezeinit={args.freezeinit}, length={minlen}..{maxlen}",
+                  flush=True)
             for spec in range(args.specifications):
                 subdir = folder / f"spec_{spec:02d}"
                 subdir.mkdir()
@@ -283,20 +288,52 @@ def run_once(args):
                 subctx = Ctx(conf, need_llm=False)
                 try:
                     people = subctx.participants()
-                    simulation = subctx.simulator(people, candidate)
+                    if chosen_length is None:
+                        if args.length is not None:
+                            chosen_length = args.length
+                        else:
+                            # Separate pilot: neither pilot starts nor responses are
+                            # included in subsequent held-out validations or z-scores.
+                            pilot = subctx.simulator(people, candidate)
+                            try:
+                                pilot_runs = pilot.make_runs(
+                                    people, max(2, args.draws // 2), seed + 999999,
+                                    only_directed=False,
+                                    states_per_persona=max(5, args.states // 3),
+                                    augment_count=6)
+                                pilot_paths = pilot.simulate(
+                                    pilot_runs, [[q["id"]] for q in candidate],
+                                    "draw", trajectories=True)
+                                pilot_starts = np.asarray([r[2] for r in pilot_runs], dtype=float)
+                                chosen_length = choose_length(
+                                    pilot_paths, pilot_starts, minlen,
+                                    args.plateau_tolerance, args.plateau_window)
+                                atomic_json(folder / "pilot_length.json", {
+                                    "chosen_length": chosen_length,
+                                    "min_length": minlen, "max_length": maxlen,
+                                    "window": args.plateau_window,
+                                    "tolerance": args.plateau_tolerance,
+                                    "seed": seed + 999999,
+                                    "n_pilot_draws": len(pilot_runs),
+                                    "rule": "sign-neutral plateau of mean incremental index changes",
+                                    "independent_of_validation": True})
+                            finally:
+                                pilot.close()
+                    # Validate ONLY the chosen prefix, excluding future questions
+                    # from the context-augmentation exclusions.
+                    chosen_questions = candidate[:chosen_length]
+                    simulation = subctx.simulator(people, chosen_questions)
                     try:
                         runs = simulation.make_runs(
                             people, args.draws, conf["validate"]["seed"], only_directed=False,
                             states_per_persona=args.states, augment_count=6)
                         trajectory = simulation.simulate(
-                            runs, [[q["id"]] for q in candidate], "draw", trajectories=True)
+                            runs, [[q["id"]] for q in chosen_questions],
+                            "draw", trajectories=True)
                     finally:
                         simulation.close()
                     i0 = np.asarray([r[2] for r in runs], dtype=float)
-                    if chosen_length is None:
-                        chosen_length = choose_length(trajectory, i0, minlen,
-                                                      args.plateau_tolerance, args.plateau_window)
-                    used = np.asarray(trajectory)[:, :chosen_length + 1]
+                    used = np.asarray(trajectory)
                     np.savez_compressed(
                         subdir / "validation_trajectories.npz", trajectories=used,
                         initial_ideology=i0,
