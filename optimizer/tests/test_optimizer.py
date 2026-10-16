@@ -642,3 +642,66 @@ def test_scratch_2018_orientation_ties_not_false_success():
     assert partially["concordant"] == 2
     assert partially["discordant"] == 1
     assert partially["fraction_concordant_with_half_ties"] == pytest.approx(2/3)
+
+
+
+def test_scratch_2018_respondent_poles_fixed_42_variables_and_frequency_logic():
+    import importlib.util
+    import sys
+    from pathlib import Path
+
+    path = REPO / "scratch/gss2018_pole_geometry/derive_from_respondents.py"
+    spec = importlib.util.spec_from_file_location("actual_gss2018_poles", path)
+    module = importlib.util.module_from_spec(spec)
+    sys.path.insert(0, str(path.parent))
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.path.remove(str(path.parent))
+    items, baseline = module.pole_schema()
+    assert len(items) == len(set(items)) == 42
+    assert set(items[-4:]) == {"conpress", "eqwlth", "cappun", "goveqinc"}
+    assert set(("polviews", "partyid")).isdisjoint(items)
+    assert len(baseline) == 38
+
+    import pandas as pd
+    df = pd.DataFrame(
+        {"partyid": ["strong democrat"] * 12 + ["strong republican"] * 12,
+         "polviews": ["liberal"] * 12 + ["conservative"] * 12,
+         "answer": ["yes"] * 9 + ["no"] * 3 + ["no"] * 9 + ["yes"] * 3})
+    group = module.response_counts(
+        df, "answer", "partyid", module.GROUPS, np.ones(len(df)))
+    chosen = module.choose_pair(group, {"L": "yes", "R": "no"})
+    assert chosen["L"] == "yes" and chosen["R"] == "no"
+    assert chosen["method"] == "distinct_modes"
+    evidence = module.evaluate_responses(
+        df, np.ones(len(df)), [{"variable": "answer", **chosen}],
+        "polviews", module.POLVIEWS, "polviews")
+    assert evidence[0]["aligned"]
+    assert evidence[0]["association"] > 0
+    assert module.split_hash(8, 2018, .25) == module.split_hash(8, 2018, .25)
+
+
+def test_scratch_2018_pole_always_preserves_variable_with_disclosed_fallback():
+    import importlib.util
+    import sys
+
+    path = REPO / "scratch/gss2018_pole_geometry/derive_from_respondents.py"
+    spec = importlib.util.spec_from_file_location("actual_gss2018_poles_fallback", path)
+    module = importlib.util.module_from_spec(spec)
+    sys.path.insert(0, str(path.parent))
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.path.remove(str(path.parent))
+    sparse = {
+        "L": {"probs": {"yes": 1.0}, "raw_counts": {"yes": 1},
+              "n_in_group": 10, "n_answered": 1},
+        "R": {"probs": {"yes": 1.0}, "raw_counts": {"yes": 1},
+              "n_in_group": 10, "n_answered": 1}}
+    recovered = module.choose_pair(
+        sparse, {"L": "yes", "R": "no"}, minimum_count=3)
+    assert recovered["method"] == "insufficient_observations_baseline_fallback"
+    assert recovered["L"] == "yes" and recovered["R"] == "no"
+    with pytest.raises(RuntimeError):
+        module.choose_pair(sparse, baseline=None, minimum_count=3)
