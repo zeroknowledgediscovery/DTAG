@@ -108,3 +108,60 @@ def test_native_smoke(tmp_path):
     assert s["positive"]["n"] > 0 and s["negative"]["n"] > 0
     assert np.isfinite(s["separation_change_ci"][0])
     assert (out / "report.md").is_file() and (out / "manifest.json").is_file()
+
+
+def test_actual_starting_sign_overrides_original_persona():
+    from optimizer.search import run_direction, group_stats
+    people = [{"direction": 1}, {"direction": -1}]
+    runs = [(0, {}, -0.08, 11, "a"), (1, {}, 0.09, 12, "b")]
+    final = [[-0.08, -0.12], [0.09, 0.14]]
+    assert run_direction(runs[0]) == -1
+    assert run_direction(runs[1]) == 1
+    stats = group_stats(people, runs, final)
+    assert stats["positive"]["mean_signed_change"] == pytest.approx(0.05)
+    assert stats["negative"]["mean_signed_change"] == pytest.approx(0.04)
+
+
+def test_persona_text_assets_and_reference_state():
+    from optimizer.population import load
+    people = load("optimizer/personas/gss2024_asset_cm_wf.yaml")
+    assert len(people) == 2
+    assert "Alabama" in people[0]["text"] and "New York City" in people[1]["text"]
+    assert people[0]["expected_state"]["polviews"] == "conservative"
+    assert people[1]["expected_state"]["partyid"] == "strong democrat"
+
+
+def test_answer_never_overwrites_protected_anchors():
+    import random
+    from types import SimpleNamespace
+    from optimizer.simulate import answer
+
+    class FakeWorld:
+        ctx = SimpleNamespace(idx_map={"polviews": 0, "other": 1})
+        def dists(self, state, variables):
+            assert "polviews" not in variables
+            return {v: {"old": 0, "new": 1} for v in variables}
+
+    state = {"polviews": "conservative", "other": "old"}
+    result = answer(FakeWorld(), state, ["polviews", "other"], "draw",
+                    random.Random(2), {"polviews": "conservative"})
+    assert result["polviews"] == "conservative"
+    assert result["other"] == "new"
+
+
+def test_state_level_diagnostics_do_not_count_draws_as_independent_states():
+    from optimizer.evaluate import state_diagnostics
+    people = [{"id": "cm", "direction": 1}, {"id": "wf", "direction": -1}]
+    runs, trajectories = [], []
+    for i, i0, state_id in [(0, .12, "cm:0"), (0, .15, "cm:1"),
+                             (1, -.12, "wf:0"), (1, -.17, "wf:1")]:
+        for draw in range(12):
+            runs.append((i, {}, i0, draw, state_id))
+            delta = .03 if i == 0 else -.02
+            trajectories.append([i0, i0 + delta])
+    rows, diag = state_diagnostics(people, runs, trajectories, 1, np.random.default_rng(8))
+    assert len(rows) == 4 and diag["n_states"] == 4
+    assert diag["groups"]["positive"]["n_states"] == 2
+    assert diag["groups"]["negative"]["n_states"] == 2
+    assert diag["groups"]["positive"]["mean_signed_change_ci"][0] == pytest.approx(.03)
+    assert diag["groups"]["negative"]["mean_signed_change_ci"][0] == pytest.approx(.02)
