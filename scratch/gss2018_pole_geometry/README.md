@@ -224,7 +224,7 @@ An alternative, pretrained-model-conditioned design:
 
     python scratch/gss2018_pole_geometry/derive_stratified_poles.py \
       --stratify polviews --left "extremely liberal" \
-      --right "extremely conservative" \
+      --right "extrmly conservative" \
       --out scratch/gss2018_pole_geometry/results/model_stratified_polviews
 
 This checks partyid ordering, rather than polviews ordering. For a broader
@@ -255,3 +255,39 @@ evidence that a pole is valid. No survey question optimization is performed.
 Uses optimizer.dtag_bridge.ensure_model and scripts/fetch_models.py, so a
 new machine downloads missing native models from the same public GCS release
 and cache as the DTAG webapp.
+
+
+### First native result and limits
+
+The native GitHub Actions runs exposed a methodological limitation:
+with partyid fixed at strong Democrat/strong Republican, 35 of the 38
+manual pole items had *identical* conditional distributions in the native
+LSM at machine precision. Only confed (TV around 0.144), gunlaw (TV
+around 0.079), and natfare (TV around 0.0186) had visibly different
+marginals. At the prespecified minimum TV=0.05, only confed and gunlaw
+were retained for a contrastive two-item pole.
+
+This pole gave CM_core = WF_core = I(empty) = +0.02123 and all heldout
+polviews categories were tied. It is not an adequate alternative to the
+38-item manual pole. A direct partial-state pole constructed simply from
+the partyid anchors gave opposite signs, but that result is tautological
+with respect to the partyid component of each persona and is not
+independently valid.
+
+The first anchor-validation code matched only some actual native
+response-label abbreviations. After inspecting the downloaded GSS 2018
+support labels, the scratch diagnostic was corrected to include all
+seven ordered polviews labels (including 'moderate', 'slghtly conservative',
+and 'extrmly conservative') and seven partyid labels (including
+'not str democrat' and 'ind,near dem'). The 'other party' category is
+not assigned an arbitrary ordinal position.
+
+An insufficient proposed pole is now reported as
+status=insufficient_contrast with conditional probability tables, rather
+than writing an empty/inadequate pole CSV. The normal baseline poles
+remain unchanged.
+
+These results show model-implied conditional association is not
+equivalent to a respondent-level empirical distribution. A truly
+representative 2018 pole requires actual response rows, appropriate
+weights, and validation against data kept separate from pole construction.
