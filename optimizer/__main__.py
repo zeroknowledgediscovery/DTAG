@@ -136,9 +136,13 @@ class Ctx:
                                     self.cfg["dtag"], self.cache, float(c["neutral_band"]), c.get("country"), self.year(),
                                     log=self.log, protect_mapped=bool(c.get("protect_mapped", True)),
                                     core_variables=c["core_variables"],
-                                    require_both_signs=bool(c.get("require_both_signs", True)))
+                                    require_both_signs=bool(c.get("require_both_signs", True)),
+                                    index_origin=c.get("index_origin", "native"))
         write_csv(self.out / "participants.csv", [
-            {"id": p["id"], "group": {1: "positive", -1: "negative", 0: "neutral"}[p["direction"]], "I0": round(p["I0"], 5),
+            {"id": p["id"], "group": {1: "positive", -1: "negative", 0: "neutral"}[p["direction"]],
+             "I0": round(p["I0"], 5), "I_raw": round(p.get("I_raw", p["I0"]), 5),
+             "I_empty": round(p.get("I_empty", 0.0), 5),
+             "index_origin": p.get("index_origin", "native"),
              "variables": len(p["state"]), "protected": ";".join(p["protected"]),
              "expected_mismatches": len(p["expected_mismatches"]),
              "state_source": p["state_source"], "dropped": "; ".join(p["dropped"]),
