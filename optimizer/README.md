@@ -45,8 +45,7 @@ release when missing (`download: false` turns that off).
 
 ## How it works
 
-1. **Participants** (`optimizer/personas/gss2024_spectrum.yaml`: 12 personas, from a rural Alabama
-   conservative to a New York liberal). Each has a description (`text`) and, optionally, a pinned
+1. **Participants** (the YAML specified by participants.file; the new CM/WF asset file uses actual LLM decoding). Each has a description (`text`) and, optionally, a pinned
    GSS `state`.
    - With `decode: auto`, a pinned state is used as is. A persona with only `text` is decoded by
      DTAG's own persona decoder through the LLM, which is what the web app does.
@@ -57,9 +56,8 @@ release when missing (`download: false` turns that off).
      reported but left out of the objective.
    - The GSS 2024 index sits left of zero for most people, so conservatives start only slightly
      positive. Hence the narrow band.
-3. **Runs.** Each participant gets several runs. A run starts from a perturbed state: 15% of the
-   non-core variables are dropped and 15% resampled from the model (`polviews` and `partyid` are
-   never changed). Each run also has its own answer-draw seed. As a result the set has to work
+3. **Runs.** Each participant gets multiple starting states and/or answer draws. LLM-decoded persona assignments
+   are protected, including `polviews` and `partyid`; only unprotected context can vary. Each run also has its own answer-draw seed. As a result the set has to work
    across nearby respondents and answer luck, not just one fixed trajectory.
 4. **Bank.** By default the bank is the model's opinion items, worded from the semantic map.
    - Respondent facts, identity, self-placement, survey meta-data and every variable that defines a
@@ -78,11 +76,12 @@ release when missing (`download: false` turns that off).
    - Local search (`budget` replace/swap moves).
    - Pick the prefix length ≥ `min_length` with the best objective on the search runs.
 7. **Held-out validation.** The search never sees these seeds: new perturbations and new answer
-   draws, `reps` runs per participant. The validation reports:
+   draws, `reps` runs per participant. The validation reports state-clustered estimates when multiple starting states are requested:
    - per group, the mean signed change with a 95% bootstrap CI, t and the share of runs moving outward;
    - the separation change (positive − negative mean change) with its CI, for every prefix length;
    - per-participant effects;
-   - the set's percentile against `baselines` random sets of the same length.
+   - the set's percentile against `baselines` random sets of the same length;
+   - state-level means, sign flips, and shuffled-order controls.
 
 ## LLM backends
 
@@ -111,9 +110,9 @@ Set the `llm:` block in the config, or use `--provider/--llm-model` on the comma
 | `report.md` | the recommended set, held-out validation, every length, participants, baselines |
 | `question_set.csv` | `step,question` for the recommended length (loads in the web app's question tools) |
 | `question_set_full.csv`, `question_set_detail.csv` | full-length sequence; per step the survey items, mapping and survey wording |
-| `validation.json`, `per_length.csv`, `per_participant.csv`, `baselines.csv`, `validation_trajectories.npz` | validation numbers |
+| `validation.json`, `per_length.csv`, `per_participant.csv`, `per_state.csv`, `baselines.csv`, `order_baselines.csv`, `state_diagnostics.json`, `starting_states.jsonl`, `validation_trajectories.npz` | validation numbers and auditable starting states |
 | `screening.csv`, `search.json` | search trace |
-| `bank.jsonl`, `participants.csv/json` | the bank used (reused on re-runs; `--rebuild-bank`) and the resolved participants |
+| `bank.jsonl`, `bank_fingerprint.json`, `participants.csv/json` | the bank used (fingerprinted and rebuilt on configuration/map changes) and actual protected LLM-decoded assignments |
 | `manifest.json`, `log.txt` | git commit, model sha256, map sha256, poles, LLM, full config; run log |
 
 `outputs/` is git-ignored. Copy a finished set into `assets/question_sets/` if you want to keep it.
@@ -134,3 +133,87 @@ Set the `llm:` block in the config, or use `--provider/--llm-model` on the comma
 - With `mapping: source` each question is answered through its own survey item. Before using a set
   in the web app, run `validate` with a real LLM: it maps each question through DTAG and re-scores
   the set on what DTAG actually selects.
+
+
+## CM/WF asset personas and robustness audit (October 2026)
+
+The repository includes rich source descriptions and expected 15-item state assignments in
+`assets/question_sets/personas/`. To use them without copying fixed starting states, set
+`participants.file: optimizer/personas/gss2024_asset_cm_wf.yaml` and `participants.decode: auto`.
+The entries have `text_file`, not pinned `state`: the same DTAG persona mapper used by the web app
+runs under the configured LLM at check/run time. Each real decoded assignment is saved in
+`participants.json` and its variable and value is immutable during initial-state perturbation
+and all question responses. `polviews` and `partyid` must match `target_states.json`; other
+disagreements appear in `participants.json` as `expected_mismatches`. With no LLM/API key,
+the CM/WF asset configuration cannot decode or run. Previously pinned states remain supported.
+
+Example from the repository root (my.yaml on dev is configured for this):
+
+```bash
+export OPENAI_API_KEY=...   # set locally, never commit the value
+python -m optimizer check --config my.yaml
+python -m optimizer run --config my.yaml --rebuild-bank
+python -m optimizer validate --config my.yaml \
+  --sequence outputs/optimizer/gss2024/question_set.csv \
+  --out outputs/optimizer/gss2024_validation_remapped
+```
+
+The optimizer run searches a sequence, then validates it. The separate validate call
+re-maps the final exported question wording through DTAG's actual direct LLM mapper, as the
+web app does. Omitting `--out` on validate automatically writes below the configured output
+under `validation/<sequence_filename>` rather than overwriting the optimized report.
+
+### Additional YAML settings
+
+```yaml
+participants:
+  core_variables: [polviews, partyid]
+  protect_mapped: true            # protect all actual decoded persona assignments
+  perturb: {drop: 0.15, resample: 0.15}
+validate:
+  states_per_persona: 50         # independent seeded initializations per asset persona
+  reps_per_state: 20            # response-draw replicates at each initial state
+  augment_count: 6              # conditionally sample additional non-question context variables
+  order_baselines: 5            # randomly re-ordered versions of the selected set
+  baselines: 20                 # random sets drawn from the same bank
+  baseline_reps: 4              # response draws per matched starting state for those controls
+```
+
+All protected LLM-decoded variables retain their exact original categorical labels.
+Nonprotected context variables are sampled from model conditional distributions, excluding
+all candidate-question variables, ideology-pole variables and persona anchors. When
+`states_per_persona > 1`, a starting-state fingerprint merges duplicate assignments
+into a single statistical cluster; validation reports the actual number of distinct
+states, not just the number of seeds tried.
+
+Directional change is defined from each *actual initialized state's* ideology index,
+not the original persona's index. For nonneutral starting index I0 and final index Iend:
+
+    outward = sign(I0) * (Iend - I0)
+
+A positive result indicates movement away from zero for that simulated trajectory.
+The report also counts initializations whose actual ideology sign differs from the
+original persona sign (including those entering the neutral band).
+
+Inspect `report.md` and `per_state.csv` first. Group-level bootstrap confidence intervals
+for multi-state validation resample distinct starting states, never repeated answer draws
+as independent cases. `starting_states.jsonl` stores the actual state and anchors for each
+cluster. `state_diagnostics.json` reports starting-state counts and outward fractions.
+`order_baselines.csv` evaluates the importance of question order.
+
+These diagnostics describe uncertainty across generated contexts conditional on the two
+source personas and a fixed learned LSM. They do NOT guarantee outward movement for every
+initialization, demonstrate changes to real respondents' political opinions, or establish
+population representativeness. For such generalization, use separate measured respondents
+and validation independent of the model's synthetic conditional distributions.
+
+### Comparing with the historical ten-question set
+
+```bash
+python -m optimizer validate --config my.yaml \
+  --sequence assets/question_sets/polarization/gss2024_polarize_cm_wf_draw_10.csv \
+  --out outputs/optimizer/historical_asset_audit
+```
+
+This matches the new asset personas and the same validation seeds, although its remapped
+questions may select different survey variables. Check `question_set_detail.csv` in both runs.
