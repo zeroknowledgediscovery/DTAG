@@ -395,6 +395,24 @@ def inspect(args):
         report.append(
             f"| {name} | {len(lp)} | {empty:+.5f} | {cm:+.5f} | "
             f"{wf:+.5f} | {cm-wf:+.5f} |")
+    report += ["", "## Native political anchor label support", ""]
+    for test_anchor in ANCHOR_ORDER:
+        supported = sweep_meta[test_anchor]["supported"]
+        missing = sweep_meta[test_anchor]["unsupported_expected"]
+        extras = sweep_meta[test_anchor]["unranked_native_responses"]
+        report += [
+            f"- {test_anchor}: recognized {len(supported)} of "
+            f"{len(ANCHOR_ORDER[test_anchor])} expected ordered labels",
+            f"  supported: {supported}",
+            f"  missing: {missing}",
+            f"  other native responses: {extras}",
+        ]
+    report += ["", "## Largest conditional response differences (diagnostic)", ""]
+    for rec in sorted(response_audit, key=lambda x: -float(x.get("tv_distance", 0)))[:12]:
+        report.append(
+            f"- {rec['variable']}: TV={rec.get('tv_distance')}; "
+            f"L={rec.get('left_selected')} R={rec.get('right_selected')}; "
+            f"used={rec['included']}")
     report += ["", "## Independent anchor ordering", ""]
     for test_anchor in ANCHOR_ORDER:
         for variant in variants:
