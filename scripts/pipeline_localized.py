@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Canonical DTAG pipeline entry point with deterministic geographic conditioning.
+"""Deterministic geographic conditioning for DTAG sessions.
 
-This module wraps ``pipeline.py`` rather than duplicating it. It replaces only
-``build_forced_assignments`` (in dtag_core, which pipeline.py and DTAGSession both read at call
-time) before calling the core main function.
+Importing this module replaces ``dtag_core.build_forced_assignments`` with the country-aware
+version below; DTAGSession resolves that function at call time, so every session (web app,
+optimizer, scripts) gets the same geography. The former command-line entry point (which then
+ran pipeline.main) is archived in archive/scripts/.
 
 Country conditioning order:
 1. If a qnet has a categorical country feature whose allowed support contains the
@@ -248,8 +249,3 @@ def build_forced_assignments(
 
 core.build_forced_assignments = build_forced_assignments
 
-
-if __name__ == '__main__':
-    import pipeline
-
-    pipeline.main()

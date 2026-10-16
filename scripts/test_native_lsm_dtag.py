@@ -3,14 +3,12 @@
 
 This test intentionally separates model/runtime validation from OpenAI calls.
 By default it checks the native models listed under validation_models in
-configs/dtag_config.yaml.  Use --run-openai for an actual one-question DTAG
-deployment smoke after the no-LLM checks pass.
+configs/dtag_config.yaml. (The former --run-openai end-to-end option launched the archived
+command-line runtime; use the web app with a real LLM for that.)
 """
 from __future__ import annotations
 
 import argparse
-import os
-import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, List
@@ -134,8 +132,6 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="configs/dtag_config.yaml")
     ap.add_argument("--model", action="append", default=[], help="native config model key")
-    ap.add_argument("--run-openai", action="store_true")
-    ap.add_argument("--profile", default="", help="profile for --run-openai")
     ap.add_argument(
         "--question",
         default="What do you think about immigration?",
@@ -170,25 +166,6 @@ def main() -> None:
         print("checked:", ", ".join(checked))
     if missing:
         print("missing:", ", ".join(missing))
-
-    if args.run_openai:
-        if not os.environ.get("OPENAI_API_KEY"):
-            raise SystemExit("--run-openai requested but OPENAI_API_KEY is not set")
-        profile = args.profile
-        if not profile:
-            # Prefer GSS 2024 because it tests both normal answer generation and
-            # the GSS ideology path once the native model exists.
-            profile = "gss2024_cm"
-        cmd = [
-            sys.executable,
-            "scripts/interactive.py",
-            "--config", str(config_path),
-            "--profile", profile,
-            "--question", args.question,
-        ]
-        print("\nOPENAI END-TO-END")
-        print(" ".join(cmd))
-        raise SystemExit(subprocess.call(cmd, cwd=ROOT))
 
 
 if __name__ == "__main__":

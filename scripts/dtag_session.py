@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Reusable DTAG respondent session.
 
-This module is the per-respondent core of ``pipeline.py`` extracted into
-objects so the command-line pipeline and the web application run the same
-code. The algorithm is a line-for-line port of ``pipeline.main()`` steps
+This module is the per-respondent core of the former ``pipeline.py`` extracted
+into objects; the web application and the optimizer run it. The algorithm is a
+line-for-line port of the former ``pipeline.main()`` steps (archived)
 (persona initialisation, forced year/geography assignments, direct mapping,
 semantic fallback, no-match handling, state updates and ideology geometry);
 the LLM helpers and native-LSM helpers are the functions in ``dtag_core.py``
@@ -11,7 +11,7 @@ the LLM helpers and native-LSM helpers are the functions in ``dtag_core.py``
 
 Objects:
 
-* ``SessionConfig``   -- runtime parameters, same defaults as ``pipeline.py``.
+* ``SessionConfig``   -- runtime parameters, same defaults as the former ``pipeline.py`` CLI.
 * ``ModelContext``    -- model + map data shared by sessions (read-only after
                          construction; caches embeddings per embedding model).
 * ``PolarGeometry``   -- polar reference states and d(sL, sR) for ideology.
@@ -44,7 +44,7 @@ import dtag_core as core
 
 @dataclass
 class SessionConfig:
-    """Runtime parameters; defaults match ``pipeline.py``'s argparse defaults."""
+    """Runtime parameters; defaults match the former ``pipeline.py`` CLI's argparse defaults."""
 
     k: int = 6
     prefilter: int = 160

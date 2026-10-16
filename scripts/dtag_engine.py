@@ -8,8 +8,8 @@ between respondents, and the factory for isolated ``DTAGSession`` objects:
 * map inventory  -- repository semantic maps and model->map conventions
 * ``ModelRegistry`` -- downloads (via ``fetch_models``) and one persistent
   native runtime per model key for the life of the process
-* profiles       -- configured ``interactive_profiles`` (resolved exactly as
-  ``interactive.py`` does) plus validated custom profiles
+* profiles       -- configured ``interactive_profiles`` (resolved by
+  ``dtag_config.resolve_profile``) plus validated custom profiles
 * Eurobarometer  -- fieldwork-date routing via ``eurobarometer_dates``
 * sessions       -- ``engine.create_session(profile=..., overrides=...)``
 
@@ -44,7 +44,7 @@ import dtag_paths
 import eurobarometer_dates as ebdates
 import eurobarometer_native as ebnative
 import fetch_models
-import interactive
+import dtag_config
 import dtag_core as core
 import pipeline_localized as localized
 from dtag_session import (
@@ -850,8 +850,8 @@ class DTAGEngine:
     ):
         cp = config_path or os.environ.get("DTAG_CONFIG") or (REPO_ROOT / "configs" / "dtag_config.yaml")
         self.config_path = Path(cp).expanduser().resolve()
-        self.config_root = interactive.config_root(self.config_path)
-        self.cfg = interactive.load_config(self.config_path)
+        self.config_root = dtag_config.config_root(self.config_path)
+        self.cfg = dtag_config.load_config(self.config_path)
         ad = assets_dir or os.environ.get("DTAG_ASSETS_DIR") or (Path.home() / ".cache" / "dtag" / "assets")
         self.assets_dir = str(Path(ad).expanduser().resolve())
         Path(self.assets_dir).mkdir(parents=True, exist_ok=True)
@@ -1091,7 +1091,7 @@ class DTAGEngine:
 
     def _configured_spec(self, name: str) -> ProfileSpec:
         try:
-            r = interactive.resolve_profile(self.cfg, name, self.config_root)
+            r = dtag_config.resolve_profile(self.cfg, name, self.config_root)
         except SystemExit as e:
             raise DTAGEngineError(str(e))
         key = model_key_from_path(r["qnet"])

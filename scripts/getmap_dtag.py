@@ -5,7 +5,7 @@ getmap_dtag.py
 Build a DTAG-ready variable -> question_text map for Afrobarometer merged surveys.
 
 Why this exists:
-- DTAG pipeline.py expects a CSV with columns: variable, question_text.
+- The DTAG runtime expects a CSV with columns: variable, question_text.
 - Older Afrobarometer R1 codebooks use blocks beginning with "Variable name:" and
   country-specific "Question text - ..." fields.
 - Newer Afrobarometer R2+ codebooks use blocks beginning with "Question Number:"

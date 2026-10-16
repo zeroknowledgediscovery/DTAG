@@ -2,6 +2,10 @@
 
 > Written before implementation. For the current state, invariants and next
 > steps (including Google Cloud deployment) see [HANDOFF.md](HANDOFF.md).
+> Historical note: the command-line runtime described below (`dtag --profile`,
+> `scripts/pipeline.py`, `scripts/interactive.py`) has since been archived in
+> `archive/`; its library half is `scripts/dtag_core.py` and profile resolution is
+> `scripts/dtag_config.py`.
 
 This document was written before the web application code, from a reading of
 the `native-lsm-clean` branch (since promoted to `main`). It records what the native DTAG runtime does

@@ -417,20 +417,15 @@ def main() -> None:
     required = [
         "requirements.txt",
         "scripts/model_backend.py",
-        "scripts/pipeline.py",
         "scripts/dtag_core.py",
+        "scripts/dtag_config.py",
+        "scripts/dtag_engine.py",
+        "scripts/dtag_session.py",
         "scripts/pipeline_localized.py",
-        "scripts/interactive.py",
-        "scripts/run.py",
-        "scripts/run_grid.py",
-        "scripts/post.py",
-        "scripts/postprocess.py",
         "scripts/eurobarometer_native.py",
         "configs/dtag_config.yaml",
-        "bin/interactive_config.sh",
-        "bin/run_config.sh",
-        "bin/post_config.sh",
-        "bin/dtag_demo.sh",
+        "webapp/backend/dtag_web/app.py",
+        "optimizer/one_step_geometry.py",
     ]
     for rel in required:
         p = root / rel

@@ -44,9 +44,19 @@ jobs:
               print("OK", p)
           PY
 
-      - name: List profiles
+      - name: Resolve every configured profile
         run: |
-          python scripts/interactive.py --config configs/dtag_config.yaml --list
+          cd scripts && python - <<'PY'
+          from pathlib import Path
+          import dtag_config
+          cfg_path = Path("../configs/dtag_config.yaml").resolve()
+          cfg = dtag_config.load_config(cfg_path)
+          root = dtag_config.config_root(cfg_path)
+          names = sorted(cfg.get("interactive_profiles") or {})
+          for name in names:
+              dtag_config.resolve_profile(cfg, name, root)
+          print(f"OK {len(names)} profiles")
+          PY
 
       - name: Test native preprocessing contract
         env:

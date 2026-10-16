@@ -78,8 +78,9 @@ console commands `dtag-web`, `dtag`, `dtag-models`, `dtag-doctor`
    by a per-model lock.
 3. **Survey anchors come only from native LSM distributions.** The LLM must not
    replace inference.
-4. **CLI and web run the same code** (`DTAGSession`). `scripts/pipeline.py`
-   output was verified identical to the pre-refactor implementation; keep it so.
+4. **One respondent implementation** (`DTAGSession` + `dtag_core`). The former CLI
+   (`scripts/pipeline.py`) was verified identical to it before being archived in
+   `archive/scripts/`; the web app and the optimizer are the supported consumers.
 5. **Never commit models** (`models/lsm/**` is git-ignored). Models come from the
    public bucket `gs://git-zeroknowledgediscovery-dtag/models/v0.2.1/`
    (anonymous HTTPS; manifest at
