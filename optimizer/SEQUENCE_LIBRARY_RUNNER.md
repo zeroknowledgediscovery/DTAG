@@ -55,15 +55,16 @@ drift. This is an experimental cache; check provenance before sharing.
       --year 2024 --type '++' --workers 4
 
     python -m optimizer.sequence_library_runner \
-      --year 2018 --type '+-' --freezeinit --length 12 --workers 4
+      --year 2018 --type=+- --freezeinit --length 12 --workers 4
 
     python -m optimizer.sequence_library_runner \
-      --year 2016 --type '--' --min-length 10 --max-length 20 \
+      --year 2016 --type=-- --min-length 10 --max-length 20 \
       --plateau-tolerance 0.0005 --plateau-window 3 \
       --states 30 --draws 10 --specifications 5 --workers 4
 
-Always quote the type value in your shell: '--' must not be mistaken for a
-separator, and '+-' must not be interpreted as a shell option. An explicit
+Use the --type=VALUE form for all four labels. In particular,
+--type=-- and --type=-+ avoid argparse mistaking the leading dash
+for an option or an end-of-options marker. An explicit
 --length sets a fixed length (10-20). Otherwise, the script samples a
 candidate with --max-length questions (default 20), estimates a prefix
 length on an **independent pilot**, and validates only the selected prefix.
