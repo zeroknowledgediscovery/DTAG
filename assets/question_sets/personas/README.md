@@ -48,3 +48,20 @@ variation around this state (age, place size, strength of views, an omitted fact
 differences elsewhere are within what was tested.
 
 Details of the analysis: [`QUESTION_OPTIMIZATION.md`](../../../QUESTION_OPTIMIZATION.md).
+
+## Direct LLM-decoding audit in the optimizer
+
+The optimizer now provides `optimizer/personas/gss2024_asset_cm_wf.yaml`, which reads these
+two original text files directly and invokes DTAG's actual persona-to-item LLM mapper.
+The resulting assignments are recorded in `outputs/optimizer/gss2024/participants.json`
+and protected from both initial-state perturbation and all subsequent question updates.
+Variables `polviews` and `partyid` are checked against `target_states.json` and decoding
+fails loudly if either does not match. Other differences from the 15-item reference state
+are reported in `expected_mismatches`; the actual LLM output, not the reference file,
+is used as the initial protected state.
+
+The validation sampler then adds nonprotected, LSM-conditionally drawn context variables
+to produce many distinct starting states without overwriting identity or political anchors.
+Both the exact starting states and their ideology index are written to
+`starting_states.jsonl`, and directional change is assessed from each actual start.
+See `optimizer/README.md` for commands and diagnostics.
