@@ -290,3 +290,47 @@ def test_multiyear_regime_inventory_reads_preexisting_results(tmp_path):
     assert (out / "summary.json").is_file()
     assert (out / "coverage_matrix.csv").is_file()
     assert (out / "README.md").is_file()
+
+
+
+def test_legacy_trajectory_archive_derives_initial_index(tmp_path):
+    """Older npz files sometimes omit the redundant initial_ideology key."""
+    from optimizer.four_way_audit import analyze
+
+    folder = tmp_path / "legacy"
+    folder.mkdir()
+    paths, ids = [], []
+    for direction, start in ((1, .1), (-1, -.1)):
+        for state in range(6):
+            for _ in range(5):
+                first = start + direction*.001*state
+                paths.append([first, first + direction*(.02 + .0001*state)])
+                ids.append(f"{direction}:{state}")
+    np.savez_compressed(folder / "validation_trajectories.npz",
+                        trajectories=np.array(paths), state_id=np.array(ids))
+    result = analyze(folder, seed=3, nboot=400)
+    assert result["observed_regime"] == "divergence"
+    assert result["status"] == "supported_by_state_bootstrap"
+    assert result["initial_ideology_source"] == "trajectories[:,0]"
+
+
+def test_multiyear_inventory_skips_archive_without_state_ids(tmp_path):
+    """Incompatible legacy files must be reported, never cause KeyError or fake CIs."""
+    from optimizer.four_way_audit import analyze
+    from optimizer.multiyear_regime_summary import inventory
+
+    root = tmp_path / "results"
+    folder = root / "old"
+    folder.mkdir(parents=True)
+    (folder / "manifest.json").write_text(json.dumps({"model": {"key": "gss/gss_2024"}}))
+    np.savez_compressed(folder / "validation_trajectories.npz",
+                        trajectories=np.array([[.1, .2], [-.1, -.2]]))
+    checked = analyze(folder)
+    assert checked["status"] == "unsupported_schema"
+    assert checked["missing_keys"] == ["state_id"]
+    report = inventory(root, tmp_path / "audit", years=(2024,), bootstrap=200)
+    assert not report["runs"]
+    assert len(report["skipped_runs"]) == 1
+    assert report["skipped_runs"][0]["status"] == "unsupported_schema"
+    assert (tmp_path / "audit" / "skipped_runs.csv").is_file()
+    assert report["coverage"][0]["confirmed_runs"] == 0
