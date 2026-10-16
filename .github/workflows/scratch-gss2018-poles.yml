@@ -31,15 +31,15 @@ jobs:
             --right "strong republican" --pool canonical --skip-loo
           echo "=== SCRATCH REPORT ==="
           cat scratch/gss2018_pole_geometry/results/model_stratified_partyid/REPORT.md
-      - name: Construct broader opinion-map contrast pole
+      - name: Construct entire opinion-map contrast pole
         run: |
           python scratch/gss2018_pole_geometry/derive_stratified_poles.py \
             --stratify partyid --left "strong democrat" \
-            --right "strong republican" --pool opinion --max-items 150 \
+            --right "strong republican" --pool opinion \
             --skip-loo \
-            --out scratch/gss2018_pole_geometry/results/model_stratified_opinion150
+            --out scratch/gss2018_pole_geometry/results/model_stratified_opinion_all
           echo "=== BROAD OPINION POLE REPORT ==="
-          cat scratch/gss2018_pole_geometry/results/model_stratified_opinion150/REPORT.md
+          cat scratch/gss2018_pole_geometry/results/model_stratified_opinion_all/REPORT.md
       - name: Construct independently stratified polviews pole
         run: |
           python scratch/gss2018_pole_geometry/derive_stratified_poles.py \
