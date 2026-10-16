@@ -1,0 +1,158 @@
+# GSS 2018: why does a liberal persona have a positive ideology index?
+
+**Independent pole-geometry investigation.** This directory is deliberately
+separate from optimizer/. It never changes the production pole files,
+question selection, or saved optimizer trajectories.
+
+## Preliminary findings from checked repository artifacts
+
+A *positive* index is not the same thing as "the model thinks this person is
+conservative." The actual DTAG definition is
+
+    I(s) = [d(s_L,s) - d(s_R,s)] / d(s_L,s_R)
+
+with s_L and s_R constructed from a collection of extremal survey answers.
+This index has no guarantee that the average respondent, the empty state, or
+every self-described liberal is below zero.
+
+The published pole documentation in assets/polar_vectors/README.md already
+reports the effect of changing the **right pole**, holding persona states fixed:
+
+| GSS 2018 reference | Original right pole v1 | Revised right pole v2 |
+|---|---:|---:|
+| Average respondent | -0.057 | +0.060 |
+| Conservative male | -0.045 | +0.071 |
+| Progressive female | -0.083 | +0.027 |
+
+The user's subsequent GSS 2018 LLM initialization gave CM +0.0661 and
+WF +0.0288 under v2. Those numbers are compatible with the **previously
+documented pole shift**. They are not, by themselves, evidence that the LLM
+misread the liberal description. An independent runner bug separately caused
+only one of polviews/partyid to be protected; that is being fixed in
+optimizer/ and must be verified before comparing exact states.
+
+The static 2018 pole file contains 38 item pairs, compared with 34 (2016)
+and 27 (2024). All 27 variables used in the 2024 pole occur in the 2018
+pole; 2018 adds 11:
+
+    abpoorw colmil comfort godchnge intmil libhomo libmil
+    religcon religint spkmil viruses
+
+Four shared variables use different *answer wording* between 2018 and 2024:
+bible, colcom, grass, spkcom. This is expected from survey coding changes,
+not a demonstrated inversion.
+
+The pole resolution log shows only one unresolved 2018 candidate, prayfreq,
+which was dropped symmetrically because the requested right-side label is
+not a model response option. The other 38 pairs were resolved to model
+response labels, with documented corrections to colmil and viruses.
+That establishes **syntactic validity**, not empirical ideological validity.
+
+Items requiring a substantive review include viruses (knowledge about viral
+biology, not a political attitude) and intmil, colmil, libmil and spkmil.
+Opposite answers to free-speech questions about extremists need not load
+uniformly on the left/right ideology axis. They are flagged for investigation,
+not assumed wrong.
+
+## Reproduce static checks (no model needed)
+
+From the DTAG repository root:
+
+    git switch dev
+    git pull --ff-only origin dev
+    python scratch/gss2018_pole_geometry/audit.py --static-only
+
+Writes:
+
+    scratch/gss2018_pole_geometry/results/static_summary.json
+    scratch/gss2018_pole_geometry/results/wave_pole_inventory.csv
+    scratch/gss2018_pole_geometry/results/v1_v2_changes.csv
+    scratch/gss2018_pole_geometry/results/REPORT.md
+
+## Native experiment: same 2018 model, different pole geometries
+
+For exact native-model distances:
+
+    python scratch/gss2018_pole_geometry/audit.py --skip-loo
+
+Then, for the full leave-one-pole-item-out sensitivity:
+
+    python scratch/gss2018_pole_geometry/audit.py
+
+The model is installed if missing via scripts/fetch_models.py, the same
+Google Cloud Storage downloader as the webapp, respecting DTAG_MODEL_ROOT
+and DTAG_MODEL_RELEASE. The experiment uses canonical_map() for 2018 and
+the wave's proper pole file. On a machine with the installed native model,
+pass --no-download to disallow network downloads.
+
+The audit fixes the **model at GSS 2018** while comparing:
+- 2018 v2 (all 38 items)
+- Original v1 resolved against 2018 native response labels
+- v1 versus v2 with exactly the same pole-variable set, to isolate changed
+  answer categories from changed coverage
+- 2018 v2 restricted to its 27 variables shared with the 2024 pole
+- 2018 v2 without the scientifically questionable viruses item
+- Each v2 item removed in turn (full run without --skip-loo)
+
+For each variant, it calculates I, d(state,L), d(state,R), d(L,R),
+I(state)-I(empty), and displacement relative to the full 2018 v2 geometry.
+The model states include empty, two political anchors for each of CM/WF,
+and rich CM/WF historical reference states (only assignments accepted in
+the native 2018 model). The first two anchors must be accepted or the audit
+fails clearly rather than fabricating labels.
+
+To additionally read the cached 2018 LLM-decoded initial states, if present:
+
+    python scratch/gss2018_pole_geometry/audit.py --include-cached --skip-loo
+
+Or specify an alternative cache:
+
+    python scratch/gss2018_pole_geometry/audit.py --include-cached \
+      --cached-personas /path/to/gss_2018_base_personas.json --skip-loo
+
+The cached file must be a JSON list of participant records with an id and
+state field. The failed earlier run may not have created a complete cached
+base file.
+
+Native outputs (all ignored by Git under results/):
+
+    results/native_summary.json
+    results/native_variants.csv
+    results/leave_one_out.csv
+    results/REPORT.md
+
+Run review tests:
+
+    python -m pytest -q optimizer/tests
+
+## How to decide whether the pole is adequate
+
+**Mechanical correctness:** all pole values are legal native model labels,
+L/R assign different answers, and the runtime builds a finite, positive
+d(L,R). The existing wave-specific resolution establishes most of this.
+
+**Zero-point calibration:** measure I(empty), I(CM_core), I(WF_core) under
+identical v1 and v2 geometries. If I(empty) is strongly positive and a
+liberal persona is positive but shifted LEFT of the empty state, the sign
+is acting as a poor proxy for human ideological self-identification.
+
+**Content validity:** the hand-chosen 38 survey questions must be justified
+as indicators of a coherent single political orientation. Removing
+nonideological or cross-cutting questions is a *sensitivity check*, not
+automatically a justified correction.
+
+**Robustness:** examine whether CM and WF are relatively ordered as
+expected, and whether that ordering and their distance from the average
+change when the polar specification changes. Do not compare absolute
+I values across GSS years without accounting for the different trained
+models, pole sets and response support.
+
+**External calibration still needed:** anchored observations and empirical
+survey strata labelled by polviews/partyid, ideally held out from pole
+design, with monotonicity, group distributions, and uncertainty. A sign
+threshold of zero should not be declared "liberal versus conservative"
+until validated. The 2018 reference poles do NOT themselves include
+polviews or partyid, so an empirical check is particularly important.
+
+No source or pole files are altered by this experiment. Do not redefine
+poles merely to force the reference liberal persona below zero.
