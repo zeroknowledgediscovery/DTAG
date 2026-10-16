@@ -165,3 +165,56 @@ def test_state_level_diagnostics_do_not_count_draws_as_independent_states():
     assert diag["groups"]["negative"]["n_states"] == 2
     assert diag["groups"]["positive"]["mean_signed_change_ci"][0] == pytest.approx(.03)
     assert diag["groups"]["negative"]["mean_signed_change_ci"][0] == pytest.approx(.02)
+
+
+def test_multi_state_validation_writes_auditable_outputs(tmp_path):
+    from types import SimpleNamespace
+    from optimizer.__main__ import validate_and_report
+
+    people = [{"id": "cm", "I0": .12, "direction": 1,
+               "protected_values": {"polviews": "conservative"}},
+              {"id": "wf", "I0": -.14, "direction": -1,
+               "protected_values": {"polviews": "extremely liberal"}}]
+    bank = [{"id": "a", "question": "Question A", "variables": ["qa"], "mapping": "source"},
+            {"id": "b", "question": "Question B", "variables": ["qb"], "mapping": "source"}]
+    cfg = {"participants": {"neutral_band": .005}, "search": {"resp_mode": "draw", "objective": "robust"},
+           "bank": {"source": "map", "mapping": "source"},
+           "validate": {"reps": 3, "states_per_persona": 2, "reps_per_state": 3,
+                        "augment_count": 0, "order_baselines": 0, "seed": 45,
+                        "baselines": 0, "baseline_reps": 2}}
+
+    class Sim:
+        def make_runs(self, persons, reps, seed, **kw):
+            runs = []
+            for i, index in enumerate((.12, -.14)):
+                for state_num in range(2):
+                    for j in range(reps):
+                        runs.append((i, dict(persons[i]["protected_values"]),
+                                     index + (state_num*.01 if i == 0 else -state_num*.01),
+                                     j, f"{i}:{state_num}"))
+            return runs
+
+        def simulate(self, runs, seq_vars, mode, trajectories=False):
+            rows = []
+            for r in runs:
+                change = .02 if r[0] == 0 else -.03
+                path = [r[2] + step*change for step in range(len(seq_vars)+1)]
+                rows.append(path if trajectories else [path[0], path[-1]])
+            return rows
+
+    ctx = SimpleNamespace(
+        cfg=cfg, out=tmp_path, world=SimpleNamespace(text={"qa": "A", "qb": "B"}),
+        log=lambda _: None,
+        manifest=lambda size: {"model": {"key": "gss/gss_2024"},
+                               "map": {"file": "test.csv", "sha256": "000000000000000"},
+                               "poles": {"file": "poles.csv", "items": 2},
+                               "llm": None, "bank_size": size})
+    validate_and_report(ctx, Sim(), people, bank, ["a", "b"], 2, {})
+    report = (tmp_path / "report.md").read_text()
+    assert "Across distinct starting states" in report
+    assert "States=4" in report
+    assert (tmp_path / "per_state.csv").is_file()
+    assert len((tmp_path / "starting_states.jsonl").read_text().splitlines()) == 4
+    result = json.loads((tmp_path / "validation.json").read_text())
+    assert result["summary"]["positive"]["mean_signed_change_ci"][1] > 0
+    assert result["summary"]["negative"]["mean_signed_change_ci"][1] > 0
