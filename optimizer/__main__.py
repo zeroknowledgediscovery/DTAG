@@ -366,7 +366,12 @@ def read_sequence(ctx: Ctx, path: str) -> List[Dict[str, Any]]:
         if not vs:
             if not ctx.client:
                 raise SystemExit(f"{path} has no `variables` column; configure an LLM so DTAG can map the questions.")
-            m = map_question(ctx.world, ctx.client, q, ctx.llm_model, ctx.cfg["dtag"])
+            key = ctx.cache.key("validate_map", sha256(ctx.map_path), q,
+                                ctx.llm_model, ctx.cfg["dtag"])
+            m = ctx.cache.get(key)
+            if m is None:
+                m = map_question(ctx.world, ctx.client, q, ctx.llm_model, ctx.cfg["dtag"])
+                ctx.cache.put(key, m)
             vs, mapping = m["variables"], m["mapping"]
         else:
             mapping = "given"
