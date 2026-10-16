@@ -204,7 +204,7 @@ def create_app(
     @app.get("/api/geography", tags=["models"])
     def geography() -> Dict[str, Any]:
         """Country/continent names understood by DTAG geographic conditioning."""
-        import pipeline as core
+        import dtag_core as core
         return {
             "countries": [c.title() for c in core.list_supported_countries()],
             "continents": core.list_supported_continents(),

@@ -126,7 +126,7 @@ def get_states(world, cached_path=None):
 
 
 def index(world, state, L, R):
-    from pipeline import build_pole_vector, build_full_vector_from_state
+    from dtag_core import build_pole_vector, build_full_vector_from_state
     m = world.m
     sl, sr = (build_pole_vector(m, v, world.ctx.idx_map) for v in (L, R))
     s = build_full_vector_from_state(m, state, world.ctx.idx_map)
@@ -145,7 +145,7 @@ def index(world, state, L, R):
 
 
 def variants(world, waves):
-    from pipeline import load_polar_vectors_csv
+    from dtag_core import load_polar_vectors_csv
     from polar_vectors import load_corrections, resolve_poles
 
     v2L, v2R = dict(world.g.left_map), dict(world.g.right_map)

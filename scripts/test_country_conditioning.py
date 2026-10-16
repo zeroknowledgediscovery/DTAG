@@ -15,7 +15,7 @@ from dtag_paths import model_path
 import numpy as np
 from model_backend import load_model
 
-import pipeline as core
+import dtag_core as core
 import pipeline_localized as localized
 
 

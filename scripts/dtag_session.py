@@ -6,8 +6,8 @@ objects so the command-line pipeline and the web application run the same
 code. The algorithm is a line-for-line port of ``pipeline.main()`` steps
 (persona initialisation, forced year/geography assignments, direct mapping,
 semantic fallback, no-match handling, state updates and ideology geometry);
-the LLM helpers and native-LSM helpers are still the functions defined in
-``pipeline.py``.
+the LLM helpers and native-LSM helpers are the functions in ``dtag_core.py``
+(the library half of the former single-file ``pipeline.py``).
 
 Objects:
 
@@ -35,7 +35,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 import numpy as np
 import pandas as pd
 
-import pipeline as core
+import dtag_core as core
 
 
 # -----------------------------

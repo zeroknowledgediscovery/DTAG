@@ -115,7 +115,7 @@ label matches no category and the answer is treated as **missing**.
 - In GSS 2018 this affects 10 of ~7,150 (item, answer) pairs: `relsprt`, `company`, `esopnot`,
   `MAIND10`, `SPIND10`, `COIND10` and `dofirst`.
 - **Fixed at the source.** `pipeline.py`'s row builders now use object-dtype rows
-  (`pipeline.blank_row`). That fixes the web app (`DTAGSession` uses these builders for the
+  (`dtag_core.blank_row`, then in `pipeline.py`). That fixes the web app (`DTAGSession` uses these builders for the
   poles, the ideology state and the conditioning state), the optimizer and every script. A test
   checks it: `webapp/tests/test_pipeline_rows.py`. Web-session results change only for sessions
   that hold one of these long answers, and there they are now correct.

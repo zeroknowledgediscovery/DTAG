@@ -2,7 +2,8 @@
 """Canonical DTAG pipeline entry point with deterministic geographic conditioning.
 
 This module wraps ``pipeline.py`` rather than duplicating it. It replaces only
-``build_forced_assignments`` before calling the core main function.
+``build_forced_assignments`` (in dtag_core, which pipeline.py and DTAGSession both read at call
+time) before calling the core main function.
 
 Country conditioning order:
 1. If a qnet has a categorical country feature whose allowed support contains the
@@ -17,7 +18,7 @@ import re
 from collections import OrderedDict
 from typing import Dict, List, Optional, Set, Tuple
 
-import pipeline as core
+import dtag_core as core
 
 
 _ORIGINAL_BUILD_FORCED_ASSIGNMENTS = core.build_forced_assignments
@@ -249,4 +250,6 @@ core.build_forced_assignments = build_forced_assignments
 
 
 if __name__ == '__main__':
-    core.main()
+    import pipeline
+
+    pipeline.main()

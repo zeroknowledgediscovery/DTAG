@@ -291,7 +291,7 @@ def make_llm(cfg: Dict[str, Any]) -> LLM:
 
 
 class DTAGClient:
-    """OpenAI-shaped adapter so DTAG's core (``scripts/pipeline.py``) can use any backend."""
+    """OpenAI-shaped adapter so DTAG's core (``scripts/dtag_core.py``) can use any backend."""
 
     def __init__(self, llm: LLM):
         self.llm = llm
