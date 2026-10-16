@@ -218,3 +218,43 @@ def test_multi_state_validation_writes_auditable_outputs(tmp_path):
     result = json.loads((tmp_path / "validation.json").read_text())
     assert result["summary"]["positive"]["mean_signed_change_ci"][1] > 0
     assert result["summary"]["negative"]["mean_signed_change_ci"][1] > 0
+
+
+
+def test_four_way_regime_classification_without_model(tmp_path):
+    """Audit is strictly post hoc: use fabricated saved trajectories, no searches."""
+    import numpy as np
+    from optimizer.four_way_audit import analyze, QUADRANTS
+
+    assert set(QUADRANTS.values()) == {"divergence", "convergence",
+                                       "positive_translation", "negative_translation"}
+    for directions, regime in [
+        ((1, -1), "divergence"), ((1, 1), "positive_translation"),
+        ((-1, -1), "negative_translation"), ((-1, 1), "convergence")]:
+        folder = tmp_path / regime
+        folder.mkdir()
+        trajectories, initial, ids = [], [], []
+        for group, value in enumerate((.12, -.12)):
+            for state in range(6):
+                offset = .001*state if group == 0 else -.001*state
+                i0 = value + offset
+                for draw in range(4):
+                    # Nonzero state-level variation keeps the interval finite.
+                    change = .02*directions[group] + .00005*(state-2)
+                    trajectories.append([i0, i0+change])
+                    initial.append(i0)
+                    ids.append(f"{group}:{state}")
+        np.savez_compressed(folder / "validation_trajectories.npz",
+                            trajectories=np.asarray(trajectories),
+                            initial_ideology=np.asarray(initial),
+                            state_id=np.asarray(ids))
+        result = analyze(folder, seed=1, nboot=500)
+        assert result["observed_regime"] == regime
+        assert result["status"] == "supported_by_state_bootstrap"
+        assert result["n_states"] == 12
+
+
+def test_four_way_missing_files_not_mislabeled(tmp_path):
+    from optimizer.four_way_audit import analyze
+    assert analyze(tmp_path)["status"] == "missing_validation"
+    assert "observed_regime" not in analyze(tmp_path)
