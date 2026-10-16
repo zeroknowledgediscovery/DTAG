@@ -305,9 +305,9 @@ Descriptions refer to *model-inferred ideology-index changes*, not belief change
 **Archiving:** outputs are intentionally excluded by .gitignore. Preserve the
 ten-question run separately before making changes, for example:
 
-    tar -czf gss2024_cm_wf_robust_results.tar.gz \
+    tar -czf ../gss2024_cm_wf_robust_results.tar.gz \
       outputs/optimizer/gss2024_cm_wf_robust
-    sha256sum gss2024_cm_wf_robust_results.tar.gz
+    sha256sum ../gss2024_cm_wf_robust_results.tar.gz
 
 Do not label a four-way collection "complete under the current protocol" until
 all four validation outputs exist and have been checked for mapping/anchor integrity.
