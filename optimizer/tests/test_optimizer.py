@@ -258,3 +258,35 @@ def test_four_way_missing_files_not_mislabeled(tmp_path):
     from optimizer.four_way_audit import analyze
     assert analyze(tmp_path)["status"] == "missing_validation"
     assert "observed_regime" not in analyze(tmp_path)
+
+
+
+def test_multiyear_regime_inventory_reads_preexisting_results(tmp_path):
+    from optimizer.multiyear_regime_summary import inventory
+
+    root = tmp_path / "results"
+    run = root / "independent_candidate"
+    run.mkdir(parents=True)
+    (run / "manifest.json").write_text(json.dumps({"model": {"key": "gss/gss_2016"}}))
+    t, starts, ids = [], [], []
+    for side, base in ((1, .15), (-1, -.15)):
+        for j in range(6):
+            x = base + side * .001 * j
+            for _ in range(5):
+                t.append([x, x + side * .015 + .00001 * j])
+                starts.append(x)
+                ids.append(f"{side}:{j}")
+    np.savez_compressed(run / "validation_trajectories.npz",
+                        trajectories=np.asarray(t), initial_ideology=np.asarray(starts),
+                        state_id=np.asarray(ids))
+    out = tmp_path / "summary"
+    summary = inventory(root, out, years=(2016, 2018, 2024), target_per_cell=3,
+                        bootstrap=400)
+    by_cell = {(row["year"], row["category"]): row for row in summary["coverage"]}
+    assert by_cell[(2016, "+-")]["confirmed_runs"] == 1
+    assert by_cell[(2016, "+-")]["gap"] == 2
+    assert by_cell[(2018, "++")]["confirmed_runs"] == 0
+    assert len(summary["runs"]) == 1
+    assert (out / "summary.json").is_file()
+    assert (out / "coverage_matrix.csv").is_file()
+    assert (out / "README.md").is_file()
