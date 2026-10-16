@@ -49,6 +49,7 @@ Outputs:
 - multiyear_audit/README.md: readable 3-year by 4-regime coverage matrix.
 - multiyear_audit/coverage_matrix.csv: confirmed counts and gaps to the
   reporting target of 3 for each of 12 year/regime cells.
+- multiyear_audit/skipped_runs.csv: incompatible old archives and explicit skip reasons.
 - multiyear_audit/observed_runs.csv: one row per evaluated saved run, with
   observed sign regime, group raw changes, intervals, states, trajectories,
   and 0-to-10 **evidence quality**, not persuasion efficacy.
@@ -82,6 +83,30 @@ A previously run validation directory should contain:
 
 The trajectory file is the required analysis input; manifest.json must record
 model.key = gss/gss_2016, gss/gss_2018, or gss/gss_2024.
+
+### Legacy archive compatibility
+
+A complete trajectory archive contains `trajectories`, `initial_ideology`,
+and `state_id` arrays. Some older versions omitted `initial_ideology`.
+When `trajectories` is an (n_runs, n_steps+1) matrix, its first column
+is the recorded starting ideology, so the audit recovers this exactly from
+`trajectories[:, 0]` and records `initial_ideology_source` in its output.
+
+An archive **without `state_id`** cannot establish which response draws
+share an initialized state. Such an archive is **skipped** rather than
+incorrectly treating draws as independent state clusters. Unsupported or
+invalid files are listed in `skipped_runs.csv` and `summary.json`,
+including the filename, missing keys and available keys when known.
+Scanning continues; unrelated old files will not crash the inventory.
+
+To inspect keys in any local archive directly:
+
+    python -c "import numpy as np; p='outputs/optimizer/example/validation_trajectories.npz'; a=np.load(p, allow_pickle=False); print(a.files)"
+
+If an archive is skipped because `state_id` is missing, use a newer
+validation run that saves distinct starting-state IDs. The inventory does
+not invent those identities.
+
 Some older runs lack the full set of files; this is reflected in provenance
 quality. The stored native model and exact question mapping affect comparability.
 
