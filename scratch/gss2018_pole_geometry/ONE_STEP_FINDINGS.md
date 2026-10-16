@@ -114,12 +114,13 @@ label matches no category and the answer is treated as **missing**.
 
 - In GSS 2018 this affects 10 of ~7,150 (item, answer) pairs: `relsprt`, `company`, `esopnot`,
   `MAIND10`, `SPIND10`, `COIND10` and `dofirst`.
-- The optimizer and the reference enumeration now build rows without truncation
-  (`optimizer.one_step_geometry.state_row`), and `one_step_results/` was regenerated.
-- Only those 9–10 rows per persona changed, by at most 0.0098 in Δ. Summary statistics moved
-  in the third decimal.
-- `pipeline.py` itself is unchanged. It is shared with the web app, so fixing it there is a
-  separate decision.
+- **Fixed at the source.** `pipeline.py`'s row builders now use object-dtype rows
+  (`pipeline.blank_row`). That fixes the web app (`DTAGSession` uses these builders for the
+  poles, the ideology state and the conditioning state), the optimizer and every script. A test
+  checks it: `webapp/tests/test_pipeline_rows.py`. Web-session results change only for sessions
+  that hold one of these long answers, and there they are now correct.
+- `one_step_results/` was regenerated with corrected rows. Only those 9–10 rows per persona
+  changed, by at most 0.0098 in Δ, and summary statistics moved in the third decimal.
 
 ## Not done / next
 

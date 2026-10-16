@@ -194,19 +194,9 @@ def one_step_geometry(state: Mapping[str, str], candidates: Mapping[str, Sequenc
 # --------------------------------------------------------------------------- native adapters
 
 def state_row(world, state: Mapping[str, str]):
-    """Full model row for a partial state, without truncating labels.
-
-    pipeline.build_full_vector_from_state / build_NULL_with_assignments use a fixed-width
-    numpy 'U100' array, which silently cuts labels longer than 100 characters; the cut label then
-    matches no category and is treated as MISSING (10 of 7,149 GSS 2018 item/answer pairs).
-    """
-    import numpy as np
-    x = np.full(len(world.m.feature_names), "", dtype=object)
-    for v, a in state.items():
-        j = world.ctx.idx_map.get(v)
-        if j is not None:
-            x[j] = str(a)
-    return x
+    """Full model row for a partial state (labels of any length; see pipeline.blank_row)."""
+    import pipeline as core
+    return core.build_full_vector_from_state(world.m, dict(state), world.ctx.idx_map)
 
 
 def strict_native_index(world, state: Mapping[str, str]) -> float:
