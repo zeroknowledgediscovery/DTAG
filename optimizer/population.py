@@ -48,12 +48,21 @@ def prepare(world: World, people: List[Dict[str, Any]], decode: str, client: Any
             run: Dict[str, Any], cache: JsonCache, neutral_band: float, default_country: Optional[str],
             default_year: Optional[int], log=print, protect_mapped: bool = True,
             core_variables: Optional[List[str]] = None,
-            require_both_signs: bool = True) -> List[Dict[str, Any]]:
+            require_both_signs: bool = True,
+            index_origin: str = "native") -> List[Dict[str, Any]]:
     """Resolve persona text to actual model labels. Protect decoded assignments by default.
 
     Optional expected-state references audit the LLM decode against the historical asset.
     Disagreement on the political core is fatal; other differences are logged and reported.
     """
+    from .ideology_coordinates import empty_state_offset
+
+    if index_origin not in ("native", "empty"):
+        raise ValueError(f"Unknown ideology index origin {index_origin!r}")
+    offset = empty_state_offset(world) if index_origin == "empty" else 0.0
+    if index_origin == "empty":
+        log(f"  ideology coordinate: I(x)-I(empty); I(empty)={offset:+.5f}; "
+            f"neutral_band=±{neutral_band:g}")
     out = []
     core = list(core_variables or ["polviews", "partyid"])
     map_hash = sha256(Path(world.map_path))
@@ -108,29 +117,37 @@ def prepare(world: World, people: List[Dict[str, Any]], decode: str, client: Any
             raise SystemExit(
                 f"participant {p['id']}: expected all core anchors protected, "
                 f"missing {sorted(set(core) - set(protected))}")
-        index = world.I(valid)
+        raw_index = float(world.I(valid))
+        index = raw_index - offset
         direction = 0 if abs(index) < neutral_band else (1 if index > 0 else -1)
         out.append({**p, "state": valid, "protected": protected,
                     "protected_values": {k: valid[k] for k in protected},
                     "expected_mismatches": mismatches, "state_source": source,
                     "dropped": dropped + invalid, "decode_rationale": rationale,
-                    "I0": index, "direction": direction})
-        log(f"  {p['id']:34s} I0={index:+.4f} group={direction:+d} "
-            f"vars={len(valid)} protected={len(protected)} ({source})")
+                    "I_raw": raw_index, "I0": index, "I_empty": offset,
+                    "index_origin": index_origin, "direction": direction})
+        if index_origin == "empty":
+            log(f"  {p['id']:34s} I_raw={raw_index:+.5f} "
+                f"I_centered={index:+.5f} group={direction:+d} "
+                f"vars={len(valid)} protected={len(protected)} ({source})")
+        else:
+            log(f"  {p['id']:34s} I0={index:+.4f} group={direction:+d} "
+                f"vars={len(valid)} protected={len(protected)} ({source})")
     groups = {d: sum(p["direction"] == d for p in out) for d in (1, -1, 0)}
     if not groups[1] or not groups[-1]:
         details = "; ".join(
             f"{p['id']}: I0={p['I0']:+.5f}, "
             + ", ".join(f"{k}={p['state'].get(k)!r}" for k in core)
             for p in out)
-        message = (f"Starting-sign coverage for wave model is insufficient: "
+        axis = "centered I(x)-I(empty)" if index_origin == "empty" else "raw I(x)"
+        message = (f"Starting-sign coverage is insufficient using {axis}: "
                    f"groups={groups}. {details}. "
-                   f"Check year-specific pole geometry and persona decoding; "
-                   f"political self-labels do not guarantee opposite LSM index signs.")
+                   f"Check wave-specific pole geometry and persona decoding; "
+                   f"political labels do not guarantee opposite model-index signs.")
         if require_both_signs:
             raise SystemExit(message)
-        log(f"  WARNING: {message} Results cannot be classified into a two-sign "
-            f"quadrant unless perturbed starting states populate both groups.")
+        log(f"  WARNING: {message} Two-sign classification requires both "
+            f"groups among the sampled starting states.")
     return out
 
 
