@@ -20,17 +20,26 @@ from typing import Any, Callable, Dict, List, Sequence, Tuple
 import numpy as np
 
 
-def group_stats(participants: List[Dict[str, Any]], runs, finals: Sequence[Sequence[float]], k: int = -1) -> Dict[str, Any]:
-    """Signed change after k questions (default: all), per group."""
+def run_direction(run, neutral_band: float = 0.005) -> int:
+    """Direction of the ACTUAL starting state, not the unperturbed persona."""
+    value = float(run[2])
+    return 0 if abs(value) < neutral_band else (1 if value > 0 else -1)
+
+
+def group_stats(participants: List[Dict[str, Any]], runs, finals: Sequence[Sequence[float]],
+                k: int = -1, neutral_band: float = 0.005) -> Dict[str, Any]:
+    """Signed change grouped by the ideology sign after starting-state perturbation."""
     out: Dict[str, Any] = {}
     for g, name in ((1, "positive"), (-1, "negative")):
-        x = np.array([g * (f[k] - f[0]) for (i, _, _, _), f in zip(runs, finals) if participants[i]["direction"] == g])
+        x = np.array([g * (f[k] - f[0]) for r, f in zip(runs, finals)
+                      if run_direction(r, neutral_band) == g])
         n = len(x)
         mean = float(x.mean()) if n else float("nan")
         sd = float(x.std(ddof=1)) if n > 1 else float("nan")
         se = sd / math.sqrt(n) if n > 1 else float("nan")
-        out[name] = {"n": n, "mean_signed_change": mean, "sd": sd,
-                     "t": mean / se if n > 1 and se > 0 else (math.inf if mean > 0 else -math.inf if mean < 0 else 0.0),
+        t = mean / se if n > 1 and se > 0 else (
+            math.inf if n and mean > 0 else -math.inf if not n or mean < 0 else 0.0)
+        out[name] = {"n": n, "mean_signed_change": mean, "sd": sd, "t": t,
                      "share_outward": float((x > 0).mean()) if n else float("nan")}
     return out
 
@@ -41,15 +50,17 @@ def objective(stats: Dict[str, Any], kind: str = "robust") -> float:
 
 
 class Searcher:
-    def __init__(self, sim, participants, bank: List[Dict[str, Any]], mode: str, kind: str, log: Callable = print):
+    def __init__(self, sim, participants, bank: List[Dict[str, Any]], mode: str, kind: str, log: Callable = print,
+                 neutral_band: float = 0.005):
         self.sim, self.people, self.bank, self.mode, self.kind, self.log = sim, participants, bank, mode, kind, log
         self.by_id = {q["id"]: q for q in bank}
         self.evals = 0
+        self.neutral_band = neutral_band
 
     def score(self, ids: List[str], runs) -> Tuple[float, Dict[str, Any]]:
         self.evals += 1
         finals = self.sim.simulate(runs, [self.by_id[i]["variables"] for i in ids], self.mode)
-        st = group_stats(self.people, runs, finals)
+        st = group_stats(self.people, runs, finals, neutral_band=self.neutral_band)
         return objective(st, self.kind), st
 
     def screen(self, runs, pool: int, per_group: int) -> Tuple[List[str], List[Dict[str, Any]]]:
@@ -117,7 +128,7 @@ class Searcher:
         finals = self.sim.simulate(runs, [self.by_id[i]["variables"] for i in seq], self.mode, trajectories=True)
         rows = []
         for L in range(1, len(seq) + 1):
-            st = group_stats(self.people, runs, finals, k=L)
+            st = group_stats(self.people, runs, finals, k=L, neutral_band=self.neutral_band)
             rows.append({"length": L, "objective": objective(st, self.kind),
                          "t_positive": st["positive"]["t"], "t_negative": st["negative"]["t"]})
         eligible = [r for r in rows if r["length"] >= min_length] or rows
