@@ -31,6 +31,10 @@ from . import population
 from .__main__ import Ctx, DEFAULTS, merge
 from .dtag_bridge import REPO
 from .four_way_audit import analyze
+from .ideology_coordinates import (
+    COORDINATE, empty_state_offset,
+    recenter_runs_and_trajectories, centered_persona_diagnostics,
+)
 
 YEARS = (2016, 2018, 2024)
 TYPES = ("++", "+-", "-+", "--")
@@ -232,7 +236,8 @@ def write_library_index(root, records):
     """One human-readable row per attempt. Never counts specifications as sets."""
     columns = ["run_id", "year", "requested_label", "observed_label",
                "confirmed", "quality_score", "robust_z", "actual_length",
-               "freezeinit", "status", "candidate_sha256", "sequence_file", "error"]
+               "freezeinit", "index_coordinate", "empty_state_index",
+               "status", "candidate_sha256", "sequence_file", "error"]
     file = root / "library.csv"
     temporary = file.with_name(file.name + ".tmp")
     with temporary.open("w", newline="", encoding="utf-8") as handle:
@@ -255,6 +260,12 @@ def run_once(args):
     root = Path(args.library).expanduser().resolve()
     with exclusive_library(root):
         records = load_attempts(root)
+        for old in records:
+            if old.get("index_coordinate") != COORDINATE:
+                raise ValueError(
+                    f"Library {root} contains legacy/mixed index origins. "
+                    "Use the new default empty-centered library. "
+                    "Do not delete historical trajectories to reinterpret them.")
         number = len(records) + 1
         run_id = f"{number:05d}"
         folder = root / "attempts" / run_id
@@ -263,6 +274,7 @@ def run_once(args):
         record = {"run_id": run_id, "year": args.year, "requested_label": args.type,
                   "seed": seed, "freezeinit": args.freezeinit,
                   "min_length": minlen, "max_length": maxlen,
+                  "index_coordinate": COORDINATE,
                   "status": "started", "folder": str(folder)}
         records.append(record)
         atomic_json(root / "library.json", {"schema": 1, "attempts": records})
@@ -280,6 +292,12 @@ def run_once(args):
             # and per-user model cache as the DTAG web app.
             ctx = Ctx(config, need_llm=not base_file.is_file())
             try:
+                empty_offset = empty_state_offset(ctx.world)
+                record["empty_state_index"] = empty_offset
+                record["poles_sha256"] = ctx.world.poles_summary()["sha256"]
+                record["map_sha256"] = __import__(
+                    "optimizer.dtag_bridge", fromlist=["sha256"]
+                ).sha256(ctx.map_path)
                 if base_file.is_file():
                     base_people = json.loads(base_file.read_text(encoding="utf-8"))
                     # Fail closed if a cache predates the two-anchor invariant.
@@ -306,6 +324,16 @@ def run_once(args):
                     p["protected"] = fixed
                     p["protected_values"] = {k: p["state"][k] for k in fixed}
                 bank = ctx.bank(people=base_people)
+                centered = centered_persona_diagnostics(base_people, empty_offset)
+                atomic_json(folder / "initial_index_comparison.json", {
+                    "coordinate": COORDINATE, "empty_state_index": empty_offset,
+                    "poles": ctx.world.poles_summary(), "personas": centered,
+                    "warning": "Changing origin cannot alter any within-state movement."})
+                for row in centered:
+                    print(f"  CENTERED {row['persona']}: "
+                          f"raw={row['I_raw']:+.5f}, "
+                          f"I_minus_empty={row['I_centered']:+.5f}, "
+                          f"group={row['starting_sign']:+d}", flush=True)
             finally:
                 ctx._logf.close()
             existing = {r.get("candidate_sha256") for r in records if r.get("candidate_sha256")}
@@ -351,7 +379,8 @@ def run_once(args):
                                 pilot_paths = pilot.simulate(
                                     pilot_runs, [[q["id"]] for q in candidate],
                                     "draw", trajectories=True)
-                                pilot_starts = np.asarray([r[2] for r in pilot_runs], dtype=float)
+                                pilot_starts = np.asarray(
+                                    [r[2] - empty_offset for r in pilot_runs], dtype=float)
                                 chosen_length = choose_length(
                                     pilot_paths, pilot_starts, minlen,
                                     args.plateau_tolerance, args.plateau_window)
@@ -363,6 +392,8 @@ def run_once(args):
                                     "seed": seed + 999999,
                                     "n_pilot_draws": len(pilot_runs),
                                     "rule": "sign-neutral plateau of mean incremental index changes",
+                                    "index_coordinate": COORDINATE,
+                                    "empty_state_index": empty_offset,
                                     "independent_of_validation": True})
                             finally:
                                 pilot.close()
@@ -379,15 +410,21 @@ def run_once(args):
                             "draw", trajectories=True)
                     finally:
                         simulation.close()
-                    i0 = np.asarray([r[2] for r in runs], dtype=float)
-                    used = np.asarray(trajectory)
+                    centered_runs, used = recenter_runs_and_trajectories(
+                        runs, trajectory, empty_offset)
+                    i0 = np.asarray([r[2] for r in centered_runs], dtype=float)
                     np.savez_compressed(
                         subdir / "validation_trajectories.npz", trajectories=used,
+                        index_coordinate=np.asarray(COORDINATE),
+                        empty_state_index=np.asarray(empty_offset),
                         initial_ideology=i0,
-                        state_id=np.asarray([r[4] for r in runs]),
-                        participant=np.asarray([r[0] for r in runs]))
-                    save_state_rows(subdir / "per_state.csv", runs, trajectory, chosen_length)
-                    atomic_json(subdir / "manifest.json", subctx.manifest(len(candidate)))
+                        state_id=np.asarray([r[4] for r in centered_runs]),
+                        participant=np.asarray([r[0] for r in centered_runs]))
+                    save_state_rows(subdir / "per_state.csv", centered_runs, used, chosen_length)
+                    manifest = subctx.manifest(len(candidate))
+                    manifest["index_coordinate"] = COORDINATE
+                    manifest["empty_state_index"] = empty_offset
+                    atomic_json(subdir / "manifest.json", manifest)
                     result = analyze(subdir, seed=seed + spec)
                     outputs.append({"specification": spec, "analysis": result})
                     atomic_json(subdir / "analysis.json", result)
@@ -460,7 +497,9 @@ def main(argv=None):
     parser.add_argument("--specifications", type=int, default=5)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--seed", type=int)
-    parser.add_argument("--library", default="outputs/optimizer/sequence_library")
+    parser.add_argument("--library",
+                        default="outputs/optimizer/sequence_library_empty_centered_v1",
+                        help="new center-origin namespace; never mix with legacy raw-index runs")
     args = parser.parse_args(argv)
     if args.states < 5 or args.draws < 1 or args.specifications < 2:
         parser.error("Require states >= 5, draws >= 1 and specifications >= 2")
