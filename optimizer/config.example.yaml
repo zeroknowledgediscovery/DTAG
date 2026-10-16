@@ -18,7 +18,7 @@ llm:
   provider: openai             # OpenAI or any OpenAI-compatible server
   model: gpt-4.1-mini
   # base_url: http://localhost:11434/v1   # Ollama / vLLM / LM Studio / OpenRouter / Together / Groq / Azure
-  # api_key_env: OPENAI_API_KEY           # name of the environment variable holding the key
+  api_key_env: OPENAI_API_KEY           # name of the environment variable holding the key
 
 # llm:
 #   provider: anthropic
