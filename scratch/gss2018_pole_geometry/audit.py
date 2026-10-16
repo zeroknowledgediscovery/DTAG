@@ -229,12 +229,19 @@ def run_native(out, static, waves, args):
         ordered = [r for r in sweep if r["variable"] == anchor
                    and r["variant"] == "2018_v2_all"]
         actual = [r["index"] for r in ordered]
-        reversals = sum(actual[i] > actual[j]
-                        for i in range(len(actual))
-                        for j in range(i+1, len(actual)))
-        sweep_diagnostics[anchor]["pairwise_monotonicity_reversals_v2"] = reversals
-        sweep_diagnostics[anchor]["n_pairwise_comparisons"] = (
-            len(actual) * (len(actual)-1) // 2)
+        pairs_checked = [(actual[j] - actual[i]) for i in range(len(actual))
+                         for j in range(i+1, len(actual))]
+        concordant = sum(delta > 1e-10 for delta in pairs_checked)
+        discordant = sum(delta < -1e-10 for delta in pairs_checked)
+        tied = len(pairs_checked) - concordant - discordant
+        sweep_diagnostics[anchor]["pairwise_monotonicity_reversals_v2"] = discordant
+        sweep_diagnostics[anchor]["n_pairwise_comparisons"] = len(pairs_checked)
+        sweep_diagnostics[anchor]["concordant"] = concordant
+        sweep_diagnostics[anchor]["discordant"] = discordant
+        sweep_diagnostics[anchor]["ties"] = tied
+        sweep_diagnostics[anchor]["concordance_ties_half_credit"] = (
+            (concordant + 0.5 * tied) / len(pairs_checked)
+            if pairs_checked else None)
     output_csv(out / "anchor_monotonicity.csv", sweep,
                ["variable", "response_label", "order_liberal_to_conservative",
                 "variant", "index", "minus_empty_same_pole"])
