@@ -165,13 +165,17 @@ export function SequenceCard({
   return (
     <div className="box seq-card">
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 6 }}>
-        <b>Question sequence{seq.name ? ` · ${seq.name}` : ""}</b>
+        <b>
+          {seq.kind === "ideology_push"
+            ? `Ideology push ${seq.direction === "up" ? "↑ toward R pole" : "↓ toward L pole"}`
+            : `Question sequence${seq.name ? ` · ${seq.name}` : ""}`}
+        </b>
         <span className={`badge ${seq.status === "done" ? "b-direct" : seq.status === "error" ? "b-nomatch" : "b-neutral"}`}>
           {running && <span className="spinner" />} {seq.status}
         </span>
       </div>
       <div className="note">
-        {seq.completed}/{seq.total} questions
+        {seq.completed}/{seq.total} {seq.kind === "ideology_push" ? "steps" : "questions"}
         {seq.first_query_idx !== null && seq.completed > 0 ? ` (Q${seq.first_query_idx}–Q${last})` : ""} · {seq.elapsed_seconds.toFixed(0)} s
         {seq.reset_first ? " · started from a reset respondent" : ""}
       </div>
@@ -184,6 +188,7 @@ export function SequenceCard({
         </button>
       )}
       {seq.error && <div className="error">{seq.error}</div>}
+      {seq.stop_reason && <div className="note">Stopped early: {seq.stop_reason}</div>}
 
       {ide.enabled ? (
         <>

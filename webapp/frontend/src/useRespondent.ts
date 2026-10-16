@@ -5,6 +5,8 @@ import type {
   ModelStatus,
   Overrides,
   Profile,
+  PushSuggestion,
+  PushSuggestions,
   QuestionResult,
   Recommendation,
   SequenceStatus,
@@ -115,6 +117,12 @@ export function useRespondent(opts: {
   const [error, setError] = useState<string | null>(null);
   const [seq, setSeq] = useState<SequenceStatus | null>(null);
   const seqTimer = useRef<number | null>(null);
+  const [push, setPush] = useState<PushSuggestions | null>(null);
+  const [pushLoading, setPushLoading] = useState(false);
+  const [pushPoles, setPushPoles] = useState(false);
+  const pushPolesRef = useRef(false);
+  pushPolesRef.current = pushPoles;
+  const pushReq = useRef(0);
 
   const presetProfile = profiles.find((p) => p.name === preset);
 
@@ -232,8 +240,20 @@ export function useRespondent(opts: {
     };
   }, [effectiveKey, load]);
 
-  const refreshSuggestions = (sid: string) =>
+  const refreshPush = (sid: string, includePoles = pushPolesRef.current) => {
+    const req = ++pushReq.current;
+    setPushLoading(true);
+    api
+      .ideologyPush(sid, includePoles)
+      .then((p) => req === pushReq.current && setPush(p))
+      .catch((e) => req === pushReq.current && setPush({ enabled: false, reason: String(e.message || e), up: null, down: null }))
+      .finally(() => req === pushReq.current && setPushLoading(false));
+  };
+
+  const refreshSuggestions = (sid: string) => {
     api.suggestions(sid).then(setSuggestions).catch(() => setSuggestions([]));
+    refreshPush(sid);
+  };
 
   const start = async () => {
     if (!request || !effectiveKey) return;
@@ -251,6 +271,7 @@ export function useRespondent(opts: {
       setSession(s);
       setHistory([]);
       setSeq(null);
+      setPush(null);
       refreshSuggestions(s.session_id);
     } catch (e) {
       setError(String((e as Error).message));
@@ -326,6 +347,45 @@ export function useRespondent(opts: {
   const seqRunning =
     seq !== null && (seq.status === "queued" || seq.status === "running") && seq.session_id === session?.session_id;
 
+  /** Ask an ideology-push suggestion; it is answered through exactly its survey item. */
+  const askPush = async (s: PushSuggestion) => {
+    if (!session) return;
+    setPending(s.question);
+    setError(null);
+    setPush(null);
+    try {
+      const r = await api.pushAsk(session.session_id, { variable: s.variable, question: s.question, direction: s.direction });
+      setHistory((h) => [...h, r]);
+      setSession(await api.session(session.session_id));
+      refreshSuggestions(session.session_id);
+    } catch (e) {
+      setError(String((e as Error).message));
+      refreshPush(session.session_id);
+    } finally {
+      setPending(null);
+    }
+  };
+
+  const setPushPolesAndRefresh = (v: boolean) => {
+    setPushPoles(v);
+    if (session) refreshPush(session.session_id, v);
+  };
+
+  /** Push the index up/down for `steps` questions; runs as a background sequence job. */
+  const runAutoPush = async (direction: "up" | "down", steps: number) => {
+    if (!session) return;
+    setError(null);
+    setPush(null);
+    try {
+      const st = await api.autoPush(session.session_id, { direction, steps, include_pole_items: pushPoles });
+      setSeq({ ...st, results: [] });
+      pollSequence(session.session_id, 0);
+    } catch (e) {
+      setError(String((e as Error).message));
+      refreshPush(session.session_id);
+    }
+  };
+
   const reset = async () => {
     if (!session) return;
     try {
@@ -353,6 +413,8 @@ export function useRespondent(opts: {
     start, ask, reset,
     // sequences
     seq, seqRunning, runSequence, cancelSequence,
+    // ideology push (one-step optimizer)
+    push, pushLoading, pushPoles, setPushPoles: setPushPolesAndRefresh, askPush, runAutoPush,
     busy, modelBusy,
   };
 }

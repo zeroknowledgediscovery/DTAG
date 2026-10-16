@@ -5,6 +5,7 @@ import { Section, type Geography } from "./components/Controls";
 import { ProfileBuilder } from "./components/ProfileBuilder";
 import { RespondentSetup } from "./components/RespondentSetup";
 import { SequenceCard, SequenceDialog } from "./components/Sequence";
+import { IdeologyPush } from "./components/IdeologyPush";
 import { IdeologyCompare, StatePanel } from "./components/StatePanel";
 import type { CountryInfo, EBWave, ModelRecord, Profile, Readiness } from "./types";
 import { useModelLoader, useRespondent, type Respondent } from "./useRespondent";
@@ -53,6 +54,24 @@ function ReadinessBar({ r, onRefresh }: { r: Readiness | null; onRefresh: () => 
         refresh
       </button>
     </div>
+  );
+}
+
+/** One-step optimizer suggestions for a respondent whose survey has an ideology index. */
+function pushPanel(r: Respondent) {
+  if (!r.session || !r.session.ideology.enabled) return null;
+  return (
+    <Section title="Next question · ideology push">
+      <IdeologyPush
+        push={r.push}
+        loading={r.pushLoading}
+        includePoles={r.pushPoles}
+        onIncludePoles={r.setPushPoles}
+        disabled={r.busy}
+        onAsk={r.askPush}
+        onAuto={r.runAutoPush}
+      />
+    </Section>
   );
 }
 
@@ -374,12 +393,16 @@ export default function App() {
               </div>
               {pair.map(([r, sl]) => (
                 <div key={sl.id} hidden={tab !== sl.id}>
+                  {pushPanel(r)}
                   <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} label={sl.id} />
                 </div>
               ))}
             </>
           ) : (
-            <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix} />
+            <>
+              {pushPanel(A)}
+              <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix} />
+            </>
           )}
         </div>
       </div>

@@ -259,6 +259,16 @@ export function ChatLog({
             <div className={`msg-a ${cls}`}>
               <div className="meta">
                 <span className={`badge ${mappingBadge(r.mapping.label)}`}>{r.mapping.label}</span>
+                {r.push && (
+                  <span
+                    className="badge b-push"
+                    title={`Ideology push: asked through survey item ${r.push.variable}; predicted ${fmtSigned(
+                      r.push.predicted_modal_delta
+                    )} (modal answer), realized ${fmtSigned(r.push.realized_delta)}`}
+                  >
+                    PUSH {r.push.direction === "up" ? "↑" : r.push.direction === "down" ? "↓" : ""}
+                  </span>
+                )}
                 <span className={`badge ${r.state_changed ? "b-neutral" : "b-muted"}`}>
                   {r.state_changed ? "STATE CHANGED" : "STATE UNCHANGED"}
                 </span>
