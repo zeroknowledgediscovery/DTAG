@@ -263,7 +263,7 @@ def validate_and_report(ctx: Ctx, sim: Simulator, people, bank, seq: List[str], 
         baseline_rows, baseline_summary = baselines(
             sim, people, bank, length, int(v["baselines"]), int(v["baseline_reps"]),
             int(v["seed"]) + 1, cfg["search"]["resp_mode"], cfg["search"]["objective"],
-            seq[:length], neutral_band=band)
+            seq[:length], neutral_band=band, validation_runs=runs)
         ctx.log(f"  random-bank percentile by objective: {baseline_summary['percentile_objective']:.0%}")
     order_rows = order_controls(sim, people, runs, bank, seq[:length],
                                 int(v.get("order_baselines", 0)), cfg["search"]["resp_mode"],
