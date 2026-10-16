@@ -402,3 +402,99 @@ def test_local_library_writes_append_index_with_failed_records(tmp_path):
     assert rows[0]["observed_label"] == "++"
     assert rows[1]["status"] == "failed"
     assert rows[1]["error"] == "missing model"
+
+
+
+def test_crosswave_source_personas_pin_two_core_anchors(tmp_path):
+    from optimizer.sequence_library_runner import plain_source_personas
+    from optimizer.population import load
+
+    config = tmp_path / "source_personas.yaml"
+    plain_source_personas(config)
+    people = load(str(config))
+    assert len(people) == 2
+    for person in people:
+        assert person["state"] == {}  # other assignments remain LLM-dependent
+        assert set(("polviews", "partyid")) <= set(person["core_expected"])
+    assert people[0]["core_expected"]["polviews"] == "conservative"
+    assert people[1]["core_expected"]["partyid"] == "strong democrat"
+
+
+def test_pin_core_anchors_overrides_incomplete_or_incorrect_decoder(tmp_path):
+    from types import SimpleNamespace
+    from optimizer.population import prepare
+    from optimizer.dtag_bridge import JsonCache
+
+    mapfile = tmp_path / "fake_map.csv"
+    mapfile.write_text("variable,question\npolviews,views\npartyid,party\n")
+    possible = {"polviews": ["conservative", "extremely liberal"],
+                "partyid": ["strong republican", "strong democrat"],
+                "degree": ["college"]}
+    class FakeWorld:
+        map_path = str(mapfile)
+        model_path = str(tmp_path / "fake_model")
+        ctx = SimpleNamespace(possible=possible,
+                              idx_map={key: n for n, key in enumerate(possible)})
+        def valid(self, values):
+            accepted = {k: v for k, v in values.items() if v in possible.get(k, [])}
+            return accepted, [k for k in values if k not in accepted]
+        def I(self, state):
+            return .12 if state["polviews"] == "conservative" else -.12
+
+    records = [
+        {"id": "CM", "text": "", "state": {"polviews": "conservative", "degree": "college"},
+         "expected_state": {},
+         "core_expected": {"polviews": "conservative", "partyid": "strong republican"}},
+        {"id": "WF", "text": "", "state": {"polviews": "conservative", "degree": "college"},
+         "expected_state": {},
+         "core_expected": {"polviews": "extremely liberal", "partyid": "strong democrat"}}
+    ]
+    messages = []
+    result = prepare(FakeWorld(), records, "auto", None, "none", {},
+                     JsonCache(tmp_path / "cache.json"), .005, None, 2018,
+                     log=messages.append, protect_mapped=False,
+                     core_variables=["polviews", "partyid"])
+    assert [p["direction"] for p in result] == [1, -1]
+    assert [p["protected"] for p in result] == [["partyid", "polviews"]] * 2
+    assert result[0]["state"]["partyid"] == "strong republican"
+    assert result[1]["state"]["polviews"] == "extremely liberal"
+    assert any("pinning" in line for line in messages)
+
+
+def test_same_sign_models_warn_in_descriptive_mode(tmp_path):
+    from types import SimpleNamespace
+    from optimizer.population import prepare
+    from optimizer.dtag_bridge import JsonCache
+    from optimizer.sequence_library_runner import choose_length
+
+    mapfile = tmp_path / "fake_map.csv"
+    mapfile.write_text("variable,question\npolviews,views\npartyid,party\n")
+    class FakeWorld:
+        map_path = str(mapfile)
+        model_path = str(tmp_path / "fake_model")
+        ctx = SimpleNamespace(possible={"polviews": ["conservative", "extremely liberal"],
+                                         "partyid": ["strong republican", "strong democrat"]},
+                              idx_map={"polviews": 0, "partyid": 1})
+        def valid(self, state):
+            return state, []
+        def I(self, state):
+            return .04 if state["polviews"] == "conservative" else .02
+
+    records = [
+        {"id": "CM", "text": "", "state": {"polviews": "conservative",
+                                          "partyid": "strong republican"},
+         "expected_state": {}, "core_expected": {}},
+        {"id": "WF", "text": "", "state": {"polviews": "extremely liberal",
+                                          "partyid": "strong democrat"},
+         "expected_state": {}, "core_expected": {}}
+    ]
+    messages = []
+    result = prepare(FakeWorld(), records, "auto", None, "none", {},
+                     JsonCache(tmp_path / "cache.json"), .005, None, 2018,
+                     log=messages.append, protect_mapped=False,
+                     core_variables=["polviews", "partyid"], require_both_signs=False)
+    assert all(p["direction"] == 1 for p in result)
+    assert any("WARNING" in msg and "same" not in msg for msg in messages)
+    starts = np.array([.04] * 6 + [.02] * 6)
+    paths = np.tile(starts[:, None], (1, 21))
+    assert choose_length(paths, starts, minimum=10, tolerance=.0005, window=3) == 10
