@@ -44,8 +44,13 @@ def centered_persona_diagnostics(people, offset: float, band=0.005):
     """Descriptive starting signs, not a target for sequence selection."""
     result = []
     for person in people:
-        raw = float(person["I0"])
+        # New library cache records already contain I0 centered. The
+        # independently retained raw value prevents a second subtraction.
+        raw = float(person.get("I_raw", person["I0"]))
         centered = raw-float(offset)
+        if person.get("index_origin") == "empty" and not np.isclose(
+                float(person["I0"]), centered, atol=1e-9, rtol=0):
+            raise ValueError("Cached centered I0 disagrees with raw I0 and I(empty)")
         label = 0 if abs(centered) < band else (1 if centered > 0 else -1)
         result.append({"persona": person["id"], "I_raw": raw,
                        "I_centered": centered, "starting_sign": label})
