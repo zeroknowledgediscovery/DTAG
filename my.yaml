@@ -1,6 +1,9 @@
-# Example config for the DTAG polarization question-set optimizer.
-#   python -m optimizer check --config optimizer/config.example.yaml
-#   python -m optimizer run   --config optimizer/config.example.yaml
+# Canonical configuration: configs/optimizer_gss2024_cm_wf_robust.yaml
+# Run directly using --config configs/optimizer_gss2024_cm_wf_robust.yaml,
+# or copy to the repository root: cp configs/optimizer_gss2024_cm_wf_robust.yaml my.yaml.
+# Previous search experiment preserved as configs/optimizer_gss2024_cm_wf_baseline.yaml.
+# Increasing search draws reduces Monte Carlo instability but does NOT fix
+# zero-variance / infinite-t objectives in optimizer/search.py.
 # Every key is optional; anything left out takes the default shown in optimizer/__main__.py (DEFAULTS).
 
 model: gss/gss_2024            # native DTAG model key (downloaded from the public release if missing)
@@ -8,7 +11,7 @@ download: true
 # model_root: ~/dtag-models    # default: $DTAG_MODEL_ROOT or ~/.cache/dtag/models
 # map: maps/gss/gss_2024_map.csv   # default: the model's canonical semantic map
 # poles: assets/polar_vectors/gss/gss_2024_polar_vectors.csv   # default: wave-specific GSS poles
-out: outputs/optimizer/gss2024
+out: outputs/optimizer/gss2024_cm_wf_robust
 workers: null                  # null = all CPU cores
 
 # ---- LLM: pick ONE block. Used for DTAG's own question->survey-item mapping, persona decoding
@@ -65,12 +68,12 @@ search:
   resp_mode: draw              # draw: sample each answer | max: most likely answer
   objective: robust            # robust: min(t_positive, t_negative) | mean: min of the two mean signed changes
   seed: 7
-  screen_reps: 2               # runs per participant when screening single questions
+  screen_reps: 20              # increased from 2; runs per participant during single-item screening
   pool: 30                     # questions kept after screening
   per_group: 8                 # ... including the best this many for each group
   greedy_pool: 20
-  search_reps: 4               # runs per participant during greedy/local search
-  budget: 60                   # local-search moves
+  search_reps: 40              # increased from 4; runs per participant for greedy/local search
+  budget: 100                  # increased from 60; local-search moves
 
 validate:
   reps: 30                     # legacy fallback for one-state validation
