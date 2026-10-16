@@ -571,9 +571,17 @@ def test_2018_model_stratified_pole_construction_uses_conditional_modes():
         "c": {"yes": .8, "no": .2},
         "d": {"yes": .49, "no": .51},
     }
-    L, R, details = module.construct_poles(left, right, list(left), min_tv=.05)
+    L, R, details = module.construct_poles(
+        left, right, list(left), min_tv=.05, construction="modal")
     assert L == {"a": "yes", "b": "yes"}
     assert R == {"a": "no", "b": "no"}
+    # Contrast poles can differ even when the two groups share the mode.
+    lc, rc, contrast = module.construct_poles(
+        left, right, list(left), min_tv=.05, construction="contrast")
+    assert lc == {"a": "yes", "b": "yes", "c": "yes"}
+    assert rc == {"a": "no", "b": "no", "c": "no"}
+    assert contrast[2]["left_selected_excess"] == pytest.approx(.1)
+    assert contrast[2]["right_selected_excess"] == pytest.approx(.1)
     reasons = {v["variable"]: v["reason"] for v in details}
     assert reasons["c"] == "same_modal_response"
     assert reasons["d"] == "below_min_tv"
