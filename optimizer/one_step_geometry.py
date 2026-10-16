@@ -279,7 +279,8 @@ def native_one_step(world, state: Mapping[str, str], *, exclude_poles: bool = Fa
 
 def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng, *,
                policy: str = "greedy_mu", exclude_poles: bool = True, exclude: Iterable[str] = (),
-               only: Optional[Iterable[str]] = None) -> List[Dict[str, Any]]:
+               only: Optional[Iterable[str]] = None,
+               on_step: Optional[Callable[[Dict[str, Any]], None]] = None) -> List[Dict[str, Any]]:
     """One sampled trajectory s_0 -> ... -> s_T under the native model.
 
     At each step the policy picks a question; the ANSWER is drawn from the native
@@ -291,6 +292,7 @@ def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng,
 
     ``rng`` is a numpy Generator. Returns one record per step (question, its mu/P_up/P_down
     at the time it was asked, drawn answer, its probability, realized Delta, J after).
+    ``on_step`` (optional) is called with each step record as soon as it is computed.
     """
     if direction not in ("right", "left"):
         raise ValueError("direction must be 'right' or 'left'")
@@ -331,6 +333,8 @@ def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng,
                     "P_up": stats.get("P_up"), "P_down": stats.get("P_down"),
                     "one_sided": stats.get("one_sided"), "delta_I": I_new - I_t,
                     "I_after": I_new, "J_after": I_new - I_empty})
+        if on_step is not None:
+            on_step(out[-1])
         I_t = I_new
     return out
 

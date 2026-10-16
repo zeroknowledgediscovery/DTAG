@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
@@ -60,7 +61,14 @@ def main():
     for policy, n in (("greedy_mu", a.runs), ("random", a.baseline_runs)):
         for k in range(n):
             rng = np.random.default_rng([seed, k, policy == "random"])
-            for r in policy_run(world, state, a.direction, a.steps, rng, policy=policy, only=pool):
+            t0 = time.time()
+
+            def log(r, policy=policy, k=k, t0=t0):
+                if policy == "greedy_mu":
+                    print(f"  [{policy} run {k} step {r['step']}/{a.steps}, {time.time() - t0:.0f}s] ask {r['variable']} "
+                          f"(mu={r['expected_delta']:+.5f}) -> {r['answer']!r} (p={r['p_answer']:.2f}) "
+                          f"dJ={r['delta_I']:+.5f} J={r['J_after']:+.5f}", flush=True)
+            for r in policy_run(world, state, a.direction, a.steps, rng, policy=policy, only=pool, on_step=log):
                 rows.append({"persona": a.persona, "direction": a.direction, "policy": policy, "run": k, **r})
             print(f"{a.persona} {a.direction} {policy} run {k} J_T={rows[-1]['J_after']:+.5f}", flush=True)
     a.out.mkdir(parents=True, exist_ok=True)
@@ -69,7 +77,9 @@ def main():
     df.to_csv(a.out / f"{tag}.csv", index=False)
     meta = {"persona": a.persona, "direction": a.direction, "state": state, "steps": a.steps,
             "pool_size": len(pool), "seed": seed, "J0": world.I(state) - world.I({})}
+    print(f"saved {a.out / (tag + '.csv')}", flush=True)
     if a.audit:
+        print("audit: full sweep at final state of greedy run 0 ...", flush=True)
         g0 = df[(df.policy == "greedy_mu") & (df.run == 0)]
         final = {**state, **dict(zip(g0.variable, g0.answer))}
         full = native_one_step(world, final, exclude_poles=True)
