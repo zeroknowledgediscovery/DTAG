@@ -81,8 +81,12 @@ validation and from the reported uncertainty and z-scores.
 
 The two original persona descriptions are read from the existing CM/WF text
 assets and decoded separately for each GSS wave against that model's legal
-survey labels. No 2024-specific expected-state reference is imposed on an
-earlier survey wave.
+survey labels. The source file's `target_states.json` is used **only** to
+supply the two explicitly stated political anchors (`polviews`, `partyid`),
+not its other 2024-coded demographic assignments. Both required anchor
+values are checked against the selected year's actual native-model response
+labels before they override any missing/inconsistent LLM assignments.
+All other assignments remain wave-specific.
 
 By default, only polviews and partyid remain immutable. Every other
 persona assignment may be dropped or resampled in the LSM's initialization.
@@ -96,6 +100,41 @@ state attempts per persona (default 30) and --draws response replicates
 per starting state (default 10). Actual state duplicates remain one
 cluster; directional confidence intervals resample distinct states.
 The final record contains results for every specification.
+
+### When both starting persona indexes have the same sign
+
+Different GSS wave models and pole constructions do not guarantee that
+identically described personas sit on opposite sides of `I=0`. For example,
+before the anchor correction a 2018 run decoded CM `I0=+0.0661` and WF
+`I0=+0.0288`, with only one of two required core anchors present.
+This was an invalid two-anchor initial state, not evidence of substantive
+belief change. It must not be silently reused.
+
+The runner now pins both explicitly documented anchors, checks their
+availability in the selected wave, and logs exactly what is pinned. If
+both indexes remain positive (or both negative), it logs a warning and
+runs the independent neutral candidate; missing-sign comparisons are
+reported **unclassified**, never relabeled to create an artificial
+negative/positive group. The standalone directional optimizer still
+requires both starting groups unless explicitly configured otherwise.
+
+A completed experiment with only one starting-index sign is saved for
+reproducibility but is **not** evidence for a `++`, `+-`, `-+`, or
+`--` cell. To inspect the canonical two core anchors:
+
+    python - <<'PY'
+    import json
+    from pathlib import Path
+    path = Path("assets/question_sets/personas/target_states.json")
+    d = json.loads(path.read_text())
+    for p in ("CM", "WF"):
+        print(p, {k: d[p]["state"][k] for k in ("polviews", "partyid")})
+    PY
+
+A previous failed attempt remains in `library.json`/`library.csv` with
+status `failed`. Rerunning the command creates a new attempt. Do not
+delete earlier attempts or relabel one year's ideological index as another.
+
 
 Note that these are perturbations of two synthetic descriptions, not
 independent population samples or clinical/trial evidence. A fully frozen
