@@ -58,6 +58,9 @@ def inventory(out):
            for r in read_csv(POLE_DIR / "polar_vectors_v1.csv")}
     a, b = waves[2018], waves[2024]
     shared = set(a) & set(b)
+    # Ground semantic scrutiny in the committed GSS codebook-derived map.
+    wording = {r["variable"]: (r.get("question_text_filled") or r.get("question_text") or "")
+               for r in read_csv(ROOT / "maps/gss/gss_2018_map.csv")}
     flagged = {
         "viruses": "scientific knowledge, not political ideology",
         "intmil": "interest in military issues is not necessarily ideological",
@@ -67,6 +70,7 @@ def inventory(out):
     }
     rows = [
         {"variable": v, "in_2018": v in a, "in_2024": v in b,
+         "2018_question": wording.get(v, ""),
          "2018_L": a.get(v, {}).get("L", ""), "2018_R": a.get(v, {}).get("R", ""),
          "2024_L": b.get(v, {}).get("L", ""), "2024_R": b.get(v, {}).get("R", ""),
          "labels_differ": v in shared and a[v] != b[v],
@@ -85,6 +89,8 @@ def inventory(out):
         "counts": {str(y): len(v) for y, v in waves.items()},
         "shared_2018_2024": len(shared),
         "extra_2018": sorted(set(a) - set(b)),
+        "extra_2018_questions": {v: wording.get(v, "") for v in sorted(set(a) - set(b))},
+        "anchors_in_2018_pole": [v for v in CORE if v in a],
         "different_labels": sorted(v for v in shared if a[v] != b[v]),
         "nominal_v1_v2_answer_changes": [r["variable"] for r in changes],
         "2018_unresolved": [
