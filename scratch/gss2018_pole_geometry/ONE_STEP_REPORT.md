@@ -6,6 +6,16 @@ Delta_v(a|s) = I(s u {v=a}) - I(s); mu_v = sum_a P(a|s,v) Delta_v(a|s).
 All unassigned variables enumerated; pole items included but flagged and reported separately.
 Changes are information-conditioning effects of the model, not opinion change.
 
+## Definitions
+
+- `delta_I` = Delta_v(a|s) = I(s u {v=a}) - I(s); >0 toward the right pole. Identical in J.
+- `delta_plus` = max_a Delta_v(a|s), achieved by `answer_plus` (argmax over answers); `delta_minus` = min_a Delta_v(a|s), achieved by `answer_minus` (argmin).
+- `p` / `conditional_probability` = native P(a|s,v); `p_answer_plus`, `p_answer_minus` = probability of the extremal answers.
+- `expected_delta` = mu_v = sum_a P(a|s,v) Delta_v(a|s): expected move from ASKING v; `sd` its spread.
+- `P_up` / `P_down` = probability that the answer moves the index right / left.
+- `one_sided` = every answer moves the index the same way (a question effect, not answer content).
+- argmax/argmin mu choose the question to ask; argmax/argmin Delta are best cases only, since the model, not the asker, draws the answer.
+
 ## CM
 
 State (8 assignments, source: assets/question_sets/personas/target_states.json (rich, 2018-valid subset)): `{"sex": "male", "race": "white", "polviews": "conservative", "partyid": "strong republican", "relig": "protestant", "attend": "every week", "marital": "married", "degree": "high school"}`
@@ -32,6 +42,62 @@ I(s) = +0.08637, J(s) = +0.02633; 1026 eligible variables (38 pole items), 7149 
 | all | 1026 | 0.00266 | 0.16224 | 0.000199 | 0.03790 | -0.15657 | 0.27 |
 
 Top 1% of |Delta| response rows (72): median P(a|s,v) = 0.226; share with P < 0.05: 0.19.
+
+### Which question to ask: argmax mu (push right in expectation), non-pole
+
+| variable | expected_delta | sd | P_up | P_down | one_sided | answer_plus | p_answer_plus | answer_minus | p_answer_minus |
+|---|---|---|---|---|---|---|---|---|---|
+| PRES12 | +0.00881 | +0.00674 | 0.800 | 0.200 | False | romney | 0.783 | didn't vote for president | 0.002 |
+| pistol | +0.00853 | +0.01322 | 0.316 | 0.684 | False | yes | 0.285 | no | 0.684 |
+| ABHELP3 | +0.00798 | +0.01985 | 0.599 | 0.401 | False | no | 0.599 | yes | 0.401 |
+| godmeans | +0.00684 | +0.01306 | 0.746 | 0.254 | False | strongly agree | 0.278 | strongly disagree | 0.078 |
+| coeduc | +0.00660 | +0.00258 | 0.971 | 0.029 | False | a | 0.004 | d | 0.029 |
+| PRES16 | +0.00587 | +0.01200 | 0.767 | 0.233 | False | trump | 0.457 | don't know | 0.035 |
+| homosex | +0.00529 | +0.02733 | 0.342 | 0.658 | False | always wrong | 0.342 | not wrong at all | 0.566 |
+| fund | +0.00522 | +0.00671 | 0.788 | 0.212 | False | moderate | 0.387 | liberal | 0.212 |
+| rifle | +0.00418 | +0.01354 | 0.257 | 0.743 | False | yes | 0.227 | no | 0.743 |
+| courts | +0.00320 | +0.00635 | 0.767 | 0.233 | False | not harsh enough | 0.767 | too harsh | 0.061 |
+
+### Which question to ask: argmin mu (push left in expectation), non-pole
+
+| variable | expected_delta | sd | P_up | P_down | one_sided | answer_plus | p_answer_plus | answer_minus | p_answer_minus |
+|---|---|---|---|---|---|---|---|---|---|
+| MAOCC10 | -0.00771 | +0.00361 | 0.000 | 1.000 | True | a | 0.002 | d | 0.062 |
+| MASEI10EDUC | -0.00725 | +0.00141 | 0.000 | 1.000 | True | c | 0.401 | e | 0.293 |
+| vissci | -0.00647 | +0.00692 | 0.000 | 1.000 | True | c | 0.538 | d | 0.010 |
+| abmoral | -0.00587 | +0.01898 | 0.308 | 0.692 | False | morally opposed | 0.308 | not morally opposed | 0.265 |
+| hunt | -0.00463 | +0.00396 | 0.189 | 0.811 | False | resp | 0.189 | neither | 0.788 |
+| MAISCO88 | -0.00443 | +0.00182 | 0.000 | 1.000 | True | e | 0.304 | b | 0.071 |
+| wrkstat | -0.00442 | +0.00102 | 0.000 | 1.000 | True | retired | 0.192 | other | 0.024 |
+| visnhist | -0.00416 | +0.00207 | 0.000 | 1.000 | True | c | 0.536 | d | 0.013 |
+| abhlth | -0.00375 | +0.00718 | 0.102 | 0.898 | False | no | 0.102 | yes | 0.898 |
+| MASEI10INC | -0.00358 | +0.00142 | 0.000 | 1.000 | True | e | 0.305 | b | 0.128 |
+
+### Pole items: argmax / argmin mu
+
+| variable | expected_delta | sd | P_up | P_down | one_sided | answer_plus | p_answer_plus | answer_minus | p_answer_minus |
+|---|---|---|---|---|---|---|---|---|---|
+| reliten | +0.03790 | +0.02496 | 0.943 | 0.057 | False | strong | 0.464 | no religion | 0.000 |
+| pray | +0.00827 | +0.02455 | 0.614 | 0.386 | False | several times a day | 0.330 | never | 0.120 |
+| libcom | +0.00665 | +0.03964 | 0.269 | 0.731 | False | remove | 0.269 | not remove | 0.731 |
+| owngun | -0.00699 | +0.04885 | 0.403 | 0.597 | False | yes | 0.373 | no | 0.597 |
+| spkmil | -0.00591 | +0.00138 | 0.000 | 1.000 | True | not allowed | 0.271 | allowed | 0.729 |
+| abdefect | -0.00370 | +0.01566 | 0.244 | 0.756 | False | no | 0.244 | yes | 0.756 |
+
+### argmax Delta / argmin Delta (best case; the answer cannot be chosen), non-pole
+
+| variable | delta_plus | answer_plus | p_answer_plus | delta_minus | answer_minus | p_answer_minus | expected_delta |
+|---|---|---|---|---|---|---|---|
+| spkhomo | +0.04370 | not allowed | 0.108 | -0.00835 | allowed | 0.892 | -0.00276 |
+| homosex | +0.04304 | always wrong | 0.342 | -0.01554 | not wrong at all | 0.566 | +0.00529 |
+| ABHELP4 | +0.03276 | no | 0.121 | -0.00195 | yes | 0.879 | +0.00224 |
+| pistol | +0.02941 | yes | 0.285 | -0.00002 | no | 0.684 | +0.00853 |
+| rifle | +0.02894 | yes | 0.227 | -0.00351 | no | 0.743 | +0.00418 |
+| ABHELP2 | +0.02061 | no | 0.712 | -0.04563 | yes | 0.288 | +0.00153 |
+| abinspay | +0.02199 | people should not be able | 0.512 | -0.02813 | people should be able | 0.488 | -0.00245 |
+| abmoral | +0.02107 | morally opposed | 0.308 | -0.02719 | not morally opposed | 0.265 | -0.00587 |
+| god | +0.01956 | know god exists | 0.542 | -0.02649 | some higher power | 0.131 | +0.00121 |
+| heaven | +0.01728 | yes, definitely | 0.620 | -0.02391 | no, probably not | 0.096 | +0.00317 |
 
 ### Largest sensitivity range, non-pole items
 
@@ -100,6 +166,62 @@ I(s) = +0.02426, J(s) = -0.03578; 1027 eligible variables (38 pole items), 7154 
 
 Top 1% of |Delta| response rows (72): median P(a|s,v) = 0.240; share with P < 0.05: 0.15.
 
+### Which question to ask: argmax mu (push right in expectation), non-pole
+
+| variable | expected_delta | sd | P_up | P_down | one_sided | answer_plus | p_answer_plus | answer_minus | p_answer_minus |
+|---|---|---|---|---|---|---|---|---|---|
+| pistol | +0.00853 | +0.01322 | 0.316 | 0.684 | False | yes | 0.285 | no | 0.684 |
+| god | +0.00726 | +0.01908 | 0.542 | 0.458 | False | know god exists | 0.542 | dont believe | 0.046 |
+| coeduc | +0.00685 | +0.00251 | 0.971 | 0.029 | False | a | 0.004 | d | 0.029 |
+| hell | +0.00682 | +0.00665 | 0.852 | 0.148 | False | yes, definitely | 0.519 | no, definitely not | 0.148 |
+| relpersn | +0.00665 | +0.01135 | 0.534 | 0.466 | False | modrte religious | 0.369 | not religious | 0.224 |
+| heaven | +0.00506 | +0.01742 | 0.597 | 0.403 | False | yes, definitely | 0.597 | no, probably not | 0.114 |
+| rifle | +0.00410 | +0.01565 | 0.257 | 0.743 | False | yes | 0.227 | no | 0.743 |
+| homosex | +0.00353 | +0.02669 | 0.337 | 0.663 | False | always wrong | 0.337 | not wrong at all | 0.566 |
+| prayfreq | +0.00322 | +0.01272 | 0.632 | 0.368 | False | several times a week | 0.632 | about once a month | 0.027 |
+| colath | +0.00302 | +0.00336 | 1.000 | 0.000 | True | not allowed | 0.322 | allowed | 0.678 |
+
+### Which question to ask: argmin mu (push left in expectation), non-pole
+
+| variable | expected_delta | sd | P_up | P_down | one_sided | answer_plus | p_answer_plus | answer_minus | p_answer_minus |
+|---|---|---|---|---|---|---|---|---|---|
+| MAOCC10 | -0.00771 | +0.00361 | 0.000 | 1.000 | True | a | 0.002 | d | 0.062 |
+| sprel | -0.00738 | +0.00855 | 0.280 | 0.720 | False | moslem/islam | 0.016 | jewish | 0.025 |
+| MASEI10EDUC | -0.00725 | +0.00141 | 0.000 | 1.000 | True | c | 0.401 | e | 0.293 |
+| abmoral | -0.00624 | +0.01902 | 0.308 | 0.692 | False | morally opposed | 0.308 | not morally opposed | 0.265 |
+| vissci | -0.00552 | +0.00631 | 0.538 | 0.462 | False | c | 0.538 | d | 0.010 |
+| miracles | -0.00507 | +0.00379 | 0.176 | 0.824 | False | yes, definitely | 0.176 | no, definitely not | 0.302 |
+| MAISCO88 | -0.00432 | +0.00138 | 0.000 | 1.000 | True | e | 0.304 | b | 0.071 |
+| HUNT1 | -0.00417 | +0.00329 | 0.126 | 0.874 | False | spouse or partner hunts | 0.101 | neither hunts | 0.843 |
+| wrkstat | -0.00396 | +0.00112 | 0.000 | 1.000 | True | working parttime | 0.117 | school | 0.036 |
+| visnhist | -0.00390 | +0.00249 | 0.000 | 1.000 | True | c | 0.536 | e | 0.451 |
+
+### Pole items: argmax / argmin mu
+
+| variable | expected_delta | sd | P_up | P_down | one_sided | answer_plus | p_answer_plus | answer_minus | p_answer_minus |
+|---|---|---|---|---|---|---|---|---|---|
+| libcom | +0.00663 | +0.03960 | 0.269 | 0.731 | False | remove | 0.269 | not remove | 0.731 |
+| absingle | +0.00632 | +0.03700 | 0.550 | 0.450 | False | no | 0.550 | yes | 0.450 |
+| libhomo | +0.00622 | +0.02878 | 0.155 | 0.845 | False | remove | 0.155 | not remove | 0.845 |
+| reliten | -0.04034 | +0.04874 | 0.215 | 0.785 | False | strong | 0.119 | no religion | 0.774 |
+| spkmil | -0.00591 | +0.00138 | 0.000 | 1.000 | True | not allowed | 0.271 | allowed | 0.729 |
+| viruses | -0.00479 | +0.01707 | 0.402 | 0.598 | False | true | 0.402 | false | 0.598 |
+
+### argmax Delta / argmin Delta (best case; the answer cannot be chosen), non-pole
+
+| variable | delta_plus | answer_plus | p_answer_plus | delta_minus | answer_minus | p_answer_minus | expected_delta |
+|---|---|---|---|---|---|---|---|
+| spkhomo | +0.04395 | not allowed | 0.108 | -0.00835 | allowed | 0.892 | -0.00273 |
+| homosex | +0.04080 | always wrong | 0.337 | -0.01659 | not wrong at all | 0.566 | +0.00353 |
+| ABHELP4 | +0.03350 | no | 0.121 | -0.00198 | yes | 0.879 | +0.00230 |
+| rifle | +0.03256 | yes | 0.227 | -0.00487 | no | 0.743 | +0.00410 |
+| pistol | +0.02941 | yes | 0.285 | -0.00002 | no | 0.684 | +0.00853 |
+| ABHELP2 | +0.01979 | no | 0.712 | -0.04458 | yes | 0.288 | +0.00125 |
+| abinspay | +0.02447 | people should not be able | 0.512 | -0.03034 | people should be able | 0.488 | -0.00226 |
+| abmoral | +0.02072 | morally opposed | 0.308 | -0.02767 | not morally opposed | 0.265 | -0.00624 |
+| god | +0.02432 | know god exists | 0.542 | -0.02153 | dont believe | 0.046 | +0.00726 |
+| vissci | +0.00026 | c | 0.538 | -0.02146 | d | 0.010 | -0.00552 |
+
 ### Largest sensitivity range, non-pole items
 
 | variable | range | delta_plus | answer_plus | p_answer_plus | delta_minus | answer_minus | p_answer_minus | expected_delta |
@@ -153,3 +275,7 @@ Since CM is right of WF in J, convergence/divergence here refers to the expected
 ## Serial vs parallel (CM)
 
 7149 rows; max |I_after difference| = 0.00e+00; max |P difference| = 0.00e+00.
+
+## optimizer.one_step_geometry vs reference (CM)
+
+7149 rows; max |I_after diff| = 0.00e+00; max |P diff| = 0.00e+00; max |mu diff| = 8.54e-19.

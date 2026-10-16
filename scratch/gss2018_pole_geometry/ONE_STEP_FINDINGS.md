@@ -75,6 +75,26 @@ states: `--personas-json <that cache file>`.
      intended?
    - Do the richer LLM-decoded states condition more strongly?
 
+## Which question to ask (argmax / argmin of mu)
+
+You choose the question; the model draws the answer. So the ranking criterion is
+mu_v = E[Delta]. delta_plus/delta_minus are best cases that occur only with probability
+p_answer_plus / p_answer_minus. Full top-25 lists: `one_step_results/{CM,WF}/mu_rankings.csv`.
+Definitions and top-10 tables: `ONE_STEP_REPORT.md`.
+
+| Persona | push right (argmax mu), non-pole | push left (argmin mu), non-pole | pole item, strongest |
+|---|---|---|---|
+| CM | PRES12 +0.0088 (P_up 0.80), pistol +0.0085, ABHELP3 +0.0080 | MAOCC10 −0.0077, MASEI10EDUC −0.0072, vissci −0.0065 (all one-sided), abmoral −0.0059 | reliten +0.038 (P_up 0.94) |
+| WF | pistol +0.0085, god +0.0073, hell +0.0068 (P_up 0.85) | MAOCC10 −0.0077, sprel −0.0074, MASEI10EDUC −0.0072, abmoral −0.0062 | reliten −0.040 (P_down 0.79) |
+
+- Best expected one-step moves are ≤ 0.009 for non-pole items, ~15% of the CM−WF gap (0.062).
+- Several top push-left items are `one_sided` (every answer moves left, P_down = 1): filling
+  that coordinate moves s toward L regardless of content. This is a property of the metric,
+  not an opinion signal. Filter `one_sided` if only content-driven moves are wanted.
+- reliten is the only strong question that pushes CM and WF apart. It is a pole item.
+- Reusable function: `optimizer/one_step_geometry.py` (any model, poles and known-answer set),
+  checked bit-for-bit against this reference.
+
 ## Not done / next
 
 - Rerun on the LLM-decoded library states (spec 00–04) once that cache is provided.

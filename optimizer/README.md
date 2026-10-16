@@ -338,3 +338,32 @@ shift or preferentially accepts sequences matching the requested label.
 See [SEQUENCE_LIBRARY_RUNNER.md](SEQUENCE_LIBRARY_RUNNER.md) for concrete
 commands, Google Cloud model download behavior, score definitions,
 reproducibility controls, failure recovery and expected library contents.
+
+## One-step question geometry (`optimizer/one_step_geometry.py`)
+
+Given a native model, its poles, and the answers already known (a partial state `s`), enumerate
+every askable variable `v` and every valid answer `a` and return the exact displacement
+`Delta_v(a|s) = I(s u {v=a}) - I(s)`, the native `P(a|s,v)`, and per question
+`mu_v = sum_a P(a|s,v) Delta_v(a|s)` (expected move from asking `v`), `sd`, `P_up`/`P_down`,
+`delta_plus`/`delta_minus` with their answers, and a `one_sided` flag (every answer moves the
+same way). `extremes` holds `argmax_mu`, `argmin_mu` (which question to ask to push right/left in
+expectation), `argmax_delta`, `argmin_delta` (best-case question/answer, with its probability),
+`argmax_p_up`, `argmax_p_down`. Exhaustive: no pruning or LLM.
+
+```bash
+python -m optimizer.one_step_geometry --model gss/gss_2018 --persona-ref CM --exclude-poles \
+    --workers 4 --top 10 --out outputs/one_step/cm
+python -m optimizer.one_step_geometry --model gss/gss_2018 \
+    --state polviews="extremely liberal" --state partyid="strong democrat"
+```
+
+```python
+from optimizer.one_step_geometry import native_one_step
+res = native_one_step(world, known_answers, exclude_poles=True)
+res.extremes["argmax_mu"], res.top("expected_delta", 10, reverse=False)
+```
+
+The pure core `one_step_geometry(state, candidates, index_fn, dist_fn, ...)` works with any
+index/distribution functions (tests: `optimizer/tests/test_one_step_geometry.py`). A full GSS 2018
+sweep is ~7k (question, answer) pairs, ~4 min serially. Validated bit-for-bit against the reference
+enumeration in `scratch/gss2018_pole_geometry/` (see `ONE_STEP_REPORT.md`).

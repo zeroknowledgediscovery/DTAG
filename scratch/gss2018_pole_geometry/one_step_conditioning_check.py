@@ -14,11 +14,11 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[1]))
 from optimizer.dtag_bridge import DEFAULT_POLES, World, canonical_map, ensure_model  # noqa: E402
 
-RES = HERE / "results" / "one_step_enumeration"
+RES = HERE / "one_step_results"  # committed copy of results/one_step_enumeration
 P = {n: pd.read_csv(RES / n / "response_level.csv") for n in ("CM", "WF")}
 shared = sorted(set(P["CM"].variable) & set(P["WF"].variable))
 w = World(str(ensure_model("gss/gss_2018", None, download=False)), str(canonical_map("gss/gss_2018")),
-          str(DEFAULT_POLES), str(RES / "native_cache"))
+          str(DEFAULT_POLES), str(HERE / "results" / "native_cache"))
 empty = w.dists({}, shared)
 tv = {}
 for n in P:
