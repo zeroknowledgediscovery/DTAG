@@ -187,12 +187,24 @@ P(X_v = answer | partyid = strong republican) using the native LSM.
 weighted empirical frequency table from actual 2018 survey respondent rows.
 The repository does not bundle raw microdata (see data/raw/README.md).
 
-GSS categories are strings, so the script retains the full distribution
-and uses the highest-probability response (the categorical mode) to produce
-a legal, discrete native pole state. Variables are retained when left/right
-modes differ and total variation distance is at least --min-tv (default 0.05).
-This is predetermined from the model distribution; no persona sign or
-validation statistic is used to select variables.
+GSS categories are strings, so the script retains the full conditional
+distributions. The first native modal-response experiment found that only
+**one of 38** variables had different modal answers under the two strata
+(GitHub Actions run 38912439101), which is insufficient for a stable pole.
+
+The revised default uses **conditional contrasts**: it chooses the answer
+most overrepresented among Democrats for L and the answer most
+overrepresented among Republicans for R. These answers can differ even
+when both groups share the same most likely answer. Responses are retained
+when total variation exceeds --min-tv (default 0.05). The complete
+probability distributions, group modes, selected contrast answers, and
+conditional probability differences are saved in conditional_responses.csv.
+Use --construction modal to reproduce the one-variable experiment.
+
+This procedure does not use the CM/WF measured indices, political-shift
+goals, or heldout orientation results to select pole variables or answers.
+The constructed poles are **categorical association contrasts**, not
+representative or average actual respondents.
 
 Political anchor variables polviews and partyid are always excluded from
 the candidate pole itself. The 2018 polviews response ordering is an
