@@ -213,54 +213,107 @@ def validate_and_report(ctx: Ctx, sim: Simulator, people, bank, seq: List[str], 
     cfg = ctx.cfg
     by_id = {q["id"]: q for q in bank}
     v = cfg["validate"]
-    runs = sim.make_runs(people, int(v["reps"]), int(v["seed"]), only_directed=False)
-    ctx.log(f"validation: {len(runs)} held-out runs ({v['reps']} per participant)")
-    trajs = sim.simulate(runs, [by_id[i]["variables"] for i in seq], cfg["search"]["resp_mode"], trajectories=True)
+    band = float(cfg["participants"]["neutral_band"])
+    n_states = int(v.get("states_per_persona", 1))
+    reps = int(v.get("reps_per_state") or v["reps"])
+    runs = sim.make_runs(people, reps, int(v["seed"]), only_directed=False,
+                         states_per_persona=n_states, augment_count=int(v.get("augment_count", 0)))
+    ctx.log(f"validation: {len(runs)} held-out trajectories on {n_states} starting states/persona, "
+            f"{reps} draws/state; direction from actual starting ideology")
+    trajs = sim.simulate(runs, [by_id[i]["variables"] for i in seq],
+                         cfg["search"]["resp_mode"], trajectories=True)
     rng = np.random.default_rng(12345)
-    directed = [r for r in runs if people[r[0]]["direction"] != 0]
-    dtrajs = [t for r, t in zip(runs, trajs) if people[r[0]]["direction"] != 0]
-    per_len = [dict(length=L, **summarize(people, directed, dtrajs, L, rng)) for L in range(1, len(seq) + 1)]
+    per_len = []
+    chosen_state_rows, chosen_state_summary = [], {}
+    for k in range(1, len(seq) + 1):
+        st = dict(length=k, **summarize(people, runs, trajs, k, rng, neutral_band=band))
+        state_rows, diag = state_diagnostics(people, runs, trajs, k, rng, band)
+        if n_states > 1:
+            # State is the independent unit. Repeated answer draws per state are nested.
+            for name, direction in (("positive", 1), ("negative", -1)):
+                st[name]["mean_signed_change_ci"] = diag["groups"][name]["mean_signed_change_ci"]
+                values = np.array([row["mean_signed_change"] for row in state_rows
+                                   if row["start_group"] == direction])
+                if len(values) > 1:
+                    scale = float(values.std(ddof=1))
+                    st[name]["t"] = float(values.mean() / (scale / np.sqrt(len(values)))) if scale > 0 else (
+                        float("inf") if values.mean() > 0 else float("-inf"))
+            positive = np.array([r["mean_signed_change"] for r in state_rows if r["start_group"] == 1])
+            negative = np.array([r["mean_signed_change"] for r in state_rows if r["start_group"] == -1])
+            if len(positive) > 1 and len(negative) > 1:
+                gap = rng.choice(positive, (2000, len(positive))).mean(axis=1) + (
+                    rng.choice(negative, (2000, len(negative))).mean(axis=1))
+                st["separation_change_ci"] = [float(positive.mean()+negative.mean()),
+                                               float(np.quantile(gap, .025)), float(np.quantile(gap, .975))]
+            st["both_outward_ci_exclude_zero"] = bool(
+                st["positive"]["mean_signed_change_ci"][1] > 0 and
+                st["negative"]["mean_signed_change_ci"][1] > 0)
+        per_len.append(st)
+        if k == length:
+            chosen_state_rows, chosen_state_summary = state_rows, diag
     summary = per_len[length - 1]
-    parts = per_participant(people, runs, trajs, length, rng)
-    for g in ("positive", "negative"):
-        s = summary[g]
-        ctx.log(f"  {g}: signed change {s['mean_signed_change_ci'][0]:+.4f} [{s['mean_signed_change_ci'][1]:+.4f},"
-                f" {s['mean_signed_change_ci'][2]:+.4f}]  t={s['t']:+.2f}  outward {s['share_outward']:.0%}")
-    sc = summary["separation_change_ci"]
-    ctx.log(f"  separation change {sc[0]:+.4f} [{sc[1]:+.4f}, {sc[2]:+.4f}]")
-    base_rows, base_summary = [], None
+    parts = per_participant(people, runs, trajs, length, rng, neutral_band=band)
+    for name in ("positive", "negative"):
+        ci = summary[name]["mean_signed_change_ci"]
+        ctx.log(f"  {name}: signed change {ci[0]:+.4f} [{ci[1]:+.4f}, {ci[2]:+.4f}], "
+                f"states with mean outward {chosen_state_summary['groups'][name]['share_states_mean_outward']:.0%}")
+    ctx.log(f"  separation change: {summary['separation_change_ci']}")
+    baseline_rows, baseline_summary = [], None
     if int(v["baselines"]) > 0:
-        ctx.log(f"baselines: {v['baselines']} random {length}-question sequences")
-        base_rows, base_summary = baselines(sim, people, bank, length, int(v["baselines"]), int(v["baseline_reps"]),
-                                            int(v["seed"]) + 1, cfg["search"]["resp_mode"], cfg["search"]["objective"], seq[:length])
-        ctx.log(f"  optimized beats {base_summary['percentile_objective']:.0%} of random sets on the objective, "
-                f"{base_summary['percentile_separation_change']:.0%} on separation change")
-
-    detail = [{"step": n, "id": i, "question": by_id[i]["question"], "variables": ";".join(by_id[i]["variables"]),
-               "mapping": by_id[i].get("mapping", ""), "survey_wording": "; ".join(ctx.world.text.get(x, "") for x in by_id[i]["variables"])}
+        baseline_rows, baseline_summary = baselines(
+            sim, people, bank, length, int(v["baselines"]), int(v["baseline_reps"]),
+            int(v["seed"]) + 1, cfg["search"]["resp_mode"], cfg["search"]["objective"],
+            seq[:length], neutral_band=band)
+        ctx.log(f"  random-bank percentile by objective: {baseline_summary['percentile_objective']:.0%}")
+    order_rows = order_controls(sim, people, runs, bank, seq[:length],
+                                int(v.get("order_baselines", 0)), cfg["search"]["resp_mode"],
+                                band, int(v["seed"]) + 7)
+    detail = [{"step": n, "id": i, "question": by_id[i]["question"],
+               "variables": ";".join(by_id[i]["variables"]),
+               "mapping": by_id[i].get("mapping", ""),
+               "survey_wording": "; ".join(ctx.world.text.get(z, "") for z in by_id[i]["variables"])}
               for n, i in enumerate(seq, 1)]
     write_question_set(ctx.out / "question_set.csv", [d["question"] for d in detail[:length]])
     write_question_set(ctx.out / "question_set_full.csv", [d["question"] for d in detail])
     write_csv(ctx.out / "question_set_detail.csv", detail)
     write_csv(ctx.out / "per_participant.csv", parts)
-    write_csv(ctx.out / "baselines.csv", base_rows)
-    flat = [{"length": r["length"],
-             **{f"{g}_{k}": r[g][k] for g in ("positive", "negative") for k in ("mean_signed_change", "t", "share_outward")},
-             **{f"{g}_ci_low": r[g]["mean_signed_change_ci"][1] for g in ("positive", "negative")},
-             **{f"{g}_ci_high": r[g]["mean_signed_change_ci"][2] for g in ("positive", "negative")},
-             "separation_change": r["separation_change_ci"][0], "separation_ci_low": r["separation_change_ci"][1],
-             "separation_ci_high": r["separation_change_ci"][2], "both_ci_exclude_zero": r["both_outward_ci_exclude_zero"]}
-            for r in per_len]
+    write_csv(ctx.out / "per_state.csv", chosen_state_rows)
+    write_csv(ctx.out / "baselines.csv", baseline_rows)
+    write_csv(ctx.out / "order_baselines.csv", order_rows)
+    flat = [{"length": row["length"],
+             **{f"{g}_{key}": row[g][key] for g in ("positive", "negative")
+                for key in ("mean_signed_change", "t", "share_outward")},
+             **{f"{g}_ci_low": row[g]["mean_signed_change_ci"][1] for g in ("positive", "negative")},
+             **{f"{g}_ci_high": row[g]["mean_signed_change_ci"][2] for g in ("positive", "negative")},
+             "separation_change": row["separation_change_ci"][0],
+             "separation_ci_low": row["separation_change_ci"][1],
+             "separation_ci_high": row["separation_change_ci"][2],
+             "both_ci_exclude_zero": row["both_outward_ci_exclude_zero"]} for row in per_len]
     write_csv(ctx.out / "per_length.csv", flat)
-    np.savez_compressed(ctx.out / "validation_trajectories.npz", trajectories=np.array(trajs),
-                        participant=np.array([r[0] for r in runs]),
-                        direction=np.array([people[r[0]]["direction"] for r in runs]))
-    val = {"length": length, "runs_per_participant": int(v["reps"]), "summary": summary, "per_length": per_len,
-           "baselines": base_summary, **extra}
-    (ctx.out / "validation.json").write_text(json.dumps(val, indent=1, default=float))
-    manifest = ctx.manifest(len(bank))
-    (ctx.out / "manifest.json").write_text(json.dumps(manifest, indent=1, default=str))
-    (ctx.out / "report.md").write_text(report_md(cfg, manifest, people, detail, val, per_len, base_summary, parts), encoding="utf-8")
+    # Record each DISTINCT initialized state for exact downstream audits.
+    starts = {}
+    for r in runs:
+        starts.setdefault(r[4], {
+            "state_id": r[4], "participant": people[r[0]]["id"], "I_start": r[2],
+            "state": r[1], "protected_values": people[r[0]].get("protected_values", {})})
+    with open(ctx.out / "starting_states.jsonl", "w", encoding="utf-8") as fh:
+        for record in starts.values():
+            fh.write(json.dumps(record, ensure_ascii=False) + "\n")
+    (ctx.out / "state_diagnostics.json").write_text(
+        json.dumps(chosen_state_summary, indent=2, default=float))
+    np.savez_compressed(ctx.out / "validation_trajectories.npz",
+                        trajectories=np.asarray(trajs), participant=np.asarray([r[0] for r in runs]),
+                        direction=np.asarray([1 if r[2] > band else -1 if r[2] < -band else 0 for r in runs]),
+                        initial_ideology=np.asarray([r[2] for r in runs]),
+                        state_id=np.asarray([r[4] for r in runs]))
+    val = {"length": length, "runs_per_state": reps, "states_per_persona": n_states,
+           "runs_per_participant": reps*n_states, "summary": summary, "per_length": per_len,
+           "state_diagnostics": chosen_state_summary,
+           "order_baselines": len(order_rows), "baselines": baseline_summary, **extra}
+    (ctx.out / "validation.json").write_text(json.dumps(val, indent=2, default=float))
+    (ctx.out / "manifest.json").write_text(json.dumps(ctx.manifest(len(bank)), indent=2, default=str))
+    (ctx.out / "report.md").write_text(report_md(
+        cfg, ctx.manifest(len(bank)), people, detail, val, per_len, baseline_summary, parts), encoding="utf-8")
     ctx.log(f"wrote {ctx.out}/report.md and question_set.csv ({length} questions)")
 
 
