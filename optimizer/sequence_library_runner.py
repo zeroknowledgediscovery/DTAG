@@ -29,7 +29,7 @@ import yaml
 
 from . import population
 from .__main__ import Ctx, DEFAULTS, merge
-from .dtag_bridge import REPO
+from .dtag_bridge import REPO, sha256
 from .four_way_audit import analyze
 from .ideology_coordinates import (
     COORDINATE, empty_state_offset,
@@ -295,9 +295,7 @@ def run_once(args):
                 empty_offset = empty_state_offset(ctx.world)
                 record["empty_state_index"] = empty_offset
                 record["poles_sha256"] = ctx.world.poles_summary()["sha256"]
-                record["map_sha256"] = __import__(
-                    "optimizer.dtag_bridge", fromlist=["sha256"]
-                ).sha256(ctx.map_path)
+                record["map_sha256"] = sha256(ctx.map_path)
                 if base_file.is_file():
                     base_people = json.loads(base_file.read_text(encoding="utf-8"))
                     # Fail closed if a cache predates the two-anchor invariant.
