@@ -231,9 +231,10 @@ def descriptive_diagnostics(world, variants, *, training_variable):
         empty = index(world, {}, L, R)["index"]
         # Moderate is held out if training is on partyid; do not use it to
         # choose answers or to optimize the pole.
-        neutral_label = "moderate, middle of the road"
-        centered = ({'polviews': neutral_label}
-                    if neutral_label in world.ctx.possible.get("polviews", []) else None)
+        neutral_label = next(
+            (v for v in ("moderate", "moderate, middle of the road")
+             if v in world.ctx.possible.get("polviews", [])), None)
+        centered = {"polviews": neutral_label} if neutral_label else None
         center = index(world, centered, L, R)["index"] if centered is not None else None
         for persona, state in states.items():
             d = index(world, state, L, R)
@@ -279,14 +280,13 @@ def inspect(args):
                                            min_modal_prob=args.min_modal_prob,
                                            construction=args.construction)
     used_vars = set(L)
-    print(f"Constructed {len(L)} paired, distinct modal answers from {len(pool)} "
+    print(f"Constructed {len(L)} paired, distinct {args.construction} answers from {len(pool)} "
           f"candidate variables", flush=True)
 
     # Check that the native representation exactly accepts every model-derived response.
     assert all(L[v] in world.ctx.possible[v] and R[v] in world.ctx.possible[v]
                and L[v] != R[v] for v in used_vars)
     file = out / "gss_2018_model_stratified_poles.csv"
-    write_csv(file, pole_rows(L, R), ["variable", "R", "L"])
     columns = ["variable", "included", "reason", "construction",
                "left_modal", "right_modal",
                "left_modal_probability", "right_modal_probability",
@@ -297,9 +297,31 @@ def inspect(args):
                "left_distribution", "right_distribution"]
     write_csv(out / "conditional_responses.csv", response_audit, columns)
     if len(L) < 2:
-        raise RuntimeError(
-            f"Only {len(L)} distinguishable modal pole pairs; "
-            f"review {out / 'conditional_responses.csv'}. No adequate axis.")
+        summary = {
+            "status": "insufficient_contrast",
+            "model": MODEL_KEY,
+            "source": "Native LSM model conditional probabilities, not observed respondent microdata",
+            "training_strata": {"variable": args.stratify, "left": left,
+                                "right": right, "fixed": fixed},
+            "pool": args.pool, "n_candidate_items": len(pool),
+            "n_selected_items": len(L),
+            "min_tv": args.min_tv, "construction": args.construction,
+            "top_conditional_tv": [
+                {"variable": rec["variable"], "tv": rec.get("tv_distance", 0)}
+                for rec in sorted(response_audit, key=lambda x: -float(x.get("tv_distance", 0)))[:12]],
+        }
+        (out / "results.json").write_text(json.dumps(summary, indent=2))
+        (out / "REPORT.md").write_text(
+            "# Inadequate model-stratified pole\n\n"
+            f"Only {len(L)} of {len(pool)} variables met the predeclared "
+            f"contrast criteria. No pole CSV was exported.\n\n"
+            "See conditional_responses.csv and results.json for the full "
+            "model-conditional evidence. This is a valid inconclusive "
+            "scientific result, not an execution failure.\n")
+        print(f"INSUFFICIENT: {len(L)} of {len(pool)} variable(s); "
+              f"no proposed pole exported. Report: {out/'REPORT.md'}", flush=True)
+        return summary
+    write_csv(file, pole_rows(L, R), ["variable", "R", "L"])
 
     manualL, manualR = dict(world.g.left_map), dict(world.g.right_map)
     variants = {
@@ -380,7 +402,7 @@ def inspect(args):
         f"Model-derived pole variables: **{len(L)}** of {len(pool)} eligible.",
         f"Hard pole construction: {args.construction}.",
         f"Overlap with manual v2: **{len(common)}**.",
-        "This is categorical modal-response construction from native model",
+        "This is categorical reference construction from native model",
         "conditional distributions, NOT observed 2018 respondent averages.",
         "Contrast mode picks the response most overrepresented in each",
         "stratum; it need not be either stratum's highest-frequency response.", "",
