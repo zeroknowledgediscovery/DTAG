@@ -1,6 +1,8 @@
 """Native DTAG simulation with immutable persona anchors and reproducible starting states."""
 from __future__ import annotations
 
+import hashlib
+import json
 import multiprocessing as mp
 import os
 import random
@@ -120,6 +122,11 @@ class Simulator:
         starts = self.pool.map(_start, jobs, chunksize=max(1, len(jobs) // (self.workers * 4)))
         runs = []
         for (i, state_id, seed, n_draws), (st, i0) in zip(meta, starts):
+            # An independently seeded construction need not yield a DISTINCT state.
+            # Hash the full state so duplicated starting assignments are one cluster.
+            if states_per_persona > 1:
+                digest = hashlib.sha256(json.dumps(st, sort_keys=True).encode()).hexdigest()[:20]
+                state_id = f"{i}:{digest}"
             for draw in range(n_draws):
                 runs.append((i, st, i0, seed + 1_000_000_007 * draw, state_id))
         return runs
