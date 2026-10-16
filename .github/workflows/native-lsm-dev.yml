@@ -28,6 +28,7 @@ jobs:
       - name: Compile Python sources
         run: |
           python -m py_compile scripts/*.py
+          python -m py_compile optimizer/*.py
 
       - name: Parse DTAG configs
         run: |
@@ -109,3 +110,7 @@ jobs:
         run: |
           cd webapp/tests
           pytest -q
+
+      - name: Optimizer tests (actual-start directions and immutable persona anchors)
+        run: |
+          pytest -q optimizer/tests
