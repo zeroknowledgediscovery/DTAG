@@ -134,6 +134,7 @@ def spec_config(year, output, persona_file, workers, freezeinit, seed, states, d
         "llm": {"provider": "openai", "model": "gpt-4.1-mini", "api_key_env": "OPENAI_API_KEY"},
         "participants": {"file": str(persona_file), "decode": "auto",
                          "core_variables": list(CORE), "protect_mapped": bool(freezeinit),
+                         "require_both_signs": False,  # missing sign => unclassified, not a crash
                          "perturb": {"drop": .15, "resample": .15}},
         "bank": {"source": "map", "mapping": "source", "rewrite": False},
         "search": {"resp_mode": "draw"},
@@ -156,8 +157,9 @@ def choose_length(trajs, starts, minimum=10, tolerance=.0005, window=3):
         raise ValueError("Insufficient trajectory length")
     positive = starts > .005
     negative = starts < -.005
-    if not positive.any() or not negative.any():
-        raise ValueError("Both starting-index groups required")
+    active_groups = [mask for mask in (positive, negative) if mask.any()]
+    if not active_groups:
+        raise ValueError("No starting states outside neutral band; cannot choose a prefix")
     maxlen = paths.shape[1] - 1
     if window < 1:
         raise ValueError("window must be positive")
@@ -165,8 +167,8 @@ def choose_length(trajs, starts, minimum=10, tolerance=.0005, window=3):
     for length in range(1, maxlen + 1):
         # Equal sign-agnostic tolerance for both observed starting-state groups.
         increment = paths[:, length] - paths[:, length - 1]
-        stable = max(abs(float(increment[positive].mean())),
-                     abs(float(increment[negative].mean()))) <= tolerance
+        stable = max(abs(float(increment[mask].mean()))
+                     for mask in active_groups) <= tolerance
         stable_steps = (stable_steps + 1) if stable else 0
         # Evaluate a window of increments ending at the current prefix.
         # The pilot starts earlier than minimum to allow stopping at minimum.
@@ -309,6 +311,9 @@ def run_once(args):
             existing = {r.get("candidate_sha256") for r in records if r.get("candidate_sha256")}
             candidate, digest = sample_candidate(bank, args.year, maxlen, seed, existing)
             # Run exactly one outcome-independent candidate per invocation.
+            # In waves where the two source personas have the same initial
+            # index sign, still save the candidate and report unclassified
+            # rather than fabricating a missing comparison group.
             write_sequence(folder / "candidate_full.csv", candidate)
             record["candidate_sha256"] = digest
             record["model"] = f"gss/gss_{args.year}"
