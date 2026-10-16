@@ -48,12 +48,25 @@ def inventory(runs_root, out, years=(2016, 2018, 2024), target_per_cell=3,
         raise FileNotFoundError(root)
     folders = sorted(p.parent for p in root.rglob("validation_trajectories.npz")
                      if output not in p.parents and p.parent != output)
-    results = []
+    results, skipped = [], []
     for i, folder in enumerate(folders):
         year = get_year(folder)
         if year not in years:
             continue
-        result = analyze(folder, seed=20261016 + i, nboot=bootstrap, band=neutral_band)
+        try:
+            result = analyze(folder, seed=20261016 + i, nboot=bootstrap, band=neutral_band)
+        except (ValueError, OSError, KeyError, TypeError) as exc:
+            result = {"status": "invalid_validation",
+                      "reason": f"{type(exc).__name__}: {exc}"}
+        if result["status"] in {"unsupported_schema", "missing_validation", "invalid_validation"}:
+            row = {"year": year, "source": str(folder.relative_to(root)),
+                   "status": result["status"], "reason": result.get("reason", ""),
+                   "missing_keys": ", ".join(result.get("missing_keys", [])),
+                   "available_keys": ", ".join(result.get("available_keys", []))}
+            skipped.append(row)
+            print(f"  skipped {row['source']}: {row['status']} "
+                  f"({row['missing_keys'] or row['reason']})", flush=True)
+            continue
         groups = result.get("groups", {})
         pos = (groups.get("positive") or {}).get("raw_change_ci") or {}
         neg = (groups.get("negative") or {}).get("raw_change_ci") or {}
@@ -76,6 +89,7 @@ def inventory(runs_root, out, years=(2016, 2018, 2024), target_per_cell=3,
             "year": year,
             "source": str(folder.relative_to(root)),
             "evidence_quality_0_to_10": quality,
+            "initial_ideology_source": result.get("initial_ideology_source", "archive"),
             "category_observed": category,
             "confirmed": confirmed,
             "positive_raw_mean": pos.get("mean"),
@@ -103,6 +117,7 @@ def inventory(runs_root, out, years=(2016, 2018, 2024), target_per_cell=3,
                 writer.writeheader()
                 writer.writerows(rows)
     csv_write("observed_runs.csv", results)
+    csv_write("skipped_runs.csv", skipped)
     csv_write("coverage_matrix.csv", matrix)
     report = {
         "scope": "descriptive model-index changes for existing validation runs",
@@ -110,7 +125,7 @@ def inventory(runs_root, out, years=(2016, 2018, 2024), target_per_cell=3,
         "method": "distinct-starting-state clustered bootstrap confidence intervals",
         "warning": "Not evidence of changes to real political attitudes; no sequences were generated or selected.",
         "quality_definition": "0-10 = 5 points for >=50 distinct starting states per group, 3 for >=20 draws per state, 1 for model manifest, 1 for mapped-question detail. Not an effectiveness score.",
-        "runs": results, "coverage": matrix,
+        "runs": results, "skipped_runs": skipped, "coverage": matrix,
     }
     (output / "summary.json").write_text(json.dumps(report, indent=2))
     lines = [
@@ -130,6 +145,10 @@ def inventory(runs_root, out, years=(2016, 2018, 2024), target_per_cell=3,
         lines.append("| " + str(year) + " | " +
                      " | ".join(str(count[(year, cat)]) for cat in CATEGORIES) + " |")
     lines += ["", f"Target: at least {target_per_cell} independent validated inputs per year/regime.",
+              f"Analyzed {len(results)} compatible archive(s); skipped {len(skipped)} incompatible or invalid archive(s).",
+              "Legacy archives missing initial_ideology may use the first trajectory column;",
+              "archives missing state_id cannot support independent-state bootstrap estimates.",
+              "See skipped_runs.csv for excluded paths and exact schema reasons.",
               "See coverage_matrix.csv for gaps and observed_runs.csv for evidence.",
               "The same candidate under multiple run directories may appear more than",
               "once; this is a run inventory, not a count of unique question sets.",
