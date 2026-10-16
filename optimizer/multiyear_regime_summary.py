@@ -110,15 +110,21 @@ def inventory(runs_root, out, years=(2016, 2018, 2024), target_per_cell=3,
                            "confirmed_runs": n, "target": target_per_cell,
                            "gap": max(0, target_per_cell - n)})
     output.mkdir(parents=True, exist_ok=True)
-    def csv_write(name, rows):
+    def csv_write(name, rows, columns):
         with (output / name).open("w", encoding="utf-8", newline="") as file:
-            if rows:
-                writer = csv.DictWriter(file, fieldnames=list(rows[0]))
-                writer.writeheader()
-                writer.writerows(rows)
-    csv_write("observed_runs.csv", results)
-    csv_write("skipped_runs.csv", skipped)
-    csv_write("coverage_matrix.csv", matrix)
+            writer = csv.DictWriter(file, fieldnames=columns)
+            writer.writeheader()
+            writer.writerows(rows)
+    csv_write("observed_runs.csv", results,
+              ["year", "source", "evidence_quality_0_to_10",
+               "initial_ideology_source", "category_observed", "confirmed",
+               "positive_raw_mean", "positive_ci_low", "positive_ci_high",
+               "negative_raw_mean", "negative_ci_low", "negative_ci_high",
+               "distinct_starting_states", "trajectories"])
+    csv_write("skipped_runs.csv", skipped,
+              ["year", "source", "status", "reason", "missing_keys", "available_keys"])
+    csv_write("coverage_matrix.csv", matrix,
+              ["year", "category", "confirmed_runs", "target", "gap"])
     report = {
         "scope": "descriptive model-index changes for existing validation runs",
         "years": list(years), "target_per_cell": target_per_cell,
