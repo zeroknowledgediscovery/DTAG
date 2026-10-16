@@ -243,3 +243,71 @@ pole-variable overlap, matched baselines, and expanded starting-state coverage
 are tracked in [DEFERRED_RESEARCH_NOTES.md](DEFERRED_RESEARCH_NOTES.md).
 These are **future research diagnostics**, not prerequisites for the current
 reproducible CM/WF baseline or automatic changes to the optimizer configuration.
+
+
+## Four-way descriptive audit of pre-existing sequences
+
+The repository already contains four types of historical GSS 2024 question sequences.
+They were constructed using older, generally noncomparable starting states and response modes.
+They are listed as **historical inputs, not new validated discoveries** in
+[four_way_catalog.yaml](four_way_catalog.yaml). The current ten-question run is the
+contemporary divergence input; it resides locally under
+outputs/optimizer/gss2024_cm_wf_robust/.
+
+The **four-way audit does not optimize or generate sequences**. It reads the raw
+ideology-index trajectories for preselected sequence evaluations and classifies their
+observed mean changes using the actual sign of each initialized state:
+
+| Regime | Positive-start raw change | Negative-start raw change |
+|---|---|---|
+| Divergence | positive | negative |
+| Positive translation | positive | positive |
+| Negative translation | negative | negative |
+| Convergence | negative | positive |
+
+Convergence can overshoot the neutral point; the JSON report includes the fraction
+crossing zero. Positive group means alone are not sufficient for a reliable regime
+classification: an outcome is marked supported only when both state-bootstrap 95%
+intervals exclude zero. Missing validation outputs remain explicitly unevaluated.
+
+To summarize any already available runs:
+
+    python -m optimizer.four_way_audit --catalog optimizer/four_way_catalog.yaml \
+      --out outputs/optimizer/four_way_summary
+
+If the three historical inputs have not yet been rerun under the current model
+and protected LLM-decoded persona protocol, they are evaluated *as fixed inputs*
+with these validation-only commands (from repository root):
+
+    python -m optimizer validate --config configs/optimizer_gss2024_four_way_audit.yaml \
+      --sequence assets/question_sets/optimized/gss2024_same_both_up.csv \
+      --out outputs/optimizer/four_way_evaluations/positive_translation --workers 4
+
+    python -m optimizer validate --config configs/optimizer_gss2024_four_way_audit.yaml \
+      --sequence assets/question_sets/optimized/gss2024_same_both_down.csv \
+      --out outputs/optimizer/four_way_evaluations/negative_translation --workers 4
+
+    python -m optimizer validate --config configs/optimizer_gss2024_four_way_audit.yaml \
+      --sequence assets/question_sets/depolarization/gss2024_depolarize_cm_wf_draw_12.csv \
+      --out outputs/optimizer/four_way_evaluations/convergence --workers 4
+
+    python -m optimizer.four_way_audit --catalog optimizer/four_way_catalog.yaml \
+      --out outputs/optimizer/four_way_summary
+
+The audit config uses sampled answers, real DTAG question mapping, 50 starting-state
+attempts per persona and 20 draws per state. It does not perform a new search.
+Its output directories are separate from the saved ten-question run. Because the
+optimizer excludes mapped question variables when augmenting initial context,
+the independently evaluated sequences are **not guaranteed to use exactly matched
+starting states**, even with the same seed. Do not claim a paired comparison.
+Descriptions refer to *model-inferred ideology-index changes*, not belief change.
+
+**Archiving:** outputs are intentionally excluded by .gitignore. Preserve the
+ten-question run separately before making changes, for example:
+
+    tar -czf gss2024_cm_wf_robust_results.tar.gz \
+      outputs/optimizer/gss2024_cm_wf_robust
+    sha256sum gss2024_cm_wf_robust_results.tar.gz
+
+Do not label a four-way collection "complete under the current protocol" until
+all four validation outputs exist and have been checked for mapping/anchor integrity.
