@@ -147,16 +147,33 @@ and all question responses. `polviews` and `partyid` must match `target_states.j
 disagreements appear in `participants.json` as `expected_mismatches`. With no LLM/API key,
 the CM/WF asset configuration cannot decode or run. Previously pinned states remain supported.
 
-Example from the repository root (my.yaml on dev is configured for this):
+### Versioned experiment configurations
+
+`configs/optimizer_gss2024_cm_wf_baseline.yaml` preserves the original 2/4-draw,
+60-move search that produced the initial results. The canonical expanded-search
+configuration is `configs/optimizer_gss2024_cm_wf_robust.yaml` (screen draws 20,
+search draws 40, local budget 100). Its output directory is separate:
+`outputs/optimizer/gss2024_cm_wf_robust`, so earlier results are not overwritten.
+Increasing repetitions mitigates sampling noise, but does **not** itself resolve
+zero-variance / infinite-t search scores; interpret those scores cautiously.
+
+Use the canonical file directly, or copy it into `my.yaml` as a local working copy.
+All repository-relative paths in the YAML are resolved from the repository root.
 
 ```bash
-export OPENAI_API_KEY=...   # set locally, never commit the value
+# From the repository root
+cp configs/optimizer_gss2024_cm_wf_robust.yaml my.yaml
+# Set OPENAI_API_KEY in your shell without committing or printing its value
 python -m optimizer check --config my.yaml
-python -m optimizer run --config my.yaml --rebuild-bank
+python -m optimizer run --config my.yaml --rebuild-bank --workers 4
 python -m optimizer validate --config my.yaml \
-  --sequence outputs/optimizer/gss2024/question_set.csv \
-  --out outputs/optimizer/gss2024_validation_remapped
+  --sequence outputs/optimizer/gss2024_cm_wf_robust/question_set.csv \
+  --out outputs/optimizer/gss2024_cm_wf_robust_remapped --workers 4
 ```
+
+For a no-copy run, replace `--config my.yaml` with
+`--config configs/optimizer_gss2024_cm_wf_robust.yaml`.
+
 
 The optimizer run searches a sequence, then validates it. The separate validate call
 re-maps the final exported question wording through DTAG's actual direct LLM mapper, as the
