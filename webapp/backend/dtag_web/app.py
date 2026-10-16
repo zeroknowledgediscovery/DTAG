@@ -19,6 +19,8 @@ from . import DTAG_ROOT  # noqa: F401  (adds DTAG scripts/ to sys.path)
 from .schemas import (
     Health,
     ProfileDraft,
+    AutoPushIn,
+    PushAskIn,
     QuestionIn,
     QuestionResult,
     RecommendIn,
@@ -28,7 +30,7 @@ from .schemas import (
 )
 from . import archive
 from .auth import PasswordAuth, install as install_auth
-from .sequences import SequenceManager, parse_question_lines
+from .sequences import AutoPushJob, SequenceManager, parse_question_lines
 from .sessions import SessionStore
 
 import dtag_paths  # noqa: E402
@@ -329,6 +331,49 @@ def create_app(
     def suggestions(session_id: str, n: int = Query(6, ge=1, le=20)) -> List[Dict[str, Any]]:
         """Starter questions that map directly onto the session's survey map."""
         return engine.suggestions(_session(session_id), n=n)
+
+    @app.get("/api/sessions/{session_id}/ideology-push", tags=["ideology push"])
+    def ideology_push(session_id: str, include_pole_items: bool = False) -> Dict[str, Any]:
+        """Two suggested next questions: one predicted to move the ideology index up, one down.
+
+        Every askable, unanswered survey item is scored exactly at the respondent's current
+        state (one-step optimizer). With resp_mode "max" the predicted move is the exact change
+        from the modal response; with "draw" it is the expected change. Each suggestion includes
+        a neutral question written for that item.
+        """
+        es = _session(session_id)
+        if sequences.active(session_id):
+            raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")
+        return engine.ideology_push(es, include_pole_items=include_pole_items)
+
+    @app.post("/api/sessions/{session_id}/ideology-push/ask", response_model=QuestionResult, tags=["ideology push"])
+    def ideology_push_ask(session_id: str, body: PushAskIn) -> Dict[str, Any]:
+        """Ask a suggested question; it is answered through exactly its survey item."""
+        es = _session(session_id)
+        if sequences.active(session_id):
+            raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")
+        try:
+            return es.ask_targeted(body.question, body.variable, direction=body.direction)
+        except ValueError as e:
+            raise HTTPException(400, str(e))
+
+    @app.post("/api/sessions/{session_id}/ideology-push/auto", tags=["ideology push"])
+    def ideology_push_auto(session_id: str, body: AutoPushIn) -> Dict[str, Any]:
+        """Push the index up or down for ``steps`` questions (background job).
+
+        Each step re-scores all items at the current state and asks the best one for the
+        direction. Progress and cancellation use ``GET``/``DELETE .../sequence``.
+        """
+        es = _session(session_id)
+        if not es.session.ideology_enabled:
+            raise HTTPException(409, "Ideology tracking is not available for this respondent.")
+        try:
+            job = sequences.start_job(AutoPushJob(es, body.direction, body.steps,
+                                                  include_pole_items=body.include_pole_items,
+                                                  reset_first=body.reset_first))
+        except RuntimeError as e:
+            raise HTTPException(409, str(e))
+        return job.snapshot()
 
     @app.post("/api/sessions/{session_id}/sequence", tags=["sessions"])
     def start_sequence(session_id: str, body: SequenceIn) -> Dict[str, Any]:

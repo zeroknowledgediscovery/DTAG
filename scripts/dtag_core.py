@@ -1037,6 +1037,47 @@ def llm_craft_human_answer(
     return _get_output_text(resp).strip()
 
 
+def llm_craft_survey_question(
+    client: OpenAI,
+    item_text: str,
+    responses: List[str],
+    model: str,
+) -> str:
+    """Phrase one survey item as a single natural, neutral question for a respondent.
+
+    The wording must keep the item's meaning so the question maps onto that item, must be
+    answerable with the item's response options, and must not suggest or favour any answer.
+    Falls back to the item text if the language model returns nothing usable.
+    """
+    fallback = str(item_text or "").strip()
+    schema = {
+        "type": "object",
+        "properties": {"question": {"type": "string"}},
+        "required": ["question"],
+        "additionalProperties": False,
+    }
+    prompt = (
+        "Rewrite the survey item below as ONE clear question addressed to a respondent ('you').\n"
+        "Requirements:\n"
+        "1) Keep the item's exact meaning and topic; the question must be answerable with the listed options.\n"
+        "2) Neutral wording: do not suggest, favour or frame toward any answer; no leading or loaded language.\n"
+        "3) Plain conversational English, one sentence, no codes, abbreviations or survey jargon.\n"
+        "4) Do not mention surveys, variables or models.\n\n"
+        f"SURVEY ITEM:\n{fallback}\n\n"
+        "RESPONSE OPTIONS:\n" + "\n".join(f"- {r}" for r in responses[:15]) + "\n"
+    )
+    try:
+        resp = client.responses.create(
+            model=model,
+            input=prompt,
+            text={"format": {"type": "json_schema", "name": "survey_question_wording", "schema": schema, "strict": True}},
+        )
+        q = str(json.loads(_get_output_text(resp)).get("question", "")).strip()
+    except Exception:
+        q = ""
+    return q or fallback
+
+
 def llm_craft_semantic_bridge_answer(
     client: OpenAI,
     persona_text: str,

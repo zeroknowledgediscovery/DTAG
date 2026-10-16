@@ -1,0 +1,117 @@
+"""Ideology push: one-step up/down question suggestions, targeted asks and auto-push."""
+from __future__ import annotations
+
+import time
+
+import pytest
+
+
+def _session(client, **overrides):
+    r = client.post("/api/sessions", json={"profile": "gss2024_cm", "overrides": overrides})
+    assert r.status_code == 200, r.text
+    return r.json()["session_id"]
+
+
+def _wait(client, sid, timeout=60):
+    t0 = time.time()
+    while time.time() - t0 < timeout:
+        st = client.get(f"/api/sessions/{sid}/sequence").json()
+        if st["status"] not in ("queued", "running"):
+            return st
+        time.sleep(0.05)
+    raise AssertionError("auto-push did not finish")
+
+
+def test_suggestions_and_targeted_ask(fake_client):
+    sid = _session(fake_client, resp_mode="max")
+    sug = fake_client.get(f"/api/sessions/{sid}/ideology-push?include_pole_items=true").json()
+    assert sug["enabled"] and sug["objective"] == "modal" and sug["n_candidates"] > 0
+    state = fake_client.get(f"/api/sessions/{sid}").json()["current_state"]
+    picks = [d for d in ("up", "down") if sug[d]]
+    assert picks, sug
+    for d in picks:
+        s = sug[d]
+        assert s["variable"] not in state and s["question"]
+        assert (s["predicted_delta"] > 0) if d == "up" else (s["predicted_delta"] < 0)
+        assert s["predicted_delta"] == s["delta_modal"]
+        assert abs(sum(a["p"] for a in s["responses"]) - 1) < 1e-9
+    for d in ("up", "down"):
+        if not sug[d]:
+            assert sug[f"{d}_reason"]
+
+    s = sug[picks[0]]
+    r = fake_client.post(f"/api/sessions/{sid}/ideology-push/ask",
+                         json={"variable": s["variable"], "question": s["question"], "direction": picks[0]})
+    assert r.status_code == 200, r.text
+    res = r.json()
+    assert res["selected_variables"] == [s["variable"]] and res["targeted"] is True
+    assert res["mapping"]["type"] == "direct" and res["question_source"] == "ideology_push"
+    assert res["push"]["realized_delta"] == pytest.approx(res["push"]["predicted_modal_delta"], abs=1e-12)
+    assert res["push"]["realized_delta"] == pytest.approx(s["predicted_delta"], abs=1e-12)
+    traj = fake_client.get(f"/api/sessions/{sid}").json()["ideology"]["trajectory"]
+    assert len(traj) == 2 and traj[-1]["selected_variables"] == [s["variable"]]
+
+
+def test_targeted_ask_rejects_unknown_item(fake_client):
+    sid = _session(fake_client)
+    r = fake_client.post(f"/api/sessions/{sid}/ideology-push/ask", json={"variable": "no_such_item", "question": "Q?"})
+    assert r.status_code == 400
+
+
+def test_draw_mode_ranks_by_expected_change(fake_client):
+    sid = _session(fake_client, resp_mode="draw")
+    sug = fake_client.get(f"/api/sessions/{sid}/ideology-push?include_pole_items=true").json()
+    assert sug["objective"] == "expected"
+    for d in ("up", "down"):
+        if sug[d]:
+            assert sug[d]["predicted_delta"] == sug[d]["expected_delta"]
+
+
+def test_auto_push_runs_steps_and_records_trajectory(fake_client):
+    sid = _session(fake_client, resp_mode="max")
+    sug = fake_client.get(f"/api/sessions/{sid}/ideology-push?include_pole_items=true").json()
+    direction = "up" if sug["up"] else "down"
+    r = fake_client.post(f"/api/sessions/{sid}/ideology-push/auto",
+                         json={"direction": direction, "steps": 3, "include_pole_items": True})
+    assert r.status_code == 200, r.text
+    assert r.json()["kind"] == "ideology_push" and r.json()["direction"] == direction
+    st = _wait(fake_client, sid)
+    assert st["status"] == "done", st
+    assert 1 <= st["completed"] <= 3 and len(st["predictions"]) == st["completed"]
+    for p, res in zip(st["predictions"], st["results"]):
+        assert res["selected_variables"] == [p["variable"]] and res["push"]["direction"] == direction
+        assert res["ideology"]["delta"] == pytest.approx(p["predicted_delta"], abs=1e-12)
+    if st["completed"] < 3:
+        assert st["stop_reason"]
+    info = fake_client.get(f"/api/sessions/{sid}").json()
+    assert info["question_count"] == st["completed"] and len(info["ideology"]["trajectory"]) == st["completed"] + 1
+
+
+def test_no_ideology_survey_reports_disabled(fake_client):
+    sid = _session(fake_client, ideology=False)
+    sug = fake_client.get(f"/api/sessions/{sid}/ideology-push").json()
+    assert sug["enabled"] is False and sug["reason"] and sug["up"] is None and sug["down"] is None
+    auto = fake_client.post(f"/api/sessions/{sid}/ideology-push/auto", json={"direction": "up", "steps": 2})
+    assert auto.status_code == 409
+
+
+@pytest.mark.native
+def test_native_push_prediction_is_exact(native_engine):
+    from conftest import NATIVE_KEY
+    if not NATIVE_KEY.startswith("gss/"):
+        pytest.skip("ideology poles are GSS-specific")
+    year = NATIVE_KEY.rsplit("_", 1)[-1]
+    spec = native_engine.build_spec(profile=f"gss{year}_cm", overrides={"resp_mode": "max"})
+    es = native_engine.create_session(spec=spec)
+    sug = native_engine.ideology_push(es)
+    assert sug["enabled"] and sug["fast_evaluator"] and sug["n_candidates"] > 100
+    assert sug["current_ideology"] == pytest.approx(es.ideology_summary()["current"], abs=1e-12)
+    for d in ("up", "down"):
+        s = sug[d]
+        if s is None:
+            continue
+        before = es.ideology_summary()["current"]
+        r = es.ask_targeted(s["question"], s["variable"], direction=d)
+        assert r["selected_variables"] == [s["variable"]]
+        assert r["ideology"]["after"] - before == pytest.approx(r["push"]["predicted_modal_delta"], abs=1e-12)
+        sug = native_engine.ideology_push(es)

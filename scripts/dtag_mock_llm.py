@@ -106,6 +106,11 @@ class _Responses:
                 }
             return SimpleNamespace(output_text=json.dumps(obj))
 
+        if name == "survey_question_wording":
+            m = re.search(r"SURVEY ITEM:\n(.*?)\n\n", input, flags=re.S)
+            item = (m.group(1).strip() if m else "this item").rstrip("?.")
+            return SimpleNamespace(output_text=json.dumps({"question": f"[mock wording] {item.capitalize()}?"}))
+
         if name == "persona_assignments":
             m = re.search(r"MAX_ASSIGN=(\d+)", input)
             max_assign = int(m.group(1)) if m else 0

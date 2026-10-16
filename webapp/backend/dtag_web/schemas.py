@@ -76,6 +76,25 @@ class SequenceIn(BaseModel):
     reset_first: bool = False
 
 
+class PushAskIn(BaseModel):
+    """Ask a suggested ideology-push question, answered through exactly its survey item."""
+    model_config = ConfigDict(extra="forbid", protected_namespaces=())
+
+    variable: str = Field(..., min_length=1, max_length=200)
+    question: str = Field(..., min_length=1, max_length=2000)
+    direction: Optional[Literal["up", "down"]] = None
+
+
+class AutoPushIn(BaseModel):
+    """Sequentially ask the optimizer's suggestion for one direction, ``steps`` times."""
+    model_config = ConfigDict(extra="forbid", protected_namespaces=())
+
+    direction: Literal["up", "down"]
+    steps: int = Field(5, ge=1, le=100)
+    include_pole_items: bool = False
+    reset_first: bool = False
+
+
 class Health(BaseModel):
     status: str
     dtag_version: str

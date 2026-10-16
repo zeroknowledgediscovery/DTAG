@@ -30,6 +30,7 @@ import json
 import os
 import re
 import subprocess
+import sys
 import threading
 import time
 import uuid
@@ -59,6 +60,8 @@ from dtag_session import (
 from model_backend import NativeLSMBackend, _read_native_columns
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:  # the optimizer package (ideology-push suggestions)
+    sys.path.append(str(REPO_ROOT))
 FAMILIES = ("gss", "afrobarometer", "wvs", "eurobarometer")
 FAMILY_LABELS = {
     "gss": "GSS",
@@ -320,6 +323,10 @@ class LockedBackend:
     def distances_to_state(self, *a, **kw):
         with self._lock:
             return self._backend.distances_to_state(*a, **kw)
+
+    def extension_distances(self, *a, **kw):
+        with self._lock:
+            return self._backend.extension_distances(*a, **kw)
 
 
 @dataclass
@@ -767,6 +774,33 @@ class EngineSession:
         out["temporal_conditioning"] = self.temporal_conditioning
         return out
 
+    def ask_targeted(self, question: str, variable: str, direction: Optional[str] = None) -> Dict[str, Any]:
+        """Ask a question written for one survey item (ideology push); the item is used directly.
+
+        The result carries ``push``: the one-step prediction made just before asking and the
+        realized change of the recorded ideology index.
+        """
+        self.last_used = time.time()
+        from optimizer.session_push import predict_item
+
+        with self.session.lock:
+            pred = predict_item(self.session, variable) if self.session.ideology_enabled else {}
+            r = self.session.ask(question, source="ideology_push", target_variables=[variable])
+        out = dict(r)
+        out.pop("record", None)
+        out["geographic_conditioning"] = self.geographic_conditioning
+        out["temporal_conditioning"] = self.temporal_conditioning
+        out["push"] = {
+            "direction": direction,
+            "variable": variable,
+            "predicted_expected_delta": pred.get("expected_delta"),
+            "predicted_modal_delta": pred.get("delta_modal"),
+            "predicted_modal_answer": pred.get("modal_answer"),
+            "realized_delta": (r.get("ideology") or {}).get("delta"),
+            "resp_mode": self.session.config.resp_mode,
+        }
+        return out
+
     def reset(self) -> None:
         self.last_used = time.time()
         self.session.reset()
@@ -872,6 +906,8 @@ class DTAGEngine:
         self._possible_cache: Dict[str, Dict[str, List[str]]] = {}
         from dtag_recommend import Recommender
         self.recommender = Recommender(self)
+        self._wording_cache: Dict[Any, str] = {}
+        self._wording_lock = threading.Lock()
         self._cap_lock = threading.Lock()
 
     # -- environment --------------------------------------------------------
@@ -1694,6 +1730,26 @@ class DTAGEngine:
                 pass
         pool += [str(q) for q in (entry.get("questions") or [])]
         return list(dict.fromkeys(q.strip() for q in pool if str(q).strip()))
+
+    def ideology_push(self, es: "EngineSession", include_pole_items: bool = False) -> Dict[str, Any]:
+        """Questions that move this respondent's ideology index up / down (one-step optimizer)."""
+        from optimizer.session_push import suggest
+
+        s = es.session
+
+        def craft(variable: str, survey_question: str, responses: List[str]) -> str:
+            key = (es.spec.model_key, es.spec.map_key, variable)
+            with self._wording_lock:
+                hit = self._wording_cache.get(key)
+            if hit:
+                return hit
+            q = core.llm_craft_survey_question(s._client(), survey_question, responses, s.config.openai_model)
+            with self._wording_lock:
+                self._wording_cache[key] = q
+            return q
+
+        es.last_used = time.time()
+        return suggest(s, include_pole_items=include_pole_items, craft=craft)
 
     def suggestions(self, es: "EngineSession", n: int = 6) -> List[Dict[str, Any]]:
         """Starter questions that map directly onto this session's survey map."""

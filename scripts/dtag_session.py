@@ -837,21 +837,32 @@ class DTAGSession:
 
     # -- public question API ---------------------------------------------------
 
-    def ask(self, question: str, source: str = "interactive") -> Dict[str, Any]:
-        """Answer one question and evolve the respondent state (``_run_one``)."""
+    def ask(self, question: str, source: str = "interactive",
+            target_variables: Optional[List[str]] = None) -> Dict[str, Any]:
+        """Answer one question and evolve the respondent state (``_run_one``).
+
+        ``target_variables`` (optional) names the survey item(s) the question was written for
+        (e.g. by the ideology optimizer). The lexical/LLM variable selection is then skipped and
+        those items are used directly; distributions, response draws, state updates, ideology and
+        the answer text follow exactly the same path as any other question.
+        """
         question = str(question).strip()
         if not question:
             raise ValueError("Question must be non-empty.")
+        if target_variables is not None:
+            bad = [v for v in target_variables if v not in self.ctx.var_map or v not in self.ctx.idx_map]
+            if bad or not target_variables:
+                raise ValueError(f"Target variables not in this survey's model/map: {bad or target_variables}")
         with self.lock:
             self.query_count += 1
-            return self._run_one(question, self.query_count, source)
+            return self._run_one(question, self.query_count, source, target_variables=target_variables)
 
-    def _run_one(self, question: str, query_idx: int, source: str) -> Dict[str, Any]:
+    def _run_one(self, question: str, query_idx: int, source: str,
+                 target_variables: Optional[List[str]] = None) -> Dict[str, Any]:
         cfg = self.config
         ctx = self.ctx
         var_map = ctx.var_map
         idx_map = ctx.idx_map
-        possible = ctx.possible
         timings_q: Dict[str, float] = {}
         tq0 = time.time()
         state_before = dict(self.state)
@@ -859,6 +870,14 @@ class DTAGSession:
         nm = dict(state_before=state_before, ideology_before=ideology_before)
 
         self.question_series.append((query_idx, question, source))
+
+        if target_variables is not None:
+            cands: List[Any] = []
+            var_set = list(dict.fromkeys(target_variables))
+            rationale_vars = ("Targeted survey item(s) chosen by the one-step ideology optimizer: "
+                              + ", ".join(var_set) + ".")
+            return self._answer_with_variables(question, query_idx, source, var_set, rationale_vars,
+                                               cands, timings_q, tq0, nm, targeted=True)
 
         t = time.time()
         cands = core.lexical_prefilter(var_map, question, top_n=cfg.prefilter, min_score=cfg.min_map_score)
@@ -893,6 +912,20 @@ class DTAGSession:
                 trigger_rationale=rationale_vars,
                 timings_q=timings_q, tq0=tq0, **nm,
             )
+
+        return self._answer_with_variables(question, query_idx, source, var_set, rationale_vars,
+                                           cands, timings_q, tq0, nm)
+
+    def _answer_with_variables(self, question: str, query_idx: int, source: str, var_set: List[str],
+                               rationale_vars: str, cands: List[Any], timings_q: Dict[str, float],
+                               tq0: float, nm: Dict[str, Any], targeted: bool = False) -> Dict[str, Any]:
+        """Native distributions -> responses -> state -> ideology -> answer, for chosen variables."""
+        cfg = self.config
+        var_map = self.ctx.var_map
+        idx_map = self.ctx.idx_map
+        possible = self.ctx.possible
+        state_before = nm["state_before"]
+        ideology_before = nm["ideology_before"]
 
         t = time.time()
         NULL_cond = core.build_NULL_with_assignments(self.model, dict(self.state), idx_map)
@@ -979,7 +1012,7 @@ class DTAGSession:
         return self._finish(
             record, "direct", rationale_vars, var_items, dists_cond, timings_q,
             state_before, ideology_before,
-            extra={"lexical_candidates": len(cands)},
+            extra={"lexical_candidates": len(cands), "targeted": targeted},
         )
 
     # -- inspection --------------------------------------------------------------
