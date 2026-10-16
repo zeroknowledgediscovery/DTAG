@@ -28,8 +28,8 @@ run 0 in each case, a full sweep over all ~982 non-pole questions picked a quest
 (CM→right `coeduc`, CM→left `abhlth`, WF→right `heaven`, WF→left `HUNT1`), so the pool restriction
 did not change that choice.
 
-**Reproduce one case.** Run `bash scratch/gss2018_pole_geometry/run_push_case.sh CM right`
-(about 20–25 min on 4 cores; seeded; a local CM→right run reproduced these numbers exactly).
+**Reproduce one case.** Run `python scratch/gss2018_pole_geometry/greedy_push_runs.py --persona CM --direction right --n-items 6 --audit`
+(about 20–25 min on 4 cores; seeded; a local CM→right run reproduced these numbers exactly). `--n-items` sets the run length.
 
 ## Start and end values
 
@@ -110,8 +110,8 @@ Random-run seeds differ between the left and right cases, so the random baseline
 
 ## Files
 
-- `greedy_runs/{CM,WF}_{right,left}.csv`: every step of every run (question, μ, P_up/P_down,
+- `greedy_runs/{CM,WF}_{right,left}_n6.csv`: every step of every run (question, μ, P_up/P_down,
   drawn answer and its p, ΔJ, J after).
 - `greedy_runs/*.json`: state, seed, J₀ and the audit.
 - `greedy_runs/summary.md`: step-by-step tables for every greedy run (from `greedy_runs_summary.py`).
-- Code: `greedy_push_runs.py`, `run_push_case.sh`, and `optimizer/one_step_geometry.py` (`policy_run`).
+- Code: `greedy_push_runs.py`, `greedy_runs_summary.py`, and `optimizer/one_step_geometry.py` (`policy_run`).
