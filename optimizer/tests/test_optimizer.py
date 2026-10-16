@@ -334,3 +334,53 @@ def test_multiyear_inventory_skips_archive_without_state_ids(tmp_path):
     assert report["skipped_runs"][0]["status"] == "unsupported_schema"
     assert (tmp_path / "audit" / "skipped_runs.csv").is_file()
     assert report["coverage"][0]["confirmed_runs"] == 0
+
+
+
+def test_local_library_neutral_sampling_ignores_requested_direction():
+    from optimizer.sequence_library_runner import sample_candidate, candidate_hash
+    pool = [{"id": f"item_{n}", "question": f"Item {n}"} for n in range(100)]
+    first, digest1 = sample_candidate(pool, 2016, 12, seed=19, existing=set())
+    second, digest2 = sample_candidate(pool, 2016, 12, seed=19, existing=set())
+    assert first == second and digest1 == digest2
+    assert digest1 == candidate_hash(2016, first)
+    assert len({q["id"] for q in first}) == 12
+    third, digest3 = sample_candidate(pool, 2016, 12, seed=19, existing={digest1})
+    assert digest3 != digest1
+
+
+def test_local_library_prefix_stops_at_sign_neutral_plateau():
+    from optimizer.sequence_library_runner import choose_length
+    import numpy as np
+
+    starts = np.array([.15] * 8 + [-.15] * 8)
+    # Two groups move in opposite directions for 10 steps, then plateau.
+    paths = np.tile(starts[:, None], (1, 21))
+    for k in range(1, 21):
+        if k <= 9:
+            delta = np.where(starts > 0, .003, -.003)
+        else:
+            delta = np.where(starts > 0, .00001, -.00001)
+        paths[:, k] = paths[:, k - 1] + delta
+    assert choose_length(paths, starts, minimum=10, tolerance=.0001, window=3) == 12
+    assert choose_length(paths, starts, minimum=10, tolerance=0, window=2) == 20
+    # Does not inspect a requested response quadrant.
+    assert choose_length(-paths, -starts, minimum=10, tolerance=.0001, window=3) == 12
+
+
+def test_local_library_persona_core_protected_and_score():
+    from optimizer.sequence_library_runner import derive_spec, score_from_z
+    original = [
+        {"id": "a", "state": {"polviews": "liberal", "partyid": "strong democrat",
+                              "relig": "none", "news": "every day", "age": "35"}},
+        {"id": "b", "state": {"polviews": "conservative", "partyid": "republican",
+                              "relig": "catholic", "news": "rarely", "age": "60"}}]
+    for variant in range(5):
+        people = derive_spec(original, variant, seed=10)
+        for expected, new in zip(original, people):
+            assert set(("polviews", "partyid")) <= set(new["state"])
+            assert all(new["state"][k] == expected["state"][k]
+                       for k in ("polviews", "partyid"))
+    assert score_from_z(3.6) == 4
+    assert score_from_z(20.0) == 10
+    assert score_from_z(-2.0) == 0
