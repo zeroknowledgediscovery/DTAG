@@ -138,6 +138,7 @@ def spec_config(year, output, persona_file, workers, freezeinit, seed, states, d
         "llm": {"provider": "openai", "model": "gpt-4.1-mini", "api_key_env": "OPENAI_API_KEY"},
         "participants": {"file": str(persona_file), "decode": "auto",
                          "core_variables": list(CORE), "protect_mapped": bool(freezeinit),
+                         "index_origin": "empty",  # classify personas in the same axis as trajectories
                          "require_both_signs": False,  # missing sign => unclassified, not a crash
                          "perturb": {"drop": .15, "resample": .15}},
         "bank": {"source": "map", "mapping": "source", "rewrite": False},
@@ -312,22 +313,36 @@ def run_once(args):
                             raise ValueError(
                                 f"Persona {p['id']} missing mandatory protected anchors")
                     atomic_json(base_file, base_people)
-                # Recalculate anchor protection for THIS run: the frozen
-                # decoded-state cache is shared across freezeinit settings.
+                # Recalculate the coordinate and protected anchors for THIS run.
+                # Cache files written by the old runner may contain RAW I0 values;
+                # never trust those cached directions when moving to I-I(empty).
                 base_people = [dict(p) for p in base_people]
                 for p in base_people:
                     if not set(CORE).issubset(p["state"]):
                         raise ValueError(f"Missing core variables in {p['id']} state")
+                    raw = float(ctx.world.I(p["state"]))
+                    centered = raw-empty_offset
+                    band = float(config["participants"]["neutral_band"])
+                    p["I_raw"] = raw
+                    p["I_empty"] = empty_offset
+                    p["I0"] = centered
+                    p["index_origin"] = "empty"
+                    p["direction"] = (0 if abs(centered) < band else
+                                      1 if centered > 0 else -1)
                     fixed = sorted(p["state"]) if args.freezeinit else sorted(set(CORE))
                     p["protected"] = fixed
                     p["protected_values"] = {k: p["state"][k] for k in fixed}
+                # Persist upgraded origin metadata for future runs, without
+                # mutating any original persona assignments.
+                atomic_json(base_file, base_people)
                 bank = ctx.bank(people=base_people)
-                centered = centered_persona_diagnostics(base_people, empty_offset)
+                persona_comparison = centered_persona_diagnostics(
+                    base_people, empty_offset, band=config["participants"]["neutral_band"])
                 atomic_json(folder / "initial_index_comparison.json", {
                     "coordinate": COORDINATE, "empty_state_index": empty_offset,
-                    "poles": ctx.world.poles_summary(), "personas": centered,
+                    "poles": ctx.world.poles_summary(), "personas": persona_comparison,
                     "warning": "Changing origin cannot alter any within-state movement."})
-                for row in centered:
+                for row in persona_comparison:
                     print(f"  CENTERED {row['persona']}: "
                           f"raw={row['I_raw']:+.5f}, "
                           f"I_minus_empty={row['I_centered']:+.5f}, "
