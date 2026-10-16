@@ -92,10 +92,12 @@ def group_dists(world, conditioned, variables, batch_size=16):
 
 
 def construct_poles(left_dists, right_dists, variables, *,
-                    min_tv=.05, min_modal_prob=0.0):
+                    min_tv=.05, min_modal_prob=0.0, construction="contrast"):
     """Pick modal answers only when distinct; never condition on validation signs."""
     if not 0 <= min_tv <= 1 or not 0 <= min_modal_prob <= 1:
         raise ValueError("thresholds must lie in [0,1]")
+    if construction not in ("contrast", "modal"):
+        raise ValueError(f"Unknown pole construction: {construction}")
     L, R, audit = {}, {}, []
     for variable in variables:
         ld, rd = left_dists.get(variable), right_dists.get(variable)
@@ -110,17 +112,37 @@ def construct_poles(left_dists, right_dists, variables, *,
                     if len(l_probs) > 1 else lp)
         margin_r = (rp - sorted(r_probs.values(), reverse=True)[1]
                     if len(r_probs) > 1 else rp)
-        keep = (lv != rv and tv >= min_tv
-                and lp >= min_modal_prob and rp >= min_modal_prob)
+        labels = sorted(set(l_probs) | set(r_probs))
+        differences = {label: l_probs.get(label, 0.) - r_probs.get(label, 0.)
+                       for label in labels}
+        if construction == "contrast" and labels:
+            # Responses that are most overrepresented in the reference stratum,
+            # NOT whichever response is individually most common.
+            chosen_left = sorted(labels, key=lambda k: (-differences[k], k))[0]
+            chosen_right = sorted(labels, key=lambda k: (differences[k], k))[0]
+            selected_left_prob = l_probs.get(chosen_left, 0.)
+            selected_right_prob = r_probs.get(chosen_right, 0.)
+        else:
+            chosen_left, chosen_right = lv, rv
+            selected_left_prob, selected_right_prob = lp, rp
+        keep = (chosen_left != chosen_right and tv >= min_tv
+                and selected_left_prob >= min_modal_prob
+                and selected_right_prob >= min_modal_prob)
         reason = ("retained" if keep else
-                  "same_modal_response" if lv == rv else
                   "below_min_tv" if tv < min_tv else
-                  "below_modal_probability")
+                  "same_modal_response" if chosen_left == chosen_right else
+                  "below_selected_probability")
         audit.append({
             "variable": variable, "included": keep, "reason": reason,
+            "construction": construction,
             "left_modal": lv, "right_modal": rv,
             "left_modal_probability": round(lp, 8),
             "right_modal_probability": round(rp, 8),
+            "left_selected": chosen_left, "right_selected": chosen_right,
+            "left_selected_probability": round(selected_left_prob, 8),
+            "right_selected_probability": round(selected_right_prob, 8),
+            "left_selected_excess": round(differences.get(chosen_left, 0.), 8),
+            "right_selected_excess": round(-differences.get(chosen_right, 0.), 8),
             "left_mode_margin": round(margin_l, 8),
             "right_mode_margin": round(margin_r, 8),
             "tv_distance": round(tv, 8),
@@ -128,7 +150,7 @@ def construct_poles(left_dists, right_dists, variables, *,
             "right_distribution": json.dumps(r_probs, sort_keys=True),
         })
         if keep:
-            L[variable], R[variable] = lv, rv
+            L[variable], R[variable] = chosen_left, chosen_right
     return L, R, audit
 
 
@@ -239,7 +261,8 @@ def inspect(args):
     right_dists = group_dists(world, right_state, pool, args.batch_size)
     L, R, response_audit = construct_poles(left_dists, right_dists, pool,
                                            min_tv=args.min_tv,
-                                           min_modal_prob=args.min_modal_prob)
+                                           min_modal_prob=args.min_modal_prob,
+                                           construction=args.construction)
     used_vars = set(L)
     print(f"Constructed {len(L)} paired, distinct modal answers from {len(pool)} "
           f"candidate variables", flush=True)
@@ -249,8 +272,12 @@ def inspect(args):
                and L[v] != R[v] for v in used_vars)
     file = out / "gss_2018_model_stratified_poles.csv"
     write_csv(file, pole_rows(L, R), ["variable", "R", "L"])
-    columns = ["variable", "included", "reason", "left_modal", "right_modal",
+    columns = ["variable", "included", "reason", "construction",
+               "left_modal", "right_modal",
                "left_modal_probability", "right_modal_probability",
+               "left_selected", "right_selected",
+               "left_selected_probability", "right_selected_probability",
+               "left_selected_excess", "right_selected_excess",
                "left_mode_margin", "right_mode_margin", "tv_distance",
                "left_distribution", "right_distribution"]
     write_csv(out / "conditional_responses.csv", response_audit, columns)
@@ -313,6 +340,7 @@ def inspect(args):
                             "identical_fixed_covariates": fixed},
         "design": {"candidate_pool": args.pool, "n_candidate_items": len(pool),
                    "min_tv": args.min_tv, "min_modal_prob": args.min_modal_prob,
+                   "construction": args.construction,
                    "n_selected_items": len(L), "selected_variables": sorted(used_vars),
                    "n_shared_manual": len(common),
                    "withheld_anchor": "polviews" if args.stratify == "partyid" else "partyid"},
@@ -328,9 +356,12 @@ def inspect(args):
         f"Reference variable: {args.stratify}, left={left}, right={right}.",
         f"Symmetrically fixed covariates: {fixed!r}.", "",
         f"Model-derived pole variables: **{len(L)}** of {len(pool)} eligible.",
+        f"Hard pole construction: {args.construction}.",
         f"Overlap with manual v2: **{len(common)}**.",
         "This is categorical modal-response construction from native model",
-        "conditional distributions, NOT observed 2018 respondent averages.", "",
+        "conditional distributions, NOT observed 2018 respondent averages.",
+        "Contrast mode picks the response most overrepresented in each",
+        "stratum; it need not be either stratum's highest-frequency response.", "",
         "## Index comparison", "",
         "| Variant | Pairs | Empty | CM core | WF core | CM−WF |",
         "|---|---:|---:|---:|---:|---:|"]
@@ -377,6 +408,9 @@ def main(argv=None):
                         help="identical control assignment for both strata: name=value")
     parser.add_argument("--pool", choices=["canonical", "opinion"], default="canonical")
     parser.add_argument("--max-items", type=int, default=None)
+    parser.add_argument("--construction", choices=["contrast", "modal"],
+                        default="contrast",
+                        help="contrast picks largest conditional excess; modal picks group mode")
     parser.add_argument("--min-tv", type=float, default=.05)
     parser.add_argument("--min-modal-prob", type=float, default=0.0)
     parser.add_argument("--batch-size", type=int, default=16)
