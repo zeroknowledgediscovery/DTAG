@@ -44,6 +44,7 @@ from optimizer.dtag_bridge import (  # noqa: E402
     DEFAULT_POLES, World, canonical_map, ensure_model, model_record, sha256)
 
 import pipeline as core  # noqa: E402  (on sys.path via dtag_bridge)
+from optimizer.one_step_geometry import state_row  # noqa: E402  (no U100 label truncation)
 
 MODEL_KEY = "gss/gss_2018"
 CORE = ("polviews", "partyid")
@@ -68,7 +69,7 @@ def _init_worker(world_args):
 def native_index(world, state):
     """I(s) with explicit distances; fails instead of World.I's silent 0.0 on nonfinite values."""
     m, g = world.m, world.g
-    x = core.build_full_vector_from_state(m, state, world.ctx.idx_map)
+    x = state_row(world, state)
     if hasattr(m, "distances_to_state"):
         dl, dr = m.distances_to_state(g.sL, g.sR, x)
     else:
@@ -90,8 +91,7 @@ def _eval_pairs(base_state, pairs):
 
 def raw_distributions(world, state, variables):
     """Unfiltered native P(. | s, v) plus support audit (World.dists renormalizes silently)."""
-    N = core.build_NULL_with_assignments(world.m, dict(state), world.ctx.idx_map)
-    raw = core.qnet_conditional_distributions(world.m, N, target_vars=list(variables))
+    raw = core.qnet_conditional_distributions(world.m, state_row(world, state), target_vars=list(variables))
     out, audit = {}, {}
     for v in variables:
         d = {str(k): float(p) for k, p in (raw.get(v) or {}).items()}

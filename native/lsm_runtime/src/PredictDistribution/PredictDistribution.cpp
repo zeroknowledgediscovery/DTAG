@@ -44,27 +44,40 @@ map<int, double> mix_probs(const map<int, double>& pLeft,
     return output;
 }
 
-double subtree_mass(TreeNode* node,
-                    unordered_map<const TreeNode*, double>& memo) {
-    const auto found = memo.find(node);
-    if (found != memo.end()) return found->second;
-
+// Load-time version of subtree_mass for every node: identical arithmetic, but never throws, so
+// a degenerate subtree only raises an error if a prediction actually reaches it (as before).
+double all_subtree_masses(TreeNode* node, unordered_map<const TreeNode*, double>& out) {
+    if (!node) return 0.0;
     double mass = 0.0;
     if (node->isLeaf()) {
         for (const auto& kv : node->getFeatureCounts()) mass += static_cast<double>(kv.second);
     } else {
         SplitNode* split = static_cast<SplitNode*>(node);
-        if (!split->hasLeft() || !split->hasRight()) throw logic_error("subtree_mass: split is missing a child");
-        mass = subtree_mass(split->getLeft(), memo) + subtree_mass(split->getRight(), memo);
+        const double l = all_subtree_masses(split->getLeft(), out);
+        const double r = all_subtree_masses(split->getRight(), out);
+        mass = l + r;
     }
-    if (mass <= 0.0) throw logic_error("subtree_mass: subtree has zero target mass");
-    memo[node] = mass;
+    out[node] = mass;
     return mass;
+}
+
+double cached_mass(const TreeNode* node, const unordered_map<const TreeNode*, double>& memo) {
+    const double mass = memo.at(node);
+    if (mass <= 0.0) throw logic_error("subtree_mass: subtree has zero target mass");
+    return mass;
+}
+
+void collect_split_columns(TreeNode* node, set<int>& out) {
+    if (!node || node->isLeaf()) return;
+    SplitNode* split = static_cast<SplitNode*>(node);
+    out.insert(split->getColumnID());
+    collect_split_columns(split->getLeft(), out);
+    collect_split_columns(split->getRight(), out);
 }
 
 map<int, double> infer(TreeNode* node,
                        const vector<int>& values,
-                       unordered_map<const TreeNode*, double>& massMemo) {
+                       const unordered_map<const TreeNode*, double>& massMemo) {
     if (node->isLeaf()) return normalize(node->getFeatureCounts(), node);
 
     SplitNode* split = static_cast<SplitNode*>(node);
@@ -85,8 +98,8 @@ map<int, double> infer(TreeNode* node,
 
     if (!split->hasLeft() || !split->hasRight()) throw logic_error("infer: missing child at split during marginalization");
 
-    const double nLeft = subtree_mass(split->getLeft(), massMemo);
-    const double nRight = subtree_mass(split->getRight(), massMemo);
+    const double nLeft = cached_mass(split->getLeft(), massMemo);
+    const double nRight = cached_mass(split->getRight(), massMemo);
     const double denominator = nLeft + nRight;
     if (denominator <= 0.0) throw logic_error("infer: constructed child mass <= 0");
     const double pi = nLeft / denominator;
@@ -110,7 +123,7 @@ map<int, int> probs_to_pseudocounts(const map<int, double>& probs, int scale = 1
 PredictDistribution::PredictDistribution(const std::string& dirPath)
     : directory(dirPath) {}
 
-shared_ptr<Tree> PredictDistribution::getTree(int treeId) const {
+shared_ptr<const PredictDistribution::LoadedTree> PredictDistribution::getTree(int treeId) const {
     {
         shared_lock<shared_mutex> lock(treeCacheMutex);
         auto it = treeCache.find(treeId);
@@ -126,10 +139,19 @@ shared_ptr<Tree> PredictDistribution::getTree(int treeId) const {
     ifstream inFile(filename.str(), ios::binary);
     if (!inFile) throw runtime_error("Could not open tree file: " + filename.str());
 
-    auto tree = make_shared<Tree>(inFile);
-    if (!tree->getRoot()) throw runtime_error("Tree has no root");
-    treeCache.emplace(treeId, tree);
-    return tree;
+    auto loaded = make_shared<LoadedTree>();
+    loaded->tree = make_shared<Tree>(inFile);
+    if (!loaded->tree->getRoot()) throw runtime_error("Tree has no root");
+    // Same recursion (and therefore the same floating-point values) as the former
+    // per-call memo; computed once for every node.
+    (void)all_subtree_masses(loaded->tree->getRoot(), loaded->mass);
+    collect_split_columns(loaded->tree->getRoot(), loaded->splitColumns);
+    treeCache.emplace(treeId, loaded);
+    return loaded;
+}
+
+const set<int>& PredictDistribution::splitColumns(int treeId) const {
+    return getTree(treeId)->splitColumns;
 }
 
 void PredictDistribution::preload(const vector<int>& treeIds) const {
@@ -137,11 +159,10 @@ void PredictDistribution::preload(const vector<int>& treeIds) const {
 }
 
 map<int, int> PredictDistribution::predict(int treeId, const vector<int>& values) const {
-    const auto tree = getTree(treeId);
-    TreeNode* root = tree->getRoot();
+    const auto loaded = getTree(treeId);
+    TreeNode* root = loaded->tree->getRoot();
     if (!root) throw runtime_error("Tree has no root");
 
-    unordered_map<const TreeNode*, double> massMemo;
-    const map<int, double> probs = infer(root, values, massMemo);
+    const map<int, double> probs = infer(root, values, loaded->mass);
     return probs_to_pseudocounts(probs);
 }

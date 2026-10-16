@@ -205,6 +205,9 @@ def main():
                   f"{len(mod)} rows; max |I_after diff| = {float((ref.I_after - mod.I_after).abs().max()):.2e}; "
                   f"max |P diff| = {float((ref.conditional_probability - mod.conditional_probability).abs().max()):.2e}; "
                   f"max |mu diff| = {float((rs.expected_delta - ms.expected_delta).abs().max()):.2e}.", ""]
+    parts += ["## Validation of implementations", "",
+              "Serial vs parallel, `optimizer.one_step_geometry` vs this reference, and the incremental",
+              "native evaluator vs the per-state path (bit-identical on all pairs): see `ONE_STEP_FINDINGS.md`.", ""]
     (HERE / "ONE_STEP_REPORT.md").write_text("\n".join(parts))
     print("\n".join(parts))
 

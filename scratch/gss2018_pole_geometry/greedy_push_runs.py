@@ -26,13 +26,14 @@ Usage (from anywhere; the first run builds the native binding and downloads gss/
     python scratch/gss2018_pole_geometry/greedy_push_runs.py --persona WF --direction left \\
         --n-items 10 --runs 5 --baseline-runs 0 --verbose
 
-Cost: about 1 min per greedy step on 4 cores with --pool 120 (random steps are ~instant).
-Run one case at a time; the native runtime is multi-threaded.
+Cost: every greedy step re-scores all ~980 non-pole items x all responses exactly in ~4-5 s
+(incremental native evaluator: only trees that split on the added item are re-evaluated;
+bit-identical to the full computation). Random steps are ~instant.
 
-Candidate pool (documented approximation): the --pool non-pole items with the largest
-max(rank |mu|, rank range) in the exact step-0 sweep (one_step_results/<persona>/). With
---pool 0 every non-pole item is re-scored each step (exact, ~4 min per step). --audit re-runs the
-full sweep at the final state of greedy run 0 and records whether its choice is inside the pool.
+Optional --pool N restricts candidates to the N items with the largest max(rank |mu|, rank range)
+in the step-0 sweep (the approximation used for the first 6-item experiment, before the speedup).
+--audit re-runs the full sweep at the final state of greedy run 0 and records whether its choice
+is inside the pool.
 """
 from __future__ import annotations
 
@@ -53,12 +54,15 @@ REF = ROOT / "assets" / "question_sets" / "personas" / "target_states.json"
 
 
 def ensure_native_binding():
-    """Build the bundled native LSM binding if it cannot be imported."""
+    """Build the bundled native LSM binding if it is missing or predates the fast
+    incremental evaluator (Runtime.extension_distances)."""
     sys.path.insert(0, str(ROOT / "native" / "lsm_runtime" / "python"))
-    try:
-        import dtag_lsm  # noqa: F401
-    except ImportError:
-        print("Building native DTAG LSM binding (one time) ...", flush=True)
+    check = ("import sys; sys.path.insert(0, sys.argv[1]); import dtag_lsm; "
+             "sys.exit(0 if hasattr(dtag_lsm.Runtime, 'extension_distances') else 3)")
+    ok = subprocess.run([sys.executable, "-c", check, str(ROOT / "native" / "lsm_runtime" / "python")],
+                        capture_output=True).returncode == 0
+    if not ok:
+        print("Building native DTAG LSM binding (missing or without the fast evaluator) ...", flush=True)
         subprocess.run(["bash", str(ROOT / "scripts" / "build_native_bindings.sh")], check=True)
 
 
@@ -88,7 +92,8 @@ def main(argv=None):
                     help="number of items asked per run (run length)")
     ap.add_argument("--runs", type=int, default=3, help="greedy runs")
     ap.add_argument("--baseline-runs", type=int, default=30, help="random-item runs (0 to skip)")
-    ap.add_argument("--pool", type=int, default=120, help="candidate pool size; 0 = all non-pole items")
+    ap.add_argument("--pool", type=int, default=0,
+                    help="restrict candidates to this many top items from the step-0 sweep; 0 = all non-pole items")
     ap.add_argument("--seed", type=int, default=2018)
     ap.add_argument("--audit", action="store_true", help="full sweep at the end of greedy run 0")
     ap.add_argument("--verbose", action="store_true",
@@ -104,6 +109,9 @@ def main(argv=None):
 
     world = World(str(ensure_model("gss/gss_2018", None, download=True)), str(canonical_map("gss/gss_2018")),
                   str(DEFAULT_POLES), str(HERE / "results" / "native_cache"))
+    if not getattr(world.m, "has_extension_distances", False):
+        print("WARNING: native binding has no fast evaluator; each greedy step will take minutes. "
+              "Rebuild with: bash scripts/build_native_bindings.sh", flush=True)
     state, dropped = world.valid(json.loads(REF.read_text())[a.persona]["state"])
     pool = candidate_pool(a.persona, a.pool)
     J0 = world.I(state) - world.I({})

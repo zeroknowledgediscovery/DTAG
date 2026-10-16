@@ -35,9 +35,8 @@ states: `--personas-json <that cache file>`.
 - Raw native P(·|s,v) sums to 1 (±1e−16); zero off-support mass; no all-zero items.
 - Σ_a P·I(s_{v,a}) − I(s) reproduces μ_v to 1e−17.
 - Serial vs 4-worker parallel (CM): identical I and P on all 7,149 rows.
-- Cost: ~32 ms per index evaluation unloaded (~88 ms per pair with 3 jobs sharing 4 CPUs).
-  An exhaustive one-step sweep takes ~4 min per persona serially, so no acceleration is
-  needed at depth 1. Depth 2 would need ~7k² ≈ 5×10⁷ evaluations, which does need it.
+- Cost: ~28–32 ms per index evaluation with the original per-state path (~3 min per persona
+  sweep). The incremental native evaluator (below) does a full sweep in ~4.5 s, bit-identically.
 - `World.I` silently returns 0.0 on nonfinite distances. This script computes distances
   directly and fails instead. `World.dists` silently drops off-support labels and
   renormalizes, so the script audits the raw distribution first.
@@ -57,7 +56,7 @@ states: `--personas-json <that cache file>`.
    P(a|s,v) is ≈0.23 and only 15–19% have P < 0.05. So the envelope is not driven by
    implausible answers.
 4. **Expected one-step drift is leftward for both personas.** Σ μ_v over non-pole items
-   is −0.21 (CM) and −0.18 (WF). μ_v < 0 for 65% (CM) / 52% (WF) of items, and > 0 for
+   is −0.20 (CM) and −0.18 (WF). μ_v < 0 for 65% (CM) / 52% (WF) of items, and > 0 for
    26% / 38%. Median μ is ~1e−5, so this is a sum of many tiny shifts. It agrees
    qualitatively with the library runs' frequent "negative translation". 137 items are
    expected to converge (μ_CM < 0 < μ_WF) and 21 to diverge.
@@ -94,6 +93,33 @@ Definitions and top-10 tables: `ONE_STEP_REPORT.md`.
 - reliten is the only strong question that pushes CM and WF apart. It is a pole item.
 - Reusable function: `optimizer/one_step_geometry.py` (any model, poles and known-answer set),
   checked bit-for-bit against this reference.
+
+## Fast incremental evaluator and a label-truncation bug
+
+`native/lsm_runtime` gained `Runtime.extension_distances`. It evaluates I(s ∪ {v=a}) for every
+(item, answer) of a sweep in one call:
+- pole predictions are cached;
+- the base state is predicted once;
+- for each extension, only the trees that split on v are re-predicted (median 18 of 1,034 trees).
+
+Validation on all 7,149 (CM) / 7,154 (WF) pairs:
+- I and P are bit-identical to the per-state path, and so are the summaries;
+- a sweep takes 4.4 s instead of 189 s, about 43× faster;
+- regression test: `optimizer/tests/test_one_step_geometry.py::test_native_fast_extensions_bit_exact`.
+
+Building this exposed a pre-existing bug in `scripts/pipeline.py`.
+`build_full_vector_from_state` and `build_NULL_with_assignments` build rows as numpy `U100`
+arrays, so any answer label longer than 100 characters is silently truncated. The truncated
+label matches no category and the answer is treated as **missing**.
+
+- In GSS 2018 this affects 10 of ~7,150 (item, answer) pairs: `relsprt`, `company`, `esopnot`,
+  `MAIND10`, `SPIND10`, `COIND10` and `dofirst`.
+- The optimizer and the reference enumeration now build rows without truncation
+  (`optimizer.one_step_geometry.state_row`), and `one_step_results/` was regenerated.
+- Only those 9–10 rows per persona changed, by at most 0.0098 in Δ. Summary statistics moved
+  in the third decimal.
+- `pipeline.py` itself is unchanged. It is shared with the web app, so fixing it there is a
+  separate decision.
 
 ## Not done / next
 

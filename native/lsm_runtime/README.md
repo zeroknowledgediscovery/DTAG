@@ -32,6 +32,26 @@ Subsequent `predict_distributions`, `qdistance`, and ideology-distance calls
 reuse those caches. Switching to another DTAG process/model creates another
 runtime object.
 
+Each loaded tree also caches its subtree target masses (used when marginalizing over missing
+inputs) and the set of columns it splits on, so these are no longer rebuilt per prediction.
+
+### Incremental evaluation of single-answer extensions
+
+`Runtime.extension_distances(left, right, state, extensions, tree_ids)` returns
+`d(L, s)`, `d(R, s)` and, for every `(column, token)` in `extensions`, the distances of
+`s + {column = token}`. It is exactly equal to calling `distances_to_state` on each extended
+state, but:
+
+- pole predictions `p_t(L)`, `p_t(R)` are cached across calls;
+- `p_t(s)` and the per-tree JSDs of the base state are computed once per call;
+- for an extension on column `c`, only the trees that split on `c` are re-predicted (a tree's
+  inference never reads a column it does not split on); every other tree reuses its base value;
+- the per-tree values are reduced in the original tree order, so results are bit-identical.
+
+On GSS 2018 (1,034 trees; a column is split on by ~18 trees at the median) a full one-step
+sweep of ~7,150 extensions takes ~4.5 s instead of ~190 s. `Runtime.split_columns(tree_ids)`
+exposes the split-column sets.
+
 The clean DTAG branch does not use the old stateless external extension
 modules. Build this bundled runtime before running DTAG.
 

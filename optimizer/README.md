@@ -365,5 +365,8 @@ res.extremes["argmax_mu"], res.top("expected_delta", 10, reverse=False)
 
 The pure core `one_step_geometry(state, candidates, index_fn, dist_fn, ...)` works with any
 index/distribution functions (tests: `optimizer/tests/test_one_step_geometry.py`). A full GSS 2018
-sweep is ~7k (question, answer) pairs, ~4 min serially. Validated bit-for-bit against the reference
+sweep is ~7k (question, answer) pairs: ~4-5 s with the incremental native evaluator
+(`Runtime.extension_distances`, used automatically when the binding has it; bit-identical results),
+~3 min without it. Rows are built without numpy `U100` truncation, so answers longer than 100
+characters are not silently treated as missing (see `scratch/gss2018_pole_geometry/ONE_STEP_FINDINGS.md`). Validated bit-for-bit against the reference
 enumeration in `scratch/gss2018_pole_geometry/` (see `ONE_STEP_REPORT.md`).
