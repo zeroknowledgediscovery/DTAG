@@ -1,5 +1,67 @@
 # Local-first sequence library: one neutral candidate per invocation
 
+## Coordinate update: 2018 empty-state normalization (2026-10-16)
+
+The neutral, fixed-question sequence library now records the **centered**
+ideology coordinate by default, with the ORIGINAL 2018 GSS pole vectors:
+
+    I_centered(x) = I_native(x) - I_native(empty)
+
+The offset is computed from the exact native model and pole SHA-256 for each
+run; neither model nor pole CSV changes. For 2018 v2 the independent native
+audit measured I(empty) approximately +0.06005. With this reference,
+I(CM_core) becomes about +0.01257 and I(WF_core) about -0.01564.
+
+**All within-state question-sequence movements are invariant:**
+I_centered(end) - I_centered(start) = I_native(end) - I_native(start).
+The _assignment of starting states_ to positive/negative groups changes,
+which also changes the group-level descriptive audit and CI.
+Centering does NOT itself make sequence effects larger or smaller.
+
+To avoid mixing raw legacy results with the new indexing convention,
+the default persistent directory is now:
+
+    outputs/optimizer/sequence_library_empty_centered_v1
+
+Earlier files under outputs/optimizer/sequence_library are preserved as
+historical data, and attempting to write new centered runs into a legacy
+library.json without index_coordinate metadata raises an error.
+
+Run a NON-DESTRUCTIVE sanitation inventory (preserves all old CSVs/NPZs):
+
+    python -m optimizer.sanitize_sequence_library
+
+It writes legacy_inventory.csv and legacy_inventory_summary.json into the
+new centered library folder, flagging missing files, duplicated sequences,
+and all legacy results as ineligible to be counted as new centered runs.
+It never deletes, renames, or revises a historical label.
+
+A descriptive invocation for GSS 2018, with ++ as an **annotation only**:
+
+    python -m optimizer.sequence_library_runner \
+      --year 2018 --type=++ --min-length 10 --max-length 20 --workers 10
+
+The --type label cannot change candidate sampling, stopping, acceptance,
+retry, or export; the actual category is a posthoc observation. This
+script never optimizes question sequences for political direction.
+The library stores the offset, raw and centered persona index comparison,
+coordinate version, pole/map checksums, and centered trajectories.
+
+For a first executable native-model comparison using EXACTLY the same
+predeclared 10-question sequence and draw seeds before/after centering:
+
+    python scratch/gss2018_pole_geometry/test_empty_centering.py
+
+It writes raw/ and empty_centered/ trajectories, state-cluster uncertainty,
+initial-state group counts, and descriptive observed movement. This is a
+single fixed-sequence experiment, not a search over candidate questions.
+
+**Scope:** This is a coordinate update in the neutral *descriptive*
+sequence library and scratch audit. The separate legacy optimizer Searcher
+and production DTAG webapp retain their historical World.I definition, so
+past optimized experiments are neither rewritten nor silently incomparable.
+
+
 The command in optimizer/sequence_library_runner.py generates ONE **outcome-independent**
 GSS question sequence, evaluates the resulting LSM-index changes across several
 synthetic initial-state specifications and appends an auditable attempt record to
@@ -206,11 +268,11 @@ we will implement a queue/job-ID and merger arrangement separately.
 
 To list completed sets:
 
-    find outputs/optimizer/sequence_library/sequences -name '*.csv' | sort
+    find outputs/optimizer/sequence_library_empty_centered_v1/sequences -name '*.csv' | sort
 
 To view the library in a readable table:
 
-    column -s, -t outputs/optimizer/sequence_library/library.csv | less -S
+    column -s, -t outputs/optimizer/sequence_library_empty_centered_v1/library.csv | less -S
 
 To view the complete JSON attempt manifest:
 
