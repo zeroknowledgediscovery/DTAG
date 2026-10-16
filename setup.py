@@ -11,7 +11,6 @@ RUNTIME_DIRS = [
     "configs",
     "maps",
     "assets",
-    "bin",
     "native/lsm_runtime",
     "webapp/backend",
     "webapp/frontend/dist",
@@ -99,7 +98,6 @@ setup(
     data_files=runtime_data_files(),
     entry_points={
         "console_scripts": [
-            "dtag=dtag.cli:main",
             "dtag-models=dtag.cli:models_main",
             "dtag-doctor=dtag.cli:doctor_main",
             "dtag-web=dtag.cli:web_main",

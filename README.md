@@ -30,79 +30,28 @@ native survey model, start the respondent and ask questions.
 Step-by-step guide: **[webapp/QUICKSTART.md](webapp/QUICKSTART.md)** ·
 full reference: [webapp/README.md](webapp/README.md).
 
-## Quick start (command line)
+## Quick start (models)
 
-DTAG can be installed directly from the public GitHub branch; no manual clone is required.
-
-```bash
-python3.13 -m venv .venv
-source .venv/bin/activate
-
-python -m pip install --upgrade pip
-python -m pip install \
-  "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
-```
-
-List the available DTAG profiles:
-
-```bash
-dtag --list
-```
-
-Install the model needed for a profile from the public DTAG model store. For example:
-
-```bash
-dtag-models gss/gss_2024
-```
-
-Models are downloaded once, SHA256-verified, decompressed into the local cache, and reused on later runs. The default cache is:
-
-```text
-~/.cache/dtag/models/
-```
-
-Set the OpenAI API key and start an interactive DTAG session:
-
-```bash
-export OPENAI_API_KEY="..."
-
-dtag --profile gss2024_cm
-```
-
-A complete minimal setup is therefore:
+Install DTAG from the public GitHub branch (no manual clone required) and fetch the native
+model(s) you need from the public, SHA256-verified model store:
 
 ```bash
 python3.13 -m venv .venv
 source .venv/bin/activate
 python -m pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 
-dtag-models gss/gss_2024
-
-export OPENAI_API_KEY="..."
-dtag --profile gss2024_cm
+dtag-models gss/gss_2024          # one model
+dtag-models --list                # public catalog
+dtag-models --family gss          # one survey family
+dtag-models --all                 # the complete corpus
 ```
 
-To inspect the public model catalog:
-
-```bash
-dtag-models --list
-```
-
-To install all models in one survey family:
-
-```bash
-dtag-models --family gss
-```
-
-To install the complete public model corpus:
-
-```bash
-dtag-models --all
-```
+Models are downloaded once, decompressed into the local cache and reused. The default cache is
+`~/.cache/dtag/models/`. The web app can also install missing models on demand.
 
 ### Web application
 
-The same installation includes a browser workbench and HTTP API:
+The installation includes a browser workbench and HTTP API:
 
 ```bash
 export OPENAI_API_KEY="..."
@@ -116,11 +65,11 @@ updates, conditioning, ideology trajectory, and JSON/CSV exports. From a
 source checkout use `cd webapp && ./run.sh`, or `docker compose up` in
 `webapp/`. See [`webapp/README.md`](webapp/README.md).
 
-The CLI and the web application run the same respondent implementation
-(`scripts/dtag_session.py`, driven by `scripts/dtag_engine.py`).
+The web application runs the respondent implementation in `scripts/dtag_session.py`, driven by
+`scripts/dtag_engine.py`. The former command-line runtime (`dtag --profile ...`,
+`scripts/pipeline.py`, `bin/*.sh`) is archived; see [Archive](#archive).
 
-On compatible CPython 3.13 x86-64 Linux systems, DTAG uses the bundled prebuilt native LSM extension. Other supported environments can rebuild the native extension from the source shipped with the installed repository tree.
-
+On compatible CPython 3.13 x86-64 Linux systems, DTAG uses the bundled prebuilt native LSM extension. Other supported environments can rebuild the native extension from the source shipped with the installed repository tree (`bash scripts/build_native_bindings.sh`).
 
 ## Architecture
 
@@ -136,28 +85,29 @@ A DTAG state is therefore a survey-variable state constrained by the native LSM,
 
 ```text
 DTAG/
-  assets/                       question sets, polar vectors, runtime caches
-  bin/                          supported shell entry points
+  webapp/                       browser workbench + FastAPI backend (dtag-web), tests, Docker
+  optimizer/                    question-optimization package, one-step geometry, tests
+  scripts/                      runtime library (dtag_core, dtag_session, dtag_engine, ...),
+                                model/map/pole toolchain, audits
+  native/lsm_runtime/           bundled C++ native LSM runtime (pybind11) + prebuilt extension
   configs/
-    dtag_config.yaml            native model/map profiles and experiments
+    dtag_config.yaml            native model/map profiles
     eurodates.csv               Eurobarometer fieldwork-date registry
-  data/                         local documentation/raw-data staging
+    model_coverage.json         countries/years each model covers (web recommender)
   maps/
     gss/                        35 GSS per-wave maps
     afromap/                    Afrobarometer R1-R9 maps
     eurobarometer/              207 ZA-specific maps
     wvs7_variable_question_map.csv
-  models/
-    lsm/
-      README.md                 tracked placeholder/documentation only
-  scripts/                      runtime, builders, audits, tests
-  outputs/                      generated run outputs; ignored by Git
-  README.md
-  requirements.txt
-  VERSION
+  assets/                       question sets, personas, polar vectors (ideology poles)
+  poles/                        pole-discovery tool
+  scratch/gss2018_pole_geometry/  research experiments (one-step geometry, push runs, poles)
+  dtag/                         installed console commands (dtag-web, dtag-models, dtag-doctor)
+  models/lsm/README.md          tracked placeholder only; models live outside Git
+  data/                         local raw-data staging (documentation only in Git)
+  archive/                      deprecated command-line runtime and launchers (not maintained)
+  outputs/                      generated outputs; ignored by Git
 ```
-
-Native model binaries are intentionally **not stored in Git**. A complete local installation is currently about 6.6 GB.
 
 ## Native model location
 
@@ -266,33 +216,15 @@ export OPENAI_API_KEY="..."
 
 The deterministic validation suite does not require an OpenAI call.
 
-## First test / full demonstration
-
-Run the repository-wide deterministic demo:
+## Tests
 
 ```bash
-bin/dtag_demo.sh
+python -m pytest -q                 # web app, engine, optimizer, core library
+python -m pytest -q optimizer/tests # optimizer only
 ```
 
-Faster structural version:
-
-```bash
-bin/dtag_demo.sh --quick
-```
-
-Add live OpenAI-backed demonstrations:
-
-```bash
-bin/dtag_demo.sh --openai
-```
-
-Use a custom demonstration question:
-
-```bash
-bin/dtag_demo.sh   --openai   --question "Do you trust the national government?"
-```
-
-The demo covers native model inventory, syntax, backend contract tests, country conditioning, readiness, model/map audits, configured GSS/WVS/Afrobarometer profiles, Eurobarometer date/place routing, and optional live answer generation.
+Native-model tests run when the corresponding models are installed and are skipped otherwise;
+everything else uses the mock LLM (`DTAG_LLM_BACKEND=mock`) and needs no OpenAI key.
 
 ## Repository readiness
 
@@ -349,75 +281,33 @@ PASS: native DTAG map surface is complete.
 Expected/verified inventory: 35 GSS + 9 Afrobarometer + 1 WVS + 207 Eurobarometer = 252
 ```
 
-## Interactive profiles
+## Profiles
 
-List configured profiles:
-
-```bash
-bin/interactive_config.sh --list
-```
-
-Representative profiles:
+Named respondent profiles (model, map, persona, optional country/continent/year and run
+settings) live in `configs/dtag_config.yaml` under `interactive_profiles`. The web app lists them
+(`GET /api/profiles`) and resolves them with `scripts/dtag_config.py`
+(defaults < profile < request overrides). Representative profiles:
 
 ```text
-gss2018_wf
-gss2018_cm
-gss2022_wf
-gss2022_cm
-gss2024_wf
-gss2024_cm
-wvs7_india_2017
-afrobarometer_r5_nigeria
-afrobarometer_r5_ghana
+gss2018_wf  gss2018_cm  gss2022_wf  gss2022_cm  gss2024_wf  gss2024_cm
+wvs7_india_2017  afrobarometer_r5_nigeria  afrobarometer_r5_ghana
 ```
 
-Run interactively:
+## Runtime modules
 
-```bash
-bin/interactive_config.sh --profile gss2024_cm
-```
-
-Run one question:
-
-```bash
-bin/interactive_config.sh   --profile gss2024_cm   --question "What do you think about immigration?"
-```
-
-Print the underlying runtime command:
-
-```bash
-bin/interactive_config.sh   --profile gss2024_cm   --question "What do you think about immigration?"   --print-command
-```
-
-## Canonical runtime
-
-Core runtime (command line):
-
-```text
-scripts/pipeline.py
-```
-
-Core library (imported by the CLI, the web app, the optimizer and scripts):
-
-```text
-scripts/dtag_core.py
-```
-
-Localized runtime:
-
-```text
-scripts/pipeline_localized.py
-```
-
-Config-driven launcher:
-
-```text
-scripts/interactive.py
-```
-
-Normal use should prefer `bin/interactive_config.sh` or `scripts/eurobarometer_native.py`.
-
-A historical `--qnet` option spelling remains as a low-level compatibility alias, but on this branch it accepts only a **native LSM model directory**. There is no Quasinet backend.
+| Module | Role |
+|---|---|
+| `scripts/dtag_core.py` | core library: maps, prefilters, LLM steps, model rows/distributions, geography, ideology |
+| `scripts/dtag_session.py` | one respondent: persona, anchors, semantic fallback, state, ideology |
+| `scripts/dtag_engine.py` | model registry, catalog, profiles, Eurobarometer routing, sessions (web + API) |
+| `scripts/dtag_config.py` | load `configs/dtag_config.yaml` and resolve profiles |
+| `scripts/pipeline_localized.py` | deterministic geographic conditioning (patches `dtag_core.build_forced_assignments`) |
+| `scripts/dtag_recommend.py` | who/where/when → model recommendation |
+| `scripts/model_backend.py` | native LSM runtime interface |
+| `scripts/polar_vectors.py` | wave-specific ideology pole resolution |
+| `scripts/eurobarometer_dates.py`, `scripts/eurobarometer_native.py` | Eurobarometer date routing and model/map helpers |
+| `scripts/fetch_models.py` | public model download/verification (`dtag-models`) |
+| `scripts/dtag_paths.py` | repository/external model-store resolution |
 
 ## Persona, time, and place
 
@@ -447,12 +337,6 @@ Afrobarometer deterministic country conditioning can be tested with:
 python3 scripts/test_country_conditioning.py
 ```
 
-and end-to-end:
-
-```bash
-bin/smoke_country_pair.sh
-```
-
 ### Time
 
 Time handling is family-specific.
@@ -463,25 +347,10 @@ Time handling is family-specific.
 
 ## Eurobarometer date + country
 
-Example:
-
-```bash
-python3 scripts/eurobarometer_native.py   --date 2019-05-15   --country France   --question "How satisfied are you with the way democracy works?"
-```
-
-The fieldwork registry is:
-
-```text
-configs/eurodates.csv
-```
-
-An explicit ZA is also supported:
-
-```bash
-python3 scripts/eurobarometer_native.py   --za ZA7575   --country France   --question "How satisfied are you with the way democracy works?"
-```
-
-Without `--question`, the wrapper enters interactive mode.
+In the web app a Eurobarometer respondent is specified by a calendar date and a country; the
+engine routes the date to a fieldwork wave using the registry `configs/eurodates.csv`
+(`scripts/eurobarometer_dates.py`) and resolves the wave's native model and map
+(`scripts/eurobarometer_native.py`). An explicit ZA wave can also be chosen.
 
 A year alone is deliberately not assumed to identify a unique wave because several Eurobarometers may occur in one year.
 
@@ -600,34 +469,6 @@ Audit:
 python3 scripts/audit_eurobarometer_assets.py
 ```
 
-## Batch experiments
-
-Configured experiments live in:
-
-```text
-configs/dtag_config.yaml
-```
-
-List:
-
-```bash
-bin/list_experiments.sh
-```
-
-Run:
-
-```bash
-bin/run_config.sh --experiment gss2024_master
-```
-
-Postprocess:
-
-```bash
-bin/post_config.sh --experiment gss2024_master
-```
-
-The batch layer supports persona grids, question sets, order variants, stochastic replicates, semantic fallback, and optional ideology trajectories.
-
 ## GSS ideology tracking
 
 Compatible GSS profiles can use:
@@ -658,61 +499,68 @@ Configured default: `answer_only`.
 
 DTAG can preserve survey-state assignments across a question sequence. When state updates are enabled, an answer may alter subsequent native-LSM conditionals.
 
-CSV/autoplay question sequences are supported for controlled experiments.
+The web app supports ordered question sequences for controlled experiments.
 
-## OpenAI API smoke test
+## Optimizer and research experiments
 
-Test only the external generation API patterns:
+`optimizer/` contains the question-optimization package (`python -m optimizer ...`; see
+[`optimizer/README.md`](optimizer/README.md)) and the exact one-step geometry module:
 
 ```bash
-bin/run_smoketest.sh
+# every askable item x every response: Delta J, P(response), mu, argmax/argmin
+python -m optimizer.one_step_geometry --model gss/gss_2018 --persona-ref CM --exclude-poles --top 10
 ```
 
-This checks plain generation and the strict structured-output call used in variable selection.
+The native evaluator re-scores ~7k (item, response) pairs in a few seconds (incremental
+`Runtime.extension_distances`; see `native/lsm_runtime/README.md`).
 
-## Supported scripts
+Experiments and findings live in `scratch/gss2018_pole_geometry/`:
+
+```bash
+python scratch/gss2018_pole_geometry/greedy_push_runs.py --persona CM --direction right --n-items 6
+```
+
+(`ONE_STEP_FINDINGS.md`, `ONE_STEP_REPORT.md`, `Experiment.md`).
+
+## Model, map and pole toolchain
+
+These scripts build or validate the assets the runtime loads; they are development utilities,
+not alternate runtimes.
 
 | Script | Purpose |
 |---|---|
-| `scripts/pipeline.py` | native LSM DTAG command-line runtime (runs `DTAGSession`; `import pipeline` aliases `dtag_core`) |
-| `scripts/dtag_core.py` | core library: maps, prefilters, LLM steps, model rows/distributions, geography, ideology |
-| `scripts/dtag_session.py` | reusable respondent session: persona, anchors, fallback, state, ideology |
-| `scripts/dtag_engine.py` | model catalog/registry, profiles, Eurobarometer routing, sessions (web + API) |
-| `scripts/fetch_models.py` | public model download/verification (`dtag-models`) |
-| `scripts/pipeline_localized.py` | deterministic geographic conditioning |
-| `scripts/interactive.py` | config-driven interactive launcher |
-| `scripts/eurobarometer_native.py` | Eurobarometer date/ZA + country launcher |
-| `scripts/model_backend.py` | native LSM runtime interface |
-| `scripts/dtag_paths.py` | repository/external model-store resolution |
-| `scripts/run.py` | configured batch launcher |
-| `scripts/run_grid.py` | persona/question/order/replicate grid |
-| `scripts/post.py` | configured postprocessing launcher |
-| `scripts/postprocess.py` | postprocessing implementation |
-| `scripts/check_dtag_readiness.py` | repository readiness |
-| `scripts/inventory_native_models.py` | installed model inventory |
-| `scripts/audit_native_maps.py` | 252-model map audit |
-| `scripts/test_native_lsm_dtag.py` | no-LLM runtime contract test |
-| `scripts/test_country_conditioning.py` | deterministic country test |
-| `scripts/complete_native_maps.py` | all-family map completion |
-| `scripts/build_all_gss_native_maps.py` | all-wave GSS maps |
+| `scripts/train_native_lsm_models.py` | prepare survey CSVs and train native LSM models |
+| `scripts/build_gss_native_map.py`, `scripts/build_all_gss_native_maps.py` | GSS semantic maps |
 | `scripts/getmap_dtag.py` | Afrobarometer map builder |
-| `scripts/build_eurobarometer_maps.py` | exact Eurobarometer maps |
-| `scripts/build_eurobarometer_fallback_maps.py` | semantic-union fallbacks |
+| `scripts/build_eurobarometer_maps.py`, `scripts/build_eurobarometer_fallback_maps.py` | exact / semantic-union Eurobarometer maps |
+| `scripts/complete_native_maps.py` | all-family map completion |
+| `scripts/download_eurobarometer_codebooks_*`, `scripts/scan_gesis_dbk_ids.py` | codebook retrieval |
+| `scripts/build_gss_polar_vectors.py`, `poles/discover_poles.py` | ideology poles |
+| `scripts/build_model_coverage.py` | `configs/model_coverage.json` |
+| `scripts/package_public_models.py`, `scripts/publish_public_models.sh`, `scripts/rebuild_public_manifest.py` | public model release |
+| `scripts/inventory_native_models.py`, `scripts/cleanup_native_lsm_models.py` | installed-model inventory / trimming |
+| `scripts/audit_native_maps.py`, `scripts/audit_eurobarometer_assets.py` | model/map audits |
+| `scripts/test_native_lsm_dtag.py`, `scripts/test_country_conditioning.py` | no-LLM runtime contract / country tests |
+| `scripts/check_dtag_readiness.py`, `scripts/audit_clean_repo.py` | repository readiness (`dtag-doctor`) |
+| `scripts/build_native_bindings.sh` | build the native runtime extension |
 
-Survey parsing/build scripts are development utilities, not alternate runtimes.
-
-## Supported shell entry points
+## Commands
 
 | Command | Purpose |
 |---|---|
 | `dtag-web` / `webapp/run.sh` | browser workbench + HTTP API |
-| `bin/dtag_demo.sh` | repository-wide deterministic/live demo |
-| `bin/interactive_config.sh` | run/list profiles |
-| `bin/run_config.sh` | run configured experiment |
-| `bin/post_config.sh` | postprocess configured experiment |
-| `bin/list_experiments.sh` | list configured experiments |
-| `bin/smoke_country_pair.sh` | Nigeria/Ghana localization smoke |
-| `bin/run_smoketest.sh` | OpenAI API smoke test |
+| `dtag-models` | download/verify public native models |
+| `dtag-doctor` | readiness and clean-surface checks |
+| `python -m optimizer ...` | question optimization |
+| `python -m optimizer.one_step_geometry ...` | exact one-step item/response geometry |
+
+## Archive
+
+`archive/` holds the deprecated command-line runtime: `pipeline.py` (CLI `main()`),
+`interactive.py`, `run.py`, `run_grid.py`, `post.py`, `postprocess.py`, `smoke_test.py`,
+`benchmark_native_runtime.py`, the Eurobarometer CLI launcher, `bin/*.sh` and
+`experiments/`. It is kept for reference only: not tested, not maintained, and not runnable in
+place. See [`archive/README.md`](archive/README.md) for what moved and how to restore a file.
 
 ## Assumptions and limitations
 

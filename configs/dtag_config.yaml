@@ -55,6 +55,8 @@ question_sets:
     glob: '*.csv'
 
 defaults:
+  # pipeline / run_grid / postprocess_script were read by the archived command-line launchers
+  # (archive/scripts/run.py, run_grid.py, post.py); the web engine ignores them.
   pipeline: scripts/pipeline_localized.py
   run_grid: scripts/run_grid.py
   postprocess_script: scripts/postprocess.py
@@ -229,6 +231,7 @@ interactive_profiles:
       no_ideology: true
       resp_mode: max
 
+# Batch experiments for the archived command-line runner (archive/scripts/run.py).
 experiments:
   gss2022_divergence:
     description: Native GSS 2022 WF/CM personas on divergence probes.

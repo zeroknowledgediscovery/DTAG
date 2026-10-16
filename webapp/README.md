@@ -18,7 +18,7 @@ DTAGSession  (respondent state, anchors, fallback, ideology)   scripts/dtag_sess
         ↑
 DTAGEngine   (catalog, model registry, profiles, EB routing)   scripts/dtag_engine.py
         ↑                                   ↑
-FastAPI  webapp/backend/dtag_web     CLI  scripts/pipeline.py (same DTAGSession)
+FastAPI  webapp/backend/dtag_web     (optimizer/ also drives DTAGSession / dtag_core)
         ↑
 React/TypeScript UI  webapp/frontend
 ```
@@ -113,7 +113,7 @@ anonymously over HTTPS.
 
 ## Model cache management
 
-Resolution order (shared by the CLI, `dtag-models` and the web server):
+Resolution order (shared by `dtag-models`, the web server and the optimizer):
 
 1. `DTAG_MODEL_ROOT` if set;
 2. an already-populated `<repo>/models/lsm/` (developer checkouts);
@@ -253,7 +253,7 @@ Switching back to one respondent hides B without ending its session.
 “Save as custom profile” stores the current respondent (never in the config
 file); “Advanced profile builder…” also lets you choose the semantic map.
 
-Country conditioning (shared by CLI and web, `pipeline_localized`) uses, in
+Country conditioning (`pipeline_localized`, used by every session) uses, in
 order: a variable named *country* (e.g. Afrobarometer `COUNTRY_ALPHA`,
 Eurobarometer `country="FR - France"`); the Eurobarometer ISO 3166 variable
 `isocntry` (`FR`, `DE-W`, …; this decodes the 2021–2023 waves whose `country`
@@ -398,7 +398,7 @@ DTAG_TEST_OFFLINE=1 pytest -q     # skip the native/network tier
 The fast tier uses a deterministic fake native backend and a mock language
 layer. The native tier runs against a real model: model-load-once/shared
 runtime with independent respondent state, runtime persistence and latency,
-concurrent sessions on one model, fallback semantics, CLI and API end-to-end,
+concurrent sessions on one model, fallback semantics, API end-to-end,
 and country conditioning for any installed Afrobarometer/WVS/Eurobarometer
 models. No test needs `OPENAI_API_KEY`.
 

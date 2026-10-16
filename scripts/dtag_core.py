@@ -2,8 +2,8 @@
 """
 DTAG core library for the native LSM runtime.
 
-Shared, importable building blocks used by the web app (dtag_engine / dtag_session), the
-command-line runtime (pipeline.py, pipeline_localized.py), the optimizer and scripts:
+Shared, importable building blocks used by the web app (dtag_engine / dtag_session,
+pipeline_localized for geography), the optimizer and the model/asset scripts:
 
 * filesystem/run helpers and terminal formatting;
 * semantic maps, lexical and embedding prefilters;
@@ -12,8 +12,8 @@ command-line runtime (pipeline.py, pipeline_localized.py), the optimizer and scr
 * geography (country/continent coordinates) and forced assignments;
 * ideology poles and the index I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR).
 
-This module was split out of pipeline.py. ``import pipeline`` keeps working and refers to the
-same objects (see pipeline.py), so existing code and monkeypatches are unaffected.
+This is the library half of the former single-file pipeline.py; its command-line entry point is
+archived in archive/scripts/pipeline.py.
 
 Requirements:
   pip install openai pandas numpy

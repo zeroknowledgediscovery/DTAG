@@ -41,19 +41,6 @@ def _exec(script: str, argv: list[str]) -> int:
     )
 
 
-def main() -> None:
-    raise SystemExit(
-        _exec(
-            "interactive.py",
-            [
-                "--config",
-                str(runtime_root() / "configs" / "dtag_config.yaml"),
-                *sys.argv[1:],
-            ],
-        )
-    )
-
-
 def models_main() -> None:
     raise SystemExit(_exec("fetch_models.py", sys.argv[1:]))
 

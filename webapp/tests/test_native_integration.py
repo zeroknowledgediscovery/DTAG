@@ -5,7 +5,6 @@ deterministic mock, so no OPENAI_API_KEY is needed.
 """
 from __future__ import annotations
 
-import json
 import os
 import statistics
 import subprocess
@@ -167,27 +166,6 @@ def test_api_end_to_end_on_native_model(native_engine):
     assert ex["dtag"]["native_runtime"] == "bundled_persistent"
     assert client.get(f"/api/sessions/{sid}/export?format=csv").text.count("\n") == 3
     assert client.post(f"/api/sessions/{sid}/reset").json()["question_count"] == 0
-
-
-@GSS_ONLY
-def test_cli_still_runs_through_shared_session(native_model_root, tmp_path):
-    env = dict(os.environ, DTAG_MODEL_ROOT=str(native_model_root), DTAG_LLM_BACKEND="mock")
-    cmd = [
-        sys.executable, str(ROOT / "scripts" / "pipeline_localized.py"),
-        "--map", str(ROOT / "maps" / "gss" / "gss_2024_map.csv"),
-        "--qnet", str(native_model_root / "gss" / "gss_2024"),
-        "--persona", "45 year old conservative man",
-        "--country", "United States", "--year", "2024",
-        "--polar_vectors", str(ROOT / "assets" / "polar_vectors" / "polar_vectors.csv"),
-        "--assets_dir", str(tmp_path / "assets"), "--logs_dir", str(tmp_path / "logs"),
-        "--question", Q_IMM, "--timing",
-    ]
-    p = subprocess.run(cmd, env=env, capture_output=True, text=True, timeout=600)
-    assert p.returncode == 0, p.stderr[-2000:]
-    assert "RESPONDENT ANSWER" in p.stdout and "IDEOLOGY INDEX" in p.stdout
-    meta = json.loads(next((tmp_path / "logs").glob("*.meta.json")).read_text())
-    assert meta["records"][0]["direct_mapping"] and meta["ideology_enabled"]
-    assert "native_predict" in meta["records"][0]["timings"]
 
 
 def _installed(root: Path, key: str) -> bool:
