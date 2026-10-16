@@ -115,8 +115,7 @@ def weights(data, column="auto"):
         for candidate in ("wtssall", "wtssnr", "wtss", "weight"):
             if candidate in data:
                 values = pd.to_numeric(data[candidate].replace("", np.nan), errors="coerce")
-                if (values.notna().sum() >= .95 * len(data) and
-                        (values.dropna() > 0).all()):
+                if (values.notna().all() and (values > 0).all()):
                     return values.to_numpy(dtype=float), {
                         "column": candidate, "weighted": True}
         return np.ones(len(data)), {
