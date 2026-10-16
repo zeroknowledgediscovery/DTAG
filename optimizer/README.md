@@ -321,3 +321,20 @@ The script `python -m optimizer.multiyear_regime_summary` inventories saved
 trajectory validations, reports confirmed regime counts and missing cells,
 and assigns a 0–10 methodological evidence-quality score. It does not
 select or generate question sequences by political direction.
+
+
+## Local incremental candidate runner (one per invocation)
+
+Use optimizer/sequence_library_runner.py to create one **neutral, randomly
+preselected** GSS candidate on each run, audit it on five persona
+specifications, and append it to a persistent local library.
+The CLI accepts --year (2016, 2018, 2024), --type (an observational
+annotation, not an optimization goal), --freezeinit (default protects only
+polviews and partyid), --length 10..20 or --min-length/--max-length 10..20.
+Automatic prefix selection is based on sign-neutral incremental plateau
+detection using an independent pilot. It never stops at a target political
+shift or preferentially accepts sequences matching the requested label.
+
+See [SEQUENCE_LIBRARY_RUNNER.md](SEQUENCE_LIBRARY_RUNNER.md) for concrete
+commands, Google Cloud model download behavior, score definitions,
+reproducibility controls, failure recovery and expected library contents.
