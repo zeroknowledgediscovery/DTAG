@@ -22,27 +22,28 @@ def boot_ci(x, n=4000, seed=0):
 
 def main():
     out = []
-    summary = ["| Persona | Push | J0 | Greedy mean ΔJ (3 runs) | Greedy runs ΔJ | Random mean ΔJ (30) [95% CI] "
+    summary = ["| Persona | Push | Items | J0 | Greedy mean ΔJ | Greedy runs ΔJ | Random mean ΔJ [95% CI] "
                "| Greedy − random | one-sided steps | Audit: full-sweep choice in pool |",
-               "|---|---|---:|---:|---|---:|---:|---:|---|"]
-    for tag in ("CM_right", "CM_left", "WF_right", "WF_left"):
-        f = D / f"{tag}.csv"
-        if not f.is_file():
-            continue
+               "|---|---|---:|---:|---:|---|---:|---:|---:|---|"]
+    order = {"CM_right": 0, "CM_left": 1, "WF_right": 2, "WF_left": 3}
+    for f in sorted(D.glob("*_n*.csv"), key=lambda f: (order.get(f.stem.rsplit("_n", 1)[0], 9), f.stem)):
+        tag = f.stem
         df = pd.read_csv(f)
         meta = json.loads((D / f"{tag}.json").read_text())
         J0 = meta["J0"]
         fin = df.groupby(["policy", "run"]).J_after.last() - J0
-        g, r = fin.loc["greedy_mu"], fin.loc["random"]
+        g = fin.loc["greedy_mu"] if "greedy_mu" in fin.index else pd.Series(dtype=float)
+        r = fin.loc["random"] if "random" in fin.index else pd.Series(dtype=float)
         lo, hi = boot_ci(r)
         gd = df[df.policy == "greedy_mu"]
         aud = meta.get("audit", {})
         summary.append(
-            f"| {meta['persona']} | {meta['direction']} | {J0:+.4f} | {g.mean():+.4f} | "
+            f"| {meta['persona']} | {meta['direction']} | {meta.get('n_items', meta.get('steps'))} | {J0:+.4f} | {g.mean():+.4f} | "
             f"{', '.join(f'{x:+.4f}' for x in g)} | {r.mean():+.4f} [{lo:+.4f}, {hi:+.4f}] | "
             f"{g.mean() - r.mean():+.4f} | {int(gd.one_sided.fillna(False).astype(bool).sum())}/{len(gd)} | "
             f"{aud.get('full_sweep_choice', '?')} ({'yes' if aud.get('in_pool') else 'NO'}) |")
-        out.append(f"### {meta['persona']} → {meta['direction']} (J0 = {J0:+.4f})\n")
+        out.append(f"### {meta['persona']} → {meta['direction']}, {meta.get('n_items', meta.get('steps'))} items "
+                   f"(J0 = {J0:+.4f})\n")
         for k, run in gd.groupby("run"):
             out.append(f"Greedy run {k}:\n")
             out.append("| step | question | asked because mu | P_up / P_down | drawn answer (p) | ΔJ | J after |")

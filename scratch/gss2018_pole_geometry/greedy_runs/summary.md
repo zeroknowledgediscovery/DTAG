@@ -1,15 +1,15 @@
 ## Summary (ΔJ after all steps)
 
-| Persona | Push | J0 | Greedy mean ΔJ (3 runs) | Greedy runs ΔJ | Random mean ΔJ (30) [95% CI] | Greedy − random | one-sided steps | Audit: full-sweep choice in pool |
-|---|---|---:|---:|---|---:|---:|---:|---|
-| CM | right | +0.0263 | +0.0093 | +0.0591, -0.0074, -0.0238 | -0.0081 [-0.0149, -0.0010] | +0.0174 | 2/18 | coeduc (yes) |
-| CM | left | +0.0263 | -0.0153 | -0.0080, -0.0371, -0.0008 | -0.0051 [-0.0122, +0.0017] | -0.0102 | 10/18 | abhlth (yes) |
-| WF | right | -0.0358 | +0.0342 | +0.0804, +0.0163, +0.0059 | +0.0009 [-0.0071, +0.0089] | +0.0333 | 3/18 | heaven (yes) |
-| WF | left | -0.0358 | -0.0364 | -0.0242, -0.0240, -0.0610 | +0.0092 [+0.0000, +0.0181] | -0.0456 | 4/18 | HUNT1 (yes) |
+| Persona | Push | Items | J0 | Greedy mean ΔJ | Greedy runs ΔJ | Random mean ΔJ [95% CI] | Greedy − random | one-sided steps | Audit: full-sweep choice in pool |
+|---|---|---:|---:|---:|---|---:|---:|---:|---|
+| CM | right | 6 | +0.0263 | +0.0093 | +0.0591, -0.0074, -0.0238 | -0.0081 [-0.0149, -0.0010] | +0.0174 | 2/18 | coeduc (yes) |
+| CM | left | 6 | +0.0263 | -0.0153 | -0.0080, -0.0371, -0.0008 | -0.0051 [-0.0122, +0.0017] | -0.0102 | 10/18 | abhlth (yes) |
+| WF | right | 6 | -0.0358 | +0.0342 | +0.0804, +0.0163, +0.0059 | +0.0009 [-0.0071, +0.0089] | +0.0333 | 3/18 | heaven (yes) |
+| WF | left | 6 | -0.0358 | -0.0364 | -0.0242, -0.0240, -0.0610 | +0.0092 [+0.0000, +0.0181] | -0.0456 | 4/18 | HUNT1 (yes) |
 
 ## Trajectories
 
-### CM → right (J0 = +0.0263)
+### CM → right, 6 items (J0 = +0.0263)
 
 Greedy run 0:
 
@@ -46,7 +46,7 @@ Greedy run 2:
 
 Mean cumulative ΔJ by step (greedy vs random): t1: +0.0067 vs -0.0019; t2: +0.0068 vs -0.0037; t3: +0.0096 vs -0.0045; t4: +0.0038 vs -0.0066; t5: +0.0088 vs -0.0075; t6: +0.0093 vs -0.0081
 
-### CM → left (J0 = +0.0263)
+### CM → left, 6 items (J0 = +0.0263)
 
 Greedy run 0:
 
@@ -83,7 +83,7 @@ Greedy run 2:
 
 Mean cumulative ΔJ by step (greedy vs random): t1: -0.0091 vs -0.0015; t2: -0.0137 vs -0.0030; t3: -0.0087 vs -0.0033; t4: -0.0054 vs -0.0050; t5: -0.0079 vs -0.0052; t6: -0.0153 vs -0.0051
 
-### WF → right (J0 = -0.0358)
+### WF → right, 6 items (J0 = -0.0358)
 
 Greedy run 0:
 
@@ -120,7 +120,7 @@ Greedy run 2:
 
 Mean cumulative ΔJ by step (greedy vs random): t1: -0.0000 vs -0.0011; t2: +0.0020 vs -0.0028; t3: +0.0022 vs -0.0017; t4: +0.0101 vs -0.0034; t5: +0.0252 vs +0.0000; t6: +0.0342 vs +0.0009
 
-### WF → left (J0 = -0.0358)
+### WF → left, 6 items (J0 = -0.0358)
 
 Greedy run 0:
 
