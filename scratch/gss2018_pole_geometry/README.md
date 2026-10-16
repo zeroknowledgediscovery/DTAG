@@ -118,6 +118,7 @@ Native outputs (all ignored by Git under results/):
 
     results/native_summary.json
     results/native_variants.csv
+    results/anchor_monotonicity.csv
     results/leave_one_out.csv
     results/REPORT.md
 
@@ -135,6 +136,16 @@ d(L,R). The existing wave-specific resolution establishes most of this.
 identical v1 and v2 geometries. If I(empty) is strongly positive and a
 liberal persona is positive but shifted LEFT of the empty state, the sign
 is acting as a poor proxy for human ideological self-identification.
+
+**Independent orientation test:** the audit scans recognized response
+labels of the 2018 native polviews and partyid items, ordered from
+liberal/Democratic to conservative/Republican. It saves
+anchor_monotonicity.csv and counts pairwise ordering reversals for v2.
+If the index preserves the order despite being positive for the liberal
+persona, the zero-point issue is more plausible. If labels order
+incorrectly, the pole is not simply offset and needs stronger review.
+The labels in the model that do not match the expected wording are listed
+in native_summary.json rather than silently invented.
 
 **Content validity:** the hand-chosen 38 survey questions must be justified
 as indicators of a coherent single political orientation. Removing
