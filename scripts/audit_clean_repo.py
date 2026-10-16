@@ -132,6 +132,7 @@ def main() -> None:
         "native/lsm_runtime/README.md",
         "native/lsm_runtime/LICENSE",
         "scripts/pipeline.py",
+        "scripts/dtag_core.py",
         "scripts/pipeline_localized.py",
         "scripts/audit_native_maps.py",
         "bin/dtag_demo.sh",

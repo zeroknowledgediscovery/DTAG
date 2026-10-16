@@ -194,8 +194,8 @@ def one_step_geometry(state: Mapping[str, str], candidates: Mapping[str, Sequenc
 # --------------------------------------------------------------------------- native adapters
 
 def state_row(world, state: Mapping[str, str]):
-    """Full model row for a partial state (labels of any length; see pipeline.blank_row)."""
-    import pipeline as core
+    """Full model row for a partial state (labels of any length; see dtag_core.blank_row)."""
+    import dtag_core as core
     return core.build_full_vector_from_state(world.m, dict(state), world.ctx.idx_map)
 
 
@@ -237,7 +237,7 @@ def has_fast_extensions(world) -> bool:
 
 def native_distributions(world, state: Mapping[str, str], variables: Sequence[str]) -> Dict[str, Dict[str, float]]:
     """Unfiltered native P(. | s, v) restricted to each variable's valid labels."""
-    import pipeline as core
+    import dtag_core as core
     raw = core.qnet_conditional_distributions(world.m, state_row(world, state), target_vars=list(variables))
     return {v: {str(a): float(p) for a, p in (raw.get(v) or {}).items()
                 if str(a) in world.ctx.possible.get(v, [])} for v in variables}

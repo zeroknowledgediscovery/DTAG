@@ -25,7 +25,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import fetch_models  # noqa: E402
-import pipeline as core  # noqa: E402
+import dtag_core as core  # noqa: E402
 from build_model_coverage import read_source_maps  # noqa: E402
 from polar_vectors import CANONICAL, CORRECTIONS, WAVE_DIR, load_corrections, resolve_poles, write_pole_csv  # noqa: E402
 

@@ -45,7 +45,7 @@ import eurobarometer_dates as ebdates
 import eurobarometer_native as ebnative
 import fetch_models
 import interactive
-import pipeline as core
+import dtag_core as core
 import pipeline_localized as localized
 from dtag_session import (
     DTAGConfigError,

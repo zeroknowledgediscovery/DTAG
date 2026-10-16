@@ -391,10 +391,16 @@ bin/interactive_config.sh   --profile gss2024_cm   --question "What do you think
 
 ## Canonical runtime
 
-Core runtime:
+Core runtime (command line):
 
 ```text
 scripts/pipeline.py
+```
+
+Core library (imported by the CLI, the web app, the optimizer and scripts):
+
+```text
+scripts/dtag_core.py
 ```
 
 Localized runtime:
@@ -668,7 +674,8 @@ This checks plain generation and the strict structured-output call used in varia
 
 | Script | Purpose |
 |---|---|
-| `scripts/pipeline.py` | native LSM DTAG core (CLI; runs `DTAGSession`) |
+| `scripts/pipeline.py` | native LSM DTAG command-line runtime (runs `DTAGSession`; `import pipeline` aliases `dtag_core`) |
+| `scripts/dtag_core.py` | core library: maps, prefilters, LLM steps, model rows/distributions, geography, ideology |
 | `scripts/dtag_session.py` | reusable respondent session: persona, anchors, fallback, state, ideology |
 | `scripts/dtag_engine.py` | model catalog/registry, profiles, Eurobarometer routing, sessions (web + API) |
 | `scripts/fetch_models.py` | public model download/verification (`dtag-models`) |

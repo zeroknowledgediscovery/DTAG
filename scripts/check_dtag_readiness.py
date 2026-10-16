@@ -418,6 +418,7 @@ def main() -> None:
         "requirements.txt",
         "scripts/model_backend.py",
         "scripts/pipeline.py",
+        "scripts/dtag_core.py",
         "scripts/pipeline_localized.py",
         "scripts/interactive.py",
         "scripts/run.py",

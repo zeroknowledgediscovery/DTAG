@@ -51,7 +51,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import pipeline as core  # noqa: E402
+import dtag_core as core  # noqa: E402
 from dtag_session import ModelContext, build_polar_geometry  # noqa: E402
 from model_backend import load_model  # noqa: E402
 

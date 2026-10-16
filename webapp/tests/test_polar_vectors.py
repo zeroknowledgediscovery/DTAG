@@ -5,7 +5,7 @@ import csv
 
 import pytest
 
-import pipeline as core
+import dtag_core as core
 from conftest import ROOT
 from polar_vectors import CANONICAL, WAVE_DIR, is_canonical, load_corrections, resolve_poles, wave_file
 

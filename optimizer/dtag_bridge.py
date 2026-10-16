@@ -19,7 +19,7 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
-import pipeline as core  # noqa: E402
+import dtag_core as core  # noqa: E402
 from dtag_paths import model_root as dtag_model_root  # noqa: E402
 from dtag_session import ModelContext, build_polar_geometry  # noqa: E402
 from model_backend import load_model  # noqa: E402

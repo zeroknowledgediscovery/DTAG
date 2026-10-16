@@ -45,7 +45,7 @@ DTAGEngine                           scripts/dtag_engine.py
    ├─ catalog/maps/profiles/Eurobarometer routing/export/suggestions
    └─ Recommender                    scripts/dtag_recommend.py (who/where/when → model)
 DTAGSession  (one respondent)        scripts/dtag_session.py
-   └─ pipeline helpers               scripts/pipeline.py, pipeline_localized.py (country conditioning)
+   └─ core helpers                   scripts/dtag_core.py, pipeline_localized.py (country conditioning)
 NativeLSMBackend                     scripts/model_backend.py
    └─ dtag_lsm.Runtime (C++/pybind)  native/lsm_runtime/python/dtag_lsm.cpython-313-x86_64-linux-gnu.so
 Model download                       scripts/fetch_models.py (public GCS, SHA256, safe .tar.zst extract)

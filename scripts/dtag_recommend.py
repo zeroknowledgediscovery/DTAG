@@ -31,7 +31,7 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-import pipeline as core
+import dtag_core as core
 import pipeline_localized as localized
 
 REPO_ROOT = Path(__file__).resolve().parents[1]

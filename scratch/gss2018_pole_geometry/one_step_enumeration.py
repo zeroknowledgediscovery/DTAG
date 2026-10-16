@@ -43,7 +43,7 @@ from audit import get_states  # noqa: E402
 from optimizer.dtag_bridge import (  # noqa: E402
     DEFAULT_POLES, World, canonical_map, ensure_model, model_record, sha256)
 
-import pipeline as core  # noqa: E402  (on sys.path via dtag_bridge)
+import dtag_core as core  # noqa: E402  (on sys.path via dtag_bridge)
 from optimizer.one_step_geometry import state_row  # noqa: E402  (no U100 label truncation)
 
 MODEL_KEY = "gss/gss_2018"
