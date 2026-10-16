@@ -125,9 +125,19 @@ def order_controls(sim, people, runs, bank, seq_ids, n, mode, neutral_band, seed
     return rows
 
 
-def baselines(sim, people, bank, length: int, n: int, reps: int, seed0: int, mode: str, kind: str, seq_ids: List[str], neutral_band: float = 0.005):
-    """Random sequences vs the optimized one, all on the same baseline runs."""
-    runs = sim.make_runs(people, reps, seed0)
+def baselines(sim, people, bank, length: int, n: int, reps: int, seed0: int, mode: str, kind: str, seq_ids: List[str], neutral_band: float = 0.005,
+              validation_runs=None):
+    """Compare random sequences on MATCHED initial states, limiting draws per state."""
+    if validation_runs is not None:
+        counts = {}
+        runs = []
+        for r in validation_runs:
+            sid = r[4] if len(r) > 4 else (r[0], r[3])
+            if counts.get(sid, 0) < reps:
+                runs.append(r)
+                counts[sid] = counts.get(sid, 0) + 1
+    else:
+        runs = sim.make_runs(people, reps, seed0)
     by_id = {q["id"]: q for q in bank}
     rng = random.Random(seed0)
     rows = []
