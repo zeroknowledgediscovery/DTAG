@@ -28,12 +28,12 @@ CORE = ("polviews", "partyid")
 ANCHOR_ORDER = {
     "polviews": [
         "extremely liberal", "liberal", "slightly liberal",
-        "moderate, middle of the road", "slightly conservative",
-        "conservative", "extremely conservative"],
+        "moderate", "slghtly conservative",
+        "conservative", "extrmly conservative"],
     "partyid": [
-        "strong democrat", "not very strong democrat",
-        "independent, close to democrat", "independent (neither, no response)",
-        "independent, close to republican", "not very strong republican",
+        "strong democrat", "not str democrat",
+        "ind,near dem", "independent",
+        "ind,near rep", "not str republican",
         "strong republican"]
 }
 
