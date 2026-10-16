@@ -384,3 +384,21 @@ def test_local_library_persona_core_protected_and_score():
     assert score_from_z(3.6) == 4
     assert score_from_z(20.0) == 10
     assert score_from_z(-2.0) == 0
+
+
+
+def test_local_library_writes_append_index_with_failed_records(tmp_path):
+    from optimizer.sequence_library_runner import write_library_index, load_attempts
+    root = tmp_path
+    records = [{"run_id": "00001", "year": 2024, "requested_label": "+-",
+                "observed_label": "++", "status": "validated",
+                "quality_score": 4, "sequence_file": "a.csv"},
+               {"run_id": "00002", "year": 2018, "requested_label": "--",
+                "status": "failed", "error": "missing model"}]
+    write_library_index(root, records)
+    import csv
+    rows = list(csv.DictReader((root / "library.csv").open()))
+    assert len(rows) == 2
+    assert rows[0]["observed_label"] == "++"
+    assert rows[1]["status"] == "failed"
+    assert rows[1]["error"] == "missing model"
