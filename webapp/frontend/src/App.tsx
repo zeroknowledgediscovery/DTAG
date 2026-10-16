@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { api } from "./api";
-import { ChatLog, Composer } from "./components/Chat";
+import { api, fmtSigned } from "./api";
+import { ChatLog, Composer, type ComposerChip } from "./components/Chat";
 import { Section, type Geography } from "./components/Controls";
 import { ProfileBuilder } from "./components/ProfileBuilder";
 import { RespondentSetup } from "./components/RespondentSetup";
@@ -17,42 +17,76 @@ const SLOTS = [
 ];
 type Target = "both" | "A" | "B";
 
-function ReadinessBar({ r, onRefresh }: { r: Readiness | null; onRefresh: () => void }) {
-  if (!r) return <div className="readiness">checking readiness…</div>;
+function ReadinessPill({ r, onRefresh }: { r: Readiness | null; onRefresh: () => void }) {
+  const [open, setOpen] = useState(false);
+  if (!r) return <div className="readiness note">checking…</div>;
   const ok = r.status === "ready";
+  const llm =
+    r.llm.backend === "mock" ? "mock LLM" : r.llm.openai_configured ? `OpenAI · ${r.llm.default_openai_model}` : "no OpenAI key";
+  const llmWarn = r.llm.backend !== "mock" && !r.llm.openai_configured;
   return (
-    <div className="readiness">
-      <span>
-        <span className={`badge ${ok ? "b-direct" : "b-nomatch"}`}>{ok ? "DTAG READY" : "DEGRADED"}</span>
-      </span>
-      <span>
-        Native runtime <b>{r.native_runtime.available ? r.native_runtime.runtime : "unavailable"}</b>
-      </span>
-      <span>
-        Public catalog <b>{r.public_catalog.reachable ? `${r.public_catalog.models} models` : "unreachable"}</b> ({r.public_catalog.release})
-      </span>
-      <span>
-        Semantic maps <b>{r.semantic_maps.matched_to_catalog}</b> matched
-      </span>
-      <span>
-        Installed <b>{r.model_cache.installed}</b>
-      </span>
-      <span>
-        Resident <b>{r.models_resident.loaded}</b>
-      </span>
-      <span>
-        LLM{" "}
-        <b>
-          {r.llm.backend === "mock"
-            ? "MOCK (no OpenAI calls)"
-            : r.llm.openai_configured
-              ? `OpenAI · ${r.llm.default_openai_model}`
-              : "OpenAI not configured"}
-        </b>
-      </span>
-      <button className="link" onClick={onRefresh}>
-        refresh
+    <div className="readiness-wrap">
+      <button
+        className={`status-pill ${ok && !llmWarn ? "ok" : "bad"}`}
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        title="System status"
+      >
+        <span className="dot" /> {ok ? "Ready" : "Degraded"} · {llm}
       </button>
+      {open && (
+        <div className="status-pop" role="dialog" aria-label="System status">
+          <dl className="summary">
+            <dt>Native runtime</dt>
+            <dd>{r.native_runtime.available ? r.native_runtime.runtime : "unavailable"}</dd>
+            <dt>Public catalog</dt>
+            <dd>{r.public_catalog.reachable ? `${r.public_catalog.models} models (${r.public_catalog.release})` : "unreachable"}</dd>
+            <dt>Semantic maps</dt>
+            <dd>{r.semantic_maps.matched_to_catalog} matched</dd>
+            <dt>Installed</dt>
+            <dd>{r.model_cache.installed}</dd>
+            <dt>Loaded</dt>
+            <dd>{r.models_resident.loaded}</dd>
+            <dt>LLM</dt>
+            <dd>{r.llm.backend === "mock" ? "MOCK (no OpenAI calls)" : llm}</dd>
+          </dl>
+          <button className="link" onClick={onRefresh}>
+            refresh
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Compact card replacing the setup form once a respondent is running. */
+function RespondentSummary({ r, onEdit }: { r: Respondent; onEdit: () => void }) {
+  const s = r.session!;
+  const ide = s.ideology;
+  // The session's persona text carries appended context lines (country/year); show the description only.
+  const persona = s.persona_text.split(/\n(?:Country context|Continent context|Survey year|Survey date):/)[0].trim();
+  return (
+    <div className="box resp-summary">
+      <div className="resp-summary-h">
+        <b>{s.resolved_profile.model_label}</b>
+        {ide.enabled && ide.current !== null && <span className="mono">I {ide.current.toFixed(4)}</span>}
+      </div>
+      <div className="resp-persona" title={persona}>
+        {persona}
+      </div>
+      <div className="note">
+        {[s.resolved_profile.country, s.temporal_conditioning.wave].filter(Boolean).join(" · ")} · {s.question_count} question
+        {s.question_count === 1 ? "" : "s"}
+      </div>
+      <div className="actions" style={{ marginTop: 8 }}>
+        <button className="btn" onClick={onEdit} disabled={r.busy}>
+          Edit / new respondent
+        </button>
+        <button className="btn" onClick={r.reset} disabled={r.busy}>
+          Reset
+        </button>
+      </div>
+      {r.error && <div className="error">{r.error}</div>}
     </div>
   );
 }
@@ -61,7 +95,7 @@ function ReadinessBar({ r, onRefresh }: { r: Readiness | null; onRefresh: () => 
 function pushPanel(r: Respondent) {
   if (!r.session || !r.session.ideology.enabled) return null;
   return (
-    <Section title="Next question · ideology push">
+    <Section title="Next question">
       <IdeologyPush
         push={r.push}
         loading={r.pushLoading}
@@ -128,6 +162,12 @@ export default function App() {
   const [target, setTarget] = useState<Target>("both");
   const [builder, setBuilder] = useState(false);
   const [seqOpen, setSeqOpen] = useState(false);
+  // Setup form collapses to a summary once a respondent runs; "Edit" reopens it until the next start.
+  const [editOpen, setEditOpen] = useState<Record<string, boolean>>({});
+  const aSid = A.session?.session_id;
+  const bSid = B.session?.session_id;
+  useEffect(() => setEditOpen((e) => ({ ...e, A: false })), [aSid]);
+  useEffect(() => setEditOpen((e) => ({ ...e, B: false })), [bSid]);
 
   const setMode = (n: 1 | 2) => {
     setCount(n);
@@ -204,10 +244,26 @@ export default function App() {
       </>
     );
 
-  // Suggestions for the composer row: from A in single mode or when targeting A; from B when targeting B.
-  const sugSource = count === 2 && target === "B" ? B : A;
-  const composerSuggestions =
-    count === 1 ? (A.history.length > 0 ? A.suggestions : []) : sugSource.session ? sugSource.suggestions : [];
+  // Composer chips: the next ideology-push questions of the respondent being asked (not for "both").
+  const chipSource = count === 1 ? A : target === "A" ? A : target === "B" ? B : null;
+  const composerChips: ComposerChip[] = [];
+  if (chipSource?.session && chipSource.push?.enabled) {
+    for (const s of [chipSource.push.up, chipSource.push.down]) {
+      if (!s) continue;
+      composerChips.push({
+        key: s.direction,
+        label: (
+          <>
+            <span className="push-arrow">{s.direction === "up" ? "↑" : "↓"}</span>
+            {s.question}
+            <span className="mono push-delta">{fmtSigned(s.predicted_delta, 3)}</span>
+          </>
+        ),
+        title: `Ideology push ${s.direction === "up" ? "toward the R pole" : "toward the L pole"}: asks survey item ${s.variable}`,
+        onClick: () => chipSource.askPush(s),
+      });
+    }
+  }
 
   const seqTargets = askTargets;
   const seqLabel = seqTargets
@@ -220,7 +276,7 @@ export default function App() {
         <div className="brand">
           DTAG<small>Digital Twin Anchored Generation · native LSM workbench</small>
         </div>
-        <ReadinessBar r={readiness} onRefresh={() => loadReadiness(true)} />
+        <ReadinessPill r={readiness} onRefresh={() => loadReadiness(true)} />
         <span className="spacer" />
         <div className="seg" role="radiogroup" aria-label="Number of respondents">
           <span className="note">Respondents</span>
@@ -274,19 +330,30 @@ export default function App() {
           )}
           {pair.map(([r, sl]) => (
             <div key={sl.id} className="setup" hidden={editing !== r}>
-              <RespondentSetup
-                r={r}
-                label={count === 2 ? sl.id : undefined}
-                profiles={profiles}
-                models={models}
-                ebWaves={ebWaves}
-                ebDates={ebDates}
-                geography={geography}
-                liveState={loader.liveState}
-                onSave={() => saveCurrent(r)}
-                onBuilder={() => setBuilder(true)}
-                onDeletePreset={() => deletePreset(r)}
-              />
+              {r.session && !editOpen[sl.id] && !r.phase ? (
+                <RespondentSummary r={r} onEdit={() => setEditOpen((e) => ({ ...e, [sl.id]: true }))} />
+              ) : (
+                <>
+                  {r.session && (
+                    <button className="link" style={{ marginBottom: 6 }} onClick={() => setEditOpen((e) => ({ ...e, [sl.id]: false }))}>
+                      ← back to the running respondent
+                    </button>
+                  )}
+                  <RespondentSetup
+                    r={r}
+                    label={count === 2 ? sl.id : undefined}
+                    profiles={profiles}
+                    models={models}
+                    ebWaves={ebWaves}
+                    ebDates={ebDates}
+                    geography={geography}
+                    liveState={loader.liveState}
+                    onSave={() => saveCurrent(r)}
+                    onBuilder={() => setBuilder(true)}
+                    onDeletePreset={() => deletePreset(r)}
+                  />
+                </>
+              )}
             </div>
           ))}
           <datalist id="dtag-country-list">
@@ -334,7 +401,7 @@ export default function App() {
           <Composer
             canAsk={canAsk}
             onAsk={ask}
-            suggestions={composerSuggestions}
+            chips={composerChips}
             onSequence={askTargets.length ? () => setSeqOpen(true) : undefined}
             placeholder={
               count === 1 ? "Ask this respondent a question..." : target === "both" ? "Ask both respondents the same question..." : `Ask respondent ${target} only...`
@@ -393,16 +460,16 @@ export default function App() {
               </div>
               {pair.map(([r, sl]) => (
                 <div key={sl.id} hidden={tab !== sl.id}>
-                  {pushPanel(r)}
-                  <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} label={sl.id} />
+                  <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} label={sl.id} hideIdeology>
+                    {pushPanel(r)}
+                  </StatePanel>
                 </div>
               ))}
             </>
           ) : (
-            <>
+            <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix}>
               {pushPanel(A)}
-              <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix} />
-            </>
+            </StatePanel>
           )}
         </div>
       </div>

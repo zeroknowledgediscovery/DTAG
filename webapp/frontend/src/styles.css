@@ -283,12 +283,35 @@ a.btn.primary-link { background: var(--accent); color: white; border-color: var(
 @media (prefers-color-scheme: dark) { a.btn.primary-link { color: #0e1620; } }
 
 /* ideology push (one-step optimizer suggestions) */
-.push-card { margin-bottom: 8px; }
-.push-dir { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 12px; margin-bottom: 4px; }
-.push-delta { font-weight: 600; }
-.push-delta.pos, .push-delta.neg { color: var(--accent); }
-.push-q { font-size: 14px; margin-bottom: 4px; }
-.push-table { width: 100%; font-size: 12px; border-collapse: collapse; margin-top: 6px; }
+.push-row-wrap { border-bottom: 1px solid var(--border); }
+.push-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; }
+.push-arrow { font-weight: 700; color: var(--accent); width: 14px; text-align: center; }
+.push-text { flex: 1; min-width: 0; text-align: left; color: var(--text, inherit); font-size: 13px; line-height: 1.3; }
+button.link.push-text:hover { text-decoration: underline; }
+.push-delta { font-size: 12px; color: var(--accent); white-space: nowrap; }
+button.btn.small { padding: 2px 8px; font-size: 12px; }
+.push-details { padding: 0 0 8px 22px; display: grid; gap: 4px; }
+.push-table { width: 100%; font-size: 12px; border-collapse: collapse; }
 .push-table th, .push-table td { text-align: left; padding: 2px 4px; border-top: 1px solid var(--border); }
-.push-auto { margin-top: 6px; }
+.push-auto { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+.push-auto select { width: auto; flex: 0 0 auto; }
+.push-auto input[type=number] { width: 56px; flex: 0 0 auto; }
+.push-more { margin-top: 6px; }
+.push-more summary { cursor: pointer; }
 .badge.b-push { background: var(--accent-weak); color: var(--accent); }
+.push-chip .push-arrow { margin-right: 4px; }
+.push-chip .push-delta { margin-left: 6px; }
+.suggest.small.push-chip { max-width: 440px; }
+
+/* compact status pill (top bar) */
+.readiness-wrap { position: relative; }
+.status-pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: 999px;
+  background: var(--panel-2); padding: 2px 10px; font-size: 12px; cursor: pointer; color: var(--text); }
+.status-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+.status-pill.bad .dot { background: var(--warn); }
+.status-pop { position: absolute; top: 28px; left: 0; z-index: 20; min-width: 280px; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 6px; background: var(--panel); box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+
+/* respondent summary (setup collapsed) */
+.resp-summary-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+.resp-persona { font-size: 13px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }

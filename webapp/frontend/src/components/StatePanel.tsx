@@ -261,9 +261,15 @@ export function StatePanel({
   idPrefix = "",
   color,
   label,
+  children,
+  hideIdeology = false,
 }: {
   session: SessionInfo | null;
   history: QuestionResult[];
+  /** Rendered right below the ideology chart (the ideology-push panel). */
+  children?: React.ReactNode;
+  /** Omit the per-respondent chart (two-respondent mode shows the A-vs-B chart instead). */
+  hideIdeology?: boolean;
   /** Respondent label (A/B) used in the ZIP archive's folder and report. */
   label?: string;
   /** Must match the ChatLog's idPrefix so timeline clicks scroll to the right message. */
@@ -286,62 +292,76 @@ export function StatePanel({
 
   return (
     <div>
+      {!hideIdeology && (
+        <Section title="Ideology">
+          <Ideology ide={session.ideology} color={color} />
+        </Section>
+      )}
+
+      {children}
+
       <Section title="Respondent model">
-        <dl className="summary">
-          <dt>Survey family</dt>
-          <dd>{session.model.family_label}</dd>
-          <dt>Native model</dt>
-          <dd className="mono">{session.model.key}</dd>
-          <dt>Semantic map</dt>
-          <dd className="mono">
-            {session.map.key}
-            {session.map.has_fallback_provenance && <span className="badge b-sem"> fallback provenance</span>}
-          </dd>
-          <dt>Wave / time</dt>
-          <dd>
-            {tmp.wave}
-            {tmp.fieldwork ? ` · fieldwork ${tmp.fieldwork.fieldwork_start} … ${tmp.fieldwork.fieldwork_end}` : ""}
-            {tmp.requested_date ? ` · requested ${tmp.requested_date}` : ""}
-            <div className="note mono">{tmp.mode}</div>
-          </dd>
-          <dt>Country</dt>
-          <dd>{p.country || "—"}{p.continent ? ` · ${p.continent}` : ""}</dd>
-          <dt>Geography</dt>
-          <dd>
-            <span className="mono">{geo.conditioning_mode}</span>
-            {Object.keys(geo.conditioned_variables).length > 0 && (
-              <div className="mono note">
-                {Object.entries(geo.conditioned_variables).map(([k, v]) => `${k}=${v}`).join(", ")}
-              </div>
-            )}
-          </dd>
-          <dt>Model status</dt>
-          <dd>{statusLabel(session.model.status.state)}</dd>
-          <dt>Response mode</dt>
-          <dd className="mono">
-            {String(session.config.resp_mode)} · seed {String(session.config.seed)} · fallback{" "}
-            {String(session.config.semantic_fallback)}
-          </dd>
-          <dt>LLM</dt>
-          <dd className="mono">
-            {session.llm.backend} · {session.llm.openai_model}
-            {session.llm.mock && <span className="badge b-nomatch"> MOCK</span>}
-          </dd>
-        </dl>
-        {[...geo.warnings, ...tmp.warnings].length > 0 && (
-          <details>
-            <summary className="note" style={{ cursor: "pointer" }}>
-              Conditioning notes ({geo.warnings.length + tmp.warnings.length})
-            </summary>
-            <ul className="warn-list">
-              {[...geo.warnings, ...tmp.warnings].map((w) => (
-                <li key={w} className="info">
-                  {w}
-                </li>
-              ))}
-            </ul>
-          </details>
-        )}
+        <details>
+          <summary className="note" style={{ cursor: "pointer" }}>
+            {session.model.family_label} · <span className="mono">{session.model.key}</span> · {String(session.config.resp_mode)}{" "}
+            responses{session.llm.mock ? " · mock LLM" : ""}
+          </summary>
+          <dl className="summary">
+            <dt>Survey family</dt>
+            <dd>{session.model.family_label}</dd>
+            <dt>Native model</dt>
+            <dd className="mono">{session.model.key}</dd>
+            <dt>Semantic map</dt>
+            <dd className="mono">
+              {session.map.key}
+              {session.map.has_fallback_provenance && <span className="badge b-sem"> fallback provenance</span>}
+            </dd>
+            <dt>Wave / time</dt>
+            <dd>
+              {tmp.wave}
+              {tmp.fieldwork ? ` · fieldwork ${tmp.fieldwork.fieldwork_start} … ${tmp.fieldwork.fieldwork_end}` : ""}
+              {tmp.requested_date ? ` · requested ${tmp.requested_date}` : ""}
+              <div className="note mono">{tmp.mode}</div>
+            </dd>
+            <dt>Country</dt>
+            <dd>{p.country || "—"}{p.continent ? ` · ${p.continent}` : ""}</dd>
+            <dt>Geography</dt>
+            <dd>
+              <span className="mono">{geo.conditioning_mode}</span>
+              {Object.keys(geo.conditioned_variables).length > 0 && (
+                <div className="mono note">
+                  {Object.entries(geo.conditioned_variables).map(([k, v]) => `${k}=${v}`).join(", ")}
+                </div>
+              )}
+            </dd>
+            <dt>Model status</dt>
+            <dd>{statusLabel(session.model.status.state)}</dd>
+            <dt>Response mode</dt>
+            <dd className="mono">
+              {String(session.config.resp_mode)} · seed {String(session.config.seed)} · fallback{" "}
+              {String(session.config.semantic_fallback)}
+            </dd>
+            <dt>LLM</dt>
+            <dd className="mono">
+              {session.llm.backend} · {session.llm.openai_model}
+              {session.llm.mock && <span className="badge b-nomatch"> MOCK</span>}
+            </dd>
+          </dl>
+          {[...geo.warnings, ...tmp.warnings].length > 0 && (
+            <details>
+              <summary className="note" style={{ cursor: "pointer" }}>
+                Conditioning notes ({geo.warnings.length + tmp.warnings.length})
+              </summary>
+              <ul className="warn-list">
+                {[...geo.warnings, ...tmp.warnings].map((w) => (
+                  <li key={w} className="info">
+                    {w}
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </details>
         <div className="actions" style={{ marginTop: 8 }}>
           <a
             className="btn primary-link"
@@ -358,10 +378,6 @@ export function StatePanel({
             Export CSV
           </a>
         </div>
-      </Section>
-
-      <Section title="Ideology">
-        <Ideology ide={session.ideology} color={color} />
       </Section>
 
       <Section title="Session timeline">

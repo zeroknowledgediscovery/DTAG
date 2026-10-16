@@ -310,17 +310,25 @@ export function ChatLog({
   );
 }
 
+/** A one-click action shown above the input (e.g. the next ideology-push questions). */
+export interface ComposerChip {
+  key: string;
+  label: React.ReactNode;
+  title?: string;
+  onClick: () => void;
+}
+
 export function Composer({
   canAsk,
   onAsk,
-  suggestions = [],
+  chips = [],
   onSequence,
   placeholder = "Ask this respondent a question...",
   target,
 }: {
   canAsk: boolean;
   onAsk: (q: string) => void;
-  suggestions?: Suggestion[];
+  chips?: ComposerChip[];
   onSequence?: () => void;
   placeholder?: string;
   /** Optional "ask whom" selector shown before the input (two-respondent mode). */
@@ -329,18 +337,11 @@ export function Composer({
   const [q, setQ] = useState("");
   return (
     <div className="composer">
-      {suggestions.length > 0 && (
+      {chips.length > 0 && (
         <div className="suggest-row">
-          <span className="note">Try:</span>
-          {suggestions.slice(0, 4).map((sg) => (
-            <button
-              key={sg.question}
-              className="suggest small"
-              disabled={!canAsk}
-              title={`Maps directly to: ${sg.top_variables.join(", ")}`}
-              onClick={() => onAsk(sg.question)}
-            >
-              {sg.question}
+          {chips.map((c) => (
+            <button key={c.key} className="suggest small push-chip" disabled={!canAsk} title={c.title} onClick={c.onClick}>
+              {c.label}
             </button>
           ))}
         </div>
