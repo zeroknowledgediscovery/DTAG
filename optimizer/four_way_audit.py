@@ -42,11 +42,22 @@ def analyze(directory, seed=20261016, nboot=2000, band=.005):
     if not path.is_file():
         return {"status": "missing_validation", "directory": str(directory)}
     with np.load(path, allow_pickle=False) as data:
+        available = sorted(data.files)
+        missing = sorted({"trajectories", "state_id"} - set(available))
+        if missing:
+            return {"status": "unsupported_schema", "directory": str(directory),
+                    "available_keys": available, "missing_keys": missing,
+                    "reason": "Cannot compute state-cluster confidence intervals without "
+                              "trajectory paths and distinct starting-state IDs"}
         trajectory = np.asarray(data["trajectories"], dtype=float)
-        i0 = np.asarray(data["initial_ideology"], dtype=float)
+        if trajectory.ndim != 2 or trajectory.shape[1] < 2:
+            raise ValueError(f"{path}: expected an (n, steps+1) matrix with the starting index in column 0")
+        # Legacy runs may omit the redundant initial_ideology array. The first
+        # column of the saved trajectories is I_start in DTAG's trajectory contract.
+        initial_source = "archive" if "initial_ideology" in data.files else "trajectories[:,0]"
+        i0 = (np.asarray(data["initial_ideology"], dtype=float)
+              if "initial_ideology" in data.files else trajectory[:, 0].copy())
         state_ids = np.asarray(data["state_id"]).astype(str)
-    if trajectory.ndim != 2 or trajectory.shape[1] < 2:
-        raise ValueError(f"{path}: expected a matrix of trajectories")
     if len(trajectory) != len(i0) or len(i0) != len(state_ids):
         raise ValueError(f"{path}: array lengths differ")
     if not np.isfinite(trajectory).all() or not np.isfinite(i0).all():
@@ -86,7 +97,7 @@ def analyze(directory, seed=20261016, nboot=2000, band=.005):
         "status": "supported_by_state_bootstrap" if supported else "descriptive_only",
         "n_trajectories": len(trajectory), "n_states": len(states),
         "n_neutral_trajectories": int(np.sum(np.abs(i0) < band)),
-        "groups": groups}
+        "initial_ideology_source": initial_source, "groups": groups}
 
 
 def audit(catalog_path, out, seed=20261016, nboot=2000):
