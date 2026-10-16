@@ -226,9 +226,12 @@ interactive questions and reset return 409.
 ### Ideology push (suggested next questions)
 
 For respondents whose survey has an ideology index (GSS), the right column shows
-**Next question · ideology push**: two suggested questions, one predicted to move the
-index **up** (toward the R pole) and one **down** (toward the L pole), recomputed after
-every answer.
+**Next question** right below the ideology chart: two suggested questions, one predicted to
+move the index **up** (toward the R pole) and one **down** (toward the L pole), recomputed
+after every answer. The same two questions appear as one-click chips above the question input
+(for the respondent being asked). Click a suggested question to see its survey item, the basis
+of the prediction and every response; *ⓘ how this works* holds the explanation and the
+pole-items option.
 
 How they are chosen (one-step optimizer, `optimizer/session_push.py`):
 
@@ -250,7 +253,7 @@ path. The recorded and plotted index therefore changes by the predicted amount (
 tagged **PUSH ↑/↓**; the tooltip shows predicted vs realized). If the respondent's state is at its
 size limit, an older answer is evicted and the card says the change may differ.
 
-**Automatic push** asks the suggestion for one direction step by step (each step re-scores at the
+**Push [↑/↓] [N] steps · Run** (automatic push) asks the suggestion for one direction step by step (each step re-scores at the
 new state), for a chosen number of steps; it runs like a question sequence (progress card,
 cancel, results in the log) and stops early if no item moves the index further.
 

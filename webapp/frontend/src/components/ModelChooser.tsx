@@ -87,23 +87,23 @@ export function ModelChooser({
                 {isDefault && <span className="badge b-direct">DEFAULT</span>}
                 <span style={{ marginLeft: "auto" }}>{stateBadge(c, liveState[c.model_key])}</span>
               </div>
-              <div className="cand-d">
-                <span className="mono">when</span> {c.time.note}
-                {c.time.mode === "nearest" && <span className="badge b-sem"> nearest</span>}
+              <div className="cand-d note" title={`When: ${c.time.note}\nWhere: ${c.geo.note}`}>
+                {GEO_LABEL[c.geo.mode]}
+                {c.time.mode === "nearest" ? " · nearest wave" : ""}
+                {!c.ideology_available ? " · no ideology index" : ""}
               </div>
-              <div className="cand-d">
-                <span className="mono">where</span> <b>{GEO_LABEL[c.geo.mode]}</b> · {c.geo.note}
-              </div>
-              {!c.ideology_available && <div className="cand-d note">no ideology index for this survey</div>}
             </label>
           );
         })
       )}
 
       {rec && !manualRec && rec.candidates.length > 1 && (
-        <div className="note" style={{ marginTop: 4 }}>
-          {rec.candidates.length} surveys cover this respondent. The default is chosen by time fit first, then by how directly
-          the country conditions the model; pick another above if you prefer.
+        <div
+          className="note"
+          style={{ marginTop: 4 }}
+          title="The default is chosen by time fit first, then by how directly the country conditions the model. Hover a card for details."
+        >
+          {rec.candidates.length} surveys cover this respondent · ⓘ
         </div>
       )}
 
