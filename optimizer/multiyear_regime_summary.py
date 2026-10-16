@@ -58,11 +58,24 @@ def inventory(runs_root, out, years=(2016, 2018, 2024), target_per_cell=3,
         pos = (groups.get("positive") or {}).get("raw_change_ci") or {}
         neg = (groups.get("negative") or {}).get("raw_change_ci") or {}
         category = LABEL_TO_CATEGORY.get(result.get("observed_regime"))
+        # Evidence quality (0-10) measures completeness, NOT directional strength.
+        # Independent states matter more than repeated answer draws.
+        positive = groups.get("positive") or {}
+        negative = groups.get("negative") or {}
+        state_factor = min(1.0, positive.get("n_states", 0) / 50.0,
+                           negative.get("n_states", 0) / 50.0)
+        draws_factor = min(1.0,
+                           (positive.get("n_draws", 0) / max(1, positive.get("n_states", 0))) / 20.0,
+                           (negative.get("n_draws", 0) / max(1, negative.get("n_states", 0))) / 20.0)
+        mapped = (folder / "question_set_detail.csv").is_file()
+        quality = round(10 * (0.5 * state_factor + 0.3 * draws_factor +
+                              0.1 + 0.1 * int(mapped)), 1)
         # Do not label an uncertain result as a supported directional finding.
         confirmed = result["status"] == "supported_by_state_bootstrap"
         results.append({
             "year": year,
             "source": str(folder.relative_to(root)),
+            "evidence_quality_0_to_10": quality,
             "category_observed": category,
             "confirmed": confirmed,
             "positive_raw_mean": pos.get("mean"),
@@ -96,13 +109,16 @@ def inventory(runs_root, out, years=(2016, 2018, 2024), target_per_cell=3,
         "years": list(years), "target_per_cell": target_per_cell,
         "method": "distinct-starting-state clustered bootstrap confidence intervals",
         "warning": "Not evidence of changes to real political attitudes; no sequences were generated or selected.",
+        "quality_definition": "0-10 = 5 points for >=50 distinct starting states per group, 3 for >=20 draws per state, 1 for model manifest, 1 for mapped-question detail. Not an effectiveness score.",
         "runs": results, "coverage": matrix,
     }
     (output / "summary.json").write_text(json.dumps(report, indent=2))
     lines = [
         "# Cross-wave DTAG four-regime coverage", "",
         "Inventory of *existing* validation trajectories. No question sequences",
-        "are generated, selected, or ranked. Category signs refer to the",
+        "are generated, selected, or ranked. The 0-10 evidence-quality score",
+        "measures sample/provenance completeness, NOT magnitude of political movement.",
+        "Category signs refer to the",
         "raw inferred ideology-index changes (positive-start, negative-start).",
         "Only runs with both state-bootstrap intervals excluding zero count as",
         "confirmed. A target of 3 per cell is a reporting benchmark,",
