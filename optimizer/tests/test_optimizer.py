@@ -498,3 +498,49 @@ def test_same_sign_models_warn_in_descriptive_mode(tmp_path):
     starts = np.array([.04] * 6 + [.02] * 6)
     paths = np.tile(starts[:, None], (1, 21))
     assert choose_length(paths, starts, minimum=10, tolerance=.0005, window=3) == 10
+
+
+
+def test_scratch_2018_pole_inventory_without_native_model(tmp_path):
+    """Probes versioned pole CSVs without requiring a native model or network."""
+    import importlib.util
+    script = REPO / "scratch" / "gss2018_pole_geometry" / "audit.py"
+    spec = importlib.util.spec_from_file_location("gss2018_scratch_pole_audit", script)
+    assert spec is not None and spec.loader is not None
+    audit = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(audit)
+    report, wave = audit.inventory(tmp_path)
+    assert report["counts"] == {"2016": 34, "2018": 38, "2024": 27}
+    assert report["shared_2018_2024"] == 27
+    assert len(report["extra_2018"]) == 11
+    assert "viruses" in report["extra_2018"]
+    assert set(report["different_labels"]) == {"bible", "colcom", "grass", "spkcom"}
+    assert {r["item"] for r in report["2018_unresolved"]} == {"prayfreq"}
+    assert (tmp_path / "wave_pole_inventory.csv").is_file()
+    assert (tmp_path / "v1_v2_changes.csv").is_file()
+    assert (tmp_path / "static_summary.json").is_file()
+
+
+def test_scratch_2018_variant_composition_and_missing_core(tmp_path):
+    import importlib.util
+    from types import SimpleNamespace
+    script = REPO / "scratch" / "gss2018_pole_geometry" / "audit.py"
+    spec = importlib.util.spec_from_file_location("gss2018_scratch_pole_audit2", script)
+    audit = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(audit)
+
+    info, waves = audit.inventory(tmp_path)
+    # Resolution logic is tested on real model labels in native mode; a
+    # canned 2018 support subset tests variant composition and constraints.
+    left = {v: r["L"] for v, r in waves[2018].items()}
+    right = {v: r["R"] for v, r in waves[2018].items()}
+    possible = {k: [left[k], right[k]] for k in left}
+    class P:
+        map_path = str(REPO / "maps/gss/gss_2018_map.csv")
+        ctx = SimpleNamespace(possible=possible)
+        g = SimpleNamespace(left_map=left, right_map=right)
+    variants, notes = audit.variants(P(), waves)
+    assert len(variants["2018_v2_all"][0]) == 38
+    assert len(variants["2018_v2_common_with_2024"][0]) == 27
+    assert len(variants["2018_v2_without_viruses"][0]) == 37
+    assert notes["common_with_2024_pairs"] == 27
