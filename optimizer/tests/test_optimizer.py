@@ -544,3 +544,71 @@ def test_scratch_2018_variant_composition_and_missing_core(tmp_path):
     assert len(variants["2018_v2_common_with_2024"][0]) == 27
     assert len(variants["2018_v2_without_viruses"][0]) == 37
     assert notes["common_with_2024_pairs"] == 27
+
+
+
+def test_2018_model_stratified_pole_construction_uses_conditional_modes():
+    import importlib.util
+    path = REPO / "scratch" / "gss2018_pole_geometry" / "derive_stratified_poles.py"
+    spec = importlib.util.spec_from_file_location("stratified_2018_poles", path)
+    module = importlib.util.module_from_spec(spec)
+    # The script imports the sibling audit.py. The test loader must use the
+    # same module-search semantics as direct CLI execution.
+    sys.path.insert(0, str(path.parent))
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.path.remove(str(path.parent))
+    left = {
+        "a": {"yes": .8, "no": .2},
+        "b": {"yes": .55, "no": .45},
+        "c": {"yes": .9, "no": .1},
+        "d": {"yes": .51, "no": .49},
+    }
+    right = {
+        "a": {"yes": .2, "no": .8},
+        "b": {"yes": .45, "no": .55},
+        "c": {"yes": .8, "no": .2},
+        "d": {"yes": .49, "no": .51},
+    }
+    L, R, details = module.construct_poles(left, right, list(left), min_tv=.05)
+    assert L == {"a": "yes", "b": "yes"}
+    assert R == {"a": "no", "b": "no"}
+    reasons = {v["variable"]: v["reason"] for v in details}
+    assert reasons["c"] == "same_modal_response"
+    assert reasons["d"] == "below_min_tv"
+    assert module.total_variation(left["a"], right["a"]) == pytest.approx(.6)
+    assert module.categorical_mode({"yes": .3, "no": .7})[0] == "no"
+    assert module.pole_rows(L, R) == [
+        {"variable": "a", "R": "no", "L": "yes"},
+        {"variable": "b", "R": "no", "L": "yes"}]
+    with pytest.raises(ValueError, match="thresholds"):
+        module.construct_poles(left, right, list(left), min_tv=2)
+
+
+def test_2018_model_stratified_pool_excludes_political_anchors():
+    import importlib.util
+    from types import SimpleNamespace
+    path = REPO / "scratch" / "gss2018_pole_geometry" / "derive_stratified_poles.py"
+    spec = importlib.util.spec_from_file_location("stratified_2018_poles_other", path)
+    module = importlib.util.module_from_spec(spec)
+    sys.path.insert(0, str(path.parent))
+    try:
+        spec.loader.exec_module(module)
+    finally:
+        sys.path.remove(str(path.parent))
+    pole_items = [r["variable"] for r in module.read_csv(
+        REPO / "assets/polar_vectors/gss/gss_2018_polar_vectors.csv")]
+    possible = {name: ["no", "yes"] for name in pole_items}
+    possible["partyid"] = ["strong democrat", "strong republican"]
+    possible["polviews"] = ["extremely liberal", "extremely conservative"]
+    possible["relig"] = ["none", "protestant"]
+    world = SimpleNamespace(ctx=SimpleNamespace(
+        idx_map={v: j for j, v in enumerate(possible)}, possible=possible))
+    pool = module.response_pool(world, kind="canonical", fixed={"viruses": "true"})
+    assert len(pool) == 37
+    assert "partyid" not in pool and "polviews" not in pool
+    assert "viruses" not in pool
+    assert module.fixed_assignments(world, ["relig=none"]) == {"relig": "none"}
+    with pytest.raises(ValueError, match="Unsupported"):
+        module.fixed_assignments(world, ["relig=unknown"])
