@@ -66,7 +66,7 @@ def response_pool(world, kind="canonical", max_items=None, fixed=None):
         names = [r["variable"] for r in read_csv(BASELINE)]
     elif kind == "opinion":
         from optimizer.bank import from_map
-        names = [r["id"] for r in from_map(world)]
+        names = sorted(r["id"] for r in from_map(world))  # deterministic top-N cutoff
     else:
         raise ValueError(f"Unknown pool {kind}")
     names = [v for v in names
