@@ -49,6 +49,7 @@ def main():
     ap.add_argument("--pool", type=int, default=200)
     ap.add_argument("--seed", type=int, default=2018)
     ap.add_argument("--audit", action="store_true")
+    ap.add_argument("--quiet", action="store_true", help="one line per greedy step, nothing for random runs")
     ap.add_argument("--out", type=Path, default=HERE / "greedy_runs")
     a = ap.parse_args()
 
@@ -56,6 +57,9 @@ def main():
                   str(DEFAULT_POLES), str(HERE / "results" / "native_cache"))
     state, _ = world.valid(json.loads(REF.read_text())[a.persona]["state"])
     pool = candidate_pool(a.persona, a.pool)
+    J0 = world.I(state) - world.I({})
+    print(f"{a.persona} -> {a.direction}: state={state}\nJ0={J0:+.5f}; pool={len(pool)} non-pole "
+          f"questions; {a.runs} greedy + {a.baseline_runs} random runs x {a.steps} steps", flush=True)
     seed = a.seed + {"CM": 0, "WF": 100}[a.persona] + {"right": 0, "left": 10}[a.direction]
     rows = []
     for policy, n in (("greedy_mu", a.runs), ("random", a.baseline_runs)):
@@ -64,22 +68,47 @@ def main():
             t0 = time.time()
 
             def log(r, policy=policy, k=k, t0=t0):
-                if policy == "greedy_mu":
-                    print(f"  [{policy} run {k} step {r['step']}/{a.steps}, {time.time() - t0:.0f}s] ask {r['variable']} "
-                          f"(mu={r['expected_delta']:+.5f}) -> {r['answer']!r} (p={r['p_answer']:.2f}) "
-                          f"dJ={r['delta_I']:+.5f} J={r['J_after']:+.5f}", flush=True)
+                dt = r["detail"]
+                if policy != "greedy_mu":
+                    if not a.quiet:
+                        print(f"  [random run {k} step {r['step']}] ask {r['variable']} -> {r['answer']!r} "
+                              f"(p={r['p_answer']:.2f}) dJ={r['delta_I']:+.5f} J {dt['J_before']:+.5f} -> "
+                              f"{r['J_after']:+.5f} (cum {r['J_after'] - J0:+.5f})", flush=True)
+                    return
+                print(f"\n  [greedy run {k} step {r['step']}/{a.steps}, {time.time() - t0:.0f}s] "
+                      f"J_before={dt['J_before']:+.5f}; {dt['n_candidates']} candidates re-scored", flush=True)
+                if not a.quiet:
+                    print(f"    top candidates ({'argmax' if a.direction == 'right' else 'argmin'} mu):")
+                    for i, x in enumerate(dt["alternatives"], 1):
+                        mark = "  <== chosen" if x["variable"] == r["variable"] else ""
+                        print(f"      {i}. {x['variable']:<14} mu={x['expected_delta']:+.5f} "
+                              f"P_up={x['P_up']:.2f} P_down={x['P_down']:.2f} range={x['range']:.4f}"
+                              f"{' one-sided' if x['one_sided'] else ''}{mark}")
+                print(f"    ASK {r['variable']}: {r['question_text']}")
+                if not a.quiet:
+                    print("    possible answers (P, dJ):")
+                    for x in sorted(dt["answers"], key=lambda x: -x["p"]):
+                        mark = "  <== drawn" if x["answer"] == r["answer"] else ""
+                        print(f"      {x['answer']!r:<40} P={x['p']:.3f}  dJ={x['delta']:+.5f}{mark}")
+                print(f"    DRAWN {r['answer']!r} (p={r['p_answer']:.2f}): J {dt['J_before']:+.5f} -> "
+                      f"{r['J_after']:+.5f}  (dJ={r['delta_I']:+.5f}, expected {r['expected_delta']:+.5f}; "
+                      f"cumulative {r['J_after'] - J0:+.5f})", flush=True)
+
             for r in policy_run(world, state, a.direction, a.steps, rng, policy=policy, only=pool, on_step=log):
-                rows.append({"persona": a.persona, "direction": a.direction, "policy": policy, "run": k, **r})
-            print(f"{a.persona} {a.direction} {policy} run {k} J_T={rows[-1]['J_after']:+.5f}", flush=True)
+                rows.append({"persona": a.persona, "direction": a.direction, "policy": policy, "run": k,
+                             **{x: y for x, y in r.items() if x != "detail"}})
+            path = [x["variable"] + "=" + str(x["answer"]) for x in rows if x["policy"] == policy and x["run"] == k]
+            print(f"== {a.persona} {a.direction} {policy} run {k} done: J {J0:+.5f} -> {rows[-1]['J_after']:+.5f} "
+                  f"(total {rows[-1]['J_after'] - J0:+.5f}); path: {' | '.join(path)}", flush=True)
     a.out.mkdir(parents=True, exist_ok=True)
     tag = f"{a.persona}_{a.direction}"
     df = pd.DataFrame(rows)
     df.to_csv(a.out / f"{tag}.csv", index=False)
     meta = {"persona": a.persona, "direction": a.direction, "state": state, "steps": a.steps,
-            "pool_size": len(pool), "seed": seed, "J0": world.I(state) - world.I({})}
+            "pool_size": len(pool), "seed": seed, "J0": J0}
     print(f"saved {a.out / (tag + '.csv')}", flush=True)
     if a.audit:
-        print("audit: full sweep at final state of greedy run 0 ...", flush=True)
+        print("audit: full sweep (all non-pole questions) at final state of greedy run 0 ...", flush=True)
         g0 = df[(df.policy == "greedy_mu") & (df.run == 0)]
         final = {**state, **dict(zip(g0.variable, g0.answer))}
         full = native_one_step(world, final, exclude_poles=True)
@@ -89,7 +118,11 @@ def main():
                          "in_pool": full.extremes[key]["variable"] in pool,
                          "n_full_candidates": full.meta["n_variables"]}
     (a.out / f"{tag}.json").write_text(json.dumps(meta, indent=2, default=str))
-    print(json.dumps(meta.get("audit", {})), flush=True)
+    if "audit" in meta:
+        au = meta["audit"]
+        print(f"audit: full-sweep {'argmax' if a.direction == 'right' else 'argmin'} mu = {au['full_sweep_choice']} "
+              f"(mu={au['full_sweep_mu']:+.5f}) over {au['n_full_candidates']} questions; in pool: {au['in_pool']}",
+              flush=True)
 
 
 if __name__ == "__main__":
