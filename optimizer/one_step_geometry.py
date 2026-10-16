@@ -275,6 +275,66 @@ def native_one_step(world, state: Mapping[str, str], *, exclude_poles: bool = Fa
     return res
 
 
+# --------------------------------------------------------------------------- multi-step policy runs
+
+def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng, *,
+               policy: str = "greedy_mu", exclude_poles: bool = True, exclude: Iterable[str] = (),
+               only: Optional[Iterable[str]] = None) -> List[Dict[str, Any]]:
+    """One sampled trajectory s_0 -> ... -> s_T under the native model.
+
+    At each step the policy picks a question; the ANSWER is drawn from the native
+    P(a | s_t, v) (the asker never chooses it); the state is updated; repeat.
+
+    policy='greedy_mu' -- re-enumerate all candidates exactly at s_t, ask argmax mu
+                          (direction='right') or argmin mu (direction='left').
+    policy='random'    -- ask a uniformly random candidate (baseline; direction ignored).
+
+    ``rng`` is a numpy Generator. Returns one record per step (question, its mu/P_up/P_down
+    at the time it was asked, drawn answer, its probability, realized Delta, J after).
+    """
+    if direction not in ("right", "left"):
+        raise ValueError("direction must be 'right' or 'left'")
+    s, _ = world.valid(dict(state))
+    I_empty = strict_native_index(world, {})
+    I_t = strict_native_index(world, s)
+    out = []
+    for t in range(1, steps + 1):
+        if policy == "greedy_mu":
+            res = native_one_step(world, s, exclude_poles=exclude_poles, exclude=exclude, only=only)
+            if not res.summary:
+                break
+            pick = res.extremes["argmax_mu" if direction == "right" else "argmin_mu"]
+            v = pick["variable"]
+            stats = next(r for r in res.summary if r["variable"] == v)
+            rows = [r for r in res.rows if r["variable"] == v]
+            labels = [r["answer"] for r in rows]
+            p = [r["conditional_probability"] for r in rows]
+            I_by = {r["answer"]: r["I_after"] for r in rows}
+        elif policy == "random":
+            cands = native_candidates(world, s, exclude_poles=exclude_poles, exclude=exclude, only=only)
+            if not cands:
+                break
+            v = sorted(cands)[int(rng.integers(len(cands)))]
+            labels = cands[v]
+            d = native_distributions(world, s, [v])[v]
+            z = sum(d.get(a, 0.0) for a in labels)
+            p = [d.get(a, 0.0) / z for a in labels]
+            stats, I_by = {}, None
+        else:
+            raise ValueError(f"unknown policy {policy!r}")
+        k = int(rng.choice(len(labels), p=[x / sum(p) for x in p]))
+        a = labels[k]
+        s = {**s, v: a}
+        I_new = I_by[a] if I_by is not None else strict_native_index(world, s)
+        out.append({"step": t, "variable": v, "question_text": world.text.get(v, ""), "answer": a,
+                    "p_answer": p[k], "expected_delta": stats.get("expected_delta"),
+                    "P_up": stats.get("P_up"), "P_down": stats.get("P_down"),
+                    "one_sided": stats.get("one_sided"), "delta_I": I_new - I_t,
+                    "I_after": I_new, "J_after": I_new - I_empty})
+        I_t = I_new
+    return out
+
+
 # --------------------------------------------------------------------------- CLI
 
 def write_outputs(res: OneStepResult, out: Path) -> None:
