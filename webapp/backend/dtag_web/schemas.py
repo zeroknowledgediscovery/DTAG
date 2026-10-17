@@ -80,13 +80,14 @@ class PushAskIn(BaseModel):
     """Ask a suggested ideology-push question.
 
     ``mode`` "realistic" (default) maps the question like any typed question; "validated"
-    answers it through its validated mapping, which must include ``variable``."""
+    answers it through its validated mapping, which must include ``variable``; "direct" answers it
+    through exactly ``variable``."""
     model_config = ConfigDict(extra="forbid", protected_namespaces=())
 
     variable: str = Field(..., min_length=1, max_length=200)
     question: str = Field(..., min_length=1, max_length=2000)
     direction: Optional[Literal["up", "down"]] = None
-    mode: Literal["realistic", "validated"] = "realistic"
+    mode: Literal["realistic", "validated", "direct"] = "realistic"
 
 
 class AutoPushIn(BaseModel):
@@ -97,7 +98,7 @@ class AutoPushIn(BaseModel):
     steps: int = Field(5, ge=1, le=100)
     include_pole_items: bool = False
     reset_first: bool = False
-    mode: Literal["realistic", "validated"] = "realistic"
+    mode: Literal["realistic", "validated", "direct"] = "realistic"
 
 
 class Health(BaseModel):

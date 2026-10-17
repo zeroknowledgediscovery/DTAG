@@ -247,7 +247,7 @@ How they are chosen (one-step optimizer, `optimizer/session_push.py`):
 * the shown question is written by the language model for exactly that item, in neutral wording
   (no leading language). **all answers** lists every response with its probability and Δ.
 
-**Ask** has two modes, chosen with the **realistic | validated** toggle (default: realistic):
+**Ask** has three modes, chosen with the **realistic | validated | push** toggle (default: realistic):
 
 * **realistic** — the suggested question is asked exactly like a typed question: the normal
   mapping (lexical prefilter + language-model item selection) decides which survey items it
@@ -260,6 +260,10 @@ How they are chosen (one-step optimizer, `optimizer/session_push.py`):
   the items they map to, and the chosen question is answered through that checked mapping. With
   response mode **max** the recorded and plotted index then changes by exactly the shown amount.
   Click a suggestion to see the items it maps to and which candidates mapped back (✓/✗).
+* **push** (`mode=direct` in the API) — the question is answered through *exactly* the suggested
+  survey item; the question-to-item mapping is skipped. The index changes by the predicted
+  amount for that item (exactly, with response mode **max**). This is the most idealized mode:
+  the question is only the item's wording, never checked against the mapping.
 
 Chat entries are tagged **PUSH ↑/↓** (plus *missed item* when a realistic question did not map
 to its item); the tooltip shows the mode, the mapped items and predicted vs realized change. If
@@ -269,7 +273,7 @@ the respondent's state is at its size limit, an older answer is evicted and the 
 at the new state), for a chosen number of steps; it runs like a question sequence (progress card,
 cancel, results in the log) and stops early if no item moves the index further.
 
-API: `GET /api/sessions/{id}/ideology-push[?include_pole_items=true&mode=realistic|validated]` →
+API: `GET /api/sessions/{id}/ideology-push[?include_pole_items=true&mode=realistic|validated|direct]` →
 `{up, down, objective, mode, n_candidates, up_checked, down_checked, ...}`;
 `POST /api/sessions/{id}/ideology-push/ask` with `{"variable", "question", "direction", "mode"}` →
 a question result with `push: {mode, mapped_variables, hit, predicted_modal_delta,

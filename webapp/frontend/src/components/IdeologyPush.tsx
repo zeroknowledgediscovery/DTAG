@@ -18,7 +18,13 @@ const MODE_HELP: Record<PushMode, string> = {
     "Validated: the questions for the top items are first run through the normal mapping. Questions that don't map " +
     "back to their item are dropped; the rest are ranked by the exact change of all the items they map to, and the " +
     "question is answered through that checked mapping, so the realized change matches the prediction.",
+  direct:
+    "Push: the question is answered through exactly the suggested survey item (the question-to-item mapping is " +
+    "skipped), so the index changes by the predicted amount for that item (exactly, when the session records the " +
+    "most likely answer).",
 };
+
+const MODE_LABEL: Record<PushMode, string> = { realistic: "realistic", validated: "validated", direct: "push" };
 
 function mappingNote(s: PushSuggestion): string | null {
   if (s.mode !== "validated" || !s.mapped_variables) return null;
@@ -174,7 +180,7 @@ export function IdeologyPush({
       ) : null}
       <div className="push-auto">
         <div className="seg push-mode" role="radiogroup" aria-label="Push mode">
-          {(["realistic", "validated"] as const).map((m) => (
+          {(["realistic", "validated", "direct"] as const).map((m) => (
             <button
               key={m}
               role="radio"
@@ -184,7 +190,7 @@ export function IdeologyPush({
               title={MODE_HELP[m]}
               onClick={() => mode !== m && onMode(m)}
             >
-              {m}
+              {MODE_LABEL[m]}
             </button>
           ))}
         </div>

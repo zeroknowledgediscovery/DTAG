@@ -334,7 +334,7 @@ def create_app(
 
     @app.get("/api/sessions/{session_id}/ideology-push", tags=["ideology push"])
     def ideology_push(session_id: str, include_pole_items: bool = False,
-                      mode: Literal["realistic", "validated"] = "realistic") -> Dict[str, Any]:
+                      mode: Literal["realistic", "validated", "direct"] = "realistic") -> Dict[str, Any]:
         """Two suggested next questions: one predicted to move the ideology index up, one down.
 
         Every askable, unanswered survey item is scored exactly at the respondent's current
@@ -346,6 +346,7 @@ def create_app(
         asked, so it may update other items than the suggested one. ``mode="validated"``: the top
         items' questions are dry-run through the mapping first; only questions that map back to
         their item are suggested, ranked by the exact change of all items they map to.
+        ``mode="direct"``: the question will be answered through exactly its item.
         """
         es = _session(session_id)
         if sequences.active(session_id):
@@ -354,7 +355,8 @@ def create_app(
 
     @app.post("/api/sessions/{session_id}/ideology-push/ask", response_model=QuestionResult, tags=["ideology push"])
     def ideology_push_ask(session_id: str, body: PushAskIn) -> Dict[str, Any]:
-        """Ask a suggested question (realistic: normal mapping; validated: its validated mapping)."""
+        """Ask a suggested question (realistic: normal mapping; validated: its validated
+        mapping; direct: exactly its item)."""
         es = _session(session_id)
         if sequences.active(session_id):
             raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")

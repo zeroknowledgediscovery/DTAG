@@ -144,7 +144,8 @@ class AutoPushJob(SequenceJob):
 
     Each step recomputes the one-step suggestion for the respondent's *current* state (earlier
     answers change later predictions), asks the question crafted for the chosen item (realistic:
-    mapped to survey items normally; validated: through its checked mapping), and records the
+    mapped to survey items normally; validated: through its checked mapping; direct: through
+    exactly that item), and records the
     result like any other question. Stops early if no askable item is
     predicted to move the index further in the requested direction.
     """
