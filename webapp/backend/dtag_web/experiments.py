@@ -18,12 +18,17 @@ actions, and logs every question actually asked. Results go to a folder:
 
     <experiments dir>/<name>_<timestamp>/
         recipe.json  manifest.json  report.md
-        runs/run_01/trace.jsonl  runs/run_01/session_log.zip ...
+        runs/run_01/trace.jsonl       every action/question: items, answers changed, I before/after, push outcome
+        runs/run_01/state_changes.csv every answer that changed (old -> new) at every step
+        runs/run_01/states.csv        the full survey state after every question (long format)
+        runs/run_01/session_log/      the same files as the web app's "Full log (ZIP)", unpacked
         summary/steps.csv        one row per question asked (run, action, question, items, I before/after)
         summary/checkpoints.csv  ideology after each action, per run
         summary/stats.csv        per checkpoint: n, mean, sd, 95% bootstrap CI, min, max
         summary/questions.csv    which question each run asked at each action (re-optimized pushes)
         summary/final_answers.csv  final state: answer frequencies per item across runs
+        summary/state_changes.csv  every answer change in every run, one table
+        summary/states.csv         full state after every question in every run, one table
         summary/stats.json       everything the web app shows
 
 The experiments dir is ``$DTAG_EXPERIMENTS_DIR`` or ``<repo>/experiments``.
@@ -161,6 +166,8 @@ class ExperimentJob:
         es = engine.create_session(spec=spec)
         ideo0 = es.ideology_summary()
         trace: List[Dict[str, Any]] = []
+        states: List[Dict[str, Any]] = [{"query_idx": 0, "action": 0, "state": dict(es.session.state)}]
+        changes: List[Dict[str, Any]] = []
         checkpoints = [{"action": 0, "label": "start", "ideology": ideo0["current"]}]
 
         def log(ai: int, a: Dict[str, Any], r: Optional[Dict[str, Any]], **extra: Any) -> None:
@@ -170,6 +177,14 @@ class ExperimentJob:
                             "selected_variables": r.get("selected_variables"), "mapping": (r.get("mapping") or {}).get("label"),
                             "state_changed": r.get("state_changed"), "state_updates": r.get("state_updates"),
                             **{f"ideology_{x}": v for x, v in _ideo(r).items()}})
+                before = states[-1]["state"]
+                after = dict(es.session.state)
+                for v in sorted(set(before) | set(after)):
+                    if before.get(v) != after.get(v):
+                        changes.append({"run": k, "action": ai, "query_idx": r.get("query_idx"), "question": r.get("question"),
+                                        "variable": v, "item_text": es.session.ctx.var_map.get(v, ""),
+                                        "old": before.get(v), "new": after.get(v)})
+                states.append({"query_idx": r.get("query_idx"), "action": ai, "state": after})
                 if r.get("push"):
                     p = r["push"]
                     row["push"] = {x: p.get(x) for x in ("mode", "direction", "variable", "mapped_variables", "hit",
@@ -220,14 +235,19 @@ class ExperimentJob:
         with open(run_dir / "trace.jsonl", "w", encoding="utf-8") as f:
             for row in trace:
                 f.write(json.dumps(row, default=str) + "\n")
-        try:
+        (run_dir / "state_changes.csv").write_text(_csv(changes, CHANGE_COLS))
+        (run_dir / "states.csv").write_text(_csv(_state_rows(k, states), STATE_COLS))
+        try:  # the same files as the web app's "Full log (ZIP)", unpacked
             from . import archive
 
-            (run_dir / "session_log.zip").write_bytes(archive.build_session_zip(engine, es, label=f"run{k:02d}"))
+            for name, text in archive.session_files(engine, es, label=f"run{k:02d}").items():
+                dest = run_dir / "session_log" / name
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.write_text(text, encoding="utf-8")
         except Exception as e:  # the per-run log is a convenience; the trace is the record
             (run_dir / "session_log_error.txt").write_text(f"{type(e).__name__}: {e}\n")
         return {"run": k, "seed": seed, "seconds": round(time.time() - t0, 2), "trace": trace,
-                "checkpoints": checkpoints, "initial_ideology": ideo0["initial"],
+                "checkpoints": checkpoints, "changes": changes, "states": states, "initial_ideology": ideo0["initial"],
                 "ideology_enabled": ideo0["enabled"], "final_state": dict(es.session.state),
                 "initial_state": dict(es.session.initial_state() or {})}
 
@@ -351,6 +371,16 @@ def summarize(rec: Dict[str, Any], runs: List[Dict[str, Any]]) -> Dict[str, Any]
     }
 
 
+CHANGE_COLS = ["run", "action", "query_idx", "question", "variable", "item_text", "old", "new"]
+STATE_COLS = ["run", "query_idx", "action", "variable", "answer"]
+
+
+def _state_rows(run: int, states: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Full survey state after every question, long format (one row per run x step x item)."""
+    return [{"run": run, "query_idx": st["query_idx"], "action": st["action"], "variable": v, "answer": a}
+            for st in states for v, a in sorted(st["state"].items())]
+
+
 def _csv(rows: List[Dict[str, Any]], cols: List[str]) -> str:
     buf = io.StringIO()
     w = csv.DictWriter(buf, fieldnames=cols, extrasaction="ignore")
@@ -383,6 +413,8 @@ def write_summary(folder: Path, rec: Dict[str, Any], runs: List[Dict[str, Any]])
     fa = [{"variable": v, "answer": a, "runs": c, "share": round(c / len(runs), 4)} for (v, a), c in
           sorted(freq.items(), key=lambda kv: (kv[0][0], -kv[1]))]
     (out / "final_answers.csv").write_text(_csv(fa, ["variable", "answer", "runs", "share"]))
+    (out / "state_changes.csv").write_text(_csv([c for r in runs for c in r.get("changes", [])], CHANGE_COLS))
+    (out / "states.csv").write_text(_csv([row for r in runs for row in _state_rows(r["run"], r.get("states", []))], STATE_COLS))
     (out / "stats.json").write_text(json.dumps(st, indent=2, default=str))
     (folder / "report.md").write_text(_report(rec, st))
     return st
