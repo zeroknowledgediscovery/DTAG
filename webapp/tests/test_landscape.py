@@ -74,3 +74,17 @@ def test_landscape_is_computed_in_background(fake_client):
     if nxt.get("pending"):  # previous landscape served while the new one is computed
         assert nxt["step"] == 0
     assert fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()["step"] == 1
+
+
+def test_next_questions_without_ideology(fake_client):
+    sid = _session(fake_client, ideology=False)
+    v = fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()
+    n = fake_client.get(f"/api/sessions/{sid}/next-questions").json()
+    assert n["enabled"] and not n["pending"] and n["open"]
+    o = n["open"]
+    assert o["question"] and o["t"] not in ("Background", "Other")
+    assert o["s"] == min(x["s"] for x in v["items"] if x["t"] not in ("Background", "Other"))
+    if n["connected"]:
+        assert n["connected"]["v"] != o["v"]
+    r = fake_client.post(f"/api/sessions/{sid}/questions", json={"question": o["question"]})
+    assert r.status_code == 200 and r.json()["targeted"] is False

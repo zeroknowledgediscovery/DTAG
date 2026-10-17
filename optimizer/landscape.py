@@ -271,3 +271,39 @@ def build_view(cur: Dict[str, Any], prev: Optional[Dict[str, Any]], var_map: Dic
         "summary": summary,
         "history": history,
     }
+
+
+def next_question_picks(session: Any, view: Dict[str, Any]) -> Dict[str, Optional[Dict[str, Any]]]:
+    """Two informative next questions from a landscape view (used when there is no ideology index).
+
+    * ``open``: the item whose predicted answer is least settled - the biggest open question.
+    * ``connected``: the item the most still-uncertain predictions depend on: score(v) = sum over
+      unanswered items u whose tree splits on v of (1 - settled_u). Answering it is the most likely
+      to reshape the landscape.
+    Background/Other items are skipped. Returns {"open": item|None, "connected": item|None}, each
+    item = {v, t, q, s, m, p, n_dependents, influence}.
+    """
+    items = [x for x in view.get("items", []) if x["t"] not in ("Background", "Other")]
+    if not items:
+        return {"open": None, "connected": None}
+    names = [x["v"] for x in view.get("items", [])]
+    deps = dependencies(session, names)
+    unsettled = {x["v"]: 1.0 - x["s"] for x in view.get("items", [])}
+    influence: Dict[str, float] = {}
+    dependents: Dict[str, int] = {}
+    for u, cols in deps.items():
+        if u not in unsettled:
+            continue
+        for v in set(cols):
+            if v != u:
+                influence[v] = influence.get(v, 0.0) + unsettled[u]
+                dependents[v] = dependents.get(v, 0) + 1
+
+    def rec(x: Dict[str, Any]) -> Dict[str, Any]:
+        return {**{k: x[k] for k in ("v", "t", "q", "s", "m", "p")},
+                "n_dependents": dependents.get(x["v"], 0), "influence": round(influence.get(x["v"], 0.0), 4)}
+
+    open_pick = min(items, key=lambda x: (x["s"], x["v"]))
+    rest = [x for x in items if x["v"] != open_pick["v"]] or items
+    connected = max(rest, key=lambda x: (influence.get(x["v"], 0.0), -x["s"], x["v"])) if influence else None
+    return {"open": rec(open_pick), "connected": rec(connected) if connected else None}

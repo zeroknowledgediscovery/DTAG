@@ -1893,19 +1893,46 @@ class DTAGEngine:
         s = es.session
 
         def craft(variable: str, survey_question: str, responses: List[str]) -> str:
-            key = (es.spec.model_key, es.spec.map_key, variable)
-            with self._wording_lock:
-                hit = self._wording_cache.get(key)
-            if hit:
-                return hit
-            q = core.llm_craft_survey_question(s._client(), survey_question, responses, s.config.openai_model)
-            with self._wording_lock:
-                self._wording_cache[key] = q
-            return q
+            return self.craft_question(es, variable, survey_question, responses)
 
         es.last_used = time.time()
         return suggest(s, include_pole_items=include_pole_items, craft=craft, mode=mode,
                        map_question=lambda q: self.map_push_question(es, q))
+
+    def craft_question(self, es: "EngineSession", variable: str, survey_question: str, responses: List[str]) -> str:
+        """Neutral natural-language question for one survey item (LLM; cached per model/map/item)."""
+        key = (es.spec.model_key, es.spec.map_key, variable)
+        with self._wording_lock:
+            hit = self._wording_cache.get(key)
+        if hit:
+            return hit
+        s = es.session
+        q = core.llm_craft_survey_question(s._client(), survey_question, responses, s.config.openai_model)
+        with self._wording_lock:
+            self._wording_cache[key] = q
+        return q
+
+    def next_questions(self, es: "EngineSession") -> Dict[str, Any]:
+        """Two informative next questions from the decision landscape (any survey, no ideology needed):
+        the most open item and the most connected one (optimizer.landscape.next_question_picks).
+        Returns ``{"pending": True}`` while the landscape for the current state is computed."""
+        from optimizer.landscape import next_question_picks
+
+        view = es.landscape()
+        if not view.get("enabled", False):
+            return {"enabled": False, "reason": view.get("reason"), "open": None, "connected": None}
+        if view.get("pending"):
+            return {"enabled": True, "pending": True, "open": None, "connected": None}
+        picks = next_question_picks(es.session, view)
+        possible = es.session.ctx.possible
+        var_map = es.session.ctx.var_map
+        out: Dict[str, Any] = {"enabled": True, "pending": False, "step": view["step"]}
+        for kind, rec in picks.items():
+            if rec is not None:
+                rec = {**rec, "survey_question": var_map.get(rec["v"], ""),
+                       "question": self.craft_question(es, rec["v"], var_map.get(rec["v"], ""), list(possible.get(rec["v"], [])))}
+            out[kind] = rec
+        return out
 
     def suggestions(self, es: "EngineSession", n: int = 6) -> List[Dict[str, Any]]:
         """Starter questions that map directly onto this session's survey map."""

@@ -234,6 +234,27 @@ export interface PushOutcome {
 /** realistic: mapped like any typed question; validated: through its checked mapping; direct ("push"): through exactly its item. */
 export type PushMode = "realistic" | "validated" | "direct";
 
+/** Informative next question (GET /api/sessions/{id}/next-questions), for surveys without ideology. */
+export interface NextQuestion {
+  v: string;
+  t: string;
+  q: string;
+  s: number; // settledness of its predicted answer
+  m: string;
+  p: number;
+  n_dependents: number; // unanswered items whose model tree splits on this one
+  influence: number;
+  survey_question: string;
+  question: string;
+}
+export interface NextQuestions {
+  enabled: boolean;
+  pending?: boolean;
+  reason?: string | null;
+  open: NextQuestion | null;
+  connected: NextQuestion | null;
+}
+
 /** Decision landscape (GET /api/sessions/{id}/landscape): predicted answers to every askable item. */
 export interface LandscapeItem {
   v: string;

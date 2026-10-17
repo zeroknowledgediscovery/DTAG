@@ -6,6 +6,7 @@ import type {
   Overrides,
   Profile,
   Landscape,
+  NextQuestions,
   PushMode,
   PushSuggestion,
   PushSuggestions,
@@ -261,6 +262,23 @@ export function useRespondent(opts: {
   /** Decision landscape at the current state. It is computed in the background on the server: while
    *  `pending`, keep showing the previous landscape and poll until the new one is ready. */
   const [landscapePending, setLandscapePending] = useState(false);
+  // Informative next questions (surveys without ideology): refreshed whenever a new landscape is ready.
+  const [nextQ, setNextQ] = useState<NextQuestions | null>(null);
+  const nextReq = useRef(0);
+  const noIdeology = Boolean(session && !session.ideology.enabled);
+  const sid = session?.session_id;
+  useEffect(() => {
+    if (!sid || !noIdeology) {
+      setNextQ(null);
+      return;
+    }
+    if (landscapePending || !landscape) return;
+    const req = ++nextReq.current;
+    api
+      .nextQuestions(sid)
+      .then((n) => req === nextReq.current && setNextQ(n.pending ? null : n))
+      .catch(() => req === nextReq.current && setNextQ(null));
+  }, [sid, noIdeology, landscape?.step, landscape?.history?.length, landscapePending]); // eslint-disable-line react-hooks/exhaustive-deps
   const landTimer = useRef<number | null>(null);
   const refreshLandscape = (sid: string, force = true) => {
     if (landBusy.current && !force) return;
@@ -470,7 +488,7 @@ export function useRespondent(opts: {
     // sequences
     seq, seqRunning, runSequence, cancelSequence,
     // ideology push (one-step optimizer)
-    landscape, landscapePending,
+    landscape, landscapePending, nextQ,
     push, pushLoading, pushPoles, setPushPoles: setPushPolesAndRefresh, pushMode, setPushMode: setPushModeAndRefresh,
     askPush, runAutoPush,
     busy, modelBusy,

@@ -455,3 +455,5 @@ button.btn.small { padding: 3px 10px; font-size: 12px; }
 .terrain-moved { fill: var(--text); opacity: 0.85; }
 .terrain-hover { fill: none; stroke: var(--accent); stroke-width: 2px; vector-effect: non-scaling-stroke; }
 @media (prefers-reduced-motion: reduce) { .terrain-ring, .terrain-pin.new { animation: none; opacity: 0.5; } }
+
+.next-why { display: block; font-size: 11px; margin-top: 1px; }

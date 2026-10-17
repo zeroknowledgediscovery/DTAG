@@ -368,6 +368,14 @@ def create_app(
         """
         return _session(session_id).landscape(wait=wait)
 
+    @app.get("/api/sessions/{session_id}/next-questions", tags=["sessions"])
+    def next_questions(session_id: str) -> Dict[str, Any]:
+        """Two informative next questions from the decision landscape (any survey): ``open`` (the
+        item the twin is least decided on) and ``connected`` (the item the most uncertain predictions
+        depend on). Each has a neutral question written for it; asking it goes through the normal
+        question-to-item mapping. ``pending: true`` while the landscape is being computed."""
+        return engine.next_questions(_session(session_id))
+
     @app.post("/api/sessions/{session_id}/ideology-push/ask", response_model=QuestionResult, tags=["ideology push"])
     def ideology_push_ask(session_id: str, body: PushAskIn) -> Dict[str, Any]:
         """Ask a suggested question (realistic: normal mapping; validated: its validated
