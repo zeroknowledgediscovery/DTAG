@@ -265,7 +265,7 @@ export function useRespondent(opts: {
     landBusy.current = true;
     api
       .landscape(sid)
-      .then((l) => req === landReq.current && setLandscape(l))
+      .then((l) => req === landReq.current && setLandscape(l.enabled ? l : null))
       .catch(() => req === landReq.current && setLandscape(null))
       .finally(() => {
         if (req === landReq.current) landBusy.current = false;

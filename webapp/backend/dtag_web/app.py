@@ -360,7 +360,8 @@ def create_app(
         Per item: topic, settledness (1 - normalized entropy), modal answer, lean (change of the
         ideology index if answered modally; surveys with poles only) and shift (Jensen-Shannon
         divergence, bits) since this respondent's previous landscape. Plus anchored (answered)
-        items, per-topic totals and the shift history.
+        items, per-topic totals and the shift history. Respondents without an ideology index get
+        ``{"enabled": false, "reason": ...}`` (the view is not shown for them).
         """
         return _session(session_id).landscape()
 

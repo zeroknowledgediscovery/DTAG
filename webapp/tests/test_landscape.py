@@ -53,9 +53,7 @@ def test_landscape_tracks_interactions(fake_client):
     assert v2["since_step"] is None and v2["history"] == []
 
 
-def test_landscape_without_ideology(fake_client):
+def test_landscape_disabled_without_ideology(fake_client):
     sid = _session(fake_client, ideology=False)
     v = fake_client.get(f"/api/sessions/{sid}/landscape").json()
-    assert v["enabled"] and v["has_lean"] is False and v["ideology"] is None
-    assert v["items"] and all(x["l"] is None for x in v["items"])
-    assert all(math.isfinite(x["s"]) for x in v["items"])
+    assert v["enabled"] is False and v["reason"] and "items" not in v

@@ -867,11 +867,17 @@ class EngineSession:
 
     def landscape(self) -> Dict[str, Any]:
         """Decision landscape at the current state (optimizer.landscape), with the shift since the
-        previous snapshot of this respondent. Cached per state; reset clears the history."""
+        previous snapshot of this respondent. Cached per state; reset clears the history.
+        Respondents without an ideology index get ``{"enabled": False, "reason": ...}``."""
         from optimizer.landscape import build_view, layout, lean_scale_of, snapshot
 
         self.last_used = time.time()
         s = self.session
+        if not s.ideology_enabled:
+            # Shown only for respondents with an ideology index (lean colour needs the poles).
+            reason = (getattr(s.polar, "disable_reason", None)
+                      or "The decision landscape needs an ideology index, which this survey/profile does not have.")
+            return {"enabled": False, "reason": reason}
         with s.lock:
             key = (self.reset_count, s.query_count, tuple(sorted(s.state.items())))
             land = getattr(self, "_land", None)

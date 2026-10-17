@@ -313,8 +313,9 @@ levels. Predictions moved by the last answer get an expanding ring, rippling out
 which shows how local the effect of one answer is.
 
 The landscape shares the one-step optimizer pass with the push suggestions (one native pass of
-about a second per state on GSS). Without ideology poles (e.g. WVS) the colour is plain and
-wedges are ordered by settledness. These are model predictions for the twin, not the person's
+about a second per state on GSS). It is shown only for respondents with an ideology index (GSS);
+for other surveys (WVS, Afrobarometer, Eurobarometer) it is hidden and the endpoint returns
+`{"enabled": false}`. These are model predictions for the twin, not the person's
 reasoning.
 
 ### Two respondents side by side
