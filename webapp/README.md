@@ -342,9 +342,13 @@ mean ideology after each action with a 95% bootstrap CI band (every run as a fai
 change with its CI, the push hit rate, and which questions each action asked across runs.
 
 Results are written to `experiments/<name>_<timestamp>/` in the repository (or `$DTAG_EXPERIMENTS_DIR`):
-`recipe.json`, `manifest.json` (git commit, model, LLM, seeds), `report.md`, `runs/run_NN/trace.jsonl`
-and `session_log.zip` per run, and `summary/` (`steps.csv`, `checkpoints.csv`, `stats.csv`,
-`questions.csv`, `final_answers.csv`, `stats.json`). *Download results (ZIP)* returns the folder.
+`recipe.json`, `manifest.json` (git commit, model, LLM, seeds), `report.md`; per run
+`runs/run_NN/trace.jsonl` (every question: items, answers, I before/after, push outcome),
+`state_changes.csv` (every answer that changed, old → new, at every step), `states.csv` (the full
+survey state after every question) and `session_log/` (the same files as *Full log (ZIP)*, unpacked);
+and `summary/` (`steps.csv`, `checkpoints.csv`, `stats.csv`, `questions.csv`, `final_answers.csv`,
+`state_changes.csv` and `states.csv` across all runs, `stats.json`). *Download results (ZIP)* returns
+the whole folder. (*Full log (ZIP)* in the Respondent model section is the log of the one live session.)
 
 API: `GET /api/sessions/{id}/experiment[?download=true]` (recipe), `POST .../experiment/run`
 `{"runs": 20, "name": ""}`, `POST /api/experiments/run` `{"recipe": {...}, "runs": 20}` (an uploaded

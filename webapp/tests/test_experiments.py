@@ -50,12 +50,18 @@ def test_record_and_rerun(fake_client, tmp_path, monkeypatch):
     folder = tmp_path / st["folder"]
     for f in ["recipe.json", "manifest.json", "report.md", "summary/steps.csv", "summary/stats.csv",
               "summary/checkpoints.csv", "summary/questions.csv", "summary/final_answers.csv", "summary/stats.json",
-              "runs/run_01/trace.jsonl", "runs/run_03/session_log.zip"]:
+              "runs/run_01/trace.jsonl", "runs/run_03/session_log/questions.csv", "runs/run_02/states.csv",
+              "runs/run_02/state_changes.csv", "summary/state_changes.csv", "summary/states.csv"]:
         assert (folder / f).is_file(), f
     trace = [json.loads(x) for x in (folder / "runs/run_02/trace.jsonl").read_text().splitlines()]
     assert trace[0]["question"] == "Should abortion be legal?" and trace[1]["kind"] == "push"
     assert trace[1].get("question") or trace[1].get("skipped")
     assert json.loads((folder / "manifest.json").read_text())["runs_completed"] == 3
+    import csv as _csv
+    states = list(_csv.DictReader(open(folder / "summary/states.csv")))
+    assert {r["run"] for r in states} == {"1", "2", "3"} and {r["query_idx"] for r in states} >= {"0", "1"}
+    changes = list(_csv.DictReader(open(folder / "summary/state_changes.csv")))
+    assert changes and all(c["new"] for c in changes)
 
     listed = fake_client.get("/api/experiments").json()
     assert listed[0]["folder"] == st["folder"]
