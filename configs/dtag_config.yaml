@@ -72,7 +72,7 @@ defaults:
     k: 50
     prefilter: 200
     min_map_score: 1.0
-    semantic_fallback: answer_only
+    semantic_fallback: update_state
     semantic_k: 6
     semantic_prefilter: 80
     semantic_min_confidence: 0.35
@@ -116,7 +116,7 @@ interactive_profiles:
     polar_vectors: assets/polar_vectors/polar_vectors.csv
     run:
       require_polar_vectors: true
-      resp_mode: max
+      resp_mode: draw
 
   gss2018_cm:
     description: Native pooled GSS 2018; conservative rural male persona.
@@ -130,7 +130,7 @@ interactive_profiles:
     polar_vectors: assets/polar_vectors/polar_vectors.csv
     run:
       require_polar_vectors: true
-      resp_mode: max
+      resp_mode: draw
 
   gss2022_wf:
     description: Native pooled GSS 2022; progressive urban female persona.
@@ -144,7 +144,7 @@ interactive_profiles:
     polar_vectors: assets/polar_vectors/polar_vectors.csv
     run:
       require_polar_vectors: true
-      resp_mode: max
+      resp_mode: draw
 
   gss2022_cm:
     description: Native pooled GSS 2022; conservative rural male persona.
@@ -158,7 +158,7 @@ interactive_profiles:
     polar_vectors: assets/polar_vectors/polar_vectors.csv
     run:
       require_polar_vectors: true
-      resp_mode: max
+      resp_mode: draw
 
   gss2024_wf:
     description: Native pooled GSS 2024; progressive urban female persona.
@@ -172,7 +172,7 @@ interactive_profiles:
     polar_vectors: assets/polar_vectors/polar_vectors.csv
     run:
       require_polar_vectors: true
-      resp_mode: max
+      resp_mode: draw
 
   gss2024_cm:
     description: Native pooled GSS 2024; conservative rural male persona.
@@ -186,7 +186,7 @@ interactive_profiles:
     polar_vectors: assets/polar_vectors/polar_vectors.csv
     run:
       require_polar_vectors: true
-      resp_mode: max
+      resp_mode: draw
 
   wvs7_india_2017:
     description: Native pooled WVS7 localized to India in 2017.
@@ -201,7 +201,7 @@ interactive_profiles:
     polar_vectors: ''
     run:
       no_ideology: true
-      resp_mode: max
+      resp_mode: draw
 
   afrobarometer_r5_nigeria:
     description: Native Afrobarometer R5 localized categorically to Nigeria.
@@ -215,7 +215,7 @@ interactive_profiles:
     polar_vectors: ''
     run:
       no_ideology: true
-      resp_mode: max
+      resp_mode: draw
 
   afrobarometer_r5_ghana:
     description: Native Afrobarometer R5 localized categorically to Ghana.
@@ -229,7 +229,7 @@ interactive_profiles:
     polar_vectors: ''
     run:
       no_ideology: true
-      resp_mode: max
+      resp_mode: draw
 
 # Batch experiments for the archived command-line runner (archive/scripts/run.py).
 experiments:

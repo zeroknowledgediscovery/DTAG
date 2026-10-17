@@ -1337,7 +1337,7 @@ class DTAGEngine:
             continent = ebnative.DEFAULT_CONTINENT
         else:
             run = {k: defaults_run[k] for k in list(RUN_PARAM_BOUNDS) + list(RUN_PARAM_CHOICES) if k in defaults_run}
-            run["resp_mode"] = "max"
+            run["resp_mode"] = "draw"
             if "seed_base" in defaults_run:
                 run.setdefault("seed", defaults_run["seed_base"])
             for k in SERVER_RUN_PARAMS:

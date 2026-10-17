@@ -261,7 +261,7 @@ export function Controls(props: Props) {
             <span>Semantic fallback</span>
             <select
               disabled={disabled}
-              value={(val("semantic_fallback", run.semantic_fallback) as string) || "answer_only"}
+              value={(val("semantic_fallback", run.semantic_fallback) as string) || "update_state"}
               onChange={(e) => set({ semantic_fallback: e.target.value })}
             >
               <option value="off">off</option>
@@ -273,7 +273,7 @@ export function Controls(props: Props) {
             <span>Response mode (anchor)</span>
             <select
               disabled={disabled}
-              value={(val("resp_mode", run.resp_mode) as string) || "max"}
+              value={(val("resp_mode", run.resp_mode) as string) || "draw"}
               onChange={(e) => set({ resp_mode: e.target.value })}
             >
               <option value="max">max (modal response)</option>

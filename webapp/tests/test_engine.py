@@ -18,7 +18,8 @@ def test_profile_discovery_is_dynamic(fake_engine):
     assert gss.model_key == "gss/gss_2024" and gss.map_key == "gss/gss_2024_map.csv"
     assert gss.ideology and gss.polar_set == "gss_default"
     # same run settings as dtag_config.resolve_profile (formerly the CLI launcher)
-    assert gss.run["resp_mode"] == "max" and gss.run["k"] == 50 and gss.run["seed"] == 1000
+    assert gss.run["resp_mode"] == "draw" and gss.run["semantic_fallback"] == "update_state"
+    assert gss.run["k"] == 50 and gss.run["seed"] == 1000
     wvs = fake_engine.get_profile("wvs7_india_2017")
     assert wvs.model_key == "wvs/wvs7_pooled" and not wvs.ideology
 
