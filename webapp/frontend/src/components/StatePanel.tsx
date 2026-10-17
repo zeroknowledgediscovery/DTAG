@@ -30,7 +30,8 @@ export function IdeologyChart({ series }: { series: IdeologySeries[] }) {
   const maxStep = Math.max(1, ...steps);
   const x = (s: number) => L + ((W - L - R) * s) / maxStep;
   const y = (v: number) => T + ((H - T - B) * (hi - v)) / (hi - lo);
-  const ticks = [lo + pad, (lo + hi) / 2, hi - pad];
+  // One distinct tick per value (a single point gives three equal ticks).
+  const ticks = Array.from(new Set([lo + pad, (lo + hi) / 2, hi - pad].map((t) => t.toFixed(4)))).map(Number);
   const uniq = Array.from(new Set([0, ...steps])).sort((p, q) => p - q);
   const stepTicks = uniq.filter((_s, i, a) => a.length <= 12 || i % Math.ceil(a.length / 12) === 0);
 
@@ -39,11 +40,11 @@ export function IdeologyChart({ series }: { series: IdeologySeries[] }) {
     const hollow = p.mapping === "NO MATCH" || (p.delta === 0 && p.step > 0);
     const common = {
       fill: hollow ? "var(--panel)" : s.color,
-      stroke: s.color,
-      strokeWidth: 1.5,
+      stroke: hollow ? s.color : "var(--panel)",
+      strokeWidth: hollow ? 1.5 : 2,
       onMouseEnter: () => setHover({ s, p, x: cx, y: cy }),
     };
-    const r = active ? 5 : 3.4;
+    const r = active ? 5.5 : 4;
     return s.marker === "square" ? (
       <rect key={p.step} x={cx - r} y={cy - r} width={2 * r} height={2 * r} rx={1} {...common} />
     ) : (
@@ -67,26 +68,46 @@ export function IdeologyChart({ series }: { series: IdeologySeries[] }) {
         </div>
       )}
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Ideology index trajectory: ${series.map((s) => s.name).join(" vs ")}`}>
-        {ticks.map((t) => (
-          <g key={t}>
+        {ticks.map((t, i) => (
+          <g key={i}>
             <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="var(--chart-grid)" />
-            <text x={L - 4} y={y(t) + 3} fontSize="9" textAnchor="end" fill="var(--muted)" fontFamily="var(--mono)">
+            <text x={L - 6} y={y(t) + 3} fontSize="9" textAnchor="end" fill="var(--faint)" style={{ fontVariantNumeric: "tabular-nums" }}>
               {t.toFixed(4)}
             </text>
           </g>
         ))}
         {lo < 0 && hi > 0 && <line x1={L} x2={W - R} y1={y(0)} y2={y(0)} stroke="var(--faint)" strokeDasharray="3 3" />}
         {stepTicks.map((s) => (
-          <text key={s} x={x(s)} y={H - B + 12} fontSize="9" textAnchor="middle" fill="var(--muted)" fontFamily="var(--mono)">
+          <text key={s} x={x(s)} y={H - B + 13} fontSize="9" textAnchor="middle" fill="var(--faint)">
             {s === 0 ? "init" : `Q${s}`}
           </text>
         ))}
-        <text x={(L + W - R) / 2} y={H - 3} fontSize="9" textAnchor="middle" fill="var(--muted)">
+        <text x={(L + W - R) / 2} y={H - 2} fontSize="9" textAnchor="middle" fill="var(--faint)">
           question number
         </text>
+        {!multi &&
+          all.map(({ s, pts }) => (
+            <g key={`area-${s.name}`}>
+              <defs>
+                <linearGradient id="ideo-fill" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stopColor={s.color} stopOpacity="0.16" />
+                  <stop offset="100%" stopColor={s.color} stopOpacity="0" />
+                </linearGradient>
+              </defs>
+              <path
+                d={
+                  pts.map((p, i) => `${i ? "L" : "M"}${x(p.step).toFixed(1)},${y(p.ideology).toFixed(1)}`).join(" ") +
+                  ` L${x(pts[pts.length - 1].step).toFixed(1)},${H - B} L${x(pts[0].step).toFixed(1)},${H - B} Z`
+                }
+                fill="url(#ideo-fill)"
+              />
+            </g>
+          ))}
         {all.map(({ s, pts }) => (
           <path
             key={s.name}
+            strokeLinejoin="round"
+            strokeLinecap="round"
             d={pts.map((p, i) => `${i ? "L" : "M"}${x(p.step).toFixed(1)},${y(p.ideology).toFixed(1)}`).join(" ")}
             fill="none"
             stroke={s.color}
