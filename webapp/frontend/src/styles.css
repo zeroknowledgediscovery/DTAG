@@ -120,8 +120,10 @@ code, .mono { font-family: var(--mono); font-size: 12px; }
 
 .main {
   display: grid;
-  grid-template-columns: 340px minmax(0, 1fr) 368px;
+  /* side widths come from the column resizer (--lw / --rw); the centre reflows */
+  grid-template-columns: var(--lw, 340px) minmax(0, 1fr) var(--rw, 368px);
   min-height: 0;
+  position: relative;
 }
 .col { min-height: 0; overflow: auto; }
 .left { border-right: 1px solid var(--border); background: var(--panel); padding: 16px; }
@@ -313,7 +315,7 @@ a.btn:hover { background: var(--hover); }
 .tabs button:hover { color: var(--text); }
 .tabs button.on { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
 .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; vertical-align: -1px; }
-.main.two { grid-template-columns: 330px minmax(0, 1fr) 388px; }
+.main.two { grid-template-columns: var(--lw, 330px) minmax(0, 1fr) var(--rw, 388px); }
 .center > .single, .center > .split { min-height: 0; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); }
 .center > .split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 .pane { display: grid; grid-template-rows: auto 1fr; grid-template-columns: minmax(0, 1fr); min-height: 0; min-width: 0; }
@@ -498,3 +500,14 @@ button.btn.small { padding: 3px 10px; font-size: 12px; }
 .fig-save-menu button:hover:not(:disabled) { background: var(--hover); }
 .exp-fig { position: relative; }
 @media (hover: none) { .fig-save-btn { opacity: 0.8; } }
+
+/* column resize handles (on the column borders) */
+.col-handle { position: absolute; top: 0; bottom: 0; width: 9px; z-index: 4; cursor: col-resize; touch-action: none; }
+.col-handle.left { left: calc(var(--lw, 340px) - 5px); }
+.col-handle.right { right: calc(var(--rw, 368px) - 4px); }
+.col-handle::after { content: ""; position: absolute; top: 0; bottom: 0; left: 4px; width: 1px; background: transparent; transition: background 0.15s, box-shadow 0.15s; }
+.col-handle:hover::after, .col-handle:focus-visible::after, body.col-resizing .col-handle:active::after { background: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.col-handle:focus-visible { outline: none; }
+body.col-resizing { cursor: col-resize; user-select: none; }
+body.col-resizing iframe, body.col-resizing canvas { pointer-events: none; }
+@media (max-width: 1100px) { .col-handle { display: none; } }

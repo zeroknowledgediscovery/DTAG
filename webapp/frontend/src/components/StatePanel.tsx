@@ -5,6 +5,7 @@ import { Section } from "./Controls";
 import { mappingBadge } from "./Chat";
 import { statusLabel } from "./ModelPanel";
 import { FigureSave } from "./FigureSave";
+import { useWidth } from "../useWidth";
 
 export interface IdeologySeries {
   name: string;
@@ -19,20 +20,26 @@ type Pt = TrajectoryPoint & { ideology: number };
 
 export function IdeologyChart({ series }: { series: IdeologySeries[] }) {
   const [hover, setHover] = useState<{ s: IdeologySeries; p: Pt; x: number; y: number } | null>(null);
+  const [box, boxWidth] = useWidth<HTMLDivElement>(330);
   const all = series.map((s) => ({ s, pts: s.points.filter((p) => p.ideology !== null) as Pt[] })).filter((x) => x.pts.length);
   if (all.length === 0) return <div className="note">No ideology values yet.</div>;
   const multi = series.length > 1;
-  const W = 330, H = 180, L = 44, R = multi ? 22 : 10, T = 10, B = 26;
+  // drawn at the container's width (1:1), so text keeps its size when the column is resized
+  const W = Math.max(260, boxWidth), H = Math.round(Math.min(280, Math.max(180, W * 0.42))), L = 44, R = multi ? 22 : 10, T = 10, B = 26;
   const vals = all.flatMap((x) => x.pts.map((p) => p.ideology));
   let lo = Math.min(...vals), hi = Math.max(...vals);
-  const pad = Math.max((hi - lo) * 0.2, 0.002);
+  const pad = Math.max((hi - lo) * 0.2, 0.0005); // small floor: a flat line still gets some room
   lo -= pad; hi += pad;
   const steps = all.flatMap((x) => x.pts.map((p) => p.step));
   const maxStep = Math.max(1, ...steps);
   const x = (s: number) => L + ((W - L - R) * s) / maxStep;
   const y = (v: number) => T + ((H - T - B) * (hi - v)) / (hi - lo);
   // One distinct tick per value (a single point gives three equal ticks).
-  const ticks = Array.from(new Set([lo + pad, (lo + hi) / 2, hi - pad].map((t) => t.toFixed(4)))).map(Number);
+  // One distinct tick per value (a single point gives three equal ticks); drop the middle one when
+  // the labels would overlap.
+  let ticks = Array.from(new Set([lo + pad, (lo + hi) / 2, hi - pad].map((t) => t.toFixed(4)))).map(Number);
+  if (ticks.length === 3 && Math.abs(y(ticks[0]) - y(ticks[2])) < 26) ticks = [ticks[0], ticks[2]];
+  if (ticks.length === 2 && Math.abs(y(ticks[0]) - y(ticks[1])) < 12) ticks = [ticks[1]];
   const uniq = Array.from(new Set([0, ...steps])).sort((p, q) => p - q);
   const stepTicks = uniq.filter((_s, i, a) => a.length <= 12 || i % Math.ceil(a.length / 12) === 0);
 
@@ -54,7 +61,7 @@ export function IdeologyChart({ series }: { series: IdeologySeries[] }) {
   };
 
   return (
-    <div className="chart" onMouseLeave={() => setHover(null)}>
+    <div className="chart" ref={box} onMouseLeave={() => setHover(null)}>
       <FigureSave name="ideology_trajectory" />
       {multi && (
         <div className="legend">

@@ -355,6 +355,15 @@ API: `GET /api/sessions/{id}/experiment[?download=true]` (recipe), `POST .../exp
 recipe), `GET|DELETE /api/experiments/jobs/{job_id}`, `GET /api/experiments`,
 `GET /api/experiments/{folder}/download`.
 
+### Resizing the columns
+
+Drag the border between the left (respondent / landscape) or right (ideology, push, experiment) column
+and the chat to resize it; double-click a border to reset, or focus it and use ←/→ (Shift for bigger
+steps). The chat reflows (text wraps) rather than being covered, and never gets narrower than 360 px.
+Figures follow their column: the doughnut and the map scale up, the line charts redraw at the new
+width with the same text size. Widths are remembered per browser, separately for one and two
+respondents; on narrow screens (< 1100 px) the columns stack and the handles are hidden.
+
 ### Saving figures
 
 Hover any figure (ideology trajectory, landscape doughnut or map, experiment band) and use the small
