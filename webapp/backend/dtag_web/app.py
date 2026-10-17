@@ -499,9 +499,13 @@ def create_app(
         if (dist / "assets").is_dir():
             app.mount("/assets", StaticFiles(directory=str(dist / "assets")), name="assets")
 
+        # index.html names the hashed asset bundles, so it must never be cached: a stale copy keeps
+        # loading the previous build after an update.
+        no_cache = {"Cache-Control": "no-cache"}
+
         @app.get("/", include_in_schema=False)
         def index() -> FileResponse:
-            return FileResponse(dist / "index.html")
+            return FileResponse(dist / "index.html", headers=no_cache)
 
         @app.get("/{path:path}", include_in_schema=False)
         def spa(path: str) -> FileResponse:
@@ -509,8 +513,8 @@ def create_app(
                 raise HTTPException(404)
             candidate = (dist / path).resolve()
             if candidate.is_file() and dist.resolve() in candidate.parents:
-                return FileResponse(candidate)
-            return FileResponse(dist / "index.html")
+                return FileResponse(candidate, headers=no_cache if candidate.name == "index.html" else None)
+            return FileResponse(dist / "index.html", headers=no_cache)
     else:
         @app.get("/", include_in_schema=False)
         def no_frontend() -> Dict[str, str]:
