@@ -8,6 +8,7 @@ import { SequenceCard, SequenceDialog } from "./components/Sequence";
 import { IdeologyPush } from "./components/IdeologyPush";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { LandscapeView } from "./components/Landscape";
+import { useColumnLayout } from "./components/ColumnResizer";
 import { NextQuestions } from "./components/NextQuestions";
 import { ExperimentPanel } from "./components/Experiment";
 import { IdeologyCompare, StatePanel } from "./components/StatePanel";
@@ -254,6 +255,7 @@ export default function App() {
       return 1;
     }
   });
+  const layout = useColumnLayout(count);
   const [tab, setTab] = useState<"A" | "B">("A");
   const [target, setTarget] = useState<Target>("both");
   const [builder, setBuilder] = useState(false);
@@ -415,7 +417,8 @@ export default function App() {
         <ThemeToggle />
       </div>
 
-      <div className={`main ${count === 2 ? "two" : ""}`}>
+      <div className={`main ${count === 2 ? "two" : ""}`} ref={layout.ref} style={layout.style}>
+        {layout.handles}
         <div className="col left">
           {count === 2 && (
             <>

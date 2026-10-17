@@ -2,6 +2,7 @@ import { useState } from "react";
 import { api, fmtSigned } from "../api";
 import type { ExperimentJob, ExperimentRecipe, ExperimentStats } from "../types";
 import { FigureSave } from "./FigureSave";
+import { useWidth } from "../useWidth";
 
 const HELP =
   "Everything you do to this respondent (questions, pushes, auto-pushes, sequences, suggested questions) is recorded " +
@@ -12,9 +13,11 @@ const HELP =
 
 /** Mean ideology after each action with its 95% bootstrap CI band, plus every run as a faint line. */
 function BandChart({ st, color }: { st: ExperimentStats; color: string }) {
+  const [box, boxWidth] = useWidth<SVGSVGElement>(330);
   const cps = st.checkpoints.filter((c) => c.mean !== null);
   if (cps.length < 2) return null;
-  const W = 330, H = 150, L = 46, R = 10, T = 8, B = 26;
+  // drawn at the container's width (1:1), so text keeps its size when the column is resized
+  const W = Math.max(260, boxWidth), H = Math.round(Math.min(260, Math.max(150, W * 0.4))), L = 46, R = 10, T = 8, B = 26;
   const vals: number[] = [];
   for (const c of cps) vals.push(c.ci_lo ?? c.mean!, c.ci_hi ?? c.mean!, c.min ?? c.mean!, c.max ?? c.mean!);
   let lo = Math.min(...vals), hi = Math.max(...vals);
@@ -32,7 +35,7 @@ function BandChart({ st, color }: { st: ExperimentStats; color: string }) {
   const mean = cps.map((c, i) => `${i ? "L" : "M"}${x(c.action).toFixed(1)},${y(c.mean!).toFixed(1)}`).join("");
   const ticks = [lo + pad, (lo + hi) / 2, hi - pad];
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="exp-chart" role="img" aria-label="Ideology after each action across runs (mean and 95% CI)">
+    <svg ref={box} viewBox={`0 0 ${W} ${H}`} className="exp-chart" role="img" aria-label="Ideology after each action across runs (mean and 95% CI)">
       {ticks.map((t, i) => (
         <g key={i}>
           <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="var(--chart-grid)" />
