@@ -240,9 +240,9 @@ How they are chosen (one-step optimizer, `optimizer/session_push.py`):
   probability `P(a | s, v)` (incremental native evaluator: a few seconds for ~550 items).
   Administrative, demographic and factual-behaviour items are never suggested; pole-defining
   items only when **Allow pole-defining items** is ticked;
-* with response mode **max** (the profiles' default) the session records the respondent's most
+* with response mode **max** the session records the respondent's most
   likely answer, so the suggestion is the item whose modal answer moves the index most and the
-  shown Δ is exact. With **draw** the suggestion maximizes the expected change
+  shown Δ is exact. With **draw** (the default) the suggestion maximizes the expected change
   `μ_v = Σ_a P(a) Δ_v(a)` (the realized change then varies with the drawn answer);
 * the shown question is written by the language model for exactly that item, in neutral wording
   (no leading language). **all answers** lists every response with its probability and Δ.
@@ -494,9 +494,9 @@ are registered for. No paths, commands, modules or URLs are accepted.
   never derived from answer text and never reused for other survey families.
 * **Semantic fallback**: `off` (no fallback), `answer_only` (grounds the answer
   but never mutates state), `update_state` (accepted bridge anchors update
-  state). Each answer records which case applied.
-* **Response mode** applies to the native anchor: `max` takes the modal
-  response, `draw` samples the native distribution with seed `seed + question`.
+  state; **the default**). Each answer records which case applied.
+* **Response mode** applies to the native anchor: `draw` (**the default**) samples the
+  native distribution with seed `seed + question`; `max` takes the modal response.
 * Eurobarometer maps built by semantic-union fallback keep their provenance
   (`map_provenance`, `fallback_*`) on every anchor and in exports.
 * Exports include DTAG version and Git commit, model key/release/SHA256, map
