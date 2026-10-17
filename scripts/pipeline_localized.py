@@ -4,7 +4,7 @@
 Importing this module replaces ``dtag_core.build_forced_assignments`` with the country-aware
 version below; DTAGSession resolves that function at call time, so every session (web app,
 optimizer, scripts) gets the same geography. The former command-line entry point (which then
-ran pipeline.main) is archived in archive/scripts/.
+ran pipeline.main) has been retired (it remains in Git history).
 
 Country conditioning order:
 1. If a qnet has a categorical country feature whose allowed support contains the

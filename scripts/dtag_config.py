@@ -6,7 +6,7 @@ Loads the config and resolves a named interactive profile into concrete runtime 
 precedence. Used by the web engine (dtag_engine.DTAGEngine).
 
 These functions were moved verbatim from the former command-line launcher interactive.py
-(now in archive/scripts/).
+(since retired; it remains in Git history).
 """
 from __future__ import annotations
 

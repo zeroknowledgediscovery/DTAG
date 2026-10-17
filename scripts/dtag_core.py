@@ -12,8 +12,8 @@ pipeline_localized for geography), the optimizer and the model/asset scripts:
 * geography (country/continent coordinates) and forced assignments;
 * ideology poles and the index I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR).
 
-This is the library half of the former single-file pipeline.py; its command-line entry point is
-archived in archive/scripts/pipeline.py.
+This is the library half of the former single-file pipeline.py; its command-line entry point has
+been retired (it remains in Git history).
 
 Requirements:
   pip install openai pandas numpy

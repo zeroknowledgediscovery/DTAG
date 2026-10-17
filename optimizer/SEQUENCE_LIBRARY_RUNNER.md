@@ -50,7 +50,8 @@ coordinate version, pole/map checksums, and centered trajectories.
 For a first executable native-model comparison using EXACTLY the same
 predeclared 10-question sequence and draw seeds before/after centering:
 
-    python scratch/gss2018_pole_geometry/test_empty_centering.py
+    git show 00ccd0a:scratch/gss2018_pole_geometry/test_empty_centering.py > test_empty_centering.py
+    python test_empty_centering.py      # (the scratch experiments were removed from the tree)
 
 It writes raw/ and empty_centered/ trajectories, state-cluster uncertainty,
 initial-state group counts, and descriptive observed movement. This is a

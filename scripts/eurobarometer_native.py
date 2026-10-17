@@ -3,7 +3,7 @@
 
 Used by the web engine (Eurobarometer sessions take EUROBAROMETER_RUN_DEFAULTS,
 DEFAULT_PERSONA and DEFAULT_CONTINENT from here). The former command-line launcher
-(``--za ... --question ...``) is archived in archive/scripts/eurobarometer_native_cli.py.
+(``--za ... --question ...``) has been retired (it remains in Git history).
 
 Map resolution prefers a newly generated native per-ZA map, then an existing
 legacy Eurobarometer per-ZA map. If neither exists, DTAG may use the legacy
