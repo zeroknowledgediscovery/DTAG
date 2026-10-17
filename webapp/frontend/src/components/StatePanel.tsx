@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api, fmtNum, fmtSigned } from "../api";
 import type { IdeologySummary, QuestionResult, SessionInfo, TrajectoryPoint } from "../types";
 import { Section } from "./Controls";
@@ -300,12 +300,15 @@ export function StatePanel({
   color,
   label,
   children,
+  tools = [],
   hideIdeology = false,
 }: {
   session: SessionInfo | null;
   history: QuestionResult[];
-  /** Rendered right below the ideology chart (the ideology-push panel). */
+  /** Rendered right below the ideology chart (next-question suggestions, progress cards). */
   children?: React.ReactNode;
+  /** Extra tabs shown before "Session" (e.g. Auto-push, Experiment). */
+  tools?: Array<{ key: string; label: string; content: React.ReactNode }>;
   /** Omit the per-respondent chart (two-respondent mode shows the A-vs-B chart instead). */
   hideIdeology?: boolean;
   /** Respondent label (A/B) used in the ZIP archive's folder and report. */
@@ -314,6 +317,21 @@ export function StatePanel({
   idPrefix?: string;
   color?: string;
 }) {
+  const [tab, setTab] = useState<string>(() => {
+    try {
+      return window.localStorage.getItem("dtag.rightTab") || "";
+    } catch {
+      return "";
+    }
+  });
+  const chooseTab = (k: string) => {
+    setTab(k);
+    try {
+      window.localStorage.setItem("dtag.rightTab", k);
+    } catch {
+      /* the choice lasts for this page only */
+    }
+  };
   if (!session) {
     return (
       <div className="note">
@@ -322,6 +340,8 @@ export function StatePanel({
       </div>
     );
   }
+  const tabs = [...tools.filter((t) => t.content), { key: "session", label: "Session", content: null }];
+  const active = tabs.find((t) => t.key === tab) ?? tabs[0];
   const p = session.resolved_profile;
   const geo = session.geographic_conditioning;
   const tmp = session.temporal_conditioning;
@@ -338,6 +358,19 @@ export function StatePanel({
 
       {children}
 
+      <div className="rtabs" role="tablist">
+        {tabs.map((t) => (
+          <button key={t.key} role="tab" aria-selected={active.key === t.key} className={active.key === t.key ? "on" : ""} onClick={() => chooseTab(t.key)}>
+            {t.label}
+          </button>
+        ))}
+      </div>
+      {tabs.filter((t) => t.key !== "session").map((t) => (
+        <div key={t.key} role="tabpanel" hidden={active.key !== t.key} className="rtab-panel">
+          {t.content}
+        </div>
+      ))}
+      <div role="tabpanel" hidden={active.key !== "session"} className="rtab-panel">
       <Section title="Respondent model">
         <details>
           <summary className="note" style={{ cursor: "pointer" }}>
@@ -400,22 +433,17 @@ export function StatePanel({
             </details>
           )}
         </details>
-        <div className="actions" style={{ marginTop: 8 }}>
-          <a
-            className="btn primary-link"
-            href={api.exportUrl(session.session_id, "zip", label)}
-            download
-            title="Complete log since the last reset: report, persona, settings, every question, ideology trajectory, state changes"
-          >
-            Full log (ZIP)
-          </a>
-          <a className="btn" href={api.exportUrl(session.session_id, "json")} download>
-            Export JSON
-          </a>
-          <a className="btn" href={api.exportUrl(session.session_id, "csv")} download>
-            Export CSV
-          </a>
-        </div>
+        <ExportMenu
+          items={[
+            {
+              href: api.exportUrl(session.session_id, "zip", label),
+              label: "Full log (ZIP)",
+              note: "report, persona, settings, every question, trajectory, state changes",
+            },
+            { href: api.exportUrl(session.session_id, "json"), label: "Session (JSON)", note: "complete record" },
+            { href: api.exportUrl(session.session_id, "csv"), label: "Questions (CSV)", note: "one row per question" },
+          ]}
+        />
       </Section>
 
       <Section title="Session timeline">
@@ -454,6 +482,35 @@ export function StatePanel({
           <div className="note">Persona interpretation: {session.persona_assignments.rationale}</div>
         </details>
       </Section>
+      </div>
+    </div>
+  );
+}
+
+/** One "Export" button with a small menu of downloads. */
+function ExportMenu({ items }: { items: Array<{ href: string; label: string; note: string }> }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const close = (e: MouseEvent) => !ref.current?.contains(e.target as Node) && setOpen(false);
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
+  }, [open]);
+  return (
+    <div className="export-menu" ref={ref}>
+      <button className="btn" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+        Export ▾
+      </button>
+      {open && (
+        <div className="fig-save-menu export-list" role="menu">
+          {items.map((i) => (
+            <a key={i.label} role="menuitem" href={i.href} download onClick={() => setOpen(false)}>
+              <b>{i.label}</b> <span className="note">{i.note}</span>
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

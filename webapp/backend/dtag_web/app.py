@@ -37,7 +37,7 @@ from .sequences import AutoPushJob, SequenceManager, parse_question_lines
 from .sessions import SessionStore
 
 import dtag_paths  # noqa: E402
-from dtag_engine import DTAGEngine, DTAGEngineError, dtag_version  # noqa: E402
+from dtag_engine import DTAGEngine, DTAGEngineError, dtag_version, git_commit  # noqa: E402
 
 
 def default_data_dir() -> Path:
@@ -98,6 +98,7 @@ def create_app(
         return {
             "status": "ok",
             "dtag_version": dtag_version(),
+            "git_commit": git_commit(),
             "native_runtime": "bundled_persistent",
             "openai_configured": engine.openai_configured,
             "llm_backend": engine.llm_backend,

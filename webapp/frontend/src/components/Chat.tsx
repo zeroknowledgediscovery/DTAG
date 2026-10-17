@@ -279,11 +279,6 @@ export function ChatLog({
                 {r.ideology.enabled && r.ideology.delta !== null && r.ideology.delta !== 0 && (
                   <span className="mono">I {fmtSigned(r.ideology.delta)}</span>
                 )}
-                {r.anchors.slice(0, 4).map((a) => (
-                  <span key={a.variable} className="mono">
-                    {a.variable}={a.response}
-                  </span>
-                ))}
                 <span style={{ marginLeft: "auto" }}>{r.timings.total?.toFixed(2)} s</span>
               </div>
               <Evidence r={r} />
@@ -353,7 +348,7 @@ export function Composer({
   return (
     <div className="composer">
       {chips.length > 0 && (
-        <div className="suggest-row">
+        <div className="suggest-row composer-chips">
           {chips.map((c) => (
             <button key={c.key} className="suggest small push-chip" disabled={!canAsk} title={c.title} onClick={c.onClick}>
               {c.label}

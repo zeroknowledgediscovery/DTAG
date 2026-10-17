@@ -9,6 +9,7 @@ import { IdeologyPush } from "./components/IdeologyPush";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { LandscapeView } from "./components/Landscape";
 import { useColumnLayout } from "./components/ColumnResizer";
+import { AboutDialog } from "./components/About";
 import { NextQuestions } from "./components/NextQuestions";
 import { ExperimentPanel } from "./components/Experiment";
 import { IdeologyCompare, StatePanel } from "./components/StatePanel";
@@ -108,37 +109,48 @@ function pushPanel(r: Respondent) {
   }
   return (
     <Section title="Next question">
-      <IdeologyPush
-        push={r.push}
-        loading={r.pushLoading}
-        includePoles={r.pushPoles}
-        onIncludePoles={r.setPushPoles}
-        mode={r.pushMode}
-        onMode={r.setPushMode}
-        disabled={r.busy}
-        onAsk={r.askPush}
-        onAuto={r.runAutoPush}
-      />
+      <IdeologyPush part="rows" {...pushProps(r)} />
     </Section>
   );
 }
 
-/** Record-and-rerun experiments for one respondent. */
-function expPanel(r: Respondent, color: string) {
-  if (!r.session) return null;
-  return (
-    <Section title="Experiment">
-      <ExperimentPanel
-        sessionId={r.session.session_id}
-        recipe={r.recipe}
-        job={r.expJob}
-        busy={r.busy}
-        color={color}
-        onRun={r.runExperiment}
-        onCancel={r.cancelExperiment}
-      />
-    </Section>
-  );
+function pushProps(r: Respondent) {
+  return {
+    push: r.push,
+    loading: r.pushLoading,
+    includePoles: r.pushPoles,
+    onIncludePoles: r.setPushPoles,
+    mode: r.pushMode,
+    onMode: r.setPushMode,
+    disabled: r.busy,
+    onAsk: r.askPush,
+    onAuto: r.runAutoPush,
+  };
+}
+
+/** Tabs under the next-question panel: automatic push (ideology surveys) and experiments. */
+function toolTabs(r: Respondent, color: string) {
+  if (!r.session) return [];
+  return [
+    r.session.ideology.enabled
+      ? { key: "push", label: "Auto-push", content: <IdeologyPush part="controls" {...pushProps(r)} /> }
+      : null,
+    {
+      key: "experiment",
+      label: "Experiment",
+      content: (
+        <ExperimentPanel
+          sessionId={r.session.session_id}
+          recipe={r.recipe}
+          job={r.expJob}
+          busy={r.busy}
+          color={color}
+          onRun={r.runExperiment}
+          onCancel={r.cancelExperiment}
+        />
+      ),
+    },
+  ].filter(Boolean) as Array<{ key: string; label: string; content: React.ReactNode }>;
 }
 
 /** Progress / summary card of the respondent's latest question sequence or automatic push. */
@@ -255,6 +267,7 @@ export default function App() {
       return 1;
     }
   });
+  const [aboutOpen, setAboutOpen] = useState(false);
   const layout = useColumnLayout(count);
   const [tab, setTab] = useState<"A" | "B">("A");
   const [target, setTarget] = useState<Target>("both");
@@ -331,12 +344,14 @@ export default function App() {
   const emptyHint = (r: Respondent, label: string) =>
     r.session ? (
       <>
+        <LabMark />
         {label} ready ({r.session.resolved_profile.model_label}). Ask a question below
         {count === 1 ? " or pick one of the suggested questions" : ""}; every answer is anchored to native LSM conditional
         survey-response distributions and the survey state carries forward between questions.
       </>
     ) : (
       <>
+        <LabMark />
         Describe {count === 2 ? label.toLowerCase() : "the respondent"} (<b>who</b>, <b>where</b>, <b>when</b>). DTAG picks the
         matching native survey model, downloads it once if needed and loads it; then start the respondent.
       </>
@@ -389,10 +404,10 @@ export default function App() {
   return (
     <div className="app">
       <div className="topbar">
-        <div className="brand">
+        <button className="brand" onClick={() => setAboutOpen(true)} title="About DTAG · Digital Twin Anchored Generation">
           <BrandMark />
-          DTAG<small>Digital Twin Anchored Generation · native LSM workbench</small>
-        </div>
+          DTAG
+        </button>
         <ReadinessPill r={readiness} onRefresh={() => loadReadiness(true)} />
         <span className="spacer" />
         <span className="note">Respondents</span>
@@ -410,6 +425,9 @@ export default function App() {
             </button>
           ))}
         </div>
+        <button className="link topbar-link" onClick={() => setAboutOpen(true)}>
+          About
+        </button>
         <a href="/docs" target="_blank" rel="noreferrer">
           API docs
         </a>
@@ -460,7 +478,6 @@ export default function App() {
               {r.session && !editOpen[sl.id] && !r.phase ? (
                 <>
                   <RespondentSummary r={r} onEdit={() => setEditOpen((e) => ({ ...e, [sl.id]: true }))} />
-                  <LabMark />
                   <LandscapeView data={r.landscape} loading={r.busy || r.landscapePending} />
                 </>
               ) : (
@@ -561,7 +578,7 @@ export default function App() {
               {A.session && B.session && (
                 <div className="actions" style={{ marginBottom: 10 }}>
                   <a
-                    className="btn primary-link"
+                    className="btn"
                     href={api.bundleUrl([A.session.session_id, B.session.session_id], ["A", "B"])}
                     download
                     title="One ZIP with each respondent's complete log and an aligned ideology comparison"
@@ -580,23 +597,22 @@ export default function App() {
               </div>
               {pair.map(([r, sl]) => (
                 <div key={sl.id} hidden={tab !== sl.id}>
-                  <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} label={sl.id} hideIdeology>
+                  <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} label={sl.id} hideIdeology tools={toolTabs(r, sl.color)}>
                     {pushPanel(r)}
-                    {expPanel(r, sl.color)}
                   </StatePanel>
                 </div>
               ))}
             </>
           ) : (
-            <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix}>
+            <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix} tools={toolTabs(A, "var(--accent)")}>
               {pushPanel(A)}
               {seqCard(A, SLOTS[0], false)}
-              {expPanel(A, "var(--accent)")}
             </StatePanel>
           )}
         </div>
       </div>
 
+      {aboutOpen && <AboutDialog onClose={() => setAboutOpen(false)} />}
       {seqOpen && seqTargets.length > 0 && (
         <SequenceDialog
           modelLabel={seqLabel}
