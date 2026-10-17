@@ -17,6 +17,8 @@ import zipfile
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
+CREDIT = "DTAG · ZeD Lab, University of Kentucky · ishanu_ch@uky.edu"
+
 ARCHIVE_SCHEMA = "dtag-session-archive/1"
 
 
@@ -134,6 +136,8 @@ def _report(export: Dict[str, Any], label: Optional[str], seq: Optional[Dict[str
     who = f"Respondent {label}" if label else "Respondent"
     lines = [
         f"# DTAG session report — {who}",
+        "",
+        f"_{CREDIT}_",
         "",
         f"- Exported: {export['exported_at']}  ·  session `{export['session_id']}`  ·  DTAG {export['dtag'].get('version')}"
         f" (commit {export['dtag'].get('git_commit') or 'unknown'})",

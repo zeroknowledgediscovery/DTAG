@@ -48,7 +48,7 @@ export function NextQuestions({
               {n.question}
               <span className="note next-why">{k.label} · {n.t}</span>
             </span>
-            <button className="btn primary small" disabled={disabled} onClick={() => onAsk(n.question, k.key)}>
+            <button className="btn small" disabled={disabled} onClick={() => onAsk(n.question, k.key)}>
               Ask
             </button>
           </div>

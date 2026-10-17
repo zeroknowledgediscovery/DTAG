@@ -115,6 +115,7 @@ class Health(BaseModel):
     models_loaded: int
     sessions: int
     auth: str = "none"
+    git_commit: Optional[str] = None
 
 
 class Anchor(BaseModel):

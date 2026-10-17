@@ -53,6 +53,7 @@ from typing import Any, Dict, List, Optional
 from . import DTAG_ROOT
 
 MAX_RUNS = 200
+CREDIT = "DTAG · ZeD Lab, University of Kentucky · ishanu_ch@uky.edu"
 
 
 # ----------------------------------------------------------------------------- recording
@@ -297,6 +298,7 @@ class ExperimentJob:
             "llm_model": getattr(self.engine, "openai_model_override", None),
             "git_commit": commit, "started_at": time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(self.started_at)),
             "finished_at": time.strftime("%Y-%m-%dT%H:%M:%S", time.localtime(self.finished_at)) if self.finished_at else None,
+            "credit": CREDIT,
             "variation": "fresh respondent per run (persona interpretation may differ); pushes and next questions "
                          "re-chosen at each run's own state; per-run seed for drawn responses",
         }, indent=2))
@@ -430,7 +432,7 @@ def _fmt_sd(x: Optional[float], d: int = 4) -> str:
 
 def _report(rec: Dict[str, Any], st: Dict[str, Any]) -> str:
     sp = rec["respondent"]["spec"]
-    lines = [f"# Experiment: {rec.get('name')}", "",
+    lines = [f"# Experiment: {rec.get('name')}", "", f"_{CREDIT}_", "",
              f"- Respondent: {sp.get('name')} · model {sp.get('model_key')} · persona: {sp.get('persona', '')[:200]}",
              f"- Runs: {st['runs']} (fresh respondent each run; pushes and next questions re-chosen per run)", "",
              "## Actions", ""] + [f"{i}. {describe_action(a)}" for i, a in enumerate(rec.get("actions", []), 1)]

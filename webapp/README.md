@@ -355,6 +355,16 @@ API: `GET /api/sessions/{id}/experiment[?download=true]` (recipe), `POST .../exp
 recipe), `GET|DELETE /api/experiments/jobs/{job_id}`, `GET /api/experiments`,
 `GET /api/experiments/{folder}/download`.
 
+### Layout at a glance
+
+The chat sits on a framed stage in the middle; the side columns are tool rails. Left: the respondent
+card and the decision landscape. Right: the ideology chart and the two suggested next questions, then
+tabs for **Auto-push** (surveys with an ideology index), **Experiment** and **Session** (model details,
+one **Export ▾** menu with the full log ZIP / JSON / CSV, the timeline and the state tables); the last
+tab you used is remembered. The suggested questions are repeated as chips above the input only when
+the columns are stacked (narrow screens). Click **DTAG** or **About** in the top bar for credits
+(ZeD Lab, University of Kentucky · ishanu_ch@uky.edu), data sources and the running version.
+
 ### Resizing the columns
 
 Drag the border between the left (respondent / landscape) or right (ideology, push, experiment) column

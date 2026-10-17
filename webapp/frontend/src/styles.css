@@ -128,9 +128,11 @@ code, .mono { font-family: var(--mono); font-size: 12px; }
   position: relative;
 }
 .col { min-height: 0; overflow: auto; }
-.col.left { border-right: 1px solid var(--border); background: var(--panel); padding: 16px; }
-.col.right { border-left: 1px solid var(--border); background: var(--panel); padding: 16px; }
-.center { display: grid; grid-template-rows: 1fr auto; grid-template-columns: minmax(0, 1fr); min-height: 0; min-width: 0; }
+/* side columns are quiet tool rails; the chat sits on a framed stage between them */
+.col.left, .col.right { background: transparent; padding: 16px; }
+.center { display: grid; grid-template-rows: 1fr auto; grid-template-columns: minmax(0, 1fr); min-height: 0; min-width: 0;
+  margin: 10px 4px 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+  box-shadow: var(--shadow); overflow: hidden; }
 
 @media (max-width: 1100px) {
   .main { grid-template-columns: 1fr; }
@@ -514,3 +516,46 @@ button.btn.small { padding: 3px 10px; font-size: 12px; }
 body.col-resizing { cursor: col-resize; user-select: none; }
 body.col-resizing iframe, body.col-resizing canvas { pointer-events: none; }
 @media (max-width: 1100px) { .col-handle { display: none; } }
+
+/* ---- clean-up pass ---- */
+.section-title .rule { display: none; }
+button.brand { border: none; background: none; padding: 0; cursor: pointer; color: inherit; font: inherit; font-weight: 700; font-size: 15px; }
+button.brand:hover { color: var(--accent); }
+button.link.topbar-link { color: var(--muted); font-size: 12.5px; font-weight: 500; }
+button.link.topbar-link:hover { color: var(--accent); text-decoration: none; }
+.rtab-panel .push-auto { border-top: none; padding-top: 0; margin-top: 0; }
+.composer { border-top: 1px solid var(--border); background: var(--panel); }
+
+/* the suggested questions live in the right column; repeat them above the input only when it is stacked away */
+@media (min-width: 1101px) { .composer-chips { display: none; } }
+
+/* right-column tabs (Auto-push | Experiment | Session) */
+.rtabs { display: flex; gap: 2px; border-bottom: 1px solid var(--border); margin: 6px 0 14px; }
+.rtabs button { border: none; background: none; padding: 6px 10px; margin-bottom: -1px; border-bottom: 2px solid transparent;
+  color: var(--muted); font-weight: 500; cursor: pointer; font-size: 12.5px; }
+.rtabs button:hover { color: var(--text); }
+.rtabs button.on { color: var(--text); font-weight: 600; border-bottom-color: var(--accent); }
+.rtab-panel[hidden] { display: none; }
+
+/* one Export button with a menu */
+.export-menu { position: relative; display: inline-block; margin-top: 8px; }
+.export-list { left: 0; right: auto; min-width: 260px; }
+.export-list a { display: grid; gap: 1px; padding: 6px 8px; border-radius: 5px; color: var(--text); text-decoration: none; font-size: 12.5px; }
+.export-list a:hover { background: var(--hover); }
+
+/* the lab mark is the chat's empty state */
+.empty .lab-mark { margin: 0 auto 18px; opacity: 0.38; }
+.empty .lab-mark svg { width: 64px; height: 64px; }
+
+/* about */
+.modal.about { max-width: 560px; display: grid; gap: 12px; }
+.modal.about p { margin: 0; line-height: 1.6; color: var(--text-2); }
+.about-h { display: flex; gap: 12px; align-items: center; }
+.about-h h2 { margin: 0; }
+.about-mark { width: 40px; height: 40px; border-radius: 10px; }
+.about-close { margin-left: auto; font-size: 16px; color: var(--muted); }
+.about-credit { display: grid; gap: 2px; }
+.about-credit .section-title { margin-bottom: 2px; }
+.about-foot { display: flex; gap: 14px; flex-wrap: wrap; border-top: 1px solid var(--border); padding-top: 10px; }
+.about-foot a { color: var(--accent); text-decoration: none; }
+@media (max-width: 1100px) { .center { margin: 8px; } }

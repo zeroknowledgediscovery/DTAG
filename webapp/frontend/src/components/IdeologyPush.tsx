@@ -97,7 +97,7 @@ function SuggestionRow({
         <span className="mono push-delta" title={`Predicted change of the ideology index (${POLE[direction]})`}>
           {fmtSigned(s.predicted_delta, 3)}
         </span>
-        <button className="btn primary small" disabled={disabled} onClick={() => onAsk(s)}>
+        <button className="btn small" disabled={disabled} onClick={() => onAsk(s)}>
           Ask
         </button>
       </div>
@@ -146,7 +146,10 @@ export function IdeologyPush({
   disabled,
   onAsk,
   onAuto,
+  part = "all",
 }: {
+  /** "rows": the two suggested questions; "controls": mode + automatic push; "all": both. */
+  part?: "rows" | "controls" | "all";
   push: PushSuggestions | null;
   loading: boolean;
   includePoles: boolean;
@@ -166,9 +169,11 @@ export function IdeologyPush({
   const meta = push?.n_candidates
     ? `${push.n_candidates} items scored${push.seconds !== undefined ? ` in ${push.seconds.toFixed(1)} s` : ""}`
     : "";
+  const rows = part !== "controls";
+  const controls = part !== "rows";
   return (
     <div className="push">
-      {loading && !push ? (
+      {!rows ? null : loading && !push ? (
         <div className="note">
           <span className="spinner" /> {mode === "validated" ? "scoring items and checking question mappings…" : "scoring items…"}
         </div>
@@ -178,6 +183,8 @@ export function IdeologyPush({
           <SuggestionRow s={push.down} reason={push.down_reason} checked={push.down_checked} direction="down" disabled={disabled || loading} onAsk={onAsk} />
         </>
       ) : null}
+      {controls && (
+      <>
       <div className="push-auto">
         <div className="seg push-mode" role="radiogroup" aria-label="Push mode">
           {(["realistic", "validated", "direct"] as const).map((m) => (
@@ -224,6 +231,8 @@ export function IdeologyPush({
           Allow pole-defining items
         </label>
       </details>
+      </>
+      )}
     </div>
   );
 }
