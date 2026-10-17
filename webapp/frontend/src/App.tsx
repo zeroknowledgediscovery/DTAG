@@ -132,19 +132,25 @@ function seqCard(r: Respondent, sl: (typeof SLOTS)[number], labelled: boolean) {
 function LabMark() {
   return (
     <div className="lab-mark" aria-hidden="true">
-      <svg viewBox="0 0 64 64" width="44" height="44">
-        <g fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-          <path d="M32 12 L16 34 M32 12 L48 34 M16 34 L24 52 M16 34 L8 52 M48 34 L40 52 M48 34 L56 52" />
+      {/* A respondent and its (dashed) digital twin, anchored to a survey response distribution. */}
+      <svg
+        viewBox="0 0 64 64"
+        width="48"
+        height="48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <circle cx="20" cy="15.5" r="6" />
+        <path d="M8.5 36c0-6.6 5.1-11.5 11.5-11.5S31.5 29.4 31.5 36" />
+        <g strokeDasharray="2.6 3" opacity="0.8">
+          <circle cx="44" cy="15.5" r="6" />
+          <path d="M32.5 36c0-6.6 5.1-11.5 11.5-11.5S55.5 29.4 55.5 36" />
         </g>
-        <g fill="currentColor">
-          <circle cx="32" cy="12" r="5" />
-          <circle cx="16" cy="34" r="4" />
-          <circle cx="48" cy="34" r="4" />
-          <circle cx="8" cy="52" r="3" />
-          <circle cx="24" cy="52" r="3" />
-          <circle cx="40" cy="52" r="3" />
-          <circle cx="56" cy="52" r="3" />
-        </g>
+        <path d="M9 55.5h46" strokeWidth="2" />
+        <path d="M18 55.5v-4.5M25 55.5v-9M32 55.5v-13M39 55.5v-9M46 55.5v-4.5" strokeWidth="3.4" />
       </svg>
       <div className="lab-name">DTAG Lab</div>
       <div className="lab-sub">Digital Twin Anchored Generation</div>
