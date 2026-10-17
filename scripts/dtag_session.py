@@ -838,7 +838,8 @@ class DTAGSession:
     # -- public question API ---------------------------------------------------
 
     def ask(self, question: str, source: str = "interactive",
-            target_variables: Optional[List[str]] = None) -> Dict[str, Any]:
+            target_variables: Optional[List[str]] = None,
+            target_rationale: Optional[str] = None) -> Dict[str, Any]:
         """Answer one question and evolve the respondent state (``_run_one``).
 
         ``target_variables`` (optional) names the survey item(s) the question was written for
@@ -855,14 +856,42 @@ class DTAGSession:
                 raise ValueError(f"Target variables not in this survey's model/map: {bad or target_variables}")
         with self.lock:
             self.query_count += 1
-            return self._run_one(question, self.query_count, source, target_variables=target_variables)
+            return self._run_one(question, self.query_count, source, target_variables=target_variables,
+                                 target_rationale=target_rationale)
+
+    def map_question(self, question: str, timings: Optional[Dict[str, float]] = None) -> Dict[str, Any]:
+        """Map a human-language question to survey items, exactly as ``ask`` does (no state change).
+
+        Lexical prefilter over the semantic map, then LLM variable selection (up to ``k`` items).
+        Depends only on the question and the map, never on the respondent state, so it can be run
+        ahead of asking (e.g. to validate an optimizer-suggested question).
+        Returns ``{"variables", "rationale", "candidates", "reason"}``; ``reason`` is
+        "no_lexical_candidate", "llm_no_relevant_variable" or "" (mapped).
+        """
+        cfg = self.config
+        var_map, idx_map = self.ctx.var_map, self.ctx.idx_map
+        timings = timings if timings is not None else {}
+        t = time.time()
+        cands = core.lexical_prefilter(var_map, question, top_n=cfg.prefilter, min_score=cfg.min_map_score)
+        timings["prefilters"] = time.time() - t
+        if not cands:
+            return {"variables": [], "rationale": "", "candidates": cands, "reason": "no_lexical_candidate"}
+        t = time.time()
+        var_set, rationale = core.llm_select_variables(
+            client=self._client(),
+            question=question,
+            candidates_block=core.candidates_text(cands),
+            k=cfg.k,
+            model=cfg.openai_model,
+        )
+        timings["llm_select"] = time.time() - t
+        var_set = [v for v in var_set if v in var_map and v in idx_map]
+        return {"variables": var_set, "rationale": rationale, "candidates": cands,
+                "reason": "" if var_set else "llm_no_relevant_variable"}
 
     def _run_one(self, question: str, query_idx: int, source: str,
-                 target_variables: Optional[List[str]] = None) -> Dict[str, Any]:
-        cfg = self.config
-        ctx = self.ctx
-        var_map = ctx.var_map
-        idx_map = ctx.idx_map
+                 target_variables: Optional[List[str]] = None,
+                 target_rationale: Optional[str] = None) -> Dict[str, Any]:
         timings_q: Dict[str, float] = {}
         tq0 = time.time()
         state_before = dict(self.state)
@@ -874,37 +903,21 @@ class DTAGSession:
         if target_variables is not None:
             cands: List[Any] = []
             var_set = list(dict.fromkeys(target_variables))
-            rationale_vars = ("Targeted survey item(s) chosen by the one-step ideology optimizer: "
-                              + ", ".join(var_set) + ".")
+            rationale_vars = target_rationale or ("Targeted survey item(s) chosen by the one-step ideology "
+                                                  "optimizer: " + ", ".join(var_set) + ".")
             return self._answer_with_variables(question, query_idx, source, var_set, rationale_vars,
                                                cands, timings_q, tq0, nm, targeted=True)
 
-        t = time.time()
-        cands = core.lexical_prefilter(var_map, question, top_n=cfg.prefilter, min_score=cfg.min_map_score)
-        timings_q["prefilters"] = time.time() - t
-
-        if not cands:
+        m = self.map_question(question, timings=timings_q)
+        if m["reason"] == "no_lexical_candidate":
             return self._run_semantic_fallback(
                 question, query_idx, source,
                 trigger_reason="no_lexical_candidate",
                 trigger_rationale="No direct lexical candidate passed the minimum content-word relevance threshold.",
                 timings_q=timings_q, tq0=tq0, **nm,
             )
-
-        cand_block = core.candidates_text(cands)
-
-        t = time.time()
-        client_vars = self._client()
-        var_set, rationale_vars = core.llm_select_variables(
-            client=client_vars,
-            question=question,
-            candidates_block=cand_block,
-            k=cfg.k,
-            model=cfg.openai_model,
-        )
-        timings_q["llm_select"] = time.time() - t
-
-        var_set = [v for v in var_set if v in var_map and v in idx_map]
+        cands = m["candidates"]
+        var_set, rationale_vars = m["variables"], m["rationale"]
         if not var_set:
             return self._run_semantic_fallback(
                 question, query_idx, source,

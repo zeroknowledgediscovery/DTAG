@@ -217,8 +217,13 @@ export interface QuestionResult {
 
 /** Prediction made just before a targeted (ideology-push) question, and what happened. */
 export interface PushOutcome {
+  mode?: PushMode;
   direction: "up" | "down" | null;
   variable: string;
+  /** Survey items the question was answered through, and whether they include `variable`. */
+  mapped_variables?: string[];
+  hit?: boolean;
+  predicted_joint_delta?: number | null;
   predicted_expected_delta: number | null;
   predicted_modal_delta: number | null;
   predicted_modal_answer: string | null;
@@ -226,8 +231,16 @@ export interface PushOutcome {
   resp_mode: string;
 }
 
+/** realistic: the question is mapped like any typed question; validated: through its checked mapping. */
+export type PushMode = "realistic" | "validated";
+
 export interface PushSuggestion {
   direction: "up" | "down";
+  mode?: PushMode;
+  /** validated mode: the items the question maps to (dry run) and the target item's own change. */
+  mapped_variables?: string[] | null;
+  item_delta?: number;
+  basis?: string;
   variable: string;
   survey_question: string;
   question: string;
@@ -261,6 +274,18 @@ export interface PushSuggestions {
   down: PushSuggestion | null;
   up_reason?: string;
   down_reason?: string;
+  mode?: PushMode;
+  up_checked?: PushCheck[];
+  down_checked?: PushCheck[];
+}
+
+/** validated mode: one candidate question whose mapping was dry-run. */
+export interface PushCheck {
+  variable: string;
+  question: string;
+  mapped_variables: string[];
+  hit: boolean;
+  predicted_delta?: number;
 }
 
 export interface TrajectoryPoint {
@@ -384,6 +409,7 @@ export interface Suggestion {
 export interface SequenceStatus {
   job_id: string;
   kind?: "sequence" | "ideology_push";
+  mode?: PushMode;
   direction?: "up" | "down";
   stop_reason?: string | null;
   predictions?: Array<{ variable: string; predicted_delta: number; objective: string }>;

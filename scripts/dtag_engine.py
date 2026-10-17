@@ -801,6 +801,63 @@ class EngineSession:
         }
         return out
 
+    def ask_push(self, question: str, variable: str, direction: Optional[str] = None,
+                 mode: str = "realistic") -> Dict[str, Any]:
+        """Ask an optimizer-suggested question (ideology push) in one of two modes.
+
+        * ``realistic`` (default): the question goes through the normal question->item mapping,
+          like any typed question; the items it maps to are updated, whether or not they include
+          the optimizer's ``variable``.
+        * ``validated``: the question is answered through its validated mapping (the dry run of
+          the normal mapping made when the suggestion was ranked, cached per question), which
+          must include ``variable``.
+
+        The result carries ``push``: the prediction made just before asking, the items the
+        question mapped to, whether they include the target item, and the realized change.
+        """
+        from optimizer.session_push import MODES, predict_item, predict_joint
+
+        if mode not in MODES:
+            raise ValueError(f"mode must be one of {MODES}")
+        self.last_used = time.time()
+        s = self.session
+        if variable not in s.ctx.idx_map or variable not in s.ctx.var_map:
+            raise ValueError(f"Target variable not in this survey's model/map: {variable}")
+        mapped: Optional[List[str]] = None
+        if mode == "validated":
+            mapped = self.engine.map_push_question(self, question)
+            if variable not in mapped:
+                raise ValueError(f"The question's mapping ({', '.join(mapped) or 'none'}) does not include {variable}.")
+        with s.lock:
+            pred = predict_item(s, variable) if s.ideology_enabled else {}
+            joint = predict_joint(s, mapped) if (mapped and s.ideology_enabled) else {}
+            if mode == "validated":
+                r = s.ask(question, source="ideology_push", target_variables=mapped,
+                          target_rationale=("Validated mapping of this question (a dry run of the normal "
+                                            "question-to-item mapping, checked to include the optimizer's item "
+                                            f"{variable}): " + ", ".join(mapped) + "."))
+            else:
+                r = s.ask(question, source="ideology_push")
+        out = dict(r)
+        out.pop("record", None)
+        out["geographic_conditioning"] = self.geographic_conditioning
+        out["temporal_conditioning"] = self.temporal_conditioning
+        selected = list(r.get("selected_variables") or [])
+        out["push"] = {
+            "mode": mode,
+            "direction": direction,
+            "variable": variable,
+            "mapped_variables": selected,
+            "hit": variable in selected,
+            "predicted_expected_delta": pred.get("expected_delta"),
+            "predicted_modal_delta": pred.get("delta_modal"),
+            "predicted_modal_answer": pred.get("modal_answer"),
+            "predicted_joint_delta": joint.get("delta"),
+            "realized_delta": (r.get("ideology") or {}).get("delta"),
+            "resp_mode": s.config.resp_mode,
+        }
+        return out
+
     def reset(self) -> None:
         self.last_used = time.time()
         self.session.reset()
@@ -908,6 +965,7 @@ class DTAGEngine:
         self.recommender = Recommender(self)
         self._wording_cache: Dict[Any, str] = {}
         self._wording_lock = threading.Lock()
+        self._mapping_cache: Dict[Any, List[str]] = {}
         self._cap_lock = threading.Lock()
 
     # -- environment --------------------------------------------------------
@@ -1731,8 +1789,29 @@ class DTAGEngine:
         pool += [str(q) for q in (entry.get("questions") or [])]
         return list(dict.fromkeys(q.strip() for q in pool if str(q).strip()))
 
-    def ideology_push(self, es: "EngineSession", include_pole_items: bool = False) -> Dict[str, Any]:
-        """Questions that move this respondent's ideology index up / down (one-step optimizer)."""
+    def map_push_question(self, es: "EngineSession", question: str) -> List[str]:
+        """The normal question->item mapping of ``question`` (dry run, cached per model/map/question).
+
+        The mapping depends only on the question and the survey map, not on the respondent, so
+        validated pushes reuse the mapping that was checked when the suggestion was ranked.
+        """
+        key = (es.spec.model_key, es.spec.map_key, question.strip())
+        with self._wording_lock:
+            hit = self._mapping_cache.get(key)
+        if hit is not None:
+            return list(hit)
+        mapped = list(es.session.map_question(question)["variables"])
+        with self._wording_lock:
+            self._mapping_cache[key] = mapped
+        return list(mapped)
+
+    def ideology_push(self, es: "EngineSession", include_pole_items: bool = False,
+                      mode: str = "realistic") -> Dict[str, Any]:
+        """Questions that move this respondent's ideology index up / down (one-step optimizer).
+
+        ``mode`` is "realistic" (default; the question will be mapped normally when asked) or
+        "validated" (the top items' questions are dry-run through the mapping; only questions
+        that map back to their item are suggested, ranked by the exact joint change)."""
         from optimizer.session_push import suggest
 
         s = es.session
@@ -1749,7 +1828,8 @@ class DTAGEngine:
             return q
 
         es.last_used = time.time()
-        return suggest(s, include_pole_items=include_pole_items, craft=craft)
+        return suggest(s, include_pole_items=include_pole_items, craft=craft, mode=mode,
+                       map_question=lambda q: self.map_push_question(es, q))
 
     def suggestions(self, es: "EngineSession", n: int = 6) -> List[Dict[str, Any]]:
         """Starter questions that map directly onto this session's survey map."""

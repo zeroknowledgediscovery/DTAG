@@ -13,9 +13,17 @@ The session's response mode decides what "moves the index" means for a suggestio
 * resp_mode "draw": the response is sampled from P(a | s, v); suggestions rank by mu_v.
 
 "up" is the item with the largest predicted move (toward the R pole, I increases), "down" the
-smallest (toward L). Each suggestion carries a natural-language question written for exactly that
-item (dtag_core.llm_craft_survey_question); asking it with target_variables=[v] makes the session
-use that item, so the recorded and plotted ideology reflects the suggested move.
+smallest (toward L). Each suggestion carries a natural-language question written for that item
+(dtag_core.llm_craft_survey_question). Two modes decide what happens to that question:
+
+* mode="realistic" (default): the question is asked like any typed question. The normal mapping
+  (lexical prefilter + LLM selection) chooses the survey items S(q) that are updated, which may or
+  may not be the optimizer's item. The prediction shown is for the item alone; the outcome
+  (mapped items, hit/miss, realized change) is recorded honestly.
+* mode="validated": for the top N items per direction the question's mapping is dry-run first
+  (DTAGSession.map_question). Candidates whose mapping misses the item are dropped; the rest are
+  ranked by the exact joint change of all mapped items (predict_joint), and the question is then
+  answered through that validated mapping, so the realized change equals the prediction.
 
 Askable items are opinion/attitude items (optimize_question_sets.askable): administrative codes,
 demographics and factual behaviour items are never suggested. Pole-defining items are excluded
@@ -26,9 +34,12 @@ from __future__ import annotations
 import time
 from typing import Any, Dict, List, Optional
 
-from optimizer.one_step_geometry import has_fast_extensions, native_one_step
+from concurrent.futures import ThreadPoolExecutor
+
+from optimizer.one_step_geometry import has_fast_extensions, native_one_step, strict_native_index
 
 DIRECTIONS = ("up", "down")
+MODES = ("realistic", "validated")
 
 
 class SessionWorld:
@@ -102,12 +113,40 @@ def _suggestion(row: Dict[str, Any], rows: List[Dict[str, Any]], direction: str,
     }
 
 
-def suggest(session: Any, *, include_pole_items: bool = False, craft: Optional[Any] = None) -> Dict[str, Any]:
+def predict_joint(session: Any, variables: List[str]) -> Dict[str, Any]:
+    """Exact change of I if the session answered ``variables`` now with resp_mode "max".
+
+    Mirrors DTAGSession._answer_with_variables: the same native conditional distributions given
+    the current state, the most likely response per item, only valid labels written, then I of the
+    updated state. (Eviction at the state-size limit is not modelled; see ``exact``.)
+    """
+    import dtag_core as core
+
+    with session.lock:
+        model, ctx = session.model, session.ctx
+        state = dict(session.state)
+        world = SessionWorld(session)
+        I0 = strict_native_index(world, state)
+        row = core.build_NULL_with_assignments(model, state, ctx.idx_map)
+        dists = core.qnet_conditional_distributions(model, row, target_vars=list(variables))
+        respmap, _ = core.responses_for_vars_from_distributions(dists, list(variables), mode="max")
+        updates = {v: respmap[v] for v in variables if v in respmap and respmap[v] in ctx.possible.get(v, [])}
+        I1 = strict_native_index(world, {**state, **updates})
+        state_full = len({**state, **updates}) > int(getattr(session.config, "state_keep", 10 ** 9))
+    return {"ideology_before": I0, "delta": I1 - I0, "answers": updates, "exact": not state_full}
+
+
+def suggest(session: Any, *, include_pole_items: bool = False, craft: Optional[Any] = None,
+            mode: str = "realistic", map_question: Optional[Any] = None, n_validate: int = 5) -> Dict[str, Any]:
     """Up/down suggestions for the session's current state.
 
     ``craft(variable, survey_question, responses) -> str`` writes the question shown to the user
     (the engine passes an LLM-backed, cached function); without it the survey text is used.
+    ``map_question(question) -> [variables]`` (validated mode) returns the normal question->item
+    mapping; the engine passes a cached DTAGSession.map_question.
     """
+    if mode not in MODES:
+        raise ValueError(f"mode must be one of {MODES}")
     t0 = time.time()
     if not getattr(session, "ideology_enabled", False):
         reason = (getattr(session.polar, "disable_reason", None)
@@ -132,20 +171,61 @@ def suggest(session: Any, *, include_pole_items: bool = False, craft: Optional[A
     key = "delta_modal" if objective == "modal" else "expected_delta"
     ranked = sorted(res.summary, key=lambda r: (r[key], r["variable"]))
     out: Dict[str, Any] = {
-        "enabled": True, "reason": None, "objective": objective, "resp_mode": resp_mode,
+        "enabled": True, "reason": None, "objective": objective, "resp_mode": resp_mode, "mode": mode,
         "current_ideology": current, "n_candidates": len(res.summary),
         "include_pole_items": include_pole_items, "fast_evaluator": has_fast_extensions(world),
     }
-    picks = {"up": ranked[-1], "down": ranked[0]}
-    for direction, row in picks.items():
-        value = row[key]
-        if (direction == "up" and value <= 0) or (direction == "down" and value >= 0):
+
+    def word(row: Dict[str, Any]) -> str:
+        answers = [r["answer"] for r in by_var[row["variable"]]]
+        return craft(row["variable"], row["question_text"], answers) if craft else row["question_text"]
+
+    for direction in DIRECTIONS:
+        sign = 1 if direction == "up" else -1
+        cands = [r for r in (ranked[::-1] if direction == "up" else ranked) if sign * r[key] > 0]
+        if not cands:
             out[direction] = None
             out[f"{direction}_reason"] = f"No askable item is predicted to move the index {direction}."
             continue
+        if mode == "realistic":
+            row = cands[0]
+            sug = _suggestion(row, by_var[row["variable"]], direction, objective, current, state_full)
+            sug.update({"question": word(row), "mode": mode, "mapped_variables": None})
+            out[direction] = sug
+            continue
+        # validated: word + dry-run the normal mapping for the top candidates (LLM calls in parallel)
+        top = cands[:max(1, int(n_validate))]
+        with ThreadPoolExecutor(max_workers=min(8, len(top))) as ex:
+            questions = list(ex.map(word, top))
+            mappings = list(ex.map(lambda q: list(map_question(q)) if map_question else [], questions))
+        checked, best = [], None
+        for row, q, mapped in zip(top, questions, mappings):
+            hit = row["variable"] in mapped
+            rec = {"variable": row["variable"], "question": q, "mapped_variables": mapped, "hit": hit}
+            if hit:
+                if objective == "modal":
+                    joint = predict_joint(session, mapped)
+                    rec.update({"predicted_delta": joint["delta"], "answers": joint["answers"],
+                                "exact": joint["exact"], "basis": "exact joint change of all mapped items"})
+                else:
+                    mu = {r["variable"]: r["expected_delta"] for r in res.summary}
+                    rec.update({"predicted_delta": sum(mu.get(v, 0.0) for v in mapped), "answers": None,
+                                "exact": False, "basis": "sum of the mapped items' expected changes (approx.)"})
+                if sign * rec["predicted_delta"] > 0 and (best is None or sign * rec["predicted_delta"] > sign * best[1]["predicted_delta"]):
+                    best = (row, rec)
+            checked.append(rec)
+        out[f"{direction}_checked"] = checked
+        if best is None:
+            out[direction] = None
+            out[f"{direction}_reason"] = (f"None of the top {len(top)} items' questions maps back to its item while "
+                                          f"moving the index {direction}.")
+            continue
+        row, rec = best
         sug = _suggestion(row, by_var[row["variable"]], direction, objective, current, state_full)
-        sug["question"] = (craft(row["variable"], row["question_text"], [a["answer"] for a in sug["responses"]])
-                           if craft else row["question_text"])
+        sug.update({"question": rec["question"], "mode": mode, "mapped_variables": rec["mapped_variables"],
+                    "item_delta": sug["predicted_delta"], "predicted_delta": rec["predicted_delta"],
+                    "predicted_ideology": current + rec["predicted_delta"], "joint_answers": rec["answers"],
+                    "exact": rec["exact"], "basis": rec["basis"]})
         out[direction] = sug
     out["seconds"] = round(time.time() - t0, 3)
     return out

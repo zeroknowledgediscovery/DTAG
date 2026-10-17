@@ -9,7 +9,7 @@ import os
 import threading
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from fastapi import FastAPI, HTTPException, Query, Request
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, Response
@@ -333,27 +333,33 @@ def create_app(
         return engine.suggestions(_session(session_id), n=n)
 
     @app.get("/api/sessions/{session_id}/ideology-push", tags=["ideology push"])
-    def ideology_push(session_id: str, include_pole_items: bool = False) -> Dict[str, Any]:
+    def ideology_push(session_id: str, include_pole_items: bool = False,
+                      mode: Literal["realistic", "validated"] = "realistic") -> Dict[str, Any]:
         """Two suggested next questions: one predicted to move the ideology index up, one down.
 
         Every askable, unanswered survey item is scored exactly at the respondent's current
         state (one-step optimizer). With resp_mode "max" the predicted move is the exact change
         from the modal response; with "draw" it is the expected change. Each suggestion includes
         a neutral question written for that item.
+
+        ``mode="realistic"`` (default): the question will be mapped to survey items normally when
+        asked, so it may update other items than the suggested one. ``mode="validated"``: the top
+        items' questions are dry-run through the mapping first; only questions that map back to
+        their item are suggested, ranked by the exact change of all items they map to.
         """
         es = _session(session_id)
         if sequences.active(session_id):
             raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")
-        return engine.ideology_push(es, include_pole_items=include_pole_items)
+        return engine.ideology_push(es, include_pole_items=include_pole_items, mode=mode)
 
     @app.post("/api/sessions/{session_id}/ideology-push/ask", response_model=QuestionResult, tags=["ideology push"])
     def ideology_push_ask(session_id: str, body: PushAskIn) -> Dict[str, Any]:
-        """Ask a suggested question; it is answered through exactly its survey item."""
+        """Ask a suggested question (realistic: normal mapping; validated: its validated mapping)."""
         es = _session(session_id)
         if sequences.active(session_id):
             raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")
         try:
-            return es.ask_targeted(body.question, body.variable, direction=body.direction)
+            return es.ask_push(body.question, body.variable, direction=body.direction, mode=body.mode)
         except ValueError as e:
             raise HTTPException(400, str(e))
 
@@ -370,7 +376,7 @@ def create_app(
         try:
             job = sequences.start_job(AutoPushJob(es, body.direction, body.steps,
                                                   include_pole_items=body.include_pole_items,
-                                                  reset_first=body.reset_first))
+                                                  reset_first=body.reset_first, mode=body.mode))
         except RuntimeError as e:
             raise HTTPException(409, str(e))
         return job.snapshot()

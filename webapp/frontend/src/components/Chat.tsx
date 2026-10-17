@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { fmtNum, fmtSigned } from "../api";
-import type { Anchor, QuestionResult, Suggestion } from "../types";
+import type { Anchor, PushOutcome, QuestionResult, Suggestion } from "../types";
 
 export function mappingBadge(label: string): string {
   if (label === "DIRECT") return "b-direct";
@@ -262,11 +262,10 @@ export function ChatLog({
                 {r.push && (
                   <span
                     className="badge b-push"
-                    title={`Ideology push: asked through survey item ${r.push.variable}; predicted ${fmtSigned(
-                      r.push.predicted_modal_delta
-                    )} (modal answer), realized ${fmtSigned(r.push.realized_delta)}`}
+                    title={pushTitle(r.push)}
                   >
                     PUSH {r.push.direction === "up" ? "↑" : r.push.direction === "down" ? "↓" : ""}
+                    {r.push.hit === false ? " · missed item" : ""}
                   </span>
                 )}
                 <span className={`badge ${r.state_changed ? "b-neutral" : "b-muted"}`}>
@@ -308,6 +307,24 @@ export function ChatLog({
       <div ref={endRef} />
     </div>
   );
+}
+
+/** Tooltip of the PUSH badge: target item, how the question was mapped, predicted vs realized change. */
+function pushTitle(p: PushOutcome): string {
+  const mapped = p.mapped_variables?.length ? p.mapped_variables.join(", ") : "none";
+  const lines = [
+    `Ideology push (${p.mode ?? "targeted"}) for survey item ${p.variable}.`,
+    p.mode === "validated"
+      ? `Answered through its validated mapping: ${mapped}.`
+      : p.mode === "realistic"
+        ? `Mapped like a typed question to: ${mapped} — ${p.hit ? "includes" : "does not include"} the target item.`
+        : `Answered through exactly that item.`,
+    `Predicted for the item alone: ${fmtSigned(p.predicted_modal_delta)} (modal answer).`,
+  ];
+  if (p.predicted_joint_delta !== null && p.predicted_joint_delta !== undefined)
+    lines.push(`Predicted for all mapped items: ${fmtSigned(p.predicted_joint_delta)}.`);
+  lines.push(`Realized: ${fmtSigned(p.realized_delta)}.`);
+  return lines.join("\n");
 }
 
 /** A one-click action shown above the input (e.g. the next ideology-push questions). */

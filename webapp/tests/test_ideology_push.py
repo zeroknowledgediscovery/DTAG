@@ -39,17 +39,56 @@ def test_suggestions_and_targeted_ask(fake_client):
         if not sug[d]:
             assert sug[f"{d}_reason"]
 
+    assert sug["mode"] == "realistic" and all(sug[d]["mapped_variables"] is None for d in picks)
+
+    # Realistic (default): the question goes through the normal mapping like a typed question.
     s = sug[picks[0]]
     r = fake_client.post(f"/api/sessions/{sid}/ideology-push/ask",
                          json={"variable": s["variable"], "question": s["question"], "direction": picks[0]})
     assert r.status_code == 200, r.text
     res = r.json()
-    assert res["selected_variables"] == [s["variable"]] and res["targeted"] is True
-    assert res["mapping"]["type"] == "direct" and res["question_source"] == "ideology_push"
-    assert res["push"]["realized_delta"] == pytest.approx(res["push"]["predicted_modal_delta"], abs=1e-12)
-    assert res["push"]["realized_delta"] == pytest.approx(s["predicted_delta"], abs=1e-12)
+    assert res["targeted"] is False and res["question_source"] == "ideology_push"
+    push = res["push"]
+    assert push["mode"] == "realistic" and push["mapped_variables"] == res["selected_variables"]
+    assert push["hit"] == (s["variable"] in res["selected_variables"])
+    assert push["realized_delta"] == pytest.approx(res["ideology"]["delta"], abs=1e-12)
     traj = fake_client.get(f"/api/sessions/{sid}").json()["ideology"]["trajectory"]
-    assert len(traj) == 2 and traj[-1]["selected_variables"] == [s["variable"]]
+    assert len(traj) == 2
+
+
+def test_validated_mode_maps_back_and_is_exact(fake_client):
+    sid = _session(fake_client, resp_mode="max")
+    sug = fake_client.get(f"/api/sessions/{sid}/ideology-push?include_pole_items=true&mode=validated").json()
+    assert sug["mode"] == "validated"
+    picks = [d for d in ("up", "down") if sug[d]]
+    for d in ("up", "down"):
+        assert sug[f"{d}_checked"] is not None or sug[f"{d}_reason"]
+        if not sug[d]:
+            assert sug[f"{d}_reason"]
+    assert picks, sug
+    d = picks[0]
+    s = sug[d]
+    assert s["variable"] in s["mapped_variables"] and s["exact"] in (True, False)
+    assert (s["predicted_delta"] > 0) if d == "up" else (s["predicted_delta"] < 0)
+    assert any(c["hit"] and c["variable"] == s["variable"] for c in sug[f"{d}_checked"])
+    r = fake_client.post(f"/api/sessions/{sid}/ideology-push/ask",
+                         json={"variable": s["variable"], "question": s["question"], "direction": d,
+                               "mode": "validated"})
+    assert r.status_code == 200, r.text
+    res = r.json()
+    assert res["targeted"] is True and res["selected_variables"] == s["mapped_variables"]
+    assert res["push"]["hit"] is True and res["push"]["mode"] == "validated"
+    assert res["push"]["realized_delta"] == pytest.approx(s["predicted_delta"], abs=1e-12)
+    assert res["push"]["predicted_joint_delta"] == pytest.approx(s["predicted_delta"], abs=1e-12)
+
+
+def test_validated_ask_rejects_question_that_misses_item(fake_client):
+    sid = _session(fake_client, resp_mode="max")
+    sug = fake_client.get(f"/api/sessions/{sid}/ideology-push?include_pole_items=true").json()
+    s = sug["up"] or sug["down"]
+    r = fake_client.post(f"/api/sessions/{sid}/ideology-push/ask",
+                         json={"variable": s["variable"], "question": "zzqx unrelated wording", "mode": "validated"})
+    assert r.status_code == 400
 
 
 def test_targeted_ask_rejects_unknown_item(fake_client):
@@ -78,13 +117,26 @@ def test_auto_push_runs_steps_and_records_trajectory(fake_client):
     st = _wait(fake_client, sid)
     assert st["status"] == "done", st
     assert 1 <= st["completed"] <= 3 and len(st["predictions"]) == st["completed"]
+    assert st["mode"] == "realistic"
     for p, res in zip(st["predictions"], st["results"]):
-        assert res["selected_variables"] == [p["variable"]] and res["push"]["direction"] == direction
-        assert res["ideology"]["delta"] == pytest.approx(p["predicted_delta"], abs=1e-12)
+        assert res["push"]["direction"] == direction and res["push"]["mode"] == "realistic"
+        assert res["push"]["mapped_variables"] == res["selected_variables"]
     if st["completed"] < 3:
         assert st["stop_reason"]
     info = fake_client.get(f"/api/sessions/{sid}").json()
     assert info["question_count"] == st["completed"] and len(info["ideology"]["trajectory"]) == st["completed"] + 1
+
+
+def test_auto_push_validated_is_exact(fake_client):
+    sid = _session(fake_client, resp_mode="max")
+    r = fake_client.post(f"/api/sessions/{sid}/ideology-push/auto",
+                         json={"direction": "up", "steps": 2, "include_pole_items": True, "mode": "validated"})
+    assert r.status_code == 200, r.text
+    st = _wait(fake_client, sid)
+    assert st["status"] == "done" and st["mode"] == "validated", st
+    for p, res in zip(st["predictions"], st["results"]):
+        assert res["selected_variables"] == p["mapped_variables"] and p["variable"] in p["mapped_variables"]
+        assert res["ideology"]["delta"] == pytest.approx(p["predicted_delta"], abs=1e-12)
 
 
 def test_no_ideology_survey_reports_disabled(fake_client):
@@ -115,3 +167,24 @@ def test_native_push_prediction_is_exact(native_engine):
         assert r["selected_variables"] == [s["variable"]]
         assert r["ideology"]["after"] - before == pytest.approx(r["push"]["predicted_modal_delta"], abs=1e-12)
         sug = native_engine.ideology_push(es)
+
+
+@pytest.mark.native
+def test_native_validated_push_is_exact(native_engine):
+    from conftest import NATIVE_KEY
+    if not NATIVE_KEY.startswith("gss/"):
+        pytest.skip("ideology poles are GSS-specific")
+    year = NATIVE_KEY.rsplit("_", 1)[-1]
+    spec = native_engine.build_spec(profile=f"gss{year}_cm", overrides={"resp_mode": "max"})
+    es = native_engine.create_session(spec=spec)
+    sug = native_engine.ideology_push(es, mode="validated")
+    for d in ("up", "down"):
+        s = sug[d]
+        if s is None:
+            assert sug[f"{d}_reason"]
+            continue
+        assert s["variable"] in s["mapped_variables"]
+        r = es.ask_push(s["question"], s["variable"], direction=d, mode="validated")
+        assert r["selected_variables"] == s["mapped_variables"] and r["push"]["hit"]
+        assert r["push"]["realized_delta"] == pytest.approx(s["predicted_delta"], abs=1e-12)
+        sug = native_engine.ideology_push(es, mode="validated")
