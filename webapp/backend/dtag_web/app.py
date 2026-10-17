@@ -354,16 +354,19 @@ def create_app(
         return engine.ideology_push(es, include_pole_items=include_pole_items, mode=mode)
 
     @app.get("/api/sessions/{session_id}/landscape", tags=["sessions"])
-    def landscape(session_id: str) -> Dict[str, Any]:
+    def landscape(session_id: str, wait: bool = False) -> Dict[str, Any]:
         """Decision landscape: the model's predicted answer to every askable item at the current state.
 
         Per item: topic, settledness (1 - normalized entropy), modal answer, lean (change of the
         ideology index if answered modally; surveys with poles only) and shift (Jensen-Shannon
         divergence, bits) since this respondent's previous landscape. Plus anchored (answered)
-        items, per-topic totals and the shift history. Respondents without an ideology index get
-        ``{"enabled": false, "reason": ...}`` (the view is not shown for them).
+        items, per-topic totals and the shift history. Lean needs ideology poles (GSS); other surveys
+        get the landscape without lean.
+
+        Computed in the background: until the current state's landscape is ready the previous one is
+        returned with ``pending: true``; poll again (or pass ``wait=true`` to block).
         """
-        return _session(session_id).landscape()
+        return _session(session_id).landscape(wait=wait)
 
     @app.post("/api/sessions/{session_id}/ideology-push/ask", response_model=QuestionResult, tags=["ideology push"])
     def ideology_push_ask(session_id: str, body: PushAskIn) -> Dict[str, Any]:

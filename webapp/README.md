@@ -313,9 +313,12 @@ levels. Predictions moved by the last answer get an expanding ring, rippling out
 which shows how local the effect of one answer is.
 
 The landscape shares the one-step optimizer pass with the push suggestions (one native pass of
-about a second per state on GSS). It is shown only for respondents with an ideology index (GSS);
-for other surveys (WVS, Afrobarometer, Eurobarometer) it is hidden and the endpoint returns
-`{"enabled": false}`. These are model predictions for the twin, not the person's
+about a second per state on GSS). Surveys without ideology poles (WVS, Afrobarometer,
+Eurobarometer) get the landscape without lean colour. Their models are much denser (each item's
+tree splits on ~100+ others vs ~11 in GSS), so predicting every item costs 10–40 s; the landscape
+is therefore computed in the background (the previous one stays visible with a spinner, and
+questions are never blocked), and after each answer only items whose trees split on a changed
+variable are recomputed (exactly equal to a full recomputation). These are model predictions for the twin, not the person's
 reasoning.
 
 ### Two respondents side by side

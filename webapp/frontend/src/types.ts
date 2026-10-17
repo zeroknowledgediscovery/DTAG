@@ -250,6 +250,8 @@ export interface LandscapeItem {
 
 export interface Landscape {
   enabled: boolean;
+  pending?: boolean; // the current state's landscape is still being computed (this is the previous one, if any)
+  reason?: string;
   step: number;
   since_step: number | null;
   ideology: number | null;
