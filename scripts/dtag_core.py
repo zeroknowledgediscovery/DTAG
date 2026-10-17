@@ -24,7 +24,6 @@ Env:
 
 from __future__ import annotations
 
-import argparse
 import hashlib
 import json
 import os
@@ -40,7 +39,6 @@ from collections import OrderedDict
 import numpy as np
 import pandas as pd
 from openai import OpenAI
-from model_backend import load_model
 
 
 # -----------------------------

@@ -64,7 +64,7 @@ import multiprocessing as mp
 import re
 import time
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional
+from typing import Dict, Iterable, List
 from urllib.parse import urlparse
 
 import pdfplumber

@@ -20,14 +20,12 @@ import math
 import os
 import random
 import secrets
-import sys
 from contextlib import contextmanager
 from pathlib import Path
 
 import numpy as np
 import yaml
 
-from . import population
 from .__main__ import Ctx, DEFAULTS, merge
 from .dtag_bridge import REPO, sha256
 from .four_way_audit import analyze

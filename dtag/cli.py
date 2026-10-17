@@ -63,7 +63,7 @@ def web_main() -> None:
 
 
 def doctor_main() -> None:
-    root = runtime_root()
+    runtime_root()  # fail early if the installed runtime tree is missing
     scripts = [
         ["check_dtag_readiness.py"],
         ["audit_clean_repo.py", "--allow-local-legacy"],
