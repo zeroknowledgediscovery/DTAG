@@ -2,6 +2,12 @@
 
 DTAG is a survey-grounded generative system built on native Large Science Models (LSMs). It conditions a learned survey-state model on a persona, time, and place where supported; maps natural-language questions to survey variables; predicts conditional response distributions; and uses those distributions to anchor generated answers.
 
+> **Full platform manual: [docs/MANUAL.md](docs/MANUAL.md)**. It covers what DTAG is and is for, how to run
+> and use the web app, every workbench feature, where the models live and how they are downloaded,
+> the other information DTAG uses, and full survey coverage.
+>
+> Developed by ZeD Lab, University of Kentucky · contact: ishanu_ch@uky.edu
+
 This branch is the clean native-LSM implementation. It contains no Quasinet runtime, no legacy model files, and no RC1 compatibility surface.
 
 Current validated native inventory:
@@ -29,6 +35,17 @@ Describe a respondent (who / where / when), let DTAG pick and load the matching
 native survey model, start the respondent and ask questions.
 Step-by-step guide: **[webapp/QUICKSTART.md](webapp/QUICKSTART.md)** ·
 full reference: [webapp/README.md](webapp/README.md).
+
+What the workbench does (details in [docs/MANUAL.md §10](docs/MANUAL.md#10-the-web-workbench-feature-by-feature)):
+
+- **Survey-anchored answers** with a *Model evidence* panel: variables, wording, native distribution, anchor, state updates.
+- **Automatic model choice** from who/where/when across GSS, WVS7, Afrobarometer and Eurobarometer, downloaded on demand.
+- **Ideology index and trajectory** (GSS), plus **next-question suggestions** for every survey, with
+  realistic / validated / push modes and auto-push.
+- **Decision landscape**: a live doughnut or terrain map of every predicted answer and how each answer reshapes it.
+- **Question sequences**, **two respondents side by side**, and **experiments** (record a recipe, rerun ×N,
+  bootstrap statistics, per-step data saved to `experiments/`).
+- **Exports**: full session log ZIP / JSON / CSV, and figures as SVG / PNG / PDF; resizable columns; light/dark theme.
 
 ## Quick start (models)
 
@@ -297,6 +314,8 @@ wvs7_india_2017  afrobarometer_r5_nigeria  afrobarometer_r5_ghana
 
 | Module | Role |
 |---|---|
+| `optimizer/session_push.py`, `optimizer/landscape.py`, `optimizer/topics.py` | next-question / push suggestions, decision landscape, topic grouping |
+| `webapp/backend/dtag_web/experiments.py` | recorded recipes, rerun ×N, experiment folders and statistics |
 | `scripts/dtag_core.py` | core library: maps, prefilters, LLM steps, model rows/distributions, geography, ideology |
 | `scripts/dtag_session.py` | one respondent: persona, anchors, semantic fallback, state, ideology |
 | `scripts/dtag_engine.py` | model registry, catalog, profiles, Eurobarometer routing, sessions (web + API) |
@@ -489,11 +508,11 @@ answer_only
 update_state
 ```
 
-Configured default: `answer_only`.
+Configured default: `update_state` (with response mode `draw`).
 
 - `off`: no semantic fallback when direct mapping fails.
 - `answer_only`: fallback assists response grounding but does not change persistent state.
-- `update_state`: inferred assignments may update persistent state; use deliberately.
+- `update_state`: accepted bridge anchors update persistent state (each answer records which case applied).
 
 ## Stateful sequences
 
@@ -580,23 +599,13 @@ DTAG generates a model-conditioned digital twin of survey-response behavior. It 
 
 ## Model distribution
 
-The 6.6 GB native corpus should remain outside Git.
-
-Recommended split:
-
-```text
-Git:
-  source
-  maps
-  configs
-  model manifest/checksums
-  tests/demos
-
-private object store:
-  native LSM model artifacts
-```
-
-The intended distribution path is a private, versioned GCS model store. Trusted machines can use IAM/Application Default Credentials. A later download broker can issue short-lived signed URLs for users who should not receive bucket-level access.
+The ≈6.6 GB native corpus stays outside Git. Release `v0.2.1` is published as one SHA256-checksummed
+`.tar.zst` archive per model (≈0.94 GB in total) in the public bucket `git-zeroknowledgediscovery-dtag`.
+It is read anonymously over HTTPS through
+`https://storage.googleapis.com/git-zeroknowledgediscovery-dtag/models/v0.2.1/manifest.json`.
+`dtag-models` and the web app download, verify, extract and validate models on demand into the model
+root (`DTAG_MODEL_ROOT`, an already-populated `<repo>/models/lsm`, or `~/.cache/dtag/models`). See
+[docs/MANUAL.md §6](docs/MANUAL.md#6-native-models-where-they-are-and-how-they-are-pulled-in).
 
 Never commit long-lived cloud credentials or API keys.
 
@@ -614,7 +623,7 @@ Validated native surface:
 full model-map overlap
 ```
 
-The main remaining engineering work is model packaging/distribution and continued semantic improvement of fallback documentation for a subset of Eurobarometer waves.
+The main remaining engineering work is continued semantic improvement of fallback documentation for a subset of Eurobarometer waves, and fieldwork dates for the 15 newest Eurobarometer waves (selectable by ZA number only).
 
 ## Name
 

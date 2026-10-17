@@ -23,7 +23,7 @@ pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
 
 (Experimental features are developed on the `dev` branch: install with `@dev` to try them.)
 
-This installs the `dtag-web` command (plus `dtag`, `dtag-models`, `dtag-doctor`).
+This installs the `dtag-web` command (plus `dtag-models` and `dtag-doctor`).
 
 **Updating later:** stop the server, then
 
