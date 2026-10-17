@@ -315,3 +315,12 @@ button.btn.small { padding: 2px 8px; font-size: 12px; }
 /* respondent summary (setup collapsed) */
 .resp-summary-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 4px; }
 .resp-persona { font-size: 13px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 4px; }
+
+/* chart help tooltip */
+.info-tip { cursor: help; color: var(--muted); font-size: 11px; margin-left: 2px; }
+.info-tip:hover, .info-tip:focus { color: var(--accent); outline: none; }
+
+/* subtle lab mark in the collapsed left column */
+.lab-mark { margin: 56px auto 0; text-align: center; color: var(--muted); opacity: 0.32; user-select: none; }
+.lab-mark .lab-name { font-weight: 700; letter-spacing: 0.18em; font-size: 13px; margin-top: 6px; }
+.lab-mark .lab-sub { font-size: 10px; letter-spacing: 0.04em; margin-top: 2px; }

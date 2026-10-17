@@ -124,17 +124,24 @@ export function IdeologyChart({ series }: { series: IdeologySeries[] }) {
           )}
         </div>
       )}
-      <div className="note">Filled markers: state-updating steps; hollow: state unchanged (value carried forward).</div>
     </div>
   );
 }
 
-const CONVENTION_NOTE = (polarSet: string | null) => (
-  <>
-    I(s) = (d(s<sub>L</sub>, s) − d(s<sub>R</sub>, s)) / d(s<sub>L</sub>, s<sub>R</sub>) with native qdistance; negative is nearer
-    the L pole, positive nearer the R pole of the registered polar-vector set ({polarSet}).
-  </>
-);
+/** How to read the ideology chart (shown as a tooltip). */
+const CHART_HELP = (polarSet: string | null) =>
+  "I(s) = (d(sL, s) − d(sR, s)) / d(sL, sR), native LSM qdistance. Negative is nearer the L pole, positive nearer " +
+  `the R pole of the registered polar-vector set (${polarSet ?? "—"}).\n` +
+  "Filled markers: questions that updated the survey state. Hollow: state unchanged (value carried forward). " +
+  "Hover a marker for its question and answers.";
+
+function ChartInfo({ polarSet }: { polarSet: string | null }) {
+  return (
+    <span className="info-tip" title={CHART_HELP(polarSet)} aria-label={CHART_HELP(polarSet)} tabIndex={0}>
+      ⓘ
+    </span>
+  );
+}
 
 /** Both respondents' ideology on one chart, in contrasting colors. */
 export function IdeologyCompare({ items }: { items: Array<{ label: string; color: string; marker: "circle" | "square"; dashed?: boolean; session: SessionInfo | null }> }) {
@@ -159,7 +166,9 @@ export function IdeologyCompare({ items }: { items: Array<{ label: string; color
             <th />
             <th>current</th>
             <th>initial</th>
-            <th>change</th>
+            <th>
+              change <ChartInfo polarSet={on[0].session!.ideology.polar_set} />
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -197,19 +206,19 @@ export function IdeologyCompare({ items }: { items: Array<{ label: string; color
           measured against its own wave's poles.
         </div>
       )}
-      <div className="note">{CONVENTION_NOTE(on[0].session!.ideology.polar_set)}</div>
     </div>
   );
 }
 
 function Ideology({ ide, color }: { ide: IdeologySummary; color?: string }) {
   if (!ide.enabled) {
+    const extra =
+      ide.disable_reason && ide.disable_reason !== "Ideology trajectory is not available for this survey/profile."
+        ? ide.disable_reason
+        : "";
     return (
-      <div className="note">
-        Ideology trajectory is not available for this survey/profile.
-        {ide.disable_reason && ide.disable_reason !== "Ideology trajectory is not available for this survey/profile." && (
-          <div className="mono">{ide.disable_reason}</div>
-        )}
+      <div className="note" title={extra || undefined}>
+        No ideology index for this survey (available for GSS models).
       </div>
     );
   }
@@ -225,14 +234,13 @@ function Ideology({ ide, color }: { ide: IdeologySummary; color?: string }) {
           <div className="mono">{fmtNum(ide.initial)}</div>
         </div>
         <div>
-          <div className="note">change</div>
+          <div className="note">
+            change <ChartInfo polarSet={ide.polar_set} />
+          </div>
           <div className="mono">{fmtSigned(ide.change_from_initial)}</div>
         </div>
       </div>
       <IdeologyChart series={[{ name: "Ideology", color: color ?? "var(--chart-line)", points: ide.trajectory }]} />
-      <div className="note" title={ide.convention}>
-        {CONVENTION_NOTE(ide.polar_set)}
-      </div>
     </div>
   );
 }
