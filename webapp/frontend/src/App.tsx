@@ -64,7 +64,7 @@ function RespondentSummary({ r, onEdit }: { r: Respondent; onEdit: () => void })
   const s = r.session!;
   const ide = s.ideology;
   // The session's persona text carries appended context lines (country/year); show the description only.
-  const persona = s.persona_text.split(/\n(?:Country context|Continent context|Survey year|Survey date):/)[0].trim();
+  const persona = s.persona_text.split(/\n(?:Region context|Country context|Survey year):/)[0].trim();
   return (
     <div className="box resp-summary">
       <div className="resp-summary-h">
@@ -106,6 +106,49 @@ function pushPanel(r: Respondent) {
         onAuto={r.runAutoPush}
       />
     </Section>
+  );
+}
+
+/** Progress / summary card of the respondent's latest question sequence or automatic push. */
+function seqCard(r: Respondent, sl: (typeof SLOTS)[number], labelled: boolean) {
+  if (!r.seq || !r.session || r.seq.session_id !== r.session.session_id) return null;
+  return (
+    <div key={`seq-${sl.id}`}>
+      {labelled && (
+        <div className="note">
+          <span className="swatch" style={{ background: sl.color }} /> {sl.label}
+        </div>
+      )}
+      <SequenceCard
+        seq={r.seq}
+        onCancel={r.cancelSequence}
+        onJump={(i) => document.getElementById(`${sl.prefix}q-${i}`)?.scrollIntoView({ behavior: "smooth" })}
+      />
+    </div>
+  );
+}
+
+/** Subtle mark shown in the left column once the setup form has collapsed. */
+function LabMark() {
+  return (
+    <div className="lab-mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="44" height="44">
+        <g fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+          <path d="M32 12 L16 34 M32 12 L48 34 M16 34 L24 52 M16 34 L8 52 M48 34 L40 52 M48 34 L56 52" />
+        </g>
+        <g fill="currentColor">
+          <circle cx="32" cy="12" r="5" />
+          <circle cx="16" cy="34" r="4" />
+          <circle cx="48" cy="34" r="4" />
+          <circle cx="8" cy="52" r="3" />
+          <circle cx="24" cy="52" r="3" />
+          <circle cx="40" cy="52" r="3" />
+          <circle cx="56" cy="52" r="3" />
+        </g>
+      </svg>
+      <div className="lab-name">DTAG Lab</div>
+      <div className="lab-sub">Digital Twin Anchored Generation</div>
+    </div>
   );
 }
 
@@ -331,7 +374,10 @@ export default function App() {
           {pair.map(([r, sl]) => (
             <div key={sl.id} className="setup" hidden={editing !== r}>
               {r.session && !editOpen[sl.id] && !r.phase ? (
-                <RespondentSummary r={r} onEdit={() => setEditOpen((e) => ({ ...e, [sl.id]: true }))} />
+                <>
+                  <RespondentSummary r={r} onEdit={() => setEditOpen((e) => ({ ...e, [sl.id]: true }))} />
+                  <LabMark />
+                </>
               ) : (
                 <>
                   {r.session && (
@@ -419,20 +465,14 @@ export default function App() {
         </div>
 
         <div className="col right">
-          {active.map(([r, sl]) =>
-            r.seq && r.session && r.seq.session_id === r.session.session_id ? (
-              <div key={sl.id}>
-                {count === 2 && <div className="note"><span className="swatch" style={{ background: sl.color }} /> {sl.label}</div>}
-                <SequenceCard
-                  seq={r.seq}
-                  onCancel={r.cancelSequence}
-                  onJump={(i) => document.getElementById(`${sl.prefix}q-${i}`)?.scrollIntoView({ behavior: "smooth" })}
-                />
-              </div>
-            ) : null
-          )}
           {count === 2 ? (
             <>
+              <Section title="Ideology · A vs B">
+                <IdeologyCompare
+                  items={pair.map(([r, sl]) => ({ label: sl.label, color: sl.color, marker: sl.marker, dashed: sl.dashed, session: r.session }))}
+                />
+              </Section>
+              {pair.map(([r, sl]) => seqCard(r, sl, true))}
               {A.session && B.session && (
                 <div className="actions" style={{ marginBottom: 10 }}>
                   <a
@@ -445,11 +485,6 @@ export default function App() {
                   </a>
                 </div>
               )}
-              <Section title="Ideology · A vs B">
-                <IdeologyCompare
-                  items={pair.map(([r, sl]) => ({ label: sl.label, color: sl.color, marker: sl.marker, dashed: sl.dashed, session: r.session }))}
-                />
-              </Section>
               <div className="tabs" role="tablist">
                 {SLOTS.map((sl) => (
                   <button key={sl.id} role="tab" aria-selected={tab === sl.id} className={tab === sl.id ? "on" : ""} onClick={() => setTab(sl.id as "A" | "B")}>
@@ -469,6 +504,7 @@ export default function App() {
           ) : (
             <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix}>
               {pushPanel(A)}
+              {seqCard(A, SLOTS[0], false)}
             </StatePanel>
           )}
         </div>
