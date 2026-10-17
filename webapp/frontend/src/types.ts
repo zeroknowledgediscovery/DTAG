@@ -498,3 +498,47 @@ export interface SequenceStatus {
     top_movers: Array<{ query_idx: number; question: string; delta: number; mapping: string; anchors: Record<string, string> }>;
   };
 }
+
+/** Experiment: the session's recorded actions (intent) and its rerun jobs. */
+export interface ExperimentRecipe {
+  name: string;
+  actions: Array<Record<string, unknown>>;
+  descriptions: string[];
+  original: { ideology_enabled: boolean; trajectory: Array<{ step: number; ideology: number }> };
+}
+
+export interface ExperimentCheckpoint {
+  action: number;
+  label: string;
+  n: number;
+  mean: number | null;
+  sd: number | null;
+  ci_lo: number | null;
+  ci_hi: number | null;
+  min: number | null;
+  max: number | null;
+}
+
+export interface ExperimentStats {
+  runs: number;
+  ideology_enabled: boolean;
+  checkpoints: ExperimentCheckpoint[];
+  per_run: Array<{ run: number; seed: number; ideology: Array<number | null>; questions: number; seconds: number }>;
+  net_change: { n: number; mean: number | null; sd: number | null; ci_lo: number | null; ci_hi: number | null };
+  push: { n: number; hit_rate: number | null; mean_realized: number | null };
+  questions: Array<{ action: number; label: string; asked: number; distinct: number; skipped: number; top: Array<{ question: string; count: number }> }>;
+}
+
+export interface ExperimentJob {
+  job_id: string;
+  status: "queued" | "running" | "done" | "cancelled" | "error";
+  error: string | null;
+  runs: number;
+  completed: number;
+  current: { run?: number; action?: number; of?: number; label?: string };
+  name: string;
+  folder: string;
+  path: string;
+  elapsed_seconds: number;
+  stats: ExperimentStats | null;
+}

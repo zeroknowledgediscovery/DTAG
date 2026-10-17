@@ -65,6 +65,8 @@ class QuestionIn(BaseModel):
     model_config = ConfigDict(extra="forbid", protected_namespaces=())
 
     question: str = Field(..., min_length=1, max_length=2000)
+    # set when the question is an informative next-question suggestion (recorded as intent for experiments)
+    suggestion: Optional[Literal["open", "connected"]] = None
 
 
 class SequenceIn(BaseModel):
@@ -87,6 +89,7 @@ class PushAskIn(BaseModel):
     variable: str = Field(..., min_length=1, max_length=200)
     question: str = Field(..., min_length=1, max_length=2000)
     direction: Optional[Literal["up", "down"]] = None
+    include_pole_items: bool = False
     mode: Literal["realistic", "validated", "direct"] = "realistic"
 
 
@@ -182,3 +185,21 @@ class RecommendIn(BaseModel):
     year: Optional[int] = Field(None, ge=1900, le=2100)
     date: Optional[str] = Field(None, pattern=r"^\d{4}-\d{2}-\d{2}$")
     preferred_model: Optional[str] = Field(None, pattern=r"^[a-z]+/[A-Za-z0-9._-]+$", max_length=120)
+
+
+class ExperimentRunIn(BaseModel):
+    """Rerun the session's recorded actions ``runs`` times on fresh respondents."""
+    model_config = ConfigDict(extra="forbid", protected_namespaces=())
+
+    runs: int = Field(20, ge=1, le=200)
+    name: str = Field("", max_length=80)
+    seed: Optional[int] = Field(None, ge=0, le=2**30)
+
+
+class ExperimentRecipeRunIn(BaseModel):
+    """Rerun an uploaded recipe (as exported by GET .../experiment)."""
+    model_config = ConfigDict(extra="forbid", protected_namespaces=())
+
+    recipe: Dict[str, Any]
+    runs: int = Field(20, ge=1, le=200)
+    seed: Optional[int] = Field(None, ge=0, le=2**30)

@@ -27,7 +27,7 @@ export function NextQuestions({
   data: Data | null;
   pending: boolean;
   disabled: boolean;
-  onAsk: (question: string) => void;
+  onAsk: (question: string, kind: "open" | "connected") => void;
 }) {
   if (!data) {
     return (
@@ -48,7 +48,7 @@ export function NextQuestions({
               {n.question}
               <span className="note next-why">{k.label} · {n.t}</span>
             </span>
-            <button className="btn primary small" disabled={disabled} onClick={() => onAsk(n.question)}>
+            <button className="btn primary small" disabled={disabled} onClick={() => onAsk(n.question, k.key)}>
               Ask
             </button>
           </div>

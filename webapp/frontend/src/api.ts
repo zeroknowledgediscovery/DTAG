@@ -5,6 +5,8 @@ import type {
   ModelStatus,
   Overrides,
   Profile,
+  ExperimentJob,
+  ExperimentRecipe,
   Landscape,
   NextQuestions,
   PushMode,
@@ -106,12 +108,19 @@ export const api = {
       ...(body.date ? { date: body.date } : {}),
       ...(body.preferred_model ? { preferred_model: body.preferred_model } : {}),
     }),
-  ask: (id: string, question: string) => post<QuestionResult>(`/api/sessions/${id}/questions`, { question }),
+  ask: (id: string, question: string, suggestion?: "open" | "connected") =>
+    post<QuestionResult>(`/api/sessions/${id}/questions`, suggestion ? { question, suggestion } : { question }),
+  experiment: (id: string) => request<ExperimentRecipe>(`/api/sessions/${id}/experiment`),
+  recipeUrl: (id: string, name = "") => `/api/sessions/${id}/experiment?download=true&name=${encodeURIComponent(name)}`,
+  runExperiment: (id: string, body: { runs: number; name?: string }) => post<ExperimentJob>(`/api/sessions/${id}/experiment/run`, body),
+  experimentJob: (jobId: string) => request<ExperimentJob>(`/api/experiments/jobs/${jobId}`),
+  cancelExperiment: (jobId: string) => request<{ cancelling: string }>(`/api/experiments/jobs/${jobId}`, { method: "DELETE" }),
+  experimentZipUrl: (folder: string) => `/api/experiments/${encodeURIComponent(folder)}/download`,
   nextQuestions: (id: string) => request<NextQuestions>(`/api/sessions/${id}/next-questions`),
   landscape: (id: string) => request<Landscape>(`/api/sessions/${id}/landscape`),
   ideologyPush: (id: string, includePoleItems = false, mode: PushMode = "realistic") =>
     request<PushSuggestions>(`/api/sessions/${id}/ideology-push?include_pole_items=${includePoleItems}&mode=${mode}`),
-  pushAsk: (id: string, body: { variable: string; question: string; direction?: "up" | "down"; mode?: PushMode }) =>
+  pushAsk: (id: string, body: { variable: string; question: string; direction?: "up" | "down"; mode?: PushMode; include_pole_items?: boolean }) =>
     post<QuestionResult>(`/api/sessions/${id}/ideology-push/ask`, body),
   autoPush: (id: string, body: { direction: "up" | "down"; steps: number; include_pole_items: boolean; reset_first?: boolean; mode?: PushMode }) =>
     post<SequenceStatus>(`/api/sessions/${id}/ideology-push/auto`, body),
