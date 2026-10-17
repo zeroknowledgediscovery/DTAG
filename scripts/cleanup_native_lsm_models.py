@@ -26,12 +26,11 @@ after the original/prepared CSV and provenance manifest are stored elsewhere.
 from __future__ import annotations
 
 import argparse
-import os
 import shutil
 from pathlib import Path
 
 from dtag_paths import model_root
-from typing import Iterable, List, Tuple
+from typing import List, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
 

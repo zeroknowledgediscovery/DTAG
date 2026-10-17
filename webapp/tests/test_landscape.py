@@ -1,8 +1,6 @@
 """Decision landscape: predicted answers to every askable item, and how interactions move them."""
 from __future__ import annotations
 
-import math
-
 import pytest
 
 

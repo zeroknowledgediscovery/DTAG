@@ -15,7 +15,7 @@ import json
 import math
 import random
 from pathlib import Path
-from typing import Any, Dict, List, Sequence
+from typing import Any, Dict, List
 
 import numpy as np
 

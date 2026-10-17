@@ -19,7 +19,6 @@ import yaml
 
 from model_backend import load_model
 from dtag_paths import resolve_repo_path
-import dtag_core as core
 import pipeline_localized as localized
 
 

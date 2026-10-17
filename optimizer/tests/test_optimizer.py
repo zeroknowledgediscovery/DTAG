@@ -388,7 +388,7 @@ def test_local_library_persona_core_protected_and_score():
 
 
 def test_local_library_writes_append_index_with_failed_records(tmp_path):
-    from optimizer.sequence_library_runner import write_library_index, load_attempts
+    from optimizer.sequence_library_runner import write_library_index
     root = tmp_path
     records = [{"run_id": "00001", "year": 2024, "requested_label": "+-",
                 "observed_label": "++", "status": "validated",

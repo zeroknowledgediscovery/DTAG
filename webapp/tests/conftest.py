@@ -85,6 +85,10 @@ class FakeBackend:
         return self.qdistance(left, state), self.qdistance(right, state)
 
 
+def pytest_configure(config):
+    config.addinivalue_line("markers", "native: requires the native dtag_lsm extension and models")
+    config.addinivalue_line("markers", "network: requires outbound network access")
+
 @pytest.fixture()
 def fake_model_root(tmp_path, monkeypatch):
     root = tmp_path / "models"
