@@ -355,6 +355,13 @@ API: `GET /api/sessions/{id}/experiment[?download=true]` (recipe), `POST .../exp
 recipe), `GET|DELETE /api/experiments/jobs/{job_id}`, `GET /api/experiments`,
 `GET /api/experiments/{folder}/download`.
 
+### Saving figures
+
+Hover any figure (ideology trajectory, landscape doughnut or map, experiment band) and use the small
+download button at its top-right: **SVG** (vector), **PNG** (4× resolution) or **PDF** (vector; the
+landscape map, which is drawn on a canvas, is embedded as a 4× image). Files are self-contained (styles
+and theme colours inlined) and use the current light/dark theme; hover highlights are left out.
+
 ### Two respondents side by side
 
 The **Respondents 1 | 2** switch in the top bar adds a second respondent (the

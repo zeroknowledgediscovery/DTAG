@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import { fmtNum } from "../api";
 import type { Landscape as LandscapeData, LandscapeItem } from "../types";
 import { TerrainView } from "./Terrain";
+import { FigureSave } from "./FigureSave";
 
 type View = "ring" | "map";
 const VIEW_KEY = "dtag.landscapeView";
@@ -274,6 +275,7 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
         )
       ) : (
       <div className="land-chart">
+        <FigureSave name="landscape_doughnut" />
         <svg viewBox={`${-PADX} 0 ${SIZE + 2 * PADX} ${SIZE}`} onMouseMove={onMove} role="img" aria-label={`Decision landscape: ${s.n_items} predicted answers in ${data.topics.length} topics`}>
           {/* topic band + labels */}
           {layout.topics.map((t) => {

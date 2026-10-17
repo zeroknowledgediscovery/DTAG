@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { api, fmtSigned } from "../api";
 import type { ExperimentJob, ExperimentRecipe, ExperimentStats } from "../types";
+import { FigureSave } from "./FigureSave";
 
 const HELP =
   "Everything you do to this respondent (questions, pushes, auto-pushes, sequences, suggested questions) is recorded " +
@@ -157,7 +158,10 @@ export function ExperimentPanel({
             <>
               {st.ideology_enabled ? (
                 <>
-                  <BandChart st={st} color={color} />
+                  <div className="exp-fig">
+                    <BandChart st={st} color={color} />
+                    <FigureSave name={`experiment_${job.folder}`} />
+                  </div>
                   <div className="note">
                     Net change: <b className="mono">{fmtSigned(st.net_change.mean, 4)}</b> · 95% CI [
                     <span className="mono">{fmtSigned(st.net_change.ci_lo, 4)}</span>,{" "}
