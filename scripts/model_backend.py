@@ -301,6 +301,16 @@ class NativeLSMBackend:
         dl0, dr0, dl, dr = self._runtime.extension_distances(ll, rr, ss, ext, self._usable_tree_ids)
         return float(dl0), float(dr0), [float(x) for x in dl], [float(x) for x in dr]
 
+    def dependencies(self, names: Sequence[str]) -> Dict[str, List[str]]:
+        """Variables each variable's tree splits on (the model's direct dependencies), by name."""
+        usable = set(self._usable_tree_ids)
+        tids = [self._idx[n] for n in names if n in self._idx and self._idx[n] in usable]
+        if not tids or not hasattr(self._runtime, "split_columns"):
+            return {}
+        raw = self._runtime.split_columns(tids)
+        return {self.feature_names[int(t)]: [self.feature_names[int(c)] for c in cols if 0 <= int(c) < len(self.feature_names)]
+                for t, cols in dict(raw).items()}
+
     @property
     def runtime_kind(self) -> str:
         return self._runtime_kind

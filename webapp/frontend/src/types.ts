@@ -244,6 +244,8 @@ export interface LandscapeItem {
   p: number; // its probability
   l: number | null; // lean: index change if answered modally (surveys with poles)
   d: number | null; // shift since the previous landscape (JS divergence, bits)
+  x?: number; // map position in [0, 1]^2 (landscape view)
+  y?: number;
 }
 
 export interface Landscape {
@@ -256,7 +258,9 @@ export interface Landscape {
   shift_eps: number;
   topics: Array<{ name: string; n: number; settled: number | null; shift: number; moved: number; anchored: number }>;
   items: LandscapeItem[];
-  anchored: Array<{ v: string; t: string; q: string; a: string; new: boolean }>;
+  anchored: Array<{ v: string; t: string; q: string; a: string; new: boolean; x?: number; y?: number }>;
+  topic_xy?: Record<string, [number, number]>;
+  map_edges?: number | null;
   new_anchored: string[];
   summary: {
     n_items: number;

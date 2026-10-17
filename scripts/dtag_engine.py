@@ -328,6 +328,10 @@ class LockedBackend:
         with self._lock:
             return self._backend.extension_distances(*a, **kw)
 
+    def dependencies(self, *a, **kw):
+        with self._lock:
+            return self._backend.dependencies(*a, **kw)
+
 
 @dataclass
 class ModelStatus:
@@ -864,7 +868,7 @@ class EngineSession:
     def landscape(self) -> Dict[str, Any]:
         """Decision landscape at the current state (optimizer.landscape), with the shift since the
         previous snapshot of this respondent. Cached per state; reset clears the history."""
-        from optimizer.landscape import build_view, lean_scale_of, snapshot
+        from optimizer.landscape import build_view, layout, lean_scale_of, snapshot
 
         self.last_used = time.time()
         s = self.session
@@ -880,7 +884,11 @@ class EngineSession:
             prev = land["cur"]
             if land["lean_scale"] is None:
                 land["lean_scale"] = lean_scale_of(snap)
-            view = build_view(snap, prev, s.ctx.var_map, land["history"], land["lean_scale"])
+            try:
+                positions = layout(s)
+            except Exception:  # the map view is optional; the doughnut does not need positions
+                positions = None
+            view = build_view(snap, prev, s.ctx.var_map, land["history"], land["lean_scale"], positions)
             if prev is not None:
                 land["history"].append({"step": snap["step"], "since_step": prev["step"],
                                         "n_moved": view["summary"]["n_moved"],
