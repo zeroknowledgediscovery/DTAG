@@ -131,6 +131,22 @@ function seqCard(r: Respondent, sl: (typeof SLOTS)[number], labelled: boolean) {
 }
 
 /** Subtle mark shown in the left column once the setup form has collapsed. */
+/** Small app mark for the top bar: a respondent and its dashed digital twin. */
+function BrandMark() {
+  return (
+    <span className="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="5" strokeLinecap="round">
+        <circle cx="20" cy="20" r="7.5" />
+        <path d="M6 50c0-8.3 6.3-14.5 14-14.5S34 41.7 34 50" />
+        <g strokeDasharray="4 5" opacity="0.85">
+          <circle cx="44" cy="20" r="7.5" />
+          <path d="M30 50c0-8.3 6.3-14.5 14-14.5S58 41.7 58 50" />
+        </g>
+      </svg>
+    </span>
+  );
+}
+
 function LabMark() {
   return (
     <div className="lab-mark" aria-hidden="true">
@@ -325,12 +341,13 @@ export default function App() {
     <div className="app">
       <div className="topbar">
         <div className="brand">
+          <BrandMark />
           DTAG<small>Digital Twin Anchored Generation · native LSM workbench</small>
         </div>
         <ReadinessPill r={readiness} onRefresh={() => loadReadiness(true)} />
         <span className="spacer" />
+        <span className="note">Respondents</span>
         <div className="seg" role="radiogroup" aria-label="Number of respondents">
-          <span className="note">Respondents</span>
           {[1, 2].map((n) => (
             <button
               key={n}
