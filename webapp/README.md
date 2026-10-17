@@ -1,10 +1,10 @@
 # DTAG Web Application
 
-> **New here? Start with [QUICKSTART.md](QUICKSTART.md)** — install, run and use
+> **New here? Start with [QUICKSTART.md](../QUICKSTART.md)** — install, run and use
 > the web app in five steps. This page is the full reference.
 > **Taking over development or deploying it?** Read [HANDOFF.md](HANDOFF.md).
-> **What DTAG is, where models and data come from, survey coverage:** see the platform manual
-> [docs/MANUAL.md](../docs/MANUAL.md).
+> **What DTAG is, where models and data come from, survey coverage:** see the platform manual,
+> [README.md](../README.md).
 
 A browser workbench and HTTP API for **DTAG — Digital Twin Anchored Generation**
 over the native Large Science Model (LSM) corpus (35 GSS + 9 Afrobarometer +

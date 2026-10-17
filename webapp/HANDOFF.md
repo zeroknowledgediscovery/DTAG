@@ -12,7 +12,7 @@ Related documents (read as needed):
 
 | File | What it is |
 |---|---|
-| `webapp/QUICKSTART.md` | End-user install/run/use guide |
+| `QUICKSTART.md`, `README.md` (repo root) | End-user quick start; platform manual |
 | `webapp/README.md` | Full user + API + configuration reference |
 | `webapp/IMPLEMENTATION_PLAN.md` | Original design and the CLI-equivalence evidence (written *before* the build; the sections below supersede it where they differ) |
 | `README.md` | DTAG itself: models, maps, CLI |

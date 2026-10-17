@@ -1,630 +1,788 @@
 # DTAG — Digital Twin Anchored Generation
 
-DTAG is a survey-grounded generative system built on native Large Science Models (LSMs). It conditions a learned survey-state model on a persona, time, and place where supported; maps natural-language questions to survey variables; predicts conditional response distributions; and uses those distributions to anchor generated answers.
+ZeD Lab, University of Kentucky · contact: ishanu_ch@uky.edu
 
-> **Full platform manual: [docs/MANUAL.md](docs/MANUAL.md)**. It covers what DTAG is and is for, how to run
-> and use the web app, every workbench feature, where the models live and how they are downloaded,
-> the other information DTAG uses, and full survey coverage.
->
-> Developed by ZeD Lab, University of Kentucky · contact: ishanu_ch@uky.edu
+DTAG builds survey-grounded digital twins of respondents. Every answer is anchored to the
+conditional response distributions of native Large Science Models trained on the GSS, the World
+Values Survey, Afrobarometer and Eurobarometer: 252 models, each with a semantic map.
 
-This branch is the clean native-LSM implementation. It contains no Quasinet runtime, no legacy model files, and no RC1 compatibility surface.
+This README is the platform manual. It covers what DTAG is for and how it works, describes every part
+of the web workbench, and says where each piece of information comes from: the models, maps, poles,
+registries and the language model. It also lists exactly which surveys, years and countries are covered.
 
-Current validated native inventory:
+| If you want to… | Read |
+|---|---|
+| get the web app running in five minutes | **[QUICKSTART.md](QUICKSTART.md)** |
+| understand and use the platform | this manual |
+| call the HTTP API or work on the web app | [webapp/README.md](webapp/README.md), [webapp/HANDOFF.md](webapp/HANDOFF.md) |
+| work on the code, maps, poles or models | [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) |
+| see the question-optimization research | [docs/QUESTION_OPTIMIZATION.md](docs/QUESTION_OPTIMIZATION.md), [optimizer/README.md](optimizer/README.md) |
 
-| Survey family | Native models | Semantic maps |
-|---|---:|---:|
-| GSS | 35 | 35 |
-| Afrobarometer | 9 | 9 |
-| WVS7 pooled | 1 | 1 |
-| Eurobarometer | 207 | 207 |
-| **Total** | **252** | **252** |
+---
 
-The deep audit verifies zero missing maps, zero bad maps, and complete model-map feature overlap across all 252 native models.
+## Contents
 
-## Web app quick start
+1. [What DTAG is](#1-what-dtag-is)
+2. [What DTAG is supposed to do (and not do)](#2-what-dtag-is-supposed-to-do-and-not-do)
+3. [Core concepts](#3-core-concepts)
+4. [Architecture](#4-architecture)
+5. [Installing and running the web app](#5-installing-and-running-the-web-app)
+6. [Native models: where they are and how they are pulled in](#6-native-models-where-they-are-and-how-they-are-pulled-in)
+7. [Other information DTAG uses](#7-other-information-dtag-uses)
+8. [Survey coverage](#8-survey-coverage)
+9. [What happens when you ask a question](#9-what-happens-when-you-ask-a-question)
+10. [The web workbench, feature by feature](#10-the-web-workbench-feature-by-feature)
+11. [Settings reference](#11-settings-reference)
+12. [Outputs, logs and reproducibility](#12-outputs-logs-and-reproducibility)
+13. [HTTP API summary](#13-http-api-summary)
+14. [Environment variables](#14-environment-variables)
+15. [Deployment and access control](#15-deployment-and-access-control)
+16. [Testing and readiness checks](#16-testing-and-readiness-checks)
+17. [Troubleshooting](#17-troubleshooting)
+18. [Assumptions, limitations and interpretation](#18-assumptions-limitations-and-interpretation)
+19. [Credits and data sources](#19-credits-and-data-sources)
+
+---
+
+## 1. What DTAG is
+
+DTAG builds a **digital twin of a survey respondent** and lets you question it in natural language.
+
+You describe a person (*who*, *where*, *when*). DTAG picks the large survey whose wave, place and time
+fit that description: the General Social Survey, the World Values Survey, Afrobarometer or
+Eurobarometer. It then loads a **native Large Science Model (LSM)** trained on that survey and
+sets up a *survey state* for the twin: an explicit list of survey items and their answers that
+encodes the persona.
+
+When you ask the twin a question, DTAG:
+
+1. matches the question to the survey item(s) that measure it;
+2. asks the LSM for the **conditional distribution** of answers to those items, given everything
+   already in the twin's state;
+3. takes the twin's answer from that distribution (draws it, or takes the most likely answer);
+4. writes the answer into the state, so that later answers are conditioned on it;
+5. has a language model phrase the anchored answer in the twin's voice.
+
+Every answer is therefore **anchored** to what real respondents with this profile and these earlier
+answers said in the survey. The language model never invents the substance of an answer. It only
+reads, routes and phrases.
+
+The web workbench lets you watch that process. It shows the evidence behind every answer, the
+whole *decision landscape* of predicted answers, and how one answer reshapes the rest. For GSS
+respondents it also tracks an ideology index. You can steer the twin with optimizer-suggested
+questions, and record any interaction as an experiment that can be rerun many times with statistics.
+
+## 2. What DTAG is supposed to do (and not do)
+
+**Intended uses**
+
+- *Survey-grounded simulation.* Get answers that a respondent with a given profile, place and time
+  would plausibly give, together with the full predicted distribution behind each answer.
+- *Stateful questioning.* Study how answers depend on what has already been answered: question-order
+  and context effects inside the model's learned dependency structure.
+- *Opinion-drift experiments.* Ask a sequence of questions, push the twin toward a pole, or replay a
+  recorded recipe N times. Then measure how the predicted state, the ideology index (GSS) and the
+  decision landscape move, with confidence intervals.
+- *Question design.* Find which survey items are most informative or most "moving" at a given state
+  (one-step optimizer), and check whether a natural-language question actually reaches the item
+  you intended.
+- *Cross-survey comparison.* Run two respondents side by side, on the same or different surveys,
+  waves or countries.
+- *Transparent evidence.* Every answer exposes the selected variables, the survey wording, the
+  native distribution, the anchor, the mapping rationale, the state updates and the timings.
+
+**What DTAG is not**
+
+- It is not a model of a real individual, and not a deterministic forecast of anyone's choices.
+- It is not a causal simulator. Conditional predictions are associations in survey data, so
+  "answering X moves Y" means the model's prediction for Y changes once X is known. It does not mean
+  that persuading someone of X would change their view on Y.
+- It is not a free-form chatbot. If no survey item matches a question, DTAG says so (or uses the
+  clearly marked semantic fallback) rather than making something up.
+- It does not interpolate between survey waves. Time selects a discrete wave.
+
+## 3. Core concepts
+
+| Concept | Meaning |
+|---|---|
+| **Native LSM** | A trained model of one survey wave (or pooled survey). For every survey item it holds a decision tree that predicts that item's answer distribution from the other items. DTAG runs it through the bundled C++ runtime `dtag_lsm` (pybind11). |
+| **Survey state** | An ordered map `item → answer` for the twin. It is set from the persona and the conditioning (place/time), then grown by every answer. It is capped at `state_keep` items; when full, the oldest entries are evicted. |
+| **Conditional distribution** | `P(answer of item v ∣ state)` from the LSM. Every answer the twin gives is drawn from, or is the mode of, this distribution. |
+| **Anchor** | The concrete survey answer chosen for an item, with its probability and full distribution. The prose answer is written to agree with the anchors. |
+| **Semantic map** | A CSV per model linking each native variable to its survey question text and answer labels. It is used to match questions to items and to show wording. |
+| **Persona interpretation** | The language model turns the persona description into item assignments, choosing only from answers the model allows (e.g. `sex=female`, `age=22`, `polviews=extremely liberal`). |
+| **Conditioning** | Deterministic constraints from *where* and *when*: a country variable, an ISO code, coordinates, or a survey year. These come from survey variables, not from the language model. |
+| **Ideology index (GSS)** | `I(s) = (d(L,s) − d(R,s)) / d(L,R)`. Here `d` is the LSM *qdistance* (Jensen–Shannon divergence between predicted distributions, averaged over the model's trees), and `L`/`R` are the left and right pole states for that GSS wave. The index rises toward R. |
+| **Decision landscape** | The predicted answer to every askable item at the current state: how settled each item is, how it leans, and which items moved after the last answer. |
+| **Recipe** | The recorded list of actions on a respondent (questions, pushes, sequences, resets). It can be replayed as a new experiment. |
+
+## 4. Architecture
+
+```text
+React / TypeScript UI                      webapp/frontend  (built dist/ is committed)
+        ↓ HTTP (JSON)
+FastAPI backend                            webapp/backend/dtag_web
+  sessions, sequences, experiments, exports, auth
+        ↓
+DTAGEngine                                 scripts/dtag_engine.py
+  catalog, model registry (LRU), profiles, recommender, Eurobarometer routing,
+  push suggestions, landscape jobs
+        ↓
+DTAGSession  (one respondent)              scripts/dtag_session.py
+  persona → state, question mapping, anchors, semantic fallback, ideology
+        ↓                         ↘
+dtag_core (maps, LLM steps,         optimizer/  (one-step geometry, session_push,
+  distributions, geography)                       landscape, topics)
+        ↓
+native LSM runtime (persistent)            scripts/model_backend.py → native/lsm_runtime (dtag_lsm)
+```
+
+- **One model is loaded once per server process** and shared by every respondent that uses it. Each
+  respondent keeps its own state. At most `DTAG_MAX_LOADED_MODELS` models (default 6) stay
+  resident; the least recently used is released first.
+- The LSM decides *what* the twin answers. The language model (OpenAI, default `gpt-4.1-mini`) only:
+  maps questions to items, interprets the persona, selects semantic-fallback bridge items, writes
+  neutral wording for suggested items, and turns anchors into prose.
+- `DTAG_LLM_BACKEND=mock` swaps in a deterministic mock language layer for demos and tests. Native
+  anchors, state and ideology are still computed by the real models, and the UI shows **MOCK**.
+
+## 5. Installing and running the web app
+
+### 5.1 Requirements
+
+- Python **3.13** on **x86-64 Linux** to use the bundled prebuilt native extension. Other platforms
+  need to build it once with `bash scripts/build_native_bindings.sh` (requires a C++17 compiler and
+  pybind11).
+- Internet access to the public model store (models are downloaded on demand).
+- An OpenAI API key for real use. Without one, run with `DTAG_LLM_BACKEND=mock`.
+
+### 5.2 Install without cloning
 
 ```bash
 python3.13 -m venv dtag-env && source dtag-env/bin/activate
-pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
-export OPENAI_API_KEY="sk-..."      # or run with DTAG_LLM_BACKEND=mock to try it without a key
-dtag-web                            # then open http://127.0.0.1:8000
+pip install --upgrade pip
+pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"   # or @dev for new features
+export OPENAI_API_KEY="sk-..."
+dtag-web                                  # open http://127.0.0.1:8000
 ```
 
-Describe a respondent (who / where / when), let DTAG pick and load the matching
-native survey model, start the respondent and ask questions.
-Step-by-step guide: **[webapp/QUICKSTART.md](webapp/QUICKSTART.md)** ·
-full reference: [webapp/README.md](webapp/README.md).
+`pip install` provides three commands:
 
-What the workbench does (details in [docs/MANUAL.md §10](docs/MANUAL.md#10-the-web-workbench-feature-by-feature)):
+| Command | What it does |
+|---|---|
+| `dtag-web [--host H] [--port P]` | Starts the web workbench and API on one port (default `127.0.0.1:8000`; OpenAPI docs at `/docs`). |
+| `dtag-models …` | Lists, downloads and verifies native models (see §6). |
+| `dtag-doctor` | Runs the readiness and clean-surface checks (see §16). |
 
-- **Survey-anchored answers** with a *Model evidence* panel: variables, wording, native distribution, anchor, state updates.
-- **Automatic model choice** from who/where/when across GSS, WVS7, Afrobarometer and Eurobarometer, downloaded on demand.
-- **Ideology index and trajectory** (GSS), plus **next-question suggestions** for every survey, with
-  realistic / validated / push modes and auto-push.
-- **Decision landscape**: a live doughnut or terrain map of every predicted answer and how each answer reshapes it.
-- **Question sequences**, **two respondents side by side**, and **experiments** (record a recipe, rerun ×N,
-  bootstrap statistics, per-step data saved to `experiments/`).
-- **Exports**: full session log ZIP / JSON / CSV, and figures as SVG / PNG / PDF; resizable columns; light/dark theme.
+To update, stop the server and run
+`pip install --upgrade --force-reinstall "git+https://github.com/zeroknowledgediscovery/DTAG.git@dev"`.
 
-## Quick start (models)
-
-Install DTAG from the public GitHub branch (no manual clone required) and fetch the native
-model(s) you need from the public, SHA256-verified model store:
+### 5.3 Run from a source checkout
 
 ```bash
-python3.13 -m venv .venv
-source .venv/bin/activate
-python -m pip install "git+https://github.com/zeroknowledgediscovery/DTAG.git@main"
-
-dtag-models gss/gss_2024          # one model
-dtag-models --list                # public catalog
-dtag-models --family gss          # one survey family
-dtag-models --all                 # the complete corpus
-```
-
-Models are downloaded once, decompressed into the local cache and reused. The default cache is
-`~/.cache/dtag/models/`. The web app can also install missing models on demand.
-
-### Web application
-
-The installation includes a browser workbench and HTTP API:
-
-```bash
-export OPENAI_API_KEY="..."
-dtag-web                      # http://127.0.0.1:8000  (API docs at /docs)
-```
-
-Select or build a respondent (who / where / when), let DTAG fetch any missing
-public model, ask questions, and inspect the native-LSM evidence behind every
-answer: selected survey variables, response distributions, anchors, state
-updates, conditioning, ideology trajectory, and JSON/CSV exports. From a
-source checkout use `cd webapp && ./run.sh`, or `docker compose up` in
-`webapp/`. See [`webapp/README.md`](webapp/README.md).
-
-The web application runs the respondent implementation in `scripts/dtag_session.py`, driven by
-`scripts/dtag_engine.py`. The former command-line runtime (`dtag --profile ...`,
-`scripts/pipeline.py`, `bin/*.sh`) is archived; see [Archive](#archive).
-
-On compatible CPython 3.13 x86-64 Linux systems, DTAG uses the bundled prebuilt native LSM extension. Other supported environments can rebuild the native extension from the source shipped with the installed repository tree (`bash scripts/build_native_bindings.sh`).
-
-## Architecture
-
-DTAG separates three layers:
-
-1. **Native LSM model** — learned conditional structure and state geometry.
-2. **Semantic map** — model variable to survey question/label text.
-3. **Generation layer** — maps a user question into survey variables, conditions the digital twin, predicts response distributions, and generates an answer anchored to those distributions.
-
-A DTAG state is therefore a survey-variable state constrained by the native LSM, not merely free-form conversational history.
-
-## Repository layout
-
-```text
-DTAG/
-  webapp/                       browser workbench + FastAPI backend (dtag-web), tests, Docker
-  optimizer/                    question-optimization package, one-step geometry, tests
-  scripts/                      runtime library (dtag_core, dtag_session, dtag_engine, ...),
-                                model/map/pole toolchain, audits
-  native/lsm_runtime/           bundled C++ native LSM runtime (pybind11) + prebuilt extension
-  configs/
-    dtag_config.yaml            native model/map profiles
-    eurodates.csv               Eurobarometer fieldwork-date registry
-    model_coverage.json         countries/years each model covers (web recommender)
-  maps/
-    gss/                        35 GSS per-wave maps
-    afromap/                    Afrobarometer R1-R9 maps
-    eurobarometer/              207 ZA-specific maps
-    wvs7_variable_question_map.csv
-  assets/                       question sets, personas, polar vectors (ideology poles)
-  poles/                        pole-discovery tool
-  scratch/gss2018_pole_geometry/  research experiments (one-step geometry, push runs, poles)
-  dtag/                         installed console commands (dtag-web, dtag-models, dtag-doctor)
-  models/lsm/README.md          tracked placeholder only; models live outside Git
-  data/                         local raw-data staging (documentation only in Git)
-  archive/                      deprecated command-line runtime and launchers (not maintained)
-  outputs/                      generated outputs; ignored by Git
-```
-
-## Native model location
-
-By default DTAG looks under:
-
-```text
-models/lsm/
-```
-
-A complete store has:
-
-```text
-models/lsm/
-  gss/
-    gss_1972/
-    ...
-    gss_2024/
-  afrobarometer/
-    r1/
-    ...
-    r9/
-  wvs/
-    wvs7_pooled/
-  eurobarometer/
-    ZAxxxx_v.../
-```
-
-Every native model directory must contain at least:
-
-```text
-source_maps/
-trees/binary/
-```
-
-For a clean checkout, keep the large model corpus outside the repository and set:
-
-```bash
-export DTAG_MODEL_ROOT="$HOME/Dropbox/ZED/Models/DTAG_LSM"
-```
-
-or another local/cache path such as:
-
-```bash
-export DTAG_MODEL_ROOT="$HOME/.cache/dtag/models"
-```
-
-The external root contains the family directories directly:
-
-```text
-$DTAG_MODEL_ROOT/
-  gss/
-  afrobarometer/
-  wvs/
-  eurobarometer/
-```
-
-When `DTAG_MODEL_ROOT` is unset, DTAG uses an already-populated `<repo>/models/lsm`, otherwise `~/.cache/dtag/models`.
-
-## Bundled native LSM runtime
-
-DTAG now vendors the minimal native C++ inference runtime directly under:
-
-```text
-native/lsm_runtime/
-```
-
-A fresh clone therefore does **not** require a sibling `lsm` repository.
-
-Build the Python extension once:
-
-```bash
-bash scripts/build_native_bindings.sh
-```
-
-The build creates:
-
-```text
-native/lsm_runtime/python/dtag_lsm*.so
-```
-
-DTAG discovers this extension automatically.
-
-The binding is session-persistent: when a DTAG model is loaded, its usable
-binary trees and source-map dictionaries are loaded/cached once and retained by
-a single C++ `dtag_lsm.Runtime` object for the lifetime of that interactive
-session. Per-question predictions and ideology distances reuse the same
-in-memory model rather than reopening the model files.
-
-The clean native branch does not use external inference bindings. If the
-bundled extension has not been built, DTAG exits with the build command rather
-than silently loading code from another repository.
-
-## Python environment
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
+git clone https://github.com/zeroknowledgediscovery/DTAG.git && cd DTAG
+git checkout dev                           # development branch
+python3.13 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
+
+cd webapp
+cp .env.example .env                       # put OPENAI_API_KEY (and optional settings) here
+./run.sh                                   # production mode: UI + API on http://localhost:8000
+./run.sh --dev                             # API with auto-reload on :8000 + Vite dev server on :5173
 ```
 
-Live generation also requires:
+`run.sh` loads `webapp/.env` and checks that the Python dependencies and the native extension import.
+It refuses to start without `OPENAI_API_KEY` unless `DTAG_LLM_BACKEND=mock` is set.
+
+After changing the UI, rebuild it with `cd webapp/frontend && npm ci && npm run build`. The build
+writes `webapp/frontend/dist`, which is committed so that Git installs do not need Node.
+
+Equivalent manual launch:
 
 ```bash
-export OPENAI_API_KEY="..."
+PYTHONPATH=webapp/backend:scripts python -m dtag_web --host 127.0.0.1 --port 8000
 ```
 
-The deterministic validation suite does not require an OpenAI call.
+Always run **a single worker process**. The model cache, sessions and background jobs live in
+process memory.
 
-## Tests
+### 5.4 Docker
 
 ```bash
-python -m pytest -q                 # web app, engine, optimizer, core library
-python -m pytest -q optimizer/tests # optimizer only
+cd webapp && cp .env.example .env && docker compose up --build      # http://localhost:8000
+# or, from the repository root:
+docker build -f webapp/Dockerfile -t dtag-web .
+docker run -p 8000:8000 -e OPENAI_API_KEY -v dtag-data:/data dtag-web
 ```
 
-Native-model tests run when the corresponding models are installed and are skipped otherwise;
-everything else uses the mock LLM (`DTAG_LLM_BACKEND=mock`) and needs no OpenAI key.
+Models go on the persistent `/data` volume, not into the image. The image is based on
+`python:3.13-slim-trixie`. If the prebuilt extension does not import, the native runtime is compiled
+during the build (`--build-arg DTAG_REBUILD_NATIVE=1` forces this).
 
-## Repository readiness
+### 5.5 First session in five steps
 
-Canonical readiness check:
+1. **Describe the respondent** (left column). Start from a preset or type *Who*
+   (e.g. `35 year old primary school teacher in Kenya, listens to the radio`). Add *Where* (country)
+   and *When* (a year, or an exact date for Eurobarometer) if you like. A country or year mentioned in
+   the description is detected automatically; the explicit fields override it.
+2. **Check the survey model.** DTAG proposes the best model from each survey family that covers the
+   respondent and marks a **DEFAULT** (see §10.2). You can pick another, or choose any model by hand.
+3. **Start respondent.** The model is downloaded (once), verified, extracted and loaded, then the
+   persona is interpreted into an initial survey state.
+4. **Ask questions**, either typed or by clicking a suggested question. Open *Model evidence* under an
+   answer to see the distribution and anchors behind it.
+5. **Watch and export.** Use the landscape (left), ideology and next-question suggestions (right),
+   and *Session → Export* for the full log.
 
-```bash
-python3 scripts/check_dtag_readiness.py   --create-smoke-csv   --overlap
-```
+## 6. Native models: where they are and how they are pulled in
 
-It checks source files, Python syntax, packages, native bindings, configured model paths, maps, selected model-map overlap, question sets, polar vectors, and Eurobarometer coverage/provenance.
+### 6.1 The public model store
 
-## Clean native-only checkout audit
+The native models are **not in Git** (≈0.94 GB compressed, ≈6.6 GB installed). They are published
+as one compressed archive per model in a public Google Cloud Storage bucket. The bucket is read
+anonymously over HTTPS, so no cloud credentials are needed.
 
-After switching to this branch, verify that no legacy runtime files or local
-top-level model folders remain:
-
-```bash
-python3 scripts/audit_clean_repo.py
-```
-
-This checks obsolete paths, stale legacy source references, required clean
-surface files, and Python syntax.
-
-## Complete native audit
-
-Inventory installed native models:
-
-```bash
-python3 scripts/inventory_native_models.py
-```
-
-Audit all maps:
-
-```bash
-python3 scripts/audit_native_maps.py
-```
-
-Deep audit loading every model:
-
-```bash
-python3 scripts/audit_native_maps.py --deep
-```
-
-Expected result:
-
-```text
-native models: 252
-maps present:  252
-missing maps:  0
-bad maps:      0
-overlap issues:0
-
-PASS: native DTAG map surface is complete.
-Expected/verified inventory: 35 GSS + 9 Afrobarometer + 1 WVS + 207 Eurobarometer = 252
-```
-
-## Profiles
-
-Named respondent profiles (model, map, persona, optional country/continent/year and run
-settings) live in `configs/dtag_config.yaml` under `interactive_profiles`. The web app lists them
-(`GET /api/profiles`) and resolves them with `scripts/dtag_config.py`
-(defaults < profile < request overrides). Representative profiles:
-
-```text
-gss2018_wf  gss2018_cm  gss2022_wf  gss2022_cm  gss2024_wf  gss2024_cm
-wvs7_india_2017  afrobarometer_r5_nigeria  afrobarometer_r5_ghana
-```
-
-## Runtime modules
-
-| Module | Role |
+| Item | Value |
 |---|---|
-| `optimizer/session_push.py`, `optimizer/landscape.py`, `optimizer/topics.py` | next-question / push suggestions, decision landscape, topic grouping |
-| `webapp/backend/dtag_web/experiments.py` | recorded recipes, rerun ×N, experiment folders and statistics |
-| `scripts/dtag_core.py` | core library: maps, prefilters, LLM steps, model rows/distributions, geography, ideology |
-| `scripts/dtag_session.py` | one respondent: persona, anchors, semantic fallback, state, ideology |
-| `scripts/dtag_engine.py` | model registry, catalog, profiles, Eurobarometer routing, sessions (web + API) |
-| `scripts/dtag_config.py` | load `configs/dtag_config.yaml` and resolve profiles |
-| `scripts/pipeline_localized.py` | deterministic geographic conditioning (patches `dtag_core.build_forced_assignments`) |
-| `scripts/dtag_recommend.py` | who/where/when → model recommendation |
-| `scripts/model_backend.py` | native LSM runtime interface |
-| `scripts/polar_vectors.py` | wave-specific ideology pole resolution |
-| `scripts/eurobarometer_dates.py`, `scripts/eurobarometer_native.py` | Eurobarometer date routing and model/map helpers |
-| `scripts/fetch_models.py` | public model download/verification (`dtag-models`) |
-| `scripts/dtag_paths.py` | repository/external model-store resolution |
+| Bucket | `git-zeroknowledgediscovery-dtag` (override: `DTAG_PUBLIC_BUCKET`) |
+| Release | `v0.2.1` (override: `DTAG_MODEL_RELEASE`) |
+| Manifest | `https://storage.googleapis.com/git-zeroknowledgediscovery-dtag/models/v0.2.1/manifest.json` (override the whole URL with `DTAG_MODEL_MANIFEST_URL`) |
+| Archive per model | `models/<release>/<family>/<name>.tar.zst`, with a SHA256 checksum and size in the manifest |
+| Model key | `<family>/<name>`, e.g. `gss/gss_2024`, `afrobarometer/r9`, `wvs/wvs7_pooled`, `eurobarometer/ZA7575_v1-0-0` |
 
-## Persona, time, and place
+Compressed sizes by family in release v0.2.1:
 
-A profile supplies a persona plus optional structured time/location constraints. Persona attributes become explicit model-state constraints only when the selected survey model contains compatible variables and support.
+| Family | Models | Compressed |
+|---|---:|---:|
+| GSS | 35 | 47 MB |
+| WVS7 | 1 | 61 MB |
+| Afrobarometer | 9 | 225 MB |
+| Eurobarometer | 207 | 610 MB |
+| **Total** | **252** | **≈ 943 MB** |
 
-Conceptually:
+### 6.2 Where models are installed
 
-```text
-persona + time + place + current survey state
-                  ↓
-        native LSM conditionals
-                  ↓
-       survey-anchored generation
-```
+`scripts/dtag_paths.py::model_root()` decides the local model root. The downloader, the web server
+and the optimizer all use it, so they always agree. It checks, in order:
 
-### Place
+1. `$DTAG_MODEL_ROOT`, if set;
+2. `<repo>/models/lsm/`, if it already contains installed models (developer checkouts);
+3. `~/.cache/dtag/models/` (the default for fresh installs).
 
-DTAG uses geography in this order when supported:
-
-1. direct categorical country variable (a variable named *country*; for Eurobarometer also the ISO 3166 `isocntry` variable and, in older waves, the map-labelled `NATION` variable);
-2. WVS-style geographic proxy fields such as coordinates;
-3. contextual localization if no deterministic survey variable exists.
-
-Afrobarometer deterministic country conditioning can be tested with:
-
-```bash
-python3 scripts/test_country_conditioning.py
-```
-
-### Time
-
-Time handling is family-specific.
-
-- **GSS:** model selection is wave-specific.
-- **WVS7:** year may additionally be conditioned if the pooled model exposes a compatible field.
-- **Eurobarometer:** a calendar date is routed to a fieldwork wave.
-
-## Eurobarometer date + country
-
-In the web app a Eurobarometer respondent is specified by a calendar date and a country; the
-engine routes the date to a fieldwork wave using the registry `configs/eurodates.csv`
-(`scripts/eurobarometer_dates.py`) and resolves the wave's native model and map
-(`scripts/eurobarometer_native.py`). An explicit ZA wave can also be chosen.
-
-A year alone is deliberately not assumed to identify a unique wave because several Eurobarometers may occur in one year.
-
-### Eurobarometer routing assumptions
-
-- A date selects a discrete survey wave; there is no continuous interpolation between waves.
-- If multiple ordinary fieldwork intervals cover a date, routing should remain conservative.
-- Broad cumulative/trend files are not silently substituted for ordinary waves.
-- Country is applied after/with wave selection and is not universally sufficient to disambiguate overlapping waves.
-
-## Semantic map provenance
-
-Every native model feature has a map row.
-
-Canonical locations:
+Layout under the root:
 
 ```text
-maps/gss/gss_YYYY_map.csv
-maps/afromap/afrobarometer_rN_map.csv
-maps/wvs7_variable_question_map.csv
-maps/eurobarometer/ZAxxxx_map.csv
+<model_root>/
+  gss/gss_1972 … gss/gss_2024
+  wvs/wvs7_pooled
+  afrobarometer/r1 … afrobarometer/r9
+  eurobarometer/ZA0078_v1-0-1 … eurobarometer/ZA8843_v1-0-0
 ```
 
-When documentation is unavailable, the native variable name is retained rather than dropping the model feature.
+Each model directory must contain `source_maps/` (the model's own variable/answer dictionaries) and
+`trees/binary/` (the trained trees). A directory is treated as installed only if both are present.
+Configured paths of the form `models/lsm/...` (e.g. in `configs/dtag_config.yaml`) are redirected to
+the model root automatically.
 
-### Eurobarometer fallbacks
+### 6.3 How a model is pulled in
 
-There are 207 Eurobarometer models and 207 maps. Most maps are derived from wave-specific GESIS documentation. Waves without usable model-specific documentation use a semantic-union fallback built from the exact maps.
-
-Fallback rows retain provenance fields such as:
+`scripts/fetch_models.py::fetch_one` installs a model in these steps:
 
 ```text
-map_provenance
-fallback_sources
-fallback_n_sources
-fallback_consensus_fraction
-fallback_support_similarity
-fallback_context_f1
-fallback_resolution
+manifest lookup → download .tar.zst (streamed) → SHA256 verify → safe extract
+ (no absolute paths, no "..", no links outside) → validate source_maps/ + trees/binary/
+ → move into <model_root>/<family>/<name>
 ```
 
-Resolution classes include:
+The web server then loads the model **once** into a persistent `dtag_lsm.Runtime`, which keeps the
+usable trees and dictionaries in memory. Every later respondent on that model reuses it.
 
-```text
-UNION_CONSENSUS
-UNION_SUPPORT_MATCH
-UNION_CONTEXT_MATCH
-UNRESOLVED_NATIVE
-```
+There are three ways to trigger a download:
 
-An unresolved row remains runnable using its native variable name. It is not represented as exact documentation.
+- **Automatically, from the browser.** Choosing a respondent selects a model. The model option shows
+  `download 2.4 MB → downloading → verifying → extracting → loading → loaded`. *Start respondent*
+  waits for this if needed.
+- **From the shell:**
+  ```bash
+  dtag-models --list                 # catalog (* = installed)
+  dtag-models gss/gss_2024           # one model
+  dtag-models --family afrobarometer # one family
+  dtag-models --all                  # all 252 models
+  ```
+- **From the API:**
+  ```bash
+  curl -X POST localhost:8000/api/models/gss/gss_2024/install          # background job
+  curl localhost:8000/api/models/gss/gss_2024/status                   # progress
+  curl -X POST 'localhost:8000/api/models/gss/gss_2024/install?wait=true&load=false'
+  ```
 
-## Regenerating all maps
+Model keys are validated against the pattern `^(gss|afrobarometer|wvs|eurobarometer)/[A-Za-z0-9._-]+$`
+and against the catalog. The API never accepts paths or URLs.
 
-One command:
+### 6.4 Pre-populating an offline machine
 
-```bash
-python3 scripts/complete_native_maps.py
-```
+Run `DTAG_MODEL_ROOT=/shared/dtag-models dtag-models --all` on a connected machine. Then copy the
+directory and set `DTAG_MODEL_ROOT=/shared/dtag-models` on the offline one. Installed models are never
+downloaded again.
 
-It orchestrates:
+## 7. Other information DTAG uses
 
-- all 35 GSS maps;
-- Afrobarometer R9 from its real codebook;
-- missing exact Eurobarometer maps;
-- missing union-fallback Eurobarometer maps;
-- WVS map verification;
-- final all-family audit.
+Apart from the models, DTAG reads only versioned files from the repository, plus two local caches.
+Nothing else is fetched at run time except model archives and language-model calls.
 
-### GSS
+| Information | Location | Used for |
+|---|---|---|
+| **Semantic maps** | `maps/gss/gss_YYYY_map.csv` (35), `maps/afromap/afrobarometer_rN_map.csv` (9), `maps/wvs7_variable_question_map.csv` (1), `maps/eurobarometer/ZAxxxx_map.csv` (207) | Item wording and answer labels. They are used to match questions to items, to show evidence and to give the LLM context. Every model feature has a row; undocumented variables keep their native name. |
+| **Map provenance (Eurobarometer)** | columns `map_provenance`, `fallback_*` in the EB maps | Waves without usable GESIS documentation use a *semantic-union fallback* map built from documented waves (`UNION_CONSENSUS`, `UNION_SUPPORT_MATCH`, `UNION_CONTEXT_MATCH`, `UNRESOLVED_NATIVE`). The provenance appears on every anchor and in exports. |
+| **Configuration and profiles** | `configs/dtag_config.yaml` (`DTAG_CONFIG`) | Default run settings (§11) and named presets (`interactive_profiles`): `gss2018_wf/cm`, `gss2022_wf/cm`, `gss2024_wf/cm`, `wvs7_india_2017`, `afrobarometer_r5_nigeria`, `afrobarometer_r5_ghana`. Resolution order: defaults < profile < request overrides. |
+| **Custom profiles** | `$DTAG_WEB_DATA_DIR/profiles.json` (`webapp/data` with `run.sh`) | Respondents you save from the UI. They are never written into the config file. |
+| **Model coverage** | `configs/model_coverage.json` | The recommender's knowledge of which countries and years each model covers, and which variable conditions the country. It is generated from the models' source maps by `scripts/build_model_coverage.py`. |
+| **Afrobarometer round periods** | `scripts/dtag_recommend.py` (`AFRO_ROUND_YEARS`) | Approximate published fieldwork years per round. The models carry no date variable. |
+| **Eurobarometer fieldwork registry** | `configs/eurodates.csv` (`DTAG_EURODATES`) | Maps a calendar date to exactly one fieldwork wave (`scripts/eurobarometer_dates.py`). |
+| **Ideology poles (GSS)** | `assets/polar_vectors/polar_vectors.csv` (canonical), `assets/polar_vectors/gss/gss_YYYY_polar_vectors.csv` (per wave), `gss_pole_corrections.csv` | The L and R reference answers that define the ideology index. They are resolved per wave so that only items with both pole answers present in that wave are used. |
+| **Starter questions** | `configs/suggested_questions.yaml` | Clickable example questions. Only those that map directly onto the loaded model are shown. |
+| **Question sets** | `assets/question_sets/` (`master`, `divergence`, `optimized`, `polarization`, `depolarization`, `demo`, …) | Ready-made inputs for *Run sequence…* (one question per line, or CSV with a `question` column). |
+| **Topic keywords** | `optimizer/topics.py` | Groups items into topic arcs for the landscape (with *Background* and *Other* buckets). |
+| **Possible-response cache** | `$DTAG_ASSETS_DIR` (default `~/.cache/dtag/assets`) | The allowed answers per item, read from the model once and cached per model signature. |
+| **Embedding cache** | same directory | Embeddings of map rows (`text-embedding-3-small`), used only for the semantic fallback. Computed once per map. |
+| **Language model** | OpenAI API (`OPENAI_API_KEY`, model `gpt-4.1-mini`, override `DTAG_OPENAI_MODEL`) | Persona interpretation, item selection, semantic bridge selection, neutral question wording for suggestions, answer prose. The key stays on the server. |
 
-```bash
-python3 scripts/build_all_gss_native_maps.py --force
-```
+**What the language model sees.** It sees the persona text, the question, the candidate items with
+their map wording and allowed answers, and the anchored answers it must phrase. It never sees model
+files, and it does not choose the answers: it must stay consistent with the anchors drawn from the LSM.
 
-The GSS builder resolves text using:
+## 8. Survey coverage
 
-1. year-specific semantics when available;
-2. cumulative GSS documentation;
-3. exact-name nearby-wave donor semantics;
-4. native feature name as final fallback.
+Release v0.2.1 contains **252 native models and 252 semantic maps**, with complete model–map feature
+overlap (verified by `scripts/audit_native_maps.py --deep`).
 
-### Afrobarometer
+### 8.1 General Social Survey (GSS), United States — 35 models
 
-Example R9 build:
+One model per wave. Number of model features in parentheses:
 
-```bash
-python3 scripts/getmap_dtag.py   --codebook_pdf data/afrobarometer/codebooks/merged_r9_codebook_2.pdf   --model "$DTAG_MODEL_ROOT/afrobarometer/r9"   --model-backend native_lsm   --out maps/afromap/afrobarometer_r9_map.csv
-```
+1972 (197) · 1973 (317) · 1974 (329) · 1975 (386) · 1976 (391) · 1977 (428) · 1978 (441) · 1980 (461) ·
+1982 (507) · 1983 (493) · 1984 (618) · 1985 (631) · 1986 (526) · 1987 (641) · 1988 (692) · 1989 (684) ·
+1990 (771) · 1991 (781) · 1993 (676) · 1994 (915) · 1996 (1089) · 1998 (908) · 2000 (1128) ·
+2002 (1038) · 2004 (1180) · 2006 (1277) · 2008 (832) · 2010 (817) · 2012 (805) · 2014 (863) ·
+2016 (913) · 2018 (1034) · 2021 (740) · 2022 (880) · 2024 (811)
 
-The native model feature list is authoritative; undocumented variables remain in the map.
+- *When* selects the wave (nearest wave to the requested year).
+- *Where* is context only. The GSS is a national US sample, so a country, state or city enters
+  the persona text but constrains no model variable.
+- The **ideology index is available for all 35 waves**, using wave-specific poles. GSS is the only
+  family with an ideology index.
 
-### Eurobarometer exact map
+### 8.2 World Values Survey wave 7 (WVS7) — 1 pooled model
 
-```bash
-python3 scripts/build_eurobarometer_maps.py   --za ZA7575   --parse-timeout 600
-```
+`wvs/wvs7_pooled` has 375 features and covers fieldwork years 2017–2023 across the WVS7 countries.
 
-### Eurobarometer fallback maps
+- *When*: the year is conditioned through `A_YEAR` (2017–2023) when the model supports it.
+- *Where*: the country is conditioned through coordinates (`O1_LONGITUDE`, `O2_LATITUDE`), snapped to
+  the model's support.
 
-Inspect:
+### 8.3 Afrobarometer — 9 models (rounds R1–R9)
 
-```bash
-python3 scripts/build_eurobarometer_fallback_maps.py --report-only
-```
+| Round | Approx. fieldwork | Features | Countries |
+|---|---|---:|---:|
+| R1 | 1999–2001 | 142 | 12 |
+| R2 | 2002–2004 | 323 | 16 |
+| R3 | 2005–2006 | 294 | 18 |
+| R4 | 2008–2009 | 284 | 20 |
+| R5 | 2011–2013 | 322 | 34 |
+| R6 | 2014–2015 | 331 | 36 |
+| R7 | 2016–2018 | 337 | 34 |
+| R8 | 2019–2021 | 397 | 34 |
+| R9 | 2021–2023 | 387 | 39 |
 
-Build:
+Countries covered across rounds include Algeria, Angola, Benin, Botswana, Burkina Faso, Burundi,
+Cabo Verde, Cameroon, Congo-Brazzaville, Côte d'Ivoire, Egypt, Eswatini, Ethiopia, Gabon, Gambia,
+Ghana, Guinea, Kenya, Lesotho, Liberia, Madagascar, Malawi, Mali, Mauritania, Mauritius, Morocco,
+Mozambique, Namibia, Niger, Nigeria, São Tomé and Príncipe, Senegal, Seychelles, Sierra Leone,
+South Africa, Sudan, Tanzania, Togo, Tunisia, Uganda, Zambia and Zimbabwe. The exact list for each
+round is in `configs/model_coverage.json`.
 
-```bash
-python3 scripts/build_eurobarometer_fallback_maps.py   --build   --force
-```
+- *When*: the round is chosen from the approximate fieldwork period above.
+- *Where*: the country is conditioned directly through the categorical country variable
+  (e.g. `COUNTRY_ALPHA='Nigeria'`).
 
-Audit:
+### 8.4 Eurobarometer — 207 models (GESIS ZA studies)
 
-```bash
-python3 scripts/audit_eurobarometer_assets.py
-```
+These run from `ZA0078` (1962) to `ZA8843` and cover Standard, Special and Flash Eurobarometer
+waves. Features per model range from 41 to 2,083 (mean ≈ 488).
 
-## GSS ideology tracking
+- **192 waves** have fieldwork dates in `configs/eurodates.csv`, from 31 January 1962 to February 2021.
+  By decade: 1960s 1, 1970s 16, 1980s 23, 1990s 46, 2000s 52, 2010s 53, 2020s 1.
+- **15 newer waves** (`ZA7846–7848`, `ZA7886–7888`, `ZA7901–7902`, `ZA7952–7954`, `ZA8778–8779`,
+  `ZA8841`, `ZA8843`) have no registered fieldwork date. Select them explicitly by ZA number.
+- *When*: an exact **date** routes to the one fieldwork interval that contains it. Ambiguous or
+  uncovered dates are errors. A year alone never selects a wave, because a year usually has several
+  waves. There is no interpolation between waves.
+- *Where*: every one of the 207 waves carries usable country information, applied in this order:
+  1. a categorical `country` variable (e.g. `"FR - France"`);
+  2. the ISO 3166 variable `isocntry` (`FR`, `DE-W`, …), which decodes the 2021–2023 waves whose
+     `country` is numeric only;
+  3. in older waves, the map-labelled `NATION` variable (values like `FRANCE`, `DEUTSCHLAND`).
 
-Compatible GSS profiles can use:
+  A value is accepted only if it is a unique match. For example, "Germany" in a wave split into
+  East and West stays contextual.
 
-```text
-assets/polar_vectors/polar_vectors.csv
-```
+### 8.5 How the model is chosen
 
-The current state is evaluated relative to reference states using native LSM qdistance. If compatible polar vectors are unavailable, DTAG still runs normally; ideology scoring is simply omitted.
+`scripts/dtag_recommend.py` proposes the best model from every family that covers the respondent.
+It ranks them by:
 
-## Semantic fallback modes
+1. **time fit** (within a year > within three years > further);
+2. **how directly the country conditions the model** (categorical country variable > national sample >
+   country present but contextual > coordinate proxy);
+3. **recency**.
 
-Runtime modes include:
+Examples: Nigeria 2012 → Afrobarometer R5 · France 2019-05-15 → Eurobarometer ZA7575 ·
+India 2018 → WVS7 (`A_YEAR=2018` + coordinates) · rural Alabama → GSS 2024. US states and cities
+count as the United States.
 
-```text
-off
-answer_only
-update_state
-```
+## 9. What happens when you ask a question
 
-Configured default: `update_state` (with response mode `draw`).
+### 9.1 Starting a respondent
 
-- `off`: no semantic fallback when direct mapping fails.
-- `answer_only`: fallback assists response grounding but does not change persistent state.
-- `update_state`: accepted bridge anchors update persistent state (each answer records which case applied).
+1. The persona text is extended with any region, country and year context.
+2. A lexical prefilter ranks the model's items by overlap with the persona and offers up to
+   `assign_prefilter` (500) of them, with their allowed answers, to the language model.
+3. The language model proposes up to `max_assign` (50) item assignments with a rationale. Assignments
+   to items that are not in the model, or to answers the model does not allow, are dropped (and
+   listed as dropped).
+4. **Forced assignments** from geography and time (`scripts/pipeline_localized.py`) are added and
+   take precedence.
+5. The result is the initial survey state. For GSS, the initial ideology index (step 0) is computed.
 
-## Stateful sequences
+### 9.2 Answering a question
 
-DTAG can preserve survey-state assignments across a question sequence. When state updates are enabled, an answer may alter subsequent native-LSM conditionals.
+1. **Map.** A lexical prefilter over the semantic map keeps up to `prefilter` (200) candidates
+   scoring at least `min_map_score`. The language model then selects up to `k` (50) items that the
+   question actually asks about. This step depends only on the question and the map, not on the state.
+2. **Predict.** The LSM computes `P(answer ∣ state)` for each selected item.
+3. **Anchor.** With `resp_mode: draw` (default), an answer is sampled with seed `seed + question
+   index`. With `max`, the most likely answer is taken.
+4. **Update state.** The anchors are written into the state (moved to the most recent position).
+   The oldest entries are evicted beyond `state_keep` (500).
+5. **Ideology (GSS).** The index is recomputed from the new state.
+6. **Phrase.** The language model writes the twin's answer from the persona and the anchors.
 
-The web app supports ordered question sequences for controlled experiments.
+If no item matches (no lexical candidate, or the language model finds no relevant item), the
+**semantic fallback** runs, depending on `semantic_fallback`:
 
-## Optimizer and research experiments
+- `off`: the answer is marked **NO MATCH**.
+- `answer_only`: embeddings (`semantic_prefilter`, 80 candidates) and the language model select up to
+  `semantic_k` (6) *bridge* items with confidence ≥ `semantic_min_confidence` (0.35). These are
+  predicted with `semantic_resp_mode` (`max`) and ground the answer, but **do not change the state**.
+- `update_state` (**default**): as above, but the accepted bridge anchors **are written into the
+  state**.
 
-`optimizer/` contains the question-optimization package (`python -m optimizer ...`; see
-[`optimizer/README.md`](optimizer/README.md)) and the exact one-step geometry module:
+The session timeline tags every answer: `DIRECT`, `SEMANTIC / ANSWER ONLY`,
+`SEMANTIC / STATE UPDATE` or `NO MATCH`.
 
-```bash
-# every askable item x every response: Delta J, P(response), mu, argmax/argmin
-python -m optimizer.one_step_geometry --model gss/gss_2018 --persona-ref CM --exclude-poles --top 10
-```
+## 10. The web workbench, feature by feature
 
-The native evaluator re-scores ~7k (item, response) pairs in a few seconds (incremental
-`Runtime.extension_distances`; see `native/lsm_runtime/README.md`).
+### 10.1 Layout
 
-Experiments and findings live in `scratch/gss2018_pole_geometry/`:
+- **Top bar**: DTAG / About (credits, version, commit), **Respondents 1 | 2**, theme toggle
+  (light/dark), and **reset layout** (shown once a column has been resized).
+- **Left column**: the respondent card (setup, which collapses once started) and the
+  **decision landscape**.
+- **Centre**: the chat stage. Answers are shown first, with metadata and *Model evidence* below.
+  The composer has *Ask*, *Run sequence…* and (with two respondents) a *Both / A only / B only* target.
+- **Right column**: the ideology chart (GSS), two **next-question** suggestions, then tabs for
+  **Auto-push** (GSS), **Experiment** and **Session** (model details, the **Export ▾** menu, the
+  timeline, and the current and initial state tables). The last tab you used is remembered.
 
-```bash
-python scratch/gss2018_pole_geometry/greedy_push_runs.py --persona CM --direction right --n-items 6
-```
+### 10.2 Describing the respondent
 
-(`ONE_STEP_FINDINGS.md`, `ONE_STEP_REPORT.md`, `Experiment.md`).
+- **Presets**: configured profiles plus your own saved custom profiles.
+- **Who / Where / When**. Detected country or year from the description is shown with its source
+  (e.g. country Kenya ← "kenya").
+- **Model choice**: the default recommendation, other families' options (each shows *when* and
+  *where* it conditions), or "Choose a specific native model…".
+- **Behaviour settings**: response mode, semantic fallback, seed and others (§11).
+- **Save as custom profile**; **Advanced profile builder…** also lets you choose the semantic map.
 
-## Model, map and pole toolchain
+### 10.3 Asking and evidence
 
-These scripts build or validate the assets the runtime loads; they are development utilities,
-not alternate runtimes.
+Type a question, or click a starter question or suggestion chip. Each answer's **Model evidence**
+shows the selected variables, the survey wording, the full native distribution, the anchor and its
+probability, the selection rationale, the mapping class, fallback and map provenance, state updates,
+the conditioning applied, and timings.
 
-| Script | Purpose |
+### 10.4 Question sequences
+
+**Run sequence…** runs up to 500 questions in order through the current respondent. You can upload or
+paste a file with one question per line, or a CSV with a `question` column. Blank lines and lines
+starting with `#` are ignored. You can reset the respondent first. The run shows progress, can be
+cancelled, and reports the ideology at the start and end, the range, and the questions that moved it
+most.
+
+### 10.5 Next-question suggestions and push modes
+
+After every answer, `optimizer/session_push.py` scores every unanswered opinion item at the current
+state. Administrative, demographic and factual-behaviour items are excluded, and so are pole-defining
+items unless you allow them.
+
+- **With ideology (GSS):** two suggestions, one moving the index **up** (toward R) and one **down**
+  (toward L). With `draw`, the score is the expected change `μ = Σ P(a) Δ(a)`. With `max`, it is the
+  change from the modal answer (exact).
+- **Without ideology (WVS, Afrobarometer, Eurobarometer):** suggestions are based on the landscape:
+  **open** questions (items whose predicted answer is least settled) and **connected** questions
+  (items whose answer would move the most other predictions).
+
+The language model writes neutral wording for the suggested item. **Ask** has three modes
+(**realistic** is the default):
+
+| Mode | What happens |
 |---|---|
-| `scripts/train_native_lsm_models.py` | prepare survey CSVs and train native LSM models |
-| `scripts/build_gss_native_map.py`, `scripts/build_all_gss_native_maps.py` | GSS semantic maps |
-| `scripts/getmap_dtag.py` | Afrobarometer map builder |
-| `scripts/build_eurobarometer_maps.py`, `scripts/build_eurobarometer_fallback_maps.py` | exact / semantic-union Eurobarometer maps |
-| `scripts/complete_native_maps.py` | all-family map completion |
-| `scripts/download_eurobarometer_codebooks_*`, `scripts/scan_gesis_dbk_ids.py` | codebook retrieval |
-| `scripts/build_gss_polar_vectors.py`, `poles/discover_poles.py` | ideology poles |
-| `scripts/build_model_coverage.py` | `configs/model_coverage.json` |
-| `scripts/package_public_models.py`, `scripts/publish_public_models.sh`, `scripts/rebuild_public_manifest.py` | public model release |
-| `scripts/inventory_native_models.py`, `scripts/cleanup_native_lsm_models.py` | installed-model inventory / trimming |
-| `scripts/audit_native_maps.py`, `scripts/audit_eurobarometer_assets.py` | model/map audits |
-| `scripts/test_native_lsm_dtag.py`, `scripts/test_country_conditioning.py` | no-LLM runtime contract / country tests |
-| `scripts/check_dtag_readiness.py`, `scripts/audit_clean_repo.py` | repository readiness (`dtag-doctor`) |
-| `scripts/build_native_bindings.sh` | build the native runtime extension |
+| **realistic** | The suggested question goes through the normal mapping, like a typed question. It may reach extra items or miss the target, so the realized change can differ from the prediction. |
+| **validated** | The top 5 candidates per direction are dry-run through the mapping. Questions that miss their item are dropped, and the rest are ranked by the exact change over all items they map to. The answer uses that checked mapping. |
+| **push** (`direct` in the API) | The answer goes through exactly the suggested item, skipping the mapping. This is the most idealized mode. |
 
-## Commands
+**Auto-push** (`Push ↑/↓ N steps`) repeats the suggestion in one direction, re-scoring at each step,
+and stops early if nothing moves the index further. Chat entries are tagged **PUSH ↑/↓**, with
+predicted vs realized change in the tooltip.
 
-| Command | Purpose |
-|---|---|
-| `dtag-web` / `webapp/run.sh` | browser workbench + HTTP API |
-| `dtag-models` | download/verify public native models |
-| `dtag-doctor` | readiness and clean-surface checks |
-| `python -m optimizer ...` | question optimization |
-| `python -m optimizer.one_step_geometry ...` | exact one-step item/response geometry |
+These are information-conditioning effects in a fixed survey model, not persuasion of people.
 
-## Archive
+### 10.6 Decision landscape
 
-`archive/` holds the deprecated command-line runtime: `pipeline.py` (CLI `main()`),
-`interactive.py`, `run.py`, `run_grid.py`, `post.py`, `postprocess.py`, `smoke_test.py`,
-`benchmark_native_runtime.py`, the Eurobarometer CLI launcher, `bin/*.sh` and
-`experiments/`. It is kept for reference only: not tested, not maintained, and not runnable in
-place. See [`archive/README.md`](archive/README.md) for what moved and how to restore a file.
+This view is available for **all** surveys. Two views are offered (the toggle is remembered):
 
-## Assumptions and limitations
+- **Doughnut.** One wedge per unanswered item, grouped into topic arcs. Wedge length shows how
+  settled the predicted answer is (1 − normalized entropy). On GSS, colour shows the lean (blue = L,
+  red = R). Answered items are beads on the inner ring. Wedges whose prediction moved after the last
+  answer (Jensen–Shannon > 1e-4 bits) pulse with a spike sized to the shift, and the top movers are
+  listed.
+- **Map (terrain).** Items sit on a fixed 2D map with topic regions; items whose trees depend on each
+  other are pulled together (force-directed layout, cached per model). Height shows indecision, so
+  settled opinions are valleys. Answered items are pins. An expanding ring marks moved predictions.
 
-DTAG currently assumes:
+The landscape is **live and progressive**. When an answer lands, every prediction that could change
+(known from the model's dependency graph) starts shimmering. Only those items are recomputed, most
+affected first and in small batches, and each batch is published as it finishes. The final view is
+exact. Dense models (WVS, Afrobarometer, Eurobarometer) are computed in the background, so questions
+are never blocked.
 
-- native LSM models represent discrete/categorical survey state spaces;
-- every model feature has a map row;
-- user questions can be matched to relevant survey variables with sufficient semantic confidence;
-- persona attributes are explicit state constraints only when compatible survey variables exist;
-- survey-wave selection is discrete rather than continuous interpolation;
-- geographic conditioning is constrained by fields present in the selected survey;
-- native conditional predictions do not imply causal effects;
-- generated language is an interpretation layer anchored to model distributions, not a literal response emitted by the LSM;
-- semantic-union fallback documentation is weaker evidence than wave-specific documentation and remains explicitly marked.
+### 10.7 Experiments: record, rerun ×N, statistics
 
-DTAG generates a model-conditioned digital twin of survey-response behavior. It should not be interpreted as a literal individual, a causal simulator, or a deterministic forecast of a real person's future choices.
+Everything you do to a respondent is recorded as a **recipe** (*Experiment* tab): typed questions,
+pushes (direction and mode), auto-pushes, sequences and suggested questions. Pushes and suggestions
+are recorded as *intent*. A reset starts a new recipe.
 
-## Model distribution
+**Rerun ×N** replays the recipe N times as a background job:
 
-The ≈6.6 GB native corpus stays outside Git. Release `v0.2.1` is published as one SHA256-checksummed
-`.tar.zst` archive per model (≈0.94 GB in total) in the public bucket `git-zeroknowledgediscovery-dtag`.
-It is read anonymously over HTTPS through
-`https://storage.googleapis.com/git-zeroknowledgediscovery-dtag/models/v0.2.1/manifest.json`.
-`dtag-models` and the web app download, verify, extract and validate models on demand into the model
-root (`DTAG_MODEL_ROOT`, an already-populated `<repo>/models/lsm`, or `~/.cache/dtag/models`). See
-[docs/MANUAL.md §6](docs/MANUAL.md#6-native-models-where-they-are-and-how-they-are-pulled-in).
+- Each run uses a fresh respondent from the same profile, so the persona interpretation can vary.
+- Each run gets its own seed (`base_seed + run`).
+- Pushes and suggestions are re-chosen at that run's own state, and every question actually asked
+  is logged.
 
-Never commit long-lived cloud credentials or API keys.
+The panel shows the mean ideology after each action, with a 95% bootstrap CI band and each run as a
+faint line. It also shows the net change with its CI, the push hit rate, and which questions each
+action asked across runs. Results are written to a folder (§12.2). A saved `recipe.json` can also be
+run through the API (`POST /api/experiments/run`).
 
-## Current status
+### 10.8 Two respondents
 
-Validated native surface:
+**Respondents 2** adds a second, fully independent respondent (own description, model, settings and
+session; it may be on a different survey). Questions go to *Both*, *A only* or *B only*. The right
+column overlays both ideology trajectories (A solid with circles, B dashed with squares) and shows the
+gap A − B. The two-respondent ZIP log adds an aligned comparison.
+
+### 10.9 Figures, layout and theme
+
+- **Save figures**: hover any chart (ideology, doughnut, map, experiment band) and click its download
+  button to save it as **SVG**, **PNG** (4×) or **PDF**. The map is a canvas, so it is embedded in the
+  PDF as a 4× image. Theme colours are inlined.
+- **Resizable columns**: drag a border; double-click it, or use *reset layout*, to restore the
+  defaults. The chat wraps and never gets narrower than 360 px. Widths are remembered separately for
+  one and two respondents. Below 1100 px the columns stack.
+- **Theme**: light or dark, following the system until you choose.
+
+The browser remembers: `dtag.theme`, `dtag.landscapeView`, `dtag.layout.1|2`, `dtag.rightTab` and
+`dtag.respondents`.
+
+## 11. Settings reference
+
+These defaults come from `configs/dtag_config.yaml → defaults.run`. A profile can override them, and
+so can a request (the UI behaviour panel, or `overrides` in the API).
+
+| Setting | Default | Meaning |
+|---|---|---|
+| `resp_mode` | `draw` | `draw` samples the native distribution (seed `seed + question`); `max` takes the modal answer. |
+| `semantic_fallback` | `update_state` | `off`, `answer_only` or `update_state` (§9.2). |
+| `semantic_resp_mode` | `max` | Response mode for fallback bridge items. |
+| `semantic_k`, `semantic_prefilter`, `semantic_min_confidence` | 6, 80, 0.35 | Fallback bridge selection. |
+| `semantic_embedding_model` | `text-embedding-3-small` | Embeddings for the fallback. |
+| `k`, `prefilter`, `min_map_score` | 50, 200, 1.0 | Direct mapping: maximum items, lexical candidates, minimum lexical score. |
+| `max_assign`, `assign_prefilter` | 50, 500 | Persona interpretation. |
+| `state_keep` | 500 | Maximum state size (oldest entries evicted). |
+| `seed` | profile / 1000 base | Random seed for draws. |
+| `openai_model` | `gpt-4.1-mini` | Language model (env override `DTAG_OPENAI_MODEL`). |
+| `ideology`, `polar_set` | on for GSS | Ideology tracking and the pole set. |
+
+The API accepts only whitelisted, bounded override fields (persona, country, continent, year, date,
+za, model_key, map_key, ideology, polar_set, semantic_fallback, resp_mode, semantic_resp_mode, seed and
+numeric runtime parameters). It never accepts paths, commands, modules or URLs.
+
+## 12. Outputs, logs and reproducibility
+
+### 12.1 Session exports
+
+From *Session → Export ▾*:
+
+- **Full log (ZIP)**, containing: `report.md`, `questions.csv`/`.jsonl`, `ideology_trajectory.csv` and
+  `ideology.svg`, `state_changes.csv`, `persona.txt`, `persona_initialization.json`,
+  `initial_state.csv`/`final_state.csv`, `settings.json`, `poles.csv`, `sequence.json`, `session.json`,
+  and `manifest.json` (DTAG version and commit, model checksum, file checksums).
+- **JSON** and **CSV** of the session.
+
+The two-respondent ZIP adds `comparison.csv`/`.svg`.
+
+### 12.2 Experiment folders
+
+Experiments are saved to `<repo>/experiments/<name>_<timestamp>/` (or `$DTAG_EXPERIMENTS_DIR`).
+This folder is ignored by Git.
 
 ```text
-35 GSS
-9 Afrobarometer
-1 WVS7 pooled
-207 Eurobarometer
-252 native models
-252 semantic maps
-full model-map overlap
+recipe.json  manifest.json  report.md
+runs/run_NN/  trace.jsonl  state_changes.csv  states.csv  session_log/
+summary/      steps.csv  checkpoints.csv  stats.csv  stats.json  questions.csv
+              final_answers.csv  state_changes.csv  states.csv
 ```
 
-The main remaining engineering work is continued semantic improvement of fallback documentation for a subset of Eurobarometer waves, and fieldwork dates for the 15 newest Eurobarometer waves (selectable by ZA number only).
+`trace.jsonl` records every question with its items, answers, ideology before and after, and push
+outcome. `states.csv` holds the full survey state after every step. *Download results (ZIP)* returns
+the whole folder.
 
-## Name
+### 12.3 Reproducibility
 
-**DTAG = Digital Twin Anchored Generation.**
+Every export records the DTAG version and Git commit, the model key, release and SHA256, the map
+provenance, the profile, the persona, the requested and resolved geography and time, the seed,
+response mode, fallback mode and LLM model, the initial state, and every question's full
+distributions and anchors.
+
+With `resp_mode: max` and fixed persona assignments, native results are deterministic. With `draw`,
+they are reproducible given the seed. Language-model steps (persona interpretation, mapping, prose)
+can vary between runs. That is why experiments rerun from a fresh respondent and log every question
+actually asked.
+
+## 13. HTTP API summary
+
+Interactive OpenAPI docs are served at `http://<host>:<port>/docs`. Main routes:
+
+```text
+GET  /api/health   /api/readiness   /api/profiles[/{name}]   /api/models[?family=]
+POST /api/models/{family}/{name}/install          GET /api/models/{family}/{name}/status
+POST /api/recommend   GET /api/countries   GET /api/eurobarometer/waves   GET /api/eurobarometer/resolve
+POST /api/sessions    GET /api/sessions[/{id}]   DELETE /api/sessions/{id}   POST /api/sessions/{id}/reset
+POST /api/sessions/{id}/questions                 GET  /api/sessions/{id}/suggestions
+POST|GET|DELETE /api/sessions/{id}/sequence
+GET  /api/sessions/{id}/ideology-push[?mode=]     POST /api/sessions/{id}/ideology-push/ask|auto
+GET  /api/sessions/{id}/landscape                 GET  /api/sessions/{id}/next-questions
+GET  /api/sessions/{id}/experiment                POST /api/sessions/{id}/experiment/run
+POST /api/experiments/run   GET|DELETE /api/experiments/jobs/{id}   GET /api/experiments
+GET  /api/experiments/{folder}/download
+GET  /api/sessions/{id}/export?format=json|csv|zip   GET /api/export/bundle?ids=…&labels=…
+```
+
+Example:
+
+```bash
+SID=$(curl -s -X POST localhost:8000/api/sessions -H 'content-type: application/json' \
+  -d '{"profile":"gss2024_cm"}' | python -c 'import json,sys;print(json.load(sys.stdin)["session_id"])')
+curl -s -X POST localhost:8000/api/sessions/$SID/questions -H 'content-type: application/json' \
+  -d '{"question":"Should abortion be legal for any reason?"}'
+curl -s -o session.zip "localhost:8000/api/sessions/$SID/export?format=zip"
+```
+
+See [`webapp/README.md`](webapp/README.md#api) for request and response details.
+
+## 14. Environment variables
+
+| Variable | Purpose |
+|---|---|
+| `OPENAI_API_KEY` | Language-model key (server-side only). |
+| `DTAG_LLM_BACKEND=mock` | Deterministic mock language layer. |
+| `DTAG_OPENAI_MODEL` | Override the language model. |
+| `DTAG_MODEL_ROOT` | Local model root (§6.2). |
+| `DTAG_MODEL_RELEASE`, `DTAG_PUBLIC_BUCKET`, `DTAG_MODEL_MANIFEST_URL` | Public model release (§6.1). |
+| `DTAG_MAX_LOADED_MODELS` | Resident models (default 6, LRU). |
+| `DTAG_CONFIG`, `DTAG_EURODATES` | Config file and Eurobarometer registry. |
+| `DTAG_ASSETS_DIR` | Possible-response and embedding caches (default `~/.cache/dtag/assets`). |
+| `DTAG_WEB_DATA_DIR` | Custom profiles. |
+| `DTAG_EXPERIMENTS_DIR` | Experiment output folder (default `<repo>/experiments`). |
+| `DTAG_HOST`, `DTAG_PORT` | Bind address. |
+| `DTAG_MAX_SESSIONS`, `DTAG_SESSION_TTL_HOURS` | In-memory session limits. |
+| `DTAG_PASSWORD`, `DTAG_SESSION_SECRET`, `DTAG_AUTH_HOURS` | Access control (§15). |
+| `DTAG_RUNTIME_ROOT`, `DTAG_FRONTEND_DIST`, `DTAG_GIT_COMMIT` | Packaging overrides (runtime tree, built UI, reported commit). |
+
+## 15. Deployment and access control
+
+- Set `DTAG_PASSWORD` before exposing the server beyond localhost. Otherwise anyone who can reach it
+  can use your OpenAI key. Browsers then get a sign-in page and a signed HttpOnly cookie
+  (`DTAG_AUTH_HOURS`, default 12 h). Scripts send `Authorization: Bearer <password>`. Failed logins are
+  throttled. `/api/health` stays open for probes.
+- Serve it over HTTPS (e.g. Caddy or a cloud load balancer).
+- Use one worker process and give it enough memory for the resident models. GSS models are small;
+  dense Eurobarometer and Afrobarometer models are larger.
+- Put the model root and `DTAG_EXPERIMENTS_DIR` on persistent storage.
+
+See [`webapp/HANDOFF.md`](webapp/HANDOFF.md) for operations and handover notes.
+
+## 16. Testing and readiness checks
+
+```bash
+python -m pytest -q                       # everything (native tests skip if models are missing)
+cd webapp/tests && DTAG_TEST_OFFLINE=1 pytest -q   # skip the native/network tier
+dtag-doctor                               # readiness: files, packages, native bindings, models, maps, poles
+python3 scripts/audit_native_maps.py --deep   # load every installed model and check map overlap
+```
+
+No test needs an OpenAI key: tests use the mock language layer. The web tests' native tier downloads
+`gss/gss_2024` if needed.
+
+## 17. Troubleshooting
+
+| Symptom | Fix |
+|---|---|
+| "The bundled native LSM extension is not importable" | You are not on CPython 3.13 x86-64 Linux, or glibc < 2.38. Run `bash scripts/build_native_bindings.sh`. |
+| Server refuses to start without a key | Set `OPENAI_API_KEY`, or run with `DTAG_LLM_BACKEND=mock`. |
+| Model download fails | Check outbound HTTPS to `storage.googleapis.com`, or pre-populate `DTAG_MODEL_ROOT` (§6.4). |
+| Landscape spinner on WVS / Afrobarometer / Eurobarometer | Expected: these models are dense and the landscape fills in progressively in the background. |
+| No ideology chart | Ideology exists only for GSS. Other surveys still get the landscape and next-question suggestions. |
+| Eurobarometer date rejected | The date is ambiguous or not covered. Pick another date or choose the ZA wave explicitly. |
+| UI changes not visible after pulling | Hard-refresh the browser. In a source checkout, rebuild with `npm run build`. |
+| Everyone logged out after restart | Set a fixed `DTAG_SESSION_SECRET`. |
+
+## 18. Assumptions, limitations and interpretation
+
+- Models represent discrete, categorical survey state spaces. Each wave is a separate model, and
+  time selects a wave rather than interpolating between waves.
+- Survey weights (e.g. GSS `wtssall`, `wtssps`) appear as ordinary model variables and are not
+  applied as sampling weights. Predictions are conditional on the sample, not on the population.
+- Persona attributes constrain the state only where compatible survey variables exist. Everything
+  else in the persona only shapes the prose.
+- Geographic conditioning is limited to the fields each survey contains (see §8). For GSS, place
+  is context only.
+- Question mapping depends on the semantic map and the language model. Use the *validated* mode or
+  the evidence panel to check what a question actually reached. Semantic-fallback and union-fallback
+  map rows are weaker evidence and are always labelled as such.
+- Conditional predictions are associations, not causal effects. Push and drift experiments measure
+  how the model's predictions respond to added information. They do not measure how a person would
+  respond to persuasion.
+- The ideology index is defined only for GSS, by fixed L/R pole states. It is a model-based summary,
+  not a self-report.
+
+DTAG generates a model-conditioned digital twin of survey-response behaviour. It must not be presented
+as a real individual, a poll result, or a forecast of anyone's future choices.
+
+## 19. Credits and data sources
+
+Developed by **ZeD Lab, University of Kentucky** (contact: ishanu_ch@uky.edu).
+
+Models are trained on the General Social Survey (NORC at the University of Chicago), the World Values
+Survey, Afrobarometer, and Eurobarometer (GESIS data archive). The surveys' producers bear no
+responsibility for the models or their use here.

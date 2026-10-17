@@ -20,7 +20,6 @@ RUNTIME_DIRS = [
 # Top-level webapp files installed alongside the runtime tree.
 WEBAPP_FILES = [
     "webapp/README.md",
-    "webapp/QUICKSTART.md",
     "webapp/HANDOFF.md",
     "webapp/IMPLEMENTATION_PLAN.md",
     "webapp/run.sh",
@@ -67,7 +66,7 @@ def runtime_data_files():
             groups.setdefault(str(Path("share") / "dtag" / Path(rel).parent), []).append(rel)
 
     # Keep top-level metadata next to the installed runtime tree.
-    for name in ("README.md", "VERSION", "requirements.txt"):
+    for name in ("README.md", "QUICKSTART.md", "VERSION", "requirements.txt"):
         p = ROOT / name
         if p.exists():
             groups.setdefault("share/dtag", []).append(name)

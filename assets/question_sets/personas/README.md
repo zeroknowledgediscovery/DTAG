@@ -47,7 +47,7 @@ different, the run is not under the validated conditions. The validation also al
 variation around this state (age, place size, strength of views, an omitted fact), so small
 differences elsewhere are within what was tested.
 
-Details of the analysis: [`QUESTION_OPTIMIZATION.md`](../../../QUESTION_OPTIMIZATION.md).
+Details of the analysis: [`QUESTION_OPTIMIZATION.md`](../../../docs/QUESTION_OPTIMIZATION.md).
 
 ## Direct LLM-decoding audit in the optimizer
 
