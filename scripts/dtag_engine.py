@@ -908,12 +908,23 @@ class EngineSession:
 
         s = self.session
         try:
-            snap = snapshot(s, prev=land["cur"])
             positions = None
             try:
                 positions = layout(s)
             except Exception:  # the map view is optional; the doughnut does not need positions
                 pass
+
+            def progress(partial: Dict[str, Any]) -> None:
+                # Approximate, live view while computing: items that may change are listed as pending
+                # and show their previous value (or a placeholder) until recomputed.
+                with self._land_lock:
+                    if self._land is not land or land["reset"] != self.reset_count:
+                        return
+                    view = build_view(partial, land["cur"], s.ctx.var_map, land["history"],
+                                      land["lean_scale"], positions)
+                    land["view"] = {**view, "pending": True}
+
+            snap = snapshot(s, prev=land["cur"], on_progress=progress)
             with self._land_lock:
                 if self._land is not land or land["reset"] != self.reset_count:  # reset while computing
                     return

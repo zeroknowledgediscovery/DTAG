@@ -63,15 +63,31 @@ def dependencies(session: Any, names: List[str]) -> Dict[str, List[str]]:
     return _DEPS[key]
 
 
-def snapshot(session: Any, prev: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+def _item(p: Dict[str, float], lean: Optional[float]) -> Optional[Dict[str, Any]]:
+    tot = sum(p.values())
+    if tot <= 0:
+        return None
+    p = {a: x / tot for a, x in p.items()}
+    modal = max(p, key=lambda a: (p[a], a))
+    return {"dist": p, "settled": _settled(p), "modal": modal, "p_modal": p[modal], "lean": lean}
+
+
+def snapshot(session: Any, prev: Optional[Dict[str, Any]] = None,
+             on_progress: Optional[Any] = None, progress_every: float = 0.3) -> Dict[str, Any]:
     """Predicted answer distributions and summaries for every askable item at the current state.
 
-    With an ideology index the per-state one-step pass (session_push.scored) supplies distributions
-    and lean. Without one, distributions come from the native model directly, and only the items that
-    can have changed are recomputed: an item's tree reads only the variables it splits on, so if none
-    of them changed since ``prev`` its distribution is exactly the same. Recomputation runs in small
-    batches outside the session lock, so questions are never blocked behind it.
+    Only the items that can have changed since ``prev`` are recomputed: an item's tree reads only the
+    variables it splits on, so if none of them changed its distribution is exactly the same (the
+    result equals a full recomputation). They are recomputed in small batches outside the session
+    lock, most-affected first, so questions are never blocked behind it.
+
+    ``on_progress(partial)`` (optional) receives approximate snapshots while this runs: first, at
+    once, with every item that may change listed in ``pending`` and still showing its previous
+    value; then after batches (at most every ``progress_every`` s) as items are filled in. With an
+    ideology index, the exact one-step pass (session_push.scored) finally supplies lean and I(s).
     """
+    import time as _time
+
     from optimizer.one_step_geometry import native_distributions
 
     with session.lock:
@@ -80,43 +96,60 @@ def snapshot(session: Any, prev: Optional[Dict[str, Any]] = None) -> Dict[str, A
         var_map = session.ctx.var_map
         step = int(session.query_count)
         has_ideology = bool(getattr(session, "ideology_enabled", False))
-    lean: Dict[str, float] = {}
-    ideology: Optional[float] = None
-    recomputed = len(items)
+    prev_items = (prev or {}).get("items") or {}
+    deps = dependencies(session, items)
+    if prev_items and deps:
+        changed = {k for k in set(state) | set(prev["state"]) if state.get(k) != prev["state"].get(k)}
+        hits = {v: len(changed & set(deps.get(v, ()))) for v in items}
+        todo = [v for v in items if v not in prev_items or hits[v]]
+        todo.sort(key=lambda v: (-hits[v], v))  # most directly affected first
+    else:
+        todo = list(items)
+    dists = {v: prev_items[v]["dist"] for v in items if v in prev_items}
+    lean: Dict[str, Optional[float]] = {v: prev_items[v]["lean"] for v in items if v in prev_items}
+    ideology: Optional[float] = (prev or {}).get("ideology")
+    pending = list(todo)
+
+    def assemble(final: bool) -> Dict[str, Any]:
+        out: Dict[str, Dict[str, Any]] = {}
+        waiting = set() if final else set(pending)
+        for v in items:
+            rec = _item(dists.get(v) or {}, lean.get(v))
+            if rec is None and v in waiting:  # not computed yet and no previous value: placeholder
+                rec = {"dist": {}, "settled": 0.0, "modal": "", "p_modal": 0.0, "lean": None}
+            if rec is not None:
+                out[v] = rec
+        topics = topics_for(list(out) + list(state), var_map)
+        done = len(todo) - len(waiting)
+        return {"step": step, "state": state, "items": out, "topics": topics, "ideology": ideology,
+                "recomputed": len(todo), "pending": sorted(waiting),
+                "progress": 1.0 if final else (done / len(todo) if todo else 1.0)}
+
+    if on_progress is not None:
+        on_progress(assemble(False))
+    world = SessionWorld(session)
+    batch = BATCH * (5 if has_ideology else 1)  # GSS-sized models predict fast
+    last = _time.time()
+    for k in range(0, len(todo), batch):
+        chunk = todo[k:k + batch]
+        dists.update(native_distributions(world, state, chunk))
+        del pending[:len(chunk)]
+        if on_progress is not None and _time.time() - last >= progress_every and pending:
+            on_progress(assemble(False))
+            last = _time.time()
     if has_ideology:
         res = scored(session)
-        dists: Dict[str, Dict[str, float]] = {}
+        exact: Dict[str, Dict[str, float]] = {}
         for r in res.rows:
-            dists.setdefault(r["variable"], {})[str(r["answer"])] = float(r["conditional_probability"])
+            exact.setdefault(r["variable"], {})[str(r["answer"])] = float(r["conditional_probability"])
+        dists.update(exact)
         lean = {r["variable"]: float(r["delta_modal"]) for r in res.summary}
         ideology = float(res.I_before)
         # scored() follows the live state; keep the snapshot consistent with what it scored
         state = dict(res.meta.get("state", state))
     else:
-        todo = list(items)
-        dists = {}
-        if prev is not None and prev.get("items"):
-            deps = dependencies(session, items)
-            changed = {k for k in set(state) | set(prev["state"]) if state.get(k) != prev["state"].get(k)}
-            if deps:
-                todo = [v for v in items if v not in prev["items"] or changed & set(deps.get(v, ()))]
-                dists = {v: prev["items"][v]["dist"] for v in items if v in prev["items"] and v not in set(todo)}
-        world = SessionWorld(session)
-        for k in range(0, len(todo), BATCH):
-            dists.update(native_distributions(world, state, todo[k:k + BATCH]))
-        recomputed = len(todo)
-    out: Dict[str, Dict[str, Any]] = {}
-    for v in items:
-        p = dists.get(v) or {}
-        tot = sum(p.values())
-        if tot <= 0:
-            continue
-        p = {a: x / tot for a, x in p.items()}
-        modal = max(p, key=lambda a: (p[a], a))
-        out[v] = {"dist": p, "settled": _settled(p), "modal": modal, "p_modal": p[modal], "lean": lean.get(v)}
-    topics = topics_for(list(out) + list(state), var_map)
-    return {"step": step, "state": state, "items": out, "topics": topics, "ideology": ideology,
-            "recomputed": recomputed}
+        lean = {}
+    return assemble(True)
 
 
 _LAYOUTS: Dict[Any, Dict[str, Any]] = {}
@@ -264,6 +297,8 @@ def build_view(cur: Dict[str, Any], prev: Optional[Dict[str, Any]], var_map: Dic
         "shift_eps": SHIFT_EPS,
         "topics": topic_list,
         "items": items,
+        "pending_items": cur.get("pending", []),
+        "progress": cur.get("progress", 1.0),
         "topic_xy": (positions or {}).get("topics", {}),
         "map_edges": (positions or {}).get("edges"),
         "anchored": anchored,

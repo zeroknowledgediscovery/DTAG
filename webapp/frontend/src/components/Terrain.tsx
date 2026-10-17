@@ -129,25 +129,54 @@ export function TerrainView({
     return { H, Lf, lscale, mask, contours: LEVELS.map((lv) => contour(H, mask, lv)) };
   }, [data]);
 
+  // Last drawn field, so each update morphs smoothly from what is on screen (live, not snapping).
+  const shown = useRef<{ H: Float32Array; L: Float32Array; M: Float32Array } | null>(null);
   useEffect(() => {
     const cv = canvas.current;
     if (!cv) return;
     const ctx = cv.getContext("2d");
     if (!ctx) return;
+    const target = { H: field.H, L: new Float32Array(field.Lf.map((x) => Math.max(-1, Math.min(1, x / field.lscale)))), M: field.mask };
+    const from = shown.current;
     const img = ctx.createImageData(G, G);
-    for (let n = 0; n < G * G; n++) {
-      const t = Math.max(-1, Math.min(1, field.Lf[n] / field.lscale));
-      const base = data.has_lean ? mix(colours.ink, t >= 0 ? colours.r : colours.l, Math.abs(t)) : colours.plain;
-      const c = mix(base, colours.surf, 0.08 + 0.84 * Math.pow(field.H[n], 0.8)); // valleys (settled) deep, high ground (undecided) pale
-      img.data[n * 4] = c[0];
-      img.data[n * 4 + 1] = c[1];
-      img.data[n * 4 + 2] = c[2];
-      img.data[n * 4 + 3] = Math.round(255 * field.mask[n]);
+    const cur = { H: new Float32Array(G * G), L: new Float32Array(G * G), M: new Float32Array(G * G) };
+    const draw = (k: number) => {
+      for (let n = 0; n < G * G; n++) {
+        const h = from ? from.H[n] + (target.H[n] - from.H[n]) * k : target.H[n];
+        const t = from ? from.L[n] + (target.L[n] - from.L[n]) * k : target.L[n];
+        const m = from ? from.M[n] + (target.M[n] - from.M[n]) * k : target.M[n];
+        cur.H[n] = h;
+        cur.L[n] = t;
+        cur.M[n] = m;
+        const base = data.has_lean ? mix(colours.ink, t >= 0 ? colours.r : colours.l, Math.abs(t)) : colours.plain;
+        const c = mix(base, colours.surf, 0.08 + 0.84 * Math.pow(h, 0.8)); // valleys (settled) deep, high ground (undecided) pale
+        img.data[n * 4] = c[0];
+        img.data[n * 4 + 1] = c[1];
+        img.data[n * 4 + 2] = c[2];
+        img.data[n * 4 + 3] = Math.round(255 * m);
+      }
+      ctx.putImageData(img, 0, 0);
+      shown.current = { H: cur.H.slice(), L: cur.L.slice(), M: cur.M.slice() };
+    };
+    const reduce = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!from || reduce) {
+      draw(1);
+      return;
     }
-    ctx.putImageData(img, 0, 0);
+    let raf = 0;
+    const t0 = performance.now();
+    const step = (now: number) => {
+      const k = Math.min(1, (now - t0) / 600);
+      draw(1 - Math.pow(1 - k, 3)); // ease-out
+      if (k < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
   }, [field, colours, data.has_lean]);
 
   const eps = data.shift_eps;
+  const pendingSet = new Set(data.pending_items || []);
+  const waiting = data.items.filter((it) => pendingSet.has(it.v) && it.x !== undefined);
   const moved = data.items.filter((it) => it.d !== null && it.d > eps && it.x !== undefined);
   const newPins = data.anchored.filter((a) => a.new && a.x !== undefined);
   const delay = (p: Pt) => {
@@ -191,6 +220,11 @@ export function TerrainView({
             {t.split(" & ")[0].split(" ")[0]}
           </text>
         ))}
+        <g className="terrain-pending">
+          {waiting.map((it) => (
+            <circle key={it.v} cx={it.x} cy={it.y} r={0.007} style={{ animationDelay: `${delay({ x: it.x!, y: it.y! }).toFixed(2)}s` }} />
+          ))}
+        </g>
         <g key={`m-${data.step}`}>
           {moved.map((it) => {
             const r = 0.012 + 0.028 * Math.min(1, Math.sqrt(it.d! / SHIFT_REF));

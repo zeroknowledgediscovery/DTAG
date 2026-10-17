@@ -144,6 +144,7 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
   }
 
   const eps = data.shift_eps;
+  const pendingSet = new Set(data.pending_items || []);
   const ripple = (ang: number) => {
     if (!layout.newAngles.length) return 0;
     const d = Math.min(...layout.newAngles.map((b) => Math.min(Math.abs(b - ang), 360 - Math.abs(b - ang))));
@@ -253,7 +254,7 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
         >
           ⓘ
         </span>
-        {loading && <span className="spinner" />}
+        {loading && !data.pending && <span className="spinner" />}
         <div className="seg land-view" role="radiogroup" aria-label="Landscape view">
           {(["ring", "map"] as const).map((v) => (
             <button key={v} role="radio" aria-checked={view === v} className={view === v ? "on" : ""} onClick={() => setView(v)}>
@@ -261,6 +262,9 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
             </button>
           ))}
         </div>
+      </div>
+      <div className={`land-progress${data.pending ? " on" : ""}`} title={data.pending ? `updating ${pendingSet.size} predictions…` : undefined}>
+        <div style={{ width: `${Math.round(100 * (data.pending ? data.progress ?? 0 : 1))}%` }} />
       </div>
       {view === "map" ? (
         data.items.some((it) => it.x !== undefined) ? (
@@ -295,15 +299,20 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
             {data.items.map((it) => {
               const [a0, a1] = layout.pos[it.v];
               const moved = it.d !== null && it.d > eps;
+              const waiting = pendingSet.has(it.v);
               const on = hover?.key === it.v;
+              const shape = wedge(R0, waiting && !it.m ? R0 + 3 : len(it.s), a0, a1);
               return (
                 <path
                   key={it.v}
                   data-v={it.v}
-                  d={wedge(R0, len(it.s), a0, a1)}
-                  fill={leanFill(it, data.lean_scale)}
-                  className={`land-w${moved ? " moved" : ""}${on ? " on" : ""}`}
-                  style={moved ? { animationDelay: `${ripple((a0 + a1) / 2).toFixed(2)}s` } : undefined}
+                  className={`land-w${moved ? " moved" : ""}${waiting ? " pending" : ""}${on ? " on" : ""}`}
+                  // geometry and colour as CSS properties so changes animate (smooth, live updates)
+                  style={{
+                    d: `path("${shape}")`,
+                    fill: leanFill(it, data.lean_scale),
+                    ...(moved || waiting ? { animationDelay: `${ripple((a0 + a1) / 2).toFixed(2)}s` } : {}),
+                  } as React.CSSProperties}
                 />
               );
             })}
@@ -373,7 +382,17 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
       </div>
       )}
       <div className="land-cap">
-        {data.since_step === null ? (
+        {data.pending && pendingSet.size > 0 && data.since_step === null ? (
+          <>
+            <span className="live-dot" /> Mapping the landscape: {s.n_items - pendingSet.size} of {s.n_items} predictions
+            computed…
+          </>
+        ) : data.pending && pendingSet.size > 0 ? (
+          <>
+            <span className="live-dot" /> Updating: <b>{pendingSet.size}</b> prediction{pendingSet.size === 1 ? "" : "s"} still
+            settling after the last answer{s.n_moved ? <> · <b>{s.n_moved}</b> moved so far</> : null}…
+          </>
+        ) : data.since_step === null ? (
           <>
             {s.n_items} predicted answers in {data.topics.length} topics. Ask a question to see which predictions it moves.
           </>
