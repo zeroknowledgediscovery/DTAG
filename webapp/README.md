@@ -247,21 +247,35 @@ How they are chosen (one-step optimizer, `optimizer/session_push.py`):
 * the shown question is written by the language model for exactly that item, in neutral wording
   (no leading language). **all answers** lists every response with its probability and Δ.
 
-**Ask this** asks the suggested question *through that survey item*: variable selection is
-skipped, and the distribution, response, state update, ideology and prose follow the normal
-path. The recorded and plotted index therefore changes by the predicted amount (chat entries are
-tagged **PUSH ↑/↓**; the tooltip shows predicted vs realized). If the respondent's state is at its
-size limit, an older answer is evicted and the card says the change may differ.
+**Ask** has two modes, chosen with the **realistic | validated** toggle (default: realistic):
 
-**Push [↑/↓] [N] steps · Run** (automatic push) asks the suggestion for one direction step by step (each step re-scores at the
-new state), for a chosen number of steps; it runs like a question sequence (progress card,
+* **realistic** — the suggested question is asked exactly like a typed question: the normal
+  mapping (lexical prefilter + language-model item selection) decides which survey items it
+  updates. It may update extra items, or miss the suggested item, so the realized change can
+  differ from the prediction shown (which is for the suggested item alone). Nothing is forced:
+  this is what would happen if a person asked that question.
+* **validated** — for the top 5 items per direction, the question written for each item is
+  first run through that same mapping (a dry run, cached per question). Questions whose mapping
+  misses their item are dropped; the rest are ranked by the exact change from answering *all*
+  the items they map to, and the chosen question is answered through that checked mapping. With
+  response mode **max** the recorded and plotted index then changes by exactly the shown amount.
+  Click a suggestion to see the items it maps to and which candidates mapped back (✓/✗).
+
+Chat entries are tagged **PUSH ↑/↓** (plus *missed item* when a realistic question did not map
+to its item); the tooltip shows the mode, the mapped items and predicted vs realized change. If
+the respondent's state is at its size limit, an older answer is evicted and the change may differ.
+
+**Push [↑/↓] [N] steps · Run** (automatic push) asks the suggestion for one direction step by step in the selected mode (each step re-scores
+at the new state), for a chosen number of steps; it runs like a question sequence (progress card,
 cancel, results in the log) and stops early if no item moves the index further.
 
-API: `GET /api/sessions/{id}/ideology-push[?include_pole_items=true]` → `{up, down, objective,
-n_candidates, ...}`; `POST /api/sessions/{id}/ideology-push/ask` with `{"variable", "question",
-"direction"}` → a question result with `push: {predicted_modal_delta, predicted_expected_delta,
-realized_delta}`; `POST /api/sessions/{id}/ideology-push/auto` with `{"direction": "up"|"down",
-"steps": N, "include_pole_items": false}` starts the background run (poll/cancel via
+API: `GET /api/sessions/{id}/ideology-push[?include_pole_items=true&mode=realistic|validated]` →
+`{up, down, objective, mode, n_candidates, up_checked, down_checked, ...}`;
+`POST /api/sessions/{id}/ideology-push/ask` with `{"variable", "question", "direction", "mode"}` →
+a question result with `push: {mode, mapped_variables, hit, predicted_modal_delta,
+predicted_expected_delta, predicted_joint_delta, realized_delta}`;
+`POST /api/sessions/{id}/ideology-push/auto` with `{"direction": "up"|"down", "steps": N,
+"include_pole_items": false, "mode": "realistic"}` starts the background run (poll/cancel via
 `.../sequence`).
 
 These are information-conditioning effects of a fixed survey model, not persuasion of people.
@@ -328,7 +342,7 @@ GET    /api/models/{family}/{name}/status  POST /api/models/{family}/{name}/inst
 GET    /api/maps                           GET  /api/polar-vectors   GET /api/geography
 POST   /api/recommend                      GET  /api/countries       GET /api/sessions/{id}/suggestions
 POST   /api/sessions/{id}/sequence         GET  /api/sessions/{id}/sequence[?since=N]   DELETE /api/sessions/{id}/sequence
-GET    /api/sessions/{id}/ideology-push[?include_pole_items=]   POST /api/sessions/{id}/ideology-push/ask
+GET    /api/sessions/{id}/ideology-push[?include_pole_items=&mode=]   POST /api/sessions/{id}/ideology-push/ask
 POST   /api/sessions/{id}/ideology-push/auto
 GET    /api/eurobarometer/waves[?year=]    GET  /api/eurobarometer/resolve?date=|za=|year=
 POST   /api/sessions                       GET  /api/sessions        GET /api/sessions/{id}

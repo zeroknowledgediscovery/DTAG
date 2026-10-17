@@ -5,6 +5,7 @@ import type {
   ModelStatus,
   Overrides,
   Profile,
+  PushMode,
   PushSuggestion,
   PushSuggestions,
   QuestionResult,
@@ -122,6 +123,9 @@ export function useRespondent(opts: {
   const [pushPoles, setPushPoles] = useState(false);
   const pushPolesRef = useRef(false);
   pushPolesRef.current = pushPoles;
+  const [pushMode, setPushMode] = useState<PushMode>("realistic");
+  const pushModeRef = useRef<PushMode>("realistic");
+  pushModeRef.current = pushMode;
   const pushReq = useRef(0);
 
   const presetProfile = profiles.find((p) => p.name === preset);
@@ -240,11 +244,11 @@ export function useRespondent(opts: {
     };
   }, [effectiveKey, load]);
 
-  const refreshPush = (sid: string, includePoles = pushPolesRef.current) => {
+  const refreshPush = (sid: string, includePoles = pushPolesRef.current, mode = pushModeRef.current) => {
     const req = ++pushReq.current;
     setPushLoading(true);
     api
-      .ideologyPush(sid, includePoles)
+      .ideologyPush(sid, includePoles, mode)
       .then((p) => req === pushReq.current && setPush(p))
       .catch((e) => req === pushReq.current && setPush({ enabled: false, reason: String(e.message || e), up: null, down: null }))
       .finally(() => req === pushReq.current && setPushLoading(false));
@@ -347,14 +351,19 @@ export function useRespondent(opts: {
   const seqRunning =
     seq !== null && (seq.status === "queued" || seq.status === "running") && seq.session_id === session?.session_id;
 
-  /** Ask an ideology-push suggestion; it is answered through exactly its survey item. */
+  /** Ask an ideology-push suggestion (realistic: normal mapping; validated: its checked mapping). */
   const askPush = async (s: PushSuggestion) => {
     if (!session) return;
     setPending(s.question);
     setError(null);
     setPush(null);
     try {
-      const r = await api.pushAsk(session.session_id, { variable: s.variable, question: s.question, direction: s.direction });
+      const r = await api.pushAsk(session.session_id, {
+        variable: s.variable,
+        question: s.question,
+        direction: s.direction,
+        mode: s.mode ?? pushMode,
+      });
       setHistory((h) => [...h, r]);
       setSession(await api.session(session.session_id));
       refreshSuggestions(session.session_id);
@@ -371,13 +380,19 @@ export function useRespondent(opts: {
     if (session) refreshPush(session.session_id, v);
   };
 
+  const setPushModeAndRefresh = (m: PushMode) => {
+    setPushMode(m);
+    setPush(null); // the shown suggestions belong to the other mode
+    if (session) refreshPush(session.session_id, pushPolesRef.current, m);
+  };
+
   /** Push the index up/down for `steps` questions; runs as a background sequence job. */
   const runAutoPush = async (direction: "up" | "down", steps: number) => {
     if (!session) return;
     setError(null);
     setPush(null);
     try {
-      const st = await api.autoPush(session.session_id, { direction, steps, include_pole_items: pushPoles });
+      const st = await api.autoPush(session.session_id, { direction, steps, include_pole_items: pushPoles, mode: pushMode });
       setSeq({ ...st, results: [] });
       pollSequence(session.session_id, 0);
     } catch (e) {
@@ -414,7 +429,8 @@ export function useRespondent(opts: {
     // sequences
     seq, seqRunning, runSequence, cancelSequence,
     // ideology push (one-step optimizer)
-    push, pushLoading, pushPoles, setPushPoles: setPushPolesAndRefresh, askPush, runAutoPush,
+    push, pushLoading, pushPoles, setPushPoles: setPushPolesAndRefresh, pushMode, setPushMode: setPushModeAndRefresh,
+    askPush, runAutoPush,
     busy, modelBusy,
   };
 }

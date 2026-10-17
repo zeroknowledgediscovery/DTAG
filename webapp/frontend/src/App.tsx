@@ -101,6 +101,8 @@ function pushPanel(r: Respondent) {
         loading={r.pushLoading}
         includePoles={r.pushPoles}
         onIncludePoles={r.setPushPoles}
+        mode={r.pushMode}
+        onMode={r.setPushMode}
         disabled={r.busy}
         onAsk={r.askPush}
         onAuto={r.runAutoPush}

@@ -143,14 +143,16 @@ class AutoPushJob(SequenceJob):
     """Push the ideology index up/down: at each step ask the optimizer's current suggestion.
 
     Each step recomputes the one-step suggestion for the respondent's *current* state (earlier
-    answers change later predictions), asks the crafted question through exactly that survey
-    item, and records the result like any other question. Stops early if no askable item is
+    answers change later predictions), asks the question crafted for the chosen item (realistic:
+    mapped to survey items normally; validated: through its checked mapping), and records the
+    result like any other question. Stops early if no askable item is
     predicted to move the index further in the requested direction.
     """
 
     def __init__(self, es: Any, direction: str, steps: int, include_pole_items: bool = False,
-                 reset_first: bool = False):
+                 reset_first: bool = False, mode: str = "realistic"):
         super().__init__(es, [""] * int(steps), name=f"push {direction} x{steps}", reset_first=reset_first)
+        self.mode = mode
         self.direction = direction
         self.steps = int(steps)
         self.include_pole_items = include_pole_items
@@ -169,17 +171,19 @@ class AutoPushJob(SequenceJob):
                 if self._cancel.is_set():
                     self.status = "cancelled"
                     break
-                sug = self.es.engine.ideology_push(self.es, include_pole_items=self.include_pole_items)
+                sug = self.es.engine.ideology_push(self.es, include_pole_items=self.include_pole_items,
+                                                   mode=self.mode)
                 pick = sug.get(self.direction) if sug.get("enabled") else None
                 if pick is None:
                     self.stop_reason = sug.get(f"{self.direction}_reason") or sug.get("reason") or "no suggestion"
                     self.status = "done"
                     break
-                r = self.es.ask_targeted(pick["question"], pick["variable"], direction=self.direction)
+                r = self.es.ask_push(pick["question"], pick["variable"], direction=self.direction, mode=self.mode)
                 with self._lock:
                     self.results.append(r)
                     self.predictions.append({k: pick[k] for k in ("variable", "predicted_delta", "objective",
-                                                                  "expected_delta", "delta_modal")})
+                                                                  "expected_delta", "delta_modal")}
+                                            | {"mapped_variables": pick.get("mapped_variables")})
             else:
                 self.status = "done"
         except Exception as e:
@@ -192,7 +196,7 @@ class AutoPushJob(SequenceJob):
         out = super().snapshot(since=since)
         with self._lock:
             preds = list(self.predictions)
-        out.update({"kind": "ideology_push", "direction": self.direction, "include_pole_items": self.include_pole_items,
+        out.update({"kind": "ideology_push", "mode": self.mode, "direction": self.direction, "include_pole_items": self.include_pole_items,
                     "stop_reason": self.stop_reason, "predictions": preds})
         return out
 

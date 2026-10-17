@@ -293,7 +293,9 @@ button.btn.small { padding: 2px 8px; font-size: 12px; }
 .push-details { padding: 0 0 8px 22px; display: grid; gap: 4px; }
 .push-table { width: 100%; font-size: 12px; border-collapse: collapse; }
 .push-table th, .push-table td { text-align: left; padding: 2px 4px; border-top: 1px solid var(--border); }
-.push-auto { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+.push-auto { display: flex; align-items: center; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.push-mode button { padding: 1px 7px; font-size: 12px; }
+.push-mode button:disabled { cursor: default; opacity: .6; }
 .push-auto select { width: auto; flex: 0 0 auto; }
 .push-auto input[type=number] { width: 56px; flex: 0 0 auto; }
 .push-more { margin-top: 6px; }
