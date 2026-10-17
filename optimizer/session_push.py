@@ -69,6 +69,23 @@ class SessionWorld:
         return {"file": getattr(self.g, "path", None), "items": len(self.g.left_map)}
 
 
+def scored(session: Any):
+    """One-step geometry of every askable item (pole items included) at the session's current state.
+
+    Cached on the session per state, so the push suggestions and the decision landscape share one
+    native pass. Call with ``session.lock`` held or accept that the state may move underneath.
+    """
+    with session.lock:
+        key = (tuple(sorted(session.state.items())), id(session.polar))
+        hit = getattr(session, "_one_step_cache", None)
+        if hit is not None and hit[0] == key:
+            return hit[1]
+        only = askable_items(session, include_pole_items=True)
+        res = native_one_step(SessionWorld(session), dict(session.state), only=only)
+        session._one_step_cache = (key, res)
+        return res
+
+
 def askable_items(session: Any, include_pole_items: bool = False) -> List[str]:
     """Opinion items that can be put to the respondent and are not answered yet."""
     from optimize_question_sets import askable
@@ -164,17 +181,20 @@ def suggest(session: Any, *, include_pole_items: bool = False, craft: Optional[A
                     "up": None, "down": None, "objective": objective, "resp_mode": resp_mode,
                     "n_candidates": 0, "include_pole_items": include_pole_items}
         world = SessionWorld(session)
-        res = native_one_step(world, state, exclude_poles=not include_pole_items, only=only)
-        current = res.I_before
+        res_all = scored(session)
+        keep = set(only)
+        rows = [r for r in res_all.rows if r["variable"] in keep]
+        summary = [r for r in res_all.summary if r["variable"] in keep]
+        current = res_all.I_before
         state_full = len(state) + 1 > int(getattr(session.config, "state_keep", 10 ** 9))
     by_var: Dict[str, List[Dict[str, Any]]] = {}
-    for r in res.rows:
+    for r in rows:
         by_var.setdefault(r["variable"], []).append(r)
     key = "delta_modal" if objective == "modal" else "expected_delta"
-    ranked = sorted(res.summary, key=lambda r: (r[key], r["variable"]))
+    ranked = sorted(summary, key=lambda r: (r[key], r["variable"]))
     out: Dict[str, Any] = {
         "enabled": True, "reason": None, "objective": objective, "resp_mode": resp_mode, "mode": mode,
-        "current_ideology": current, "n_candidates": len(res.summary),
+        "current_ideology": current, "n_candidates": len(summary),
         "include_pole_items": include_pole_items, "fast_evaluator": has_fast_extensions(world),
     }
 
@@ -210,7 +230,7 @@ def suggest(session: Any, *, include_pole_items: bool = False, craft: Optional[A
                     rec.update({"predicted_delta": joint["delta"], "answers": joint["answers"],
                                 "exact": joint["exact"], "basis": "exact joint change of all mapped items"})
                 else:
-                    mu = {r["variable"]: r["expected_delta"] for r in res.summary}
+                    mu = {r["variable"]: r["expected_delta"] for r in summary}
                     rec.update({"predicted_delta": sum(mu.get(v, 0.0) for v in mapped), "answers": None,
                                 "exact": False, "basis": "sum of the mapped items' expected changes (approx.)"})
                 if sign * rec["predicted_delta"] > 0 and (best is None or sign * rec["predicted_delta"] > sign * best[1]["predicted_delta"]):

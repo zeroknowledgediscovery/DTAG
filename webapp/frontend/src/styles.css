@@ -33,6 +33,12 @@
   /* respondent identity (validated categorical pair: blue / orange, CVD-safe on both surfaces) */
   --resp-a: #2a78d6;
   --resp-b: #eb6834;
+  /* decision landscape: diverging lean (L blue / R red, grey midpoint) */
+  --lean-l: #2a78d6;
+  --lean-r: #e34948;
+  --lean-mid: #d5d8de;
+  --land-plain: #9fb0e6;
+  --land-muted: #e2e5ea;
 }
 
 /* Theme: index.html / ThemeToggle set data-theme="light"|"dark" on <html> (system preference unless chosen). */
@@ -68,6 +74,11 @@
     --ring: 0 0 0 3px rgba(143, 163, 245, 0.25);
     --resp-a: #3987e5;
     --resp-b: #d95926;
+    --lean-l: #3987e5;
+    --lean-r: #e66767;
+    --lean-mid: #444b57;
+    --land-plain: #6276c4;
+    --land-muted: #2a303b;
 }
 
 * { box-sizing: border-box; }
@@ -374,7 +385,7 @@ button.btn.small { padding: 3px 10px; font-size: 12px; }
 .info-tip:hover, .info-tip:focus { color: var(--accent); outline: none; }
 
 /* subtle lab mark in the collapsed left column */
-.lab-mark { margin: 64px auto 0; text-align: center; color: var(--muted); opacity: 0.3; user-select: none; }
+.lab-mark { margin: 36px auto 0; text-align: center; color: var(--muted); opacity: 0.3; user-select: none; }
 .lab-mark .lab-name { font-weight: 700; letter-spacing: 0.18em; font-size: 13px; margin-top: 8px; }
 .lab-mark .lab-sub { font-size: 10px; letter-spacing: 0.04em; margin-top: 2px; }
 
@@ -383,3 +394,43 @@ button.btn.small { padding: 3px 10px; font-size: 12px; }
   border: 1px solid var(--border); background: var(--panel); color: var(--muted); cursor: pointer; padding: 0; }
 .theme-toggle:hover { background: var(--hover); color: var(--text); }
 .theme-toggle:focus-visible { outline: none; box-shadow: var(--ring); }
+
+/* decision landscape (left column, under the lab mark) */
+.land { margin-top: 22px; }
+.land-h { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+.land-loading { min-height: 24px; text-align: center; }
+.land-chart { position: relative; margin: 0 -12px; }
+.land-chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.land-w { stroke: var(--panel); stroke-width: 0.25; transition: opacity 0.15s; }
+.land-w.on { stroke: var(--text); stroke-width: 1.2; }
+.land-w.moved { animation: land-pulse 1.6s ease-out both; }
+@keyframes land-pulse {
+  0% { opacity: 1; }
+  12% { opacity: 0.25; filter: brightness(1.4); }
+  40% { opacity: 1; filter: none; }
+  100% { opacity: 1; }
+}
+.land-spike { stroke: var(--text); stroke-width: 1.3; stroke-linecap: round; opacity: 0.7; animation: land-spike-in 0.9s ease-out both; }
+@keyframes land-spike-in { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0.7; } }
+@keyframes land-dot-in { 0% { transform: scale(0); opacity: 0; } 60% { transform: scale(1.5); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+.land-topic { fill: none; stroke: var(--border-strong); stroke-width: 3; stroke-linecap: round; cursor: default; }
+.land-topic.muted { stroke: var(--border); }
+.land-topic.moved { stroke: var(--text); opacity: 0.55; }
+.land-topic.on { stroke: var(--accent); opacity: 1; }
+.land-tlab { font-size: 9px; fill: var(--faint); }
+.land-tlab.moved { fill: var(--text); font-weight: 600; }
+.land-tlab.on { fill: var(--accent); }
+.land-bead.on { stroke: var(--text); }
+.land-bead { fill: var(--muted); stroke: var(--panel); stroke-width: 1; }
+.land-bead.new { fill: var(--text); stroke-width: 1.5; animation: land-dot-in 0.7s ease-out both; transform-box: fill-box; transform-origin: center; }
+.land-c-num { font-family: var(--mono); font-size: 18px; font-weight: 650; fill: var(--text); }
+.land-c-lab { font-size: 9.5px; fill: var(--faint); letter-spacing: 0.04em; }
+.land-tip { min-width: 180px; }
+.land-cap { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+.land-cap b { color: var(--text); }
+.land-top { list-style: none; padding: 0; margin: 6px 0 0; }
+.land-top li { display: grid; grid-template-columns: auto 1fr auto; gap: 6px; font-size: 11.5px; padding: 2px 0; }
+.land-top .qt { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); }
+.land-legend { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 11px; }
+.land-grad { width: 80px; height: 6px; border-radius: 999px; background: linear-gradient(90deg, var(--lean-l), var(--lean-mid), var(--lean-r)); }
+@media (prefers-reduced-motion: reduce) { .land-w.moved, .land-spike, .land-bead.new { animation: none; } }

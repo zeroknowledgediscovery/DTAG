@@ -284,6 +284,30 @@ predicted_expected_delta, predicted_joint_delta, realized_delta}`;
 
 These are information-conditioning effects of a fixed survey model, not persuasion of people.
 
+### Decision landscape (left column)
+
+Once a respondent is running and its setup collapses, the left column shows the **decision
+landscape** under the DTAG Lab mark: the survey model's predicted answer to every askable item
+for this respondent's digital twin, and how each interaction reshapes it
+(`optimizer/landscape.py`, `GET /api/sessions/{id}/landscape`).
+
+* **Outer ring:** one thin wedge per unanswered item, grouped into topic arcs (keyword topics,
+  `optimizer/topics.py`; roster/interviewer items in *Background*). Wedge length = how settled the
+  predicted answer is (1 − normalized entropy). Colour (surveys with ideology poles) = lean: the
+  index change if the twin answered as it most likely would — blue toward L, red toward R, grey
+  neutral. Within a topic, wedges are ordered L→R at the start and keep their places.
+* **Moved predictions:** after each answer, wedges whose predicted distribution changed
+  (Jensen–Shannon divergence > 1e-4 bits) pulse, rippling out from the newly answered item, with
+  a spike whose length grows with the shift; their topic labels turn bold. The caption counts them
+  and names the topics most affected, with the top movers listed below.
+* **Inner ring:** answered (anchored) items as beads in their topic; new ones are larger.
+* Hover any wedge, bead or topic for details.
+
+The landscape shares the one-step optimizer pass with the push suggestions (one native pass of
+about a second per state on GSS). Without ideology poles (e.g. WVS) the colour is plain and
+wedges are ordered by settledness. These are model predictions for the twin, not the person's
+reasoning.
+
 ### Two respondents side by side
 
 The **Respondents 1 | 2** switch in the top bar adds a second respondent (the

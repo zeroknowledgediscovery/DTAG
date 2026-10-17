@@ -234,6 +234,41 @@ export interface PushOutcome {
 /** realistic: mapped like any typed question; validated: through its checked mapping; direct ("push"): through exactly its item. */
 export type PushMode = "realistic" | "validated" | "direct";
 
+/** Decision landscape (GET /api/sessions/{id}/landscape): predicted answers to every askable item. */
+export interface LandscapeItem {
+  v: string;
+  t: string; // topic
+  q: string; // question text (short)
+  s: number; // settledness: 1 - normalized entropy
+  m: string; // modal answer
+  p: number; // its probability
+  l: number | null; // lean: index change if answered modally (surveys with poles)
+  d: number | null; // shift since the previous landscape (JS divergence, bits)
+}
+
+export interface Landscape {
+  enabled: boolean;
+  step: number;
+  since_step: number | null;
+  ideology: number | null;
+  has_lean: boolean;
+  lean_scale: number | null;
+  shift_eps: number;
+  topics: Array<{ name: string; n: number; settled: number | null; shift: number; moved: number; anchored: number }>;
+  items: LandscapeItem[];
+  anchored: Array<{ v: string; t: string; q: string; a: string; new: boolean }>;
+  new_anchored: string[];
+  summary: {
+    n_items: number;
+    n_moved: number;
+    total_shift: number;
+    top_topics: string[];
+    top_items: Array<{ v: string; t: string; q: string; d: number; m: string }>;
+    mean_settled: number | null;
+  };
+  history: Array<{ step: number; since_step: number; n_moved: number; total_shift: number; new_anchored: string[] }>;
+}
+
 export interface PushSuggestion {
   direction: "up" | "down";
   mode?: PushMode;
