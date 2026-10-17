@@ -6,7 +6,7 @@
   --border: #e5e8ee;
   --border-strong: #d2d7e0;
   --text: #141a26;
-  --text-2: #3b4454;
+  --text-2: #4f5868; /* answer prose: softer than body text */
   --muted: #5f6878;
   --faint: #99a1b0;
   --accent: #3d5bd1;
@@ -54,7 +54,7 @@
     --border: #252b36;
     --border-strong: #333a47;
     --text: #e7eaf0;
-    --text-2: #c6ccd6;
+    --text-2: #aab2bf;
     --muted: #9ba4b3;
     --faint: #687183;
     --accent: #8fa3f5;
@@ -128,8 +128,8 @@ code, .mono { font-family: var(--mono); font-size: 12px; }
   position: relative;
 }
 .col { min-height: 0; overflow: auto; }
-.left { border-right: 1px solid var(--border); background: var(--panel); padding: 16px; }
-.right { border-left: 1px solid var(--border); background: var(--panel); padding: 16px; }
+.col.left { border-right: 1px solid var(--border); background: var(--panel); padding: 16px; }
+.col.right { border-left: 1px solid var(--border); background: var(--panel); padding: 16px; }
 .center { display: grid; grid-template-rows: 1fr auto; grid-template-columns: minmax(0, 1fr); min-height: 0; min-width: 0; }
 
 @media (max-width: 1100px) {
@@ -203,7 +203,7 @@ details > summary::marker { color: var(--faint); }
 .stages span.active { color: var(--accent); background: var(--accent-weak); box-shadow: none; font-weight: 600; }
 
 /* chat */
-.chat { overflow: auto; padding: 24px 28px; min-height: 0; }
+.chat { overflow: auto; padding: 26px clamp(24px, 4.5%, 56px); min-height: 0; }
 .empty { color: var(--muted); max-width: 560px; margin: 48px auto; text-align: center; }
 .msg { max-width: 840px; margin: 0 auto 20px; }
 .msg-q { display: flex; gap: 10px; align-items: baseline; padding: 0 2px; }
@@ -325,7 +325,7 @@ a.btn:hover { background: var(--hover); }
 .single > .pane { grid-template-rows: 1fr; }
 .split > .pane + .pane { border-left: 1px solid var(--border); }
 .split .msg-a::before { background: var(--pane); }
-.split .chat { padding: 16px 18px; }
+.split .chat { padding: 18px clamp(20px, 5%, 40px); }
 .pane-h { display: flex; align-items: center; gap: 8px; padding: 8px 14px; background: var(--panel); border-bottom: 2px solid var(--pane); min-width: 0; }
 .pane-h .pane-sub { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pane-h .pane-i { white-space: nowrap; }
