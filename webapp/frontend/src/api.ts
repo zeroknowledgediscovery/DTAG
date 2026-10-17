@@ -6,6 +6,7 @@ import type {
   Overrides,
   Profile,
   Landscape,
+  NextQuestions,
   PushMode,
   PushSuggestions,
   QuestionResult,
@@ -106,6 +107,7 @@ export const api = {
       ...(body.preferred_model ? { preferred_model: body.preferred_model } : {}),
     }),
   ask: (id: string, question: string) => post<QuestionResult>(`/api/sessions/${id}/questions`, { question }),
+  nextQuestions: (id: string) => request<NextQuestions>(`/api/sessions/${id}/next-questions`),
   landscape: (id: string) => request<Landscape>(`/api/sessions/${id}/landscape`),
   ideologyPush: (id: string, includePoleItems = false, mode: PushMode = "realistic") =>
     request<PushSuggestions>(`/api/sessions/${id}/ideology-push?include_pole_items=${includePoleItems}&mode=${mode}`),

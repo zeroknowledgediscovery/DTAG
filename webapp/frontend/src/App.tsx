@@ -8,6 +8,7 @@ import { SequenceCard, SequenceDialog } from "./components/Sequence";
 import { IdeologyPush } from "./components/IdeologyPush";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { LandscapeView } from "./components/Landscape";
+import { NextQuestions } from "./components/NextQuestions";
 import { IdeologyCompare, StatePanel } from "./components/StatePanel";
 import type { CountryInfo, EBWave, ModelRecord, Profile, Readiness } from "./types";
 import { useModelLoader, useRespondent, type Respondent } from "./useRespondent";
@@ -95,7 +96,14 @@ function RespondentSummary({ r, onEdit }: { r: Respondent; onEdit: () => void })
 
 /** One-step optimizer suggestions for a respondent whose survey has an ideology index. */
 function pushPanel(r: Respondent) {
-  if (!r.session || !r.session.ideology.enabled) return null;
+  if (!r.session) return null;
+  if (!r.session.ideology.enabled) {
+    return (
+      <Section title="Next question">
+        <NextQuestions data={r.nextQ} pending={r.landscapePending || !r.landscape} disabled={r.busy} onAsk={r.ask} />
+      </Section>
+    );
+  }
   return (
     <Section title="Next question">
       <IdeologyPush
@@ -330,6 +338,24 @@ export default function App() {
         ),
         title: `Ideology push ${s.direction === "up" ? "toward the R pole" : "toward the L pole"}: asks survey item ${s.variable}`,
         onClick: () => chipSource.askPush(s),
+      });
+    }
+  }
+
+  if (chipSource?.session && chipSource.nextQ?.enabled) {
+    for (const [key, icon, label] of [["open", "?", "Most open"], ["connected", "◎", "Most connected"]] as const) {
+      const n = chipSource.nextQ[key];
+      if (!n) continue;
+      composerChips.push({
+        key,
+        label: (
+          <>
+            <span className="push-arrow">{icon}</span>
+            {n.question}
+          </>
+        ),
+        title: `${label}: survey item ${n.v} (${n.t})`,
+        onClick: () => chipSource.ask(n.question),
       });
     }
   }
