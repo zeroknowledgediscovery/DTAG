@@ -482,3 +482,19 @@ button.btn.small { padding: 3px 10px; font-size: 12px; }
 .exp-job-h { display: flex; gap: 8px; align-items: center; }
 .exp-chart { width: 100%; height: auto; display: block; }
 .exp-q ul { margin: 4px 0 0; padding-left: 16px; font-size: 12px; }
+
+/* figure save button (top-right of a figure, on hover) */
+.fig-save { position: absolute; top: 2px; right: 2px; z-index: 6; }
+.fig-save-btn { display: inline-grid; place-items: center; width: 24px; height: 24px; padding: 0; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--panel); color: var(--muted); cursor: pointer; opacity: 0;
+  transition: opacity 0.15s, color 0.15s; box-shadow: var(--shadow-sm); }
+.chart:hover .fig-save-btn, .land-chart:hover .fig-save-btn, .terrain:hover .fig-save-btn, .exp-fig:hover .fig-save-btn,
+.fig-save.open .fig-save-btn, .fig-save-btn:focus-visible { opacity: 1; }
+.fig-save-btn:hover { color: var(--text); }
+.fig-save-menu { position: absolute; right: 0; top: 28px; min-width: 150px; padding: 4px; display: grid; gap: 2px;
+  background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); }
+.fig-save-menu button { display: flex; gap: 8px; align-items: baseline; justify-content: space-between; text-align: left;
+  border: none; background: none; padding: 5px 8px; border-radius: 5px; cursor: pointer; font-size: 12.5px; color: var(--text); }
+.fig-save-menu button:hover:not(:disabled) { background: var(--hover); }
+.exp-fig { position: relative; }
+@media (hover: none) { .fig-save-btn { opacity: 0.8; } }

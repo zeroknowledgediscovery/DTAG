@@ -4,6 +4,7 @@ import type { IdeologySummary, QuestionResult, SessionInfo, TrajectoryPoint } fr
 import { Section } from "./Controls";
 import { mappingBadge } from "./Chat";
 import { statusLabel } from "./ModelPanel";
+import { FigureSave } from "./FigureSave";
 
 export interface IdeologySeries {
   name: string;
@@ -54,6 +55,7 @@ export function IdeologyChart({ series }: { series: IdeologySeries[] }) {
 
   return (
     <div className="chart" onMouseLeave={() => setHover(null)}>
+      <FigureSave name="ideology_trajectory" />
       {multi && (
         <div className="legend">
           {series.map((s) => (

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { Landscape as LandscapeData, LandscapeItem } from "../types";
+import { FigureSave } from "./FigureSave";
 
 /*
  * Decision landscape as terrain.
@@ -207,6 +208,7 @@ export function TerrainView({
 
   return (
     <div className="terrain" onMouseLeave={() => setHover(null)}>
+      <FigureSave name="landscape_map" />
       <canvas ref={canvas} width={G} height={G} className="terrain-field" />
       <svg viewBox="0 0 1 1" className="terrain-over" onMouseMove={onMove} role="img"
         aria-label={`Decision landscape map: ${data.items.length} predicted answers; ${moved.length} moved`}>
@@ -242,7 +244,7 @@ export function TerrainView({
             <circle key={a.v} cx={a.x} cy={a.y} r={a.new ? 0.014 : 0.009} className={`terrain-pin${a.new ? " new" : ""}`} />
           )
         )}
-        {hovered && <circle cx={hovered.x} cy={hovered.y} r={0.016} className="terrain-hover" />}
+        {hovered && <circle cx={hovered.x} cy={hovered.y} r={0.016} className="terrain-hover" data-export-ignore="" />}
       </svg>
       {hover && (
         <div className="tooltip land-tip" style={{ left: Math.min(hover.x + 12, 110), top: hover.y + 14 }}>
