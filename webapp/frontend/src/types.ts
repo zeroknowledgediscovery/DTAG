@@ -281,6 +281,8 @@ export interface Landscape {
   shift_eps: number;
   topics: Array<{ name: string; n: number; settled: number | null; shift: number; moved: number; anchored: number }>;
   items: LandscapeItem[];
+  pending_items?: string[]; // items still being recomputed (showing their previous value or a placeholder)
+  progress?: number; // 0..1 while pending
   anchored: Array<{ v: string; t: string; q: string; a: string; new: boolean; x?: number; y?: number }>;
   topic_xy?: Record<string, [number, number]>;
   map_edges?: number | null;

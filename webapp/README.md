@@ -318,7 +318,14 @@ Eurobarometer) get the landscape without lean colour. Their models are much dens
 tree splits on ~100+ others vs ~11 in GSS), so predicting every item costs 10–40 s; the landscape
 is therefore computed in the background (the previous one stays visible with a spinner, and
 questions are never blocked), and after each answer only items whose trees split on a changed
-variable are recomputed (exactly equal to a full recomputation). These are model predictions for the twin, not the person's
+variable are recomputed (exactly equal to a full recomputation).
+
+The view is **live**: the moment an answer lands, every prediction that can change (known from the
+model's dependency graph) starts shimmering; items are then recomputed most-affected first in small
+batches, and each batch is published (the client polls every ~0.35 s), so moved spikes and top movers
+appear progressively while a thin progress bar fills. Wedges and the terrain morph smoothly between
+updates. Intermediate views are approximate (not-yet-recomputed items show their previous value);
+the final one is exact. These are model predictions for the twin, not the person's
 reasoning.
 
 ### Two respondents side by side

@@ -296,7 +296,7 @@ export function useRespondent(opts: {
         }
         if (l.items) setLandscape(l);
         setLandscapePending(Boolean(l.pending));
-        if (l.pending) landTimer.current = window.setTimeout(() => req === landReq.current && refreshLandscape(sid), 1200);
+        if (l.pending) landTimer.current = window.setTimeout(() => req === landReq.current && refreshLandscape(sid), 350);
       })
       .catch(() => {
         if (req === landReq.current) {
