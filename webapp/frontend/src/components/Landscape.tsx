@@ -1,6 +1,17 @@
 import { useMemo, useRef, useState } from "react";
 import { fmtNum } from "../api";
 import type { Landscape as LandscapeData, LandscapeItem } from "../types";
+import { TerrainView } from "./Terrain";
+
+type View = "ring" | "map";
+const VIEW_KEY = "dtag.landscapeView";
+function savedView(): View {
+  try {
+    return window.localStorage.getItem(VIEW_KEY) === "map" ? "map" : "ring";
+  } catch {
+    return "ring";
+  }
+}
 
 /*
  * Decision landscape doughnut.
@@ -70,6 +81,16 @@ type Hover = { x: number; y: number; key: string; html: JSX.Element };
 
 export function LandscapeView({ data, loading }: { data: LandscapeData | null; loading: boolean }) {
   const [hover, setHover] = useState<Hover | null>(null);
+  const [view, setViewState] = useState<View>(savedView);
+  const setView = (v: View) => {
+    setViewState(v);
+    setHover(null);
+    try {
+      window.localStorage.setItem(VIEW_KEY, v);
+    } catch {
+      /* storage unavailable: the choice lasts for this page only */
+    }
+  };
   // Wedge order within a topic: L -> R lean (then settledness) at this respondent's first landscape,
   // kept for later updates so every item keeps its place and changes are comparable.
   const order = useRef<Record<string, number>>({});
@@ -147,6 +168,13 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
       </>
     );
   };
+  const anchoredTip = (b: { v: string; t: string; q: string; a: string }) => (
+    <>
+      <b className="mono">{b.v}</b> <span className="note">· {b.t} · answered</span>
+      <div>{b.q}</div>
+      <div className="note">“{b.a}”</div>
+    </>
+  );
   const topicTip = (t: string) => {
     const info = data.topics.find((x) => x.name === t)!;
     return (
@@ -204,22 +232,43 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
   return (
     <div className="land" onMouseLeave={() => setHover(null)}>
       <div className="land-h">
-        <span className="section-title" style={{ margin: 0 }}>Decision landscape</span>
+        <span className="section-title" style={{ margin: 0 }}>Landscape</span>
         <span
           className="info-tip"
           tabIndex={0}
           title={
             "The survey model's predicted answer to every askable item, for this respondent's digital twin.\n" +
-            "Each wedge is one item, grouped by topic. Length: how settled the predicted answer is. " +
-            (data.has_lean ? "Colour: which pole the likely answer leans to (blue L, red R, grey neutral). " : "") +
-            "Pulsing wedges and dots: predictions moved by the last answer; the pulse ripples out from the newly answered item.\n" +
-            "Inner beads: answered items (larger = just answered). Hover anything for details."
+            (view === "ring"
+              ? "Each wedge is one item, grouped by topic. Length: how settled the predicted answer is. " +
+                (data.has_lean ? "Colour: which pole the likely answer leans to (blue L, red R, grey neutral). " : "") +
+                "Pulsing wedges and spikes: predictions moved by the last answer; the pulse ripples out from the newly answered item.\n" +
+                "Inner beads: answered items (larger = just answered)."
+              : "Map: items placed by topic, with items the model links pulled together. Ground height = how undecided the " +
+                "predicted answers are: settled opinions are valleys (deeper colour), undecided ones high pale ground; contours mark " +
+                "levels. " +
+                (data.has_lean ? "Colour: lean of the likely answers (blue L, red R, grey neutral). " : "") +
+                "Dark pins: answered items (larger = just answered); rings: predictions moved by the last answer.") +
+            " Hover anything for details."
           }
         >
           ⓘ
         </span>
-        {loading && <span className="spinner" style={{ marginLeft: "auto" }} />}
+        {loading && <span className="spinner" />}
+        <div className="seg land-view" role="radiogroup" aria-label="Landscape view">
+          {(["ring", "map"] as const).map((v) => (
+            <button key={v} role="radio" aria-checked={view === v} className={view === v ? "on" : ""} onClick={() => setView(v)}>
+              {v === "ring" ? "doughnut" : "map"}
+            </button>
+          ))}
+        </div>
       </div>
+      {view === "map" ? (
+        data.items.some((it) => it.x !== undefined) ? (
+          <TerrainView data={data} tip={itemTip} anchoredTip={anchoredTip} />
+        ) : (
+          <div className="note land-loading">No map layout is available for this model.</div>
+        )
+      ) : (
       <div className="land-chart">
         <svg viewBox={`${-PADX} 0 ${SIZE + 2 * PADX} ${SIZE}`} onMouseMove={onMove} role="img" aria-label={`Decision landscape: ${s.n_items} predicted answers in ${data.topics.length} topics`}>
           {/* topic band + labels */}
@@ -322,6 +371,7 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
           </div>
         )}
       </div>
+      )}
       <div className="land-cap">
         {data.since_step === null ? (
           <>
@@ -354,7 +404,7 @@ export function LandscapeView({ data, loading }: { data: LandscapeData | null; l
           <span>L</span>
           <span className="land-grad" />
           <span>R</span>
-          <span style={{ marginLeft: "auto" }}>length = settled</span>
+          <span style={{ marginLeft: "auto" }}>{view === "ring" ? "length = settled" : "valley = settled"}</span>
         </div>
       )}
     </div>

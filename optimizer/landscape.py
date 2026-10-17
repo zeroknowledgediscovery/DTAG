@@ -81,6 +81,79 @@ def snapshot(session: Any) -> Dict[str, Any]:
     return {"step": step, "state": state, "items": out, "topics": topics, "ideology": ideology}
 
 
+_LAYOUTS: Dict[Any, Dict[str, Any]] = {}
+
+
+def layout(session: Any) -> Dict[str, Any]:
+    """2D map of the survey's askable items (and state items) for the landscape view, in [0, 1]^2.
+
+    Items start in their topic's region (topics placed around a circle) and are pulled together along
+    the model's direct dependencies (an edge where one item's tree splits on the other), with
+    all-pairs repulsion (Fruchterman-Reingold) and a weak pull to the topic region. Deterministic,
+    and cached per model/map and item set: it does not depend on the respondent's answers.
+    Returns {"pos": {v: (x, y)}, "edges": n, "topics": {topic: (x, y)}}.
+    """
+    import hashlib
+
+    import numpy as np
+
+    with session.lock:
+        names = sorted(set(askable_items(session, include_pole_items=True, include_answered=True)) | set(session.state))
+        var_map = session.ctx.var_map
+        key = (getattr(session.ctx, "model_path", ""), getattr(session.ctx, "map_path", ""), tuple(names))
+        if key in _LAYOUTS:
+            return _LAYOUTS[key]
+        try:  # model dependencies are optional (backends without split_columns get a topic-only layout)
+            deps = session.model.dependencies(names)
+        except (AttributeError, NotImplementedError):
+            deps = {}
+    topics = topics_for(names, var_map)
+    n = len(names)
+    idx = {v: i for i, v in enumerate(names)}
+    edges = set()
+    for v, cols in deps.items():
+        for u in cols:
+            if u in idx and u != v:
+                edges.add((min(idx[u], idx[v]), max(idx[u], idx[v])))
+    E = np.array(sorted(edges), dtype=int).reshape(-1, 2)
+
+    present = [t for t in ORDER if t in set(topics.values())]
+    anchor = {t: (0.5 + 0.33 * math.cos(2 * math.pi * k / len(present) - math.pi / 2),
+                  0.5 + 0.33 * math.sin(2 * math.pi * k / len(present) - math.pi / 2)) for k, t in enumerate(present)}
+    A = np.array([anchor[topics[v]] for v in names])
+
+    def jitter(v: str) -> float:
+        return int(hashlib.md5(v.encode()).hexdigest()[:8], 16) / 0xFFFFFFFF - 0.5
+
+    P = A + 0.12 * np.array([[jitter(v), jitter(v + "#")] for v in names])
+    k = 0.6 / math.sqrt(max(n, 1))
+    t = 0.06
+    for _ in range(160):
+        d = P[:, None, :] - P[None, :, :]
+        dist = np.sqrt((d ** 2).sum(-1)) + 1e-6
+        disp = ((k * k / dist ** 2)[:, :, None] * d).sum(1)  # repulsion
+        if len(E):
+            de = P[E[:, 0]] - P[E[:, 1]]
+            le = np.sqrt((de ** 2).sum(-1, keepdims=True)) + 1e-6
+            f = de * le / k * 0.5  # attraction along dependencies
+            np.add.at(disp, E[:, 0], -f)
+            np.add.at(disp, E[:, 1], f)
+        disp += (A - P) * 0.9 / k  # pull to the topic region
+        ln = np.sqrt((disp ** 2).sum(-1, keepdims=True)) + 1e-9
+        P += disp / ln * np.minimum(ln, t)
+        t *= 0.975
+    lo, hi = np.percentile(P, 2, axis=0), np.percentile(P, 98, axis=0)  # outlier clusters must not squash the map
+    P = np.clip(0.08 + 0.84 * (P - lo) / np.maximum(hi - lo, 1e-9), 0.03, 0.97)
+    pos = {v: (round(float(P[i, 0]), 4), round(float(P[i, 1]), 4)) for i, v in enumerate(names)}
+    centres = {}
+    for tp in present:
+        pts = [pos[v] for v in names if topics[v] == tp]
+        centres[tp] = (round(sum(p[0] for p in pts) / len(pts), 4), round(sum(p[1] for p in pts) / len(pts), 4))
+    out = {"pos": pos, "edges": len(edges), "topics": centres}
+    _LAYOUTS[key] = out
+    return out
+
+
 def _short(text: str, n: int = 110) -> str:
     text = " ".join(str(text or "").split())
     return text if len(text) <= n else text[: n - 1] + "…"
@@ -93,9 +166,13 @@ def lean_scale_of(snap: Dict[str, Any]) -> Optional[float]:
 
 
 def build_view(cur: Dict[str, Any], prev: Optional[Dict[str, Any]], var_map: Dict[str, str],
-               history: List[Dict[str, Any]], lean_scale: Optional[float] = None) -> Dict[str, Any]:
-    """Compact payload for the web view: items by topic, anchored items, shift vs ``prev``."""
+               history: List[Dict[str, Any]], lean_scale: Optional[float] = None,
+               positions: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """Compact payload for the web view: items by topic, anchored items, shift vs ``prev``.
+
+    ``positions`` (from :func:`layout`) adds x/y map coordinates for the landscape view."""
     topics = cur["topics"]
+    pos = (positions or {}).get("pos", {})
     prev_items = prev["items"] if prev else {}
     prev_state = prev["state"] if prev else {}
     items = []
@@ -105,11 +182,17 @@ def build_view(cur: Dict[str, Any], prev: Optional[Dict[str, Any]], var_map: Dic
                       "m": r["modal"], "p": round(r["p_modal"], 4),
                       "l": None if r["lean"] is None else round(r["lean"], 6),
                       "d": None if shift is None else round(shift, 6)})
+    for rec in items:
+        if rec["v"] in pos:
+            rec["x"], rec["y"] = pos[rec["v"]]
     order = {t: i for i, t in enumerate(ORDER)}
     items.sort(key=lambda x: (order.get(x["t"], len(order)), x["v"].lower()))
     new_vars = [v for v, a in cur["state"].items() if prev is not None and prev_state.get(v) != a]
     anchored = [{"v": v, "t": topics.get(v, "Other"), "q": _short(var_map.get(v, "")), "a": a, "new": v in new_vars}
                 for v, a in cur["state"].items()]
+    for rec in anchored:
+        if rec["v"] in pos:
+            rec["x"], rec["y"] = pos[rec["v"]]
     anchored.sort(key=lambda x: (order.get(x["t"], len(order)), x["v"].lower()))
 
     moved = [x for x in items if x["d"] is not None and x["d"] > SHIFT_EPS]
@@ -146,6 +229,8 @@ def build_view(cur: Dict[str, Any], prev: Optional[Dict[str, Any]], var_map: Dic
         "shift_eps": SHIFT_EPS,
         "topics": topic_list,
         "items": items,
+        "topic_xy": (positions or {}).get("topics", {}),
+        "map_edges": (positions or {}).get("edges"),
         "anchored": anchored,
         "new_anchored": new_vars,
         "summary": summary,

@@ -86,8 +86,8 @@ def scored(session: Any):
         return res
 
 
-def askable_items(session: Any, include_pole_items: bool = False) -> List[str]:
-    """Opinion items that can be put to the respondent and are not answered yet."""
+def askable_items(session: Any, include_pole_items: bool = False, include_answered: bool = False) -> List[str]:
+    """Opinion items that can be put to the respondent and are not answered yet (or all of them)."""
     from optimize_question_sets import askable
 
     ctx = session.ctx
@@ -95,7 +95,7 @@ def askable_items(session: Any, include_pole_items: bool = False) -> List[str]:
     poles = set(session.polar.left_map) | set(session.polar.right_map)
     out = []
     for v in ctx.idx_map:
-        if v in session.state or not ctx.possible.get(v) or v not in ctx.var_map:
+        if (v in session.state and not include_answered) or not ctx.possible.get(v) or v not in ctx.var_map:
             continue
         if v in poles and not include_pole_items:
             continue

@@ -303,6 +303,15 @@ for this respondent's digital twin, and how each interaction reshapes it
 * **Inner ring:** answered (anchored) items as beads in their topic; new ones are larger.
 * Hover any wedge, bead or topic for details.
 
+The **doughnut | map** toggle (remembered per browser) switches to a terrain view: items are placed
+on a fixed 2D map (topic regions; items whose model trees split on each other are pulled together,
+force-directed layout cached per model, `optimizer.landscape.layout`). The ground is a smoothed
+field over that map: **height = how undecided** the predicted answers are, so settled opinions are
+deep-coloured valleys and undecided ones pale high ground; answered items are dark pins on the
+valley floor; colour is the lean (blue L, red R) where the survey has poles; contours mark height
+levels. Predictions moved by the last answer get an expanding ring, rippling out from the new pin,
+which shows how local the effect of one answer is.
+
 The landscape shares the one-step optimizer pass with the push suggestions (one native pass of
 about a second per state on GSS). Without ideology poles (e.g. WVS) the colour is plain and
 wedges are ordered by settledness. These are model predictions for the twin, not the person's

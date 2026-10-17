@@ -31,6 +31,9 @@ def test_landscape_tracks_interactions(fake_client):
     assert v0["items"] and all(0 <= x["s"] <= 1 and x["d"] is None for x in v0["items"])
     assert sum(t["n"] for t in v0["topics"]) == len(v0["items"]) == v0["summary"]["n_items"]
     assert {a["v"] for a in v0["anchored"]} == set(fake_client.get(f"/api/sessions/{sid}").json()["current_state"])
+    # map positions for the landscape view (topic layout even without model dependencies)
+    assert all(0 <= x["x"] <= 1 and 0 <= x["y"] <= 1 for x in v0["items"])
+    assert set(v0["topic_xy"]) == {t["name"] for t in v0["topics"]} | {a["t"] for a in v0["anchored"]}
     # cached per state
     assert fake_client.get(f"/api/sessions/{sid}/landscape").json() == v0
 
