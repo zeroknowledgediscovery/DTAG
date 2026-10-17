@@ -6,6 +6,7 @@
   --border: #e5e8ee;
   --border-strong: #d2d7e0;
   --text: #141a26;
+  --text-2: #3b4454;
   --muted: #5f6878;
   --faint: #99a1b0;
   --accent: #3d5bd1;
@@ -53,6 +54,7 @@
     --border: #252b36;
     --border-strong: #333a47;
     --text: #e7eaf0;
+    --text-2: #c6ccd6;
     --muted: #9ba4b3;
     --faint: #687183;
     --accent: #8fa3f5;
@@ -207,18 +209,19 @@ details > summary::marker { color: var(--faint); }
 .msg-q { display: flex; gap: 10px; align-items: baseline; padding: 0 2px; }
 .msg-q .qn { font-family: var(--mono); color: var(--faint); font-size: 11px; }
 .msg-q .qt { font-weight: 600; font-size: 14px; letter-spacing: -0.005em; }
-.msg-a {
-  margin-top: 8px; border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 12px 14px; background: var(--panel); box-shadow: var(--shadow);
-  position: relative; overflow: hidden;
-}
-.msg-a::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--accent); }
+.msg-a { margin-top: 6px; padding: 2px 0 2px 16px; position: relative; }
+.msg-a::before { content: ""; position: absolute; left: 0; top: 4px; bottom: 4px; width: 2px; border-radius: 2px; background: var(--accent); opacity: 0.55; }
 .msg-a.nomatch::before { background: var(--err); }
 .msg-a.sem::before { background: var(--sem); }
-.msg-a .meta { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; font-size: 11.5px; color: var(--muted); }
-.msg-a .answer { white-space: pre-wrap; line-height: 1.6; }
-details.evidence { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border); }
-details.evidence > summary { color: var(--accent); font-size: 12px; font-weight: 600; }
+/* the answer reads as a quiet quotation; its metadata sits underneath, small and faint */
+.msg-a .answer { white-space: pre-wrap; font-style: italic; font-weight: 370; font-size: 14px; line-height: 1.65; color: var(--text-2); }
+.msg-a .meta { display: flex; gap: 4px 10px; align-items: center; flex-wrap: wrap; margin-top: 8px; font-size: 11px; color: var(--faint); }
+.msg-a .meta .badge { font-size: 9.5px; padding: 0 6px; line-height: 1.55; }
+.msg-a .meta .mono { font-size: 10.5px; }
+.msg-a .meta .meta-changed { color: var(--muted); }
+details.evidence { margin-top: 4px; }
+details.evidence > summary { color: var(--faint); font-size: 11px; font-weight: 500; }
+details.evidence > summary:hover, details.evidence[open] > summary { color: var(--accent); }
 .ev-grid { display: grid; gap: 10px; margin-top: 10px; }
 .ev-block h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); font-weight: 650; }
 table.kv { border-collapse: collapse; width: 100%; font-size: 12px; }

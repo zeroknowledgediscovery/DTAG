@@ -362,7 +362,8 @@ and the chat to resize it; double-click a border to reset, or focus it and use â
 steps). The chat reflows (text wraps) rather than being covered, and never gets narrower than 360 px.
 Figures follow their column: the doughnut and the map scale up, the line charts redraw at the new
 width with the same text size. Widths are remembered per browser, separately for one and two
-respondents; on narrow screens (< 1100 px) the columns stack and the handles are hidden.
+respondents; once a column has been resized, a **reset layout** button (columns icon) appears in the
+top bar. On narrow screens (< 1100 px) the columns stack and the handles are hidden.
 
 ### Saving figures
 

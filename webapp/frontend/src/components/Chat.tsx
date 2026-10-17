@@ -257,6 +257,13 @@ export function ChatLog({
               <span className="qt">{r.question}</span>
             </div>
             <div className={`msg-a ${cls}`}>
+              <div className="answer">
+                {r.answer || (
+                  <i className="note">
+                    No semantically relevant survey variable was found. The respondent state was not updated.
+                  </i>
+                )}
+              </div>
               <div className="meta">
                 <span className={`badge ${mappingBadge(r.mapping.label)}`}>{r.mapping.label}</span>
                 {r.push && (
@@ -268,9 +275,7 @@ export function ChatLog({
                     {r.push.hit === false ? " · missed item" : ""}
                   </span>
                 )}
-                <span className={`badge ${r.state_changed ? "b-neutral" : "b-muted"}`}>
-                  {r.state_changed ? "STATE CHANGED" : "STATE UNCHANGED"}
-                </span>
+                <span className={r.state_changed ? "meta-changed" : undefined}>{r.state_changed ? "state changed" : "state unchanged"}</span>
                 {r.ideology.enabled && r.ideology.delta !== null && r.ideology.delta !== 0 && (
                   <span className="mono">I {fmtSigned(r.ideology.delta)}</span>
                 )}
@@ -280,13 +285,6 @@ export function ChatLog({
                   </span>
                 ))}
                 <span style={{ marginLeft: "auto" }}>{r.timings.total?.toFixed(2)} s</span>
-              </div>
-              <div className="answer">
-                {r.answer || (
-                  <i className="note">
-                    No semantically relevant survey variable was found. The respondent state was not updated.
-                  </i>
-                )}
               </div>
               <Evidence r={r} />
             </div>

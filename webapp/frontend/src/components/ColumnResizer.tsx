@@ -100,6 +100,16 @@ export function useColumnLayout(mode: 1 | 2) {
     return () => window.removeEventListener("resize", fit);
   }, [clamp]);
 
+  const resetAll = () => {
+    setW(DEFAULTS[mode]);
+    try {
+      window.localStorage.removeItem(key(mode));
+    } catch {
+      /* nothing stored */
+    }
+  };
+  const isDefault = w.left === DEFAULTS[mode].left && w.right === DEFAULTS[mode].right;
+
   const style = { "--lw": `${w.left}px`, "--rw": `${w.right}px` } as React.CSSProperties;
   const handle = (side: "left" | "right") => (
     <div
@@ -115,5 +125,5 @@ export function useColumnLayout(mode: 1 | 2) {
       onKeyDown={nudge(side)}
     />
   );
-  return { ref: main, style, handles: <>{handle("left")}{handle("right")}</> };
+  return { ref: main, style, handles: <>{handle("left")}{handle("right")}</>, isDefault, resetAll };
 }
