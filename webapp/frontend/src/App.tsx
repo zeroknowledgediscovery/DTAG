@@ -414,6 +414,14 @@ export default function App() {
           API docs
         </a>
         {readiness && (readiness as unknown as { auth?: string }).auth === "password" && <a href="/api/logout">Sign out</a>}
+        {!layout.isDefault && (
+          <button className="theme-toggle" onClick={layout.resetAll} title="Reset column widths to the default layout" aria-label="Reset column widths">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2" />
+              <path d="M9 4v16M15 4v16" />
+            </svg>
+          </button>
+        )}
         <ThemeToggle />
       </div>
 
