@@ -5,6 +5,7 @@ import type {
   ModelStatus,
   Overrides,
   Profile,
+  Landscape,
   PushMode,
   PushSuggestion,
   PushSuggestions,
@@ -119,6 +120,9 @@ export function useRespondent(opts: {
   const [seq, setSeq] = useState<SequenceStatus | null>(null);
   const seqTimer = useRef<number | null>(null);
   const [push, setPush] = useState<PushSuggestions | null>(null);
+  const [landscape, setLandscape] = useState<Landscape | null>(null);
+  const landReq = useRef(0);
+  const landBusy = useRef(false);
   const [pushLoading, setPushLoading] = useState(false);
   const [pushPoles, setPushPoles] = useState(false);
   const pushPolesRef = useRef(false);
@@ -254,9 +258,24 @@ export function useRespondent(opts: {
       .finally(() => req === pushReq.current && setPushLoading(false));
   };
 
+  /** Decision landscape at the current state; skipped while a request is in flight (sequence polling). */
+  const refreshLandscape = (sid: string, force = true) => {
+    if (landBusy.current && !force) return;
+    const req = ++landReq.current;
+    landBusy.current = true;
+    api
+      .landscape(sid)
+      .then((l) => req === landReq.current && setLandscape(l))
+      .catch(() => req === landReq.current && setLandscape(null))
+      .finally(() => {
+        if (req === landReq.current) landBusy.current = false;
+      });
+  };
+
   const refreshSuggestions = (sid: string) => {
     api.suggestions(sid).then(setSuggestions).catch(() => setSuggestions([]));
     refreshPush(sid);
+    refreshLandscape(sid);
   };
 
   const start = async () => {
@@ -276,6 +295,7 @@ export function useRespondent(opts: {
       setHistory([]);
       setSeq(null);
       setPush(null);
+      setLandscape(null);
       refreshSuggestions(s.session_id);
     } catch (e) {
       setError(String((e as Error).message));
@@ -312,6 +332,7 @@ export function useRespondent(opts: {
       }
       setSeq((prev) => ({ ...st, results: [...(prev?.job_id === st.job_id ? prev.results : []), ...st.results] }));
       setSession(await api.session(sid));
+      if (st.results.length) refreshLandscape(sid, false);
       if (st.status === "queued" || st.status === "running") {
         seqTimer.current = window.setTimeout(() => pollSequence(sid, offset + st.results.length), 900);
       } else {
@@ -406,6 +427,7 @@ export function useRespondent(opts: {
     try {
       setSession(await api.reset(session.session_id));
       setHistory([]);
+      setLandscape(null);
       refreshSuggestions(session.session_id);
     } catch (e) {
       setError(String((e as Error).message));
@@ -429,6 +451,7 @@ export function useRespondent(opts: {
     // sequences
     seq, seqRunning, runSequence, cancelSequence,
     // ideology push (one-step optimizer)
+    landscape,
     push, pushLoading, pushPoles, setPushPoles: setPushPolesAndRefresh, pushMode, setPushMode: setPushModeAndRefresh,
     askPush, runAutoPush,
     busy, modelBusy,

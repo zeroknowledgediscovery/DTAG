@@ -861,6 +861,35 @@ class EngineSession:
         }
         return out
 
+    def landscape(self) -> Dict[str, Any]:
+        """Decision landscape at the current state (optimizer.landscape), with the shift since the
+        previous snapshot of this respondent. Cached per state; reset clears the history."""
+        from optimizer.landscape import build_view, lean_scale_of, snapshot
+
+        self.last_used = time.time()
+        s = self.session
+        with s.lock:
+            key = (self.reset_count, s.query_count, tuple(sorted(s.state.items())))
+            land = getattr(self, "_land", None)
+            if land is None or land["reset"] != self.reset_count:
+                land = self._land = {"reset": self.reset_count, "key": None, "cur": None, "view": None,
+                                     "history": [], "lean_scale": None}
+            if land["key"] == key and land["view"] is not None:
+                return land["view"]
+            snap = snapshot(s)
+            prev = land["cur"]
+            if land["lean_scale"] is None:
+                land["lean_scale"] = lean_scale_of(snap)
+            view = build_view(snap, prev, s.ctx.var_map, land["history"], land["lean_scale"])
+            if prev is not None:
+                land["history"].append({"step": snap["step"], "since_step": prev["step"],
+                                        "n_moved": view["summary"]["n_moved"],
+                                        "total_shift": view["summary"]["total_shift"],
+                                        "new_anchored": view["new_anchored"]})
+                view["history"] = list(land["history"])
+            land.update(key=key, cur=snap, view=view)
+            return view
+
     def reset(self) -> None:
         self.last_used = time.time()
         self.session.reset()

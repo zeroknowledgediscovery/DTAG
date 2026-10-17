@@ -353,6 +353,17 @@ def create_app(
             raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")
         return engine.ideology_push(es, include_pole_items=include_pole_items, mode=mode)
 
+    @app.get("/api/sessions/{session_id}/landscape", tags=["sessions"])
+    def landscape(session_id: str) -> Dict[str, Any]:
+        """Decision landscape: the model's predicted answer to every askable item at the current state.
+
+        Per item: topic, settledness (1 - normalized entropy), modal answer, lean (change of the
+        ideology index if answered modally; surveys with poles only) and shift (Jensen-Shannon
+        divergence, bits) since this respondent's previous landscape. Plus anchored (answered)
+        items, per-topic totals and the shift history.
+        """
+        return _session(session_id).landscape()
+
     @app.post("/api/sessions/{session_id}/ideology-push/ask", response_model=QuestionResult, tags=["ideology push"])
     def ideology_push_ask(session_id: str, body: PushAskIn) -> Dict[str, Any]:
         """Ask a suggested question (realistic: normal mapping; validated: its validated

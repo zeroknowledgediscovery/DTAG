@@ -7,6 +7,7 @@ import { RespondentSetup } from "./components/RespondentSetup";
 import { SequenceCard, SequenceDialog } from "./components/Sequence";
 import { IdeologyPush } from "./components/IdeologyPush";
 import { ThemeToggle } from "./components/ThemeToggle";
+import { LandscapeView } from "./components/Landscape";
 import { IdeologyCompare, StatePanel } from "./components/StatePanel";
 import type { CountryInfo, EBWave, ModelRecord, Profile, Readiness } from "./types";
 import { useModelLoader, useRespondent, type Respondent } from "./useRespondent";
@@ -404,6 +405,7 @@ export default function App() {
                 <>
                   <RespondentSummary r={r} onEdit={() => setEditOpen((e) => ({ ...e, [sl.id]: true }))} />
                   <LabMark />
+                  <LandscapeView data={r.landscape} loading={r.busy} />
                 </>
               ) : (
                 <>
