@@ -258,15 +258,34 @@ export function useRespondent(opts: {
       .finally(() => req === pushReq.current && setPushLoading(false));
   };
 
-  /** Decision landscape at the current state; skipped while a request is in flight (sequence polling). */
+  /** Decision landscape at the current state. It is computed in the background on the server: while
+   *  `pending`, keep showing the previous landscape and poll until the new one is ready. */
+  const [landscapePending, setLandscapePending] = useState(false);
+  const landTimer = useRef<number | null>(null);
   const refreshLandscape = (sid: string, force = true) => {
     if (landBusy.current && !force) return;
     const req = ++landReq.current;
     landBusy.current = true;
+    if (landTimer.current) window.clearTimeout(landTimer.current);
     api
       .landscape(sid)
-      .then((l) => req === landReq.current && setLandscape(l.enabled ? l : null))
-      .catch(() => req === landReq.current && setLandscape(null))
+      .then((l) => {
+        if (req !== landReq.current) return;
+        if (!l.enabled) {
+          setLandscape(null);
+          setLandscapePending(false);
+          return;
+        }
+        if (l.items) setLandscape(l);
+        setLandscapePending(Boolean(l.pending));
+        if (l.pending) landTimer.current = window.setTimeout(() => req === landReq.current && refreshLandscape(sid), 1200);
+      })
+      .catch(() => {
+        if (req === landReq.current) {
+          setLandscape(null);
+          setLandscapePending(false);
+        }
+      })
       .finally(() => {
         if (req === landReq.current) landBusy.current = false;
       });
@@ -451,7 +470,7 @@ export function useRespondent(opts: {
     // sequences
     seq, seqRunning, runSequence, cancelSequence,
     // ideology push (one-step optimizer)
-    landscape,
+    landscape, landscapePending,
     push, pushLoading, pushPoles, setPushPoles: setPushPolesAndRefresh, pushMode, setPushMode: setPushModeAndRefresh,
     askPush, runAutoPush,
     busy, modelBusy,

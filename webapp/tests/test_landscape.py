@@ -26,7 +26,7 @@ def test_topics_and_divergence(fake_client):
 
 def test_landscape_tracks_interactions(fake_client):
     sid = _session(fake_client, resp_mode="max")
-    v0 = fake_client.get(f"/api/sessions/{sid}/landscape").json()
+    v0 = fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()
     assert v0["enabled"] and v0["step"] == 0 and v0["since_step"] is None and v0["has_lean"]
     assert v0["items"] and all(0 <= x["s"] <= 1 and x["d"] is None for x in v0["items"])
     assert sum(t["n"] for t in v0["topics"]) == len(v0["items"]) == v0["summary"]["n_items"]
@@ -35,10 +35,10 @@ def test_landscape_tracks_interactions(fake_client):
     assert all(0 <= x["x"] <= 1 and 0 <= x["y"] <= 1 for x in v0["items"])
     assert set(v0["topic_xy"]) == {t["name"] for t in v0["topics"]} | {a["t"] for a in v0["anchored"]}
     # cached per state
-    assert fake_client.get(f"/api/sessions/{sid}/landscape").json() == v0
+    assert fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json() == v0
 
     r = fake_client.post(f"/api/sessions/{sid}/questions", json={"question": "Should abortion be legal?"}).json()
-    v1 = fake_client.get(f"/api/sessions/{sid}/landscape").json()
+    v1 = fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()
     assert v1["step"] == 1 and v1["since_step"] == 0
     assert set(v1["new_anchored"]) <= set(r["state_updates"]) and bool(v1["new_anchored"]) == bool(r["state_changed"])
     answered = set(r["selected_variables"]) & set(v1["new_anchored"])
@@ -49,11 +49,28 @@ def test_landscape_tracks_interactions(fake_client):
     assert len(v1["history"]) == 1 and v1["history"][0]["since_step"] == 0
 
     fake_client.post(f"/api/sessions/{sid}/reset")
-    v2 = fake_client.get(f"/api/sessions/{sid}/landscape").json()
+    v2 = fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()
     assert v2["since_step"] is None and v2["history"] == []
 
 
-def test_landscape_disabled_without_ideology(fake_client):
+def test_landscape_without_ideology(fake_client):
     sid = _session(fake_client, ideology=False)
-    v = fake_client.get(f"/api/sessions/{sid}/landscape").json()
-    assert v["enabled"] is False and v["reason"] and "items" not in v
+    v = fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()
+    assert v["enabled"] and v["has_lean"] is False and v["ideology"] is None and not v.get("pending")
+    assert v["items"] and all(x["l"] is None for x in v["items"])
+    fake_client.post(f"/api/sessions/{sid}/questions", json={"question": "Should abortion be legal?"})
+    v1 = fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()
+    assert v1["since_step"] == 0 and v1["step"] == 1
+
+
+def test_landscape_is_computed_in_background(fake_client):
+    sid = _session(fake_client, resp_mode="max")
+    first = fake_client.get(f"/api/sessions/{sid}/landscape").json()
+    assert first["enabled"] and (first.get("pending") or first.get("items"))
+    ready = fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()
+    assert ready["items"] and not ready.get("pending")
+    fake_client.post(f"/api/sessions/{sid}/questions", json={"question": "Should abortion be legal?"})
+    nxt = fake_client.get(f"/api/sessions/{sid}/landscape").json()
+    if nxt.get("pending"):  # previous landscape served while the new one is computed
+        assert nxt["step"] == 0
+    assert fake_client.get(f"/api/sessions/{sid}/landscape?wait=true").json()["step"] == 1

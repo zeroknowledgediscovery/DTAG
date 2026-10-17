@@ -405,7 +405,7 @@ export default function App() {
                 <>
                   <RespondentSummary r={r} onEdit={() => setEditOpen((e) => ({ ...e, [sl.id]: true }))} />
                   <LabMark />
-                  {r.session.ideology.enabled && <LandscapeView data={r.landscape} loading={r.busy} />}
+                  <LandscapeView data={r.landscape} loading={r.busy || r.landscapePending} />
                 </>
               ) : (
                 <>

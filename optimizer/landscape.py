@@ -48,26 +48,63 @@ def js_divergence(p: Dict[str, float], q: Dict[str, float]) -> float:
     return max(0.0, out)
 
 
-def snapshot(session: Any) -> Dict[str, Any]:
-    """Predicted answer distributions and summaries for every askable item at the current state."""
+_DEPS: Dict[Any, Dict[str, List[str]]] = {}
+BATCH = 12  # items per native call: keeps the per-model inference lock free for questions in between
+
+
+def dependencies(session: Any, names: List[str]) -> Dict[str, List[str]]:
+    """Variables each item's tree splits on (cached per model); {} when the backend cannot say."""
+    key = (getattr(session.ctx, "model_path", ""), tuple(sorted(names)))
+    if key not in _DEPS:
+        try:
+            _DEPS[key] = session.model.dependencies(list(names))
+        except (AttributeError, NotImplementedError):
+            _DEPS[key] = {}
+    return _DEPS[key]
+
+
+def snapshot(session: Any, prev: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """Predicted answer distributions and summaries for every askable item at the current state.
+
+    With an ideology index the per-state one-step pass (session_push.scored) supplies distributions
+    and lean. Without one, distributions come from the native model directly, and only the items that
+    can have changed are recomputed: an item's tree reads only the variables it splits on, so if none
+    of them changed since ``prev`` its distribution is exactly the same. Recomputation runs in small
+    batches outside the session lock, so questions are never blocked behind it.
+    """
     from optimizer.one_step_geometry import native_distributions
 
     with session.lock:
         state = dict(session.state)
         items = askable_items(session, include_pole_items=True)
-        lean: Dict[str, float] = {}
-        if getattr(session, "ideology_enabled", False):
-            res = scored(session)
-            dists: Dict[str, Dict[str, float]] = {}
-            for r in res.rows:
-                dists.setdefault(r["variable"], {})[str(r["answer"])] = float(r["conditional_probability"])
-            lean = {r["variable"]: float(r["delta_modal"]) for r in res.summary}
-            ideology: Optional[float] = float(res.I_before)
-        else:
-            dists = native_distributions(SessionWorld(session), state, items)
-            ideology = None
         var_map = session.ctx.var_map
         step = int(session.query_count)
+        has_ideology = bool(getattr(session, "ideology_enabled", False))
+    lean: Dict[str, float] = {}
+    ideology: Optional[float] = None
+    recomputed = len(items)
+    if has_ideology:
+        res = scored(session)
+        dists: Dict[str, Dict[str, float]] = {}
+        for r in res.rows:
+            dists.setdefault(r["variable"], {})[str(r["answer"])] = float(r["conditional_probability"])
+        lean = {r["variable"]: float(r["delta_modal"]) for r in res.summary}
+        ideology = float(res.I_before)
+        # scored() follows the live state; keep the snapshot consistent with what it scored
+        state = dict(res.meta.get("state", state))
+    else:
+        todo = list(items)
+        dists = {}
+        if prev is not None and prev.get("items"):
+            deps = dependencies(session, items)
+            changed = {k for k in set(state) | set(prev["state"]) if state.get(k) != prev["state"].get(k)}
+            if deps:
+                todo = [v for v in items if v not in prev["items"] or changed & set(deps.get(v, ()))]
+                dists = {v: prev["items"][v]["dist"] for v in items if v in prev["items"] and v not in set(todo)}
+        world = SessionWorld(session)
+        for k in range(0, len(todo), BATCH):
+            dists.update(native_distributions(world, state, todo[k:k + BATCH]))
+        recomputed = len(todo)
     out: Dict[str, Dict[str, Any]] = {}
     for v in items:
         p = dists.get(v) or {}
@@ -78,7 +115,8 @@ def snapshot(session: Any) -> Dict[str, Any]:
         modal = max(p, key=lambda a: (p[a], a))
         out[v] = {"dist": p, "settled": _settled(p), "modal": modal, "p_modal": p[modal], "lean": lean.get(v)}
     topics = topics_for(list(out) + list(state), var_map)
-    return {"step": step, "state": state, "items": out, "topics": topics, "ideology": ideology}
+    return {"step": step, "state": state, "items": out, "topics": topics, "ideology": ideology,
+            "recomputed": recomputed}
 
 
 _LAYOUTS: Dict[Any, Dict[str, Any]] = {}
@@ -103,10 +141,7 @@ def layout(session: Any) -> Dict[str, Any]:
         key = (getattr(session.ctx, "model_path", ""), getattr(session.ctx, "map_path", ""), tuple(names))
         if key in _LAYOUTS:
             return _LAYOUTS[key]
-        try:  # model dependencies are optional (backends without split_columns get a topic-only layout)
-            deps = session.model.dependencies(names)
-        except (AttributeError, NotImplementedError):
-            deps = {}
+        deps = dependencies(session, names)  # optional: without it the layout is by topic only
     topics = topics_for(names, var_map)
     n = len(names)
     idx = {v: i for i, v in enumerate(names)}

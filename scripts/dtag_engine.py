@@ -761,6 +761,7 @@ class EngineSession:
         self.history_started_at = self.created_at  # creation, or the last reset
         self.history_started_ts = time.time()
         self.reset_count = 0
+        self._land_lock = threading.Lock()
         self.engine = engine
         self.spec = spec
         self.session = session
@@ -865,44 +866,72 @@ class EngineSession:
         }
         return out
 
-    def landscape(self) -> Dict[str, Any]:
+    def landscape(self, wait: bool = False) -> Dict[str, Any]:
         """Decision landscape at the current state (optimizer.landscape), with the shift since the
         previous snapshot of this respondent. Cached per state; reset clears the history.
-        Respondents without an ideology index get ``{"enabled": False, "reason": ...}``."""
-        from optimizer.landscape import build_view, layout, lean_scale_of, snapshot
 
+        Computed in a background thread (it can take seconds on large models): until the landscape
+        for the current state is ready, the previous one is returned with ``pending: True`` (or just
+        ``{"enabled": True, "pending": True}`` the first time), and the client polls again.
+        ``wait=True`` blocks until it is ready.
+        """
         self.last_used = time.time()
         s = self.session
-        if not s.ideology_enabled:
-            # Shown only for respondents with an ideology index (lean colour needs the poles).
-            reason = (getattr(s.polar, "disable_reason", None)
-                      or "The decision landscape needs an ideology index, which this survey/profile does not have.")
-            return {"enabled": False, "reason": reason}
         with s.lock:
             key = (self.reset_count, s.query_count, tuple(sorted(s.state.items())))
+        with self._land_lock:
             land = getattr(self, "_land", None)
             if land is None or land["reset"] != self.reset_count:
                 land = self._land = {"reset": self.reset_count, "key": None, "cur": None, "view": None,
-                                     "history": [], "lean_scale": None}
+                                     "history": [], "lean_scale": None, "job": None, "job_key": None,
+                                     "error": None}
             if land["key"] == key and land["view"] is not None:
                 return land["view"]
-            snap = snapshot(s)
-            prev = land["cur"]
-            if land["lean_scale"] is None:
-                land["lean_scale"] = lean_scale_of(snap)
+            job = land["job"]
+            if job is None or not job.is_alive():
+                job = threading.Thread(target=self._landscape_job, args=(land,), daemon=True,
+                                       name=f"landscape-{self.id}")
+                land.update(job=job, job_key=key, error=None)
+                job.start()
+        if wait:
+            job.join()
+            return self.landscape(wait=True) if land.get("error") is None else {"enabled": False, "reason": land["error"]}
+        with self._land_lock:
+            if land.get("error"):
+                return {"enabled": False, "reason": land["error"]}
+            if land["view"] is not None:
+                return {**land["view"], "pending": True}
+            return {"enabled": True, "pending": True}
+
+    def _landscape_job(self, land: Dict[str, Any]) -> None:
+        from optimizer.landscape import build_view, layout, lean_scale_of, snapshot
+
+        s = self.session
+        try:
+            snap = snapshot(s, prev=land["cur"])
+            positions = None
             try:
                 positions = layout(s)
             except Exception:  # the map view is optional; the doughnut does not need positions
-                positions = None
-            view = build_view(snap, prev, s.ctx.var_map, land["history"], land["lean_scale"], positions)
-            if prev is not None:
-                land["history"].append({"step": snap["step"], "since_step": prev["step"],
-                                        "n_moved": view["summary"]["n_moved"],
-                                        "total_shift": view["summary"]["total_shift"],
-                                        "new_anchored": view["new_anchored"]})
-                view["history"] = list(land["history"])
-            land.update(key=key, cur=snap, view=view)
-            return view
+                pass
+            with self._land_lock:
+                if self._land is not land or land["reset"] != self.reset_count:  # reset while computing
+                    return
+                prev = land["cur"]
+                if land["lean_scale"] is None:
+                    land["lean_scale"] = lean_scale_of(snap)
+                view = build_view(snap, prev, s.ctx.var_map, land["history"], land["lean_scale"], positions)
+                if prev is not None:
+                    land["history"].append({"step": snap["step"], "since_step": prev["step"],
+                                            "n_moved": view["summary"]["n_moved"],
+                                            "total_shift": view["summary"]["total_shift"],
+                                            "new_anchored": view["new_anchored"]})
+                    view["history"] = list(land["history"])
+                key = (land["reset"], snap["step"], tuple(sorted(snap["state"].items())))
+                land.update(key=key, cur=snap, view=view)
+        except Exception as e:
+            with self._land_lock:
+                land["error"] = f"Landscape failed: {type(e).__name__}: {e}"
 
     def reset(self) -> None:
         self.last_used = time.time()
