@@ -167,7 +167,7 @@ export function SequenceCard({
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 6 }}>
         <b>
           {seq.kind === "ideology_push"
-            ? `Ideology push ${seq.direction === "up" ? "↑ toward R pole" : "↓ toward L pole"}${seq.mode === "validated" ? " · validated" : ""}`
+            ? `Ideology push ${seq.direction === "up" ? "↑ toward R pole" : "↓ toward L pole"}${seq.mode === "validated" ? " · validated" : seq.mode === "direct" ? " · push" : ""}`
             : `Question sequence${seq.name ? ` · ${seq.name}` : ""}`}
         </b>
         <span className={`badge ${seq.status === "done" ? "b-direct" : seq.status === "error" ? "b-nomatch" : "b-neutral"}`}>

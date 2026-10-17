@@ -24,6 +24,8 @@ smallest (toward L). Each suggestion carries a natural-language question written
   (DTAGSession.map_question). Candidates whose mapping misses the item are dropped; the rest are
   ranked by the exact joint change of all mapped items (predict_joint), and the question is then
   answered through that validated mapping, so the realized change equals the prediction.
+* mode="direct" ("push" in the UI): the question is answered through exactly the optimizer's
+  item, skipping the mapping, so the realized change equals the prediction for that item.
 
 Askable items are opinion/attitude items (optimize_question_sets.askable): administrative codes,
 demographics and factual behaviour items are never suggested. Pole-defining items are excluded
@@ -39,7 +41,7 @@ from concurrent.futures import ThreadPoolExecutor
 from optimizer.one_step_geometry import has_fast_extensions, native_one_step, strict_native_index
 
 DIRECTIONS = ("up", "down")
-MODES = ("realistic", "validated")
+MODES = ("realistic", "validated", "direct")
 
 
 class SessionWorld:
@@ -187,7 +189,7 @@ def suggest(session: Any, *, include_pole_items: bool = False, craft: Optional[A
             out[direction] = None
             out[f"{direction}_reason"] = f"No askable item is predicted to move the index {direction}."
             continue
-        if mode == "realistic":
+        if mode in ("realistic", "direct"):
             row = cands[0]
             sug = _suggestion(row, by_var[row["variable"]], direction, objective, current, state_full)
             sug.update({"question": word(row), "mode": mode, "mapped_variables": None})

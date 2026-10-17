@@ -811,6 +811,7 @@ class EngineSession:
         * ``validated``: the question is answered through its validated mapping (the dry run of
           the normal mapping made when the suggestion was ranked, cached per question), which
           must include ``variable``.
+        * ``direct``: the question is answered through exactly ``variable`` (mapping skipped).
 
         The result carries ``push``: the prediction made just before asking, the items the
         question mapped to, whether they include the target item, and the realized change.
@@ -836,6 +837,8 @@ class EngineSession:
                           target_rationale=("Validated mapping of this question (a dry run of the normal "
                                             "question-to-item mapping, checked to include the optimizer's item "
                                             f"{variable}): " + ", ".join(mapped) + "."))
+            elif mode == "direct":
+                r = s.ask(question, source="ideology_push", target_variables=[variable])
             else:
                 r = s.ask(question, source="ideology_push")
         out = dict(r)
@@ -1809,9 +1812,10 @@ class DTAGEngine:
                       mode: str = "realistic") -> Dict[str, Any]:
         """Questions that move this respondent's ideology index up / down (one-step optimizer).
 
-        ``mode`` is "realistic" (default; the question will be mapped normally when asked) or
+        ``mode`` is "realistic" (default; the question will be mapped normally when asked),
         "validated" (the top items' questions are dry-run through the mapping; only questions
-        that map back to their item are suggested, ranked by the exact joint change)."""
+        that map back to their item are suggested, ranked by the exact joint change) or "direct"
+        (the question will be answered through exactly its item)."""
         from optimizer.session_push import suggest
 
         s = es.session

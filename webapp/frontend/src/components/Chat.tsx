@@ -313,12 +313,12 @@ export function ChatLog({
 function pushTitle(p: PushOutcome): string {
   const mapped = p.mapped_variables?.length ? p.mapped_variables.join(", ") : "none";
   const lines = [
-    `Ideology push (${p.mode ?? "targeted"}) for survey item ${p.variable}.`,
+    `Ideology push, ${p.mode === "direct" || !p.mode ? "push" : p.mode} mode, for survey item ${p.variable}.`,
     p.mode === "validated"
       ? `Answered through its validated mapping: ${mapped}.`
       : p.mode === "realistic"
         ? `Mapped like a typed question to: ${mapped} — ${p.hit ? "includes" : "does not include"} the target item.`
-        : `Answered through exactly that item.`,
+        : `Answered through exactly that item (mapping skipped).`,
     `Predicted for the item alone: ${fmtSigned(p.predicted_modal_delta)} (modal answer).`,
   ];
   if (p.predicted_joint_delta !== null && p.predicted_joint_delta !== undefined)

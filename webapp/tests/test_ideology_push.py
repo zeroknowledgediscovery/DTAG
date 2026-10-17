@@ -188,3 +188,26 @@ def test_native_validated_push_is_exact(native_engine):
         assert r["selected_variables"] == s["mapped_variables"] and r["push"]["hit"]
         assert r["push"]["realized_delta"] == pytest.approx(s["predicted_delta"], abs=1e-12)
         sug = native_engine.ideology_push(es, mode="validated")
+
+
+def test_direct_mode_answers_through_exactly_the_item(fake_client):
+    sid = _session(fake_client, resp_mode="max")
+    sug = fake_client.get(f"/api/sessions/{sid}/ideology-push?include_pole_items=true&mode=direct").json()
+    assert sug["mode"] == "direct"
+    d = "up" if sug["up"] else "down"
+    s = sug[d]
+    r = fake_client.post(f"/api/sessions/{sid}/ideology-push/ask",
+                         json={"variable": s["variable"], "question": s["question"], "direction": d, "mode": "direct"})
+    assert r.status_code == 200, r.text
+    res = r.json()
+    assert res["targeted"] is True and res["selected_variables"] == [s["variable"]]
+    assert res["push"]["mode"] == "direct" and res["push"]["hit"] is True
+    assert res["push"]["realized_delta"] == pytest.approx(s["predicted_delta"], abs=1e-12)
+    auto = fake_client.post(f"/api/sessions/{sid}/ideology-push/auto",
+                            json={"direction": d, "steps": 2, "include_pole_items": True, "mode": "direct"})
+    assert auto.status_code == 200, auto.text
+    st = _wait(fake_client, sid)
+    assert st["status"] == "done" and st["mode"] == "direct"
+    for p, res in zip(st["predictions"], st["results"]):
+        assert res["selected_variables"] == [p["variable"]]
+        assert res["ideology"]["delta"] == pytest.approx(p["predicted_delta"], abs=1e-12)

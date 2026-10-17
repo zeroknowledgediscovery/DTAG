@@ -231,8 +231,8 @@ export interface PushOutcome {
   resp_mode: string;
 }
 
-/** realistic: the question is mapped like any typed question; validated: through its checked mapping. */
-export type PushMode = "realistic" | "validated";
+/** realistic: mapped like any typed question; validated: through its checked mapping; direct ("push"): through exactly its item. */
+export type PushMode = "realistic" | "validated" | "direct";
 
 export interface PushSuggestion {
   direction: "up" | "down";
