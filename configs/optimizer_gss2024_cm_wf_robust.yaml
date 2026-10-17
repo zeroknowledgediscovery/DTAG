@@ -1,6 +1,6 @@
 # Canonical configuration: configs/optimizer_gss2024_cm_wf_robust.yaml
 # Run directly using --config configs/optimizer_gss2024_cm_wf_robust.yaml,
-# or copy to the repository root: cp configs/optimizer_gss2024_cm_wf_robust.yaml my.yaml.
+# or copy to the repository root as a local working copy (git-ignored): cp configs/optimizer_gss2024_cm_wf_robust.yaml my.yaml.
 # Previous search experiment preserved as configs/optimizer_gss2024_cm_wf_baseline.yaml.
 # Increasing search draws reduces Monte Carlo instability but does NOT fix
 # zero-variance / infinite-t objectives in optimizer/search.py.

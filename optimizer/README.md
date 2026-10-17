@@ -376,6 +376,6 @@ index/distribution functions (tests: `optimizer/tests/test_one_step_geometry.py`
 sweep is ~7k (question, answer) pairs: ~4-5 s with the incremental native evaluator
 (`Runtime.extension_distances`, used automatically when the binding has it; bit-identical results),
 ~3 min without it. Model rows (`dtag_core.blank_row`) are object arrays, so answers longer than 100
-characters are no longer silently truncated and treated as missing (see
-`scratch/gss2018_pole_geometry/ONE_STEP_FINDINGS.md`). Validated bit-for-bit against the reference
-enumeration in `scratch/gss2018_pole_geometry/` (see `ONE_STEP_REPORT.md`).
+characters are no longer silently truncated and treated as missing. Validated bit-for-bit against the
+reference one-step enumeration (the former `scratch/gss2018_pole_geometry/` experiments, which remain
+in Git history).

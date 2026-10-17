@@ -26,7 +26,6 @@ DTAG/
   maps/                         semantic maps: gss/ (35), afromap/ (9), eurobarometer/ (207), WVS7 (1)
   assets/                       question sets, personas, polar vectors (ideology poles)
   poles/                        pole-discovery tool
-  scratch/gss2018_pole_geometry/  research experiments (one-step geometry, push runs, poles)
   dtag/                         installed console commands (dtag-web, dtag-models, dtag-doctor)
   models/lsm/README.md          tracked placeholder only; models live outside Git
   data/                         local raw-data staging (documentation only in Git)
@@ -150,13 +149,13 @@ alternative runtimes.
 
 ```bash
 python -m optimizer.one_step_geometry --model gss/gss_2018 --persona-ref CM --exclude-poles --top 10
-python scratch/gss2018_pole_geometry/greedy_push_runs.py --persona CM --direction right --n-items 6
 ```
 
 The native evaluator re-scores about 7,000 (item, response) pairs in a few seconds. The research
 record of the polarization and depolarization question sets is in
-[QUESTION_OPTIMIZATION.md](QUESTION_OPTIMIZATION.md). The GSS 2018 pole-geometry experiments are in
-`scratch/gss2018_pole_geometry/`.
+[QUESTION_OPTIMIZATION.md](QUESTION_OPTIMIZATION.md). The earlier GSS 2018 pole-geometry experiments
+(`scratch/gss2018_pole_geometry/`) and the retired command-line runtime (`archive/`) were removed
+from the tree; both are in the Git history of `dev` (e.g. `git show 00ccd0a:scratch/...`).
 
 ## Tests and audits
 

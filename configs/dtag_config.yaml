@@ -55,11 +55,6 @@ question_sets:
     glob: '*.csv'
 
 defaults:
-  # pipeline / run_grid / postprocess_script were read by the archived command-line launchers
-  # (archive/scripts/run.py, run_grid.py, post.py); the web engine ignores them.
-  pipeline: scripts/pipeline_localized.py
-  run_grid: scripts/run_grid.py
-  postprocess_script: scripts/postprocess.py
   polar_vectors: assets/polar_vectors/polar_vectors.csv
   run:
     python: python3
@@ -84,24 +79,6 @@ defaults:
     openai_model: gpt-4.1-mini
     timing: true
     overwrite: true
-  postprocess:
-    python: python3
-    center_mode: zero
-    center: 0.0
-    effect_threshold: 0.005
-    min_reps: 2
-    bootstrap: 2000
-    make_plots: true
-    quadrant_plot: true
-    plot_variant: forward
-    quadrant_variant: forward
-    plot_ci: 0.95
-    plot_dpi: 220
-    label_map_csv: assets/label_maps/question_set_interpretive_name_map_master.csv
-    pdf: true
-    zip_plots: true
-    dark: false
-    transparent: false
 
 interactive_profiles:
   gss2018_wf:
@@ -230,75 +207,3 @@ interactive_profiles:
     run:
       no_ideology: true
       resp_mode: draw
-
-# Batch experiments for the archived command-line runner (archive/scripts/run.py).
-experiments:
-  gss2022_divergence:
-    description: Native GSS 2022 WF/CM personas on divergence probes.
-    map: gss_2022
-    question_set: divergence
-    outdir: outputs/dtag_gss2022_divergence
-    personas:
-      - id: WF_US_2022
-        qnet: gss_2022
-        persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive
-        year: 2022
-        country: United States
-      - id: CM_US_2022
-        qnet: gss_2022
-        persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative
-        year: 2022
-        country: United States
-
-  gss2024_master:
-    description: Native pooled GSS 2024 on the master question set.
-    map: gss_2024
-    question_set: master
-    outdir: outputs/dtag_gss2024_master
-    personas:
-      - id: WF_US_2024
-        qnet: gss_2024
-        persona: 22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive
-        year: 2024
-        country: United States
-      - id: CM_US_2024
-        qnet: gss_2024
-        persona: 45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative
-        year: 2024
-        country: United States
-
-  wvs7_india_master:
-    description: Native WVS7 India 2017 on the master question set.
-    map: wvs7
-    question_set: master
-    outdir: outputs/dtag_wvs7_india_master
-    polar_vectors: ''
-    run:
-      no_ideology: true
-    personas:
-      - id: INDIA_2017
-        qnet: wvs7_pooled
-        persona: 35 year old urban college-educated adult, regular news consumer, politically moderate
-        year: 2017
-        country: India
-        continent: Asia
-
-  afrobarometer_r5_country_pair:
-    description: Native Afrobarometer R5 Nigeria/Ghana matched-country experiment.
-    map: afrobarometer_r5
-    question_set: master
-    outdir: outputs/dtag_afrobarometer_r5_country_pair
-    polar_vectors: ''
-    run:
-      no_ideology: true
-    personas:
-      - id: NIGERIA
-        qnet: afrobarometer_r5
-        persona: 35 year old urban male, regular news consumer, politically attentive, moderate
-        country: Nigeria
-        continent: Africa
-      - id: GHANA
-        qnet: afrobarometer_r5
-        persona: 35 year old urban male, regular news consumer, politically attentive, moderate
-        country: Ghana
-        continent: Africa
