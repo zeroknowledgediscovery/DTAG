@@ -35,8 +35,10 @@
   --resp-b: #eb6834;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
+/* Theme: index.html / ThemeToggle set data-theme="light"|"dark" on <html> (system preference unless chosen). */
+:root { color-scheme: light; }
+:root[data-theme="dark"] {
+    color-scheme: dark;
     --bg: #0d1016;
     --panel: #151921;
     --panel-2: #1b2029;
@@ -66,7 +68,6 @@
     --ring: 0 0 0 3px rgba(143, 163, 245, 0.25);
     --resp-a: #3987e5;
     --resp-b: #d95926;
-  }
 }
 
 * { box-sizing: border-box; }
@@ -97,7 +98,7 @@ code, .mono { font-family: var(--mono); font-size: 12px; }
 .brand small { font-weight: 450; font-size: 12.5px; color: var(--muted); letter-spacing: 0; }
 .brand-mark { width: 26px; height: 26px; border-radius: 7px; flex: none; display: grid; place-items: center;
   background: linear-gradient(135deg, var(--accent) 0%, #6f52d9 100%); color: #fff; box-shadow: var(--shadow-sm); }
-@media (prefers-color-scheme: dark) { .brand-mark { background: linear-gradient(135deg, #5a72e0 0%, #7c5fe0 100%); } }
+[data-theme="dark"] .brand-mark { background: linear-gradient(135deg, #5a72e0 0%, #7c5fe0 100%); }
 .readiness { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
 .readiness b { color: var(--text); font-weight: 600; }
 .topbar .spacer { flex: 1; }
@@ -291,7 +292,7 @@ a.btn:hover { background: var(--hover); }
 .seg button { border: none; background: none; padding: 3px 11px; cursor: pointer; border-radius: 5px; color: var(--muted); font-weight: 500; transition: background 0.12s, color 0.12s; }
 .seg button:hover:not(:disabled):not(.on) { color: var(--text); }
 .seg button.on { background: var(--panel); color: var(--text); font-weight: 600; box-shadow: var(--shadow); }
-@media (prefers-color-scheme: dark) { .seg button.on { background: var(--hover); } }
+[data-theme="dark"] .seg button.on { background: var(--hover); }
 
 /* two respondents */
 .tabs { display: flex; gap: 2px; margin-bottom: 14px; border-bottom: 1px solid var(--border); }
@@ -376,3 +377,9 @@ button.btn.small { padding: 3px 10px; font-size: 12px; }
 .lab-mark { margin: 64px auto 0; text-align: center; color: var(--muted); opacity: 0.3; user-select: none; }
 .lab-mark .lab-name { font-weight: 700; letter-spacing: 0.18em; font-size: 13px; margin-top: 8px; }
 .lab-mark .lab-sub { font-size: 10px; letter-spacing: 0.04em; margin-top: 2px; }
+
+/* theme toggle (top bar) */
+.theme-toggle { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--panel); color: var(--muted); cursor: pointer; padding: 0; }
+.theme-toggle:hover { background: var(--hover); color: var(--text); }
+.theme-toggle:focus-visible { outline: none; box-shadow: var(--ring); }

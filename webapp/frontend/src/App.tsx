@@ -6,6 +6,7 @@ import { ProfileBuilder } from "./components/ProfileBuilder";
 import { RespondentSetup } from "./components/RespondentSetup";
 import { SequenceCard, SequenceDialog } from "./components/Sequence";
 import { IdeologyPush } from "./components/IdeologyPush";
+import { ThemeToggle } from "./components/ThemeToggle";
 import { IdeologyCompare, StatePanel } from "./components/StatePanel";
 import type { CountryInfo, EBWave, ModelRecord, Profile, Readiness } from "./types";
 import { useModelLoader, useRespondent, type Respondent } from "./useRespondent";
@@ -365,6 +366,7 @@ export default function App() {
           API docs
         </a>
         {readiness && (readiness as unknown as { auth?: string }).auth === "password" && <a href="/api/logout">Sign out</a>}
+        <ThemeToggle />
       </div>
 
       <div className={`main ${count === 2 ? "two" : ""}`}>
