@@ -9,6 +9,7 @@ import { IdeologyPush } from "./components/IdeologyPush";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { LandscapeView } from "./components/Landscape";
 import { NextQuestions } from "./components/NextQuestions";
+import { ExperimentPanel } from "./components/Experiment";
 import { IdeologyCompare, StatePanel } from "./components/StatePanel";
 import type { CountryInfo, EBWave, ModelRecord, Profile, Readiness } from "./types";
 import { useModelLoader, useRespondent, type Respondent } from "./useRespondent";
@@ -100,7 +101,7 @@ function pushPanel(r: Respondent) {
   if (!r.session.ideology.enabled) {
     return (
       <Section title="Next question">
-        <NextQuestions data={r.nextQ} pending={r.landscapePending || !r.landscape} disabled={r.busy} onAsk={r.ask} />
+        <NextQuestions data={r.nextQ} pending={r.landscapePending || !r.landscape} disabled={r.busy} onAsk={(q, kind) => r.ask(q, kind)} />
       </Section>
     );
   }
@@ -116,6 +117,24 @@ function pushPanel(r: Respondent) {
         disabled={r.busy}
         onAsk={r.askPush}
         onAuto={r.runAutoPush}
+      />
+    </Section>
+  );
+}
+
+/** Record-and-rerun experiments for one respondent. */
+function expPanel(r: Respondent, color: string) {
+  if (!r.session) return null;
+  return (
+    <Section title="Experiment">
+      <ExperimentPanel
+        sessionId={r.session.session_id}
+        recipe={r.recipe}
+        job={r.expJob}
+        busy={r.busy}
+        color={color}
+        onRun={r.runExperiment}
+        onCancel={r.cancelExperiment}
       />
     </Section>
   );
@@ -355,7 +374,7 @@ export default function App() {
           </>
         ),
         title: `${label}: survey item ${n.v} (${n.t})`,
-        onClick: () => chipSource.ask(n.question),
+        onClick: () => chipSource.ask(n.question, key),
       });
     }
   }
@@ -552,6 +571,7 @@ export default function App() {
                 <div key={sl.id} hidden={tab !== sl.id}>
                   <StatePanel session={r.session} history={r.history} idPrefix={sl.prefix} color={sl.color} label={sl.id} hideIdeology>
                     {pushPanel(r)}
+                    {expPanel(r, sl.color)}
                   </StatePanel>
                 </div>
               ))}
@@ -560,6 +580,7 @@ export default function App() {
             <StatePanel session={A.session} history={A.history} idPrefix={SLOTS[0].prefix}>
               {pushPanel(A)}
               {seqCard(A, SLOTS[0], false)}
+              {expPanel(A, "var(--accent)")}
             </StatePanel>
           )}
         </div>

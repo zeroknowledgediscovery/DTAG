@@ -5,6 +5,7 @@ Run with ``dtag-web`` (installed), ``webapp/run.sh`` (source checkout) or
 """
 from __future__ import annotations
 
+import json
 import os
 import threading
 import time
@@ -17,6 +18,8 @@ from fastapi.staticfiles import StaticFiles
 
 from . import DTAG_ROOT  # noqa: F401  (adds DTAG scripts/ to sys.path)
 from .schemas import (
+    ExperimentRecipeRunIn,
+    ExperimentRunIn,
     Health,
     ProfileDraft,
     AutoPushIn,
@@ -28,7 +31,7 @@ from .schemas import (
     SessionCreate,
     SessionOut,
 )
-from . import archive
+from . import archive, experiments
 from .auth import PasswordAuth, install as install_auth
 from .sequences import AutoPushJob, SequenceManager, parse_question_lines
 from .sessions import SessionStore
@@ -70,6 +73,7 @@ def create_app(
     app.state.engine = engine
     app.state.sessions = store
     sequences = SequenceManager()
+    exp_jobs = experiments.ExperimentManager()
     app.state.sequences = sequences
     # Shared-password protection when DTAG_PASSWORD is set (see auth.py).
     install_auth(app, auth if auth is not None else PasswordAuth.from_env())
@@ -323,9 +327,12 @@ def create_app(
         if sequences.active(session_id):
             raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")
         try:
-            return es.ask(body.question)
+            r = es.ask(body.question)
         except ValueError as e:
             raise HTTPException(400, str(e))
+        experiments.record(es, {"next": body.suggestion, "original": body.question} if body.suggestion
+                           else {"ask": body.question})
+        return r
 
     @app.get("/api/sessions/{session_id}/suggestions", tags=["sessions"])
     def suggestions(session_id: str, n: int = Query(6, ge=1, le=20)) -> List[Dict[str, Any]]:
@@ -384,9 +391,15 @@ def create_app(
         if sequences.active(session_id):
             raise HTTPException(409, "A question sequence is running for this respondent; wait for it or cancel it.")
         try:
-            return es.ask_push(body.question, body.variable, direction=body.direction, mode=body.mode)
+            r = es.ask_push(body.question, body.variable, direction=body.direction, mode=body.mode)
         except ValueError as e:
             raise HTTPException(400, str(e))
+        if body.direction:
+            experiments.record(es, {"push": body.direction, "mode": body.mode, "include_pole_items": body.include_pole_items,
+                                    "original": {"question": body.question, "variable": body.variable}})
+        else:
+            experiments.record(es, {"ask": body.question})
+        return r
 
     @app.post("/api/sessions/{session_id}/ideology-push/auto", tags=["ideology push"])
     def ideology_push_auto(session_id: str, body: AutoPushIn) -> Dict[str, Any]:
@@ -404,6 +417,10 @@ def create_app(
                                                   reset_first=body.reset_first, mode=body.mode))
         except RuntimeError as e:
             raise HTTPException(409, str(e))
+        if body.reset_first:
+            experiments.record(es, {"reset": True})
+        experiments.record(es, {"auto_push": body.direction, "steps": body.steps, "mode": body.mode,
+                                "include_pole_items": body.include_pole_items})
         return job.snapshot()
 
     @app.post("/api/sessions/{session_id}/sequence", tags=["sessions"])
@@ -430,6 +447,9 @@ def create_app(
             job = sequences.start(es, qs, name=body.name, reset_first=body.reset_first)
         except RuntimeError as e:
             raise HTTPException(409, str(e))
+        if body.reset_first:
+            experiments.record(es, {"reset": True})
+        experiments.record(es, {"sequence": qs})
         return job.snapshot()
 
     @app.get("/api/sessions/{session_id}/sequence", tags=["sessions"])
@@ -457,6 +477,7 @@ def create_app(
         if sequences.active(session_id):
             raise HTTPException(409, "A question sequence is running; cancel it before resetting.")
         es.reset()
+        experiments.record(es, {"reset": True})
         return es.describe()
 
     @app.delete("/api/sessions/{session_id}", tags=["sessions"])
@@ -475,6 +496,89 @@ def create_app(
         have = {(r["query_idx"], r["question"]) for r in es.session.results}
         done = [(r["query_idx"], r["question"]) for r in snap["results"]]
         return snap if done and all(d in have for d in done) else None
+
+    # -- experiments: record actions, rerun N times, summarise --------------------------
+
+    def _exp_job(job_id: str) -> "experiments.ExperimentJob":
+        job = exp_jobs.get(job_id)
+        if job is None:
+            raise HTTPException(404, f"Unknown experiment job: {job_id}")
+        return job
+
+    @app.get("/api/sessions/{session_id}/experiment", tags=["experiments"])
+    def experiment_recipe(session_id: str, name: str = Query("", max_length=80),
+                          download: bool = False) -> Response:
+        """The replayable recipe of this respondent: its spec and the actions recorded since it was
+        created or last reset (questions, pushes, auto-pushes, sequences, next-question picks)."""
+        es = _session(session_id)
+        rec = experiments.recipe(es, name)
+        rec["descriptions"] = [experiments.describe_action(a) for a in rec["actions"]]
+        headers = {"Content-Disposition": f'attachment; filename="dtag_recipe_{archive.safe_name(rec["name"])}.json"'} if download else None
+        return JSONResponse(rec, headers=headers)
+
+    @app.post("/api/sessions/{session_id}/experiment/run", tags=["experiments"])
+    def experiment_run(session_id: str, body: ExperimentRunIn) -> Dict[str, Any]:
+        """Rerun this respondent's recorded actions ``runs`` times (background job). Each run is a fresh
+        respondent from the same spec (the persona interpretation may differ) with its own seed; pushes
+        and next questions are re-chosen at each run's own state, and every question asked is logged."""
+        es = _session(session_id)
+        rec = experiments.recipe(es, body.name)
+        if not rec["actions"]:
+            raise HTTPException(400, "Nothing to rerun yet: ask questions or push first.")
+        try:
+            job = exp_jobs.start(experiments.ExperimentJob(engine, rec, body.runs, body.seed))
+        except RuntimeError as e:
+            raise HTTPException(409, str(e))
+        return job.snapshot()
+
+    @app.post("/api/experiments/run", tags=["experiments"])
+    def experiment_run_recipe(body: ExperimentRecipeRunIn) -> Dict[str, Any]:
+        """Rerun an uploaded recipe (from GET /api/sessions/{id}/experiment?download=true)."""
+        rec = body.recipe
+        if not isinstance(rec.get("respondent", {}).get("spec"), dict) or not rec.get("actions"):
+            raise HTTPException(400, "Recipe needs respondent.spec and a non-empty actions list.")
+        if not engine.registry.is_installed(rec["respondent"]["spec"].get("model_key", "")):
+            raise HTTPException(409, f"Model {rec['respondent']['spec'].get('model_key')} is not installed.")
+        try:
+            job = exp_jobs.start(experiments.ExperimentJob(engine, rec, body.runs, body.seed))
+        except RuntimeError as e:
+            raise HTTPException(409, str(e))
+        return job.snapshot()
+
+    @app.get("/api/experiments/jobs/{job_id}", tags=["experiments"])
+    def experiment_status(job_id: str) -> Dict[str, Any]:
+        """Progress and running statistics of an experiment job."""
+        return _exp_job(job_id).snapshot()
+
+    @app.delete("/api/experiments/jobs/{job_id}", tags=["experiments"])
+    def experiment_cancel(job_id: str) -> Dict[str, Any]:
+        """Stop after the current action; completed runs are kept and summarised."""
+        job = _exp_job(job_id)
+        job.cancel()
+        return {"cancelling": job.id}
+
+    @app.get("/api/experiments", tags=["experiments"])
+    def experiment_list() -> List[Dict[str, Any]]:
+        """Saved experiment folders (newest first) with their manifests."""
+        out = []
+        for d in sorted(experiments.experiments_dir().iterdir(), key=lambda p: p.stat().st_mtime, reverse=True):
+            m = d / "manifest.json"
+            if d.is_dir() and m.is_file():
+                try:
+                    out.append({"folder": d.name, **json.loads(m.read_text())})
+                except Exception:
+                    continue
+        return out
+
+    @app.get("/api/experiments/{folder}/download", tags=["experiments"])
+    def experiment_download(folder: str) -> Response:
+        """The whole experiment folder as a ZIP."""
+        root = experiments.experiments_dir().resolve()
+        d = (root / folder).resolve()
+        if d.parent != root or not d.is_dir():
+            raise HTTPException(404, f"Unknown experiment: {folder}")
+        return Response(experiments.zip_folder(d), media_type="application/zip",
+                        headers={"Content-Disposition": f'attachment; filename="{d.name}.zip"'})
 
     @app.get("/api/sessions/{session_id}/export", tags=["sessions"])
     def export(session_id: str, format: str = Query("json", pattern="^(json|csv|zip)$"),

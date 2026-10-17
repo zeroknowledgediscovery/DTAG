@@ -328,6 +328,29 @@ updates. Intermediate views are approximate (not-yet-recomputed items show their
 the final one is exact. These are model predictions for the twin, not the person's
 reasoning.
 
+### Experiments: record, rerun N times, statistics
+
+Everything done to a respondent is recorded as a **recipe** (right column, *Experiment*): typed
+questions, pushes (direction + mode), auto-pushes, question sequences and suggested next questions.
+Pushes and suggested questions are recorded as *intent*; resetting the respondent starts a new recipe.
+
+**Rerun ×N** replays the recipe N times (background job, one experiment at a time). Each run is a
+fresh respondent from the same profile, so the persona interpretation can differ; each run gets its
+own seed (`base_seed + run`, which matters for `resp_mode: draw`); pushes and suggested questions are
+re-chosen at that run's own state, and every question actually asked is logged. The panel shows the
+mean ideology after each action with a 95% bootstrap CI band (every run as a faint line), the net
+change with its CI, the push hit rate, and which questions each action asked across runs.
+
+Results are written to `experiments/<name>_<timestamp>/` in the repository (or `$DTAG_EXPERIMENTS_DIR`):
+`recipe.json`, `manifest.json` (git commit, model, LLM, seeds), `report.md`, `runs/run_NN/trace.jsonl`
+and `session_log.zip` per run, and `summary/` (`steps.csv`, `checkpoints.csv`, `stats.csv`,
+`questions.csv`, `final_answers.csv`, `stats.json`). *Download results (ZIP)* returns the folder.
+
+API: `GET /api/sessions/{id}/experiment[?download=true]` (recipe), `POST .../experiment/run`
+`{"runs": 20, "name": ""}`, `POST /api/experiments/run` `{"recipe": {...}, "runs": 20}` (an uploaded
+recipe), `GET|DELETE /api/experiments/jobs/{job_id}`, `GET /api/experiments`,
+`GET /api/experiments/{folder}/download`.
+
 ### Two respondents side by side
 
 The **Respondents 1 | 2** switch in the top bar adds a second respondent (the

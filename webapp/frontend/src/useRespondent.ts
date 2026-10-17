@@ -5,6 +5,8 @@ import type {
   ModelStatus,
   Overrides,
   Profile,
+  ExperimentJob,
+  ExperimentRecipe,
   Landscape,
   NextQuestions,
   PushMode,
@@ -262,6 +264,10 @@ export function useRespondent(opts: {
   /** Decision landscape at the current state. It is computed in the background on the server: while
    *  `pending`, keep showing the previous landscape and poll until the new one is ready. */
   const [landscapePending, setLandscapePending] = useState(false);
+  // Experiment: recorded actions of this respondent, and the latest rerun job.
+  const [recipe, setRecipe] = useState<ExperimentRecipe | null>(null);
+  const [expJob, setExpJob] = useState<ExperimentJob | null>(null);
+  const expTimer = useRef<number | null>(null);
   // Informative next questions (surveys without ideology): refreshed whenever a new landscape is ready.
   const [nextQ, setNextQ] = useState<NextQuestions | null>(null);
   const nextReq = useRef(0);
@@ -342,12 +348,12 @@ export function useRespondent(opts: {
     }
   };
 
-  const ask = async (q: string) => {
+  const ask = async (q: string, suggestion?: "open" | "connected") => {
     if (!session) return;
     setPending(q);
     setError(null);
     try {
-      const r = await api.ask(session.session_id, q);
+      const r = await api.ask(session.session_id, q, suggestion);
       setHistory((h) => [...h, r]);
       setSession(await api.session(session.session_id));
       refreshSuggestions(session.session_id);
@@ -421,6 +427,7 @@ export function useRespondent(opts: {
         question: s.question,
         direction: s.direction,
         mode: s.mode ?? pushMode,
+        include_pole_items: pushPolesRef.current,
       });
       setHistory((h) => [...h, r]);
       setSession(await api.session(session.session_id));
@@ -471,6 +478,44 @@ export function useRespondent(opts: {
     }
   };
 
+  // refresh the recorded actions whenever the history changes (asks, pushes, sequences, resets)
+  const histLen = history.length;
+  useEffect(() => {
+    if (!session) {
+      setRecipe(null);
+      return;
+    }
+    api.experiment(session.session_id).then(setRecipe).catch(() => setRecipe(null));
+  }, [session?.session_id, session?.question_count, histLen, seqRunning]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const pollExperiment = (jobId: string) => {
+    if (expTimer.current) window.clearTimeout(expTimer.current);
+    api
+      .experimentJob(jobId)
+      .then((j) => {
+        setExpJob(j);
+        if (j.status === "queued" || j.status === "running") expTimer.current = window.setTimeout(() => pollExperiment(jobId), 1000);
+      })
+      .catch((e) => setError(String((e as Error).message)));
+  };
+
+  /** Rerun the recorded actions `runs` times on fresh respondents (background job on the server). */
+  const runExperiment = async (runs: number, name: string) => {
+    if (!session) return;
+    setError(null);
+    try {
+      const j = await api.runExperiment(session.session_id, { runs, name });
+      setExpJob(j);
+      pollExperiment(j.job_id);
+    } catch (e) {
+      setError(String((e as Error).message));
+    }
+  };
+
+  const cancelExperiment = async () => {
+    if (expJob) await api.cancelExperiment(expJob.job_id).catch(() => undefined);
+  };
+
   const busy = Boolean(phase) || Boolean(pending) || seqRunning;
   const modelBusy = effectiveKey ? BUSY_STATES.includes(loader.liveState[effectiveKey] || "") : false;
 
@@ -489,6 +534,8 @@ export function useRespondent(opts: {
     seq, seqRunning, runSequence, cancelSequence,
     // ideology push (one-step optimizer)
     landscape, landscapePending, nextQ,
+    // experiments
+    recipe, expJob, runExperiment, cancelExperiment,
     push, pushLoading, pushPoles, setPushPoles: setPushPolesAndRefresh, pushMode, setPushMode: setPushModeAndRefresh,
     askPush, runAutoPush,
     busy, modelBusy,

@@ -60,3 +60,4 @@ webapp/.env
 
 # Local empirical-pole discovery artifacts
 poles/results/
+experiments/
