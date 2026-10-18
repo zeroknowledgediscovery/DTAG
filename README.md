@@ -166,7 +166,8 @@ export OPENAI_API_KEY="sk-..."
 dtag-web                                  # open http://127.0.0.1:8000
 ```
 
-`pip install` provides four commands:
+`pip install` provides four commands. All their options are listed in
+[CLI_README.md](CLI_README.md).
 
 | Command | What it does |
 |---|---|
