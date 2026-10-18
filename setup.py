@@ -24,6 +24,8 @@ WEBAPP_FILES = [
     "webapp/IMPLEMENTATION_PLAN.md",
     "webapp/run.sh",
     "webapp/.env.example",
+    # Required by dtag-doctor's clean-surface audit.
+    "models/lsm/README.md",
 ]
 
 EXCLUDE_PARTS = {
