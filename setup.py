@@ -103,6 +103,7 @@ setup(
             "dtag-models=dtag.cli:models_main",
             "dtag-doctor=dtag.cli:doctor_main",
             "dtag-web=dtag.cli:web_main",
+            "dtag-experiment=dtag.cli:experiment_main",
         ]
     },
     include_package_data=True,

@@ -45,9 +45,7 @@ def models_main() -> None:
     raise SystemExit(_exec("fetch_models.py", sys.argv[1:]))
 
 
-def web_main() -> None:
-    """Launch the DTAG web application (FastAPI + built browser UI)."""
-    root = runtime_root()
+def _web_env(root: Path) -> dict:
     backend = root / "webapp" / "backend"
     if not (backend / "dtag_web" / "app.py").is_file():
         raise SystemExit(f"Installed DTAG web application is missing: {backend}")
@@ -57,8 +55,24 @@ def web_main() -> None:
         paths.append(env["PYTHONPATH"])
     env["PYTHONPATH"] = os.pathsep.join(paths)
     env.setdefault("DTAG_RUNTIME_ROOT", str(root))
+    return env
+
+
+def web_main() -> None:
+    """Launch the DTAG web application (FastAPI + built browser UI)."""
+    root = runtime_root()
+    env = _web_env(root)
     raise SystemExit(
         subprocess.call([sys.executable, "-m", "dtag_web", *sys.argv[1:]], cwd=str(root), env=env)
+    )
+
+
+def experiment_main() -> None:
+    """Run web-app experiments (pushes, sequences, recipes) from the command line."""
+    env = _web_env(runtime_root())
+    # Runs in the caller's directory, so ./experiments and relative paths resolve there.
+    raise SystemExit(
+        subprocess.call([sys.executable, "-m", "dtag_web.experiment_cli", *sys.argv[1:]], env=env)
     )
 
 

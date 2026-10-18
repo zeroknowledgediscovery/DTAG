@@ -166,11 +166,12 @@ export OPENAI_API_KEY="sk-..."
 dtag-web                                  # open http://127.0.0.1:8000
 ```
 
-`pip install` provides three commands:
+`pip install` provides four commands:
 
 | Command | What it does |
 |---|---|
 | `dtag-web [--host H] [--port P]` | Starts the web workbench and API on one port (default `127.0.0.1:8000`; OpenAPI docs at `/docs`). |
+| `dtag-experiment …` | Runs the workbench's experiments (pushes, sequences, recipes) from the command line (see §10.7). |
 | `dtag-models …` | Lists, downloads and verifies native models (see §6). |
 | `dtag-doctor` | Runs the readiness and clean-surface checks (see §16). |
 
@@ -583,6 +584,28 @@ The panel shows the mean ideology after each action, with a 95% bootstrap CI ban
 faint line. It also shows the net change with its CI, the push hit rate, and which questions each
 action asked across runs. Results are written to a folder (§12.2). A saved `recipe.json` can also be
 run through the API (`POST /api/experiments/run`).
+
+**From the command line.** `dtag-experiment` runs the same experiments without the server, using the
+same runner and writing the same folder (to `./experiments`, or `--out DIR`). It prints every run's
+questions and the ideology before and after each one. From a clone, use
+`python scripts/dtag_experiment.py` instead.
+
+```bash
+# auto-push a preset respondent; left/right are aliases for down/up
+dtag-experiment push --profile gss2024_cm --direction down --steps 10 --runs 20 [--mode validated]
+# describe the respondent instead (the model is recommended, as in the browser; --model to choose)
+dtag-experiment push --persona "35 year old nurse in Ohio, moderate" --country "United States" \
+    --year 2024 --direction up --steps 5 --then-questions followup.txt
+# a fixed question sequence: one question per line (or a JSON list), and/or -q "..." repeated
+dtag-experiment sequence --profile gss2024_wf --questions questions.txt --runs 20
+# any recipe, e.g. downloaded from the Experiment tab; or write one with --dry-run and edit it
+dtag-experiment run dtag_recipe_gss2024_cm.json --runs 50
+dtag-experiment profiles                   # the presets
+```
+
+Other options: `--seed` (run k uses seed+k), `--resp-mode draw|max`, `--set KEY=VALUE` for any other
+profile setting (§11), `--llm-model`, `--include-pole-items`, `--quiet`, and `--mock` for an offline
+plumbing test. Ctrl-C stops after the current action and keeps the completed runs.
 
 ### 10.8 Two respondents
 
