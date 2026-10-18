@@ -57,7 +57,7 @@ cd DTAG/webapp && cp .env.example .env && docker compose up --build
 To run pushes, question sequences or saved experiment recipes without the browser, use
 `dtag-experiment` (`python scripts/dtag_experiment.py` from a clone). For example,
 `dtag-experiment push --profile gss2024_cm --direction down --steps 10 --runs 20`.
-See README §10.7 for details.
+All command-line options are in [CLI_README.md](CLI_README.md).
 
 Models are stored in `~/.cache/dtag/models/` (change with `DTAG_MODEL_ROOT`). You can pre-download
 them with `dtag-models --list`, `dtag-models gss/gss_2024` or `dtag-models --family gss`.
