@@ -1,4 +1,4 @@
-name: DTAG six-persona push experiment
+name: DTAG persona-push smoke results
 
 on:
   push:
@@ -6,27 +6,8 @@ on:
     paths:
       - 'scripts/dtag_persona_push_study.py'
       - 'optimizer/one_step_geometry.py'
-      - 'optimizer/personas/gss2024_spectrum.yaml'
-      - 'experiments/persona_push/**'
       - '.github/workflows/persona-push-experiment.yml'
   workflow_dispatch:
-    inputs:
-      reps:
-        description: 'Stochastic draws per persona/policy'
-        type: number
-        default: 40
-      steps:
-        description: 'Number of questions per trajectory'
-        type: number
-        default: 10
-      workers:
-        description: 'Native LSM parallel workers'
-        type: number
-        default: 2
-      quick:
-        description: 'Two-repetition smoke run (not scientific CIs)'
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -34,40 +15,27 @@ permissions:
 jobs:
   simulate:
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 120
     env:
       DTAG_BUILD_JOBS: '2'
-      DTAG_MODEL_ROOT: ${{runner.temp }}/dtag/models
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install Python runtime and native build tools
+      - name: Install requirements
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake g++ make
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Build native LSM bindings
+          python -m pip install -r requirements.txt
+      - name: Build native LSM
         run: bash scripts/build_native_bindings.sh
-      - name: Run pinned-persona simulation
-        env:
-          NREPS: ${{github.event_name == 'push' && '2' || inputs.reps }}
-          NSTEPS: ${{github.event_name == 'push' && '3' || inputs.steps }}
-          NWORKERS: ${{github.event_name == 'push' && '2' || inputs.workers }}
-          QUICK: ${{github.event_name == 'push' && 'true' || inputs.quick }}
+      - name: Run native study smoke
         run: |
-          FLAGS=''
-          if [[ "$QUICK" == 'true' ]]; then FLAGS='--quick'; fi
           python scripts/dtag_persona_push_study.py \
-            --reps "$NREPS" --steps "$NSTEPS" --workers "$NWORKERS" \
-            --bootstrap 2000 --seed 20261021 \
-            --out outputs/dtag_persona_push/ci_run $FLAGS
-      - name: Upload CSV, manifest and plots
+            --quick --workers 2 --bootstrap 2000 \
+            --out outputs/dtag_persona_push/ci_smoke
+      - uses: actions/upload-artifact@v4
         if: always()
-        uses: actions/upload-artifact@v4
         with:
-          name: dtag-persona-push-results
-          path: outputs/dtag_persona_push/ci_run/
+          name: persona-push-smoke
+          path: outputs/dtag_persona_push/ci_smoke/
           if-no-files-found: warn
