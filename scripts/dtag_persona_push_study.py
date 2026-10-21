@@ -149,13 +149,14 @@ def run_one(job):
             "expected_delta": step.get("expected_delta"),
             "one_sided": step.get("one_sided"),
         })
-    # Carry forward a stopped run with clear (not silently missing) endpoint.
-    if len(records) < steps + 1:
-        for t in range(len(records), steps + 1):
-            old = dict(records[-1])
-            old.update(step=t, delta_I=0., variable="", question="",
-                       answer="", p_answer="", expected_delta="", one_sided="")
-            records.append(old)
+    # A requested experiment must finish every question. Do not fake remaining
+    # observations with repeated I values if a native candidate set is empty.
+    if len(seq) != steps:
+        raise RuntimeError(
+            f"Incomplete trajectory: persona={persona}, policy={policy}, "
+            f"rep={rep}, asked={len(seq)}, requested={steps}. "
+            "The model/policy unexpectedly ran out of candidate questions."
+        )
     return records
 
 
@@ -169,6 +170,74 @@ def csv_write(path: Path, rows, names):
         w = csv.DictWriter(fh, fieldnames=names, extrasaction="ignore")
         w.writeheader()
         w.writerows(rows)
+
+
+def read_trajectories(path: Path):
+    """Read completed local native runs; no LSM/model download is required."""
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"Missing {path}. This --out directory has no completed trajectories.csv."
+        )
+    with path.open(encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    if not rows:
+        raise ValueError(f"Empty trajectories: {path}")
+    absent = set(FIELDS) - set(rows[0])
+    if absent:
+        raise ValueError(f"Missing trajectory columns: {sorted(absent)}")
+    for row in rows:
+        row["step"], row["rep"] = int(row["step"]), int(row["rep"])
+        for f in ("I", "delta_I", "net_delta"):
+            row[f] = float(row[f])
+            if not math.isfinite(row[f]):
+                raise ValueError(f"Nonfinite {f} in {row}")
+    return rows
+
+
+def audit_coverage(rows, persons, steps, reps):
+    """Detect missing runs, missing actual questions, and previously padded rows."""
+    expected = {(p[0], arm, rep) for p in persons
+                for arm in POLICIES for rep in range(reps)}
+    groups = defaultdict(list)
+    for row in rows:
+        key = (row["persona"], row["policy"], int(row["rep"]))
+        groups[key].append(row)
+    missing, unexpected = expected - set(groups), set(groups) - expected
+    if missing or unexpected:
+        raise RuntimeError(
+            f"Coverage incomplete: {len(missing)} missing runs and "
+            f"{len(unexpected)} unexpected runs. Examples: {sorted(missing)[:3]}"
+        )
+    report = []
+    for key in sorted(groups):
+        records = sorted(groups[key], key=lambda r: int(r["step"]))
+        times = [int(r["step"]) for r in records]
+        if times != list(range(steps + 1)):
+            raise RuntimeError(
+                f"Run {key}: requested {steps} steps, recorded {times}. "
+                "Check --steps and whether the run was completed."
+            )
+        question_vars = [str(r["variable"]).strip() for r in records[1:]]
+        actual = sum(bool(v) for v in question_vars)
+        if actual != steps:
+            raise RuntimeError(
+                f"Run {key}: {actual}/{steps} actual questions; "
+                "blank survey variables indicate early termination/padded data."
+            )
+        if len(set(question_vars)) != steps:
+            raise RuntimeError(f"Run {key}: repeated question variable")
+        start = float(records[0]["I"])
+        for index in range(1, len(records)):
+            prev, cur = records[index-1], records[index]
+            if not math.isclose(float(cur["I"]) - float(prev["I"]),
+                                float(cur["delta_I"]), abs_tol=1e-8):
+                raise RuntimeError(f"Run {key} step {index}: inconsistent delta_I")
+            if not math.isclose(float(cur["I"]) - start,
+                                float(cur["net_delta"]), abs_tol=1e-8):
+                raise RuntimeError(f"Run {key} step {index}: inconsistent net_delta")
+        report.append({"persona": key[0], "policy": key[1], "rep": key[2],
+                       "requested": steps, "actual": actual, "complete": True})
+    return report
 
 
 def summarize(rows, persons, steps, reps, nboot, seed):
@@ -298,14 +367,38 @@ def main(argv=None):
     ap.add_argument("--bootstrap", type=int, default=2000)
     ap.add_argument("--quick", action="store_true",
                     help="plumbing / speed check: 2 repetitions x 3 steps (no publishable CI)")
+    ap.add_argument("--plot-only", action="store_true",
+                    help="audit existing --out/trajectories.csv and regenerate plots "
+                         "without rerunning the native experiment")
     ap.add_argument("--no-download", action="store_true")
     ap.add_argument("--skip-figures", action="store_true")
     a = ap.parse_args(argv)
+    if a.quick and a.plot_only:
+        ap.error("--quick cannot be combined with --plot-only")
     if a.quick:
         a.reps, a.steps = 2, 3
+        print("SMOKE ONLY: --quick forces 2 repetitions and 3 questions, "
+              "overriding --reps and --steps.", file=sys.stderr, flush=True)
     if a.reps < 2 or a.steps < 1 or a.workers < 1 or a.bootstrap < 100:
         ap.error("--reps>=2, --steps>=1, --workers>=1, --bootstrap>=100 required")
     a.out.mkdir(parents=True, exist_ok=True)
+    persons = load_personas(a.personas)
+    print(f"DTAG study: {len(persons)} personas x {len(POLICIES)} policies "
+          f"x {a.reps} repetitions x {a.steps} questions = "
+          f"{len(persons)*len(POLICIES)*a.reps} trajectories; "
+          f"quick={a.quick} plot_only={a.plot_only}", flush=True)
+    if a.plot_only:
+        records = read_trajectories(a.out / "trajectories.csv")
+        cover = audit_coverage(records, persons, a.steps, a.reps)
+        csv_write(a.out / "run_coverage.csv", cover,
+                  ("persona", "policy", "rep", "requested", "actual", "complete"))
+        ci, ends, contrasts = summarize(records, persons, a.steps, a.reps,
+                                        a.bootstrap, a.seed)
+        render_figure(ci, ends, contrasts, a.out)
+        print(f"Verified {len(cover)} complete trajectories with "
+              f"{a.steps} questions each. "
+              f"Grid: {a.out / 'persona_push_trajectories.pdf'}", flush=True)
+        return 0
 
     from optimizer.dtag_bridge import DEFAULT_POLES, canonical_map, ensure_model, sha256, World
 
@@ -314,7 +407,6 @@ def main(argv=None):
     pole_path = DEFAULT_POLES
     cache_path = a.out / "native_cache"
     cache_path.mkdir(parents=True, exist_ok=True)
-    persons = load_personas(a.personas)
     world = World(str(model_dir), str(map_path), str(pole_path), str(cache_path))
     only = eligible_opinion_items(world)
     if len(only) < a.steps or not world.g.enabled:
@@ -351,7 +443,10 @@ def main(argv=None):
     arm_order = {p: n for n, p in enumerate(POLICIES)}
     rows.sort(key=lambda r: (order[r["persona"]], arm_order[r["policy"]],
                              r["rep"], r["step"]))
+    cover = audit_coverage(rows, persons, a.steps, a.reps)
     csv_write(a.out / "trajectories.csv", rows, FIELDS)
+    csv_write(a.out / "run_coverage.csv", cover,
+              ("persona", "policy", "rep", "requested", "actual", "complete"))
     ci, ends, contrasts = summarize(rows, persons, a.steps, a.reps, a.bootstrap, a.seed)
     csv_write(a.out / "trajectory_ci.csv", ci,
               ("persona", "lean", "policy", "step", "initial_I", "mean_net_delta",
@@ -392,7 +487,9 @@ def main(argv=None):
     (a.out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     if not a.skip_figures:
         render_figure(ci, ends, contrasts, a.out)
-    print(f"Completed {len(jobs)} native synthetic trajectories: {a.out}", flush=True)
+    print(f"VERIFIED: {len(cover)} complete synthetic trajectories, "
+          f"{a.steps} genuine questions each ({len(cover)*a.steps} total): {a.out}",
+          flush=True)
     return 0
 
 
