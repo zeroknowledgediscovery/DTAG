@@ -334,7 +334,7 @@ def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng,
 
     policy='greedy_mu' -- re-enumerate all candidates exactly at s_t, ask argmax mu
                           (direction='right') or argmin mu (direction='left').
-    policy='random'    -- ask a uniformly random candidate (baseline; direction ignored).
+    policy='neutral_mu' -- ask the item with expected geometric drift nearest zero.\n    policy='random'    -- ask a uniformly random candidate (baseline; direction ignored).
 
     ``rng`` is a numpy Generator. Returns one record per step (question, its mu/P_up/P_down
     at the time it was asked, drawn answer, its probability, realized Delta, J after).
@@ -350,18 +350,23 @@ def policy_run(world, state: Mapping[str, str], direction: str, steps: int, rng,
     I_t = strict_native_index(world, s)
     out = []
     for t in range(1, steps + 1):
-        if policy == "greedy_mu":
+        if policy in ("greedy_mu", "neutral_mu"):
             res = native_one_step(world, s, exclude_poles=exclude_poles, exclude=exclude, only=only)
             if not res.summary:
                 break
-            pick = res.extremes["argmax_mu" if direction == "right" else "argmin_mu"]
-            v = pick["variable"]
-            stats = next(r for r in res.summary if r["variable"] == v)
+            if policy == "neutral_mu":
+                stats = min(res.summary, key=lambda r: (abs(r["expected_delta"]), r["variable"]))
+            else:
+                pick = res.extremes["argmax_mu" if direction == "right" else "argmin_mu"]
+                stats = next(r for r in res.summary if r["variable"] == pick["variable"])
+            v = stats["variable"]
             rows = [r for r in res.rows if r["variable"] == v]
             labels = [r["answer"] for r in rows]
             p = [r["conditional_probability"] for r in rows]
             I_by = {r["answer"]: r["I_after"] for r in rows}
-            alts = res.top("expected_delta", n_alternatives, reverse=direction == "right")
+            alts = (sorted(res.summary, key=lambda r: (abs(r["expected_delta"]), r["variable"]))[:n_alternatives]
+                    if policy == "neutral_mu" else
+                    res.top("expected_delta", n_alternatives, reverse=direction == "right"))
             detail = {"answers": [{"answer": r["answer"], "p": r["conditional_probability"],
                                    "delta": r["delta_I"]} for r in rows],
                       "alternatives": [{k: x[k] for k in ("variable", "expected_delta", "P_up", "P_down",
