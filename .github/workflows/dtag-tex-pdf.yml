@@ -22,13 +22,16 @@ jobs:
         with:
           root_file: main.tex
           working_directory: tex
-          compiler: pdflatex
+          compiler: latexmk
           args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
       - name: Upload manuscript PDF
         uses: actions/upload-artifact@v4
         with:
           name: dtag-manuscript-pdf
-          path: tex/main.pdf
+          path: |
+            tex/main.pdf
+            tex/main.tex
+            tex/references.bib
       - name: Publish PDF alongside source
         run: |
           git config user.name "github-actions[bot]"
