@@ -35,6 +35,10 @@ Models of political opinion have typically treated attitudes either as latent pr
 Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
 \end{IEEEkeywords}
 
+\section*{Significance}
+Asking someone a question can reveal an existing attitude, but it can also alter what that person subsequently reports or believes. We describe a computational framework that makes this ambiguity measurable. DTAG grounds a conversational digital twin in a learned high-dimensional model of interconnected survey opinions rather than relying exclusively on plausible language generation. It predicts the responses a represented person might give to unasked questions and quantifies the geometric consequences of sequential answers. We propose a randomized human study that reverses question order, measures independent downstream attitudes, and follows respondents over time. The experiments distinguish predictive reconstruction from evidence of interaction-induced belief change.
+
+
 \section{Introduction}
 The appropriate unit of analysis for a belief system may be neither a single attitude nor a predetermined left--right score, but the pattern of constraints among many expressed positions. Economic preferences, religious commitments, institutional trust, social identities, and political opinions can be related in ways not apparent in a short attitude battery. Classical arguments about the coherence of mass belief systems \cite{converse1964,zaller1992} and subsequent measurements of partisan sorting and issue alignment \cite{baldassarri2008,dellaposta2015} expose the limitations of treating the public as a collection of isolated responses. The complementary problem is temporal: a person's answers may reflect a relatively stable configuration, but they may also be constructed or revised as questions, considerations, or social information are encountered.
 
@@ -110,7 +114,7 @@ These equations describe the idealized \emph{draw} mode without state eviction. 
 
 \begin{figure*}[!t]
 \centering
-\begin{tikzpicture}[>=Latex, node distance=7mm and 8mm, every node/.style={font=\footnotesize}, block/.style={draw,rounded corners=2pt,minimum height=8mm,align=center,inner sep=5pt}]
+\begin{tikzpicture}[>=Latex, node distance=6mm and 4mm, every node/.style={font=\scriptsize}, block/.style={draw,rounded corners=2pt,minimum height=8mm,align=center,inner sep=3.5pt}]
 \node[block,fill=gray!12] (q) {Question $q_t$\\(linguistic input)};
 \node[block,right=of q,fill=modblue!8] (map) {Semantic mapping\\$M(q_t)$};
 \node[block,right=of map,fill=modteal!10] (lsm) {LSM conditional twin\\$p_\Phi(a\mid s_t,v)$};
@@ -246,7 +250,7 @@ An initial feasibility plan is $N\approx150$ in a pilot and a planning target of
 \caption{Preregisterable tests and corresponding evidence. All prospective human results are future work, not findings.}
 \label{tab:design}
 \renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{@{}p{.5in}p{1.55in}p{2.05in}p{2.14in}X@{}}
+\begin{tabularx}{\textwidth}{@{}p{.40in}p{1.23in}p{1.56in}p{1.72in}X@{}}
 \toprule
 Hyp. & Scientific mechanism & Experimental contrast / material & Primary quantitative endpoint & Interpretation / falsification \\
 \midrule
