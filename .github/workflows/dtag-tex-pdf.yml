@@ -1,0 +1,40 @@
+name: Build DTAG manuscript PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tex/main.tex'
+      - 'tex/references.bib'
+      - '.github/workflows/dtag-tex-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile IEEEtran manuscript
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: tex
+          compiler: pdflatex
+          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
+      - name: Upload manuscript PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtag-manuscript-pdf
+          path: tex/main.pdf
+      - name: Publish PDF alongside source
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f tex/main.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Build DTAG manuscript PDF [skip ci]"
+            git push origin HEAD:main
+          fi
