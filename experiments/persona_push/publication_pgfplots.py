@@ -80,9 +80,9 @@ def go_endpoints(df,out,steps):
         xx.append(r'\addlegendentry{'+{'right':'Right push','left':'Left push','neutral':'Neutral drift','random':'Random questions'}[pol]+'}')
     lines=[r'\begin{tikzpicture}',(r'\begin{axis}[width=.93\textwidth,height=9.2cm,xmin=-.095,xmax=.11,ymin=.38,ymax=6.7,'
            r'ytick={1,2,3,4,5,6},yticklabels={Atlanta,Arizona,Seattle,Texas,New York,Alabama},'
-           r'xtick={-.08,-.04,0,.04,.08},xticklabel style={font=\footnotesize},'
+           r'xtick={-.08,-.04,0,.04,.08},scaled x ticks=false,xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},xticklabel style={font=\footnotesize},'
            r'xlabel={Mean displacement after '+str(steps)+r' questions, $\overline{\Delta I_\Phi}$},'
-           r'legend style={draw=none,fill=none,font=\footnotesize,legend columns=4,at={(.5,1.03)},anchor=south},'
+           r'legend style={draw=none,fill=none,font=\footnotesize,legend columns=4,column sep=11pt,at={(.5,1.03)},anchor=south},'
            +STYLE_OPTS+r']'),r'\addplot[black!60,thick,forget plot] coordinates{(0,.5)(0,6.6)};']
     lines+=xx+[r'\end{axis}',r'\end{tikzpicture}']
     put(out,'fig1_endpoints_pgfplots.tex','\n'.join(lines))
@@ -235,7 +235,7 @@ def flips_and_ci(df,out,reps,eps=1e-9,B=3000,seed=20261022):
              r'yticklabel style={font=\scriptsize},label style={font=\footnotesize},'
              r'grid=major,grid style={draw=black!8},'
              r'xlabel={Reversal probability},'
-             r'legend style={draw=none,fill=none,font=\scriptsize,at={(.5,1.25)},anchor=south,legend columns=3}]')]
+             r'legend style={draw=none,fill=none,font=\scriptsize,at={(.5,1.25)},anchor=south,legend columns=3,column sep=9pt}]')]
     for f,title in [('displacement_direction','Direction of movement'),('final_sign','Final ideology sign')]:
         content.append(r'\nextgroupplot[title={'+title+r'},title style={font=\footnotesize\bfseries}'+(',yticklabels={}' if f=='final_sign' else '')+']')
         for pol,sh,sty in [('right',-.21,'black,mark=*,mark size=2.1pt'),('left',0,'black,mark=o,mark size=2.1pt'),('neutral',.21,'teal!70!black,mark=square*,mark size=2.1pt')]:
