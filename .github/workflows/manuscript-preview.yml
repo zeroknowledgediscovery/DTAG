@@ -1,4 +1,5 @@
 name: Compile DTAG integrated publication figures and manuscript
+# Rebuild with corrected native-results LaTeX captions and final legibility styling
 
 on:
   push:
