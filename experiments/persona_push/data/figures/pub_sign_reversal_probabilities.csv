@@ -1,0 +1,37 @@
+persona,label,policy,outcome,repetitions,paired_comparisons,flip_count,probability,ci_low,ci_high
+cm_rural_alabama,Alabama,right,final_sign,40,120,0,0,0,0
+cm_rural_alabama,Alabama,right,displacement_direction,40,120,14,0.116666666667,0.05,0.2
+cm_rural_alabama,Alabama,left,final_sign,40,120,0,0,0,0
+cm_rural_alabama,Alabama,left,displacement_direction,40,120,4,0.0333333333333,0,0.0833333333333
+cm_rural_alabama,Alabama,neutral,final_sign,40,120,0,0,0,0
+cm_rural_alabama,Alabama,neutral,displacement_direction,40,120,0,0,0,0
+wf_new_york_city,New York,right,final_sign,40,120,0,0,0,0
+wf_new_york_city,New York,right,displacement_direction,40,120,32,0.266666666667,0.15,0.4
+wf_new_york_city,New York,left,final_sign,40,120,0,0,0,0
+wf_new_york_city,New York,left,displacement_direction,40,120,10,0.0833333333333,0.0166666666667,0.175
+wf_new_york_city,New York,neutral,final_sign,40,120,0,0,0,0
+wf_new_york_city,New York,neutral,displacement_direction,40,120,0,0,0,0
+religious_conservative_woman_texas,Texas,right,final_sign,40,120,13,0.108333333333,0.0333333333333,0.2
+religious_conservative_woman_texas,Texas,right,displacement_direction,40,120,36,0.3,0.174375,0.45
+religious_conservative_woman_texas,Texas,left,final_sign,40,120,0,0,0,0
+religious_conservative_woman_texas,Texas,left,displacement_direction,40,120,4,0.0333333333333,0,0.0833333333333
+religious_conservative_woman_texas,Texas,neutral,final_sign,40,120,0,0,0,0
+religious_conservative_woman_texas,Texas,neutral,displacement_direction,40,120,0,0,0,0
+secular_liberal_man_seattle,Seattle,right,final_sign,40,120,0,0,0,0
+secular_liberal_man_seattle,Seattle,right,displacement_direction,40,120,16,0.133333333333,0.0583333333333,0.216666666667
+secular_liberal_man_seattle,Seattle,left,final_sign,40,120,0,0,0,0
+secular_liberal_man_seattle,Seattle,left,displacement_direction,40,120,0,0,0,0
+secular_liberal_man_seattle,Seattle,neutral,final_sign,40,120,0,0,0,0
+secular_liberal_man_seattle,Seattle,neutral,displacement_direction,40,120,0,0,0,0
+hispanic_catholic_man_arizona,Arizona,right,final_sign,40,120,24,0.2,0.1,0.308333333333
+hispanic_catholic_man_arizona,Arizona,right,displacement_direction,40,120,25,0.208333333333,0.108333333333,0.316666666667
+hispanic_catholic_man_arizona,Arizona,left,final_sign,40,120,2,0.0166666666667,0,0.0416666666667
+hispanic_catholic_man_arizona,Arizona,left,displacement_direction,40,120,3,0.025,0,0.0583333333333
+hispanic_catholic_man_arizona,Arizona,neutral,final_sign,40,120,0,0,0,0
+hispanic_catholic_man_arizona,Arizona,neutral,displacement_direction,40,120,0,0,0,0
+black_churchgoing_woman_atlanta,Atlanta,right,final_sign,40,120,6,0.05,0.0166666666667,0.0916666666667
+black_churchgoing_woman_atlanta,Atlanta,right,displacement_direction,40,120,8,0.0666666666667,0.025,0.108333333333
+black_churchgoing_woman_atlanta,Atlanta,left,final_sign,40,120,2,0.0166666666667,0,0.05
+black_churchgoing_woman_atlanta,Atlanta,left,displacement_direction,40,120,0,0,0,0
+black_churchgoing_woman_atlanta,Atlanta,neutral,final_sign,40,120,0,0,0,0
+black_churchgoing_woman_atlanta,Atlanta,neutral,displacement_direction,40,120,0,0,0,0

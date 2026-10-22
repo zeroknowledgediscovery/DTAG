@@ -1,0 +1,12 @@
+{
+  "mode": "allpairs",
+  "total_questions": 228,
+  "displayed_questions": 88,
+  "baseline_cost": 1187609.0,
+  "optimized_cost": 649488.0,
+  "reps": 40,
+  "steps": 10,
+  "swaps_per_start": 12,
+  "starts": 4,
+  "reduction": 0.45311293531793717
+}

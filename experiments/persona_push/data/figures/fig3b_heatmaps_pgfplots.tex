@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=3 by 3,horizontal sep=.85cm,vertical sep=.90cm},width=.273\textwidth,height=.273\textwidth,xmin=.5,xmax=10.5,ymin=.5,ymax=40.5,y dir=reverse,axis on top,enlargelimits=false,scale only axis,xtick={1,5,10},ytick={1,20,40},xticklabel style={font=\tiny},yticklabel style={font=\tiny},label style={font=\scriptsize},axis line style={draw=black!20},tick style={draw=black!35},colormap={questionmap}{rgb255=(35,48,70);rgb255=(67,93,123);rgb255=(100,158,173);rgb255=(169,210,201);rgb255=(239,224,171);rgb255=(231,164,154);rgb255=(159,91,113)},point meta min=1,point meta max=88]
+\nextgroupplot[title={Right push},ylabel={Seattle},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_secular_liberal_man_seattle_right.csv};
+\nextgroupplot[title={Left push},yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_secular_liberal_man_seattle_left.csv};
+\nextgroupplot[title={Neutral},yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_secular_liberal_man_seattle_neutral.csv};
+\nextgroupplot[ylabel={Arizona},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_hispanic_catholic_man_arizona_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_hispanic_catholic_man_arizona_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_hispanic_catholic_man_arizona_neutral.csv};
+\nextgroupplot[ylabel={Atlanta},xlabel={Question position}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_black_churchgoing_woman_atlanta_right.csv};
+\nextgroupplot[yticklabels={},xlabel={Question position}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_black_churchgoing_woman_atlanta_left.csv};
+\nextgroupplot[yticklabels={},xlabel={Question position}]
+\addplot[matrix plot*,mesh/cols=10,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/heatmap_black_churchgoing_woman_atlanta_neutral.csv};
+\end{groupplot}
+\node[anchor=north,font=\footnotesize] at ([yshift=-6mm]current bounding box.south) {Globally optimized question IDs (1--88); identical colour scale for all 18 panels. Rows are independent runs.};
+\end{tikzpicture}

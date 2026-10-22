@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.60cm},width=.40\textwidth,height=8.0cm,xmin=0,xmax=.56,ymin=.45,ymax=6.55,ytick={1,2,3,4,5,6},yticklabels={Atlanta,Arizona,Seattle,Texas,New York,Alabama},xtick={0,.1,.2,.3,.4,.5},xticklabel style={font=\scriptsize},yticklabel style={font=\scriptsize},label style={font=\footnotesize},grid=major,grid style={draw=black!8},xlabel={Reversal probability},legend style={draw=none,fill=none,font=\scriptsize,at={(.5,1.25)},anchor=south,legend columns=3}]
+\nextgroupplot[title={Direction of movement},title style={font=\footnotesize\bfseries}]
+\addplot[black,mark=*,mark size=2.1pt,only marks,error bars/.cd,x dir=both,x explicit,error bar style={line width=.9pt,black!55},error mark options={mark size=1.6pt}] table[x=prob,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_flip_displacement_direction_right.csv};
+\addlegendentry{Right set}
+\addplot[black,mark=o,mark size=2.1pt,only marks,error bars/.cd,x dir=both,x explicit,error bar style={line width=.9pt,black!55},error mark options={mark size=1.6pt}] table[x=prob,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_flip_displacement_direction_left.csv};
+\addlegendentry{Left set}
+\addplot[teal!70!black,mark=square*,mark size=2.1pt,only marks,error bars/.cd,x dir=both,x explicit,error bar style={line width=.9pt,black!55},error mark options={mark size=1.6pt}] table[x=prob,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_flip_displacement_direction_neutral.csv};
+\addlegendentry{Neutral set}
+\nextgroupplot[title={Final ideology sign},title style={font=\footnotesize\bfseries},yticklabels={}]
+\addplot[black,mark=*,mark size=2.1pt,only marks,error bars/.cd,x dir=both,x explicit,error bar style={line width=.9pt,black!55},error mark options={mark size=1.6pt}] table[x=prob,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_flip_final_sign_right.csv};
+\addplot[black,mark=o,mark size=2.1pt,only marks,error bars/.cd,x dir=both,x explicit,error bar style={line width=.9pt,black!55},error mark options={mark size=1.6pt}] table[x=prob,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_flip_final_sign_left.csv};
+\addplot[teal!70!black,mark=square*,mark size=2.1pt,only marks,error bars/.cd,x dir=both,x explicit,error bar style={line width=.9pt,black!55},error mark options={mark size=1.6pt}] table[x=prob,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_flip_final_sign_neutral.csv};
+\end{groupplot}
+\end{tikzpicture}

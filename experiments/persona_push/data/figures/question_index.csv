@@ -1,92 +1,92 @@
 question_index,variable,frequency_index,total_uses,question
-1,colmslm,1,251,"Should such a person be allowed to teach in a college or university, or not?"
-2,racdif5,2,251,"On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Mainly due to upbringing?"
-3,mobile16,52,46,"IF STATE NAMED IS SAME STATE R. LIVES IN NOW, ASK MOBILE16: When you were 16 years old, were you living in this same (city/town/county)?"
-4,racecen3,4,245,(What is your race? Indicate one or more races that you consider yourself to be.) Third mention
-5,racdif3x,5,241,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
-6,getahead,6,239,Some people say that people get ahead by their own hard work; others say that lucky breaks or help from other people are more important. Which do you think is most important?
-7,cctv,45,72,civil liberties - video surveillance
-8,racecen2,8,236,(What is your race? Indicate one or more races that you consider yourself to be.) Second mention
-9,trust,23,148,"Generally speaking, would you say that most people can be trusted or that you can't be too careful in dealing with people?"
-10,uscitzn,10,227,Now we would like to ask you about U.S. citizenship. Are you…
-11,racdif5x,11,218,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Upbringing"
-12,jobfind,12,210,"About how easy would it be for you to find a job with another employer with approximately the same income and fringe benefits you now have? Would you say very easy, somewhat easy, or not easy at all?"
-13,racdif3,21,156,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Don't have the chance for education that it takes to rise out of poverty?"
-14,colrac,44,74,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
-15,god,15,185,Which of the statements comes closest to expressing what you believe about God
-16,spkmslm,13,199,"Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?"
-17,spkrac,24,146,"Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
-18,relactiv,18,163,How often do you take part in the activities and organizations of a church or place of worship other than attending services?
-19,colath,31,122,"(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
-20,sprtprsn,20,160,"To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?"
-21,relpersn,16,184,"To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?"
-22,consci,41,80,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Scientific Community"
-23,conarmy,9,231,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Military"
-24,ratemaga,17,173,Rating of MAGA Republicans
-25,rateincumb24,25,142,Rating of Joe Biden
-26,amchrstn,26,138,how important to be a christian
-27,natheal,40,81,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
-28,demtoday,28,129,how well democracy work in america
-29,conpow,14,196,Conflict between ordinary people and those in power
-30,premarsx,30,125,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
-31,pornlaw,19,160,Which of these statements comes closest to your feelings about pornography laws?
-32,coneduc,32,122,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Education"
-33,letin1a,33,122,Do you think the number of immigrants to America nowadays should be
-34,conlegis,34,111,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Congress"
-35,wrkwayup,22,150,"Do you agree: Irish, Italians, Jewish and many other minorities overcame prejudice and worked their way up. Black people should do the same without special favors."
-36,immjobs,36,102,immigrants take jobs away
-37,conbus,37,94,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Major companies"
-38,marhisp,38,85,How about having a close relative marry a Hispanic or Latino person?
-39,teensex,39,84,"What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
-40,raterepp,27,136,Rating of Republican party
-41,polescap,35,106,Was attempting to escape from custody?
-42,religinf,42,80,the u.s. would be a better country if religion had less influence
-43,racecen1,43,75,(What is your race? Indicate one or more races that you consider yourself to be.) First mention
-44,natsci,29,126,"(... are we spending too much, too little, or about the right amount on) Supporting scientific research"
-45,homosex,7,237,"What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
-46,chngdocs,46,69,changing official documents
-47,poltalk,47,65,Politicians talk too much and don't take action
-48,conmedic,48,56,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Medicine"
-49,natchld,49,54,"(... are we spending too much, too little, or about the right amount on) Assistance for childcare"
-50,ratechall124,50,51,Rating of Donald Trump
-51,helpblk,51,50,Some people think that Black people have been discriminated against for so long that the government has a special obligation to help improve their living standards. Where would you place yourself on this scale?
-52,hrs2,3,247,"IF WITH A JOB, BUT NOT AT WORK: How many hours a week do you usually work, at all jobs?"
-53,conjudge,53,42,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) U.S. Supreme Court"
-54,corruptn,54,42,how widespread corruption is in pub service in america
-55,popular,55,40,to be well liked or popular
-56,natrace,56,35,"(... are we spending too much, too little, or about the right amount on) Improving the conditions of Black people"
-57,spkath,57,31,"For instance, somebody who is against all churches and religion . . . If such a person wanted to make a speech in your (city/town/community) against churches and religion, Should he be allowed to speak, or not?"
-58,sexbirth1,58,30,Was your sex recorded as male or female at birth?
-59,marsame,59,27,HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY
-60,librac,60,26,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
-61,immcrime1,61,24,Immigrants increase crime rates
-62,natenrgy,62,23,"(... are we spending too much, too little, or about the right amount on) Developing alternative energy sources"
-63,obey,63,23,to obey
-64,ratechall224,64,22,Rating of Kamala Harris
-65,affrmact,65,20,favor preference in hiring Black people
-66,helpsick,66,20,"In general, some people think that it is the responsibility of the government in Washington to see to it that people have help in paying for doctors and hospital bills. Others think that these matters are not the responsibility of the federal government a"
+1,confinan,132,11,"As far as the people running this institution are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them? Banks and financial inst"
+2,letinasn,101,13,"What about the number of immigrants from Asia? (Should it be increased a lot, increased a little, left the same as it is now, decreased a little, or decreased a lot?)"
+3,poleff18,220,6,govt do not care much what ppl like r think
+4,immjobs1,182,9,Immigrants take jobs away
+5,befair,68,19,how often do you think people take advantage
+6,biasnews,113,12,News coverage about politics in America is biased
+7,prouddem,121,12,how proud the way democracy works
+8,contv,73,17,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) TV"
+9,helpsick,66,20,"In general, some people think that it is the responsibility of the government in Washington to see to it that people have help in paying for doctors and hospital bills. Others think that these matters are not the responsibility of the federal government a"
+10,natcity,120,12,"(... are we spending too much, too little, or about the right amount on) Solving the problems of big cities"
+11,acpttg,74,16,accepting people
+12,corruptn,54,42,how widespread corruption is in pub service in america
+13,ratechall224,64,22,Rating of Kamala Harris
+14,rateincumb24,25,142,Rating of Joe Biden
+15,pornlaw,19,160,Which of these statements comes closest to your feelings about pornography laws?
+16,marsame,59,27,HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY
+17,wrkwayup,22,150,"Do you agree: Irish, Italians, Jewish and many other minorities overcame prejudice and worked their way up. Black people should do the same without special favors."
+18,demtoday,28,129,how well democracy work in america
+19,letin1a,33,122,Do you think the number of immigrants to America nowadays should be
+20,conbus,37,94,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Major companies"
+21,coneduc,32,122,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Education"
+22,natheal,40,81,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
+23,conlegis,34,111,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Congress"
+24,poltalk,47,65,Politicians talk too much and don't take action
+25,consci,41,80,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Scientific Community"
+26,conpow,14,196,Conflict between ordinary people and those in power
+27,libath,71,18,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book he wrote against churches and religion should be removed from the library. Would you favor removing this book, or not?"
+28,conjudge,53,42,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) U.S. Supreme Court"
+29,conarmy,9,231,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Military"
+30,marwht,89,14,"What about having a close relative marry a White person? Would you be very in favor of it happening, somewhat in favor, neither in favor nor opposed to it happening, somewhat opposed, or very opposed to it happening?"
+31,conmedic,48,56,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Medicine"
+32,sprtprsn,20,160,"To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?"
+33,colath,31,122,"(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+34,ratechall124,50,51,Rating of Donald Trump
+35,natchld,49,54,"(... are we spending too much, too little, or about the right amount on) Assistance for childcare"
+36,premarsx,30,125,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+37,abhlth,69,18,If the woman's own health is seriously endangered by the pregnancy?
+38,spkmslm,13,199,"Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?"
+39,relpersn,16,184,"To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?"
+40,chngdocs,46,69,changing official documents
+41,colrac,44,74,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+42,homosex,7,237,"What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+43,spkrac,24,146,"Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
+44,god,15,185,Which of the statements comes closest to expressing what you believe about God
+45,marhisp,38,85,How about having a close relative marry a Hispanic or Latino person?
+46,amchrstn,26,138,how important to be a christian
+47,teensex,39,84,"What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+48,raterepp,27,136,Rating of Republican party
+49,relactiv,18,163,How often do you take part in the activities and organizations of a church or place of worship other than attending services?
+50,ratemaga,17,173,Rating of MAGA Republicans
+51,immjobs,36,102,immigrants take jobs away
+52,natsci,29,126,"(... are we spending too much, too little, or about the right amount on) Supporting scientific research"
+53,racecen1,43,75,(What is your race? Indicate one or more races that you consider yourself to be.) First mention
+54,religinf,42,80,the u.s. would be a better country if religion had less influence
+55,polescap,35,106,Was attempting to escape from custody?
+56,getahead,6,239,Some people say that people get ahead by their own hard work; others say that lucky breaks or help from other people are more important. Which do you think is most important?
+57,racecen3,4,245,(What is your race? Indicate one or more races that you consider yourself to be.) Third mention
+58,racdif5x,11,218,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Upbringing"
+59,racecen2,8,236,(What is your race? Indicate one or more races that you consider yourself to be.) Second mention
+60,uscitzn,10,227,Now we would like to ask you about U.S. citizenship. Are you…
+61,jobfind,12,210,"About how easy would it be for you to find a job with another employer with approximately the same income and fringe benefits you now have? Would you say very easy, somewhat easy, or not easy at all?"
+62,racdif3x,5,241,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+63,racdif3,21,156,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Don't have the chance for education that it takes to rise out of poverty?"
+64,trust,23,148,"Generally speaking, would you say that most people can be trusted or that you can't be too careful in dealing with people?"
+65,racdif5,2,251,"On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Mainly due to upbringing?"
+66,cctv,45,72,civil liberties - video surveillance
 67,marasian,67,20,How about having a close relative marry an Asian American person?
-68,befair,68,19,how often do you think people take advantage
-69,abhlth,69,18,If the woman's own health is seriously endangered by the pregnancy?
-70,libath,71,18,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book he wrote against churches and religion should be removed from the library. Would you favor removing this book, or not?"
-71,contv,73,17,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) TV"
-72,acpttg,74,16,accepting people
-73,natdrug,76,16,"(... are we spending too much, too little, or about the right amount on) Dealing with drug addiction"
-74,dsndntpay,87,14,reparations for descendants of slaves
-75,marwht,89,14,"What about having a close relative marry a White person? Would you be very in favor of it happening, somewhat in favor, neither in favor nor opposed to it happening, somewhat opposed, or very opposed to it happening?"
-76,letinasn,101,13,"What about the number of immigrants from Asia? (Should it be increased a lot, increased a little, left the same as it is now, decreased a little, or decreased a lot?)"
-77,racdif1x,106,13,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are...Mainly due to"
-78,biasnews,113,12,News coverage about politics in America is biased
-79,natcity,120,12,"(... are we spending too much, too little, or about the right amount on) Solving the problems of big cities"
-80,prouddem,121,12,how proud the way democracy works
-81,sexeduc,123,12,Would you be for or against sex education in the public schools?
-82,confinan,132,11,"As far as the people running this institution are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them? Banks and financial inst"
-83,immideas1,139,11,Immigrants bring new ideas and cultures
-84,polattak,145,11,Was attacking the policeman with his fists?
+68,racdif1x,106,13,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are...Mainly due to"
+69,librac,60,26,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+70,natenrgy,62,23,"(... are we spending too much, too little, or about the right amount on) Developing alternative energy sources"
+71,mobile16,52,46,"IF STATE NAMED IS SAME STATE R. LIVES IN NOW, ASK MOBILE16: When you were 16 years old, were you living in this same (city/town/county)?"
+72,immcrime1,61,24,Immigrants increase crime rates
+73,natrace,56,35,"(... are we spending too much, too little, or about the right amount on) Improving the conditions of Black people"
+74,hrs2,3,247,"IF WITH A JOB, BUT NOT AT WORK: How many hours a week do you usually work, at all jobs?"
+75,spkath,57,31,"For instance, somebody who is against all churches and religion . . . If such a person wanted to make a speech in your (city/town/community) against churches and religion, Should he be allowed to speak, or not?"
+76,colmslm,1,251,"Should such a person be allowed to teach in a college or university, or not?"
+77,obey,63,23,to obey
+78,polattak,145,11,Was attacking the policeman with his fists?
+79,popular,55,40,to be well liked or popular
+80,helpblk,51,50,Some people think that Black people have been discriminated against for so long that the government has a special obligation to help improve their living standards. Where would you place yourself on this scale?
+81,sexbirth1,58,30,Was your sex recorded as male or female at birth?
+82,affrmact,65,20,favor preference in hiring Black people
+83,sexeduc,123,12,Would you be for or against sex education in the public schools?
+84,dsndntpay,87,14,reparations for descendants of slaves
 85,amgovt,156,10,how important to respect america's laws etc
-86,immjobs1,182,9,Immigrants take jobs away
+86,immideas1,139,11,Immigrants bring new ideas and cultures
 87,suicide4,211,7,(Do you think a person has the right to end his or her own life if this person . . .) Is tired of living and ready to die?
-88,poleff18,220,6,govt do not care much what ppl like r think
+88,natdrug,76,16,"(... are we spending too much, too little, or about the right amount on) Dealing with drug addiction"
 89,conscrp,70,18,Importance of military service
 90,thnkself,72,18,to think for ones self
 91,helpoth,75,16,to help others
