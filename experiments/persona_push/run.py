@@ -132,6 +132,12 @@ def main():
                 '--steps',args.steps,'--reps',args.reps,
                 '--objective',args.objective,'--max-swaps',args.max_swaps,
                 '--seed',args.seed,'--out',figures])
+        launch([sys.executable,HERE/'publication_pgfplots.py',
+                '--adaptive-endpoints',adaptive/'endpoints.csv',
+                '--trajectory-ci',adaptive/'trajectory_ci.csv',
+                '--order-endpoints',order/'run_endpoints.csv',
+                '--steps',args.steps,'--reps',args.reps,
+                '--out',figures])
     manifest={'model':args.model,'steps':args.steps,'reps':args.reps,
               'seed':args.seed,'bootstrap':args.bootstrap,'workers':args.workers,
               'objective':args.objective,'max_swaps':args.max_swaps,
