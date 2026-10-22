@@ -41,6 +41,13 @@ sys.path[:0] = [str(ROOT), str(ROOT / "scripts")]
 DEFAULT_SETS = ROOT / "experiments/persona_push/fixed_10q_order_sets.json"
 DEFAULT_PERSONAS = ROOT / "optimizer/personas/gss2024_spectrum.yaml"
 ORDER_NAMES = ("original", "reverse", "shuffle1", "shuffle2")
+# Keep figure order self-contained: launching this file directly is valid even
+# when another installed package called 'scripts' shadows our script folder.
+PAIRS = (
+    ("cm_rural_alabama", "wf_new_york_city"),
+    ("religious_conservative_woman_texas", "secular_liberal_man_seattle"),
+    ("hispanic_catholic_man_arizona", "black_churchgoing_woman_atlanta"),
+)
 
 
 def seed_for(*parts):
@@ -241,7 +248,6 @@ def make_figure(contrast, out):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    from scripts.dtag_persona_push_study import PAIRS
     all_p = [p for pair in PAIRS for p in pair]
     pols = ("right", "left", "neutral")
     alternatives = ("reverse", "shuffle1", "shuffle2")
@@ -293,6 +299,10 @@ def main():
     ap.add_argument("--quick", action="store_true",
                     help="2 reps per order; plumbing check, NOT inferential results")
     ap.add_argument("--no-download", action="store_true")
+    ap.add_argument("--finalize-only", action="store_true",
+                    help="Regenerate order-effect PDF/PNG and summaries from saved "
+                         "CSV results without any native simulation")
+
     args=ap.parse_args()
     if args.quick:
         args.reps=2
@@ -300,6 +310,71 @@ def main():
     if args.reps<2 or args.workers<1 or args.bootstrap<100:
         ap.error("reps>=2, workers>=1, bootstrap>=100 required")
     args.out.mkdir(parents=True,exist_ok=True)
+    if args.finalize_only:
+        # Crucial recovery path: all native replay results and summary CSVs
+        # were already written before make_figure could raise an ImportError.
+        # This mode never loads the native model or regenerates responses.
+        endpoint_path = args.out / "run_endpoints.csv"
+        draws_path = args.out / "question_draws.csv"
+        for path in (endpoint_path, draws_path, args.out / "fixed_orders.json"):
+            if not path.is_file():
+                raise FileNotFoundError(f"Cannot finalize; missing saved data: {path}")
+        with endpoint_path.open(newline="", encoding="utf-8") as fh:
+            terminals = list(csv.DictReader(fh))
+        with draws_path.open(newline="", encoding="utf-8") as fh:
+            draws = list(csv.DictReader(fh))
+        for row in terminals:
+            row["rep"] = int(row["rep"])
+            for name in ("initial_I", "final_I", "net_delta"):
+                row[name] = float(row[name])
+                if not math.isfinite(row[name]):
+                    raise ValueError(f"Nonfinite saved {name}: {row}")
+        expected_sets = {
+            (s["persona"], s["source_policy"])
+            for s in read_sets(args.sets, policies=args.policies, steps=args.steps)
+        }
+        expected_runs = len(expected_sets) * len(ORDER_NAMES) * args.reps
+        if len(terminals) != expected_runs or len(draws) != expected_runs * args.steps:
+            raise ValueError(
+                f"Saved outputs incomplete: {len(terminals)} endpoints, "
+                f"{len(draws)} question draws; expected {expected_runs} and "
+                f"{expected_runs * args.steps} respectively")
+        actual_sets = {(r["persona"], r["source_policy"]) for r in terminals}
+        if actual_sets != expected_sets:
+            raise ValueError(f"Saved persona/set groups differ: {actual_sets ^ expected_sets}")
+        for row in draws:
+            row["rep"] = int(row["rep"])
+            row["step"] = int(row["step"])
+        by_run = defaultdict(list)
+        for row in draws:
+            key = (row["persona"], row["source_policy"], row["order"], row["rep"])
+            by_run[key].append(row["step"])
+        if set(by_run) != {
+            (r["persona"],r["source_policy"],r["order"],r["rep"]) for r in terminals
+        } or any(sorted(v) != list(range(1,args.steps+1)) for v in by_run.values()):
+            raise ValueError("Saved question draws do not contain every step of every run")
+        endpoint, contrast, omnibus = summarize(
+            terminals, args.reps, args.bootstrap, args.seed)
+        write_csv(args.out / "endpoint_summary.csv", endpoint)
+        write_csv(args.out / "paired_order_contrasts.csv", contrast)
+        write_csv(args.out / "omnibus_order_spread.csv", omnibus)
+        make_figure(contrast, args.out)
+        recovery = {
+            "recovered_from_saved_native_runs": True,
+            "model_evaluation_performed": False,
+            "steps": args.steps, "repetitions": args.reps,
+            "completed_replays_verified": expected_runs,
+            "saved_endpoints_sha256": hashlib.sha256(endpoint_path.read_bytes()).hexdigest(),
+            "saved_draws_sha256": hashlib.sha256(draws_path.read_bytes()).hexdigest(),
+            "note": "This restores figures and summaries after a post-run "
+                    "plotting failure. It does not recover a missing native model hash.",
+        }
+        (args.out / "figure_recovery.json").write_text(
+            json.dumps(recovery, indent=2) + "\n", encoding="utf-8")
+        print(f"Recovered figures and summaries from {expected_runs} complete "
+              f"{args.steps}-question native replay records; no simulations rerun.",
+              flush=True)
+        return
     pinned=read_pinned(args.personas)
     sources=read_sets(args.sets, policies=args.policies, steps=args.steps)
     jobs=[]; orders_file=[]
