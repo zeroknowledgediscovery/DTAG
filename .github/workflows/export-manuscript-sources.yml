@@ -1,0 +1,31 @@
+name: Export DTAG manuscript source bundle
+on:
+  push:
+    branches: [experiment-integrated-10q]
+    paths:
+      - .github/workflows/export-manuscript-sources.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check LaTeX source bundle
+        run: |
+          test -f tex/main.tex
+          test -f tex/references.bib
+          test -f experiments/persona_push/NATIVE_RESULTS_SECTION.tex
+          test -f experiments/persona_push/data/figures/fig5_sign_reversal_probabilities_pgfplots.tex
+      - name: Upload source bundle (no simulation)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtag-manuscript-source-bundle
+          path: |
+            tex/*.tex
+            tex/*.bib
+            experiments/persona_push/NATIVE_RESULTS_SECTION.tex
+            experiments/persona_push/data/figures/*.tex
+            experiments/persona_push/data/figures/pub_flip_*.csv
+          if-no-files-found: error
