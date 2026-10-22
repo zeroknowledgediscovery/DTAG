@@ -1,0 +1,124 @@
+\section{Native GSS 2024 Computational Experiments}
+\label{sec:native}
+
+\subsection{Adaptive questioning of fixed synthetic personas}
+We evaluated the native GSS 2024 LSM on six pinned synthetic respondent
+states: conservative rural Alabama, liberal New York, religious conservative
+Texas, secular liberal Seattle, Hispanic Catholic conservative Arizona, and
+churchgoing liberal Atlanta. The survey anchors were never modified.
+At each step, the native optimizer selected an eligible, unasked survey item
+by maximizing conditional expected rightward displacement, minimizing it for a
+leftward push, minimizing its absolute value (neutral), or sampling a random
+eligible question. The answer was always drawn from the conditional LSM.
+There were $T=10$ questions and $40$ independent repetitions per policy and
+persona, giving $6\times4\times40=960$ complete trajectories.
+
+\begin{figure*}[!t]
+\centering
+\input{../experiments/persona_push/data/figures/fig1_trajectories_pgfplots.tex}
+\caption{\textbf{Native adaptive-questioning trajectories.} Mean geometric
+displacement relative to the same fixed persona's initial index after
+0--10 questions. Shading shows pointwise percentile 95\% bootstrap intervals
+over 40 runs (near-zero neutral uncertainty is invisible at plot resolution).
+The four policies are right-push, left-push, minimum expected drift, and
+random eligible-question selection. These are conditional \emph{synthetic}
+LSM runs, not observations of human persuasion.}
+\label{fig:native-trajectories}
+\end{figure*}
+
+Right- and left-seeking policies moved the geometric index in their
+respective directions across all six personas, whereas the neutral policy
+remained at zero displacement to numerical precision. The latter is a
+minimum-\emph{geometric-drift} optimization and must not be conflated with
+psychologically neutral questions.
+
+\subsection{Question selection as observed paths}
+To expose the actual stochastic sequence variation without creating an
+artificial modal trajectory, every distinct question was assigned a globally
+shared categorical index. Across all runs, including the excluded random
+policy, there were $228$ distinct items; $88$ appeared in the right, left,
+and neutral panels. Each of the 18 heatmaps (six personas by three policies)
+shows the actual question identities in 40 runs across ten positions.
+The run indices were \emph{not} reordered.
+The item-to-color assignment was globally permuted to approximately minimize
+\begin{equation}
+\mathcal C(\pi)=\sum_{p,u,t}\sum_{r<r'}
+\big|\pi(v_{purt})-\pi(v_{pur't})\big|,
+\label{eq:question-seriation}
+\end{equation}
+where $u$ ranges over the three displayed policies. This all-pairs
+objective is invariant to the arbitrary numbering of repetitions. The
+$140$ items occurring only in random-question runs retain their global
+lookup entries. Numeric distances between question indices have no
+scientific or semantic interpretation; optimizing them is merely a
+visualization device.
+
+\begin{figure*}[!t]
+\centering
+\input{../experiments/persona_push/data/figures/fig2_question_heatmaps_pgfplots.tex}
+\caption{\textbf{Question-identity heatmaps.} Eighteen 40-by-10 panels
+show the exact survey item asked at each step of each realized trajectory.
+The same optimized categorical index and colormap is used across all personas
+and source policies. The question index table and underlying data are
+archived with the PGFPlots sources. Random-question sequences are not drawn.}
+\label{fig:question-map}
+\end{figure*}
+
+\subsection{Order sensitivity with ten-question content fixed}
+For each persona and for each of the right/left/neutral policies, we froze
+the ten items from a predetermined source realization (replicate zero),
+without selecting sets by their endpoints. Each of the 18 fixed sets was
+administered in its original order, reversed order, and two fixed random
+permutations. Forty repetitions per order, sampling every answer
+sequentially from the LSM conditional on previously drawn answers, yielded
+$18\times4\times40=2{,}880$ complete ten-question replay trajectories.
+A question-specific uniform draw was shared across each original--permuted
+pair to reduce Monte Carlo noise. We compared both the sign of the final
+ideology index and the direction of displacement from the fixed initial state:
+\begin{align}
+F_{pSr\pi}^{\mathrm{end}}
+&=\mathbf 1\{I_{10}^{(\pi)} I_{10}^{(0)}<0\},\\
+F_{pSr\pi}^{\mathrm{move}}
+&=\mathbf 1\{(I_{10}^{(\pi)}-I_0)(I_{10}^{(0)}-I_0)<0\}.
+\end{align}
+Near-zero values are excluded from sign-flip counts.
+
+\begin{figure*}[!t]
+\centering
+\input{../experiments/persona_push/data/figures/fig3_order_sign_reversal_pgfplots.tex}
+\caption{\textbf{Question-order sign reversals.} The left panel measures
+reversal of geometric movement relative to the initial persona; the right
+measures reversal of the sign of the final ideology index. Each displayed
+percentage is based on 40 runs multiplied by three permutations of the
+same ten questions (120 paired comparisons per persona and source policy).
+The comparisons sharing one original realization are not independent.}
+\label{fig:order-flips}
+\end{figure*}
+
+Across 720 matched original--permuted comparisons per source policy,
+right-derived sets changed the final index in 49.2\% of pairs (mean absolute
+change 0.01890), compared with 28.8\% (0.00233) for left-derived and
+zero for neutral-derived sets. Reversals of \emph{movement direction}
+occurred in 131/720 right-derived comparisons and 21/720 left-derived
+comparisons; reversals of the \emph{final ideological sign} occurred in
+43/720 and 4/720, respectively. No sign reversal occurred in the
+neutral-derived condition. All 54 pointwise bootstrap confidence intervals
+for \emph{signed mean} order contrasts included zero, which does not imply
+pathwise order invariance: positive and negative changes can cancel.
+
+A pathwise sign reversal under this particular coupling of conditional
+random draws also does not, by itself, establish that reordering changes
+the \emph{marginal distribution} of final index values. A coherent static
+joint law can generate distinct paired realizations under alternative
+sampling orders yet identical terminal distributions. The full endpoint
+distributions remain to be compared separately, and these synthetic results
+are not human causal effects.
+
+\paragraph{Cross-environment limitation.}
+The initial ideology indices from the original local and subsequent CI
+runs differ, notwithstanding matching persona, semantic-map, and pole-file
+hashes. The native model artifact itself was not hashed in both historical
+manifests. Consequently the absolute numerical indices must not be compared
+across the two execution environments until model-identity and runtime parity
+are verified. The within-study trajectories and within-replay paired
+contrasts are internally consistent.
