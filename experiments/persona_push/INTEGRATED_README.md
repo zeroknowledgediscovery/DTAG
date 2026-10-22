@@ -44,6 +44,34 @@ Native path dependencies:
 `optimizer/dtag_bridge.py`, the native model cache, and
 `optimizer/personas/gss2024_spectrum.yaml`.
 
+## Recover a run after a post-simulation plotting error
+
+In a 3-question/2-repeat smoke run, all 144 native order-replay evaluations
+may finish before the standalone order-figure generator fails with
+`ModuleNotFoundError: No module named 'scripts.dtag_persona_push_study'`.
+The import is fixed; **the native results were already saved and do not
+need to be recomputed.**
+
+From the repository root, after pulling the updated
+`experiment-integrated-10q` branch:
+
+```bash
+python experiments/persona_push/run.py \
+  --steps 3 --reps 2 \
+  --out experiments/persona_push/runs/test_q3_r2 \
+  --resume
+```
+
+This verifies the 144 saved endpoints and all 432 saved question draws,
+regenerates `order/fixed_10q_order_effects.{pdf,png}`, all order-summary
+CSV tables, and the three integrated PGFPlots sources under `figures/`.
+It creates `order/figure_recovery.json` with checksums and a statement
+that **no native simulation was rerun**.
+
+For just the three integrated PGFPlots figures, `--figures-only` remains
+available. The standalone order script also supports `--finalize-only`
+when called with the saved `--sets` and `--out` paths.
+
 ## Archived actual 10q/40r data
 
 - `data/historical_local_20261021/`: the **full local adaptive experiment**
