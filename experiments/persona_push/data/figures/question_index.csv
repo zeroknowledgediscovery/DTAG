@@ -1,0 +1,229 @@
+question_index,variable,frequency_index,total_uses,question
+1,colmslm,1,251,"Should such a person be allowed to teach in a college or university, or not?"
+2,racdif5,2,251,"On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Mainly due to upbringing?"
+3,mobile16,52,46,"IF STATE NAMED IS SAME STATE R. LIVES IN NOW, ASK MOBILE16: When you were 16 years old, were you living in this same (city/town/county)?"
+4,racecen3,4,245,(What is your race? Indicate one or more races that you consider yourself to be.) Third mention
+5,racdif3x,5,241,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+6,getahead,6,239,Some people say that people get ahead by their own hard work; others say that lucky breaks or help from other people are more important. Which do you think is most important?
+7,cctv,45,72,civil liberties - video surveillance
+8,racecen2,8,236,(What is your race? Indicate one or more races that you consider yourself to be.) Second mention
+9,trust,23,148,"Generally speaking, would you say that most people can be trusted or that you can't be too careful in dealing with people?"
+10,uscitzn,10,227,Now we would like to ask you about U.S. citizenship. Are you…
+11,racdif5x,11,218,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Upbringing"
+12,jobfind,12,210,"About how easy would it be for you to find a job with another employer with approximately the same income and fringe benefits you now have? Would you say very easy, somewhat easy, or not easy at all?"
+13,racdif3,21,156,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Don't have the chance for education that it takes to rise out of poverty?"
+14,colrac,44,74,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+15,god,15,185,Which of the statements comes closest to expressing what you believe about God
+16,spkmslm,13,199,"Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?"
+17,spkrac,24,146,"Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
+18,relactiv,18,163,How often do you take part in the activities and organizations of a church or place of worship other than attending services?
+19,colath,31,122,"(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+20,sprtprsn,20,160,"To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?"
+21,relpersn,16,184,"To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?"
+22,consci,41,80,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Scientific Community"
+23,conarmy,9,231,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Military"
+24,ratemaga,17,173,Rating of MAGA Republicans
+25,rateincumb24,25,142,Rating of Joe Biden
+26,amchrstn,26,138,how important to be a christian
+27,natheal,40,81,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
+28,demtoday,28,129,how well democracy work in america
+29,conpow,14,196,Conflict between ordinary people and those in power
+30,premarsx,30,125,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+31,pornlaw,19,160,Which of these statements comes closest to your feelings about pornography laws?
+32,coneduc,32,122,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Education"
+33,letin1a,33,122,Do you think the number of immigrants to America nowadays should be
+34,conlegis,34,111,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Congress"
+35,wrkwayup,22,150,"Do you agree: Irish, Italians, Jewish and many other minorities overcame prejudice and worked their way up. Black people should do the same without special favors."
+36,immjobs,36,102,immigrants take jobs away
+37,conbus,37,94,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Major companies"
+38,marhisp,38,85,How about having a close relative marry a Hispanic or Latino person?
+39,teensex,39,84,"What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+40,raterepp,27,136,Rating of Republican party
+41,polescap,35,106,Was attempting to escape from custody?
+42,religinf,42,80,the u.s. would be a better country if religion had less influence
+43,racecen1,43,75,(What is your race? Indicate one or more races that you consider yourself to be.) First mention
+44,natsci,29,126,"(... are we spending too much, too little, or about the right amount on) Supporting scientific research"
+45,homosex,7,237,"What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+46,chngdocs,46,69,changing official documents
+47,poltalk,47,65,Politicians talk too much and don't take action
+48,conmedic,48,56,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Medicine"
+49,natchld,49,54,"(... are we spending too much, too little, or about the right amount on) Assistance for childcare"
+50,ratechall124,50,51,Rating of Donald Trump
+51,helpblk,51,50,Some people think that Black people have been discriminated against for so long that the government has a special obligation to help improve their living standards. Where would you place yourself on this scale?
+52,hrs2,3,247,"IF WITH A JOB, BUT NOT AT WORK: How many hours a week do you usually work, at all jobs?"
+53,conjudge,53,42,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) U.S. Supreme Court"
+54,corruptn,54,42,how widespread corruption is in pub service in america
+55,popular,55,40,to be well liked or popular
+56,natrace,56,35,"(... are we spending too much, too little, or about the right amount on) Improving the conditions of Black people"
+57,spkath,57,31,"For instance, somebody who is against all churches and religion . . . If such a person wanted to make a speech in your (city/town/community) against churches and religion, Should he be allowed to speak, or not?"
+58,sexbirth1,58,30,Was your sex recorded as male or female at birth?
+59,marsame,59,27,HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY
+60,librac,60,26,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+61,immcrime1,61,24,Immigrants increase crime rates
+62,natenrgy,62,23,"(... are we spending too much, too little, or about the right amount on) Developing alternative energy sources"
+63,obey,63,23,to obey
+64,ratechall224,64,22,Rating of Kamala Harris
+65,affrmact,65,20,favor preference in hiring Black people
+66,helpsick,66,20,"In general, some people think that it is the responsibility of the government in Washington to see to it that people have help in paying for doctors and hospital bills. Others think that these matters are not the responsibility of the federal government a"
+67,marasian,67,20,How about having a close relative marry an Asian American person?
+68,befair,68,19,how often do you think people take advantage
+69,abhlth,69,18,If the woman's own health is seriously endangered by the pregnancy?
+70,libath,71,18,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book he wrote against churches and religion should be removed from the library. Would you favor removing this book, or not?"
+71,contv,73,17,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) TV"
+72,acpttg,74,16,accepting people
+73,natdrug,76,16,"(... are we spending too much, too little, or about the right amount on) Dealing with drug addiction"
+74,dsndntpay,87,14,reparations for descendants of slaves
+75,marwht,89,14,"What about having a close relative marry a White person? Would you be very in favor of it happening, somewhat in favor, neither in favor nor opposed to it happening, somewhat opposed, or very opposed to it happening?"
+76,letinasn,101,13,"What about the number of immigrants from Asia? (Should it be increased a lot, increased a little, left the same as it is now, decreased a little, or decreased a lot?)"
+77,racdif1x,106,13,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are...Mainly due to"
+78,biasnews,113,12,News coverage about politics in America is biased
+79,natcity,120,12,"(... are we spending too much, too little, or about the right amount on) Solving the problems of big cities"
+80,prouddem,121,12,how proud the way democracy works
+81,sexeduc,123,12,Would you be for or against sex education in the public schools?
+82,confinan,132,11,"As far as the people running this institution are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them? Banks and financial inst"
+83,immideas1,139,11,Immigrants bring new ideas and cultures
+84,polattak,145,11,Was attacking the policeman with his fists?
+85,amgovt,156,10,how important to respect america's laws etc
+86,immjobs1,182,9,Immigrants take jobs away
+87,suicide4,211,7,(Do you think a person has the right to end his or her own life if this person . . .) Is tired of living and ready to die?
+88,poleff18,220,6,govt do not care much what ppl like r think
+89,conscrp,70,18,Importance of military service
+90,thnkself,72,18,to think for ones self
+91,helpoth,75,16,to help others
+92,proudpol,77,16,how proud its political influence in the world
+93,dem10pst,78,15,how well did democracy work in america ten yrs ago
+94,discaffm,79,15,"What do you think the chances are these days that a man won't get a job or promotion while an equally or less qualified woman gets one instead. Is this very likely, somewhat likely, somewhat unlikely, or very unlikely these days?"
+95,eqwlth,80,15,"Some people think that the government in Washington ought to reduce the income differences between the rich and the poor, perhaps by raising the taxes of wealthy families or by giving income assistance to the poor. Others think that the government should"
+96,infodeal,81,15,"Would R provide info for discounts, free products"
+97,kidssol,82,15,"When your children are at the age you are now, do you think their standard of living will be much better, somewhat better, about the same, somewhat worse, or much worse than yours is now?"
+98,marblk,83,15,What about having a close relative marry a Black person?
+99,agetech,84,14,Are older or younger people benefiting more from digital tech
+100,amancstr,85,14,how important to have american ancestry
+101,conpress,86,14,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Press"
+102,fejobaff,88,14,"Some people say that because of past discrimination, women should be given preference in hiring and promotion. Others say that such preference in hiring and promotion of women is wrong because it discriminates against men. What about your opinion -are you"
+103,polopts,90,14,how important: ppl given chance to participate in decsns
+104,smnews,91,14,Reliability of news on social media
+105,tax,92,14,"Do you consider the amount of federal income tax which you have to pay as too high, about right, or too low?"
+106,cappun,93,13,Do you favor or oppose the death penalty for persons convicted of murder?
+107,chldidel,94,13,What do you think is the ideal number of children for a family to have?
+108,discaffw,95,13,a woman won't get a job or promotion
+109,fefam,96,13,"(Please read the following statements and indicate whether you strongly agree, agree, disagree, or strongly disagree with each statement…) It is much better for everyone involved if the man is the achiever outside the home and the woman takes care of the"
+110,fehire,97,13,"Now I'm going to read several statements. As I read each one, please tell me whether you strongly agree, agree, neither agree nor disagree, Because of past discrimination, employers should make special efforts to hire and promote qualified women."
+111,happy,98,13,"Taken all together, how would you say things are these days--would you say that you are very happy, pretty happy, or not too happy?"
+112,hrs1,99,13,"IF WORKING, FULL OR PART TIME: How many hours did you work last week, at all jobs?"
+113,immassim,100,13,what statement about immigrants matches view
+114,nateduc,102,13,"(... are we spending too much, too little, or about the right amount on) Improving the nation's education system"
+115,obeylaws,103,13,how important always to obey laws
+116,owndecns,104,13,Best if every nation had its own country
+117,papernews,105,13,Reliability of newspapers
+118,servpub,107,13,How much the public service serves people
+119,socfrend,108,13,"(For each of the next four questions, please select the answer that comes closest to how often you do the following things…) Spend a social evening with friends who live outside the neighborhood?"
+120,sphrs1,109,13,"(Last week was your (wife/husband) working full time, part time, going to school, keeping house, or what?...) IF WORKING, FULL OR PART TIME: How many hours did (he/she) work last week, at all jobs?"
+121,spklang,110,13,"How well do you speak that language? [IF SPEAKS 2 OR MORE, ASK ONLY OF THE MOST FLUENT LANGUAGE] READ CATEGORIES"
+122,trcong,111,13,"Trust in congress, 10 point scale"
+123,amshamed,112,12,agree there are things make me ashamed
+124,cantrust,114,12,people can be trusted or cant be too careful
+125,classtech,115,12,Are poor or rich benefiting more from digital tech
+126,conclerg,116,12,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Organized religion"
+127,experts,117,12,Better to rely on opinions of experts than ordinary people
+128,letin1,118,12,Number of immigrants increased or decreased
+129,life,119,12,"In general, do you find life exciting, pretty routine, or dull?"
+130,ratechall324,122,12,Rating of Nikki Haley
+131,spwrksta,124,12,"Last week was your (wife/husband) working full time, part time, going to school, keeping house, or what?"
+132,trcourts,125,12,how much trust r has in american courts
+133,trppl,126,12,"Trust in others, 10 point scale"
+134,usmca2,127,12,Does the US benefit from USMCA
+135,workblks,128,12,Now I have some questions about different groups in our society. I'm going to show you a seven-point scale on which the characteristics of people in a group can be rated. In the first statement a score of 1 means that you think almost all of the people in
+136,amownway,129,11,america should follow its own interests
+137,amtv,130,11,tv should give preference to american films
+138,bizmoney,131,11,Business leaders make money at expense of ordinary people
+139,courts,133,11,"In general, do you think the courts in this area deal too harshly or not harshly enough with criminals?"
+140,dem10fut,134,11,how well will democracy work in america in ten yrs
+141,feovrwrk,135,11,family life suffers when women work
+142,helpusa,136,11,how important to help worse off ppl in america
+143,immcrime,137,11,immigrants increase crime rates
+144,immfate,138,11,What should be done about immigrants who are currently living in the U.S. illegally?
+145,letinhsp,140,11,"What about the number of immigrants from Latin America (that is, Spanish-speaking countries of the Americas)–should it be increased a lot, increased a little, left the same as it is now, decreased a little, or decreased a lot?"
+146,natenviy,141,11,Improving and protecting the environment
+147,natspac,142,11,"We are faced with many problems in this country, none of which can be solved easily or inexpensively. (... are we spending too much, too little, or about the right amount on) Space exploration program"
+148,nextgen1,143,11,Does technology provide more opportunities?
+149,oppsegov,144,11,how important: citizen engage in acts of civil disobeyed
+150,racdif4,146,11,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Don't have the motivation or will power to pull themselves up out of poverty?"
+151,radionews,147,11,"Reliability of news on podcasts, radio"
+152,rank,148,11,(In our society there are groups which tend to be towards the top and those that are towards the bottom. Here we have a scale that runs from top to bottom…) Where would you put yourself on this scale?
+153,socbar,149,11,"(For each of the next four questions, please select the answer that comes closest to how often you do the following things…) Go to a bar or tavern?"
+154,socommun,150,11,"(For each of the next four questions, please select the answer that comes closest to how often you do the following things…) How often do you spend a social evening with someone who lives in your neighborhood?"
+155,spanking,151,11,"Do you strongly agree, agree, disagree, or strongly disagree that it is sometimes necessary to discipline a child with a good, hard spanking?"
+156,tvnews1,152,11,Reliability of news on TV
+157,wlthhsps,153,11,(Do people in this group tend to be rich or poor?) Hispanic Americans?
+158,wrldgovt,154,11,international bodies should enforce environment
+159,adoptus,155,10,"Do you think immigrants living in the U.S. should adopt U.S. culture, keep their own culture, or do both?"
+160,fulldem,157,10,"The people, not politicians, should make important decisions"
+161,gendtech,158,10,Are women or men benefiting more from digital tech
+162,helppoor,159,10,"Next, here are issues that some people tell us are important. Some people think that the government in Washington should do everything possible to improve the standard of living of all poor Americans, they are at Point 1 on the scale below. Other people t"
+163,imports,160,10,america should limit the import
+164,incgap1,161,10,Government's responsibility to reduce economic inequality
+165,letdie1,162,10,"When a person has a disease that cannot be cured, do you think doctors should be allowed by law to end the patient's life by some painless means if the patient and his family request it?"
+166,nataid,163,10,"(... are we spending too much, too little, or about the right amount on) Foreign aid"
+167,natcrime,164,10,"(... are we spending too much, too little, or about the right amount on) Halting the rising crime rate"
+168,paytaxes,165,10,how important never to try to evade taxes
+169,polint,166,10,How interested would you say you personally are in politics?
+170,proudeco,167,10,how proud america's economic achievements
+171,reg16,168,10,In what state or foreign country were you living when you were 16 years old?
+172,rghtsmin,169,10,how important: govt protect right of minorities
+173,rincom16,170,10,"In which of these groups did your earnings from (OCC), from all sources for [the last year] fall? That is, before taxes or other deductions."
+174,suicide2,171,10,(Do you think a person has the right to end his or her own life if this person . . .) Has gone bankrupt?
+175,techesy,172,10,Does technology make our lives easier?
+176,workhsps,173,10,(Do people in this group tend to be hardworking or lazy?) Hispanic-Americans?
+177,workwhts,174,10,Now I have some questions about different groups in our society. I'm going to show you a seven-point scale on which the characteristics of people in a group can be rated. In the first statement a score of 1 means that you think almost all of the people in
+178,amcit,175,9,how important to have american citizenship
+179,discaff,176,9,"What do you think the chances are these days that a white person won't get a job or promotion while an equally or less qualified black person gets one instead? Is this very likely, somewhat likely, or not very likely to happen these days?"
+180,emonitor1,177,9,Should government be able to monitor online communication
+181,fepol,178,9,Tell me if you agree or disagree with this statement: Most men are better suited emotionally for politics than are most women.
+182,goodlife,179,9,"The way things are in America, people like me and my family have a good chance of improving our standard of living -- do you agree or disagree?"
+183,helpful,180,9,"Would you say that most of the time people try to be helpful, or that they are mostly just looking out for themselves?"
+184,helpnot,181,9,Some people think that the government in Washington is trying to do too many things that should be left to individuals and private businesses. Others disagree and think that the government should do even more to solve our country's problems. Still others
+185,liveblks,183,9,"Now we are going to ask you about different types of contact with various groups of people. For the following situation, please indicate whether you would be very much in favor of it happening, somewhat in favor, neither in favor nor opposed to it happeni"
+186,natroad,184,9,"(... are we spending too much, too little, or about the right amount on) Highways and bridges"
+187,proudhis,185,9,how proud its history
+188,ratedemp,186,9,Rating of Democratic party
+189,satdemoc,187,9,R satisfied with way democracy works in america
+190,suicide1,188,9,(Do you think a person has the right to end his or her own life if this person . . .) Has an incurable disease?
+191,urbantech,189,9,Are cities or countryside benefiting more from digital tech
+192,wlthwhts,190,9,Now I have some questions about different groups in our society. I'm going to show you a seven-point scale on which the characteristics of people in a group can be rated. In the first statement a score of 1 means that you think almost all of the people in
+193,belikeus,191,8,agree better if people were more like americans
+194,divlaw,192,8,Should divorce in this country be easier or more difficult to obtain than it is now?
+195,eductech,193,8,Are educated or uneducated benefiting more from digital tech
+196,fair,194,8,"Do you think most people would try to take advantage of you if they got a chance, or would they try to be fair?"
+197,harmgood1,195,8,Does technology do more harm than good?
+198,health,196,8,"Would you say your own health, in general, is excellent, good, fair, or poor?"
+199,ifwrong,197,8,agree people should support their country
+200,meovrwrk,198,8,Family life often suffers because men concentrate too much on their work.
+201,poleff11,199,8,don't have any say about what the government does
+202,polhitok,200,8,Are there any situations you can imagine in which you would approve of a policeman striking an adult male citizen?
+203,polmurdr,201,8,(Would you approve of a policeman striking a citizen who…) Was being questioned as a suspect in a murder case?
+204,racdif1,202,8,"On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . . Mainly due to discrimination?"
+205,socrel,203,8,"(For each of the next four questions, please select the answer that comes closest to how often you do the following things…) How often do you spend a social evening with relatives?"
+206,amfeel,204,7,how important to feel american
+207,econstat,205,7,What do you think about the state of the economy these days in the United States?
+208,natcrimy,206,7,"(... are we spending too much, too little, or about the right amount on) Law enforcement"
+209,posslq,207,7,Which of these statements applies to you?
+210,postlife,208,7,Do you believe there is a life after death?
+211,racdif2x,209,7,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+212,sexornt,210,7,Which of the following best describes you?
+213,workhard,212,7,to work hard
+214,aiworry,213,6,R worried that AI will take over many jobs done by humans
+215,ambetter,214,6,agree america is a better country
+216,amcitizn,215,6,agree i would rather be a citizen of america
+217,dwelown16,216,6,"When you were 16 years old, did your family own your own home, pay rent, or something else?"
+218,forland,217,6,foreigner's should not be allowed to buy land
+219,immameco,218,6,immigrants good for america
+220,infoprofit,219,6,Would R provide info companies could profit from
+221,proudart,221,6,how proud its achievements in the arts & lit.
+222,racdif4x,222,6,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+223,solok,223,6,how important: citizens have adequate standard of living
+224,wlthblks,224,6,Now I have some questions about different groups in our society. I'm going to show you a seven-point scale on which the characteristics of people in a group can be rated. In the first statement a score of 1 means that you think almost all of the people in
+225,parsol,225,5,"Compared to your parents when they were the age you are now, do you think your own standard of living now is much better, somewhat better, about the same, somewhat worse, or much worse than theirs was?"
+226,watchgov,226,5,how important to keep watch on action of govt
+227,webnews,227,4,Reliability of news on web
+228,proudspt,228,3,how proud its achievements in sports
