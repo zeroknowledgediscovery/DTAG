@@ -91,8 +91,8 @@ def main():
                    help='Reuse CSVs already under --out, skipping native simulations')
     p.add_argument('--skip-plot',action='store_true',help='Run native stages only')
     args=p.parse_args()
-    if args.steps<2 or args.reps<2 or args.workers<1 or args.bootstrap<100:
-        p.error('steps>=2, reps>=2, workers>=1, bootstrap>=100 required')
+    if args.steps<3 or args.reps<2 or args.workers<1 or args.bootstrap<100:
+        p.error('steps>=3, reps>=2, workers>=1, bootstrap>=100 required')
     out=(args.out or HERE/'runs'/f'q{args.steps}_r{args.reps}').expanduser()
     if not out.is_absolute(): out=ROOT/out
     out.mkdir(parents=True,exist_ok=True)
