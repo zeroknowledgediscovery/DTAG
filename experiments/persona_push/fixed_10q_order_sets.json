@@ -23,16 +23,16 @@
         "ratemaga"
       ],
       "source_answers": {
-        "colmslm": " or not?\"",
-        "spkmslm": " should he be allowed to speak",
-        "spkrac": " should he be allowed to speak",
-        "relpersn": " moderately religious",
-        "polescap": "yes",
-        "relactiv": "2-3 times a month",
-        "popular": "least important",
+        "colmslm": "not allowed",
         "helpblk": "2.0",
+        "polescap": "yes",
+        "popular": "least important",
+        "ratemaga": "80.0",
+        "relactiv": "2-3 times a month",
+        "relpersn": "slightly religious",
         "sexbirth1": "male",
-        "ratemaga": "80.0"
+        "spkmslm": "not allowed",
+        "spkrac": "not allowed"
       }
     },
     {
@@ -52,16 +52,16 @@
         "letinasn"
       ],
       "source_answers": {
-        "homosex": " almost always wrong",
-        "sprtprsn": " moderately spiritual",
-        "conlegis": " would you say you have a great deal of confidence",
-        "conjudge": " would you say you have a great deal of confidence",
+        "conjudge": "only some",
+        "conlegis": "only some",
+        "homosex": "always wrong",
+        "letin1a": "reduced a little",
+        "letinasn": "left the same as it is now",
+        "natheal": "too little",
         "poltalk": "neither agree nor disagree",
         "pornlaw": "there should be laws against the distribution of pornography to persons under 18",
-        "wrkwayup": " Italians",
-        "natheal": " too little",
-        "letin1a": "reduced a little",
-        "letinasn": " increased a little"
+        "sprtprsn": "slightly spiritual",
+        "wrkwayup": "disagree somewhat"
       }
     },
     {
@@ -82,15 +82,15 @@
       ],
       "source_answers": {
         "getahead": "luck most important",
-        "hrs2": " BUT NOT AT WORK: How many hours a week do you usually work",
-        "racdif5": " income",
-        "racecen3": "white",
-        "uscitzn": "not a u.s. citizen",
-        "jobfind": " somewhat easy",
+        "hrs2": "40.0",
+        "jobfind": "very easy",
+        "racdif3x": "no",
+        "racdif5": "no",
+        "racdif5x": "yes",
         "racecen2": "filipino",
-        "racdif3x": " we would like to ask them again here. On the average Black people have worse jobs",
-        "trust": " would you say that most people can be trusted or that you can't be too careful in dealing with people?\"",
-        "racdif5x": " we would like to ask them again here. On the average Black people have worse jobs"
+        "racecen3": "white",
+        "trust": "depends",
+        "uscitzn": "not a u.s. citizen"
       }
     },
     {
@@ -110,16 +110,16 @@
         "conmedic"
       ],
       "source_answers": {
-        "colmslm": " or not?\"",
+        "colath": "not allowed",
+        "colmslm": "not allowed",
+        "conmedic": "only some",
         "god": "no doubts",
-        "spkmslm": " should he be allowed to speak",
-        "colath": " somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university",
+        "homosex": "always wrong",
+        "natsci": "about right",
+        "premarsx": "wrong only sometimes",
         "ratemaga": "50.0",
         "raterepp": "50.0",
-        "homosex": " almost always wrong",
-        "natsci": " too little",
-        "premarsx": " do you think it is always wrong",
-        "conmedic": " would you say you have a great deal of confidence"
+        "spkmslm": "yes, allowed to speak"
       }
     },
     {
@@ -139,16 +139,16 @@
         "demtoday"
       ],
       "source_answers": {
-        "relactiv": "never",
-        "rateincumb24": "100.0",
-        "conarmy": " would you say you have a great deal of confidence",
-        "consci": " would you say you have a great deal of confidence",
-        "poltalk": "strongly agree",
-        "conbus": " would you say you have a great deal of confidence",
+        "conarmy": "only some",
+        "conbus": "only some",
+        "consci": "a great deal",
+        "demtoday": "5.0",
         "letin1a": "increased a lot",
-        "wrkwayup": " Italians",
-        "natheal": " too little",
-        "demtoday": "5.0"
+        "natheal": "too little",
+        "poltalk": "strongly agree",
+        "rateincumb24": "100.0",
+        "relactiv": "never",
+        "wrkwayup": "agree strongly"
       }
     },
     {
@@ -168,16 +168,16 @@
         "racdif5x"
       ],
       "source_answers": {
-        "hrs2": " BUT NOT AT WORK: How many hours a week do you usually work",
-        "racdif3x": " we would like to ask them again here. On the average Black people have worse jobs",
-        "racdif5": " income",
-        "racecen3": "american indian or alaska native",
+        "hrs2": "20.0",
+        "jobfind": "not easy",
+        "racdif3": "no",
+        "racdif3x": "yes",
+        "racdif5": "yes",
+        "racdif5x": "yes",
         "racecen2": "vietnamese",
-        "jobfind": " somewhat easy",
-        "racdif3": " income",
-        "trust": " would you say that most people can be trusted or that you can't be too careful in dealing with people?\"",
-        "uscitzn": "not a u.s. citizen",
-        "racdif5x": " we would like to ask them again here. On the average Black people have worse jobs"
+        "racecen3": "american indian or alaska native",
+        "trust": "can't be too careful",
+        "uscitzn": "not a u.s. citizen"
       }
     },
     {
@@ -197,16 +197,16 @@
         "polescap"
       ],
       "source_answers": {
-        "colmslm": " or not?\"",
-        "spkmslm": " should he be allowed to speak",
-        "god": "no doubts",
-        "spkrac": " should he be allowed to speak",
-        "relactiv": "nearly every week",
-        "racecen1": "hispanic",
-        "natsci": " too little",
-        "natenrgy": " too little",
         "amchrstn": "very important",
-        "polescap": "yes"
+        "colmslm": "not allowed",
+        "god": "no doubts",
+        "natenrgy": "about right",
+        "natsci": "too much",
+        "polescap": "yes",
+        "racecen1": "hispanic",
+        "relactiv": "nearly every week",
+        "spkmslm": "not allowed",
+        "spkrac": "yes, allowed to speak"
       }
     },
     {
@@ -226,16 +226,16 @@
         "wrkwayup"
       ],
       "source_answers": {
-        "homosex": " almost always wrong",
-        "sprtprsn": " moderately spiritual",
-        "conarmy": " would you say you have a great deal of confidence",
-        "coneduc": " would you say you have a great deal of confidence",
+        "conarmy": "a great deal",
+        "coneduc": "a great deal",
         "conpow": "strongly disagree",
         "god": "no doubts",
+        "homosex": "always wrong",
         "letin1a": "reduced a lot",
-        "rateincumb24": "0.0",
         "pornlaw": "there should be laws against the distribution of pornography to persons under 18",
-        "wrkwayup": " Italians"
+        "rateincumb24": "0.0",
+        "sprtprsn": "very spiritual",
+        "wrkwayup": "disagree strongly"
       }
     },
     {
@@ -255,16 +255,16 @@
         "racdif3"
       ],
       "source_answers": {
-        "hrs2": " BUT NOT AT WORK: How many hours a week do you usually work",
-        "racdif5": " income",
         "getahead": "hard work most important",
-        "jobfind": " somewhat easy",
-        "racdif3x": " we would like to ask them again here. On the average Black people have worse jobs",
-        "racecen3": "white",
+        "hrs2": "60.0",
+        "jobfind": "not easy",
+        "racdif3": "yes",
+        "racdif3x": "yes",
+        "racdif5": "yes",
+        "racdif5x": "no",
         "racecen2": "american indian or alaska native",
-        "racdif5x": " we would like to ask them again here. On the average Black people have worse jobs",
-        "uscitzn": "a u.s. citizen",
-        "racdif3": " income"
+        "racecen3": "white",
+        "uscitzn": "a u.s. citizen"
       }
     },
     {
@@ -284,16 +284,16 @@
         "polescap"
       ],
       "source_answers": {
-        "colmslm": " or not?\"",
+        "colmslm": "not allowed",
         "god": "no doubts",
-        "spkmslm": " should he be allowed to speak",
-        "spkrac": " should he be allowed to speak",
-        "teensex": " say 14 to 16 years old? In that case",
-        "marhisp": "strongly favor",
-        "raterepp": "0.0",
         "immjobs": "neither agree nor disagree",
-        "natsci": " too little",
-        "polescap": "no"
+        "marhisp": "strongly favor",
+        "natsci": "about right",
+        "polescap": "no",
+        "raterepp": "0.0",
+        "spkmslm": "not allowed",
+        "spkrac": "not allowed",
+        "teensex": "always wrong"
       }
     },
     {
@@ -313,16 +313,16 @@
         "natcity"
       ],
       "source_answers": {
-        "relactiv": "never",
-        "ratemaga": "20.0",
-        "conarmy": " would you say you have a great deal of confidence",
+        "colath": "yes, allowed to teach",
+        "conarmy": "a great deal",
+        "demtoday": "2.0",
         "immjobs": "disagree",
         "letin1a": "remain the same as it is",
-        "demtoday": "2.0",
-        "colath": " somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university",
-        "natheal": " too little",
-        "natchld": " too little",
-        "natcity": " too little"
+        "natchld": "about right",
+        "natcity": "too much",
+        "natheal": "too much",
+        "ratemaga": "20.0",
+        "relactiv": "never"
       }
     },
     {
@@ -342,16 +342,16 @@
         "cctv"
       ],
       "source_answers": {
-        "hrs2": " BUT NOT AT WORK: How many hours a week do you usually work",
-        "racdif3x": " we would like to ask them again here. On the average Black people have worse jobs",
-        "uscitzn": "a u.s. citizen",
-        "racecen3": "american indian or alaska native",
-        "racdif5x": " we would like to ask them again here. On the average Black people have worse jobs",
+        "cctv": "probably should have the right",
         "getahead": "hard work most important",
-        "racdif5": " income",
-        "trust": " would you say that most people can be trusted or that you can't be too careful in dealing with people?\"",
+        "hrs2": "40.0",
+        "racdif3x": "yes",
+        "racdif5": "no",
+        "racdif5x": "no",
         "racecen2": "white",
-        "cctv": "probably should have the right"
+        "racecen3": "american indian or alaska native",
+        "trust": "can't be too careful",
+        "uscitzn": "a u.s. citizen"
       }
     },
     {
@@ -371,16 +371,16 @@
         "ratemaga"
       ],
       "source_answers": {
-        "relpersn": " moderately religious",
-        "colmslm": " or not?\"",
-        "spkmslm": " should he be allowed to speak",
-        "god": "no doubts",
-        "spkrac": " should he be allowed to speak",
         "amchrstn": "very important",
+        "colmslm": "not allowed",
+        "god": "no doubts",
+        "polescap": "yes",
+        "ratemaga": "0.0",
         "relactiv": "every week",
         "religinf": "disagree",
-        "polescap": "yes",
-        "ratemaga": "0.0"
+        "relpersn": "very religious",
+        "spkmslm": "not allowed",
+        "spkrac": "not allowed"
       }
     },
     {
@@ -400,16 +400,16 @@
         "biasnews"
       ],
       "source_answers": {
-        "homosex": " almost always wrong",
-        "premarsx": " do you think it is always wrong",
-        "conarmy": " would you say you have a great deal of confidence",
+        "biasnews": "agree",
+        "conarmy": "only some",
+        "conbus": "only some",
         "conpow": "agree",
-        "rateincumb24": "15.0",
-        "pornlaw": "there should be laws against the distribution of pornography whatever the age",
-        "conbus": " would you say you have a great deal of confidence",
-        "letin1a": "reduced a little",
         "demtoday": "2.0",
-        "biasnews": "agree"
+        "homosex": "not wrong at all",
+        "letin1a": "reduced a little",
+        "pornlaw": "there should be laws against the distribution of pornography whatever the age",
+        "premarsx": "not wrong at all",
+        "rateincumb24": "15.0"
       }
     },
     {
@@ -429,16 +429,16 @@
         "racdif5x"
       ],
       "source_answers": {
-        "hrs2": " BUT NOT AT WORK: How many hours a week do you usually work",
-        "racdif5": " income",
-        "racecen2": "black or african american",
         "getahead": "hard work most important",
-        "jobfind": " somewhat easy",
+        "hrs2": "40.0",
+        "jobfind": "not easy",
+        "racdif3": "yes",
+        "racdif3x": "yes",
+        "racdif5": "no",
+        "racdif5x": "no",
+        "racecen2": "black or african american",
         "racecen3": "white",
-        "uscitzn": "a u.s. citizen",
-        "racdif3": " income",
-        "racdif3x": " we would like to ask them again here. On the average Black people have worse jobs",
-        "racdif5x": " we would like to ask them again here. On the average Black people have worse jobs"
+        "uscitzn": "a u.s. citizen"
       }
     },
     {
@@ -458,16 +458,16 @@
         "teensex"
       ],
       "source_answers": {
-        "colmslm": " or not?\"",
-        "relpersn": " moderately religious",
+        "colmslm": "not allowed",
         "god": "no doubts",
-        "spkmslm": " should he be allowed to speak",
-        "relactiv": "about once a month",
-        "spkrac": " should he be allowed to speak",
         "immjobs": "agree",
         "marhisp": "neither favor nor oppose",
         "obey": "4th important",
-        "teensex": " say 14 to 16 years old? In that case"
+        "relactiv": "about once a month",
+        "relpersn": "not religious at all",
+        "spkmslm": "not allowed",
+        "spkrac": "not allowed",
+        "teensex": "wrong only sometimes"
       }
     },
     {
@@ -487,16 +487,16 @@
         "demtoday"
       ],
       "source_answers": {
-        "homosex": " almost always wrong",
-        "sprtprsn": " moderately spiritual",
-        "letin1a": "reduced a little",
-        "conarmy": " would you say you have a great deal of confidence",
+        "conarmy": "a great deal",
+        "coneduc": "a great deal",
         "conpow": "agree",
-        "coneduc": " would you say you have a great deal of confidence",
-        "pornlaw": "there should be laws against the distribution of pornography to persons under 18",
-        "wrkwayup": " Italians",
         "corruptn": "a moderate number of people are involved",
-        "demtoday": "6.0"
+        "demtoday": "6.0",
+        "homosex": "always wrong",
+        "letin1a": "reduced a little",
+        "pornlaw": "there should be laws against the distribution of pornography to persons under 18",
+        "sprtprsn": "slightly spiritual",
+        "wrkwayup": "disagree somewhat"
       }
     },
     {
@@ -516,16 +516,16 @@
         "jobfind"
       ],
       "source_answers": {
-        "hrs2": " BUT NOT AT WORK: How many hours a week do you usually work",
-        "racdif5": " income",
-        "racecen3": "american indian or alaska native",
         "getahead": "hard work most important",
-        "racdif5x": " we would like to ask them again here. On the average Black people have worse jobs",
+        "hrs2": "48.0",
+        "jobfind": "not easy",
+        "racdif3x": "yes",
+        "racdif5": "no",
+        "racdif5x": "yes",
         "racecen2": "white",
-        "racdif3x": " we would like to ask them again here. On the average Black people have worse jobs",
-        "uscitzn": "not a u.s. citizen",
-        "trust": " would you say that most people can be trusted or that you can't be too careful in dealing with people?\"",
-        "jobfind": " somewhat easy"
+        "racecen3": "american indian or alaska native",
+        "trust": "most people can be trusted",
+        "uscitzn": "not a u.s. citizen"
       }
     }
   ]
