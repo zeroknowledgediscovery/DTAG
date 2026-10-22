@@ -1,19 +1,19 @@
 persona,label,policy,n_comparisons,final_sign_flip_pct,direction_sign_flip_pct,mean_abs_change
-cm_rural_alabama,Alabama,right,120,0.0,11.666666666666666,0.010660596600063644
-cm_rural_alabama,Alabama,left,120,0.0,3.3333333333333335,0.00408556260177726
+cm_rural_alabama,Alabama,right,120,0.0,11.666666666666666,0.01066059660006364
+cm_rural_alabama,Alabama,left,120,0.0,3.3333333333333335,0.004085562601777259
 cm_rural_alabama,Alabama,neutral,120,0.0,0.0,0.0
-wf_new_york_city,New York,right,120,0.0,26.666666666666668,0.02791111768183374
-wf_new_york_city,New York,left,120,0.0,8.333333333333334,0.0024543710630729218
+wf_new_york_city,New York,right,120,0.0,26.666666666666668,0.027911117681833728
+wf_new_york_city,New York,left,120,0.0,8.333333333333334,0.0024543710630729283
 wf_new_york_city,New York,neutral,120,0.0,0.0,0.0
-religious_conservative_woman_texas,Texas,right,120,10.833333333333334,30.0,0.026860204906450018
-religious_conservative_woman_texas,Texas,left,120,0.0,3.3333333333333335,0.001047022911840124
+religious_conservative_woman_texas,Texas,right,120,10.833333333333334,30.0,0.026860204906450028
+religious_conservative_woman_texas,Texas,left,120,0.0,3.3333333333333335,0.0010470229118401243
 religious_conservative_woman_texas,Texas,neutral,120,0.0,0.0,0.0
-secular_liberal_man_seattle,Seattle,right,120,0.0,13.333333333333334,0.011631074989590694
-secular_liberal_man_seattle,Seattle,left,120,0.0,0.0,0.0019571291725653094
+secular_liberal_man_seattle,Seattle,right,120,0.0,13.333333333333334,0.01163107498959069
+secular_liberal_man_seattle,Seattle,left,120,0.0,0.0,0.00195712917256531
 secular_liberal_man_seattle,Seattle,neutral,120,0.0,0.0,0.0
-hispanic_catholic_man_arizona,Arizona,right,120,20.0,20.833333333333332,0.025941899129153796
-hispanic_catholic_man_arizona,Arizona,left,120,1.6666666666666667,2.5,0.0037392204918519217
+hispanic_catholic_man_arizona,Arizona,right,120,20.0,20.833333333333332,0.025941899129153814
+hispanic_catholic_man_arizona,Arizona,left,120,1.6666666666666667,2.5,0.003739220491851921
 hispanic_catholic_man_arizona,Arizona,neutral,120,0.0,0.0,0.0
-black_churchgoing_woman_atlanta,Atlanta,right,120,5.0,6.666666666666667,0.010403459043585353
-black_churchgoing_woman_atlanta,Atlanta,left,120,1.6666666666666667,0.0,0.0006742002114317293
+black_churchgoing_woman_atlanta,Atlanta,right,120,5.0,6.666666666666667,0.010403459043585358
+black_churchgoing_woman_atlanta,Atlanta,left,120,1.6666666666666667,0.0,0.0006742002114317317
 black_churchgoing_woman_atlanta,Atlanta,neutral,120,0.0,0.0,0.0
