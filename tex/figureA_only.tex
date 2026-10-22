@@ -1,0 +1,26 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=.58in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots,fillbetween}
+\pgfplotsset{compat=1.18}
+\pagestyle{empty}
+\begin{document}
+\vspace*{2mm}
+\begin{center}\Large\bfseries Figure 2. Adaptive questioning of six synthetic personas\end{center}
+\vspace{4mm}
+\noindent
+\begin{minipage}[t]{.487\textwidth}
+\centering\vspace{0pt}
+{\footnotesize\bfseries (a) Endpoint displacement}\par\vspace{1mm}
+\input{../experiments/persona_push/data/figures/fig1_endpoints_pgfplots.tex}
+\end{minipage}\hfill
+\begin{minipage}[t]{.487\textwidth}
+\centering\vspace{0pt}
+{\footnotesize\bfseries (b) Question-by-question trajectories}\par\vspace{1mm}
+\input{../experiments/persona_push/data/figures/fig2_trajectories_pgfplots.tex}
+\end{minipage}
+\end{document}

@@ -29,13 +29,13 @@ POLICIES=["right","left","neutral"]
 ARMS=["right","left","neutral","random"]
 SHIFTS={"right":-.27,"left":-.09,"neutral":.09,"random":.27}
 STYLES={
- "right":r"black,very thick,mark=*,mark size=1.9pt",
- "left":r"black,dashed,very thick,mark=o,mark size=2pt",
- "neutral":r"teal!65!black,thick,mark=square*,mark size=1.8pt",
- "random":r"black!40,thick,densely dotted,mark=triangle*,mark size=1.9pt",
+ "right":r"dtred,very thick,mark=*,mark size=2pt",
+ "left":r"dtblue,very thick,mark=square*,mark size=1.85pt",
+ "neutral":r"dtgray,thick,mark=diamond*,mark size=1.85pt",
+ "random":r"black,thick,mark=triangle*,mark size=1.95pt",
 }
-STYLE_LINES={"right":"black,very thick","left":"black,thick,dashed",
-             "neutral":"teal!65!black,thick","random":"black!50,thick,dash dot"}
+STYLE_LINES={"right":"dtred,very thick","left":"dtblue,very thick",
+             "neutral":"dtgray,thick,densely dashed","random":"black,thick"}
 PALETTE=("black","black!60","teal!65!black")
 PALETTE_MAP=("black!14","black!10","teal!15")
 STYLE_OPTS=r"tick label style={font=\scriptsize},label style={font=\footnotesize},title style={font=\footnotesize\bfseries},grid=major,grid style={draw=black!8},axis line style={black!55},tick style={black!55},enlargelimits=false"
@@ -72,12 +72,12 @@ def go_endpoints(df,out,steps):
             if not (lo<=mean+1e-9 and mean<=hi+1e-9):raise ValueError('Invalid CI')
             rows.append({'y':6-i+SHIFTS[pol],'mean':mean,'minus':max(0,mean-lo),'plus':max(0,hi-mean)})
         name=f'pub_endpoint_{pol}.csv';csv_write(pd.DataFrame(rows),out/name)
-        # Fine hairline confidence whiskers and strong black markers
+        # Colored policy markers, thin neutral CI whiskers (no dashed point symbols).
         style=STYLES[pol]
         xx.append(r'\addplot['+style+r',only marks,error bars/.cd,x dir=both,x explicit,error bar style={line width=.85pt,black!65},error mark options={rotate=90,mark size=2pt}] '
              +r'table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{'+plot_path(out,name)+r'};')
         xx.append(r'\addlegendentry{'+{'right':'Right push','left':'Left push','neutral':'Neutral drift','random':'Random questions'}[pol]+'}')
-    lines=[r'\begin{tikzpicture}',(r'\begin{axis}[width=.89\linewidth,height=11.3cm,xmin=-.095,xmax=.11,ymin=.38,ymax=6.7,'
+    lines=[r'\begin{tikzpicture}',r'\definecolor{dtred}{RGB}{133,39,48}',r'\definecolor{dtblue}{RGB}{34,68,116}',r'\definecolor{dtgray}{RGB}{121,123,127}',(r'\begin{axis}[width=.89\linewidth,height=10.25cm,xmin=-.095,xmax=.11,ymin=.38,ymax=6.7,'
            r'ytick={1,2,3,4,5,6},yticklabels={Atlanta,Arizona,Seattle,Texas,New York,Alabama},'
            r'xtick={-.08,-.04,0,.04,.08},scaled x ticks=false,xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},xticklabel style={font=\footnotesize},'
            r'xlabel={Mean $\overline{\Delta I_\Phi}$ after '+str(steps)+r' questions},'
@@ -88,38 +88,52 @@ def go_endpoints(df,out,steps):
 
 
 def go_trajectories(df,out,steps):
+    """Six compact trajectory panels arranged two across by three down.
+
+    The individual horizontal axes are ~half the width of the former
+    vertically stacked plots. One palette is shared with the endpoint panel.
+    """
     necessary={'persona','policy','step','mean_net_delta','ci_low','ci_high'}
     if necessary-set(df.columns):raise ValueError('Trajectory data missing '+str(necessary-set(df.columns)))
-    lo=[]; hi=[]
+    lo=[];hi=[]
     for person in PERSONAS:
         for pol in ARMS:
             x=df[(df.persona==person)&(df.policy==pol)].sort_values('step')
             if list(x.step)!=list(range(steps+1)):raise ValueError('Missing steps '+person+pol)
             csv_write(pd.DataFrame({'step':x.step,'mean':x.mean_net_delta,'lo':x.ci_low,'hi':x.ci_high}),out/f'pub_trajectory_{person}_{pol}.csv')
             lo.extend(x.ci_low.to_numpy());hi.extend(x.ci_high.to_numpy())
-    low=min(lo); high=max(hi);delta=(high-low)*.06
-    ax=r'\begin{groupplot}[group style={group size=1 by 6,horizontal sep=0cm,vertical sep=.48cm},width=.77\linewidth,height=1.36cm,scale only axis,ytick={-.05,0,.05},yticklabel style={font=\tiny},xtick={0,5,10},'+f'xmin=0,xmax={steps},ymin={low-delta:.5f},ymax={high+delta:.5f},'+STYLE_OPTS+r']'
-    parts=[r'\begin{tikzpicture}',ax]
-    # Pair conservatives and liberals per row
-    order=[PERSONAS[i] for i in [0,1,2,3,4,5]]
-    for i,p in enumerate(order):
-        opts=['ylabel={'+LABELS[i]+'}',r'ylabel style={font=\scriptsize}']
-        if i==5:opts.append('xlabel={Question position}')
-        else:opts.append('xticklabels={}')
+    low=min(lo);high=max(hi);delta=(high-low)*.06
+    ax=(r'\begin{groupplot}[group style={group size=2 by 3,horizontal sep=.77cm,vertical sep=.72cm},'
+        r'width=.355\linewidth,height=2.60cm,scale only axis,'
+        r'ytick={-.05,0,.05},xtick={0,5,10},'
+        r'yticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},'
+        r'yticklabel style={font=\tiny},xticklabel style={font=\tiny},'
+        +f'xmin=0,xmax={steps},ymin={low-delta:.5f},ymax={high+delta:.5f},'
+        +STYLE_OPTS+r']')
+    parts=[r'\begin{tikzpicture}',
+           r'\definecolor{dtred}{RGB}{133,39,48}',
+           r'\definecolor{dtblue}{RGB}{34,68,116}',
+           r'\definecolor{dtgray}{RGB}{121,123,127}',ax]
+    for i,p in enumerate(PERSONAS):
+        opts=['title={'+LABELS[i]+'}',r'title style={font=\scriptsize\bfseries}']
+        if i%2==1:opts.append('yticklabels={}')
+        if i<4:opts.append('xticklabels={}')
+        else:opts.append('xlabel={Question}')
         parts.append(r'\nextgroupplot['+','.join(opts)+']')
-        parts.append(f'\\addplot[black!32,densely dotted,forget plot] coordinates{{(0,0) ({steps},0)}};')
+        parts.append(f'\\addplot[black!27,densely dotted,forget plot] coordinates{{(0,0) ({steps},0)}};')
         for pol in ARMS:
             fn=plot_path(out,f'pub_trajectory_{p}_{pol}.csv')
             key=(''.join(x for x in p if x.isalpha())+pol)
             if pol in ('right','left'):
-                for j,col in [('lo','lo'),('hi','hi')]:
-                    parts.append(r'\addplot[draw=none,forget plot,name path='+j+key+r'] table[x=step,y='+col+r',col sep=comma]{'+fn+r'};')
-                parts.append(r'\addplot[draw=none,fill='+('black!14' if pol=='right' else 'black!7')+r',forget plot] fill between[of=h i];'.replace('h i','hi'+key+' and lo'+key))
+                for j in ('lo','hi'):
+                    parts.append(r'\addplot[draw=none,forget plot,name path='+j+key
+                                 +r'] table[x=step,y='+j+r',col sep=comma]{'+fn+r'};')
+                parts.append(r'\addplot[draw=none,fill='
+                             +('dtred!11' if pol=='right' else 'dtblue!11')
+                             +r',forget plot] fill between[of=hi'+key+' and lo'+key+'];')
             parts.append(r'\addplot['+STYLE_LINES[pol]+r',no marks,forget plot] table[x=step,y=mean,col sep=comma]{'+fn+r'};')
-    parts.extend([r'\end{groupplot}',
-                  r'\end{tikzpicture}'])
+    parts.extend([r'\end{groupplot}',r'\end{tikzpicture}'])
     put(out,'fig2_trajectories_pgfplots.tex','\n'.join(parts))
-
 
 def go_heatmaps(out,steps,reps,nactive):
     """One figure, 18 nearly-square heatmaps in a 3-column x 6-row matrix."""

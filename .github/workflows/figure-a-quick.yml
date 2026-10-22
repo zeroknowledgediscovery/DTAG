@@ -1,0 +1,52 @@
+name: DTAG Figure A quick preview
+on:
+  push:
+    branches: [experiment-integrated-10q]
+    paths:
+      - experiments/persona_push/publication_pgfplots.py
+      - experiments/persona_push/data/figures/fig1_endpoints_pgfplots.tex
+      - experiments/persona_push/data/figures/fig2_trajectories_pgfplots.tex
+      - tex/figureA_only.tex
+      - .github/workflows/figure-a-quick.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  figure-a:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare frozen endpoint and trajectory tables (no stochastic simulation)
+        run: |
+          python -m pip install numpy pandas
+          python - <<'PY'
+          from pathlib import Path
+          import pandas as pd
+          from experiments.persona_push.publication_pgfplots import go_endpoints, go_trajectories
+          src=Path("experiments/persona_push/data/historical_local_20261021")
+          out=Path("experiments/persona_push/runs/historical_q10_r40/figures")
+          out.mkdir(parents=True,exist_ok=True)
+          go_endpoints(pd.read_csv(src/"endpoints.csv"),out,10)
+          go_trajectories(pd.read_csv(src/"trajectory_ci.csv"),out,10)
+          for name in ("fig1_endpoints_pgfplots.tex","fig2_trajectories_pgfplots.tex"):
+              archived=(Path("experiments/persona_push/data/figures")/name).read_text()
+              generated=(out/name).read_text()
+              assert archived.strip()==generated.strip(), f"Checked-in source differs from generator: {name}"
+          print("Archived data regenerated and frozen sources agree.")
+          PY
+      - name: Compile single Figure A PDF
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: figureA_only.tex
+          working_directory: tex
+          args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
+      - name: Upload Figure A only
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtag-figure-a-restyled
+          path: tex/figureA_only.pdf
+          if-no-files-found: error
