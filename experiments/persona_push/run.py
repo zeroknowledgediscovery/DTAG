@@ -89,6 +89,9 @@ def main():
     p.add_argument('--out',type=Path,help='Output directory; default indexed by steps and reps')
     p.add_argument('--figures-only',action='store_true',
                    help='Reuse CSVs already under --out, skipping native simulations')
+    p.add_argument('--resume',action='store_true',
+                   help='Recover standalone order PDF plus the three PGFPlots figures '
+                        'from completed CSV outputs; never rerun native simulations')
     p.add_argument('--skip-plot',action='store_true',help='Run native stages only')
     args=p.parse_args()
     if args.steps<3 or args.reps<2 or args.workers<1 or args.bootstrap<100:
@@ -100,7 +103,7 @@ def main():
     order=out/'order'
     fixed=out/'fixed_question_sets.json'
     figures=out/'figures'
-    if not args.figures_only:
+    if not (args.figures_only or args.resume):
         launch([sys.executable,ROOT/'scripts/dtag_persona_push_study.py',
                 '--model',args.model,'--steps',args.steps,'--reps',args.reps,
                 '--bootstrap',args.bootstrap,'--workers',args.workers,
@@ -111,8 +114,16 @@ def main():
                 '--reps',args.reps,'--bootstrap',args.bootstrap,
                 '--workers',args.workers,'--seed',args.seed,'--out',order])
     else:
-        for file in [adaptive/'trajectories.csv',adaptive/'trajectory_ci.csv',order/'run_endpoints.csv']:
+        for file in [adaptive/'trajectories.csv',adaptive/'trajectory_ci.csv',
+                     order/'run_endpoints.csv',order/'question_draws.csv']:
             if not file.is_file():raise FileNotFoundError(file)
+        if args.resume:
+            if not fixed.is_file():
+                freeze_sets(adaptive/'trajectories.csv',args.steps,args.reps,fixed)
+            launch([sys.executable,ROOT/'scripts/dtag_fixed_10q_order_test.py',
+                    '--finalize-only','--steps',args.steps,'--reps',args.reps,
+                    '--sets',fixed,'--bootstrap',args.bootstrap,
+                    '--seed',args.seed,'--out',order])
     if not args.skip_plot:
         launch([sys.executable,HERE/'plot_pgf.py',
                 '--trajectories',adaptive/'trajectories.csv',
@@ -124,7 +135,7 @@ def main():
     manifest={'model':args.model,'steps':args.steps,'reps':args.reps,
               'seed':args.seed,'bootstrap':args.bootstrap,'workers':args.workers,
               'objective':args.objective,'max_swaps':args.max_swaps,
-              'figures_only':args.figures_only,
+              'figures_only':args.figures_only,'resume':args.resume,
               'adaptive':str(adaptive),'fixed_sets':str(fixed),
               'order':str(order),'figures':str(figures)}
     (out/'integrated_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
