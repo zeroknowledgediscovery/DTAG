@@ -105,7 +105,7 @@ def go_trajectories(df,out,steps):
     low=min(lo);high=max(hi);delta=(high-low)*.06
     ax=(r'\begin{groupplot}[group style={group size=2 by 3,horizontal sep=.77cm,vertical sep=.72cm},'
         r'width=.355\linewidth,height=2.60cm,scale only axis,'
-        r'ytick={-.05,0,.05},xtick={0,5,10},'
+        r'ytick={-.05,0,.05},scaled y ticks=false,xtick={0,5,10},'
         r'yticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},'
         r'yticklabel style={font=\tiny},xticklabel style={font=\tiny},'
         +f'xmin=0,xmax={steps},ymin={low-delta:.5f},ymax={high+delta:.5f},'
