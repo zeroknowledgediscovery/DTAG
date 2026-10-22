@@ -1,0 +1,58 @@
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=3 by 6,horizontal sep=.95cm,vertical sep=.43cm},width=.264\textwidth,height=2.10cm,xmin=-0.0310,xmax=0.0310,ymin=.5,ymax=3.5,ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},xticklabel style={font=\tiny},yticklabel style={font=\scriptsize},label style={font=\scriptsize},title style={font=\scriptsize\bfseries},grid=major,grid style={draw=black!7},axis line style={draw=black!35},tick style={draw=black!30},scaled x ticks=false,xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}}]
+\nextgroupplot[title={Right-derived},ylabel={Alabama},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_cm_rural_alabama_right.csv};
+\nextgroupplot[title={Left-derived},yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_cm_rural_alabama_left.csv};
+\nextgroupplot[title={Neutral-derived},yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_cm_rural_alabama_neutral.csv};
+\nextgroupplot[ylabel={New York},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_wf_new_york_city_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_wf_new_york_city_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_wf_new_york_city_neutral.csv};
+\nextgroupplot[ylabel={Texas},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_religious_conservative_woman_texas_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_religious_conservative_woman_texas_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_religious_conservative_woman_texas_neutral.csv};
+\nextgroupplot[ylabel={Seattle},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_secular_liberal_man_seattle_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_secular_liberal_man_seattle_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_secular_liberal_man_seattle_neutral.csv};
+\nextgroupplot[ylabel={Arizona},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_hispanic_catholic_man_arizona_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_hispanic_catholic_man_arizona_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_hispanic_catholic_man_arizona_neutral.csv};
+\nextgroupplot[ylabel={Atlanta},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_black_churchgoing_woman_atlanta_right.csv};
+\nextgroupplot[yticklabels={},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_black_churchgoing_woman_atlanta_left.csv};
+\nextgroupplot[yticklabels={},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=.95pt,black!75},error mark options={mark size=1.4pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{../experiments/persona_push/runs/historical_q10_r40/figures/pub_order_black_churchgoing_woman_atlanta_neutral.csv};
+\end{groupplot}
+\end{tikzpicture}
