@@ -36,7 +36,7 @@ jobs:
         run: |
           git config user.name 'DTAG publication builder'
           git config user.email 'actions@users.noreply.github.com'
-          git add experiments/persona_push/data/figures/
+          git add -f experiments/persona_push/data/figures/
           if ! git diff --cached --quiet; then
             git commit -m 'Regenerate five publication figure groups from archived 10q/40r observations'
             git push origin HEAD:experiment-integrated-10q
