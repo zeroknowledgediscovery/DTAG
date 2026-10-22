@@ -1,0 +1,95 @@
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 3,horizontal sep=1.25cm,vertical sep=1.15cm},width=.45\textwidth,height=3.15cm,xmin=0,xmax=10,xlabel={Question position},ylabel={$\Delta I_\Phi$},grid=major,tick label style={font=\scriptsize},label style={font=\scriptsize},title style={font=\footnotesize}]
+\nextgroupplot[title={Alabama}]
+\addplot[black!40,densely dashed,forget plot] coordinates {(0,0) (3,0)};
+\addplot[draw=none,forget plot,name path=lowcmruralalabamaright] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_right.csv};
+\addplot[draw=none,forget plot,name path=highcmruralalabamaright] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_right.csv};
+\addplot[draw=none,fill=red!75!black,fill opacity=.12,forget plot] fill between[of=highcmruralalabamaright and lowcmruralalabamaright];
+\addplot[red!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_right.csv};
+\addplot[draw=none,forget plot,name path=lowcmruralalabamaleft] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_left.csv};
+\addplot[draw=none,forget plot,name path=highcmruralalabamaleft] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_left.csv};
+\addplot[draw=none,fill=blue!75!black,fill opacity=.12,forget plot] fill between[of=highcmruralalabamaleft and lowcmruralalabamaleft];
+\addplot[blue!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_left.csv};
+\addplot[teal!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_neutral.csv};
+\addplot[draw=none,forget plot,name path=lowcmruralalabamarandom] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_random.csv};
+\addplot[draw=none,forget plot,name path=highcmruralalabamarandom] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_random.csv};
+\addplot[draw=none,fill=black!45,fill opacity=.12,forget plot] fill between[of=highcmruralalabamarandom and lowcmruralalabamarandom];
+\addplot[black!45,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_cm_rural_alabama_random.csv};
+\nextgroupplot[title={New York}]
+\addplot[black!40,densely dashed,forget plot] coordinates {(0,0) (3,0)};
+\addplot[draw=none,forget plot,name path=lowwfnewyorkcityright] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_right.csv};
+\addplot[draw=none,forget plot,name path=highwfnewyorkcityright] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_right.csv};
+\addplot[draw=none,fill=red!75!black,fill opacity=.12,forget plot] fill between[of=highwfnewyorkcityright and lowwfnewyorkcityright];
+\addplot[red!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_right.csv};
+\addplot[draw=none,forget plot,name path=lowwfnewyorkcityleft] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_left.csv};
+\addplot[draw=none,forget plot,name path=highwfnewyorkcityleft] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_left.csv};
+\addplot[draw=none,fill=blue!75!black,fill opacity=.12,forget plot] fill between[of=highwfnewyorkcityleft and lowwfnewyorkcityleft];
+\addplot[blue!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_left.csv};
+\addplot[teal!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_neutral.csv};
+\addplot[draw=none,forget plot,name path=lowwfnewyorkcityrandom] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_random.csv};
+\addplot[draw=none,forget plot,name path=highwfnewyorkcityrandom] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_random.csv};
+\addplot[draw=none,fill=black!45,fill opacity=.12,forget plot] fill between[of=highwfnewyorkcityrandom and lowwfnewyorkcityrandom];
+\addplot[black!45,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_wf_new_york_city_random.csv};
+\nextgroupplot[title={Texas}]
+\addplot[black!40,densely dashed,forget plot] coordinates {(0,0) (3,0)};
+\addplot[draw=none,forget plot,name path=lowreligiousconservativewomantexasright] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_right.csv};
+\addplot[draw=none,forget plot,name path=highreligiousconservativewomantexasright] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_right.csv};
+\addplot[draw=none,fill=red!75!black,fill opacity=.12,forget plot] fill between[of=highreligiousconservativewomantexasright and lowreligiousconservativewomantexasright];
+\addplot[red!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_right.csv};
+\addplot[draw=none,forget plot,name path=lowreligiousconservativewomantexasleft] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_left.csv};
+\addplot[draw=none,forget plot,name path=highreligiousconservativewomantexasleft] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_left.csv};
+\addplot[draw=none,fill=blue!75!black,fill opacity=.12,forget plot] fill between[of=highreligiousconservativewomantexasleft and lowreligiousconservativewomantexasleft];
+\addplot[blue!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_left.csv};
+\addplot[teal!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_neutral.csv};
+\addplot[draw=none,forget plot,name path=lowreligiousconservativewomantexasrandom] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_random.csv};
+\addplot[draw=none,forget plot,name path=highreligiousconservativewomantexasrandom] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_random.csv};
+\addplot[draw=none,fill=black!45,fill opacity=.12,forget plot] fill between[of=highreligiousconservativewomantexasrandom and lowreligiousconservativewomantexasrandom];
+\addplot[black!45,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_religious_conservative_woman_texas_random.csv};
+\nextgroupplot[title={Seattle}]
+\addplot[black!40,densely dashed,forget plot] coordinates {(0,0) (3,0)};
+\addplot[draw=none,forget plot,name path=lowsecularliberalmanseattleright] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_right.csv};
+\addplot[draw=none,forget plot,name path=highsecularliberalmanseattleright] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_right.csv};
+\addplot[draw=none,fill=red!75!black,fill opacity=.12,forget plot] fill between[of=highsecularliberalmanseattleright and lowsecularliberalmanseattleright];
+\addplot[red!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_right.csv};
+\addplot[draw=none,forget plot,name path=lowsecularliberalmanseattleleft] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_left.csv};
+\addplot[draw=none,forget plot,name path=highsecularliberalmanseattleleft] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_left.csv};
+\addplot[draw=none,fill=blue!75!black,fill opacity=.12,forget plot] fill between[of=highsecularliberalmanseattleleft and lowsecularliberalmanseattleleft];
+\addplot[blue!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_left.csv};
+\addplot[teal!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_neutral.csv};
+\addplot[draw=none,forget plot,name path=lowsecularliberalmanseattlerandom] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_random.csv};
+\addplot[draw=none,forget plot,name path=highsecularliberalmanseattlerandom] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_random.csv};
+\addplot[draw=none,fill=black!45,fill opacity=.12,forget plot] fill between[of=highsecularliberalmanseattlerandom and lowsecularliberalmanseattlerandom];
+\addplot[black!45,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_secular_liberal_man_seattle_random.csv};
+\nextgroupplot[title={Arizona}]
+\addplot[black!40,densely dashed,forget plot] coordinates {(0,0) (3,0)};
+\addplot[draw=none,forget plot,name path=lowhispaniccatholicmanarizonaright] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_right.csv};
+\addplot[draw=none,forget plot,name path=highhispaniccatholicmanarizonaright] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_right.csv};
+\addplot[draw=none,fill=red!75!black,fill opacity=.12,forget plot] fill between[of=highhispaniccatholicmanarizonaright and lowhispaniccatholicmanarizonaright];
+\addplot[red!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_right.csv};
+\addplot[draw=none,forget plot,name path=lowhispaniccatholicmanarizonaleft] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_left.csv};
+\addplot[draw=none,forget plot,name path=highhispaniccatholicmanarizonaleft] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_left.csv};
+\addplot[draw=none,fill=blue!75!black,fill opacity=.12,forget plot] fill between[of=highhispaniccatholicmanarizonaleft and lowhispaniccatholicmanarizonaleft];
+\addplot[blue!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_left.csv};
+\addplot[teal!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_neutral.csv};
+\addplot[draw=none,forget plot,name path=lowhispaniccatholicmanarizonarandom] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_random.csv};
+\addplot[draw=none,forget plot,name path=highhispaniccatholicmanarizonarandom] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_random.csv};
+\addplot[draw=none,fill=black!45,fill opacity=.12,forget plot] fill between[of=highhispaniccatholicmanarizonarandom and lowhispaniccatholicmanarizonarandom];
+\addplot[black!45,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_hispanic_catholic_man_arizona_random.csv};
+\nextgroupplot[title={Atlanta}]
+\addplot[black!40,densely dashed,forget plot] coordinates {(0,0) (3,0)};
+\addplot[draw=none,forget plot,name path=lowblackchurchgoingwomanatlantaright] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_right.csv};
+\addplot[draw=none,forget plot,name path=highblackchurchgoingwomanatlantaright] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_right.csv};
+\addplot[draw=none,fill=red!75!black,fill opacity=.12,forget plot] fill between[of=highblackchurchgoingwomanatlantaright and lowblackchurchgoingwomanatlantaright];
+\addplot[red!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_right.csv};
+\addplot[draw=none,forget plot,name path=lowblackchurchgoingwomanatlantaleft] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_left.csv};
+\addplot[draw=none,forget plot,name path=highblackchurchgoingwomanatlantaleft] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_left.csv};
+\addplot[draw=none,fill=blue!75!black,fill opacity=.12,forget plot] fill between[of=highblackchurchgoingwomanatlantaleft and lowblackchurchgoingwomanatlantaleft];
+\addplot[blue!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_left.csv};
+\addplot[teal!75!black,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_neutral.csv};
+\addplot[draw=none,forget plot,name path=lowblackchurchgoingwomanatlantarandom] table[x=step,y=lo,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_random.csv};
+\addplot[draw=none,forget plot,name path=highblackchurchgoingwomanatlantarandom] table[x=step,y=hi,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_random.csv};
+\addplot[draw=none,fill=black!45,fill opacity=.12,forget plot] fill between[of=highblackchurchgoingwomanatlantarandom and lowblackchurchgoingwomanatlantarandom];
+\addplot[black!45,thick,no marks,forget plot] table[x=step,y=mean,col sep=comma]{../experiments/persona_push/data/figures/trajectory_black_churchgoing_woman_atlanta_random.csv};
+\end{groupplot}
+\node[font=\scriptsize,anchor=south] at (current bounding box.north) {\textcolor{red!75!black}{\rule{6mm}{.7pt}} Right \quad \textcolor{blue!75!black}{\rule{6mm}{.7pt}} Left \quad \textcolor{teal!75!black}{\rule{6mm}{.7pt}} Neutral \quad \textcolor{black!45}{\rule{6mm}{.7pt}} Random};
+\end{tikzpicture}
