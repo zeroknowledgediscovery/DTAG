@@ -58,6 +58,12 @@ def main():
              '--steps','10','--reps','40','--objective','allpairs',
              '--max-swaps',str(args.max_swaps),'--out',str(figures)]
         subprocess.run(cmd,cwd=ROOT,check=True)
+        publication=[sys.executable,str(HERE/'publication_pgfplots.py'),
+                     '--adaptive-endpoints',str(adaptive/'endpoints.csv'),
+                     '--trajectory-ci',str(adaptive/'trajectory_ci.csv'),
+                     '--order-endpoints',str(order/'run_endpoints.csv'),
+                     '--steps','10','--reps','40','--out',str(figures)]
+        subprocess.run(publication,cwd=ROOT,check=True)
     print('Recovered verified historical 10-question datasets under',out)
 
 
