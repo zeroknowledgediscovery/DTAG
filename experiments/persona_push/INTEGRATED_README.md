@@ -104,34 +104,36 @@ generates a fresh set of PGFPlot inputs in that run's `figures/` folder.
 This may yield an equally valid *different* approximate seriation from
 the frozen archived `data/figures/` question-index ordering.
 
-## Three real PGFPlots figures in the manuscript
+## Five publication figures (seven PGFPlots sheets)
 
-The source `tex/main.tex` includes
-`experiments/persona_push/NATIVE_RESULTS_SECTION.tex`:
+The manuscript `tex/main.tex` includes `NATIVE_RESULTS_SECTION.tex`.
+The figures are *native* PGFPlots with versioned external CSV data,
+regenerated directly from archived 10-question, 40-repetition simulations:
 
-1. `fig1_trajectories_pgfplots.tex`: six 10-step native trajectory panels
-   with pointwise 95% bootstrap bands and four question-selection policies;
-2. `fig2_question_heatmaps_pgfplots.tex`: 18 optimized categorical identity
-   matrices (6 personas x right/left/neutral policies, 40 runs x 10 questions);
-3. `fig3_order_sign_reversal_pgfplots.tex`: endpoint and movement-direction
-   sign reversals caused by fixed-set permutations.
+1. `fig1_endpoints_pgfplots.tex`: six-persona policy endpoints, 95% bootstrap whiskers, black/pastel point markers.
+2. `fig2_trajectories_pgfplots.tex`: six panels of mean response trajectories with 95% pointwise confidence bands.
+3. `fig3a_heatmaps_pgfplots.tex` and `fig3b_heatmaps_pgfplots.tex`: all 18 globally optimized categorical heatmaps, each square; split into two legible 3×3 sheets rather than 18 tiny strips.
+4. `fig4a_order_effects_pgfplots.tex` and `fig4b_order_effects_pgfplots.tex`: the exact *Python-analysis presentation* of the six-persona × three-source-policy paired order effects, with reverse/shuffle1/shuffle2 mean contrasts and 95% paired bootstrap whiskers. These are not bar plots.
+5. `fig5_sign_reversal_probabilities_pgfplots.tex`: probability of reversing final ideological sign or direction of net movement, with 95% bootstrap CIs clustered by independent repetition index (the three alternative orders share one baseline realization).
 
-The mock numerical-results figure in the original manuscript was removed;
-the conceptual DTAG system architecture remains.
-
-Compile from the `tex` directory:
+Create both PDFs from the repo's **archived original datasets only**, without
+loading or sampling a native LSM:
 
 ```bash
+python experiments/persona_push/archive_historical.py --plot
 cd tex
-pdflatex -interaction=nonstopmode main.tex
-bibtex main
-pdflatex -interaction=nonstopmode main.tex
-pdflatex -interaction=nonstopmode main.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error figures_preview.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-Requires TeXLive `pgfplots` with `groupplots` and `fillbetween`
-libraries, and the IEEEtran class. Plot data paths assume compilation
-from `tex/`.
+For new native runs, `run.py --steps N --reps R` invokes both
+`plot_pgf.py` (index optimization and analytical plot tables) and
+`publication_pgfplots.py` (all five final figure designs).
+The figures in `experiments/persona_push/data/figures/` are the frozen
+historical *outputs* generated using N=10 and R=40.
+The archived historical order runs and local adaptive runs come from
+different native execution environments; compare effects within their
+respective experiments, not absolute initial index values across environments.
 
 ## Interpretation and cautions
 
