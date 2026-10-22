@@ -1,0 +1,42 @@
+name: DTAG 10-question order effect
+
+on:
+  push:
+    branches: [dev]
+    paths:
+      - 'scripts/dtag_fixed_10q_order_test.py'
+      - 'experiments/persona_push/fixed_10q_order_sets.json'
+      - '.github/workflows/dtag-fixed-10q-order.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-order-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      DTAG_BUILD_JOBS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Python runtime
+        run: python -m pip install -r requirements.txt
+      - name: Build native DTAG LSM
+        run: bash scripts/build_native_bindings.sh
+      - name: Run deterministic fixed-set permutation comparisons
+        run: |
+          python scripts/dtag_fixed_10q_order_test.py \
+            --model gss/gss_2024 --reps 40 --workers 2 \
+            --bootstrap 2000 --seed 20261021 \
+            --out outputs/dtag_persona_push/order_replay_10q
+      - name: Upload CSV and PDF results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtag-fixed10-order-replay
+          path: outputs/dtag_persona_push/order_replay_10q/
+          if-no-files-found: warn
