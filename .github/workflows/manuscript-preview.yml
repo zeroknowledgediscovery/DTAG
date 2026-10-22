@@ -1,5 +1,5 @@
 name: Compile DTAG integrated publication figures and manuscript
-# Consolidated figure floats and column-width PGFPlots layouts; no native simulation
+# Final axis-scale verification of consolidated figure floats; no native simulation
 
 on:
   push:
