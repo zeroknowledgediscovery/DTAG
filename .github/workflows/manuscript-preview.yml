@@ -1,0 +1,31 @@
+name: Compile DTAG integrated manuscript PDF
+
+on:
+  push:
+    branches:
+      - experiment-integrated-10q
+    paths:
+      - .github/workflows/manuscript-preview.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manuscript:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile existing PGFPlots figures and manuscript (no native simulations)
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+          working_directory: tex
+          args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
+      - name: Upload compiled manuscript
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtag-integrated-manuscript-pdf
+          path: tex/main.pdf
+          if-no-files-found: error
