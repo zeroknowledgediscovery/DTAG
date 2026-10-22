@@ -78,11 +78,11 @@ def go_endpoints(df,out,steps):
         xx.append(r'\addplot['+style+r',only marks,error bars/.cd,x dir=both,x explicit,error bar style={line width=.85pt,black!65},error mark options={rotate=90,mark size=2pt}] '
              +r'table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{'+plot_path(out,name)+r'};')
         xx.append(r'\addlegendentry{'+{'right':'Right push','left':'Left push','neutral':'Neutral drift','random':'Random questions'}[pol]+'}')
-    lines=[r'\begin{tikzpicture}',(r'\begin{axis}[width=.93\textwidth,height=9.2cm,xmin=-.095,xmax=.11,ymin=.38,ymax=6.7,'
+    lines=[r'\begin{tikzpicture}',(r'\begin{axis}[width=.89\linewidth,height=11.3cm,xmin=-.095,xmax=.11,ymin=.38,ymax=6.7,'
            r'ytick={1,2,3,4,5,6},yticklabels={Atlanta,Arizona,Seattle,Texas,New York,Alabama},'
            r'xtick={-.08,-.04,0,.04,.08},scaled x ticks=false,xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},xticklabel style={font=\footnotesize},'
-           r'xlabel={Mean displacement after '+str(steps)+r' questions, $\overline{\Delta I_\Phi}$},'
-           r'legend style={draw=none,fill=none,font=\footnotesize,legend columns=4,column sep=11pt,at={(.5,1.03)},anchor=south},'
+           r'xlabel={Mean $\overline{\Delta I_\Phi}$ after '+str(steps)+r' questions},'
+           r'legend style={draw=none,fill=none,font=\scriptsize,legend columns=2,column sep=3pt,at={(.5,1.03)},anchor=south},'
            +STYLE_OPTS+r']'),r'\addplot[black!60,thick,forget plot] coordinates{(0,.5)(0,6.6)};']
     lines+=xx+[r'\end{axis}',r'\end{tikzpicture}']
     put(out,'fig1_endpoints_pgfplots.tex','\n'.join(lines))
@@ -99,14 +99,13 @@ def go_trajectories(df,out,steps):
             csv_write(pd.DataFrame({'step':x.step,'mean':x.mean_net_delta,'lo':x.ci_low,'hi':x.ci_high}),out/f'pub_trajectory_{person}_{pol}.csv')
             lo.extend(x.ci_low.to_numpy());hi.extend(x.ci_high.to_numpy())
     low=min(lo); high=max(hi);delta=(high-low)*.06
-    ax=r'\begin{groupplot}[group style={group size=2 by 3,horizontal sep=1.4cm,vertical sep=1.2cm},width=.425\textwidth,height=3.55cm,'+f'xmin=0,xmax={steps},ymin={low-delta:.5f},ymax={high+delta:.5f},'+STYLE_OPTS+r']'
+    ax=r'\begin{groupplot}[group style={group size=1 by 6,horizontal sep=0cm,vertical sep=.24cm},width=.87\linewidth,height=1.62cm,'+f'xmin=0,xmax={steps},ymin={low-delta:.5f},ymax={high+delta:.5f},'+STYLE_OPTS+r']'
     parts=[r'\begin{tikzpicture}',ax]
     # Pair conservatives and liberals per row
     order=[PERSONAS[i] for i in [0,1,2,3,4,5]]
     for i,p in enumerate(order):
-        opts=['title={'+LABELS[i]+'}']
-        if i%2==0:opts.append(r'ylabel={$\Delta I_\Phi$}')
-        if i>=4:opts.append('xlabel={Question position}')
+        opts=['ylabel={'+LABELS[i]+'}',r'ylabel style={font=\scriptsize}']
+        if i==5:opts.append('xlabel={Question position}')
         else:opts.append('xticklabels={}')
         parts.append(r'\nextgroupplot['+','.join(opts)+']')
         parts.append(f'\\addplot[black!32,densely dotted,forget plot] coordinates{{(0,0) ({steps},0)}};')
@@ -125,34 +124,44 @@ def go_trajectories(df,out,steps):
 
 
 def go_heatmaps(out,steps,reps,nactive):
-    # Data is written by existing global-index optimizer; preserve optimized IDs.
-    for sheet,persons in [('a',PERSONAS[:3]),('b',PERSONAS[3:])]:
-        parts=[r'\begin{tikzpicture}',
-               (r'\begin{groupplot}[group style={group size=3 by 3,horizontal sep=.85cm,vertical sep=.90cm},'
-               r'width=.273\textwidth,height=.273\textwidth,'
-               +f'xmin=.5,xmax={steps+.5},ymin=.5,ymax={reps+.5},'
-               r'y dir=reverse,axis on top,enlargelimits=false,scale only axis,'
-               r'xtick={1,'+str(max(2,steps//2))+','+str(steps)+r'},ytick={1,'+str(max(2,reps//2))+','+str(reps)+r'},'
-               r'xticklabel style={font=\tiny},yticklabel style={font=\tiny},label style={font=\scriptsize},'
-               r'axis line style={draw=black!20},tick style={draw=black!35},'
-               +HEATMAP_COLORMAP+f',point meta min=1,point meta max={nactive}]')]
-        for i,p in enumerate(persons):
-            for j,pol in enumerate(POLICIES):
-                opts=[]
-                if i==0:opts.append('title={'+{'right':'Right push','left':'Left push','neutral':'Neutral'}[pol]+r'}')
-                if j==0:opts.append('ylabel={'+LABELS[PERSONAS.index(p)]+r'}')
-                else:opts.append('yticklabels={}')
-                if i<2:opts.append('xticklabels={}')
-                else:opts.append('xlabel={Question position}')
-                parts.append(r'\nextgroupplot['+','.join(opts)+']')
-                parts.append(r'\addplot[matrix plot*,mesh/cols='+str(steps)+r',point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{'+plot_path(out,f'heatmap_{p}_{pol}.csv')+r'};')
-        parts.extend([r'\end{groupplot}',r'\node[anchor=north,font=\footnotesize] at ([yshift=-6mm]current bounding box.south) {Globally optimized question IDs (1--'+str(nactive)+r'); identical colour scale for all 18 panels. Rows are independent runs.};',r'\end{tikzpicture}'])
-        put(out,'fig3'+sheet+'_heatmaps_pgfplots.tex','\n'.join(parts))
+    """One figure, 18 nearly-square heatmaps in a 3-column x 6-row matrix."""
+    parts=[r'\begin{tikzpicture}',
+           (r'\begin{groupplot}[group style={group size=3 by 6,horizontal sep=.55cm,vertical sep=.28cm},'
+            r'width=.193\textwidth,height=.193\textwidth,'
+            +f'xmin=.5,xmax={steps+.5},ymin=.5,ymax={reps+.5},'
+            r'y dir=reverse,axis on top,enlargelimits=false,scale only axis,'
+            r'xtick={1,'+str(max(2,steps//2))+','+str(steps)+r'},'
+            r'ytick={1,'+str(max(2,reps//2))+','+str(reps)+r'},'
+            r'xticklabel style={font=\tiny},yticklabel style={font=\tiny},'
+            r'label style={font=\scriptsize},title style={font=\scriptsize\bfseries},'
+            r'axis line style={draw=black!20},tick style={draw=black!35},'
+            +HEATMAP_COLORMAP+f',point meta min=1,point meta max={nactive}]')]
+    for i,p in enumerate(PERSONAS):
+        for j,pol in enumerate(POLICIES):
+            opts=[]
+            if i==0:
+                opts.append('title={'+{'right':'Right push','left':'Left push','neutral':'Neutral'}[pol]+'}')
+            if j==0:
+                opts.append('ylabel={'+LABELS[i]+'}')
+            else:
+                opts.append('yticklabels={}')
+            if i<5:
+                opts.append('xticklabels={}')
+            else:
+                opts.append('xlabel={Position}')
+            parts.append(r'\nextgroupplot['+','.join(opts)+']')
+            parts.append(r'\addplot[matrix plot*,mesh/cols='+str(steps)
+                         +r',point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{'
+                         +plot_path(out,f'heatmap_{p}_{pol}.csv')+r'};')
+    parts.extend([r'\end{groupplot}',r'\end{tikzpicture}'])
+    put(out,'fig3_heatmaps_all_pgfplots.tex','\n'.join(parts))
 
 
 def go_order_forest(df,out):
+    """One six-persona, three-source column figure with paired CI whiskers."""
     needed={'persona','source_policy','order','mean_final_I_difference','ci_low','ci_high'}
-    if needed-set(df.columns):raise ValueError('Order contrasts missing '+str(needed-set(df.columns)))
+    if needed-set(df.columns):
+        raise ValueError('Order contrasts missing '+str(needed-set(df.columns)))
     extrema=float(max(df.ci_high.abs().max(),df.ci_low.abs().max()))
     lim=max(.012,round(extrema*1.25,3))
     for p in PERSONAS:
@@ -161,33 +170,45 @@ def go_order_forest(df,out):
             rows=[]
             for i,perm in enumerate(['reverse','shuffle1','shuffle2']):
                 r=sub.loc[perm];mean=float(r.mean_final_I_difference)
-                rows.append({'y':3-i,'mean':mean,'minus':mean-float(r.ci_low),'plus':float(r.ci_high)-mean})
+                rows.append({'y':3-i,'mean':mean,
+                             'minus':mean-float(r.ci_low),
+                             'plus':float(r.ci_high)-mean})
             csv_write(pd.DataFrame(rows),out/f'pub_order_{p}_{pol}.csv')
-    for sheet,persons in [('a',PERSONAS[:3]),('b',PERSONAS[3:])]:
-        parts=[r'\begin{tikzpicture}',
-               (r'\begin{groupplot}[group style={group size=3 by 3,horizontal sep=1.12cm,vertical sep=.92cm},'
-               r'width=.265\textwidth,height=3.50cm,'
-               f'xmin={-lim:.4f},xmax={lim:.4f},ymin=.5,ymax=3.5,'
-               r'ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},'
-               r'xticklabel style={font=\tiny},yticklabel style={font=\scriptsize},'
-               r'label style={font=\scriptsize},title style={font=\footnotesize\bfseries},'
-               r'grid=major,grid style={draw=black!7},axis line style={draw=black!35},'
-               r'tick style={draw=black!30},scaled x ticks=false,xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}}]')]
-        for i,p in enumerate(persons):
-            for j,pol in enumerate(POLICIES):
-                opts=[]
-                if i==0:opts.append('title={'+{'right':'Right-derived','left':'Left-derived','neutral':'Neutral-derived'}[pol]+'}')
-                if j!=0:opts.append('yticklabels={}')
-                else:opts.append('ylabel={'+LABELS[PERSONAS.index(p)]+'}')
-                if i!=2:opts.append('xticklabels={}')
-                else:opts.append(r'xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}')
-                parts.append(r'\nextgroupplot['+','.join(opts)+']')
-                parts.append(r'\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};')
-                name=plot_path(out,f'pub_order_{p}_{pol}.csv')
-                # 3 observed order contrasts with 95% bootstrap intervals.
-                parts.append(r'\addplot[only marks,black,mark=*,mark size=1.9pt,error bars/.cd,x dir=both,x explicit,error bar style={line width=1.1pt,black!75},error mark options={mark size=1.6pt}] table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{'+name+'};')
-        parts += [r'\end{groupplot}',r'\end{tikzpicture}']
-        put(out,'fig4'+sheet+'_order_effects_pgfplots.tex','\n'.join(parts))
+    parts=[r'\begin{tikzpicture}',
+           (r'\begin{groupplot}[group style={group size=3 by 6,horizontal sep=.95cm,vertical sep=.43cm},'
+            r'width=.264\textwidth,height=2.10cm,'
+            f'xmin={-lim:.4f},xmax={lim:.4f},ymin=.5,ymax=3.5,'
+            r'ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},'
+            r'xticklabel style={font=\tiny},yticklabel style={font=\scriptsize},'
+            r'label style={font=\scriptsize},title style={font=\scriptsize\bfseries},'
+            r'grid=major,grid style={draw=black!7},axis line style={draw=black!35},'
+            r'tick style={draw=black!30},scaled x ticks=false,'
+            r'xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}}]')]
+    for i,p in enumerate(PERSONAS):
+        for j,pol in enumerate(POLICIES):
+            opts=[]
+            if i==0:
+                opts.append('title={'+{'right':'Right-derived','left':'Left-derived',
+                                       'neutral':'Neutral-derived'}[pol]+'}')
+            if j!=0:
+                opts.append('yticklabels={}')
+            else:
+                opts.append('ylabel={'+LABELS[i]+'}')
+            if i!=5:
+                opts.append('xticklabels={}')
+            else:
+                opts.append(r'xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}')
+            parts.append(r'\nextgroupplot['+','.join(opts)+']')
+            parts.append(r'\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,3.5)};')
+            name=plot_path(out,f'pub_order_{p}_{pol}.csv')
+            parts.append(r'\addplot[only marks,black,mark=*,mark size=1.65pt,'
+                         r'error bars/.cd,x dir=both,x explicit,'
+                         r'error bar style={line width=.95pt,black!75},'
+                         r'error mark options={mark size=1.4pt}] '
+                         r'table[x=mean,y=y,x error minus=minus,x error plus=plus,'
+                         r'col sep=comma]{'+name+'};')
+    parts += [r'\end{groupplot}',r'\end{tikzpicture}']
+    put(out,'fig4_order_effects_all_pgfplots.tex','\n'.join(parts))
 
 
 def flips_and_ci(df,out,reps,eps=1e-9,B=3000,seed=20261022):
