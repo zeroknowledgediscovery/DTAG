@@ -15,27 +15,28 @@ persona, giving $6\times4\times40=960$ complete trajectories.
 
 \begin{figure*}[!t]
 \centering
+\begin{minipage}[t]{.487\textwidth}
+\centering\vspace{0pt}
+{\footnotesize\bfseries (a) Endpoint displacement after 10 questions}\par
+\vspace{1mm}
 \input{../experiments/persona_push/data/figures/fig1_endpoints_pgfplots.tex}
-\caption{\textbf{Adaptive policy endpoints across six pinned personas.}
-Mean net geometric displacement after ten native survey questions, with
-95\% bootstrap confidence intervals over 40 independent runs per policy.
-The dark solid and dashed markers indicate right- and left-directed
-question selection, respectively; muted pastel and grey indicate
-minimum expected geometric drift and random item selection.
-These are sampled synthetic LSM responses, not persuasion outcomes.}
-\label{fig:persona-endpoints}
-\end{figure*}
-
-\begin{figure*}[!t]
-\centering
+\end{minipage}\hfill
+\begin{minipage}[t]{.487\textwidth}
+\centering\vspace{0pt}
+{\footnotesize\bfseries (b) Question-by-question trajectories}\par
+\vspace{1mm}
 \input{../experiments/persona_push/data/figures/fig2_trajectories_pgfplots.tex}
-\caption{\textbf{Native adaptive-questioning trajectories.} Six panels show
-mean geometric displacement after each of 0--10 questions.
-Black solid/dashed lines identify right/left-directed policies; pale bands
-indicate pointwise percentile 95\% bootstrap confidence intervals;
-muted teal indicates the neutral drift policy; grey dot--dash is
-uniform random selection. All curves come from 40 simulated runs for
-each fixed persona and policy.}
+\end{minipage}
+\caption{\textbf{Adaptive native LSM questioning, six pinned synthetic personas.}
+(a) Mean net geometric displacement at the final question (right/left-directed,
+minimum expected drift, and random policies), with 95\% bootstrap
+confidence intervals over 40 independent runs per persona and policy.
+(b) Corresponding 0--10-question trajectories: solid black, right;
+dashed black, left; teal, neutral; and dot--dash grey, random.
+Pale bands show pointwise 95\% bootstrap intervals.
+Panel groups are adjacent and column-width fitted; all outcomes are
+synthetic LSM conditioning, not human persuasion.}
+\label{fig:persona-endpoints}
 \label{fig:native-trajectories}
 \end{figure*}
 
@@ -66,29 +67,18 @@ lookup entries. Numeric distances between question indices have no
 scientific or semantic interpretation; optimizing them is merely a
 visualization device.
 
-\begin{figure*}[!t]
+\begin{figure*}[!p]
 \centering
-\input{../experiments/persona_push/data/figures/fig3a_heatmaps_pgfplots.tex}
-\caption{\textbf{Globally optimized question-identity heatmaps, first three personas.}
-Each square panel is a $40\times10$ matrix of actual question identities.
-Columns are positions 1--10 and rows are independent simulation runs.
-The same globally optimized question--color mapping is used in every panel;
-question-index distances carry no semantic interpretation. Random-policy
-runs are excluded from the heatmaps but included when determining the
-complete 228-item lookup table. See Fig.~\ref{fig:question-map-b} for
-the remaining three personas.}
+\input{../experiments/persona_push/data/figures/fig3_heatmaps_all_pgfplots.tex}
+\caption{\textbf{Globally optimized question-identity heatmaps for all six personas.}
+Each of 18 near-square panels shows the actual question at every
+position (columns 1--10) and independent run (rows 1--40).
+Right/left/neutral selection policies occupy the three columns;
+all six personas appear together in one figure. The same globally
+optimized item--color mapping is used throughout (88 displayed
+questions from the full 228-item catalog). Index distances are
+visually optimized, not semantic; random-policy runs are not drawn.}
 \label{fig:question-map}
-\end{figure*}
-
-\begin{figure*}[!t]
-\centering
-\input{../experiments/persona_push/data/figures/fig3b_heatmaps_pgfplots.tex}
-\caption{\textbf{Globally optimized question-identity heatmaps, remaining three personas.}
-Same axes, optimized global index and continuous pastel colormap as in
-Fig.~\ref{fig:question-map}. Each panel is square to preserve legibility;
-underlying cells represent 40 distinct realizations across ten question
-positions, not numerical distances between questions.}
-\label{fig:question-map-b}
 \end{figure*}
 
 \subsection{Order sensitivity with ten-question content fixed}
@@ -112,26 +102,17 @@ Near-zero values are excluded from sign-flip counts.
 
 \begin{figure*}[!t]
 \centering
-\input{../experiments/persona_push/data/figures/fig4a_order_effects_pgfplots.tex}
-\caption{\textbf{Order effects, first three personas.} Original Python analysis
-reproduced as native PGFPlots: each panel represents one
-persona and one frozen ten-question set (derived from right/left/neutral
-adaptive policies). The three black points represent reverse order and two
-shuffled orders; horizontal whiskers are pointwise 95\% paired bootstrap
-intervals for the mean difference in final ideology from the original order.
-The dotted zero reference marks equality of \emph{mean} endpoints.
-See Fig.~\ref{fig:order-effects-b} for the remaining personas.}
+\input{../experiments/persona_push/data/figures/fig4_order_effects_all_pgfplots.tex}
+\caption{\textbf{Fixed-ten-question order effects across all six personas.}
+The three columns correspond to the right-, left-, and neutral-derived
+question sets; all six personas are shown in one vertically compact grid.
+Within each panel, black points compare reverse order and two independently
+shuffled orderings against the originally observed item order, holding
+the ten questions fixed. Horizontal whiskers denote pointwise 95\%
+paired bootstrap confidence intervals for the signed mean difference in
+final ideological index. Zero mean is not the same as pathwise invariance;
+individual final outcomes may change direction or sign.}
 \label{fig:order-effects}
-\end{figure*}
-
-\begin{figure*}[!t]
-\centering
-\input{../experiments/persona_push/data/figures/fig4b_order_effects_pgfplots.tex}
-\caption{\textbf{Order effects, remaining three personas.} Same native
-paired-order comparison, confidence intervals, axis limits, and black
-point-and-whisker styling as Fig.~\ref{fig:order-effects}. Intervals
-including zero do not imply pathwise invariance.}
-\label{fig:order-effects-b}
 \end{figure*}
 
 \begin{figure*}[!t]
