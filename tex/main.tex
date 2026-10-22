@@ -248,4 +248,26 @@ DTAG operationalizes a restricted theory of mind by representing a respondent as
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
+
+% Supplementary visualization, deliberately following the main manuscript.
+% Flush all numbered main-text figures before starting a new S-prefixed series.
+\clearpage
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\begin{figure*}[!p]
+\centering
+\input{../experiments/persona_push/data/figures/fig5_sign_reversal_probabilities_pgfplots.tex}
+\caption{\textbf{Supplementary pathwise sign-reversal probabilities under fixed question content.}
+Left: reversed direction of net movement relative to the fixed initial state.
+Right: reversed sign of the absolute final ideology index.
+Each estimate is the observed proportion over 40 independent matched
+repetitions, each compared with three alternative permutations
+(120 dependent pairs per persona/set).
+Horizontal bars are 95\% bootstrap intervals resampling \emph{entire}
+repetition clusters, not treating the three comparisons as independent.
+Identical near-zero values ($|I|\leq 10^{-9}$) are not counted as
+sign reversals; these are synthetic-model pathwise results, not human
+treatment effects.}
+\label{fig:order-flips}
+\end{figure*}
 \end{document}

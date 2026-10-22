@@ -4,7 +4,12 @@ name: Compile DTAG integrated publication figures and manuscript
 on:
   push:
     branches: [experiment-integrated-10q]
-    paths: [.github/workflows/manuscript-preview.yml]
+    paths:
+      - .github/workflows/manuscript-preview.yml
+      - tex/**
+      - experiments/persona_push/NATIVE_RESULTS_SECTION.tex
+      - experiments/persona_push/publication_pgfplots.py
+      - experiments/persona_push/data/figures/fig*pgfplots.tex
   workflow_dispatch:
 
 permissions:
@@ -20,7 +25,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install analysis dependencies (no native model)
-        run: python -m pip install numpy pandas pyyaml
+        run: python -m pip install numpy pandas pyyaml pymupdf
       - name: Regenerate all publication plots from archived ORIGINAL data
         run: |
           python experiments/persona_push/archive_historical.py --plot
@@ -39,6 +44,28 @@ jobs:
             main.tex
           working_directory: tex
           args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
+      - name: Verify figure proof pagination and manuscript supplement
+        run: |
+          python - <<'PY'
+          import fitz
+          preview = fitz.open("tex/figures_preview.pdf")
+          headings = ("Figure A:", "Figure B:", "Figure C:", "Supplementary comparison:")
+          assert len(preview) == 4, f"Expected 4 figure-proof pages, got {len(preview)}"
+          for page_num, heading in enumerate(headings):
+              text = preview[page_num].get_text()
+              assert heading in text, f"Missing {heading} on proof page {page_num + 1}"
+              assert len(text.strip()) > 125, f"Suspected blank proof page {page_num + 1}"
+              print(f"Figure proof page {page_num + 1}: {heading} ({len(text)} extracted characters)")
+          heatmap = preview[1].get_text()
+          for term in ("Right push", "Left push", "Neutral", "Alabama", "Atlanta"):
+              assert term in heatmap, f"Missing heatmap label {term}"
+          paper = fitz.open("tex/main.pdf")
+          paper_text = "\\n".join(page.get_text() for page in paper)
+          assert "S1" in paper_text, "Supplementary figure must use S1 numbering"
+          assert "Globally optimized question-identity heatmaps" in paper_text
+          assert "Fixed-ten-question order effects" in paper_text
+          print(f"Manuscript: {len(paper)} pages; all principal and supplementary figure captions present")
+          PY
       - name: Upload PDFs and publication figure input files
         if: always()
         uses: actions/upload-artifact@v4

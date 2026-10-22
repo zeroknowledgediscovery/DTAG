@@ -108,19 +108,21 @@ the frozen archived `data/figures/` question-index ordering.
 
 The IEEEtran manuscript source `tex/main.tex` references
 `NATIVE_RESULTS_SECTION.tex`, which now produces **three integrated
-experimental figures**, plus a separate sign-reversal-probability figure.
+experimental figures**, and one supplementary sign-reversal-probability figure (Fig. S1).
 All are native PGFPlots using the archived raw numeric CSV data.
 
 1. **Combined adaptive policy figure:** final mean displacement of all six
    personas on the left, six compact question-by-question trajectory plots
    on the right. Both halves fit one journal column each in one float.
 2. **Optimized identity heatmaps:** all 18 persona/policy heatmaps in one
-   3-column × 6-row figure. Each panel's axis is square, with one globally
+   3-column × 6-row figure. Each panel's reduced-to-fit axis remains square, with one globally
    shared question-index mapping and unchanged run ordering.
 3. **Fixed-item order effects:** all 18 right-/left-/neutral-derived panels
    in one 3-column × 6-row figure with paired-mean 95% CI whiskers.
-4. **Separate sign reversals:** the existing all-persona probability
+4. **Supplementary Fig. S1 — sign reversals:** the existing all-persona probability
    summary of changes in displacement direction and endpoint sign.
+
+The figure proof is designed to have four pages (A, B, C, and supplementary S1); the heatmap heading and grid are kept together to prevent a stranded-heading page.
 
 The publication generator is
 `experiments/persona_push/publication_pgfplots.py`. Regenerating plots

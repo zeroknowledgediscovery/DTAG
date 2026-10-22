@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """Generate publication-grade native PGFPlots figures for DTAG persona-push studies.
 
-Five substantive figures:
+Three principal experimental figures (five PGFPlots panel groups), plus a supplementary sign-reversal figure:
 1. Endpoints by persona and question-selection policy, with bootstrap CIs.
 2. Six-panel trajectories with 95% pointwise bands.
-3. Globally optimized categorical question heatmaps; two sheets of nine square panels.
-4. Paired order effects EXACTLY as the Python figure: 6x3 panels with three
-   pointwise paired-mean bootstrap intervals; two sheets of nine panels.
-5. Probabilities of endpoint-ideology and direction-of-displacement reversals;
+3. Globally optimized categorical question heatmaps; one 18-panel near-square grid.
+4. Paired order effects: one 6x3 grid with paired-mean bootstrap intervals.
+5. Supplementary probabilities of endpoint-ideology and movement-direction reversals;
    cluster bootstrap intervals over independent rep indices.
 
 No simulations or fabricated numbers. Input must be CSVs from the completed
@@ -126,7 +125,7 @@ def go_heatmaps(out,steps,reps,nactive):
     """One figure, 18 nearly-square heatmaps in a 3-column x 6-row matrix."""
     parts=[r'\begin{tikzpicture}',
            (r'\begin{groupplot}[group style={group size=3 by 6,horizontal sep=.55cm,vertical sep=.28cm},'
-            r'width=.193\textwidth,height=.193\textwidth,'
+            r'width=.174\textwidth,height=.174\textwidth,'
             +f'xmin=.5,xmax={steps+.5},ymin=.5,ymax={reps+.5},'
             r'y dir=reverse,axis on top,enlargelimits=false,scale only axis,'
             r'xtick={1,'+str(max(2,steps//2))+','+str(steps)+r'},'
@@ -301,7 +300,7 @@ def main():
     go_heatmaps(a.out,a.steps,a.reps,a.nactive)
     go_order_forest(pd.read_csv(a.order_endpoints.parent/'paired_order_contrasts.csv'),a.out)
     x=flips_and_ci(pd.read_csv(a.order_endpoints),a.out,a.reps)
-    print('Five publication-quality PGFPlots figure groups (seven sheet files) generated.')
+    print('Three principal PGFPlots figures plus one supplementary figure (five panel-group files) generated.')
     print('Reversal summaries:',x.groupby(['policy','outcome']).agg({'flip_count':'sum','paired_comparisons':'sum'}).to_string())
 
 if __name__=='__main__':main()
