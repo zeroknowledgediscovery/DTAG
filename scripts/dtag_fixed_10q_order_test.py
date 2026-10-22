@@ -53,15 +53,15 @@ def read_pinned(path):
         Path(path).read_text(encoding="utf-8"))["participants"]}
 
 
-def read_sets(path, policies=("right", "left", "neutral")):
+def read_sets(path, policies=("right", "left", "neutral"), steps=10):
     obj = json.loads(Path(path).read_text(encoding="utf-8"))
     keep = [s for s in obj["sets"] if s["source_policy"] in policies]
     if not keep:
         raise ValueError("No sets matching policy selection")
     for s in keep:
         q = s["questions"]
-        if len(q) != 10 or len(set(q)) != 10:
-            raise ValueError(f"Expected 10 unique questions: {s}")
+        if len(q) != steps or len(set(q)) != steps:
+            raise ValueError(f"Expected {steps} unique questions: {s}")
         if set(q) != set(s["source_answers"]):
             raise ValueError(f"Source answer keys mismatch question set: {s['persona']}")
     return keep
@@ -285,6 +285,7 @@ def main():
     ap.add_argument("--out", type=Path, default=ROOT / "outputs/dtag_persona_push/order_replay_10q")
     ap.add_argument("--policies", nargs="+", choices=["right","left","neutral"],
                     default=["right","left","neutral"])
+    ap.add_argument("--steps", type=int, default=10)
     ap.add_argument("--reps", type=int, default=40)
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--bootstrap", type=int, default=2000)
@@ -300,7 +301,7 @@ def main():
         ap.error("reps>=2, workers>=1, bootstrap>=100 required")
     args.out.mkdir(parents=True,exist_ok=True)
     pinned=read_pinned(args.personas)
-    sources=read_sets(args.sets, policies=args.policies)
+    sources=read_sets(args.sets, policies=args.policies, steps=args.steps)
     jobs=[]; orders_file=[]
     for s in sources:
         persona=s["persona"]
@@ -337,8 +338,8 @@ def main():
                 if k%40==0: print(f"Completed {k}/{len(jobs)}",flush=True)
     terminals.sort(key=lambda x:(x["persona"],x["source_policy"],x["order"],x["rep"]))
     draws.sort(key=lambda x:(x["persona"],x["source_policy"],x["order"],x["rep"],x["step"]))
-    if len(terminals)!=len(jobs) or len(draws)!=len(jobs)*10:
-        raise AssertionError("Incomplete output; 10 steps required for every replay")
+    if len(terminals)!=len(jobs) or len(draws)!=len(jobs)*args.steps:
+        raise AssertionError(f"Incomplete output; {args.steps} steps required for every replay")
     endpoint, contrast, omnibus=summarize(terminals,args.reps,args.bootstrap,args.seed)
     write_csv(args.out/"run_endpoints.csv",terminals)
     write_csv(args.out/"question_draws.csv",draws)
@@ -357,7 +358,7 @@ def main():
         "poles_sha256":sha256(Path(DEFAULT_POLES)),
         "persona_sha256":sha256(args.personas),"set_file_sha256":sha256(args.sets),
         "git_commit":sha,"fixed_sets":len(sources),"orders_per_set":4,
-        "repetitions":args.reps,"ten_questions_per_run":10,
+        "repetitions":args.reps,"questions_per_run":args.steps,
         "seed":args.seed,"bootstrap":args.bootstrap,"workers":args.workers,
         "runs":len(jobs),"quick":args.quick,
         "answer_sampling":"native sequential conditionals, matched uniform draws by question ID",
@@ -365,7 +366,7 @@ def main():
         "interpretation":"synthetic-model order dependence; not causal persuasion in human respondents",
     }
     (args.out/"manifest.json").write_text(json.dumps(manifest,indent=2)+"\n")
-    print(f"VERIFIED: {len(jobs)} full ten-item replays. "
+    print(f"VERIFIED: {len(jobs)} full {args.steps}-item replays. "
           f"Results at {args.out}",flush=True)
 
 
