@@ -99,7 +99,7 @@ def go_trajectories(df,out,steps):
             csv_write(pd.DataFrame({'step':x.step,'mean':x.mean_net_delta,'lo':x.ci_low,'hi':x.ci_high}),out/f'pub_trajectory_{person}_{pol}.csv')
             lo.extend(x.ci_low.to_numpy());hi.extend(x.ci_high.to_numpy())
     low=min(lo); high=max(hi);delta=(high-low)*.06
-    ax=r'\begin{groupplot}[group style={group size=1 by 6,horizontal sep=0cm,vertical sep=.24cm},width=.87\linewidth,height=1.62cm,'+f'xmin=0,xmax={steps},ymin={low-delta:.5f},ymax={high+delta:.5f},'+STYLE_OPTS+r']'
+    ax=r'\begin{groupplot}[group style={group size=1 by 6,horizontal sep=0cm,vertical sep=.48cm},width=.77\linewidth,height=1.36cm,scale only axis,ytick={-.05,0,.05},yticklabel style={font=\tiny},xtick={0,5,10},'+f'xmin=0,xmax={steps},ymin={low-delta:.5f},ymax={high+delta:.5f},'+STYLE_OPTS+r']'
     parts=[r'\begin{tikzpicture}',ax]
     # Pair conservatives and liberals per row
     order=[PERSONAS[i] for i in [0,1,2,3,4,5]]
@@ -118,7 +118,6 @@ def go_trajectories(df,out,steps):
                 parts.append(r'\addplot[draw=none,fill='+('black!14' if pol=='right' else 'black!7')+r',forget plot] fill between[of=h i];'.replace('h i','hi'+key+' and lo'+key))
             parts.append(r'\addplot['+STYLE_LINES[pol]+r',no marks,forget plot] table[x=step,y=mean,col sep=comma]{'+fn+r'};')
     parts.extend([r'\end{groupplot}',
-                  r'\node[anchor=south,font=\scriptsize] at ([yshift=3mm]current bounding box.north) {\textbf{Right}: solid black\quad \textbf{Left}: dashed black\quad \textbf{Neutral}: muted teal\quad \textbf{Random}: dot--dash grey};',
                   r'\end{tikzpicture}'])
     put(out,'fig2_trajectories_pgfplots.tex','\n'.join(parts))
 
@@ -175,8 +174,8 @@ def go_order_forest(df,out):
                              'plus':float(r.ci_high)-mean})
             csv_write(pd.DataFrame(rows),out/f'pub_order_{p}_{pol}.csv')
     parts=[r'\begin{tikzpicture}',
-           (r'\begin{groupplot}[group style={group size=3 by 6,horizontal sep=.95cm,vertical sep=.43cm},'
-            r'width=.264\textwidth,height=2.10cm,'
+           (r'\begin{groupplot}[group style={group size=3 by 6,horizontal sep=.77cm,vertical sep=.42cm},'
+            r'width=.245\textwidth,height=1.72cm,scale only axis,'
             f'xmin={-lim:.4f},xmax={lim:.4f},ymin=.5,ymax=3.5,'
             r'ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},'
             r'xticklabel style={font=\tiny},yticklabel style={font=\scriptsize},'
