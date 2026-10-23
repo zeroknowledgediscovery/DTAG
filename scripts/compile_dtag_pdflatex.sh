@@ -31,6 +31,7 @@ if [[ "$OLD" != "$FIG" ]]; then
   REFRESH=1
   ln -sfn "$FIG" "$TEX/figures"
 fi
+if [[ "$REPLOT" == 1 ]]; then REFRESH=1; fi
 if [[ "$REPLOT" == 1 || ! -f "$FIG/publication_metadata.csv" ]]; then
   read -r STEPS REPS < <(python3 - "$FIG/optimization_report.json" <<'PY'
 import json,sys
