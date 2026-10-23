@@ -55,7 +55,7 @@
   \node[box,fill=dtmint,text width=5.6cm] (condition) at (21,-2.2)
     {\textbf{Native LSM}\\$p_\Phi(a\mid s_t,v)$};
   \node[box,fill=dtmint,text width=6.2cm] (geometry) at (29.5,-2.2)
-    {\textbf{Predictive phenotype and geometry}\\$I_\Phi(s_t)$; unasked-response probabilities};
+    {\textbf{Phenotype geometry}\\$I_\Phi(s_t)$; unasked-response probabilities};
   \draw[arrow] (parse)--(state);
   \draw[arrow] (state)--(condition);
   \draw[arrow] (condition)--(geometry);
@@ -77,7 +77,7 @@
   \draw[arrow] (opt.south) -- (selected.north);
   \draw[arrow] (selected)--(update);
   \draw[arrow] (selected.west) -- (prose.east);
-  \draw[arrow] (update.east) -- ++(2,0) |- (state.east);
+  \draw[arrow] (update.east) -- (35.6,-8.4) -- (35.6,-1.07) -- (14.2,-1.07) -- (state.north);
   \draw[arrow,dashed] (prose.west) -| (q.south);
 \end{tikzpicture}
 \end{center}
@@ -178,7 +178,7 @@ x y minus plus\\
  xtick={0,5,10,15,20},ytick={-.1,0,.1},
  yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
 ]
-\nextgroupplot[title={Alabama},xticklabels={}]
+\nextgroupplot[xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p0rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -374,7 +374,7 @@ t mean low high\\
 19 0.0001421 -0.0066126 0.006462\\
 20 0.0006738 -0.0065073 0.0071368\\
 };
-\nextgroupplot[title={New York},yticklabels={},xticklabels={}]
+\nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p1rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -570,7 +570,7 @@ t mean low high\\
 19 -0.0021828 -0.0109397 0.0062943\\
 20 -0.0025354 -0.0123321 0.0069511\\
 };
-\nextgroupplot[title={Texas},xticklabels={}]
+\nextgroupplot[xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p2rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -766,7 +766,7 @@ t mean low high\\
 19 -0.0024913 -0.0090343 0.0037703\\
 20 -0.0022731 -0.0088408 0.0039712\\
 };
-\nextgroupplot[title={Seattle},yticklabels={},xticklabels={}]
+\nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p3rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -962,7 +962,7 @@ t mean low high\\
 19 -0.0008384 -0.0095579 0.0068235\\
 20 -0.0014037 -0.0100682 0.0064516\\
 };
-\nextgroupplot[title={Arizona}]
+\nextgroupplot[]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p4rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -1158,7 +1158,7 @@ t mean low high\\
 19 -0.0018218 -0.0116025 0.007586\\
 20 -0.0013367 -0.0118765 0.0083096\\
 };
-\nextgroupplot[title={Atlanta},yticklabels={}]
+\nextgroupplot[yticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p5rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -1355,6 +1355,12 @@ t mean low high\\
 20 0.003532 -0.0061032 0.0129316\\
 };
 \end{groupplot}
+\node[font=\small\bfseries,anchor=south] at ($(group c1r1.north)+(0,0.13cm)$) {Alabama};
+\node[font=\small\bfseries,anchor=south] at ($(group c2r1.north)+(0,0.13cm)$) {New York};
+\node[font=\small\bfseries,anchor=south] at ($(group c1r2.north)+(0,0.13cm)$) {Texas};
+\node[font=\small\bfseries,anchor=south] at ($(group c2r2.north)+(0,0.13cm)$) {Seattle};
+\node[font=\small\bfseries,anchor=south] at ($(group c1r3.north)+(0,0.13cm)$) {Arizona};
+\node[font=\small\bfseries,anchor=south] at ($(group c2r3.north)+(0,0.13cm)$) {Atlanta};
 \end{scope}
 \node[rotate=90,font=\large\bfseries] at (0.65cm,-8.8cm){Net displacement};
 \node[font=\large\bfseries] at (9.6cm,-17.55cm){Question sequence number};
@@ -1391,7 +1397,7 @@ The LSM conditionals, rather than real human belief transitions, determine the r
  point meta min=1,point meta max=161
 ]
 \nextgroupplot[title={Right push},ylabel={Alabama},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -2195,7 +2201,7 @@ x y value\\
 20 40 38\\
 };
 \nextgroupplot[title={Left push},yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 46\\
 2 1 58\\
@@ -2999,7 +3005,7 @@ x y value\\
 20 40 109\\
 };
 \nextgroupplot[title={Neutral},yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -3803,7 +3809,7 @@ x y value\\
 20 40 26\\
 };
 \nextgroupplot[ylabel={New York},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -4607,7 +4613,7 @@ x y value\\
 20 40 150\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 46\\
 2 1 59\\
@@ -5411,7 +5417,7 @@ x y value\\
 20 40 104\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -6215,7 +6221,7 @@ x y value\\
 20 40 159\\
 };
 \nextgroupplot[ylabel={Texas},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -7019,7 +7025,7 @@ x y value\\
 20 40 140\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 46\\
 2 1 59\\
@@ -7823,7 +7829,7 @@ x y value\\
 20 40 81\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -8627,7 +8633,7 @@ x y value\\
 20 40 157\\
 };
 \nextgroupplot[ylabel={Seattle},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -9431,7 +9437,7 @@ x y value\\
 20 40 106\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 46\\
 2 1 48\\
@@ -10235,7 +10241,7 @@ x y value\\
 20 40 112\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -11039,7 +11045,7 @@ x y value\\
 20 40 157\\
 };
 \nextgroupplot[ylabel={Arizona},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 59\\
@@ -11843,7 +11849,7 @@ x y value\\
 20 40 81\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 48\\
 2 1 46\\
@@ -12647,7 +12653,7 @@ x y value\\
 20 40 80\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -13451,7 +13457,7 @@ x y value\\
 20 40 27\\
 };
 \nextgroupplot[ylabel={Atlanta},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -14255,7 +14261,7 @@ x y value\\
 20 40 45\\
 };
 \nextgroupplot[yticklabels={},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 48\\
 2 1 46\\
@@ -15059,7 +15065,7 @@ x y value\\
 20 40 109\\
 };
 \nextgroupplot[yticklabels={},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit,mark=none,draw=none] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 1\\
 2 1 4\\
