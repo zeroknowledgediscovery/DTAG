@@ -620,15 +620,16 @@ visualization device.
 
 \begin{figure*}[!t]
 \centering
-\resizebox{\textwidth}{!}{\begin{minipage}{40.4cm}
-\noindent\begin{minipage}{.32\linewidth}\centering\Large\bfseries (a) Question identities\end{minipage}\hspace{.03\linewidth}
-\begin{minipage}{.62\linewidth}\centering\Large\bfseries (b) Fixed-item order effects\end{minipage}
-\par\vspace{.10cm}
-\begin{center}
-\makebox[40.0cm][l]{%
+\noindent\makebox[\textwidth]{%
+  \makebox[.38\textwidth]{\small\bfseries (a) Question identities}%
+  \hfill
+  \makebox[.59\textwidth]{\small\bfseries (b) Fixed-item order effects}%
+}\par\vspace{1mm}
+% Two independent TikZ pictures, side by side. No nested wrappers.
+\resizebox{\textwidth}{!}{%
 \DTAGExternalEnable
-\tikzsetnextfilename{dtag-figure2-panels}
-\begin{tikzpicture}
+\tikzsetnextfilename{dtag-figure2a-question-identities}
+\begin{tikzpicture}[font=\bf\sffamily\fontsize{9}{9}\selectfont]
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAF}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAD}
@@ -648,26 +649,6 @@ visualization device.
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAC}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAA}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAB}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAX}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAV}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAW}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBJ}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBH}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBI}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBD}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBB}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBC}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBG}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBE}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBF}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBA}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAY}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAZ}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAU}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAS}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAT}
-% (a) One coherent 3-by-6 groupplot: 18 question-identity heatmaps.
-\begin{scope}[shift={(1.9cm,0cm)}]
 \begin{groupplot}[
  group style={group size=3 by 6,horizontal sep=.72cm,vertical sep=.72cm},
  scale only axis,publication axis,
@@ -732,9 +713,31 @@ colorbar style={
 \nextgroupplot[yticklabels={},xlabel={Position}]
 \addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAB};
 \end{groupplot}
-\end{scope}
-% (b) One coherent 3-by-6 groupplot: 18 paired order-effect comparisons.
-\begin{scope}[shift={(15.1cm,0cm)}]
+\end{tikzpicture}%
+\tikzexternaldisable
+\hspace{.55cm}%
+\DTAGExternalEnable
+\tikzsetnextfilename{dtag-figure2b-order-effects}
+\begin{tikzpicture}[font=\bf\sffamily\fontsize{9}{9}\selectfont]
+\tikzpicturedependsonfile{\DTAGMetadataCSV}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAX}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAV}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAW}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBJ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBH}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBI}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBD}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBB}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBC}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBG}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBE}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBF}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBA}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAY}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAZ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAU}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAS}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAT}
 \begin{groupplot}[
  group style={group size=3 by 6,horizontal sep=1.30cm,vertical sep=.72cm},
  publication axis,scale only axis,width=5.78cm,height=3.10cm,
@@ -852,24 +855,9 @@ colorbar style={
  error mark options={mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAT};
 \end{groupplot}
-\end{scope}
-\end{tikzpicture}
+\end{tikzpicture}%
 \tikzexternaldisable
-}\par\vspace{.62cm}
-
-
-
-
-
-
-
-
-
-
-
-\end{center}
-\end{minipage}}
-\vspace{-1.5mm}
+}\par\vspace{-1.5mm}
 \caption{\textbf{Question identities and fixed-item order effects over all six personas.}
 Left: 18 nearly square categorical heatmaps show \DTAGReps{} independent runs over
 \DTAGSteps{} question positions. The single colorbar denotes optimized question IDs (blue: low; red: high), not signed ideological effects. A single globally optimized categorical map covers
