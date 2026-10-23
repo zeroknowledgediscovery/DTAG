@@ -1,75 +1,78 @@
-# Build the DTAG manuscript with pdfLaTeX
+# DTAG paper: standard pdfLaTeX compilation
 
-The manuscript \`tex/DTAG_full_manuscript_20q_colorbar.tex\` is a complete
-single source with no included figure .tex files. It reads the finished
-experiment's external CSVs and \`publication_metadata.csv\` using PGFPlots.
+The complete manuscript source is:
 
-The TikZ externalization setup follows the selective enable/disable pattern
-in \`main_twin.tex\` / \`preamble.sty\` supplied for reference.
+`tex/DTAG_full_manuscript_20q_colorbar.tex`
 
-## Input path and figure cache (Linux is case-sensitive)
+The canonical **case-sensitive** layout is:
 
-The TeX source uses **`tex/figures/`** (lowercase) for completed-run CSVs.
-The build script creates `tex/figures` as a link to the selected run's
-`figures` folder and automatically generates `publication_metadata.csv`
-from the other published plot tables. **`tex/Figures/External/`** (capital F)
-is reserved for cached vector figure PDFs; it does not hold data CSVs.
+```text
+tex/
+  DTAG_full_manuscript_20q_colorbar.tex
+  references.bib
+  Figures/
+    publication_metadata.csv
+    optimization_report.json
+    pub_endpoint_*.csv
+    pub_trajectory_*.csv
+    pub_order_*.csv
+    heatmap_*.csv
+    External/                 # optional externalized TikZ vector PDFs
+```
 
-Run **`bash scripts/compile_dtag_pdflatex.sh`** from the repository root
-rather than invoking `pdflatex` manually on a clean checkout. If an older
-local TeX edit says `\\providecommand{\\DTAGFigureDir}{Figures}`, change it
-to `\\providecommand{\\DTAGFigureDir}{figures}` before compiling.
+The 20-question publication CSVs are committed under \`tex/Figures/\`
+and can be read directly after a normal \`git pull\`. No data symlink,
+LuaLaTeX, preprocessing step, or custom compilation script is necessary.
 
-## Commands
+## Standard compile command
 
-From the DTAG repository root:
+From the repository root:
 
 ```bash
-git fetch origin
 git switch experiment-integrated-10q
 git pull --ff-only origin experiment-integrated-10q
-bash scripts/compile_dtag_pdflatex.sh
-```
-
-For any other finished run (same CSV schema):
-
-```bash
-bash scripts/compile_dtag_pdflatex.sh experiments/persona_push/runs/new_q20_r40 --replot
-```
-
-After editing figure styling, rebuild the cached PDFs with:
-
-```bash
-bash scripts/compile_dtag_pdflatex.sh --refresh
-```
-
-You may also run manually from \`tex/\`, after the CSV link exists:
-
-```bash
-mkdir -p Figures/External
-pdflatex -shell-escape -interaction=nonstopmode -halt-on-error DTAG_full_manuscript_20q_colorbar.tex
+cd tex
+pdflatex -interaction=nonstopmode -halt-on-error DTAG_full_manuscript_20q_colorbar.tex
 bibtex DTAG_full_manuscript_20q_colorbar
-pdflatex -shell-escape -interaction=nonstopmode -halt-on-error DTAG_full_manuscript_20q_colorbar.tex
+pdflatex -interaction=nonstopmode -halt-on-error DTAG_full_manuscript_20q_colorbar.tex
+pdflatex -interaction=nonstopmode -halt-on-error DTAG_full_manuscript_20q_colorbar.tex
+```
+
+When invoked without full shell escape, TikZ plots are rendered inline.
+The resulting PDF is \`tex/DTAG_full_manuscript_20q_colorbar.pdf\`.
+
+## Optional fast builds with TikZ externalization
+
+To create (or update) cached plot PDFs under \`tex/Figures/External/\`,
+use the **standard pdfLaTeX executable** with \`-shell-escape\`:
+
+```bash
+cd tex
 pdflatex -shell-escape -interaction=nonstopmode -halt-on-error DTAG_full_manuscript_20q_colorbar.tex
 ```
 
-## Design
+The document selectively externalizes the integrated circuit, endpoint
+plot, trajectories, and six rows of heatmaps/order comparisons. Each
+picture gets its own stable PDF filename in \`Figures/External/\`.
+A normal \`pdflatex\` command works without enabling shell escape and
+does not depend on those cache PDFs being present.
 
-- \`tex/Figures/External/\` receives **nine** named vector-PDF caches:
-  the circuit, endpoints, six-persona trajectories, and six row-wise
-  heatmap/order-effects combinations.
-- The six-row split is deliberate: pdfTeX has more restrictive memory limits
-  than LuaTeX. Individual rows preserve the original 18 square heatmaps,
-  six-persona order comparisons and the shared question-index colorbar.
-- Externalized figures are created with \`-shell-escape\`, then reused by
-  subsequent compilations without shell escape if inputs are unchanged.
-- The builder links \`tex/figures\` to the selected run's \`figures\` folder,
-  ensuring externalizer subprocesses see the same paths. Changing runs
-  automatically invalidates the cache.
-- The generator \`experiments/persona_push/publication_pgfplots.py\` writes
-  \`publication_metadata.csv\` from finished numerical results. Replotting
-  does not rerun a stochastic/native experiment.
-- The Figure filenames are defined as TeX macros above each figure.
-  No numeric experimental outcomes are hardcoded in plot commands.
+## Future completed experiments
 
-Do not compile legacy \`tex/main.tex\` for the 20-question document.
+The manuscript reads filenames defined by \`\\def\` macros before its
+figures. To compile plots for another **completed** experiment, copy or
+regenerate the publication CSVs into \`tex/Figures/\`, including
+\`publication_metadata.csv\`. The source has no hard-coded experimental
+values and uses no external included TeX figure snippets.
+
+For generating plotting CSVs from finished native data, use
+\`experiments/persona_push/publication_pgfplots.py\` with
+\`--out tex/Figures\`; provide \`question_index.csv\` (from question
+optimization) when the generator needs to infer active question IDs.
+The generator is separate from compilation and does not rerun the native
+model. Alternatively, \`scripts/ensure_publication_metadata.py tex/Figures\`
+can reconstruct the metadata CSV from already generated plots.
+
+**Note:** If you previously used a local lowercase \`tex/figures\`
+symlink, it is no longer needed. \`tex/Figures\` is now the only
+publication data directory.
