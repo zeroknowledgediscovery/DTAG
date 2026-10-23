@@ -182,8 +182,8 @@ def go_heatmaps(out,steps,reps,nactive):
                     'colorbar',
                     (r'colorbar style={at={(1.18,0.5)},anchor=west,'
                      r'height=5.6cm,width=.24cm,'
-                     r'ylabel={Question ID},'
-                     r'ylabel style={font=\scriptsize\bfseries,text=black},'
+                     r'title={ID},'
+                     r'title style={font=\scriptsize\bfseries,text=black},'
                      r'ytick={1,'+str(max(1,round(nactive/2)))+','+str(nactive)+'},'
                      r'yticklabel style={font=\scriptsize\bfseries,text=black},'
                      r'tick style={draw=black,line width=.8pt},'
