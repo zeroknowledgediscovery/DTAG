@@ -39,7 +39,17 @@ STYLE_LINES={"right":"dtred,very thick","left":"dtblue,very thick",
 PALETTE=("black","black!60","teal!65!black")
 PALETTE_MAP=("black!14","black!10","teal!15")
 STYLE_OPTS=r"tick label style={font=\scriptsize},label style={font=\footnotesize},title style={font=\footnotesize\bfseries},grid=major,grid style={draw=black!8},axis line style={black!55},tick style={black!55},enlargelimits=false"
-HEATMAP_COLORMAP=r"colormap={questionmap}{rgb255=(35,48,70);rgb255=(67,93,123);rgb255=(100,158,173);rgb255=(169,210,201);rgb255=(239,224,171);rgb255=(231,164,154);rgb255=(159,91,113)}"
+# Optimized question IDs are categorical; colors indicate index, NOT ideology.
+HEATMAP_COLORMAP=(
+    r"colormap={questionmap}{"
+    r"rgb255=(33,102,172);"
+    r"rgb255=(103,169,207);"
+    r"rgb255=(209,229,240);"
+    r"rgb255=(247,247,247);"
+    r"rgb255=(253,219,199);"
+    r"rgb255=(239,138,98);"
+    r"rgb255=(178,24,43)}"
+)
 
 
 def csv_write(df,out):
@@ -136,7 +146,11 @@ def go_trajectories(df,out,steps):
     put(out,'fig2_trajectories_pgfplots.tex','\n'.join(parts))
 
 def go_heatmaps(out,steps,reps,nactive):
-    """One figure, 18 nearly-square heatmaps in a 3-column x 6-row matrix."""
+    """Eighteen heatmaps with one shared blue-white-red Question ID colorbar.
+
+    Keep the original (out, steps, reps, nactive) API used by main().
+    Question IDs are categorical labels, not signed ideology displacements.
+    """
     parts=[r'\begin{tikzpicture}',
            (r'\begin{groupplot}[group style={group size=3 by 6,horizontal sep=.55cm,vertical sep=.28cm},'
             r'width=.174\textwidth,height=.174\textwidth,'
@@ -161,6 +175,21 @@ def go_heatmaps(out,steps,reps,nactive):
                 opts.append('xticklabels={}')
             else:
                 opts.append('xlabel={Position}')
+            # Attach a single vertical bar at the right of the heatmap block.
+            # A dedicated middle-right anchor avoids 18 redundant colorbars.
+            if i==2 and j==2:
+                opts.extend([
+                    'colorbar',
+                    (r'colorbar style={at={(1.14,0.5)},anchor=west,'
+                     r'height=5.6cm,width=.24cm,'
+                     r'title={Question ID},'
+                     r'title style={font=\scriptsize\bfseries,text=black},'
+                     r'ytick={1,'+str(max(1,round(nactive/2)))+','+str(nactive)+'},'
+                     r'yticklabel style={font=\scriptsize\bfseries,text=black},'
+                     r'tick style={draw=black,line width=.8pt},'
+                     r'axis line style={draw=black,line width=.9pt},'
+                     r'scaled y ticks=false}')
+                ])
             parts.append(r'\nextgroupplot['+','.join(opts)+']')
             parts.append(r'\addplot[matrix plot*,mesh/cols='+str(steps)
                          +r',point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{'
