@@ -15,6 +15,7 @@ LaTeX PGFPlots (no pre-rendered bitmap/PDF embedded in the manuscript).
 """
 from __future__ import annotations
 import argparse
+import json
 import os
 from pathlib import Path
 import numpy as np
@@ -314,6 +315,44 @@ def flips_and_ci(df,out,reps,eps=1e-9,B=3000,seed=20261022):
     return stats
 
 
+def emit_publication_metadata(out, steps, reps, nactive):
+    """Emit the single-row PGFPlots metadata CSV required by pdfLaTeX.
+
+    Derived from completed experimental CSVs only. No simulation is run.
+    TeX reads this file using pgfplotstable, without Lua or generated TeX inputs.
+    """
+    report = out / 'optimization_report.json'
+    if not report.exists():
+        raise ValueError(f'Missing {report}; run plot_pgf.py first')
+    info = json.loads(report.read_text(encoding='utf-8'))
+    if int(info.get('steps', -1)) != steps or int(info.get('reps', -1)) != reps:
+        raise ValueError(f'Metadata does not match --steps/--reps: {report}')
+    if int(info.get('displayed_questions', -1)) != nactive:
+        raise ValueError(f'Metadata question-index mismatch: {report}')
+    e = t = o = 0.0
+    for pol in ARMS:
+        d = pd.read_csv(out / f'pub_endpoint_{pol}.csv')
+        e = max(e, float((d['mean'] - d['minus']).abs().max()),
+                   float((d['mean'] + d['plus']).abs().max()))
+        for person in PERSONAS:
+            d = pd.read_csv(out / f'pub_trajectory_{person}_{pol}.csv')
+            t = max(t, float(d[['lo', 'hi']].abs().max().max()))
+    for pol in POLICIES:
+        for person in PERSONAS:
+            d = pd.read_csv(out / f'pub_order_{person}_{pol}.csv')
+            o = max(o, float((d['mean'] - d['minus']).abs().max()),
+                    float((d['mean'] + d['plus']).abs().max()))
+    csv_write(pd.DataFrame([{
+        'steps': steps,
+        'reps': reps,
+        'displayed_questions': nactive,
+        'total_questions': int(info['total_questions']),
+        'endpoint_bound': f'{max(e*1.16, 0.02):.4f}',
+        'trajectory_bound': f'{max(t*1.16, 0.02):.4f}',
+        'order_bound': f'{max(o*1.16, 0.01):.4f}',
+    }]), out / 'publication_metadata.csv')
+
+
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--adaptive-endpoints',type=Path,required=True)
@@ -343,6 +382,7 @@ def main():
     go_heatmaps(a.out,a.steps,a.reps,a.nactive)
     go_order_forest(pd.read_csv(a.order_endpoints.parent/'paired_order_contrasts.csv'),a.out)
     x=flips_and_ci(pd.read_csv(a.order_endpoints),a.out,a.reps)
+    emit_publication_metadata(a.out,a.steps,a.reps,a.nactive)
     print('Three principal PGFPlots figures plus one supplementary figure (five panel-group files) generated.')
     print('Reversal summaries:',x.groupby(['policy','outcome']).agg({'flip_count':'sum','paired_comparisons':'sum'}).to_string())
 
