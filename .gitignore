@@ -64,3 +64,6 @@ experiments/
 
 # Local optimizer working copy (cp configs/optimizer_gss2024_cm_wf_robust.yaml my.yaml)
 /my.yaml
+
+# Stable local input symlink for the pdfLaTeX/PGF externalizer
+/tex/figures
