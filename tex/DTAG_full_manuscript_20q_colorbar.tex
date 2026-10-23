@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{dblfloatfix}
 \usepackage{microtype}
-\usepackage{luacode} % literal Lua strings across TeX Live releases
+\usepackage{luacode} % literal Lua syntax, compatible with TeX Live 2023
 \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\thebibliography}{\footnotesize\vskip}{\footnotesize\linespread{0.90}\selectfont\vskip}{}{}
@@ -200,75 +200,9 @@ s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
 \end{align}
 These equations describe the idealized \emph{draw} mode without state eviction. The implementation also supports modal answers, multi-item semantic mappings, validated mappings, and direct item selection; these are distinct experimental conditions. The operational system uses a fixed LSM during a respondent session. The ordinary update is statistical conditioning, not an identified model of psychological persuasion.
 
-\begin{figure*}[!t]
-\centering
-% The native TikZ graph has three independent feedback corridors.
-\resizebox{.94\textwidth}{!}{%
-\begin{tikzpicture}[>=Latex,font=\small,
- box/.style={draw=black,line width=.8pt,rounded corners=3pt,align=center,
- minimum height=1.1cm,inner sep=7pt},
- flow/.style={->,line width=1.1pt,draw=black}]
- % The feedback routes occupy their own corridors (no crossed box arrows).
- \filldraw[rounded corners=6pt,dashed,draw=dtblue,line width=.8pt,fill=dtpale!35]
-   (0,0) rectangle (10,-9.25);
- \filldraw[rounded corners=6pt,dashed,draw=teal!65!black,line width=.8pt,fill=dtmint!50]
-   (10.28,0) rectangle (36.5,-9.25);
- \node[anchor=west,font=\Large\bfseries,text=dtblue] at (.35,-.48)
-   {LLM: semantic interface};
- \node[anchor=west,font=\Large\bfseries,text=teal!50!black] at (10.65,-.48)
-   {Digital twin (DT): predictive conditional system};
- \node[box,fill=dtpale,text width=2.9cm] (q) at (2.3,-2.75)
-   {Natural-language\\question $q_t$};
- \node[box,fill=dtpale,text width=4.2cm] (parse) at (7.0,-2.75)
-   {\textbf{LLM grounding}\\map language to item $v$};
- \node[box,fill=dtpale,text width=6.5cm] (say) at (5.1,-7.65)
-   {\textbf{LLM verbalization}\\present selected item and grounded answer};
- \node[box,fill=dtmint,text width=4.2cm] (state) at (14.2,-2.75)
-   {\textbf{Current DT state $s_t$}\\observed categorical anchors};
- \node[box,fill=dtmint,text width=4.7cm] (model) at (20.4,-2.75)
-   {\textbf{Native conditional LSM}\\$p_\Phi(a\mid s_t,v)$};
- \node[box,fill=dtmint,text width=5.6cm] (geo) at (29.0,-2.75)
-   {\textbf{Predictive phenotype}\\$I_\Phi(s_t)$ and unasked responses};
- \node[box,fill=dtorange,draw=dtred,line width=1.3pt,text width=17.3cm,
- minimum height=2.2cm] (opt) at (23.6,-5.55)
-   {\Large\textbf{One-step greedy question optimization}\\[3pt]
-    \normalsize For each unanswered item $v$: predict candidate answer distribution,
-    then calculate\\[-1pt]
-    $\displaystyle \mu_v(s_t)=\sum_a p_\Phi(a\mid s_t,v)
-     [I_\Phi(s_t\cup\{v=a\})-I_\Phi(s_t)]$\\[-1pt]
-    $v^*=\arg\max_v\mu_v$ (right), $\arg\min_v\mu_v$ (left),
-    or $\arg\min_v|\mu_v|$ (neutral); evaluate \emph{one step only}.};
- \node[box,fill=dtmint,text width=5.0cm] (pick) at (23.55,-8.0)
-   {\textbf{Chosen item $v^*$}\\ask once, observe $a_t$};
- \node[box,fill=dtmint,text width=5.8cm] (anchor) at (31.3,-8.0)
-   {\textbf{Anchor / update}\\$s_{t+1}=s_t\cup\{v^*=a_t\}$};
- % Forward, upper lane: arrows terminate at box boundaries.
- \draw[flow] (q.east)--(parse.west);
- \draw[flow] (parse.east)--(state.west);
- \draw[flow] (state.east)--(model.west);
- \draw[flow] (model.east)--(geo.west);
- % Model and index feed optimizer at two separate top ports.
- \draw[flow] (model.south) |- ([xshift=-3.9cm]opt.north);
- \draw[flow] (geo.south) |- ([xshift=3.9cm]opt.north);
- \draw[flow] (opt.south) -- (pick.north);
- \draw[flow] (pick.east)--(anchor.west);
- % Independent outbound language route; no crossing with native inference arrows.
- \draw[flow] (pick.west)--(say.east);
- % Return-to-state corridor above the DT boxes and below layer heading.
- \draw[flow] (anchor.east) -- (35.65,-8.0) -- (35.65,-1.45)
-   -- (14.2,-1.45) -- (state.north);
- % Dashed natural-language loop remains entirely in LLM region.
- \draw[->,dashed,line width=1pt,draw=dtblue] (say.west) -- (.55,-7.65)
-    -- (.55,-4.25) -- (2.3,-4.25) -- (q.south);
-\end{tikzpicture}}
-\vspace{-1.0mm}
-\caption{\textbf{DTAG architecture and one-step greedy question selection.}
-The LLM handles semantic interpretation and verbalization; the DT contains the
-conditional LSM, anchored state, predictive phenotype and one-step optimizer.
-Each observed categorical answer updates the DT state before the next choice.
-The routing separates the response-anchoring loop from semantic verbalization.}
-\label{fig:arch}
-\end{figure*}
+The native LSM, semantic LLM interface, greedy single-question selection,
+and observed-response state update are summarized alongside the synthetic
+adaptive-questioning experiment in Fig.~\ref{fig:arch_adaptive}.
 
 \subsection{Sequential geometry and adaptive questioning}
 For every candidate item $v$ and response $a$, define
@@ -335,274 +269,272 @@ eligible question. The answer was always drawn from the conditional LSM.
 There were $T=20$ questions and $40$ independent repetitions per policy and
 persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}200$ question-answer draws.
 
+% -------- CSV file definitions for the integrated figure --------
+% For future runs, set DTAG_FIGURES_DIR before compiling.
+\def\DTAGEndpointRightFile{\DTAGFigureDir/pub_endpoint_right.csv}
+\def\DTAGEndpointLeftFile{\DTAGFigureDir/pub_endpoint_left.csv}
+\def\DTAGEndpointNeutralFile{\DTAGFigureDir/pub_endpoint_neutral.csv}
+\def\DTAGEndpointRandomFile{\DTAGFigureDir/pub_endpoint_random.csv}
+\def\DTAGTrajectoryAlabamaRightFile{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_right.csv}
+\def\DTAGTrajectoryAlabamaLeftFile{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_left.csv}
+\def\DTAGTrajectoryAlabamaNeutralFile{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_neutral.csv}
+\def\DTAGTrajectoryAlabamaRandomFile{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_random.csv}
+\def\DTAGTrajectoryNewYorkRightFile{\DTAGFigureDir/pub_trajectory_wf_new_york_city_right.csv}
+\def\DTAGTrajectoryNewYorkLeftFile{\DTAGFigureDir/pub_trajectory_wf_new_york_city_left.csv}
+\def\DTAGTrajectoryNewYorkNeutralFile{\DTAGFigureDir/pub_trajectory_wf_new_york_city_neutral.csv}
+\def\DTAGTrajectoryNewYorkRandomFile{\DTAGFigureDir/pub_trajectory_wf_new_york_city_random.csv}
+\def\DTAGTrajectoryTexasRightFile{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_right.csv}
+\def\DTAGTrajectoryTexasLeftFile{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_left.csv}
+\def\DTAGTrajectoryTexasNeutralFile{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGTrajectoryTexasRandomFile{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_random.csv}
+\def\DTAGTrajectorySeattleRightFile{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_right.csv}
+\def\DTAGTrajectorySeattleLeftFile{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_left.csv}
+\def\DTAGTrajectorySeattleNeutralFile{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGTrajectorySeattleRandomFile{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_random.csv}
+\def\DTAGTrajectoryArizonaRightFile{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGTrajectoryArizonaLeftFile{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGTrajectoryArizonaNeutralFile{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGTrajectoryArizonaRandomFile{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_random.csv}
+\def\DTAGTrajectoryAtlantaRightFile{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGTrajectoryAtlantaLeftFile{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGTrajectoryAtlantaNeutralFile{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGTrajectoryAtlantaRandomFile{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_random.csv}
+
 \begin{figure*}[!t]
 \centering
-\resizebox{\textwidth}{!}{\begin{minipage}{40.4cm}
-\begin{center}
-\begin{minipage}[t]{.415\textwidth}
+% ================ (a) Circuit-style DTAG schematic ================
+\begin{minipage}[t]{.605\textwidth}
 \centering
-{\Large\bfseries (a) Final endpoint displacement}\par\vspace{.48cm}
+{\small\bfseries (a) Conditional digital-twin circuit}\par\vspace{1mm}
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,
+  font=\sffamily\fontsize{8}{9}\selectfont,
+  pcb/.style={draw=black,line width=1.35pt,fill=black!1},
+  chip/.style={draw=black,line width=1.15pt,fill=white,align=center,
+      minimum height=.76cm,inner xsep=2.3pt,inner ysep=2.4pt},
+  wire/.style={-{Latex[length=1.5mm,width=1.15mm]},draw=black,line width=1.25pt,
+      rounded corners=.6pt},
+  control/.style={-{Latex[length=1.5mm,width=1.15mm]},draw=dtred,line width=1.35pt},
+  bus/.style={draw=black,line width=1.35pt},
+  pin/.style={circle,fill=black,inner sep=1.15pt},
+  ch/.style={font=\sffamily\fontsize{7.7}{8.4}\selectfont\bfseries}]
+% Heavy board edges and flat circuit modules replace decorative bubbles.
+\path[pcb] (0,0) rectangle (11.8,5.15);
+\path[fill=dtpale!65,draw=modblue,line width=1.0pt]
+  (.19,4.45) rectangle (3.55,4.93);
+\path[fill=dtmint!85,draw=modteal,line width=1.0pt]
+  (3.64,4.45) rectangle (11.61,4.93);
+\node[font=\sffamily\bfseries\fontsize{10}{10}\selectfont,text=modblue]
+  at (1.87,4.69) {LLM / LANGUAGE};
+\node[font=\sffamily\bfseries\fontsize{10}{10}\selectfont,text=modteal]
+  at (7.63,4.69) {DT / native conditional model};
+% Input pipeline, top bus.
+\node[chip,text width=1.05cm] (q) at (.80,3.63) {Input\\$q_t$};
+\node[chip,text width=1.30cm] (ground) at (2.60,3.63) {LLM map\\$M(q_t)\to v$};
+\node[chip,text width=1.35cm,fill=dtmint!45] (state) at (4.42,3.63) {State\\$s_t$};
+\node[chip,text width=1.85cm,fill=dtmint!45] (model) at (6.52,3.63)
+  {Native LSM\\$p_\Phi(a\mid s_t,v)$};
+\node[chip,text width=1.82cm,fill=dtmint!45] (index) at (9.40,3.63)
+  {Geometry\\$I_\Phi(s_t)$};
+\draw[wire] (q.east)--(ground.west);
+\draw[wire] (ground.east)--(state.west);
+\draw[wire] (state.east)--(model.west);
+\draw[wire] (model.east)--(index.west);
+% Wide, low-profile ALU/control unit; distinct parallel input ports.
+\node[chip,fill=dtorange!75,line width=1.6pt,draw=dtred,
+ text width=6.05cm,minimum height=.85cm] (alu) at (7.38,2.24)
+ {\textbf{ONE-STEP GREEDY SELECTOR}\quad\strut$\mu_v(s_t)=\sum_a p_\Phi(a\mid s_t,v)\,\Delta_v(a;s_t)$\\
+  \textbf{right:} $\max_v\mu_v$\quad\textbf{left:} $\min_v\mu_v$\quad
+  \textbf{neutral:} $\min_v|\mu_v|$};
+\draw[black,line width=1.15pt] (model.south) -- ([xshift=-.86cm]alu.north);
+\draw[black,line width=1.15pt] (index.south) -- ([xshift=2.02cm]alu.north);
+% Bottom outbound chain (selected item -> answer -> anchored update).
+\node[chip,text width=1.55cm,fill=dtmint!45] (pick) at (5.02,.79) {Chosen\\$v^\star$};
+\node[chip,text width=1.60cm,fill=dtmint!45] (answer) at (7.27,.79) {Model draw\\$a_t$};
+\node[chip,text width=1.75cm,fill=dtmint!45] (update) at (9.93,.79)
+  {Anchor\\$s_{t+1}$};
+\node[chip,text width=2.08cm,fill=dtpale!65] (lang) at (2.15,.79)
+  {LLM verbalization\\\& next prompt};
+\draw[control] (alu.south) -- (7.38,1.47) -| (pick.north);
+\draw[wire] (pick.east)--(answer.west);
+\draw[wire] (answer.east)--(update.west);
+\draw[wire] (pick.west)--(lang.east);
+% State-update feedback uses a dedicated outer trace ABOVE the upper bus.
+\draw[wire] (update.east) -- (11.35,.79) -- (11.35,4.23)
+ -- (4.42,4.23) -- (state.north);
+% LLM prompt feedback uses a disjoint left-side trace.
+\draw[-{Latex[length=1.5mm,width=1.15mm]},draw=modblue,line width=1.25pt,densely dashed]
+ (lang.west) -- (.33,.79) -- (.33,2.83) -- (.8,2.83) -- (q.south);
+% Contact pads and board traces make module boundaries clear.
+\foreach \p in {q.east,ground.west,ground.east,state.west,state.east,
+ model.west,model.east,index.west,model.south,index.south,alu.south,
+ pick.east,answer.west,answer.east,update.west,lang.east}
+  \node[pin] at (\p) {};
+\end{tikzpicture}}
+\end{minipage}%
+% ================ (b) High-contrast endpoint plot ================
+\hfill\begin{minipage}[t]{.375\textwidth}
+\centering
+{\small\bfseries (b) Final endpoint displacement}\par\vspace{1mm}
 \begin{tikzpicture}
 \begin{axis}[
-  axis lines=box,axis line style={draw=black,line width=1.3pt},
-  tick style={draw=black,line width=1pt},
-  tick label style={font=\normalsize\bfseries,text=black},
-  label style={font=\Large\bfseries,text=black},
-  scale only axis,width=.94\linewidth,height=15.5cm,
-  xmin=-\DTAGEndpointBound,xmax=\DTAGEndpointBound,ymin=.45,ymax=6.55,
-  xtick={-.12,-.08,-.04,0,.04,.08,.12},
-  ytick={1,2,3,4,5,6},
-  yticklabels={Atlanta,Arizona,Seattle,Texas,New York,Alabama},
-  xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
-  xlabel={Mean displacement $\overline{\Delta I_\Phi}$},
-  legend columns=2,
-  legend style={draw=none,fill=none,font=\normalsize\bfseries,
-     at={(.5,1.11)},anchor=south,column sep=7pt},
-  grid=major,grid style={draw=black!12,line width=.3pt}
-]
-\addplot[black,line width=1.2pt,forget plot] coordinates{(0,.45)(0,6.55)};
-\addplot[dtred,only marks,mark=*,mark size=2.6pt,
-  error bars/.cd,x dir=both,x explicit,
-  error bar style={black,line width=1.05pt},error mark options={mark size=1.8pt}]
-  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_endpoint_right.csv};
+ axis lines=box,axis line style={draw=black,line width=1.35pt},
+ tick style={draw=black,line width=1.10pt},
+ tick label style={font=\scriptsize\bfseries,text=black},
+ label style={font=\small\bfseries,text=black},
+ scale only axis,width=4.72cm,height=3.85cm,
+ xmin=-\DTAGEndpointBound,xmax=\DTAGEndpointBound,ymin=.40,ymax=6.60,
+ xtick={-.1,-.05,0,.05,.1},ytick={1,2,3,4,5,6},
+ yticklabels={Atlanta,Arizona,Seattle,Texas,New York,Alabama},
+ xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
+ xlabel={Mean $\overline{\Delta I_\Phi}$},
+ legend columns=2,
+ legend style={draw=none,fill=none,font=\scriptsize\bfseries,
+   at={(.5,1.09)},anchor=south,column sep=4pt,legend cell align=left},
+ grid=major,grid style={draw=black!12,line width=.30pt}]
+\addplot[black,line width=1.05pt,forget plot] coordinates {(0,.45)(0,6.55)};
+\addplot[dtred,only marks,mark=*,mark size=3.5pt,
+ error bars/.cd,x dir=both,x explicit,
+ error bar style={black,line width=1.35pt},
+ error mark options={mark size=2.4pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointRightFile};
 \addlegendentry{Right push}
-\addplot[dtblue,only marks,mark=square*,mark size=2.6pt,
-  error bars/.cd,x dir=both,x explicit,
-  error bar style={black,line width=1.05pt},error mark options={mark size=1.8pt}]
-  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_endpoint_left.csv};
+\addplot[dtblue,only marks,mark=square*,mark size=3.5pt,
+ error bars/.cd,x dir=both,x explicit,
+ error bar style={black,line width=1.35pt},
+ error mark options={mark size=2.4pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointLeftFile};
 \addlegendentry{Left push}
-\addplot[dtgray,only marks,mark=diamond*,mark size=2.6pt,
-  error bars/.cd,x dir=both,x explicit,
-  error bar style={black,line width=1.05pt},error mark options={mark size=1.8pt}]
-  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_endpoint_neutral.csv};
+\addplot[dtgray,only marks,mark=diamond*,mark size=3.5pt,
+ error bars/.cd,x dir=both,x explicit,
+ error bar style={black,line width=1.35pt},
+ error mark options={mark size=2.4pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointNeutralFile};
 \addlegendentry{Neutral drift}
-\addplot[black,only marks,mark=triangle*,mark size=2.6pt,
-  error bars/.cd,x dir=both,x explicit,
-  error bar style={black,line width=1.05pt},error mark options={mark size=1.8pt}]
-  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_endpoint_random.csv};
-\addlegendentry{Random questions}
-\draw[black,line width=1.3pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
+\addplot[black,only marks,mark=triangle*,mark size=3.5pt,
+ error bars/.cd,x dir=both,x explicit,
+ error bar style={black,line width=1.35pt},
+ error mark options={mark size=2.4pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointRandomFile};
+\addlegendentry{Random}
+\draw[black,line width=1.25pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
 \end{axis}
-\end{tikzpicture}
-\end{minipage}%
-\hspace{.008\textwidth}%
-\begin{minipage}[t]{.565\textwidth}
-\centering
-{\Large\bfseries (b) Question-by-question trajectories}\par\vspace{.30cm}
-\begin{tikzpicture}[font=\small]
-% Explicit, matched policy legend. Solid red/blue are push directions;
-% dashed gray is minimum-drift, solid black is random questioning.
-\node[draw=black,fill=white,line width=1pt,rounded corners=1.5pt,
-  inner xsep=12pt,inner ysep=8pt,anchor=north,font=\normalsize\bfseries]
-  at (9.0cm,.80cm) {
-   \tikz[baseline=-.35ex]\draw[dtred,line width=2pt] (0,0)--(.68,0);\,Right push\hspace{.35cm}
-   \tikz[baseline=-.35ex]\draw[dtblue,line width=2pt] (0,0)--(.68,0);\,Left push\hspace{.35cm}
-   \tikz[baseline=-.35ex]\draw[dtgray,line width=2pt,densely dashed] (0,0)--(.68,0);\,Neutral\hspace{.35cm}
-   \tikz[baseline=-.35ex]\draw[black,line width=2pt] (0,0)--(.68,0);\,Random};
-
-% Persona Alabama
-\begin{axis}[
- scale only axis,axis lines=box,
- axis line style={draw=black,line width=1.45pt},
- tick style={draw=black,line width=1.1pt},
- tick label style={font=\normalsize\bfseries,text=black},
- label style={font=\large\bfseries,text=black},
- at={(1.35cm,-2.20cm)},anchor=north west,
- width=7.1cm,height=4.1cm,
- xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
- xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
- grid=major,grid style={draw=black!13,line width=.25pt},
- scaled ticks=false,
- yticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
- xticklabels={},
-]
-\addplot[draw=none,forget plot,name path=lo0right] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_right.csv};
-\addplot[draw=none,forget plot,name path=hi0right] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_right.csv};
-\addplot[draw=none,fill=dtred!22,forget plot] fill between[of=hi0right and lo0right];
-\addplot[draw=none,forget plot,name path=lo0left] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_left.csv};
-\addplot[draw=none,forget plot,name path=hi0left] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_left.csv};
-\addplot[draw=none,fill=dtblue!22,forget plot] fill between[of=hi0left and lo0left];
-\addplot[black!40,densely dotted,line width=.9pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
-\addplot[dtred,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_right.csv};
-\addplot[dtblue,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_left.csv};
-\addplot[dtgray,densely dashed,line width=1.5pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_neutral.csv};
-\addplot[black,line width=1.55pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_random.csv};
-\draw[black,line width=1.45pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
-\end{axis}
-\node[font=\Large\bfseries,text=black,anchor=south] at (4.90cm,-1.83cm) {Alabama};
-
-% Persona New York
-\begin{axis}[
- scale only axis,axis lines=box,
- axis line style={draw=black,line width=1.45pt},
- tick style={draw=black,line width=1.1pt},
- tick label style={font=\normalsize\bfseries,text=black},
- label style={font=\large\bfseries,text=black},
- at={(9.50cm,-2.20cm)},anchor=north west,
- width=7.1cm,height=4.1cm,
- xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
- xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
- grid=major,grid style={draw=black!13,line width=.25pt},
- scaled ticks=false,
- yticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
- yticklabels={},
- xticklabels={},
-]
-\addplot[draw=none,forget plot,name path=lo1right] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_wf_new_york_city_right.csv};
-\addplot[draw=none,forget plot,name path=hi1right] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_wf_new_york_city_right.csv};
-\addplot[draw=none,fill=dtred!22,forget plot] fill between[of=hi1right and lo1right];
-\addplot[draw=none,forget plot,name path=lo1left] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_wf_new_york_city_left.csv};
-\addplot[draw=none,forget plot,name path=hi1left] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_wf_new_york_city_left.csv};
-\addplot[draw=none,fill=dtblue!22,forget plot] fill between[of=hi1left and lo1left];
-\addplot[black!40,densely dotted,line width=.9pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
-\addplot[dtred,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_wf_new_york_city_right.csv};
-\addplot[dtblue,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_wf_new_york_city_left.csv};
-\addplot[dtgray,densely dashed,line width=1.5pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_wf_new_york_city_neutral.csv};
-\addplot[black,line width=1.55pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_wf_new_york_city_random.csv};
-\draw[black,line width=1.45pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
-\end{axis}
-\node[font=\Large\bfseries,text=black,anchor=south] at (13.05cm,-1.83cm) {New York};
-
-% Persona Texas
-\begin{axis}[
- scale only axis,axis lines=box,
- axis line style={draw=black,line width=1.45pt},
- tick style={draw=black,line width=1.1pt},
- tick label style={font=\normalsize\bfseries,text=black},
- label style={font=\large\bfseries,text=black},
- at={(1.35cm,-7.55cm)},anchor=north west,
- width=7.1cm,height=4.1cm,
- xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
- xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
- grid=major,grid style={draw=black!13,line width=.25pt},
- scaled ticks=false,
- yticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
- xticklabels={},
-]
-\addplot[draw=none,forget plot,name path=lo2right] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_right.csv};
-\addplot[draw=none,forget plot,name path=hi2right] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_right.csv};
-\addplot[draw=none,fill=dtred!22,forget plot] fill between[of=hi2right and lo2right];
-\addplot[draw=none,forget plot,name path=lo2left] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_left.csv};
-\addplot[draw=none,forget plot,name path=hi2left] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_left.csv};
-\addplot[draw=none,fill=dtblue!22,forget plot] fill between[of=hi2left and lo2left];
-\addplot[black!40,densely dotted,line width=.9pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
-\addplot[dtred,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_right.csv};
-\addplot[dtblue,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_left.csv};
-\addplot[dtgray,densely dashed,line width=1.5pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_neutral.csv};
-\addplot[black,line width=1.55pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_random.csv};
-\draw[black,line width=1.45pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
-\end{axis}
-\node[font=\Large\bfseries,text=black,anchor=south] at (4.90cm,-7.18cm) {Texas};
-
-% Persona Seattle
-\begin{axis}[
- scale only axis,axis lines=box,
- axis line style={draw=black,line width=1.45pt},
- tick style={draw=black,line width=1.1pt},
- tick label style={font=\normalsize\bfseries,text=black},
- label style={font=\large\bfseries,text=black},
- at={(9.50cm,-7.55cm)},anchor=north west,
- width=7.1cm,height=4.1cm,
- xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
- xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
- grid=major,grid style={draw=black!13,line width=.25pt},
- scaled ticks=false,
- yticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
- yticklabels={},
- xticklabels={},
-]
-\addplot[draw=none,forget plot,name path=lo3right] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_right.csv};
-\addplot[draw=none,forget plot,name path=hi3right] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_right.csv};
-\addplot[draw=none,fill=dtred!22,forget plot] fill between[of=hi3right and lo3right];
-\addplot[draw=none,forget plot,name path=lo3left] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_left.csv};
-\addplot[draw=none,forget plot,name path=hi3left] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_left.csv};
-\addplot[draw=none,fill=dtblue!22,forget plot] fill between[of=hi3left and lo3left];
-\addplot[black!40,densely dotted,line width=.9pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
-\addplot[dtred,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_right.csv};
-\addplot[dtblue,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_left.csv};
-\addplot[dtgray,densely dashed,line width=1.5pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_neutral.csv};
-\addplot[black,line width=1.55pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_random.csv};
-\draw[black,line width=1.45pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
-\end{axis}
-\node[font=\Large\bfseries,text=black,anchor=south] at (13.05cm,-7.18cm) {Seattle};
-
-% Persona Arizona
-\begin{axis}[
- scale only axis,axis lines=box,
- axis line style={draw=black,line width=1.45pt},
- tick style={draw=black,line width=1.1pt},
- tick label style={font=\normalsize\bfseries,text=black},
- label style={font=\large\bfseries,text=black},
- at={(1.35cm,-12.90cm)},anchor=north west,
- width=7.1cm,height=4.1cm,
- xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
- xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
- grid=major,grid style={draw=black!13,line width=.25pt},
- scaled ticks=false,
- yticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
-]
-\addplot[draw=none,forget plot,name path=lo4right] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_right.csv};
-\addplot[draw=none,forget plot,name path=hi4right] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_right.csv};
-\addplot[draw=none,fill=dtred!22,forget plot] fill between[of=hi4right and lo4right];
-\addplot[draw=none,forget plot,name path=lo4left] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_left.csv};
-\addplot[draw=none,forget plot,name path=hi4left] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_left.csv};
-\addplot[draw=none,fill=dtblue!22,forget plot] fill between[of=hi4left and lo4left];
-\addplot[black!40,densely dotted,line width=.9pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
-\addplot[dtred,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_right.csv};
-\addplot[dtblue,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_left.csv};
-\addplot[dtgray,densely dashed,line width=1.5pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_neutral.csv};
-\addplot[black,line width=1.55pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_random.csv};
-\draw[black,line width=1.45pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
-\end{axis}
-\node[font=\Large\bfseries,text=black,anchor=south] at (4.90cm,-12.53cm) {Arizona};
-
-% Persona Atlanta
-\begin{axis}[
- scale only axis,axis lines=box,
- axis line style={draw=black,line width=1.45pt},
- tick style={draw=black,line width=1.1pt},
- tick label style={font=\normalsize\bfseries,text=black},
- label style={font=\large\bfseries,text=black},
- at={(9.50cm,-12.90cm)},anchor=north west,
- width=7.1cm,height=4.1cm,
- xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
- xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
- grid=major,grid style={draw=black!13,line width=.25pt},
- scaled ticks=false,
- yticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
- yticklabels={},
-]
-\addplot[draw=none,forget plot,name path=lo5right] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_right.csv};
-\addplot[draw=none,forget plot,name path=hi5right] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_right.csv};
-\addplot[draw=none,fill=dtred!22,forget plot] fill between[of=hi5right and lo5right];
-\addplot[draw=none,forget plot,name path=lo5left] table[x=step,y=lo,col sep=comma]{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_left.csv};
-\addplot[draw=none,forget plot,name path=hi5left] table[x=step,y=hi,col sep=comma]{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_left.csv};
-\addplot[draw=none,fill=dtblue!22,forget plot] fill between[of=hi5left and lo5left];
-\addplot[black!40,densely dotted,line width=.9pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
-\addplot[dtred,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_right.csv};
-\addplot[dtblue,line width=1.85pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_left.csv};
-\addplot[dtgray,densely dashed,line width=1.5pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_neutral.csv};
-\addplot[black,line width=1.55pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_random.csv};
-\draw[black,line width=1.45pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
-\end{axis}
-\node[font=\Large\bfseries,text=black,anchor=south] at (13.05cm,-12.53cm) {Atlanta};
-\node[rotate=90,font=\Large\bfseries,text=black] at (0.12cm,-9.65cm){Net displacement};
-\node[font=\Large\bfseries,text=black] at (9.9cm,-18.15cm){Question sequence number};
 \end{tikzpicture}
 \end{minipage}
-\end{center}
-\vspace{.4cm}
-\end{minipage}}
+\par\vspace{1.8mm}
+{\small\bfseries (c) Question-by-question trajectories: six synthetic personas}\par\vspace{.9mm}
+{\scriptsize\bfseries
+\tikz[baseline=-.25ex]\draw[dtred,line width=1.45pt](0,0)--(.43,0);\,Right push\hspace{.30cm}
+\tikz[baseline=-.25ex]\draw[dtblue,line width=1.45pt](0,0)--(.43,0);\,Left push\hspace{.30cm}
+\tikz[baseline=-.25ex]\draw[dtgray,densely dashed,line width=1.3pt](0,0)--(.43,0);\,Neutral\hspace{.30cm}
+\tikz[baseline=-.25ex]\draw[black,line width=1.3pt](0,0)--(.43,0);\,Random}\par\vspace{1.0mm}
+\begin{tikzpicture}
+\begin{groupplot}[
+ group style={group size=6 by 1,horizontal sep=.43cm},
+ axis lines=box,scale only axis,width=2.12cm,height=2.35cm,
+ xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
+ xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
+ scaled ticks=false,
+ yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
+ axis line style={draw=black,line width=1.05pt},
+ tick style={draw=black,line width=.9pt},
+ tick label style={font=\scriptsize\bfseries,text=black},
+ title style={font=\scriptsize\bfseries,text=black},
+ grid=major,grid style={draw=black!12,line width=.25pt}]
+\nextgroupplot[title={Alabama}]
+\addplot[draw=none,forget plot,name path=p0Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryAlabamaRightFile};
+\addplot[draw=none,forget plot,name path=p0Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryAlabamaRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p0Righthi and p0Rightlo];
+\addplot[draw=none,forget plot,name path=p0Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryAlabamaLeftFile};
+\addplot[draw=none,forget plot,name path=p0Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryAlabamaLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p0Lefthi and p0Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAlabamaRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAlabamaLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAlabamaNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAlabamaRandomFile};
+\nextgroupplot[title={New York},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p1Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryNewYorkRightFile};
+\addplot[draw=none,forget plot,name path=p1Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryNewYorkRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p1Righthi and p1Rightlo];
+\addplot[draw=none,forget plot,name path=p1Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryNewYorkLeftFile};
+\addplot[draw=none,forget plot,name path=p1Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryNewYorkLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p1Lefthi and p1Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryNewYorkRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryNewYorkLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryNewYorkNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryNewYorkRandomFile};
+\nextgroupplot[title={Texas},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p2Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryTexasRightFile};
+\addplot[draw=none,forget plot,name path=p2Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryTexasRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p2Righthi and p2Rightlo];
+\addplot[draw=none,forget plot,name path=p2Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryTexasLeftFile};
+\addplot[draw=none,forget plot,name path=p2Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryTexasLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p2Lefthi and p2Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryTexasRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryTexasLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryTexasNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryTexasRandomFile};
+\nextgroupplot[title={Seattle},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p3Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectorySeattleRightFile};
+\addplot[draw=none,forget plot,name path=p3Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectorySeattleRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p3Righthi and p3Rightlo];
+\addplot[draw=none,forget plot,name path=p3Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectorySeattleLeftFile};
+\addplot[draw=none,forget plot,name path=p3Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectorySeattleLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p3Lefthi and p3Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectorySeattleRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectorySeattleLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectorySeattleNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectorySeattleRandomFile};
+\nextgroupplot[title={Arizona},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p4Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryArizonaRightFile};
+\addplot[draw=none,forget plot,name path=p4Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryArizonaRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p4Righthi and p4Rightlo];
+\addplot[draw=none,forget plot,name path=p4Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryArizonaLeftFile};
+\addplot[draw=none,forget plot,name path=p4Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryArizonaLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p4Lefthi and p4Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryArizonaRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryArizonaLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryArizonaNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryArizonaRandomFile};
+\nextgroupplot[title={Atlanta},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p5Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryAtlantaRightFile};
+\addplot[draw=none,forget plot,name path=p5Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryAtlantaRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p5Righthi and p5Rightlo];
+\addplot[draw=none,forget plot,name path=p5Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryAtlantaLeftFile};
+\addplot[draw=none,forget plot,name path=p5Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryAtlantaLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p5Lefthi and p5Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAtlantaRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAtlantaLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAtlantaNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAtlantaRandomFile};
+\end{groupplot}
+\node[rotate=90,font=\scriptsize\bfseries] at (-.83cm,1.18cm) {Net displacement};
+\end{tikzpicture}
+\par\vspace{.5mm}{\scriptsize\bfseries Question sequence number}\par
 \vspace{-1.5mm}
-\caption{\textbf{Adaptive native GSS 2024 LSM questioning for six pinned personas.}
-(a) Mean displacement after \DTAGSteps{} questions with 95\% bootstrap intervals;
-(b) \DTAGSteps{}-question mean trajectories and pointwise 95\% bootstrap confidence bands.
-Right-directed selection is dark red, left-directed dark blue, minimum drift gray dashed,
-and random selection solid black. There are \DTAGReps{} synthetic repetitions per
-persona and policy. This is conditional-model movement, not measured human persuasion.}
+\caption{\textbf{DTAG digital-twin circuit and adaptive native GSS 2024 results.}
+(a) A semantic LLM interface maps and verbalizes categorical survey questions,
+while the conditional LSM inside the digital twin predicts unasked responses;
+a myopic greedy circuit selects the next question using expected one-step
+pole-relative displacement and updates the anchored state with a model draw.
+(b) Mean displacement after \DTAGSteps{} questions across six synthetic personas;
+large markers and horizontal whiskers show 95\% bootstrap uncertainty.
+(c) Six aligned trajectories from \DTAGReps{} repetitions per persona and policy;
+shading denotes pointwise 95\% bootstrap intervals. Right = dark red,
+left = dark blue, neutral = dashed gray, random = black.
+These are native conditional-model trajectories, not observed human persuasion.}
+\label{fig:arch_adaptive}
+\label{fig:arch}
 \label{fig:persona-endpoints}
 \label{fig:native-trajectories}
 \end{figure*}
+
 
 Right- and left-seeking policies moved the geometric index in their
 respective directions across all six personas, whereas the neutral policy
@@ -631,6 +563,44 @@ lookup entries. Numeric distances between question indices have no
 scientific or semantic interpretation; optimizing them is merely a
 visualization device.
 
+% -------- Figure 2 CSV definitions (one per input table) --------
+\def\DTAGCSVFigureTwoAA{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGCSVFigureTwoAB{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGCSVFigureTwoAC{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGCSVFigureTwoAD{\DTAGFigureDir/heatmap_cm_rural_alabama_left.csv}
+\def\DTAGCSVFigureTwoAE{\DTAGFigureDir/heatmap_cm_rural_alabama_neutral.csv}
+\def\DTAGCSVFigureTwoAF{\DTAGFigureDir/heatmap_cm_rural_alabama_right.csv}
+\def\DTAGCSVFigureTwoAG{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGCSVFigureTwoAH{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGCSVFigureTwoAI{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGCSVFigureTwoAJ{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_left.csv}
+\def\DTAGCSVFigureTwoAK{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGCSVFigureTwoAL{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_right.csv}
+\def\DTAGCSVFigureTwoAM{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_left.csv}
+\def\DTAGCSVFigureTwoAN{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGCSVFigureTwoAO{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_right.csv}
+\def\DTAGCSVFigureTwoAP{\DTAGFigureDir/heatmap_wf_new_york_city_left.csv}
+\def\DTAGCSVFigureTwoAQ{\DTAGFigureDir/heatmap_wf_new_york_city_neutral.csv}
+\def\DTAGCSVFigureTwoAR{\DTAGFigureDir/heatmap_wf_new_york_city_right.csv}
+\def\DTAGCSVFigureTwoAS{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGCSVFigureTwoAT{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGCSVFigureTwoAU{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGCSVFigureTwoAV{\DTAGFigureDir/pub_order_cm_rural_alabama_left.csv}
+\def\DTAGCSVFigureTwoAW{\DTAGFigureDir/pub_order_cm_rural_alabama_neutral.csv}
+\def\DTAGCSVFigureTwoAX{\DTAGFigureDir/pub_order_cm_rural_alabama_right.csv}
+\def\DTAGCSVFigureTwoAY{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGCSVFigureTwoAZ{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGCSVFigureTwoBA{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGCSVFigureTwoBB{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_left.csv}
+\def\DTAGCSVFigureTwoBC{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGCSVFigureTwoBD{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_right.csv}
+\def\DTAGCSVFigureTwoBE{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_left.csv}
+\def\DTAGCSVFigureTwoBF{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGCSVFigureTwoBG{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_right.csv}
+\def\DTAGCSVFigureTwoBH{\DTAGFigureDir/pub_order_wf_new_york_city_left.csv}
+\def\DTAGCSVFigureTwoBI{\DTAGFigureDir/pub_order_wf_new_york_city_neutral.csv}
+\def\DTAGCSVFigureTwoBJ{\DTAGFigureDir/pub_order_wf_new_york_city_right.csv}
+
 \begin{figure*}[!t]
 \centering
 \resizebox{\textwidth}{!}{\begin{minipage}{40.4cm}
@@ -658,21 +628,21 @@ visualization device.
  point meta min=1,point meta max=\DTAGIdMax
 ]
 \nextgroupplot[title={Right push},ylabel={Alabama},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_cm_rural_alabama_right.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAF};
 \nextgroupplot[title={Left push},yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_cm_rural_alabama_left.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAD};
 \nextgroupplot[title={Neutral},yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_cm_rural_alabama_neutral.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAE};
 \nextgroupplot[ylabel={New York},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_wf_new_york_city_right.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAR};
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_wf_new_york_city_left.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAP};
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_wf_new_york_city_neutral.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAQ};
 \nextgroupplot[ylabel={Texas},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_right.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAL};
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_left.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAJ};
 \nextgroupplot[yticklabels={},xticklabels={},
 colorbar,
 colorbar style={
@@ -685,25 +655,25 @@ colorbar style={
  axis line style={draw=black,line width=.9pt},
  scaled y ticks=false
 }]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_neutral.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAK};
 \nextgroupplot[ylabel={Seattle},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_right.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAO};
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_left.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAM};
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_neutral.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAN};
 \nextgroupplot[ylabel={Arizona},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_right.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAI};
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_left.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAG};
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_neutral.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAH};
 \nextgroupplot[ylabel={Atlanta},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_right.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAC};
 \nextgroupplot[yticklabels={},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_left.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAA};
 \nextgroupplot[yticklabels={},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_neutral.csv};
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAB};
 \end{groupplot}
 \end{scope}
 \begin{scope}[shift={(15.1cm,0cm)}]
@@ -720,109 +690,109 @@ colorbar style={
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_cm_rural_alabama_right.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAX};
 \nextgroupplot[title={Left-derived},yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_cm_rural_alabama_left.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAV};
 \nextgroupplot[title={Neutral-derived},yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_cm_rural_alabama_neutral.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAW};
 \nextgroupplot[ylabel={New York},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_wf_new_york_city_right.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBJ};
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_wf_new_york_city_left.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBH};
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_wf_new_york_city_neutral.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBI};
 \nextgroupplot[ylabel={Texas},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_right.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBD};
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_left.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBB};
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_neutral.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBC};
 \nextgroupplot[ylabel={Seattle},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_right.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBG};
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_left.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBE};
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_neutral.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBF};
 \nextgroupplot[ylabel={Arizona},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_right.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBA};
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_left.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAY};
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_neutral.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAZ};
 \nextgroupplot[ylabel={Atlanta},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_right.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAU};
 \nextgroupplot[yticklabels={},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_left.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAS};
 \nextgroupplot[yticklabels={},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
- table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_neutral.csv};
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAT};
 \end{groupplot}
 \end{scope}
 \end{tikzpicture}
@@ -960,4 +930,3 @@ DTAG operationalizes a restricted theory of mind by representing a respondent as
 % The 10-question supplementary reversal plot is intentionally omitted.
 % Its original data belong to a different experiment.
 \end{document}
-

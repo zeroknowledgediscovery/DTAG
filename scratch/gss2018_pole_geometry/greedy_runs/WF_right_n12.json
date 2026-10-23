@@ -1,0 +1,29 @@
+{
+  "persona": "WF",
+  "direction": "right",
+  "state": {
+    "sex": "female",
+    "race": "white",
+    "polviews": "extremely liberal",
+    "partyid": "strong democrat",
+    "relig": "none",
+    "attend": "never",
+    "marital": "never married"
+  },
+  "dropped": [
+    "age=22.0",
+    "region=northeast",
+    "childs=0.0",
+    "xnorcsiz=a large central city (over 250,000)",
+    "news=every day",
+    "wrkstat=working full time",
+    "vetyears=no active duty",
+    "degree=bachelor's"
+  ],
+  "n_items": 12,
+  "runs": 20,
+  "baseline_runs": 30,
+  "pool_size": "all",
+  "seed": 2118,
+  "J0": -0.035782422525818175
+}

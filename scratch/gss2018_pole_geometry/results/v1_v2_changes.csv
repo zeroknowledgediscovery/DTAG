@@ -1,0 +1,8 @@
+variable,v1_L,v1_R,v2_L,v2_R
+colmil,not allowed,not fired,not allowed,allowed
+natenvir,too little,too much,too little,about right
+natsoc,too little,too much,too little,about right
+pillok,strongly agree,strongly disagree,strongly agree,disagree
+religcon,strongly agree,strongly disagree,strongly agree,disagree
+religint,strongly agree,strongly disagree,strongly agree,disagree
+viruses,definitely not true,definitely true,false,true

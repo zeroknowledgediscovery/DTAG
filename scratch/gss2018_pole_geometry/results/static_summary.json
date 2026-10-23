@@ -1,0 +1,71 @@
+{
+  "counts": {
+    "2016": 34,
+    "2018": 38,
+    "2024": 27
+  },
+  "shared_2018_2024": 27,
+  "extra_2018": [
+    "abpoorw",
+    "colmil",
+    "comfort",
+    "godchnge",
+    "intmil",
+    "libhomo",
+    "libmil",
+    "religcon",
+    "religint",
+    "spkmil",
+    "viruses"
+  ],
+  "extra_2018_questions": {
+    "abpoorw": "WRONG FOR WOMAN TO GET ABORTION IF LOW INCOME?",
+    "colmil": "ALLOW MILITARIST TO TEACH",
+    "comfort": "RELIGION HELPS PEOPLE TO GAIN COMFORT IN TIMES OF TROUBLE AND SORROW",
+    "godchnge": "DESCRIBE YOUR BELIEFS ABOUT GOD",
+    "intmil": "INTERESTED IN MILITARY POLICY",
+    "libhomo": "ALLOW HOMOSEXUALS BOOK IN LIBRARY",
+    "libmil": "ALLOW MILITARISTS BOOK IN LIBRARY",
+    "religcon": "RELIGIONS BRING MORE CONFLICT",
+    "religint": "RELIGIOUS PEOPLE ARE OFTEN TOO INTOLERANT",
+    "spkmil": "ALLOW MILITARIST TO SPEAK",
+    "viruses": "SCI KNOWLEDGE: ANTIBIOTICS KILL VIRUSES AS WELL AS BACTERIA"
+  },
+  "anchors_in_2018_pole": [],
+  "different_labels": [
+    "bible",
+    "colcom",
+    "grass",
+    "spkcom"
+  ],
+  "nominal_v1_v2_answer_changes": [
+    "colmil",
+    "natenvir",
+    "natsoc",
+    "pillok",
+    "religcon",
+    "religint",
+    "viruses"
+  ],
+  "2018_unresolved": [
+    {
+      "wave": "2018",
+      "item": "prayfreq",
+      "variable": "prayfreq",
+      "status": "dropped",
+      "reason": "R answer 'several times a day' not in labels ['2-3 times a month', 'about once a month', 'about once or twice a year', 'every week', 'less than once a year', 'nearly every week', 'never', 'several times a week', 'several times a year']",
+      "L_original": "never",
+      "L_used": "never",
+      "R_original": "several times a day",
+      "R_used": ""
+    }
+  ],
+  "semantic_review_flags": {
+    "viruses": "scientific knowledge, not political ideology",
+    "intmil": "interest in military issues is not necessarily ideological",
+    "colmil": "free speech for militarist; ideological loading ambiguous",
+    "libmil": "censorship of militarist book; ideological loading ambiguous",
+    "spkmil": "speech by militarist; ideological loading ambiguous"
+  },
+  "2018_pole_sha256": "2278a9d06e35ab8c40198e2f7b0f7d3eb8306c3fe1e6fbd4b538237637cadf05"
+}

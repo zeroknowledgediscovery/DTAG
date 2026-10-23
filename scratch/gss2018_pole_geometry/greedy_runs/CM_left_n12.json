@@ -1,0 +1,29 @@
+{
+  "persona": "CM",
+  "direction": "left",
+  "state": {
+    "sex": "male",
+    "race": "white",
+    "polviews": "conservative",
+    "partyid": "strong republican",
+    "relig": "protestant",
+    "attend": "every week",
+    "marital": "married",
+    "degree": "high school"
+  },
+  "dropped": [
+    "age=45.0",
+    "region=south",
+    "childs=2.0",
+    "xnorcsiz=open country within larger civil divisions (division, township, etc.)",
+    "news=every day",
+    "wrkstat=working full time",
+    "vetyears=yes, 2-4 years"
+  ],
+  "n_items": 12,
+  "runs": 20,
+  "baseline_runs": 30,
+  "pool_size": "all",
+  "seed": 2028,
+  "J0": 0.0263257751976175
+}
