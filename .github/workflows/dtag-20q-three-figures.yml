@@ -4,6 +4,7 @@ on:
     branches: [experiment-integrated-10q]
     paths:
       - tex/DTAG_three_figures_20q.tex
+      - .github/workflows/dtag-20q-three-figures.yml
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,7 +19,7 @@ jobs:
         with:
           root_file: DTAG_three_figures_20q.tex
           working_directory: tex
-          args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
+          args: -lualatex -interaction=nonstopmode -file-line-error -halt-on-error
       - name: Verify standalone figures PDF
         run: |
           python -m pip -q install pymupdf
