@@ -17,6 +17,15 @@
 % Cache externalized vector PDFs inside tex/Figures/External.
 % Global opt-out; only selected figures are externalized.
 \tikzexternalize[prefix=Figures/External/]
+% Plain pdflatex: render inline, with no shell-escape requirement.
+% pdflatex -shell-escape: create/reuse external vector PDFs.
+\newif\ifDTAGExternalPDF
+\ifnum\pdfshellescape>0
+  \DTAGExternalPDFtrue
+\else
+  \DTAGExternalPDFfalse
+\fi
+\newcommand{\DTAGExternalEnable}{\ifDTAGExternalPDF\tikzexternalenable\fi}
 \tikzexternaldisable
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
@@ -62,7 +71,7 @@
 % Source data are external CSVs (not generated TeX files).
 % The build script links tex/figures to the desired completed experiment.
 % The stable path is required by external TikZ subprocesses.
-\providecommand{\DTAGFigureDir}{figures}
+\providecommand{\DTAGFigureDir}{Figures}
 \def\DTAGMetadataCSV{\DTAGFigureDir/publication_metadata.csv}
 \pgfplotstableread[col sep=comma]{\DTAGMetadataCSV}\DTAGMetadataTable
 \pgfplotstablegetelem{0}{steps}\of{\DTAGMetadataTable}\xdef\DTAGSteps{\pgfplotsretval}
@@ -271,7 +280,7 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
 \centering
 {\small\bfseries (a) Conditional digital-twin circuit}\par\vspace{1mm}
 \resizebox{\linewidth}{!}{%
-\tikzexternalenable
+\DTAGExternalEnable
 \tikzsetnextfilename{dtag-circuit}
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,
   font=\sffamily\fontsize{8}{9}\selectfont,
@@ -343,7 +352,7 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
 \hfill\begin{minipage}[t]{.375\textwidth}
 \centering
 {\small\bfseries (b) Final endpoint displacement}\par\vspace{1mm}
-\tikzexternalenable
+\DTAGExternalEnable
 \tikzsetnextfilename{dtag-endpoints}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
@@ -404,7 +413,7 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
 \tikz[baseline=-.25ex]\draw[dtblue,line width=1.45pt](0,0)--(.43,0);\,Left push\hspace{.30cm}
 \tikz[baseline=-.25ex]\draw[dtgray,densely dashed,line width=1.3pt](0,0)--(.43,0);\,Neutral\hspace{.30cm}
 \tikz[baseline=-.25ex]\draw[black,line width=1.3pt](0,0)--(.43,0);\,Random}\par\vspace{1.0mm}
-\tikzexternalenable
+\DTAGExternalEnable
 \tikzsetnextfilename{dtag-trajectories}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
@@ -613,7 +622,7 @@ visualization device.
 \begin{minipage}{.62\linewidth}\centering\Large\bfseries (b) Fixed-item order effects\end{minipage}
 \par\vspace{.10cm}
 \begin{center}
-\makebox[40.0cm][l]{\tikzexternalenable
+\makebox[40.0cm][l]{\DTAGExternalEnable
 \tikzsetnextfilename{dtag-figure2-row-1}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
@@ -681,7 +690,7 @@ visualization device.
 \tikzexternaldisable
 }\par\vspace{.62cm}
 
-\makebox[40.0cm][l]{\tikzexternalenable
+\makebox[40.0cm][l]{\DTAGExternalEnable
 \tikzsetnextfilename{dtag-figure2-row-2}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
@@ -749,7 +758,7 @@ visualization device.
 \tikzexternaldisable
 }\par\vspace{.62cm}
 
-\makebox[40.0cm][l]{\tikzexternalenable
+\makebox[40.0cm][l]{\DTAGExternalEnable
 \tikzsetnextfilename{dtag-figure2-row-3}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
@@ -828,7 +837,7 @@ colorbar style={
 \tikzexternaldisable
 }\par\vspace{.62cm}
 
-\makebox[40.0cm][l]{\tikzexternalenable
+\makebox[40.0cm][l]{\DTAGExternalEnable
 \tikzsetnextfilename{dtag-figure2-row-4}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
@@ -896,7 +905,7 @@ colorbar style={
 \tikzexternaldisable
 }\par\vspace{.62cm}
 
-\makebox[40.0cm][l]{\tikzexternalenable
+\makebox[40.0cm][l]{\DTAGExternalEnable
 \tikzsetnextfilename{dtag-figure2-row-5}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
@@ -964,7 +973,7 @@ colorbar style={
 \tikzexternaldisable
 }\par\vspace{.62cm}
 
-\makebox[40.0cm][l]{\tikzexternalenable
+\makebox[40.0cm][l]{\DTAGExternalEnable
 \tikzsetnextfilename{dtag-figure2-row-6}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
