@@ -1,0 +1,43 @@
+name: Compile self-contained DTAG 20-question figures
+on:
+  push:
+    branches: [experiment-integrated-10q]
+    paths:
+      - tex/DTAG_three_figures_20q.tex
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  figures:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile three figures (no numerical recomputation)
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: DTAG_three_figures_20q.tex
+          working_directory: tex
+          args: -pdf -interaction=nonstopmode -file-line-error -halt-on-error
+      - name: Verify standalone figures PDF
+        run: |
+          python -m pip -q install pymupdf
+          python - <<'PY'
+          import fitz
+          d=fitz.open('tex/DTAG_three_figures_20q.pdf')
+          assert len(d)==3, f'Expected exactly three pages, got {len(d)}'
+          for k in (1,2,3):
+              t=d[k-1].get_text()
+              print('page',k, 'chars',len(t))
+              assert f'Figure {k}' in t or f'FIGURE {k}' in t, f'Figure {k} label missing'
+          assert '20 questions' in d[1].get_text(), '20-question axis/caption missing'
+          print('Verified standalone 20-question figure compilation')
+          PY
+      - name: Package PDF and single-source TeX
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtag-20q-self-contained-figures
+          path: |
+            tex/DTAG_three_figures_20q.tex
+            tex/DTAG_three_figures_20q.pdf
+          if-no-files-found: error
