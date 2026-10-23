@@ -60,9 +60,9 @@
 \thanks{Working research draft, October 2026. University of Kentucky. DTAG computations and human-subject studies described as proposed must not be interpreted as observed results.}}
 \begin{document}
 % Source data are external CSVs (not generated TeX files).
-% Default run is relative to tex/. Override with:
-% pdflatex -shell-escape '\def\DTAGFigureDir{../experiments/.../figures}\input{DTAG_full_manuscript_20q_colorbar.tex}'
-\providecommand{\DTAGFigureDir}{../experiments/persona_push/runs/test_q3_r2/figures}
+% The build script links tex/figures to the desired completed experiment.
+% The stable path is required by external TikZ subprocesses.
+\providecommand{\DTAGFigureDir}{figures}
 \def\DTAGMetadataCSV{\DTAGFigureDir/publication_metadata.csv}
 \pgfplotstableread[col sep=comma]{\DTAGMetadataCSV}\DTAGMetadataTable
 \pgfplotstablegetelem{0}{steps}\of{\DTAGMetadataTable}\xdef\DTAGSteps{\pgfplotsretval}
