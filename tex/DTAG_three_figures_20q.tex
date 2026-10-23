@@ -171,14 +171,22 @@ x y minus plus\\
 \begin{tikzpicture}
 
 \begin{scope}[shift={(2.05cm,-.8cm)}]
-\begin{groupplot}[
- group style={group size=2 by 3,horizontal sep=1.35cm,vertical sep=1.45cm},
- publication axis,scale only axis,width=6.65cm,height=4.25cm,
- xmin=0,xmax=20,ymin=-.13,ymax=.15,
- xtick={0,5,10,15,20},ytick={-.1,0,.1},
- yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
+\begin{axis}[
+publication axis,
+axis lines=box,
+axis line style={draw=black,line width=1pt},
+tick style={draw=black,line width=.8pt},
+scale only axis,
+width=6.65cm,
+height=4.25cm,
+at={(0.00cm,0.00cm)},
+anchor=north west,
+xmin=0,xmax=20,ymin=-.13,ymax=.15,
+xtick={0,5,10,15,20},
+ytick={-.1,0,.1},
+yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
+xticklabels={}
 ]
-\nextgroupplot[xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p0rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -374,7 +382,25 @@ t mean low high\\
 19 0.0001421 -0.0066126 0.006462\\
 20 0.0006738 -0.0065073 0.0071368\\
 };
-\nextgroupplot[yticklabels={},xticklabels={}]
+\end{axis}
+\node[font=\large\bfseries,anchor=south] at (3.33cm,0.20cm){Alabama};
+\begin{axis}[
+publication axis,
+axis lines=box,
+axis line style={draw=black,line width=1pt},
+tick style={draw=black,line width=.8pt},
+scale only axis,
+width=6.65cm,
+height=4.25cm,
+at={(9.05cm,0.00cm)},
+anchor=north west,
+xmin=0,xmax=20,ymin=-.13,ymax=.15,
+xtick={0,5,10,15,20},
+ytick={-.1,0,.1},
+yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
+yticklabels={},
+xticklabels={}
+]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p1rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -570,7 +596,24 @@ t mean low high\\
 19 -0.0021828 -0.0109397 0.0062943\\
 20 -0.0025354 -0.0123321 0.0069511\\
 };
-\nextgroupplot[xticklabels={}]
+\end{axis}
+\node[font=\large\bfseries,anchor=south] at (12.38cm,0.20cm){New York};
+\begin{axis}[
+publication axis,
+axis lines=box,
+axis line style={draw=black,line width=1pt},
+tick style={draw=black,line width=.8pt},
+scale only axis,
+width=6.65cm,
+height=4.25cm,
+at={(0.00cm,-5.46cm)},
+anchor=north west,
+xmin=0,xmax=20,ymin=-.13,ymax=.15,
+xtick={0,5,10,15,20},
+ytick={-.1,0,.1},
+yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
+xticklabels={}
+]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p2rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -766,7 +809,25 @@ t mean low high\\
 19 -0.0024913 -0.0090343 0.0037703\\
 20 -0.0022731 -0.0088408 0.0039712\\
 };
-\nextgroupplot[yticklabels={},xticklabels={}]
+\end{axis}
+\node[font=\large\bfseries,anchor=south] at (3.33cm,-5.26cm){Texas};
+\begin{axis}[
+publication axis,
+axis lines=box,
+axis line style={draw=black,line width=1pt},
+tick style={draw=black,line width=.8pt},
+scale only axis,
+width=6.65cm,
+height=4.25cm,
+at={(9.05cm,-5.46cm)},
+anchor=north west,
+xmin=0,xmax=20,ymin=-.13,ymax=.15,
+xtick={0,5,10,15,20},
+ytick={-.1,0,.1},
+yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
+yticklabels={},
+xticklabels={}
+]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p3rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -962,7 +1023,23 @@ t mean low high\\
 19 -0.0008384 -0.0095579 0.0068235\\
 20 -0.0014037 -0.0100682 0.0064516\\
 };
-\nextgroupplot[]
+\end{axis}
+\node[font=\large\bfseries,anchor=south] at (12.38cm,-5.26cm){Seattle};
+\begin{axis}[
+publication axis,
+axis lines=box,
+axis line style={draw=black,line width=1pt},
+tick style={draw=black,line width=.8pt},
+scale only axis,
+width=6.65cm,
+height=4.25cm,
+at={(0.00cm,-10.92cm)},
+anchor=north west,
+xmin=0,xmax=20,ymin=-.13,ymax=.15,
+xtick={0,5,10,15,20},
+ytick={-.1,0,.1},
+yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}}
+]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p4rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -1158,7 +1235,24 @@ t mean low high\\
 19 -0.0018218 -0.0116025 0.007586\\
 20 -0.0013367 -0.0118765 0.0083096\\
 };
-\nextgroupplot[yticklabels={}]
+\end{axis}
+\node[font=\large\bfseries,anchor=south] at (3.33cm,-10.72cm){Arizona};
+\begin{axis}[
+publication axis,
+axis lines=box,
+axis line style={draw=black,line width=1pt},
+tick style={draw=black,line width=.8pt},
+scale only axis,
+width=6.65cm,
+height=4.25cm,
+at={(9.05cm,-10.92cm)},
+anchor=north west,
+xmin=0,xmax=20,ymin=-.13,ymax=.15,
+xtick={0,5,10,15,20},
+ytick={-.1,0,.1},
+yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
+yticklabels={}
+]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
 \addplot[draw=none,forget plot,name path=p5rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
@@ -1354,7 +1448,9 @@ t mean low high\\
 19 0.0028588 -0.0061063 0.0119248\\
 20 0.003532 -0.0061032 0.0129316\\
 };
-\end{groupplot}
+\end{axis}
+\node[font=\large\bfseries,anchor=south] at (12.38cm,-10.72cm){Atlanta};
+
 \node[font=\small\bfseries,anchor=south] at ($(group c1r1.north)+(0,0.13cm)$) {Alabama};
 \node[font=\small\bfseries,anchor=south] at ($(group c2r1.north)+(0,0.13cm)$) {New York};
 \node[font=\small\bfseries,anchor=south] at ($(group c1r2.north)+(0,0.13cm)$) {Texas};
@@ -1372,10 +1468,10 @@ Error whiskers and shaded regions are 95\% bootstrap confidence intervals across
 The LSM conditionals, rather than real human belief transitions, determine the responses.
 \par\vfill\clearpage
 
-\noindent{\LARGE\bfseries Figure 3. Question identities and fixed-item order effects (20 questions)}
-\vspace{.3cm}
-\noindent\hspace{1cm}{\Large\bfseries (a) Question identities (globally optimized IDs)}
-\hfill{\Large\bfseries (b) Fixed-item order effects}\hspace{4cm}\par\vspace{.15cm}
+\noindent{\LARGE\bfseries Figure 3. Question identities and fixed-item order effects (20 questions)}\par\vspace{.25cm}
+\noindent\begin{minipage}{.32\linewidth}\centering\Large\bfseries (a) Question identities\end{minipage}\hspace{.03\linewidth}
+\begin{minipage}{.62\linewidth}\centering\Large\bfseries (b) Fixed-item order effects\end{minipage}
+\par\vspace{.10cm}
 \begin{center}
 \begin{tikzpicture}
 
