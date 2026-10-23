@@ -1,14 +1,37 @@
+\PassOptionsToPackage{usenames,x11names,dvipsnames}{xcolor}
 \documentclass[journal,10pt]{IEEEtran}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,mathtools,bm}
 \usepackage{booktabs,tabularx,array}
 \usepackage{graphicx}
+\usepackage{dblfloatfix}
+\usepackage{microtype}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\thebibliography}{\footnotesize\vskip}{\footnotesize\linespread{0.90}\selectfont\vskip}{}{}
+\makeatother
+\def\IEEEbibitemsep{-0.8pt}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit}
+\usetikzlibrary{external}
+% Cache externalized vector PDFs inside tex/Figures/External.
+% Global opt-out; only selected figures are externalized.
+\tikzexternalize[prefix=Figures/External/]
+% Plain pdflatex: render inline, with no shell-escape requirement.
+% pdflatex -shell-escape: create/reuse external vector PDFs.
+\newif\ifDTAGExternalPDF
+\ifnum\pdfshellescape=1
+  \DTAGExternalPDFtrue
+\else
+  \DTAGExternalPDFfalse
+\fi
+\newcommand{\DTAGExternalEnable}{\ifDTAGExternalPDF\tikzexternalenable\fi}
+\tikzexternaldisable
 \usepackage{pgfplots}
+\usepackage{pgfplotstable}
 \pgfplotsset{compat=1.18}
-\usepackage{xcolor}
+\usepgfplotslibrary{groupplots,fillbetween}
 \usepackage{cite}
 \usepackage[hidelinks]{hyperref}
 \newcommand{\EE}{\mathbb{E}}
@@ -20,6 +43,24 @@
 \newcommand{\Do}{\operatorname{do}}
 \newcommand{\supp}{\operatorname{supp}}
 \newcommand{\KL}{D_{\mathrm{KL}}}
+\definecolor{dtred}{RGB}{133,39,48}
+\definecolor{dtblue}{RGB}{34,68,116}
+\definecolor{dtgray}{RGB}{120,120,124}
+\definecolor{dtmint}{RGB}{224,245,240}
+\definecolor{dtpale}{RGB}{225,237,251}
+\definecolor{dtorange}{RGB}{247,231,207}
+\pgfplotsset{
+  publication axis/.style={
+    axis line style={draw=black,line width=.85pt},
+    tick style={draw=black,line width=.8pt},
+    tick label style={font=\footnotesize\bfseries,text=black},
+    label style={font=\small\bfseries,text=black},
+    title style={font=\small\bfseries,text=black},
+    grid=major,grid style={draw=black!12,line width=.25pt},
+    scaled ticks=false
+  }
+}
+
 \definecolor{modblue}{RGB}{24,70,120}
 \definecolor{modred}{RGB}{162,62,67}
 \definecolor{modteal}{RGB}{22,117,108}
@@ -27,38 +68,43 @@
 \author{Ishanu Chattopadhyay%
 \thanks{Working research draft, October 2026. University of Kentucky. DTAG computations and human-subject studies described as proposed must not be interpreted as observed results.}}
 \begin{document}
+% Source data are external CSVs (not generated TeX files).
+% The build script links tex/figures to the desired completed experiment.
+% The stable path is required by external TikZ subprocesses.
+\providecommand{\DTAGFigureDir}{Figures}
+\def\DTAGMetadataCSV{\DTAGFigureDir/publication_metadata.csv}
+\pgfplotstableread[col sep=comma]{\DTAGMetadataCSV}\DTAGMetadataTable
+\pgfplotstablegetelem{0}{steps}\of{\DTAGMetadataTable}\xdef\DTAGSteps{\pgfplotsretval}
+\pgfplotstablegetelem{0}{reps}\of{\DTAGMetadataTable}\xdef\DTAGReps{\pgfplotsretval}
+\pgfplotstablegetelem{0}{displayed_questions}\of{\DTAGMetadataTable}\xdef\DTAGIdMax{\pgfplotsretval}
+\pgfplotstablegetelem{0}{total_questions}\of{\DTAGMetadataTable}\xdef\DTAGTotalQuestions{\pgfplotsretval}
+\pgfplotstablegetelem{0}{endpoint_bound}\of{\DTAGMetadataTable}\xdef\DTAGEndpointBound{\pgfplotsretval}
+\pgfplotstablegetelem{0}{trajectory_bound}\of{\DTAGMetadataTable}\xdef\DTAGTrajectoryBound{\pgfplotsretval}
+\pgfplotstablegetelem{0}{order_bound}\of{\DTAGMetadataTable}\xdef\DTAGOrderBound{\pgfplotsretval}
+\pgfmathsetmacro{\DTAGXMax}{\DTAGSteps+0.5}
+\pgfmathsetmacro{\DTAGYMax}{\DTAGReps+0.5}
+\pgfmathtruncatemacro{\DTAGHalfSteps}{round(\DTAGSteps/2)}
+\pgfmathtruncatemacro{\DTAGHalfReps}{round(\DTAGReps/2)}
+
+
+
 \maketitle
 \begin{abstract}
-Models of political opinion have typically treated attitudes either as latent properties revealed by measurement or as variables that evolve through communication and influence. Distinguishing these interpretations is difficult when an interaction simultaneously elicits a response and potentially changes the respondent. We introduce a scientific formulation of Digital Twin Anchored Generation (DTAG), in which a language interface is grounded in Large Science Models (LSMs) trained on high-dimensional survey response systems. Coupled conditional models give a partially observed synthetic respondent a full \emph{predictive phenotype}: conditional distributions for unasked questions and a geometry determined by the consequences of responses for other attitudes. We formalize sequential question selection and its induced geometric displacement and argue that DTAG constitutes a restricted, falsifiable computational theory of mind rather than a generic language-model persona. The central dichotomy is between \emph{phenotypic refinement}, in which a sequence reveals coordinates of a fixed respondent, and \emph{phenotypic construction}, in which elicitation and exposure alter the subsequent state. Both can produce apparent ideological trajectories, but they have different experimental implications. Connecting this question to the evidence for backfire under cross-cutting exposure reported by Bail \emph{et al.} (PNAS, 2018), we specify a prospective, randomized, preregisterable study suitable for Prolific, with reversed-order questioning, matched controls, held-out outcomes, and delayed remeasurement. Explicitly illustrative figures define the computational results to be estimated; no simulated curves or prospective intervention results are claimed here.
+Does sequential questioning reveal existing attitudes or change what people believe? We introduce Digital Twin Anchored Generation (DTAG), a language interface to a Large Science Model (LSM) of conditional survey responses. Rather than asking a language model to invent opinions, DTAG conditions an empirically fitted model on observed answers and selects subsequent questions using a pole-relative geometric ideology index. We evaluate six pinned GSS 2024 synthetic personas across 960 adaptive 20-question trajectories and 2,880 fixed-content order replays. Directional policies consistently shift the modeled index; reordering fixed question sets sometimes reverses individual trajectories, although all signed mean order contrasts have bootstrap intervals containing zero. These are effects of statistical conditioning, not evidence of human persuasion. We distinguish reproducibility of predicted index movement from causal belief change and propose a randomized, delayed-outcome experiment to test the latter.
 \end{abstract}
+
 \begin{IEEEkeywords}
 Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
 \end{IEEEkeywords}
 
-\section*{Significance}
-Asking someone a question can reveal an existing attitude, but it can also alter what that person subsequently reports or believes. We describe a computational framework that makes this ambiguity measurable. DTAG grounds a conversational digital twin in a learned high-dimensional model of interconnected survey opinions rather than relying exclusively on plausible language generation. It predicts the responses a represented person might give to unasked questions and quantifies the geometric consequences of sequential answers. We propose a randomized human study that reverses question order, measures independent downstream attitudes, and follows respondents over time. The experiments distinguish predictive reconstruction from evidence of interaction-induced belief change.
-
-
 \section{Introduction}
-The appropriate unit of analysis for a belief system may be neither a single attitude nor a predetermined left--right score, but the pattern of constraints among many expressed positions. Economic preferences, religious commitments, institutional trust, social identities, and political opinions can be related in ways not apparent in a short attitude battery. Classical arguments about the coherence of mass belief systems \cite{converse1964,zaller1992} and subsequent measurements of partisan sorting and issue alignment \cite{baldassarri2008,dellaposta2015} expose the limitations of treating the public as a collection of isolated responses. The complementary problem is temporal: a person's answers may reflect a relatively stable configuration, but they may also be constructed or revised as questions, considerations, or social information are encountered.
+Attitudes form interdependent systems rather than isolated survey responses. Classical accounts of weak issue constraint and context-dependent expression \cite{converse1964,zaller1992}, together with work on sorting and social alignment \cite{baldassarri2008,dellaposta2015}, motivate measuring these dependencies directly. An unresolved question is whether an observed change during questioning reflects a more precise estimate of existing beliefs or a change in the respondent.
 
-We study the boundary between these accounts using Digital Twin Anchored Generation (DTAG). DTAG couples natural-language interaction to a Large Science Model (LSM), which represents empirically estimated conditional dependencies among survey variables. An observed answer restricts the represented phenotype and changes predictions about unasked attitudes. The model can also compute the displacement of its conditional state in a pole-relative opinion geometry and choose questions that maximize expected displacement. This permits mathematically explicit experiments with sequences of questions, rather than relying on the plausibility of generated prose.
+We introduce Digital Twin Anchored Generation (DTAG), which combines a semantic language interface with a Large Science Model (LSM) fitted to survey responses. The LSM predicts unasked answers conditional on a persona's known responses; their effects on other predictions define a geometric ideology index. DTAG can greedily choose questions to move this \emph{model-defined index} in a specified direction. Such movement establishes a property of the learned conditional model, not persuasion. We therefore test whether movement is reproducible within persona classes and whether rearranging identical questions changes the predicted trajectory.
 
-The observation that the synthetic twin moves along an ideological coordinate does \emph{not}, by itself, establish that a person has been persuaded. Yet the opposite claim---that questioning can only reveal fixed attitudes---is equally unwarranted. We develop a model-level dichotomy: \emph{passive refinement} of a pre-existing phenotype versus \emph{reflexive construction} of the phenotype by the interaction. We ask whether learned population geometry is useful only for the former, or also constrains the latter. The distinction is empirically resolvable only by predicting outcomes of controlled human interactions before those outcomes are observed.
+Survey measurement is reactive: consistency pressures \cite{festinger1957}, wording and order \cite{schwarz1999}, and motivated evaluation \cite{taber2006} can alter reports without enduring belief change. Classical influence models specify interpersonal dynamics \cite{degroot1974,friedkin1990,hegselmann2002}, but generally do not represent the full within-person conditional response system. Experiments likewise show heterogeneous effects: cross-cutting exposure can increase rather than reduce polarization \cite{bail2018}, ordinary campaign contact has small average electoral effects \cite{kalla2018}, and some structured conversations produce more durable attitude changes \cite{broockman2016}. None of these results identifies a belief-change mechanism from survey correlations alone.
 
-\section{Prior Work and the Scientific Gap}
-\subsection{Belief systems, cognitive organization, and survey response}
-Converse \cite{converse1964} emphasized weak issue constraint outside politically sophisticated subsets of the public; Zaller \cite{zaller1992} offered a receive--accept--sample account in which answers depend on considerations accessible at the time of response. Later analyses distinguished partisan sorting from genuine cross-issue alignment \cite{baldassarri2008} and showed how homophily and influence can amplify weak initial affinities across otherwise unrelated domains \cite{dellaposta2015}. The sociology-of-knowledge perspective similarly places an individual proposition within a larger socially situated worldview. These accounts motivate measurement of the \emph{full conditional organization} of attitudes rather than presupposing a low-dimensional ideological axis.
-
-Cognitive psychology complicates the interpretation of measurement. Consistency pressures may promote cognitive revision \cite{festinger1957}; wording, scale, question order, and conversational context change survey reports \cite{schwarz1999}; selective evaluation of political information can reinforce existing commitments \cite{taber2006}. Measurement reactivity does not necessarily imply enduring persuasion. A response might be an instantaneous reconstruction, temporary salience shift, response-scale artifact, or genuine revision. These alternatives predict different persistence, cross-domain generalization, and order effects and must be disaggregated experimentally.
-
-\subsection{Quantitative influence and experimental evidence}
-DeGroot's averaging process \cite{degroot1974} and Friedkin--Johnsen dynamics \cite{friedkin1990} specify explicit interpersonal transitions; bounded-confidence accounts introduce state-dependent interaction neighborhoods \cite{hegselmann2002}. Such models characterize population-level evolution but often simplify the \emph{internal} state of each individual to one or a few quantities. DTAG takes a complementary route: it learns within-person conditional structure at high dimension but presently lacks an experimentally identified transition operator for real human belief change.
-
-The discrepancy matters in the setting studied by Bail \emph{et al.} \cite{bail2018}. Their 2018 \emph{PNAS} field experiment randomly offered Twitter users incentives to follow bots relaying cross-cutting political content. Republicans assigned to follow a liberal bot reported more conservative views afterward; the corresponding liberalizing estimate among Democrats assigned to a conservative bot was not statistically significant. Exposure to disagreement thus did not yield a simple convergence law. This is a motivating example of potentially state-dependent and asymmetric responses, \emph{not} evidence that DTAG identifies the causal mechanism or reproduces the reported effect. Other experiments complicate generalization: a synthesis of campaign-contact field experiments reported very small average general-election effects \cite{kalla2018}, whereas some structured interpersonal conversations produced more persistent changes in measured attitudes \cite{broockman2016}. The need is for a framework that predicts \emph{heterogeneity, indirect effects, and persistence} rather than asserting a universal influence direction.
-
-\subsection{Theory of mind and generative simulation}
-Theory of mind (ToM) concerns inference about another agent's unobserved beliefs, intentions, or desires and their consequences for observable behavior \cite{premack1978,dennett1987}. Computational inverse-planning models infer latent states from observed actions under a generative account of agent behavior \cite{baker2009}. DTAG tackles a narrower but measurable ToM task: from a sparse response history, infer the probability distribution over a represented respondent's \emph{unasked attitudes}. This operational definition avoids equating language fluency with access to an individual mind. Existing language-model approaches to synthetic respondents have demonstrated population or profile fidelity \cite{argyle2023,park2023}; their ability to mimic a subgroup distribution need not imply individual-level conditional calibration or validity under repeated interrogation. DTAG is designed to make the model state, prediction, and response provenance explicit.
+Theory of mind concerns inference about another's unobserved state \cite{premack1978,dennett1987,baker2009}; language-based synthetic agents can emulate reported profiles \cite{argyle2023,park2023}, but plausibility does not establish individual conditional calibration. DTAG makes the inferred response distributions and question-selection objective explicit. Its scientific gap is equally explicit: a learned statistical geometry can predict the consequences of \emph{conditioning}, but cannot establish whether questions alter human beliefs. Distinguishing passive phenotype refinement from interaction-induced change requires randomized question order, independent outcomes, and delayed assessment.
 
 \section{Large Science Models and the Predictive Phenotype}
 \subsection{Conditional dependency model}
@@ -90,9 +136,9 @@ The dependency structure induces a geometry of possible opinions. For complete o
 \right)}.
 \label{eq:metric}
 \end{equation}
-Here $\JS$ denotes Jensen--Shannon divergence; the native code evaluates the corresponding \emph{qdistance}. Distinct states may be at distance zero when their conditional consequences are indistinguishable, so the geometry is generally pseudometric. Crucially, this is not a psychological assertion that the human mind occupies a unique Euclidean manifold: it is a testable geometry of \emph{predictive consequence}. Differences in a few answers can change predictions across the wider response network; equally, some recorded differences have negligible conditional consequences.
+Here $\JS$ is Jensen--Shannon divergence; the native runtime evaluates the corresponding \emph{qdistance}. The distance is generally pseudometric: distinct states can have identical predictive consequences. This is a geometry of model predictions, not an assumed Euclidean representation of human minds.
 
-The prior opinion-fabric analysis \cite{dahal2026} reports held-out reconstruction from 80\% masked response items. In the reported evaluation, mean LSM-distance distortion declined by approximately 54.9\% (GSS) and 60.9\% (Eurobarometer) relative to the masked representation. Those are geometric reconstruction results, not percentages of perfectly recovered item labels and not estimates of causal influence.
+With 80\% of survey items masked, prior opinion-fabric analyses report reductions in mean LSM-distance distortion of 54.9\% (GSS) and 60.9\% (Eurobarometer) \cite{dahal2026}; these measure geometric reconstruction, not item-level accuracy or causal effects.
 
 For GSS models with registered left and right reference states $s_L,s_R$, DTAG reports
 \begin{equation}
@@ -100,7 +146,7 @@ I_\Ph(s)=\frac{\theta_\Ph(s_L,s)-\theta_\Ph(s_R,s)}
 {\theta_\Ph(s_L,s_R)}.
 \label{eq:ideology}
 \end{equation}
-The reference poles establish orientation, while the conditional system establishes distance. Pole choice and wave dependence must be included in any robustness analysis; the current index should not be interpreted as a calibrated universal political ideology scale.
+Reference poles set the orientation; conditional distances set the scale. This is not a universal, calibrated ideology measure, and robustness depends on pole choice and survey wave.
 
 \section{DTAG: A Conditional Theory-of-Mind Interface}
 \subsection{Architecture and generative semantics}
@@ -110,25 +156,9 @@ A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\qquad v_t\in M(q_t),\label{eq:draw}\\
 s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
 \calB_{t+1}&=\calB_\Ph(s_{t+1}).\label{eq:posterior}
 \end{align}
-These equations describe the idealized \emph{draw} mode without state eviction. The implementation also supports modal answers, multi-item semantic mappings, validated mappings, and direct item selection; these are distinct experimental conditions. The operational system uses a fixed LSM during a respondent session. The ordinary update is statistical conditioning, not an identified model of psychological persuasion.
+These equations specify stochastic response drawing without state eviction. Modal answers, multi-item mappings, and direct item selection are separate modes. The LSM is fixed within each session: updating $s_t$ conditions the model; it does not identify psychological persuasion.
 
-\begin{figure*}[!t]
-\centering
-\begin{tikzpicture}[>=Latex, node distance=6mm and 4mm, every node/.style={font=\scriptsize}, block/.style={draw,rounded corners=2pt,minimum height=8mm,align=center,inner sep=3.5pt}]
-\node[block,fill=gray!12] (q) {Question $q_t$\\(linguistic input)};
-\node[block,right=of q,fill=modblue!8] (map) {Semantic mapping\\$M(q_t)$};
-\node[block,right=of map,fill=modteal!10] (lsm) {LSM conditional twin\\$p_\Phi(a\mid s_t,v)$};
-\node[block,right=of lsm,fill=modblue!8] (ans) {Response anchor $A_t$\\state $s_{t+1}$};
-\node[block,right=of ans,fill=gray!12] (lang) {Grounded prose\\and uncertainty};
-\draw[->,thick] (q)--(map); \draw[->,thick] (map)--(lsm); \draw[->,thick] (lsm)--(ans); \draw[->,thick] (ans)--(lang);
-\node[block,below=10mm of lsm,fill=modred!8] (state) {Predictive phenotype $\mathcal B_\Phi(s_{t+1})$\\conditional geometry $\theta_\Phi$, index $I_\Phi$};
-\draw[->,thick] (ans.south) |- (state.east);
-\draw[->,thick,dashed] (state.west) -| (lsm.south);
-\node[font=\footnotesize,below=1mm of state] {Inspect unasked beliefs; select and evaluate the next question};
-\end{tikzpicture}
-\caption{DTAG model architecture (schematic, not experimental results). The language model resolves question semantics and verbalizes anchored output. The LSM, rather than retrieved documents or free-form language generation, supplies conditional categorical predictions. Each new anchor may modify predictions across many unasked domains. Dashed feedback indicates re-evaluation at the updated state, not modification of learned model parameters.}
-\label{fig:arch}
-\end{figure*}
+Figure~\ref{fig:arch_adaptive} summarizes the language interface, native inference, and greedy question selection.
 
 \subsection{Sequential geometry and adaptive questioning}
 For every candidate item $v$ and response $a$, define
@@ -138,7 +168,7 @@ For every candidate item $v$ and response $a$, define
 \sigma_v^2(s)&=\sum_a p_\Ph(a\mid s,v)(\Delta_v(a;s)-\mu_v(s))^2.
 \label{eq:var}
 \end{align}
-One-step selection can maximize or minimize $\mu_v(s)$ under stochastic answering. A separate modal-response objective instead evaluates the response with highest conditional probability. This matters: following a sequence of modes is not equivalent to sampling a population of coherent respondents. The current optimizer enumerates possible response assignments in the native LSM and evaluates their exact geometric displacement \emph{relative to the fitted model}; it does not compute the best intervention for changing a real person's beliefs.
+One-step policies maximize or minimize $\mu_v(s)$ under stochastic answering. Modal-response selection is distinct from sampling and need not describe a coherent respondent population. Optimization acts on the fitted LSM, not on human beliefs.
 
 A companion predictive-landscape statistic measures the change in \emph{unasked} response distributions after conditioning on one answer:
 \begin{equation}
@@ -146,30 +176,30 @@ R_j(s;v,a)=\JS\!\bigl(p_\Ph(\cdot\mid s,j),
 p_\Ph(\cdot\mid s\cup\{v=a\},j)\bigr).
 \label{eq:ripple}
 \end{equation}
-A total propagation score can be defined as $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}} w_j R_j(s;v,a)$ for prespecified nonnegative weights $w_j$. It measures statistical redistribution of conditional predictions, not a causal cascade of actual opinions.
+A weighted propagation score $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}} w_j R_j(s;v,a)$ measures redistribution of conditional predictions, not causal influence.
 
 \subsection{Difference from RAG and language-model personas}
-Retrieval-augmented generation (RAG) supplies relevant text to a generator, primarily addressing factual grounding and provenance \cite{lewis2020}. Demographically prompted or autobiographically conditioned LLM personas seek plausible behavior or distributional survey fidelity \cite{argyle2023,park2023}. DTAG asks a different question: can the model's \emph{entire conditional distribution of unasked responses} be validated against a real respondent as anchors accumulate? The native categorical model, learned from social observations, is a state-dependent probability mechanism; the LLM is a semantic interface. RAG can complement DTAG with source context, but retrieval of passages does not, by itself, supply an empirically calibrated joint opinion model. DTAG conversely does not claim the broader language understanding or fact retrieval capabilities of RAG.
+RAG grounds language generation in retrieved text \cite{lewis2020}, whereas prompted LLM personas emphasize plausible synthetic behavior \cite{argyle2023,park2023}. DTAG instead delegates conditional response probabilities to an empirical LSM and uses the LLM only for semantic mapping and verbalization. Its predictions can be tested against withheld survey responses.
 
 \section{The Interpretation of Sequential Questions}
 \subsection{Phenotypic refinement: observing a fixed system}
-Under the passive account, a respondent possesses a complete, fixed phenotype $X^\star$, and each response reveals information about it. A sequence $s_0\subset s_1\subset\cdots\subset s_T$ gives progressively more constrained predictions of unasked variables. For a designated held-out target set $Y$, the ideal information value of query $v$ is
+Under passive refinement, a fixed phenotype $X^\star$ is progressively revealed through $s_0\subset s_1\subset\cdots\subset s_T$. For a held-out target set $Y$, the information value of query $v$ is
 \begin{equation}
 \mathcal G(v\mid s)=
 H(Y\mid s)-\EE_{A_v\mid s}[H(Y\mid s,v=A_v)].
 \label{eq:ig}
 \end{equation}
-When the conditionals are compatible with a joint distribution, this equals conditional mutual information and is nonnegative. Importantly, optimizing $\mathcal G$ is not the same as optimizing ideological displacement $\mu_v$ in (\ref{eq:mu}). Refinement can be evaluated without human intervention by adaptively revealing existing answers in held-out archival surveys.
+For compatible conditionals this is nonnegative conditional mutual information. Maximizing $\mathcal G$ differs from maximizing ideological displacement $\mu_v$; refinement can be tested by revealing archived survey answers.
 
 \subsection{Phenotypic construction: querying a reflexive system}
-Under the constructive account, the respondent has a time-indexed latent state $Z_t$. A question produces both an observable report $A_t$ and, potentially, a new state $Z_{t+1}$:
+Under constructive questioning, a latent state $Z_t$ may change as the respondent reports $A_t$:
 \begin{equation}
 K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
 \label{eq:kernel}
 \end{equation}
-Passive observation is the special case $T_q(z'\mid z,a)=\delta_z(z')$. More generally, the transition can depend on the agent's own prior beliefs, semantic framing, trust in the interlocutor, and the interaction history. This makes mental-state inference and intervention inseparable at the level of the experimental encounter. An LSM estimated from cross-sectional surveys cannot identify $T_q$, even if it perfectly fits cross-sectional responses; many transition dynamics share the same stationary distribution.
+Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$. Cross-sectional LSM data cannot identify the transition $T_q$: multiple change mechanisms can imply the same observed response distribution.
 
-The dichotomy should not be collapsed into a binary psychological classification. Some interactions clarify existing beliefs, some affect transient accessibility, and some generate more persistent revisions. Separating these requires independently measured downstream outcomes, delayed remeasurement, and appropriate no-query controls. The central scientific hypothesis is that LSM geometry can help predict \emph{which} observed state changes accompany these different processes, while allowing the hypothesis to fail.
+Questioning may clarify beliefs, temporarily change salience, or produce lasting revision. Independent outcomes, delayed measurement, and no-query controls are needed to distinguish these mechanisms.
 
 \subsection{Why question-order effects are not automatically persuasion}
 A coherent static joint model implies
@@ -178,102 +208,511 @@ P(a\mid s,v)P(b\mid s,v=a,w)
 =P(b\mid s,w)P(a\mid s,w=b,v).
 \label{eq:compat}
 \end{equation}
-The final conditional distribution after observing both answers is independent of their order, although intermediate predictions differ. Separately trained local conditional models need not satisfy (\ref{eq:compat}), so simulations can exhibit order artifacts unrelated to human psychology \cite{heckerman2000}. Conversely, genuinely different human response-and-transition operators $K_A$ and $K_B$ may fail to commute. The distinction must be made experimentally rather than inferred from the appearance of a trajectory.
+A compatible static joint model has an order-invariant final conditional distribution, despite different intermediate paths. Independently fitted conditionals may violate (\ref{eq:compat}) \cite{heckerman2000}; human transition operators may also fail to commute. Simulated order effects alone cannot distinguish them.
+
+\section{Native GSS 2024 Computational Experiments}
+\label{sec:native}
+
+\subsection{Adaptive questioning of fixed synthetic personas}
+We simulated the six fixed-anchor GSS 2024 personas in Table~\ref{tab:personas}. Each of 20 steps selected an unasked item by maximizing expected rightward drift, minimizing expected drift (left), minimizing absolute drift (neutral), or random selection; answers were drawn from the native LSM. Forty repetitions per policy and persona gave $6\times4\times40=960$ trajectories and $19{,}200$ question-answer draws.
+
+
+\begin{table}[!t]
+\centering
+\caption{Six pinned synthetic GSS 2024 respondent personas. Baseline anchors remain fixed throughout each simulation.}
+\label{tab:personas}
+\renewcommand{\arraystretch}{1.10}
+\footnotesize
+\begin{tabular}{@{}cll@{}}
+\toprule
+ID & Persona profile & Setting \\
+\midrule
+P1 & Conservative man & Rural Alabama \\
+P2 & Liberal woman & New York City \\
+P3 & Religious conservative woman & Texas \\
+P4 & Secular liberal man & Seattle \\
+P5 & Hispanic Catholic conservative man & Arizona \\
+P6 & Black churchgoing liberal woman & Atlanta \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% -------- CSV file definitions for the integrated figure --------
+% For future runs, set DTAG_FIGURES_DIR before compiling.
+\def\DTAGEndpointRightFile{\DTAGFigureDir/pub_endpoint_right.csv}
+\def\DTAGEndpointLeftFile{\DTAGFigureDir/pub_endpoint_left.csv}
+\def\DTAGEndpointNeutralFile{\DTAGFigureDir/pub_endpoint_neutral.csv}
+\def\DTAGEndpointRandomFile{\DTAGFigureDir/pub_endpoint_random.csv}
+\def\DTAGTrajectoryAlabamaRightFile{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_right.csv}
+\def\DTAGTrajectoryAlabamaLeftFile{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_left.csv}
+\def\DTAGTrajectoryAlabamaNeutralFile{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_neutral.csv}
+\def\DTAGTrajectoryAlabamaRandomFile{\DTAGFigureDir/pub_trajectory_cm_rural_alabama_random.csv}
+\def\DTAGTrajectoryNewYorkRightFile{\DTAGFigureDir/pub_trajectory_wf_new_york_city_right.csv}
+\def\DTAGTrajectoryNewYorkLeftFile{\DTAGFigureDir/pub_trajectory_wf_new_york_city_left.csv}
+\def\DTAGTrajectoryNewYorkNeutralFile{\DTAGFigureDir/pub_trajectory_wf_new_york_city_neutral.csv}
+\def\DTAGTrajectoryNewYorkRandomFile{\DTAGFigureDir/pub_trajectory_wf_new_york_city_random.csv}
+\def\DTAGTrajectoryTexasRightFile{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_right.csv}
+\def\DTAGTrajectoryTexasLeftFile{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_left.csv}
+\def\DTAGTrajectoryTexasNeutralFile{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGTrajectoryTexasRandomFile{\DTAGFigureDir/pub_trajectory_religious_conservative_woman_texas_random.csv}
+\def\DTAGTrajectorySeattleRightFile{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_right.csv}
+\def\DTAGTrajectorySeattleLeftFile{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_left.csv}
+\def\DTAGTrajectorySeattleNeutralFile{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGTrajectorySeattleRandomFile{\DTAGFigureDir/pub_trajectory_secular_liberal_man_seattle_random.csv}
+\def\DTAGTrajectoryArizonaRightFile{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGTrajectoryArizonaLeftFile{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGTrajectoryArizonaNeutralFile{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGTrajectoryArizonaRandomFile{\DTAGFigureDir/pub_trajectory_hispanic_catholic_man_arizona_random.csv}
+\def\DTAGTrajectoryAtlantaRightFile{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGTrajectoryAtlantaLeftFile{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGTrajectoryAtlantaNeutralFile{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGTrajectoryAtlantaRandomFile{\DTAGFigureDir/pub_trajectory_black_churchgoing_woman_atlanta_random.csv}
 
 \begin{figure*}[!t]
 \centering
-\begin{minipage}{.48\textwidth}
+% ================ (a) Circuit-style DTAG schematic ================
+\begin{minipage}[t]{.605\textwidth}
 \centering
+{\small\bfseries (a) Conditional digital-twin circuit}\par\vspace{3mm}
+\resizebox{\linewidth}{!}{%
+\DTAGExternalEnable
+\tikzsetnextfilename{dtag-circuit}
+\begin{tikzpicture}[x=1cm,y=1cm,>=Latex,
+  font=\sffamily\fontsize{8}{9}\selectfont,
+  pcb/.style={draw=black,line width=1.35pt,fill=black!1, rounded corners=5pt},
+  chip/.style={draw=black,line width=1.15pt,fill=Blue1!10,align=center,
+      minimum height=.76cm,inner xsep=2.3pt,inner ysep=2.4pt, rounded corners=2pt},
+  wire/.style={-{Latex[length=1.5mm,width=2.5mm]},draw=black,line width=1.25pt,
+      rounded corners=.6pt},
+  control/.style={-{Latex[length=1.5mm,width=2.5mm]},draw=dtred,line width=1.35pt},
+  bus/.style={draw=black,line width=1.35pt},
+  pin/.style={circle,fill=black,inner sep=1.15pt},
+  ch/.style={font=\sffamily\fontsize{7.7}{8.4}\selectfont\bfseries}]
+% Heavy board edges and flat circuit modules replace decorative bubbles.
+%\path[pcb] (0,0) rectangle (11.8,5.15);
+\path[fill=dtpale!65,draw=modblue,line width=1.0pt]
+  (.19,4.45) rectangle (3.55,4.93);
+\path[fill=dtmint!85,draw=modteal,line width=1.0pt]
+  (3.64,4.45) rectangle (11.61,4.93);
+\node[font=\sffamily\bfseries\fontsize{10}{10}\selectfont,text=modblue]
+  at (1.87,4.69) {LLM / LANGUAGE};
+\node[font=\sffamily\bfseries\fontsize{10}{10}\selectfont,text=modteal]
+  at (7.63,4.69) {Digital Twin  / native conditional model (LSM)};
+% Input pipeline, top bus.
+\node[chip,text width=1.05cm] (q) at (.80,3.63) {Input\\$q_t$};
+\node[chip,text width=1.30cm] (ground) at (2.60,3.63) {LLM map\\$M(q_t)\to v$};
+\node[chip,text width=1.35cm,fill=dtmint!45] (state) at (4.42,3.63) {State\\$s_t$};
+\node[chip,text width=1.85cm,fill=dtmint!45] (model) at (6.52,3.63)
+  {Native LSM\\$p_\Phi(a\mid s_t,v)$};
+\node[chip,text width=1.82cm,fill=dtmint!45] (index) at (9.40,3.63)
+  {Geometry\\$I_\Phi(s_t)$};
+\draw[wire] (q.east)--(ground.west);
+\draw[wire] (ground.east)--(state.west);
+\draw[wire] (state.east)--(model.west);
+\draw[wire] (model.east)--(index.west);
+% Wide, low-profile ALU/control unit; distinct parallel input ports.
+\node[chip,fill=dtorange!75,line width=1.6pt,draw=dtred,
+ text width=6.05cm,minimum height=.85cm] (alu) at (7.38,2.24)
+ {\textbf{ONE-STEP GREEDY SELECTOR}\quad\strut$\mu_v(s_t)=\sum_a p_\Phi(a\mid s_t,v)\,\Delta_v(a;s_t)$\\
+  \textbf{right:} $\max_v\mu_v$\quad\textbf{left:} $\min_v\mu_v$\quad
+  \textbf{neutral:} $\min_v|\mu_v|$};
+\draw[black,line width=1.15pt] (model.south) -- ([xshift=-.86cm]alu.north);
+\draw[black,line width=1.15pt] (index.south) -- ([xshift=2.02cm]alu.north);
+% Bottom outbound chain (selected item -> answer -> anchored update).
+\node[chip,text width=1.55cm,fill=dtmint!45] (pick) at (5.02,.79) {Chosen\\$v^\star$};
+\node[chip,text width=1.60cm,fill=dtmint!45] (answer) at (7.27,.79) {Model draw\\$a_t$};
+\node[chip,text width=1.75cm,fill=dtmint!45] (update) at (9.93,.79)
+  {Anchor\\$s_{t+1}$};
+\node[chip,text width=2.08cm,fill=dtpale!65] (lang) at (2.15,.79)
+  {LLM verbalization\\\& next prompt};
+\draw[control] ([yshift=.16in]pick.north) --  (pick.north);
+\draw[wire] (pick.east)--(answer.west);
+\draw[wire] (answer.east)--(update.west);
+\draw[wire] (pick.west)--(lang.east);
+% State-update feedback uses a dedicated outer trace ABOVE the upper bus.
+\draw[wire] (update.east) -- (11.35,.79) -- (11.35,4.23)
+ -- (4.42,4.23) -- (state.north);
+% LLM prompt feedback uses a disjoint left-side trace.
+\draw[-{Latex[length=1.5mm,width=1.15mm]},draw=modblue,line width=1.25pt]
+ (lang.west) -- (.33,.79) -- (.33,2.83) -- (.8,2.83) -- (q.south);
+% Contact pads and board traces make module boundaries clear.
+\foreach \p in {q.east,ground.west,ground.east,state.west,state.east,
+ model.west,model.east,index.west,model.south,index.south,%alu.south,
+ pick.east,answer.west,answer.east,update.west,lang.east}
+  \node[pin] at (\p) {};
+\end{tikzpicture}
+\tikzexternaldisable}
+\end{minipage}%
+% ================ (b) High-contrast endpoint plot ================
+\hfill\begin{minipage}[t]{.375\textwidth}
+\centering
+{\small\bfseries (b) Final endpoint displacement}\par\vspace{1mm}
+\DTAGExternalEnable
+\tikzsetnextfilename{dtag-endpoints}
 \begin{tikzpicture}
-\begin{axis}[width=\linewidth,height=4.5cm,xlabel={Question index},ylabel={Geometric ideology $I_\Phi$},xmin=0,xmax=12,ymin=-.65,ymax=.7,grid=major,legend pos=north west,legend style={font=\scriptsize},tick label style={font=\scriptsize},label style={font=\footnotesize}]
-\addplot[modred,very thick,mark=none] coordinates {(0,0)(1,.08)(2,.11)(3,.19)(4,.23)(5,.29)(6,.33)(7,.39)(8,.46)(9,.48)(10,.51)(11,.54)(12,.56)};
-\addlegendentry{Max.\ geometric shift}
-\addplot[modblue,very thick,mark=none] coordinates {(0,0)(1,-.08)(2,-.18)(3,-.23)(4,-.29)(5,-.35)(6,-.38)(7,-.44)(8,-.48)(9,-.49)(10,-.51)(11,-.55)(12,-.57)};
-\addlegendentry{Min.\ geometric shift}
-\addplot[gray,dashed,thick,mark=none] coordinates {(0,0)(1,.02)(2,-.03)(3,.01)(4,.04)(5,.02)(6,.09)(7,.05)(8,.04)(9,.11)(10,.08)(11,.09)(12,.06)};
-\addlegendentry{Random questions}
+\tikzpicturedependsonfile{\DTAGMetadataCSV}
+\tikzpicturedependsonfile{\DTAGEndpointLeftFile}
+\tikzpicturedependsonfile{\DTAGEndpointNeutralFile}
+\tikzpicturedependsonfile{\DTAGEndpointRandomFile}
+\tikzpicturedependsonfile{\DTAGEndpointRightFile}
+\def\MSZ{2pt}
+\def\LWD{.5pt}
+\def\LWDA{.5pt}
+\begin{axis} [
+ axis lines=box,axis line style={draw=black,line width=\LWDA},
+ tick style={draw=black,line width=.5pt},
+ tick label style={font=\scriptsize\bfseries,text=black},
+ label style={font=\small\bfseries,text=black},
+ scale only axis,
+ width=4.72cm,
+ height=1.2in,
+ xmin=-.1,xmax=.1,ymin=.40,ymax=6.60,
+ xtick={-.1,-.05,0,.05,.1},ytick={1,2,3,4,5,6},
+ yticklabels={Atlanta,Arizona,Seattle,Texas,New York,Alabama},
+ xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
+ xlabel={Mean $\overline{\Delta I_\Phi}$},
+ legend columns=2,
+ legend style={draw=none,fill=none,font=\scriptsize\bfseries,
+   at={(.5,1)},anchor=south,column sep=4pt,legend cell align=left},
+ grid=major,grid style={draw=black!12,line width=.40pt},major tick length=0pt]
+\addplot[black,densely dashed,line width=.3pt,forget plot] coordinates {(0,.45)(0,6.55)};
+\addplot[dtred,only marks,mark=*,mark size=\MSZ,
+ error bars/.cd,x dir=both,x explicit,
+ error bar style={black,line width=\LWD},
+ error mark options={rotate=90,mark size=\MSZ}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointRightFile};
+\addlegendentry{Right push}
+\addplot[dtblue,only marks,mark=square*,mark size=\MSZ,
+ error bars/.cd,x dir=both,x explicit,
+ error bar style={black,line width=\LWD},
+ error mark options={rotate=90,mark size=\MSZ}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointLeftFile};
+\addlegendentry{Left push}
+\addplot[dtgray,only marks,mark=o,mark size=\MSZ,
+ error bars/.cd,x dir=both,x explicit,
+ error bar style={black,line width=\LWD},
+ error mark options={rotate=90,mark size=\MSZ}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointNeutralFile};
+\addlegendentry{Neutral drift}
+\addplot[black,only marks,mark=triangle,mark size=\MSZ,
+ error bars/.cd,x dir=both,x explicit,
+ error bar style={black,line width=\LWD},
+ error mark options={rotate=90,mark size=\MSZ}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointRandomFile};
+\addlegendentry{Random}
 \end{axis}
 \end{tikzpicture}
-{\footnotesize (a) Candidate geometry-policy trajectories}
-\end{minipage}\hfill
-\begin{minipage}{.48\textwidth}
-\centering
-\begin{tikzpicture}
-\begin{axis}[width=\linewidth,height=4.5cm,xlabel={Condition},ylabel={Held-out outcome contrast},symbolic x coords={Control,AB,BA,Follow-up},xtick=data,ymin=-.1,ymax=.28,grid=major,tick label style={font=\scriptsize},label style={font=\footnotesize},legend pos=north west,legend style={font=\scriptsize}]
-\addplot[modteal,very thick,mark=square*] coordinates {(Control,0)(AB,.18)(BA,.06)(Follow-up,.12)};
-\addlegendentry{Constructive hypothesis}
-\addplot[gray,dashed,very thick,mark=triangle*] coordinates {(Control,0)(AB,.01)(BA,.01)(Follow-up,0)};
-\addlegendentry{Passive null}
-\end{axis}
-\end{tikzpicture}
-{\footnotesize (b) Discriminating experiment: proposed outcomes}
+\tikzexternaldisable
 \end{minipage}
-\caption{\textbf{Illustrative mock results; no numerical values are observed data.} Panel (a) sketches a possible DTAG comparison of expected-displacement policies with random-question selection using identical native models and seeds. Panel (b) sketches \emph{hypothetical} differences among human experimental conditions and at follow-up. Values, shapes, and effect sizes are arbitrary and must be replaced with preregistered computational and prospective measurements.}
-\label{fig:mock}
+\par\vspace{1.8mm}
+{\small\bfseries (c) Question-by-question trajectories: six synthetic personas}\par\vspace{.9mm}
+{\scriptsize\bfseries
+\tikz[baseline=-.25ex]\draw[dtred,line width=1.45pt](0,0)--(.43,0);\,Right push\hspace{.30cm}
+\tikz[baseline=-.25ex]\draw[dtblue,line width=1.45pt](0,0)--(.43,0);\,Left push\hspace{.30cm}
+\tikz[baseline=-.25ex]\draw[dtgray,densely dashed,line width=1.3pt](0,0)--(.43,0);\,Neutral\hspace{.30cm}
+\tikz[baseline=-.25ex]\draw[black,line width=1.3pt](0,0)--(.43,0);\,Random}\par\vspace{1.0mm}
+\DTAGExternalEnable
+\tikzsetnextfilename{dtag-trajectories}
+\begin{tikzpicture}
+\tikzpicturedependsonfile{\DTAGMetadataCSV}
+\tikzpicturedependsonfile{\DTAGTrajectoryAlabamaLeftFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryAlabamaNeutralFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryAlabamaRandomFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryAlabamaRightFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryArizonaLeftFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryArizonaNeutralFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryArizonaRandomFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryArizonaRightFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryAtlantaLeftFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryAtlantaNeutralFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryAtlantaRandomFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryAtlantaRightFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryNewYorkLeftFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryNewYorkNeutralFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryNewYorkRandomFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryNewYorkRightFile}
+\tikzpicturedependsonfile{\DTAGTrajectorySeattleLeftFile}
+\tikzpicturedependsonfile{\DTAGTrajectorySeattleNeutralFile}
+\tikzpicturedependsonfile{\DTAGTrajectorySeattleRandomFile}
+\tikzpicturedependsonfile{\DTAGTrajectorySeattleRightFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryTexasLeftFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryTexasNeutralFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryTexasRandomFile}
+\tikzpicturedependsonfile{\DTAGTrajectoryTexasRightFile}
+
+\begin{groupplot}[
+ group style={group size=6 by 1,horizontal sep=.43cm},
+ axis lines=box,scale only axis,width=.955in,height=2.35cm,
+ xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
+ xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
+ scaled ticks=false,
+ yticklabel={\pgfmathprintnumber[fixed,precision=1]{\tick}},
+ axis line style={draw=black,line width=1.05pt},
+ tick style={draw=black,line width=.9pt},
+ tick label style={font=\scriptsize\bfseries,text=black},
+ title style={font=\scriptsize\bfseries,text=black},
+ grid=major,grid style={draw=black!12,line width=.25pt}]
+\nextgroupplot[title={Alabama}]
+\addplot[draw=none,forget plot,name path=p0Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryAlabamaRightFile};
+\addplot[draw=none,forget plot,name path=p0Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryAlabamaRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p0Righthi and p0Rightlo];
+\addplot[draw=none,forget plot,name path=p0Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryAlabamaLeftFile};
+\addplot[draw=none,forget plot,name path=p0Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryAlabamaLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p0Lefthi and p0Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAlabamaRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAlabamaLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAlabamaNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAlabamaRandomFile};
+\nextgroupplot[title={New York},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p1Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryNewYorkRightFile};
+\addplot[draw=none,forget plot,name path=p1Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryNewYorkRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p1Righthi and p1Rightlo];
+\addplot[draw=none,forget plot,name path=p1Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryNewYorkLeftFile};
+\addplot[draw=none,forget plot,name path=p1Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryNewYorkLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p1Lefthi and p1Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryNewYorkRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryNewYorkLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryNewYorkNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryNewYorkRandomFile};
+\nextgroupplot[title={Texas},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p2Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryTexasRightFile};
+\addplot[draw=none,forget plot,name path=p2Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryTexasRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p2Righthi and p2Rightlo];
+\addplot[draw=none,forget plot,name path=p2Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryTexasLeftFile};
+\addplot[draw=none,forget plot,name path=p2Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryTexasLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p2Lefthi and p2Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryTexasRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryTexasLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryTexasNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryTexasRandomFile};
+\nextgroupplot[title={Seattle},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p3Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectorySeattleRightFile};
+\addplot[draw=none,forget plot,name path=p3Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectorySeattleRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p3Righthi and p3Rightlo];
+\addplot[draw=none,forget plot,name path=p3Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectorySeattleLeftFile};
+\addplot[draw=none,forget plot,name path=p3Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectorySeattleLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p3Lefthi and p3Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectorySeattleRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectorySeattleLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectorySeattleNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectorySeattleRandomFile};
+\nextgroupplot[title={Arizona},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p4Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryArizonaRightFile};
+\addplot[draw=none,forget plot,name path=p4Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryArizonaRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p4Righthi and p4Rightlo];
+\addplot[draw=none,forget plot,name path=p4Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryArizonaLeftFile};
+\addplot[draw=none,forget plot,name path=p4Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryArizonaLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p4Lefthi and p4Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryArizonaRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryArizonaLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryArizonaNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryArizonaRandomFile};
+\nextgroupplot[title={Atlanta},yticklabels={}]
+\addplot[draw=none,forget plot,name path=p5Rightlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryAtlantaRightFile};
+\addplot[draw=none,forget plot,name path=p5Righthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryAtlantaRightFile};
+\addplot[draw=none,fill=dtred!23,forget plot] fill between[of=p5Righthi and p5Rightlo];
+\addplot[draw=none,forget plot,name path=p5Leftlo] table[x=step,y=lo,col sep=comma]{\DTAGTrajectoryAtlantaLeftFile};
+\addplot[draw=none,forget plot,name path=p5Lefthi] table[x=step,y=hi,col sep=comma]{\DTAGTrajectoryAtlantaLeftFile};
+\addplot[draw=none,fill=dtblue!23,forget plot] fill between[of=p5Lefthi and p5Leftlo];
+\addplot[black!55,densely dotted,line width=.7pt,forget plot] coordinates{(0,0)(\DTAGSteps,0)};
+\addplot[dtred,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAtlantaRightFile};
+\addplot[dtblue,line width=1.15pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAtlantaLeftFile};
+\addplot[dtgray,densely dashed,line width=1.03pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAtlantaNeutralFile};
+\addplot[black,line width=1.08pt,no marks,forget plot] table[x=step,y=mean,col sep=comma]{\DTAGTrajectoryAtlantaRandomFile};
+\end{groupplot}
+\node[rotate=90,font=\scriptsize\bfseries] at (-.83cm,1.18cm) {Net displacement};
+\end{tikzpicture}
+\tikzexternaldisable
+\par\vspace{.5mm}{\scriptsize\bfseries Question sequence number}\par
+\vspace{-1.5mm}
+\caption{\textbf{DTAG digital-twin circuit and adaptive native GSS 2024 results.}
+(a) A semantic LLM interface maps and verbalizes categorical survey questions,
+while the conditional LSM inside the digital twin predicts unasked responses;
+a myopic greedy circuit selects the next question using expected one-step
+pole-relative displacement and updates the anchored state with a model draw.
+(b) Mean displacement after \DTAGSteps{} questions across six synthetic personas;
+large markers and horizontal whiskers show 95\% bootstrap uncertainty.
+(c) Six aligned trajectories from \DTAGReps{} repetitions per persona and policy;
+shading denotes pointwise 95\% bootstrap intervals. Right = dark red,
+left = dark blue, neutral = dashed gray, random = black.
+These are native conditional-model trajectories, not observed human persuasion.}
+\label{fig:arch_adaptive}
+\label{fig:arch}
+\label{fig:persona-endpoints}
+\label{fig:native-trajectories}
 \end{figure*}
 
-\section{Testable Hypotheses and a Prolific Experiment}
-\subsection{Predictions that discriminate the mechanisms}
-\textbf{H1 (predictive ToM):} Conditional predictions from DTAG, after observing a small anchor set, achieve better held-out log score and calibration than demographic/psychometric, retrieval-based, and profile-prompted LLM baselines. This is a test of \emph{inference}, requiring no claim about influence.
 
-\textbf{H2 (geometric sensitivity):} The model's cross-domain change field $R_j$ predicts \emph{which} held-out responses are most informative about other domains. High geometric displacement and high information gain need not coincide. Strong out-of-sample prediction is essential: a large numerical ripple alone is not validating evidence.
+Directional policies shifted the model index as targeted across all six personas; the minimum-drift policy remained near zero. Geometric neutrality is not psychological neutrality.
 
-\textbf{H3 (question-order response):} Holding question content fixed, humans randomized to $A\to B$ and $B\to A$ can differ on a separately administered outcome battery. The direction and magnitude are to be predicted \emph{before} post-intervention measurement; a nonzero transient contrast need not establish persistent attitude change.
-
-\textbf{H4 (geometric prior to responsiveness):} Prespecified, baseline LSM propagation and uncertainty measures predict the \emph{magnitude and heterogeneity} of human outcome changes beyond conventional baseline predictors, even though they do not identify a causal mechanism from archival data.
-
-\textbf{H5 (durability and construct separation):} If measured change reflects more than immediate survey-context effects, a component should survive delayed measurement and alternative item wording; disappearance or loss of generalization would favor a transient-context account.
-
-\subsection{Study design: reverse order, single exposure, and independent outcomes}
-The proposed validation study will recruit consenting adults through Prolific and administer the experiment in an external survey application. After a short, common baseline anchor battery $S_0$, participants will be randomized \emph{independently of their political opinions} to five balanced arms: (i) sequence $A\to B$; (ii) $B\to A$; (iii) $A$ alone; (iv) $B$ alone; and (v) a duration-matched neutral control containing neither target question. The $A$ and $B$ modules will be drawn from a preregistered set of neutral public-issues and institutional-trust questions; any contextual information will be factual, balanced, and identical across assignment arms. No participant receives individually optimized political messaging and no political candidate or voting choice is promoted.
-
-The study then administers a \emph{distinct, unasked} outcome battery $Y$, chosen before recruitment from LSM-predicted cross-domain dependencies and a negative-control set. To reduce reactivity, the repeated measurement at 7--14 days will use compatible alternate wording where validated; the meaning of any observed difference is restricted to these measured outcomes. All arms receive comparable survey time, the same instructions, and blinded outcome presentation. A pilot will validate question interpretation, response-scale reliability, completion time, exclusions, and attrition.
-
-The \emph{primary randomized estimand} is the delayed intent-to-treat order contrast
+\subsection{Question selection as observed paths}
+To expose the actual stochastic sequence variation without creating an
+artificial modal trajectory, every distinct question was assigned a globally
+shared categorical index. Across all runs, including the excluded random
+policy, there were $228$ distinct items; $161$ appeared in the right, left,
+and neutral panels. Each of the 18 heatmaps (six personas by three policies)
+shows the actual question identities in 40 runs across twenty positions.
+The run indices were \emph{not} reordered.
+The item-to-color assignment was globally permuted to approximately minimize
 \begin{equation}
-\tau_{\mathrm{order}}=
-\EE[Y_{\mathrm{delay}}\mid\Do(AB)]-
-\EE[Y_{\mathrm{delay}}\mid\Do(BA)].
+\mathcal C(\pi)=\sum_{p,u,t}\sum_{r<r'}
+\big|\pi(v_{purt})-\pi(v_{pur't})\big|,
+\label{eq:question-seriation}
+\end{equation}
+where $u$ ranges over the three displayed policies. This all-pairs
+objective is invariant to the arbitrary numbering of repetitions. The
+$67$ items occurring only in random-question runs retain their global
+lookup entries. Numeric distances between question indices have no
+scientific or semantic interpretation; optimizing them is merely a
+visualization device.
+
+% -------- Figure 2 CSV definitions (one per input table) --------
+\def\DTAGCSVFigureTwoAA{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGCSVFigureTwoAB{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGCSVFigureTwoAC{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGCSVFigureTwoAD{\DTAGFigureDir/heatmap_cm_rural_alabama_left.csv}
+\def\DTAGCSVFigureTwoAE{\DTAGFigureDir/heatmap_cm_rural_alabama_neutral.csv}
+\def\DTAGCSVFigureTwoAF{\DTAGFigureDir/heatmap_cm_rural_alabama_right.csv}
+\def\DTAGCSVFigureTwoAG{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGCSVFigureTwoAH{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGCSVFigureTwoAI{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGCSVFigureTwoAJ{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_left.csv}
+\def\DTAGCSVFigureTwoAK{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGCSVFigureTwoAL{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_right.csv}
+\def\DTAGCSVFigureTwoAM{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_left.csv}
+\def\DTAGCSVFigureTwoAN{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGCSVFigureTwoAO{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_right.csv}
+\def\DTAGCSVFigureTwoAP{\DTAGFigureDir/heatmap_wf_new_york_city_left.csv}
+\def\DTAGCSVFigureTwoAQ{\DTAGFigureDir/heatmap_wf_new_york_city_neutral.csv}
+\def\DTAGCSVFigureTwoAR{\DTAGFigureDir/heatmap_wf_new_york_city_right.csv}
+\def\DTAGCSVFigureTwoAS{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGCSVFigureTwoAT{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGCSVFigureTwoAU{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGCSVFigureTwoAV{\DTAGFigureDir/pub_order_cm_rural_alabama_left.csv}
+\def\DTAGCSVFigureTwoAW{\DTAGFigureDir/pub_order_cm_rural_alabama_neutral.csv}
+\def\DTAGCSVFigureTwoAX{\DTAGFigureDir/pub_order_cm_rural_alabama_right.csv}
+\def\DTAGCSVFigureTwoAY{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGCSVFigureTwoAZ{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGCSVFigureTwoBA{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGCSVFigureTwoBB{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_left.csv}
+\def\DTAGCSVFigureTwoBC{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGCSVFigureTwoBD{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_right.csv}
+\def\DTAGCSVFigureTwoBE{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_left.csv}
+\def\DTAGCSVFigureTwoBF{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGCSVFigureTwoBG{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_right.csv}
+\def\DTAGCSVFigureTwoBH{\DTAGFigureDir/pub_order_wf_new_york_city_left.csv}
+\def\DTAGCSVFigureTwoBI{\DTAGFigureDir/pub_order_wf_new_york_city_neutral.csv}
+\def\DTAGCSVFigureTwoBJ{\DTAGFigureDir/pub_order_wf_new_york_city_right.csv}
+
+\begin{figure*}[!t]
+\centering
+\DTAGExternalEnable
+\tikzsetnextfilename{dtagfig2}
+
+%\input{Figures/fig2}
+
+\IfFileExists{Figures/External/dtagfig2.pdf}{%
+\includegraphics[width=\textwidth]{Figures/External/dtagfig2}%
+}{%
+\resizebox{\textwidth}{!}{\input{Figures/dtagfig2_fallback.tex}}%
+}
+
+\vspace{-10pt}
+
+\caption{\textbf{Question identities and fixed-item order effects over all six personas.}
+Left: 18 nearly square categorical heatmaps show \DTAGReps{} independent runs over
+\DTAGSteps{} question positions. The single colorbar denotes optimized question IDs (blue: low; red: high), not signed ideological effects. A single globally optimized categorical map covers
+\DTAGIdMax{} displayed items from \DTAGTotalQuestions{} observed questions.
+Right: original order versus reversal and two shuffles of fixed \DTAGSteps{}-item
+sets, displaying paired endpoint differences with 95\% bootstrap confidence intervals.
+The items are held fixed, and none of these model outcomes establish human persuasion.}
+\label{fig:question-map}
+\label{fig:order-effects}
+\end{figure*}
+
+\subsection{Order sensitivity with twenty-question content fixed}
+For each persona and for each of the right/left/neutral policies, we froze
+the twenty items from a predetermined source realization (replicate zero),
+without selecting sets by their endpoints. Each of the 18 fixed sets was
+administered in its original order, reversed order, and two fixed random
+permutations. Forty repetitions per order, sampling every answer
+sequentially from the LSM conditional on previously drawn answers, yielded
+$18\times4\times40=2{,}880$ complete twenty-question replay trajectories.
+A question-specific uniform draw was shared across each original--permuted
+pair to reduce Monte Carlo noise. We compared both the sign of the final
+ideology index and the direction of displacement from the fixed initial state:
+\begin{align}
+F_{pSr\pi}^{\mathrm{end}}
+&=\mathbf 1\{I_{20}^{(\pi)} I_{20}^{(0)}<0\},\\
+F_{pSr\pi}^{\mathrm{move}}
+&=\mathbf 1\{(I_{20}^{(\pi)}-I_0)(I_{20}^{(0)}-I_0)<0\}.
+\end{align}
+Near-zero values are excluded from sign-flip counts.
+
+
+
+Figure~\ref{fig:order-effects} displays the signed paired mean contrasts.
+The matched-replay sign-reversal counts below quantify how often an individual
+realization changes direction or crosses the ideological zero point.
+Across 720 matched original--permuted comparisons per source policy,
+reversals of the \emph{movement direction} occurred in 107/720 right-derived,
+68/720 left-derived, and 10/720 neutral-derived comparisons. Reversals of
+\emph{the final ideological sign} occurred in 69/720 right-derived,
+54/720 left-derived, and 0/720 neutral-derived comparisons, respectively.
+All 54 pointwise bootstrap confidence intervals for \emph{signed mean} order
+contrasts contained zero: positive and negative changes may cancel despite
+substantial pathwise variation. Counts refer to matched stochastic model
+replays, not demonstrated human treatment effects.
+
+Pathwise sign reversals under matched random-number coupling do not establish different \emph{marginal} endpoint distributions: coherent static models can yield different paired paths but identical endpoint laws. Such distributional comparisons remain open; neither outcome demonstrates human causality.
+
+\paragraph{Cross-environment limitation.}
+Earlier ten-question local and CI runs differed in baseline indices despite matching persona, mapping, and pole hashes. Because model artifacts were not hashed in both environments, cross-environment index comparisons require runtime and model-identity checks. Within-study contrasts remain interpretable.
+
+
+\section{Testable Hypotheses and Human Validation}
+The native simulations address two model-level hypotheses using the defined pole-relative index $I_\Phi(s)$ and change $\Delta I_\Phi=I_\Phi(s_T)-I_\Phi(s_0)$.
+
+\textbf{H1 (reproducible directional movement).} Within a specified persona class and fixed LSM, adaptive question selection produces a reproducible distribution of $\Delta I_\Phi$ in the intended direction relative to neutral and random question policies. This tests whether DTAG's geometric optimizer operates as intended.
+
+\textbf{H2 (question-order sensitivity).} With question identity and initial persona fixed, alternate question orders produce predictable differences in the trajectory of $I_\Phi$. Pathwise differences must be distinguished from changes in the marginal final-index distribution; the latter is not established merely by paired sign reversals.
+
+Neither hypothesis demonstrates belief change in people. A prospective randomized study must distinguish human order effects and persistence from passive phenotype refinement.
+
+\subsection{Randomized assessment of belief change}
+We propose a preregistered Prolific study with common baseline questions $S_0$ and random assignment to five arms: $A\to B$, $B\to A$, $A$ only, $B$ only, or a duration-matched control. Questions concern neutral public issues or institutional trust; participants are not exposed to personalized political messages. The separate, prespecified held-out battery $Y$ and negative controls are measured immediately and after 7--14 days, using validated alternate wording when available. A pilot will assess comprehension, attrition, and measurement reliability.
+
+The primary intent-to-treat order estimand is
+\begin{equation}
+\tau_{\mathrm{order}}=\EE[Y_{\mathrm{delay}}\mid\Do(AB)]-\EE[Y_{\mathrm{delay}}\mid\Do(BA)].
 \label{eq:tau}
 \end{equation}
-The $A$-only, $B$-only, and control arms separately estimate single-module and elicitation effects. The immediate contrast is secondary to the delayed contrast for claims about persistence. Multiple outcome items must be assembled into a preregistered composite (with reported item-wise exploratory tests) to avoid opportunistic selection. Randomization identifies contrasts in reports under assigned conditions; it does not by itself identify a unique latent psychological mechanism.
+The single-module and control arms estimate elicitation effects. A delayed, independently measured outcome difference is necessary to distinguish persistent change from immediate survey-context effects; even then, randomization identifies effects on reports rather than a unique latent mechanism.
 
-\subsection{Locked prediction pipeline and quantitative analysis}
-Before the main human outcomes are observed, freeze (1) the survey/wave LSM, poles, mapping, source-code commit, and seed policy; (2) eligible $A,B,Y$ sets selected without viewing experiment outcomes; (3) predictions for all arms; and (4) the prespecified analysis. The static DTAG can forecast conditional distributions of $Y$ from each response history, but \emph{cannot} prospectively predict genuine causal order effects solely from that static model. This distinction will be explicit: a \emph{zero causal-order} baseline will be compared against any separately trained pilot-based transition model; incremental prospective performance provides the test of dynamical value. For the LSM geometric hypothesis, prespecified features (conditional uncertainty, distance to poles, and $\mathcal P_\Ph$) may predict treatment \emph{effect heterogeneity}, provided the predictive model is trained on separate pilot data and evaluated on the locked main sample.
+\subsection{Locked predictions and analysis}
+Before recruitment, freeze the LSM, reference poles, mappings, questions, software version, sampling seeds, and predicted outcome distributions. A static LSM predicts conditional answers but cannot identify causal belief-change operators; its natural causal-order baseline is zero. Any proposed transition model must be developed separately and tested prospectively. The analysis will use randomized intention-to-treat contrasts, robust confidence intervals, prespecified composites and negative controls, attrition sensitivity analyses, and multiplicity control for secondary outcomes. Pole distances and cross-domain propagation may be tested as prespecified moderators, not as evidence of causality.
 
-For respondent $i$, the primary analysis will estimate randomized contrasts by regression with fixed arm indicators and preregistered baseline covariates, using robust standard errors and complete-case/sensitivity bounds for attrition. A discrete endpoint or multi-item latent score will be specified before recruitment. Use intention-to-treat assignment, prespecified contrasts and multiplicity adjustment for secondary hypotheses, calibration curves for probability forecasts, and confidence intervals rather than only significance thresholds. Baseline-stratified analyses, if used, are explanatory and not procedures for selecting persuasive messages for particular individuals.
+We anticipate a pilot of approximately 150 respondents and an initial planning target of approximately 1,500 across the five arms, subject to pilot-based power calculations and follow-up retention. Prolific supports longitudinal recontact \cite{prolific2026}; institutional human-subjects review will precede recruitment.
 
-An initial feasibility plan is $N\approx150$ in a pilot and a planning target of $N\approx1500$ main-wave participants (approximately 300 per arm before attrition); this is \emph{not yet a power calculation}. Final sample size will depend on pilot variance, credible minimally relevant effects, desired error rates, planned contrasts, and follow-up retention. Prolific supports prescreening and longitudinal recontact \cite{prolific2026}; the protocol will be reviewed under applicable institutional human-participants procedures.
-
-\begin{table*}[!t]
-\centering
-\caption{Preregisterable tests and corresponding evidence. All prospective human results are future work, not findings.}
-\label{tab:design}
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{@{}p{.40in}p{1.23in}p{1.56in}p{1.72in}X@{}}
-\toprule
-Hyp. & Scientific mechanism & Experimental contrast / material & Primary quantitative endpoint & Interpretation / falsification \\
-\midrule
-H1 & Inference of unasked beliefs & Held-out archival respondents; equal anchor budget; DTAG vs.\ LLM and psychometric baselines & Held-out log score, calibration, Brier score; respondent-disjoint splits & Failure to improve proper predictive scores undermines predictive ToM \\
-H2 & High-dimensional conditional constraint & Random vs.\ information-gain vs.\ geometric question policies & Out-of-sample target prediction; cross-domain $R_j$ map & Large index movement without better prediction does not establish refinement \\
-H3 & Order-induced measurement or construction & Prolific $AB$ vs.\ $BA$ plus $A$, $B$ and control & Delayed independently measured outcome difference $\tau_{\rm order}$ & No durable order effect favors passive/transient explanations for these modules \\
-H4 & Statistical geometry as a dynamical prior & Locked pre-exposure scores; randomized arm contrasts & Prospective prediction of group-level response distributions and preregistered interaction fit & No incremental held-out benefit rejects claimed geometry--dynamics link \\
-H5 & Persistence vs.\ transient report context & Immediate vs.\ 7--14 day alternate-wording remeasurement & Stability, agreement, negative-control contrasts & Effects confined to immediate wording-specific reports lack support for durable change \\
-\bottomrule
-\end{tabularx}
-\end{table*}
-
-\subsection{Relationship to Bail \emph{et al.} and expected contribution}
-Bail \emph{et al.} experimentally demonstrated that cross-cutting exposure need not depolarize and can have asymmetric responses \cite{bail2018}. Our proposed initial Prolific experiment asks a distinct, more elementary question: before considering sustained political-media exposure, does the \emph{order of eliciting and considering related propositions} itself affect later attitudes, and can an independently fitted high-dimensional opinion geometry forecast its response distribution? A follow-on study may independently randomize neutral information sources and exposure conditions, but the five-arm design deliberately keeps the first test identifiable, ethically bounded, and feasible. A successful result would not reproduce Bail's treatment; it would supply a candidate state-dependent mechanism and a methodology for predicting heterogeneous downstream responses.
+\subsection{Relation to experimental polarization research}
+Bail \emph{et al.} found asymmetric responses to cross-cutting social-media exposure \cite{bail2018}. We test a narrower premise: whether changing only the order of asking related questions alters later measured attitudes. Any effect would concern elicitation order, not a replication of media-exposure treatment.
 
 \section{Discussion and Limitations}
-This framing separates a model of \emph{what another person might believe} from a model of \emph{what an interaction makes that person believe}. DTAG presently supports the former through inspectable conditional distributions and a learned statistical geometry. Whether those dependencies constrain human change dynamics is a falsifiable and potentially false generalization. Statistical dependencies may be induced by common causes, social sorting, survey design, or historical context rather than change mechanisms. Likewise, the operational LSM conditionals are not guaranteed to represent a coherent joint distribution; order-sensitive synthetic trajectories can arise from conditional incompatibility and semantic mapping rather than human reflexivity.
+DTAG models \emph{what a respondent might answer}, not \emph{what questioning makes them believe}. Its synthetic trajectories demonstrate properties of a fitted conditional system. Survey design, social sorting, latent common causes, incompatibility among separately estimated conditionals, and stochastic coupling can generate apparent movement or order sensitivity without psychological change. In particular, pathwise sign reversals are not evidence of different marginal endpoints or causal persuasion.
 
-A narrowly technical point belongs here rather than in the motivating argument: if one defines a fixed complete-state trait $g(X)$ and obtains its exact posterior mean under purely passive observation, that posterior mean is a martingale. DTAG's nonlinear partial-state geometric index $I_\Ph(s)$ is not, in general, such a posterior mean and can exhibit expected drift without persuasion. The martingale restriction concerns the \emph{assumed observational mechanism}; it is not a general statement about what human questions or information can do. Other limitations include pole selection, wave comparability, model calibration under missingness, source wording and demand characteristics, response-mode distinctions, and loss of nested conditioning when a bounded session evicts old anchors. Human experiments must include measurement invariance and delayed assessment before equating reporting effects with persistent mental-state change.
+For a fixed complete-state trait $g(X)$, its exact posterior mean under passive observation is a martingale; the nonlinear partial-state index $I_\Phi(s)$ need not be. Expected geometric drift is therefore compatible with purely observational questioning. Results also depend on pole choice, wave, missingness, semantic mapping, and response mode. Claims of durable human change require an external, randomized measurement with delayed outcomes and negative controls.
 
 \section{Conclusion}
-DTAG operationalizes a restricted theory of mind by representing a respondent as a high-dimensional distribution of potential answers rather than a plausible verbal persona. The learned conditional geometry supplies a principled model of phenotypic refinement and a measurable prediction field under sequential questioning. Its directional ideology trajectories expose a deeper ambiguity: the same sequence may be interpreted as learning about a fixed respondent or as approximating the construction of an expressed phenotype. The decisive scientific contribution will come from separating these accounts with prespecified, prospective human experiments. By connecting the geometry of opinion to randomized order effects and delayed downstream outcomes, DTAG offers a testable route from descriptive belief systems to the mechanisms of interaction-dependent belief formation.
+DTAG couples a language interface to a conditional survey model and defines a measurable geometry of sequential questioning. Native 20-question simulations test reproducible directional movement and fixed-content order sensitivity in this \emph{model-defined} ideology index. Whether corresponding questioning alters human beliefs, rather than refines their measurement, remains the prospective test.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
+
+% The 10-question supplementary reversal plot is intentionally omitted.
+% Its original data belong to a different experiment.
 \end{document}
