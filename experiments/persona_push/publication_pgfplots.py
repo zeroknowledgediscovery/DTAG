@@ -180,10 +180,10 @@ def go_heatmaps(out,steps,reps,nactive):
             if i==2 and j==2:
                 opts.extend([
                     'colorbar',
-                    (r'colorbar style={at={(1.14,0.5)},anchor=west,'
+                    (r'colorbar style={at={(1.18,0.5)},anchor=west,'
                      r'height=5.6cm,width=.24cm,'
-                     r'title={Question ID},'
-                     r'title style={font=\scriptsize\bfseries,text=black},'
+                     r'ylabel={Question ID},'
+                     r'ylabel style={font=\scriptsize\bfseries,text=black},'
                      r'ytick={1,'+str(max(1,round(nactive/2)))+','+str(nactive)+'},'
                      r'yticklabel style={font=\scriptsize\bfseries,text=black},'
                      r'tick style={draw=black,line width=.8pt},'
