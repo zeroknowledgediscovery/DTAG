@@ -7,6 +7,19 @@ experiment's external CSVs and \`publication_metadata.csv\` using PGFPlots.
 The TikZ externalization setup follows the selective enable/disable pattern
 in \`main_twin.tex\` / \`preamble.sty\` supplied for reference.
 
+## Input path and figure cache (Linux is case-sensitive)
+
+The TeX source uses **`tex/figures/`** (lowercase) for completed-run CSVs.
+The build script creates `tex/figures` as a link to the selected run's
+`figures` folder and automatically generates `publication_metadata.csv`
+from the other published plot tables. **`tex/Figures/External/`** (capital F)
+is reserved for cached vector figure PDFs; it does not hold data CSVs.
+
+Run **`bash scripts/compile_dtag_pdflatex.sh`** from the repository root
+rather than invoking `pdflatex` manually on a clean checkout. If an older
+local TeX edit says `\\providecommand{\\DTAGFigureDir}{Figures}`, change it
+to `\\providecommand{\\DTAGFigureDir}{figures}` before compiling.
+
 ## Commands
 
 From the DTAG repository root:
