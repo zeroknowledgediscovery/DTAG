@@ -1,0 +1,6 @@
+*.md5
+*.dep
+*.dpth
+*.log
+*.aux
+*.tex~
