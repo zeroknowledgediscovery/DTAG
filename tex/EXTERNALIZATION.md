@@ -51,9 +51,11 @@ cd tex
 pdflatex -shell-escape -interaction=nonstopmode -halt-on-error DTAG_full_manuscript_20q_colorbar.tex
 ```
 
-The document selectively externalizes the integrated circuit, endpoint
-plot, trajectories, and six rows of heatmaps/order comparisons. Each
-picture gets its own stable PDF filename in \`Figures/External/\`.
+The document selectively externalizes four pictures: the integrated circuit,
+endpoint plot, trajectories, and the consolidated Figure 2. Figure 2 contains
+exactly two complete 3-by-6 PGFPlots groups (18 heatmaps and 18 order-effect
+subpanels) within one named vector picture, \`dtag-figure2-panels\`.
+Each picture gets a stable PDF filename in \`Figures/External/\`.
 A normal \`pdflatex\` command works without enabling shell escape and
 does not depend on those cache PDFs being present.
 
