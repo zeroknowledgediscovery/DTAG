@@ -64,7 +64,7 @@
 \definecolor{modblue}{RGB}{24,70,120}
 \definecolor{modred}{RGB}{162,62,67}
 \definecolor{modteal}{RGB}{22,117,108}
-\title{Digital Twin Anchored Generation: Adaptive Questioning and the Geometry of Opinion}
+\title{Digital Twin Anchored Generation: Adaptive Querying and Phenotypic Refinement}
 \author{Ishanu Chattopadhyay%
 \thanks{Working research draft, October 2026. University of Kentucky. DTAG computations and human-subject studies described as proposed must not be interpreted as observed results.}}
 \begin{document}
@@ -90,47 +90,43 @@
 
 \maketitle
 \begin{abstract}
-Models of political opinion have typically treated attitudes either as latent properties revealed by measurement or as variables that evolve through communication and influence. Distinguishing these interpretations is difficult when an interaction simultaneously elicits a response and potentially changes the respondent. We introduce a scientific formulation of Digital Twin Anchored Generation (DTAG), in which a language interface is grounded in Large Science Models (LSMs) trained on high-dimensional survey response systems. Coupled conditional models give a partially observed synthetic respondent a full \emph{predictive phenotype}: conditional distributions for unasked questions and a geometry determined by the consequences of responses for other attitudes. We formalize sequential question selection and its induced geometric displacement and argue that DTAG constitutes a restricted, falsifiable computational theory of mind rather than a generic language-model persona. The central dichotomy is between \emph{phenotypic refinement}, in which a sequence reveals coordinates of a fixed respondent, and \emph{phenotypic construction}, in which elicitation and exposure alter the subsequent state. Both can produce apparent ideological trajectories, but they have different experimental implications. Connecting this question to the evidence for backfire under cross-cutting exposure reported by Bail \emph{et al.} (PNAS, 2018), we specify a prospective, randomized, preregisterable study suitable for Prolific, with reversed-order questioning, matched controls, held-out outcomes, and delayed remeasurement. We report completed native GSS 2024 simulations of six pinned synthetic personas: 960 adaptive twenty-question trajectories and 2,880 fixed-set twenty-question order replays, with three data-derived experimental figures. The twenty-item model replays exhibit pathwise endpoint and movement-direction sign reversals, including occasional movement reversals for neutral-derived sets; signed mean contrasts remain statistically compatible with zero. These model-based results do not establish human persuasion; a prospective randomized human validation remains proposed.
+Digital Twin Anchored Generation (DTAG) links a language interface to Large Science Models (LSMs) of high-dimensional survey responses. Predictions for unasked items define a respondent's \emph{predictive phenotype}; their geometry supports adaptive querying. We distinguish \emph{phenotypic refinement}, in which questions reveal a fixed state, from \emph{phenotypic construction}, in which interaction changes subsequent reports or beliefs. A model-derived ideology trajectory cannot establish which occurred. Native GSS 2024 simulations of six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Reordering produced pathwise movement-direction and endpoint-sign reversals, including neutral-derived cases, but all 54 signed-mean order-contrast bootstrap confidence intervals contained zero. These synthetic findings do not establish human persuasion. A proposed randomized five-arm human study will test order effects using reversed sequences, single-module and neutral controls, independent outcomes, and delayed follow-up.
 \end{abstract}
 \begin{IEEEkeywords}
 Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
 \end{IEEEkeywords}
 
-\section*{Significance}
-Asking someone a question can reveal an existing attitude, but it can also alter what that person subsequently reports or believes. We describe a computational framework that makes this ambiguity measurable. DTAG grounds a conversational digital twin in a learned high-dimensional model of interconnected survey opinions rather than relying exclusively on plausible language generation. It predicts the responses a represented person might give to unasked questions and quantifies the geometric consequences of sequential answers. We propose a randomized human study that reverses question order, measures independent downstream attitudes, and follows respondents over time. The experiments distinguish predictive reconstruction from evidence of interaction-induced belief change.
-
-
 \section{Introduction}
-The appropriate unit of analysis for a belief system may be neither a single attitude nor a predetermined left--right score, but the pattern of constraints among many expressed positions. Economic preferences, religious commitments, institutional trust, social identities, and political opinions can be related in ways not apparent in a short attitude battery. Classical arguments about the coherence of mass belief systems \cite{converse1964,zaller1992} and subsequent measurements of partisan sorting and issue alignment \cite{baldassarri2008,dellaposta2015} expose the limitations of treating the public as a collection of isolated responses. The complementary problem is temporal: a person's answers may reflect a relatively stable configuration, but they may also be constructed or revised as questions, considerations, or social information are encountered.
+Belief systems comprise dependencies among economic, religious, institutional, and political attitudes, not only individual responses. Classical studies of issue constraint \cite{converse1964,zaller1992} and later work on partisan sorting and alignment \cite{baldassarri2008,dellaposta2015} motivate this high-dimensional view. We ask whether sequential questioning reveals or helps construct such a system.
 
-We study the boundary between these accounts using Digital Twin Anchored Generation (DTAG). DTAG couples natural-language interaction to a Large Science Model (LSM), which represents empirically estimated conditional dependencies among survey variables. An observed answer restricts the represented phenotype and changes predictions about unasked attitudes. The model can also compute the displacement of its conditional state in a pole-relative opinion geometry and choose questions that maximize expected displacement. This permits mathematically explicit experiments with sequences of questions, rather than relying on the plausibility of generated prose.
+DTAG links natural-language queries to an LSM of empirical conditional survey responses. Each answer anchors a predictive phenotype, updates predictions for unasked questions, and moves a pole-relative geometric index. Adaptive queries select items by expected displacement, making sequential behavior measurable rather than merely plausible prose.
 
-The observation that the synthetic twin moves along an ideological coordinate does \emph{not}, by itself, establish that a person has been persuaded. Yet the opposite claim---that questioning can only reveal fixed attitudes---is equally unwarranted. We develop a model-level dichotomy: \emph{passive refinement} of a pre-existing phenotype versus \emph{reflexive construction} of the phenotype by the interaction. We ask whether learned population geometry is useful only for the former, or also constrains the latter. The distinction is empirically resolvable only by predicting outcomes of controlled human interactions before those outcomes are observed.
+Synthetic ideological movement is not persuasion. We formalize \emph{passive refinement} of fixed beliefs versus \emph{reflexive construction} through interaction, then specify human tests of whether learned conditional geometry predicts more than inference.
 
 \section{Prior Work and the Scientific Gap}
 \subsection{Belief systems, cognitive organization, and survey response}
-Converse \cite{converse1964} emphasized weak issue constraint outside politically sophisticated subsets of the public; Zaller \cite{zaller1992} offered a receive--accept--sample account in which answers depend on considerations accessible at the time of response. Later analyses distinguished partisan sorting from genuine cross-issue alignment \cite{baldassarri2008} and showed how homophily and influence can amplify weak initial affinities across otherwise unrelated domains \cite{dellaposta2015}. The sociology-of-knowledge perspective similarly places an individual proposition within a larger socially situated worldview. These accounts motivate measurement of the \emph{full conditional organization} of attitudes rather than presupposing a low-dimensional ideological axis.
+Converse \cite{converse1964} identified weak issue constraint outside politically sophisticated groups; Zaller \cite{zaller1992} modeled reports as samples from accessible considerations. Later studies separate partisan sorting from issue alignment \cite{baldassarri2008} and show how homophily and influence couple otherwise weak affinities \cite{dellaposta2015}. These motivate measuring conditional attitude organization rather than assuming a single axis.
 
-Cognitive psychology complicates the interpretation of measurement. Consistency pressures may promote cognitive revision \cite{festinger1957}; wording, scale, question order, and conversational context change survey reports \cite{schwarz1999}; selective evaluation of political information can reinforce existing commitments \cite{taber2006}. Measurement reactivity does not necessarily imply enduring persuasion. A response might be an instantaneous reconstruction, temporary salience shift, response-scale artifact, or genuine revision. These alternatives predict different persistence, cross-domain generalization, and order effects and must be disaggregated experimentally.
+Consistency pressures \cite{festinger1957}, survey wording and order \cite{schwarz1999}, and motivated evaluation \cite{taber2006} can change reports. Temporary salience, scale artifacts, reconstruction, and lasting revision require separate tests of persistence and generalization.
 
 \subsection{Quantitative influence and experimental evidence}
-DeGroot's averaging process \cite{degroot1974} and Friedkin--Johnsen dynamics \cite{friedkin1990} specify explicit interpersonal transitions; bounded-confidence accounts introduce state-dependent interaction neighborhoods \cite{hegselmann2002}. Such models characterize population-level evolution but often simplify the \emph{internal} state of each individual to one or a few quantities. DTAG takes a complementary route: it learns within-person conditional structure at high dimension but presently lacks an experimentally identified transition operator for real human belief change.
+DeGroot \cite{degroot1974}, Friedkin--Johnsen \cite{friedkin1990}, and bounded-confidence \cite{hegselmann2002} models specify social transitions but typically use low-dimensional individual states. DTAG instead models high-dimensional conditional structure without yet identifying a causal human transition operator.
 
-The discrepancy matters in the setting studied by Bail \emph{et al.} \cite{bail2018}. Their 2018 \emph{PNAS} field experiment randomly offered Twitter users incentives to follow bots relaying cross-cutting political content. Republicans assigned to follow a liberal bot reported more conservative views afterward; the corresponding liberalizing estimate among Democrats assigned to a conservative bot was not statistically significant. Exposure to disagreement thus did not yield a simple convergence law. This is a motivating example of potentially state-dependent and asymmetric responses, \emph{not} evidence that DTAG identifies the causal mechanism or reproduces the reported effect. Other experiments complicate generalization: a synthesis of campaign-contact field experiments reported very small average general-election effects \cite{kalla2018}, whereas some structured interpersonal conversations produced more persistent changes in measured attitudes \cite{broockman2016}. The need is for a framework that predicts \emph{heterogeneity, indirect effects, and persistence} rather than asserting a universal influence direction.
+Bail \emph{et al.} \cite{bail2018} randomized incentives to follow Twitter bots providing cross-cutting political content. Republicans assigned a liberal bot later reported more conservative views; the corresponding Democratic estimate was not significant. This asymmetry motivates, but does not validate, DTAG. Campaign-contact experiments found small general-election mean effects \cite{kalla2018}, whereas some structured conversations produced more persistent reported changes \cite{broockman2016}. Prediction must address heterogeneity and persistence.
 
 \subsection{Theory of mind and generative simulation}
-Theory of mind (ToM) concerns inference about another agent's unobserved beliefs, intentions, or desires and their consequences for observable behavior \cite{premack1978,dennett1987}. Computational inverse-planning models infer latent states from observed actions under a generative account of agent behavior \cite{baker2009}. DTAG tackles a narrower but measurable ToM task: from a sparse response history, infer the probability distribution over a represented respondent's \emph{unasked attitudes}. This operational definition avoids equating language fluency with access to an individual mind. Existing language-model approaches to synthetic respondents have demonstrated population or profile fidelity \cite{argyle2023,park2023}; their ability to mimic a subgroup distribution need not imply individual-level conditional calibration or validity under repeated interrogation. DTAG is designed to make the model state, prediction, and response provenance explicit.
+Theory of mind infers unobserved mental states from behavior \cite{premack1978,dennett1987}; inverse planning formalizes this inference \cite{baker2009}. DTAG tests a narrower, falsifiable task: predict distributions of \emph{unasked attitudes} from observed answers. Synthetic LLM personas \cite{argyle2023,park2023} may reproduce profiles without calibrated individual conditionals; DTAG exposes states, probabilities, and response provenance.
 
 \section{Large Science Models and the Predictive Phenotype}
 \subsection{Conditional dependency model}
-Let $X=(X_1,\ldots,X_n)$ take values in $\calX=\prod_{i=1}^n\mathcal A_i$, with each $\mathcal A_i$ a finite response alphabet and $c$ denoting the survey population, wave, or supported context. An LSM is the family
+Let $X=(X_1,\ldots,X_n)$ range over $\calX=\prod_i\mathcal A_i$, with finite response alphabets $\mathcal A_i$ and survey population, wave, or context $c$. An LSM is the conditional family
 \begin{equation}
 \Ph_c=\{\phi_{i,c}(a\mid x_{-i}) : i=1,\ldots,n\},
 \label{eq:lsm}
 \end{equation}
-estimated with coupled conditional inference trees \cite{hothorn2006,sizemore2024,dahal2026}. A tree dependency $j\to i$ indicates predictive relevance of $X_j$ for $X_i$, not an identified causal edge. Because conditionals are estimated separately, exact compatibility with one joint distribution is not assured \cite{heckerman2000}.
+estimated using coupled conditional inference trees \cite{hothorn2006,sizemore2024,dahal2026}. Edges $j\to i$ indicate prediction, not causation; separately fitted conditionals may be jointly incompatible \cite{heckerman2000}.
 
-The state of a digital respondent is a partial assignment $s=\{X_j=a_j:j\in S\}$, with unknown entries represented as missing to the native runtime. For an unasked question $v\notin S$, let
+The respondent state is a partial assignment $s=\{X_j=a_j:j\in S\}$, with unobserved coordinates missing. For unasked $v\notin S$,
 \begin{equation}
 p_\Ph(a\mid s,v)=\phi_{v,c}(a\mid\widetilde x_{-v}(s)).
 \label{eq:predict}
@@ -140,10 +136,10 @@ The vector
 \calB_\Ph(s)=\bigl(p_\Ph(\cdot\mid s,v)\bigr)_{v\notin S}
 \label{eq:beliefstate}
 \end{equation}
-is the \emph{predictive phenotype}. It is more informative than a generated biography or a scalar ideology score: it records the model's distribution over as-yet-unobserved responses, including uncertainty and cross-domain conditional coupling.
+is the \emph{predictive phenotype}: conditional distributions and uncertainty for unasked responses.
 
 \subsection{Geometry as predictive equivalence}
-The dependency structure induces a geometry of possible opinions. For complete or partially represented states $x,y$, a representative version of the LSM distance is
+Conditional predictions induce a distance between complete or partial states $x,y$:
 \begin{equation}
 \theta_\Ph(x,y)=\frac{1}{n}\sum_{i=1}^n
 \sqrt{\JS\!\left(
@@ -151,9 +147,9 @@ The dependency structure induces a geometry of possible opinions. For complete o
 \right)}.
 \label{eq:metric}
 \end{equation}
-Here $\JS$ denotes Jensen--Shannon divergence; the native code evaluates the corresponding \emph{qdistance}. Distinct states may be at distance zero when their conditional consequences are indistinguishable, so the geometry is generally pseudometric. Crucially, this is not a psychological assertion that the human mind occupies a unique Euclidean manifold: it is a testable geometry of \emph{predictive consequence}. Differences in a few answers can change predictions across the wider response network; equally, some recorded differences have negligible conditional consequences.
+Here $\JS$ is Jensen--Shannon divergence and the native code evaluates \emph{qdistance}. Predictively indistinguishable states may be at zero distance: this is generally a pseudometric of \emph{predictive consequence}, not a postulated Euclidean manifold of minds.
 
-The prior opinion-fabric analysis \cite{dahal2026} reports held-out reconstruction from 80\% masked response items. In the reported evaluation, mean LSM-distance distortion declined by approximately 54.9\% (GSS) and 60.9\% (Eurobarometer) relative to the masked representation. Those are geometric reconstruction results, not percentages of perfectly recovered item labels and not estimates of causal influence.
+With 80\% responses masked \cite{dahal2026}, mean LSM-distance distortion declined about 54.9\% (GSS) and 60.9\% (Eurobarometer). These are geometric reconstruction gains, not exact-label accuracy or causal influence.
 
 For GSS models with registered left and right reference states $s_L,s_R$, DTAG reports
 \begin{equation}
@@ -161,21 +157,19 @@ I_\Ph(s)=\frac{\theta_\Ph(s_L,s)-\theta_\Ph(s_R,s)}
 {\theta_\Ph(s_L,s_R)}.
 \label{eq:ideology}
 \end{equation}
-The reference poles establish orientation, while the conditional system establishes distance. Pole choice and wave dependence must be included in any robustness analysis; the current index should not be interpreted as a calibrated universal political ideology scale.
+Reference poles fix orientation; conditionals determine distance. The index is pole- and wave-dependent, not a universal calibrated ideology scale.
 
 \section{DTAG: A Conditional Theory-of-Mind Interface}
 \subsection{Architecture and generative semantics}
-A semantic interpreter maps natural-language question $q$ to one or more survey variables $M(q)$. The LSM provides native response probabilities; the resulting categorical anchor is recorded, the predictive phenotype is recomputed, and a language model expresses the anchored answer in prose. For a single item,
+A semantic interface maps question $q$ to survey variables $M(q)$. The LSM predicts responses, the answer anchors the state, and an LLM verbalizes it. For draw mode,
 \begin{align}
 A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\qquad v_t\in M(q_t),\label{eq:draw}\\
 s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
 \calB_{t+1}&=\calB_\Ph(s_{t+1}).\label{eq:posterior}
 \end{align}
-These equations describe the idealized \emph{draw} mode without state eviction. The implementation also supports modal answers, multi-item semantic mappings, validated mappings, and direct item selection; these are distinct experimental conditions. The operational system uses a fixed LSM during a respondent session. The ordinary update is statistical conditioning, not an identified model of psychological persuasion.
+These updates assume draw mode without state eviction. Modal answering, multi-item and validated mappings, and direct item selection are distinct conditions. A fixed LSM performs statistical conditioning, not identified persuasion.
 
-The native LSM, semantic LLM interface, greedy single-question selection,
-and observed-response state update are summarized alongside the synthetic
-adaptive-questioning experiment in Fig.~\ref{fig:arch_adaptive}.
+Figure~\ref{fig:arch_adaptive} combines the architecture and native experiment.
 
 \subsection{Sequential geometry and adaptive questioning}
 For every candidate item $v$ and response $a$, define
@@ -185,38 +179,38 @@ For every candidate item $v$ and response $a$, define
 \sigma_v^2(s)&=\sum_a p_\Ph(a\mid s,v)(\Delta_v(a;s)-\mu_v(s))^2.
 \label{eq:var}
 \end{align}
-One-step selection can maximize or minimize $\mu_v(s)$ under stochastic answering. A separate modal-response objective instead evaluates the response with highest conditional probability. This matters: following a sequence of modes is not equivalent to sampling a population of coherent respondents. The current optimizer enumerates possible response assignments in the native LSM and evaluates their exact geometric displacement \emph{relative to the fitted model}; it does not compute the best intervention for changing a real person's beliefs.
+Adaptive policies optimize $\mu_v(s)$ under conditional sampling; modal-response objectives instead use the most probable answer. A modal sequence is not a sampled respondent population. These displacements are model-relative, not proven human interventions.
 
-A companion predictive-landscape statistic measures the change in \emph{unasked} response distributions after conditioning on one answer:
+The predictive change at unasked item $j$ after observing $(v,a)$ is
 \begin{equation}
 R_j(s;v,a)=\JS\!\bigl(p_\Ph(\cdot\mid s,j),
 p_\Ph(\cdot\mid s\cup\{v=a\},j)\bigr).
 \label{eq:ripple}
 \end{equation}
-A total propagation score can be defined as $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}} w_j R_j(s;v,a)$ for prespecified nonnegative weights $w_j$. It measures statistical redistribution of conditional predictions, not a causal cascade of actual opinions.
+A weighted score $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}}w_jR_j(s;v,a)$, with prespecified $w_j\geq0$, quantifies predictive redistribution, not causal propagation.
 
 \subsection{Difference from RAG and language-model personas}
-Retrieval-augmented generation (RAG) supplies relevant text to a generator, primarily addressing factual grounding and provenance \cite{lewis2020}. Demographically prompted or autobiographically conditioned LLM personas seek plausible behavior or distributional survey fidelity \cite{argyle2023,park2023}. DTAG asks a different question: can the model's \emph{entire conditional distribution of unasked responses} be validated against a real respondent as anchors accumulate? The native categorical model, learned from social observations, is a state-dependent probability mechanism; the LLM is a semantic interface. RAG can complement DTAG with source context, but retrieval of passages does not, by itself, supply an empirically calibrated joint opinion model. DTAG conversely does not claim the broader language understanding or fact retrieval capabilities of RAG.
+RAG provides grounding text \cite{lewis2020}; profile-prompted LLM personas seek plausible or distributionally faithful responses \cite{argyle2023,park2023}. DTAG instead exposes a native conditional model whose predictions for unasked responses can be calibrated as anchors accumulate. It complements, rather than replaces, text retrieval.
 
 \section{The Interpretation of Sequential Questions}
 \subsection{Phenotypic refinement: observing a fixed system}
-Under the passive account, a respondent possesses a complete, fixed phenotype $X^\star$, and each response reveals information about it. A sequence $s_0\subset s_1\subset\cdots\subset s_T$ gives progressively more constrained predictions of unasked variables. For a designated held-out target set $Y$, the ideal information value of query $v$ is
+Under passive refinement, respondents possess fixed phenotypes $X^\star$ and answers increasingly constrain predictions along $s_0\subset s_1\subset\cdots\subset s_T$. For target items $Y$, the information value of query $v$ is
 \begin{equation}
 \mathcal G(v\mid s)=
 H(Y\mid s)-\EE_{A_v\mid s}[H(Y\mid s,v=A_v)].
 \label{eq:ig}
 \end{equation}
-When the conditionals are compatible with a joint distribution, this equals conditional mutual information and is nonnegative. Importantly, optimizing $\mathcal G$ is not the same as optimizing ideological displacement $\mu_v$ in (\ref{eq:mu}). Refinement can be evaluated without human intervention by adaptively revealing existing answers in held-out archival surveys.
+For a compatible joint law this is nonnegative conditional mutual information, distinct from geometric displacement $\mu_v$ in (\ref{eq:mu}). Refinement can be tested by revealing held-out archival answers.
 
 \subsection{Phenotypic construction: querying a reflexive system}
-Under the constructive account, the respondent has a time-indexed latent state $Z_t$. A question produces both an observable report $A_t$ and, potentially, a new state $Z_{t+1}$:
+Under construction, response $A_t$ to query $q$ may alter latent state $Z_t$:
 \begin{equation}
 K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
 \label{eq:kernel}
 \end{equation}
-Passive observation is the special case $T_q(z'\mid z,a)=\delta_z(z')$. More generally, the transition can depend on the agent's own prior beliefs, semantic framing, trust in the interlocutor, and the interaction history. This makes mental-state inference and intervention inseparable at the level of the experimental encounter. An LSM estimated from cross-sectional surveys cannot identify $T_q$, even if it perfectly fits cross-sectional responses; many transition dynamics share the same stationary distribution.
+Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; otherwise transitions depend on prior beliefs, framing, trust, or history. Cross-sectional LSM conditionals cannot identify $T_q$, even with perfect observational fit.
 
-The dichotomy should not be collapsed into a binary psychological classification. Some interactions clarify existing beliefs, some affect transient accessibility, and some generate more persistent revisions. Separating these requires independently measured downstream outcomes, delayed remeasurement, and appropriate no-query controls. The central scientific hypothesis is that LSM geometry can help predict \emph{which} observed state changes accompany these different processes, while allowing the hypothesis to fail.
+Clarification, temporary salience, and lasting revision call for independent outcomes, delayed measurement, and no-query controls. We test whether statistical geometry predicts responsiveness as well as reconstruction.
 
 \subsection{Why question-order effects are not automatically persuasion}
 A coherent static joint model implies
@@ -225,25 +219,15 @@ P(a\mid s,v)P(b\mid s,v=a,w)
 =P(b\mid s,w)P(a\mid s,w=b,v).
 \label{eq:compat}
 \end{equation}
-The final conditional distribution after observing both answers is independent of their order, although intermediate predictions differ. Separately trained local conditional models need not satisfy (\ref{eq:compat}), so simulations can exhibit order artifacts unrelated to human psychology \cite{heckerman2000}. Conversely, genuinely different human response-and-transition operators $K_A$ and $K_B$ may fail to commute. The distinction must be made experimentally rather than inferred from the appearance of a trajectory.
+With a coherent joint law, terminal predictions after both answers are order-invariant, though intermediate states differ. Incompatible local conditionals can create order artifacts (\ref{eq:compat}) \cite{heckerman2000}; genuine human operators $K_A,K_B$ may fail to commute. Simulation alone cannot distinguish them.
 
 \section{Native GSS 2024 Computational Experiments}
 \label{sec:native}
 
 \subsection{Adaptive questioning of fixed synthetic personas}
-We evaluated the native GSS 2024 LSM on six pinned synthetic respondent
-states: conservative rural Alabama, liberal New York, religious conservative
-Texas, secular liberal Seattle, Hispanic Catholic conservative Arizona, and
-churchgoing liberal Atlanta. The survey anchors were never modified.
-At each step, the native optimizer selected an eligible, unasked survey item
-by maximizing conditional expected rightward displacement, minimizing it for a
-leftward push, minimizing its absolute value (neutral), or sampling a random
-eligible question. The answer was always drawn from the conditional LSM.
-There were $T=20$ questions and $40$ independent repetitions per policy and
-persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}200$ question-answer draws.
+We used six fixed synthetic GSS 2024 respondent states (Table~\ref{tab:personas}). For each persona, the native optimizer chose eligible unasked questions to maximize expected rightward drift, minimize it for leftward drift, minimize absolute drift (neutral), or sample randomly. Answers were drawn from LSM conditionals. At $T=20$ questions and 40 repetitions per policy and persona, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
 
-Table~\ref{tab:personas} reports the pinned persona descriptions and their
-initial geometric indices in this execution environment.
+Table~\ref{tab:personas} reports original pinned descriptions and initial geometric indices.
 
 \begin{table*}[!t]
 \centering
@@ -591,32 +575,16 @@ These are native conditional-model trajectories, not observed human persuasion.}
 \end{figure*}
 
 
-Right- and left-seeking policies moved the geometric index in their
-respective directions across all six personas, whereas the neutral policy
-remained near zero displacement under the minimum-drift objective. The latter is a
-minimum-\emph{geometric-drift} optimization and must not be conflated with
-psychologically neutral questions.
+Right- and left-seeking policies moved the index in their expected directions across all six personas; neutral minimized \emph{geometric drift}, not psychological sensitivity.
 
 \subsection{Question selection as observed paths}
-To expose the actual stochastic sequence variation without creating an
-artificial modal trajectory, every distinct question was assigned a globally
-shared categorical index. Across all runs, including the excluded random
-policy, there were $228$ distinct items; $161$ appeared in the right, left,
-and neutral panels. Each of the 18 heatmaps (six personas by three policies)
-shows the actual question identities in 40 runs across twenty positions.
-The run indices were \emph{not} reordered.
-The item-to-color assignment was globally permuted to approximately minimize
+Each observed question was assigned a shared categorical index without reordering runs or constructing modal paths. Of 228 items across all policies, 161 appeared in the 18 displayed right/left/neutral heatmaps (six personas by three policies; 40 runs of 20 questions). The global index permutation approximately minimizes
 \begin{equation}
 \mathcal C(\pi)=\sum_{p,u,t}\sum_{r<r'}
 \big|\pi(v_{purt})-\pi(v_{pur't})\big|,
 \label{eq:question-seriation}
 \end{equation}
-where $u$ ranges over the three displayed policies. This all-pairs
-objective is invariant to the arbitrary numbering of repetitions. The
-$67$ items occurring only in random-question runs retain their global
-lookup entries. Numeric distances between question indices have no
-scientific or semantic interpretation; optimizing them is merely a
-visualization device.
+Here $u$ ranges over displayed policies. The all-pairs objective is independent of run numbering. The 67 random-only items remain in the lookup; index distances have no scientific meaning.
 
 % -------- Figure 2 CSV definitions (one per input table) --------
 \def\DTAGCSVFigureTwoAA{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_left.csv}
@@ -679,73 +647,41 @@ The items are held fixed, and none of these model outcomes establish human persu
 \end{figure*}
 
 \subsection{Order sensitivity with twenty-question content fixed}
-For each persona and for each of the right/left/neutral policies, we froze
-the twenty items from a predetermined source realization (replicate zero),
-without selecting sets by their endpoints. Each of the 18 fixed sets was
-administered in its original order, reversed order, and two fixed random
-permutations. Forty repetitions per order, sampling every answer
-sequentially from the LSM conditional on previously drawn answers, yielded
-$18\times4\times40=2{,}880$ complete twenty-question replay trajectories.
-A question-specific uniform draw was shared across each original--permuted
-pair to reduce Monte Carlo noise. We compared both the sign of the final
-ideology index and the direction of displacement from the fixed initial state:
+For each persona and right/left/neutral policy, we froze the 20 items from replicate zero without endpoint selection. Each of the 18 sets was replayed in original, reversed, and two fixed shuffled orders, with 40 conditional-sampling repetitions: $18\times4\times40=2{,}880$ trajectories. Paired orders shared question-specific uniform draws to reduce Monte Carlo noise. We compared final-sign and movement-direction reversals:
 \begin{align}
 F_{pSr\pi}^{\mathrm{end}}
 &=\mathbf 1\{I_{20}^{(\pi)} I_{20}^{(0)}<0\},\\
 F_{pSr\pi}^{\mathrm{move}}
 &=\mathbf 1\{(I_{20}^{(\pi)}-I_0)(I_{20}^{(0)}-I_0)<0\}.
 \end{align}
-Near-zero values are excluded from sign-flip counts.
+Near-zero values were excluded from sign-flip counts.
 
 
 
-Figure~\ref{fig:order-effects} displays the signed paired mean contrasts.
-The matched-replay sign-reversal counts below quantify how often an individual
-realization changes direction or crosses the ideological zero point.
-Across 720 matched original--permuted comparisons per source policy,
-reversals of the \emph{movement direction} occurred in 107/720 right-derived,
-68/720 left-derived, and 10/720 neutral-derived comparisons. Reversals of
-\emph{the final ideological sign} occurred in 69/720 right-derived,
-54/720 left-derived, and 0/720 neutral-derived comparisons, respectively.
-All 54 pointwise bootstrap confidence intervals for \emph{signed mean} order
-contrasts contained zero: positive and negative changes may cancel despite
-substantial pathwise variation. Counts refer to matched stochastic model
-replays, not demonstrated human treatment effects.
+Figure~\ref{fig:order-effects} shows paired signed-mean contrasts. Among 720 matched original--permuted comparisons per source policy, movement-direction reversals numbered 107 (right-derived), 68 (left-derived), and 10 (neutral-derived); final-sign reversals numbered 69, 54, and 0. All 54 pointwise bootstrap confidence intervals for signed mean contrasts contained zero. These are stochastic model replays, not human effects.
 
-A pathwise sign reversal under this particular coupling of conditional
-random draws also does not, by itself, establish that reordering changes
-the \emph{marginal distribution} of final index values. A coherent static
-joint law can generate distinct paired realizations under alternative
-sampling orders yet identical terminal distributions. The full endpoint
-distributions remain to be compared separately, and these synthetic results
-are not human causal effects.
+Coupled pathwise reversals do not necessarily change marginal terminal distributions: a coherent joint law can produce different paired paths with identical terminal laws. Full endpoint distributions require separate comparison.
 
 \paragraph{Cross-environment limitation.}
-Earlier ten-question local and CI runs reported different initial ideology
-indices, notwithstanding matching persona, semantic-map, and pole-file
-hashes. The native model artifact itself was not hashed in both historical
-manifests. Consequently the absolute numerical indices must not be compared
-across the two execution environments until model-identity and runtime parity
-are verified. The within-study trajectories and within-replay paired
-contrasts are internally consistent.
+Historical ten-question local and CI runs yielded different initial indices despite matching persona, semantic-map, and pole-file hashes. Model binaries were not hashed in both manifests, so absolute cross-environment comparison requires runtime/model parity checks. Within-study results remain consistent.
 
 
 \section{Testable Hypotheses and a Prolific Experiment}
 \subsection{Predictions that discriminate the mechanisms}
-\textbf{H1 (predictive ToM):} Conditional predictions from DTAG, after observing a small anchor set, achieve better held-out log score and calibration than demographic/psychometric, retrieval-based, and profile-prompted LLM baselines. This is a test of \emph{inference}, requiring no claim about influence.
+\textbf{H1 (predictive ToM):} With equal anchor budgets, DTAG improves held-out log score and calibration over demographic/psychometric, retrieval, and prompted-LLM baselines. This tests inference, not influence.
 
-\textbf{H2 (geometric sensitivity):} The model's cross-domain change field $R_j$ predicts \emph{which} held-out responses are most informative about other domains. High geometric displacement and high information gain need not coincide. Strong out-of-sample prediction is essential: a large numerical ripple alone is not validating evidence.
+\textbf{H2 (geometric sensitivity):} Cross-domain changes $R_j$ predict informative held-out responses; large geometric displacements without predictive gains do not validate refinement.
 
-\textbf{H3 (question-order response):} Holding question content fixed, humans randomized to $A\to B$ and $B\to A$ can differ on a separately administered outcome battery. The direction and magnitude are to be predicted \emph{before} post-intervention measurement; a nonzero transient contrast need not establish persistent attitude change.
+\textbf{H3 (question-order response):} With content fixed, human $A\to B$ versus $B\to A$ randomization yields prospectively predicted differences in independent outcomes. Immediate contrasts alone do not establish durability.
 
-\textbf{H4 (geometric prior to responsiveness):} Prespecified, baseline LSM propagation and uncertainty measures predict the \emph{magnitude and heterogeneity} of human outcome changes beyond conventional baseline predictors, even though they do not identify a causal mechanism from archival data.
+\textbf{H4 (geometric prior to responsiveness):} Locked LSM propagation and uncertainty features predict heterogeneous human responses beyond conventional baseline predictors without assuming identified causal transitions.
 
-\textbf{H5 (durability and construct separation):} If measured change reflects more than immediate survey-context effects, a component should survive delayed measurement and alternative item wording; disappearance or loss of generalization would favor a transient-context account.
+\textbf{H5 (durability and construct separation):} Persistent effects survive delayed alternate-wording measurement; immediate wording-specific effects suggest transient context dependence.
 
 \subsection{Study design: reverse order, single exposure, and independent outcomes}
-The proposed validation study will recruit consenting adults through Prolific and administer the experiment in an external survey application. After a short, common baseline anchor battery $S_0$, participants will be randomized \emph{independently of their political opinions} to five balanced arms: (i) sequence $A\to B$; (ii) $B\to A$; (iii) $A$ alone; (iv) $B$ alone; and (v) a duration-matched neutral control containing neither target question. The $A$ and $B$ modules will be drawn from a preregistered set of neutral public-issues and institutional-trust questions; any contextual information will be factual, balanced, and identical across assignment arms. No participant receives individually optimized political messaging and no political candidate or voting choice is promoted.
+A proposed Prolific study assigns consenting adults, after common anchors $S_0$, to five balanced arms independently of political opinions: (i) $A\to B$, (ii) $B\to A$, (iii) $A$ only, (iv) $B$ only, or (v) duration-matched neutral control. Preregistered modules address neutral public issues and institutional trust; contextual information remains factual, balanced, and identical. No personalized political messaging, candidate promotion, or voting intervention is used.
 
-The study then administers a \emph{distinct, unasked} outcome battery $Y$, chosen before recruitment from LSM-predicted cross-domain dependencies and a negative-control set. To reduce reactivity, the repeated measurement at 7--14 days will use compatible alternate wording where validated; the meaning of any observed difference is restricted to these measured outcomes. All arms receive comparable survey time, the same instructions, and blinded outcome presentation. A pilot will validate question interpretation, response-scale reliability, completion time, exclusions, and attrition.
+Independent unasked outcomes $Y$ and negative controls are locked before recruitment from predicted cross-domain dependencies. Arms share instructions, survey time, and blinded presentation. Follow-up at 7--14 days uses validated alternate wording where available. A pilot checks question interpretation, scale reliability, timing, exclusions, and attrition.
 
 The \emph{primary randomized estimand} is the delayed intent-to-treat order contrast
 \begin{equation}
@@ -754,27 +690,27 @@ The \emph{primary randomized estimand} is the delayed intent-to-treat order cont
 \EE[Y_{\mathrm{delay}}\mid\Do(BA)].
 \label{eq:tau}
 \end{equation}
-The $A$-only, $B$-only, and control arms separately estimate single-module and elicitation effects. The immediate contrast is secondary to the delayed contrast for claims about persistence. Multiple outcome items must be assembled into a preregistered composite (with reported item-wise exploratory tests) to avoid opportunistic selection. Randomization identifies contrasts in reports under assigned conditions; it does not by itself identify a unique latent psychological mechanism.
+Single-module and control arms estimate elicitation effects. A preregistered outcome composite, plus exploratory item-wise results, prevents selective reporting. Delayed contrasts are primary for persistence. Randomization identifies report changes, not a unique latent mechanism.
 
 \subsection{Locked prediction pipeline and quantitative analysis}
-Before the main human outcomes are observed, freeze (1) the survey/wave LSM, poles, mapping, source-code commit, and seed policy; (2) eligible $A,B,Y$ sets selected without viewing experiment outcomes; (3) predictions for all arms; and (4) the prespecified analysis. The static DTAG can forecast conditional distributions of $Y$ from each response history, but \emph{cannot} prospectively predict genuine causal order effects solely from that static model. This distinction will be explicit: a \emph{zero causal-order} baseline will be compared against any separately trained pilot-based transition model; incremental prospective performance provides the test of dynamical value. For the LSM geometric hypothesis, prespecified features (conditional uncertainty, distance to poles, and $\mathcal P_\Ph$) may predict treatment \emph{effect heterogeneity}, provided the predictive model is trained on separate pilot data and evaluated on the locked main sample.
+Before human outcomes, freeze the LSM survey wave, poles, mapping, source commit, seeds, eligible $A,B,Y$ sets, predictions, and analysis. Static DTAG forecasts $Y$ conditionals but \emph{cannot} alone forecast causal order effects. Compare a zero-causal-order baseline against a separately pilot-trained transition model, testing incremental held-out accuracy and heterogeneity predicted by uncertainty, pole distances, and $\mathcal P_\Ph$.
 
-For respondent $i$, the primary analysis will estimate randomized contrasts by regression with fixed arm indicators and preregistered baseline covariates, using robust standard errors and complete-case/sensitivity bounds for attrition. A discrete endpoint or multi-item latent score will be specified before recruitment. Use intention-to-treat assignment, prespecified contrasts and multiplicity adjustment for secondary hypotheses, calibration curves for probability forecasts, and confidence intervals rather than only significance thresholds. Baseline-stratified analyses, if used, are explanatory and not procedures for selecting persuasive messages for particular individuals.
+Estimate intention-to-treat contrasts using arm indicators, preregistered covariates, robust standard errors, and attrition sensitivity bounds. Prespecify discrete or composite outcomes, calibration, multiplicity adjustments, and confidence intervals. Baseline strata explain heterogeneity; they do not target messages.
 
-An initial feasibility plan is $N\approx150$ in a pilot and a planning target of $N\approx1500$ main-wave participants (approximately 300 per arm before attrition); this is \emph{not yet a power calculation}. Final sample size will depend on pilot variance, credible minimally relevant effects, desired error rates, planned contrasts, and follow-up retention. Prolific supports prescreening and longitudinal recontact \cite{prolific2026}; the protocol will be reviewed under applicable institutional human-participants procedures.
+Feasibility targets are $N\approx150$ in a pilot and $N\approx1500$ in the main wave (about 300 per arm before attrition), \emph{not} a power calculation. Final numbers depend on pilot variance, relevant effects, error rates, and retention. Prolific supports recontact \cite{prolific2026}; human-participants approval is required.
 
 
 
 \subsection{Relationship to Bail \emph{et al.} and expected contribution}
-Bail \emph{et al.} experimentally demonstrated that cross-cutting exposure need not depolarize and can have asymmetric responses \cite{bail2018}. Our proposed initial Prolific experiment asks a distinct, more elementary question: before considering sustained political-media exposure, does the \emph{order of eliciting and considering related propositions} itself affect later attitudes, and can an independently fitted high-dimensional opinion geometry forecast its response distribution? A follow-on study may independently randomize neutral information sources and exposure conditions, but the five-arm design deliberately keeps the first test identifiable, ethically bounded, and feasible. A successful result would not reproduce Bail's treatment; it would supply a candidate state-dependent mechanism and a methodology for predicting heterogeneous downstream responses.
+Bail \emph{et al.} \cite{bail2018} showed cross-cutting exposure need not depolarize. Our study instead isolates whether query order changes independent subsequent outcomes and whether model geometry predicts the response distribution. Information-exposure interventions require a separate study; this is not Bail's treatment.
 
 \section{Discussion and Limitations}
-This framing separates a model of \emph{what another person might believe} from a model of \emph{what an interaction makes that person believe}. DTAG presently supports the former through inspectable conditional distributions and a learned statistical geometry. Whether those dependencies constrain human change dynamics is a falsifiable and potentially false generalization. Statistical dependencies may be induced by common causes, social sorting, survey design, or historical context rather than change mechanisms. Likewise, the operational LSM conditionals are not guaranteed to represent a coherent joint distribution; order-sensitive synthetic trajectories can arise from conditional incompatibility and semantic mapping rather than human reflexivity.
+DTAG models \emph{what a respondent might report}, not yet \emph{what an interaction makes them believe}. Associations can reflect common causes, sorting, survey design, or history. Incompatible LSM conditionals or semantic mappings may create synthetic order effects unrelated to human reflexivity.
 
-A narrowly technical point belongs here rather than in the motivating argument: if one defines a fixed complete-state trait $g(X)$ and obtains its exact posterior mean under purely passive observation, that posterior mean is a martingale. DTAG's nonlinear partial-state geometric index $I_\Ph(s)$ is not, in general, such a posterior mean and can exhibit expected drift without persuasion. The martingale restriction concerns the \emph{assumed observational mechanism}; it is not a general statement about what human questions or information can do. Other limitations include pole selection, wave comparability, model calibration under missingness, source wording and demand characteristics, response-mode distinctions, and loss of nested conditioning when a bounded session evicts old anchors. Human experiments must include measurement invariance and delayed assessment before equating reporting effects with persistent mental-state change.
+Under passive observation of a coherent joint law, the posterior mean of a fixed trait $g(X)$ is a martingale. DTAG's nonlinear index $I_\Ph(s)$ is generally not that posterior mean and may drift without persuasion. Limitations also include pole and wave dependence, missingness calibration, wording, demand, response modes, and eviction of old anchors. Human experiments need measurement invariance and delayed outcomes.
 
 \section{Conclusion}
-DTAG operationalizes a restricted theory of mind by representing a respondent as a high-dimensional distribution of potential answers rather than a plausible verbal persona. The learned conditional geometry supplies a principled model of phenotypic refinement and a measurable prediction field under sequential questioning. Its directional ideology trajectories expose a deeper ambiguity: the same sequence may be interpreted as learning about a fixed respondent or as approximating the construction of an expressed phenotype. The decisive scientific contribution will come from separating these accounts with prespecified, prospective human experiments. By connecting the geometry of opinion to randomized order effects and delayed downstream outcomes, DTAG offers a testable route from descriptive belief systems to the mechanisms of interaction-dependent belief formation.
+DTAG uses high-dimensional conditional response distributions for adaptive querying and phenotypic refinement. Its synthetic trajectories show that predictive reconstruction can resemble belief change without establishing it. Randomized human experiments with independent delayed outcomes will test whether the geometry also anticipates interaction-dependent responses.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
