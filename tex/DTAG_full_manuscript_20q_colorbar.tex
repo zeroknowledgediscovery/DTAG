@@ -1,3 +1,4 @@
+\PassOptionsToPackage{usenames,x11names,dvipsnames}{xcolor}
 \documentclass[journal,10pt]{IEEEtran}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -31,7 +32,6 @@
 \usepackage{pgfplotstable}
 \pgfplotsset{compat=1.18}
 \usepgfplotslibrary{groupplots,fillbetween}
-\usepackage{xcolor}
 \usepackage{cite}
 \usepackage[hidelinks]{hyperref}
 \newcommand{\EE}{\mathbb{E}}
@@ -278,23 +278,23 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
 % ================ (a) Circuit-style DTAG schematic ================
 \begin{minipage}[t]{.605\textwidth}
 \centering
-{\small\bfseries (a) Conditional digital-twin circuit}\par\vspace{1mm}
+{\small\bfseries (a) Conditional digital-twin circuit}\par\vspace{3mm}
 \resizebox{\linewidth}{!}{%
 \DTAGExternalEnable
 \tikzsetnextfilename{dtag-circuit}
 \begin{tikzpicture}[x=1cm,y=1cm,>=Latex,
   font=\sffamily\fontsize{8}{9}\selectfont,
-  pcb/.style={draw=black,line width=1.35pt,fill=black!1},
-  chip/.style={draw=black,line width=1.15pt,fill=white,align=center,
-      minimum height=.76cm,inner xsep=2.3pt,inner ysep=2.4pt},
-  wire/.style={-{Latex[length=1.5mm,width=1.15mm]},draw=black,line width=1.25pt,
+  pcb/.style={draw=black,line width=1.35pt,fill=black!1, rounded corners=5pt},
+  chip/.style={draw=black,line width=1.15pt,fill=Blue1!10,align=center,
+      minimum height=.76cm,inner xsep=2.3pt,inner ysep=2.4pt, rounded corners=2pt},
+  wire/.style={-{Latex[length=1.5mm,width=2.5mm]},draw=black,line width=1.25pt,
       rounded corners=.6pt},
-  control/.style={-{Latex[length=1.5mm,width=1.15mm]},draw=dtred,line width=1.35pt},
+  control/.style={-{Latex[length=1.5mm,width=2.5mm]},draw=dtred,line width=1.35pt},
   bus/.style={draw=black,line width=1.35pt},
   pin/.style={circle,fill=black,inner sep=1.15pt},
   ch/.style={font=\sffamily\fontsize{7.7}{8.4}\selectfont\bfseries}]
 % Heavy board edges and flat circuit modules replace decorative bubbles.
-\path[pcb] (0,0) rectangle (11.8,5.15);
+%\path[pcb] (0,0) rectangle (11.8,5.15);
 \path[fill=dtpale!65,draw=modblue,line width=1.0pt]
   (.19,4.45) rectangle (3.55,4.93);
 \path[fill=dtmint!85,draw=modteal,line width=1.0pt]
@@ -302,7 +302,7 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
 \node[font=\sffamily\bfseries\fontsize{10}{10}\selectfont,text=modblue]
   at (1.87,4.69) {LLM / LANGUAGE};
 \node[font=\sffamily\bfseries\fontsize{10}{10}\selectfont,text=modteal]
-  at (7.63,4.69) {DT / native conditional model};
+  at (7.63,4.69) {Digital Twin  / native conditional model (LSM)};
 % Input pipeline, top bus.
 \node[chip,text width=1.05cm] (q) at (.80,3.63) {Input\\$q_t$};
 \node[chip,text width=1.30cm] (ground) at (2.60,3.63) {LLM map\\$M(q_t)\to v$};
@@ -330,7 +330,7 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
   {Anchor\\$s_{t+1}$};
 \node[chip,text width=2.08cm,fill=dtpale!65] (lang) at (2.15,.79)
   {LLM verbalization\\\& next prompt};
-\draw[control] (alu.south) -- (7.38,1.47) -| (pick.north);
+\draw[control] ([yshift=.16in]pick.north) --  (pick.north);
 \draw[wire] (pick.east)--(answer.west);
 \draw[wire] (answer.east)--(update.west);
 \draw[wire] (pick.west)--(lang.east);
@@ -338,11 +338,11 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
 \draw[wire] (update.east) -- (11.35,.79) -- (11.35,4.23)
  -- (4.42,4.23) -- (state.north);
 % LLM prompt feedback uses a disjoint left-side trace.
-\draw[-{Latex[length=1.5mm,width=1.15mm]},draw=modblue,line width=1.25pt,densely dashed]
+\draw[-{Latex[length=1.5mm,width=1.15mm]},draw=modblue,line width=1.25pt]
  (lang.west) -- (.33,.79) -- (.33,2.83) -- (.8,2.83) -- (q.south);
 % Contact pads and board traces make module boundaries clear.
 \foreach \p in {q.east,ground.west,ground.east,state.west,state.east,
- model.west,model.east,index.west,model.south,index.south,alu.south,
+ model.west,model.east,index.west,model.south,index.south,%alu.south,
  pick.east,answer.west,answer.east,update.west,lang.east}
   \node[pin] at (\p) {};
 \end{tikzpicture}
@@ -360,48 +360,51 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
 \tikzpicturedependsonfile{\DTAGEndpointNeutralFile}
 \tikzpicturedependsonfile{\DTAGEndpointRandomFile}
 \tikzpicturedependsonfile{\DTAGEndpointRightFile}
-
-\begin{axis}[
- axis lines=box,axis line style={draw=black,line width=1.35pt},
- tick style={draw=black,line width=1.10pt},
+\def\MSZ{2pt}
+\def\LWD{.5pt}
+\def\LWDA{.5pt}
+\begin{axis} [
+ axis lines=box,axis line style={draw=black,line width=\LWDA},
+ tick style={draw=black,line width=.5pt},
  tick label style={font=\scriptsize\bfseries,text=black},
  label style={font=\small\bfseries,text=black},
- scale only axis,width=4.72cm,height=3.85cm,
- xmin=-\DTAGEndpointBound,xmax=\DTAGEndpointBound,ymin=.40,ymax=6.60,
+ scale only axis,
+ width=4.72cm,
+ height=1.2in,
+ xmin=-.1,xmax=.1,ymin=.40,ymax=6.60,
  xtick={-.1,-.05,0,.05,.1},ytick={1,2,3,4,5,6},
  yticklabels={Atlanta,Arizona,Seattle,Texas,New York,Alabama},
  xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
  xlabel={Mean $\overline{\Delta I_\Phi}$},
  legend columns=2,
  legend style={draw=none,fill=none,font=\scriptsize\bfseries,
-   at={(.5,1.09)},anchor=south,column sep=4pt,legend cell align=left},
- grid=major,grid style={draw=black!12,line width=.30pt}]
-\addplot[black,line width=1.05pt,forget plot] coordinates {(0,.45)(0,6.55)};
-\addplot[dtred,only marks,mark=*,mark size=3.5pt,
+   at={(.5,1)},anchor=south,column sep=4pt,legend cell align=left},
+ grid=major,grid style={draw=black!12,line width=.40pt},major tick length=0pt]
+\addplot[black,densely dashed,line width=.3pt,forget plot] coordinates {(0,.45)(0,6.55)};
+\addplot[dtred,only marks,mark=*,mark size=\MSZ,
  error bars/.cd,x dir=both,x explicit,
- error bar style={black,line width=1.35pt},
- error mark options={mark size=2.4pt}]
+ error bar style={black,line width=\LWD},
+ error mark options={rotate=90,mark size=\MSZ}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointRightFile};
 \addlegendentry{Right push}
-\addplot[dtblue,only marks,mark=square*,mark size=3.5pt,
+\addplot[dtblue,only marks,mark=square*,mark size=\MSZ,
  error bars/.cd,x dir=both,x explicit,
- error bar style={black,line width=1.35pt},
- error mark options={mark size=2.4pt}]
+ error bar style={black,line width=\LWD},
+ error mark options={rotate=90,mark size=\MSZ}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointLeftFile};
 \addlegendentry{Left push}
-\addplot[dtgray,only marks,mark=diamond*,mark size=3.5pt,
+\addplot[dtgray,only marks,mark=o,mark size=\MSZ,
  error bars/.cd,x dir=both,x explicit,
- error bar style={black,line width=1.35pt},
- error mark options={mark size=2.4pt}]
+ error bar style={black,line width=\LWD},
+ error mark options={rotate=90,mark size=\MSZ}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointNeutralFile};
 \addlegendentry{Neutral drift}
-\addplot[black,only marks,mark=triangle*,mark size=3.5pt,
+\addplot[black,only marks,mark=triangle,mark size=\MSZ,
  error bars/.cd,x dir=both,x explicit,
- error bar style={black,line width=1.35pt},
- error mark options={mark size=2.4pt}]
+ error bar style={black,line width=\LWD},
+ error mark options={rotate=90,mark size=\MSZ}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGEndpointRandomFile};
 \addlegendentry{Random}
-\draw[black,line width=1.25pt] (rel axis cs:0,0) rectangle (rel axis cs:1,1);
 \end{axis}
 \end{tikzpicture}
 \tikzexternaldisable
@@ -444,7 +447,7 @@ persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}20
 
 \begin{groupplot}[
  group style={group size=6 by 1,horizontal sep=.43cm},
- axis lines=box,scale only axis,width=2.12cm,height=2.35cm,
+ axis lines=box,scale only axis,width=.955in,height=2.35cm,
  xmin=0,xmax=\DTAGSteps,ymin=-\DTAGTrajectoryBound,ymax=\DTAGTrajectoryBound,
  xtick={0,\DTAGHalfSteps,\DTAGSteps},ytick={-.1,0,.1},
  scaled ticks=false,
