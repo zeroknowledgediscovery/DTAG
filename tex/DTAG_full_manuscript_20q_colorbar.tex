@@ -242,6 +242,44 @@ eligible question. The answer was always drawn from the conditional LSM.
 There were $T=20$ questions and $40$ independent repetitions per policy and
 persona, giving $6\times4\times40=960$ complete trajectories comprising $19{,}200$ question-answer draws.
 
+Table~\ref{tab:personas} reports the pinned persona descriptions and their
+initial geometric indices in this execution environment.
+
+\begin{table*}[!t]
+\centering
+\caption{\textbf{Six pinned synthetic personas in the native GSS 2024 simulations.}
+Persona descriptions are reproduced from \texttt{gss2024\_spectrum.yaml}.
+The initial pole-relative ideology index $I_\Phi(s_0)$ comes from the
+20-question, 40-repetition experiment's \texttt{initial\_I} field in
+\texttt{adaptive/endpoints.csv}; it is not the persona's self-reported
+political ideology. Positive values point toward the designated right
+pole and negative values toward the left pole.}
+\label{tab:personas}
+\begingroup
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}p{.75in}X>{\raggedleft\arraybackslash}p{.90in}@{}}
+\toprule
+\textbf{Persona} & \textbf{Pinned description} & \textbf{Initial $I_\Phi(s_0)$} \\
+\midrule
+Alabama & 45-year-old white man living in open country outside a small town in rural Alabama, in the South. He is married and has two children. He works full time in farming. He is a veteran who served 2 to 4 years of active duty in the armed forces. He reads a newspaper every day. His education ended with a high school diploma. He thinks of himself as conservative and is a strong Republican. He is Protestant and attends religious services every week. & $0.075706$ \\
+\addlinespace[2pt]
+New York & 22-year-old white woman living in New York City, a large central city in the Northeast. She has never been married and has no children. She works full time in retail. She has never served in the armed forces. She reads a newspaper every day. She has a bachelor's degree. She thinks of herself as extremely liberal and is a strong Democrat. She has no religion and never attends religious services. & $-0.163807$ \\
+\addlinespace[2pt]
+Texas & 61-year-old white woman in a small town in Texas, in the South. She is married with three children and keeps house. Her education ended with high school. She thinks of herself as extremely conservative and is a strong Republican. She is Protestant and attends religious services several times a week. She reads a newspaper every day. & $0.045379$ \\
+\addlinespace[2pt]
+Seattle & 34-year-old white man living in Seattle, a large central city in the West. He has never been married and has no children. He works full time and has a graduate degree. He thinks of himself as liberal and is a Democrat, but not a very strong one. He has no religion and never attends religious services. He reads a newspaper a few times a week. & $-0.119639$ \\
+\addlinespace[2pt]
+Arizona & 39-year-old Mexican American man living in a medium-size city in Arizona, in the West. He is married with three children and works full time. His education ended with high school. He thinks of himself as conservative and is a Republican, but not a very strong one. He is Catholic and attends religious services nearly every week. & $-0.020437$ \\
+\addlinespace[2pt]
+Atlanta & 47-year-old Black woman living in Atlanta, a large central city in the South. She is divorced with two children and works full time. She has a bachelor's degree. She thinks of herself as liberal and is a strong Democrat. She is Protestant and attends religious services every week. She reads a newspaper every day. & $-0.030807$ \\
+\bottomrule
+\end{tabularx}
+\endgroup
+\end{table*}
+
+
+
 % -------- CSV file definitions for the integrated figure --------
 % For future runs, set DTAG_FIGURES_DIR before compiling.
 \def\DTAGEndpointRightFile{\DTAGFigureDir/pub_endpoint_right.csv}
@@ -725,23 +763,7 @@ For respondent $i$, the primary analysis will estimate randomized contrasts by r
 
 An initial feasibility plan is $N\approx150$ in a pilot and a planning target of $N\approx1500$ main-wave participants (approximately 300 per arm before attrition); this is \emph{not yet a power calculation}. Final sample size will depend on pilot variance, credible minimally relevant effects, desired error rates, planned contrasts, and follow-up retention. Prolific supports prescreening and longitudinal recontact \cite{prolific2026}; the protocol will be reviewed under applicable institutional human-participants procedures.
 
-\begin{table*}[!t]
-\centering
-\caption{Preregisterable tests and corresponding evidence. All prospective human results are future work, not findings.}
-\label{tab:design}
-\renewcommand{\arraystretch}{1.18}
-\begin{tabularx}{\textwidth}{@{}p{.40in}p{1.23in}p{1.56in}p{1.72in}X@{}}
-\toprule
-Hyp. & Scientific mechanism & Experimental contrast / material & Primary quantitative endpoint & Interpretation / falsification \\
-\midrule
-H1 & Inference of unasked beliefs & Held-out archival respondents; equal anchor budget; DTAG vs.\ LLM and psychometric baselines & Held-out log score, calibration, Brier score; respondent-disjoint splits & Failure to improve proper predictive scores undermines predictive ToM \\
-H2 & High-dimensional conditional constraint & Random vs.\ information-gain vs.\ geometric question policies & Out-of-sample target prediction; cross-domain $R_j$ map & Large index movement without better prediction does not establish refinement \\
-H3 & Order-induced measurement or construction & Prolific $AB$ vs.\ $BA$ plus $A$, $B$ and control & Delayed independently measured outcome difference $\tau_{\rm order}$ & No durable order effect favors passive/transient explanations for these modules \\
-H4 & Statistical geometry as a dynamical prior & Locked pre-exposure scores; randomized arm contrasts & Prospective prediction of group-level response distributions and preregistered interaction fit & No incremental held-out benefit rejects claimed geometry--dynamics link \\
-H5 & Persistence vs.\ transient report context & Immediate vs.\ 7--14 day alternate-wording remeasurement & Stability, agreement, negative-control contrasts & Effects confined to immediate wording-specific reports lack support for durable change \\
-\bottomrule
-\end{tabularx}
-\end{table*}
+
 
 \subsection{Relationship to Bail \emph{et al.} and expected contribution}
 Bail \emph{et al.} experimentally demonstrated that cross-cutting exposure need not depolarize and can have asymmetric responses \cite{bail2018}. Our proposed initial Prolific experiment asks a distinct, more elementary question: before considering sustained political-media exposure, does the \emph{order of eliciting and considering related propositions} itself affect later attitudes, and can an independently fitted high-dimensional opinion geometry forecast its response distribution? A follow-on study may independently randomize neutral information sources and exposure conditions, but the five-arm design deliberately keeps the first test identifiable, ethically bounded, and feasible. A successful result would not reproduce Bail's treatment; it would supply a candidate state-dependent mechanism and a methodology for predicting heterogeneous downstream responses.
