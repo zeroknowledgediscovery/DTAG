@@ -52,10 +52,11 @@ pdflatex -shell-escape -interaction=nonstopmode -halt-on-error DTAG_full_manuscr
 ```
 
 The document selectively externalizes four pictures: the integrated circuit,
-endpoint plot, trajectories, and the consolidated Figure 2. Figure 2 contains
-exactly two complete 3-by-6 PGFPlots groups (18 heatmaps and 18 order-effect
-subpanels) within one named vector picture, \`dtag-figure2-panels\`.
-Each picture gets a stable PDF filename in \`Figures/External/\`.
+endpoint plot, trajectories, and Figure 2 as **two separate TikZ pictures** placed sequentially
+without minipages. Each picture contains exactly one complete 3-by-6
+PGFPlots group: 18 question-identity heatmaps or 18 order-effect subpanels.
+They externalize separately as \`dtag-figure2a-question-identities.pdf\`
+and \`dtag-figure2b-order-effects.pdf\` under \`Figures/External/\`.
 A normal \`pdflatex\` command works without enabling shell escape and
 does not depend on those cache PDFs being present.
 
