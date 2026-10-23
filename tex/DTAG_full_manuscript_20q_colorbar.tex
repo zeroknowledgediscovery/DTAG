@@ -625,19 +625,51 @@ visualization device.
 \begin{minipage}{.62\linewidth}\centering\Large\bfseries (b) Fixed-item order effects\end{minipage}
 \par\vspace{.10cm}
 \begin{center}
-\makebox[40.0cm][l]{\DTAGExternalEnable
-\tikzsetnextfilename{dtag-figure2-row-1}
+\makebox[40.0cm][l]{%
+\DTAGExternalEnable
+\tikzsetnextfilename{dtag-figure2-panels}
 \begin{tikzpicture}
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAF}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAD}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAE}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAF}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAR}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAP}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAQ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAL}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAJ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAK}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAO}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAM}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAN}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAI}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAG}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAH}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAC}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAA}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAB}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAX}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAV}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAW}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAX}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBJ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBH}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBI}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBD}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBB}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBC}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBG}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBE}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBF}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBA}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAY}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAZ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAU}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAS}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAT}
+% (a) One coherent 3-by-6 groupplot: 18 question-identity heatmaps.
 \begin{scope}[shift={(1.9cm,0cm)}]
 \begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=.72cm,vertical sep=0cm},
+ group style={group size=3 by 6,horizontal sep=.72cm,vertical sep=.72cm},
  scale only axis,publication axis,
  width=3.10cm,height=3.10cm,xmin=.5,xmax=\DTAGXMax,ymin=.5,ymax=\DTAGYMax,
  y dir=reverse,axis on top,xtick={1,\DTAGHalfSteps,\DTAGSteps},ytick={1,\DTAGHalfReps,\DTAGReps},
@@ -658,11 +690,53 @@ visualization device.
 \addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAD};
 \nextgroupplot[title={Neutral},yticklabels={},xticklabels={}]
 \addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAE};
+\nextgroupplot[ylabel={New York},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAR};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAP};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAQ};
+\nextgroupplot[ylabel={Texas},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAL};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAJ};
+\nextgroupplot[yticklabels={},xticklabels={},
+colorbar,
+colorbar style={
+ at={(1.18,0.5)},anchor=west,height=2.8cm,width=.24cm,
+ title={ID},
+ title style={font=\scriptsize\bfseries,text=black},
+ ytick={1,80,\DTAGIdMax},
+ yticklabel style={font=\scriptsize\bfseries,text=black},
+ tick style={draw=black,line width=.8pt},
+ axis line style={draw=black,line width=.9pt},
+ scaled y ticks=false
+}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAK};
+\nextgroupplot[ylabel={Seattle},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAO};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAM};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAN};
+\nextgroupplot[ylabel={Arizona},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAI};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAG};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAH};
+\nextgroupplot[ylabel={Atlanta},xlabel={Position}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAC};
+\nextgroupplot[yticklabels={},xlabel={Position}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAA};
+\nextgroupplot[yticklabels={},xlabel={Position}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAB};
 \end{groupplot}
 \end{scope}
+% (b) One coherent 3-by-6 groupplot: 18 paired order-effect comparisons.
 \begin{scope}[shift={(15.1cm,0cm)}]
 \begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=1.30cm,vertical sep=0cm},
+ group style={group size=3 by 6,horizontal sep=1.30cm,vertical sep=.72cm},
  publication axis,scale only axis,width=5.78cm,height=3.10cm,
  xmin=-\DTAGOrderBound,xmax=\DTAGOrderBound,ymin=.5,ymax=3.5,
  ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},
@@ -687,56 +761,6 @@ visualization device.
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAW};
-\end{groupplot}
-\end{scope}
-\end{tikzpicture}
-\tikzexternaldisable
-}\par\vspace{.62cm}
-
-\makebox[40.0cm][l]{\DTAGExternalEnable
-\tikzsetnextfilename{dtag-figure2-row-2}
-\begin{tikzpicture}
-\tikzpicturedependsonfile{\DTAGMetadataCSV}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAP}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAQ}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAR}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBH}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBI}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBJ}
-\begin{scope}[shift={(1.9cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=.72cm,vertical sep=0cm},
- scale only axis,publication axis,
- width=3.10cm,height=3.10cm,xmin=.5,xmax=\DTAGXMax,ymin=.5,ymax=\DTAGYMax,
- y dir=reverse,axis on top,xtick={1,\DTAGHalfSteps,\DTAGSteps},ytick={1,\DTAGHalfReps,\DTAGReps},
- xticklabel style={font=\footnotesize\bfseries},yticklabel style={font=\footnotesize\bfseries},
- colormap={questionmap}{
-   rgb255=(33,102,172);
-   rgb255=(103,169,207);
-   rgb255=(209,229,240);
-   rgb255=(247,247,247);
-   rgb255=(253,219,199);
-   rgb255=(239,138,98);
-   rgb255=(178,24,43)},
- point meta min=1,point meta max=\DTAGIdMax
-]
-\nextgroupplot[ylabel={New York},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAR};
-\nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAP};
-\nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAQ};
-\end{groupplot}
-\end{scope}
-\begin{scope}[shift={(15.1cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=1.30cm,vertical sep=0cm},
- publication axis,scale only axis,width=5.78cm,height=3.10cm,
- xmin=-\DTAGOrderBound,xmax=\DTAGOrderBound,ymin=.5,ymax=3.5,
- ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},
- xtick={-.04,-.02,0,.02,.04},
- xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
-]
 \nextgroupplot[ylabel={New York},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
@@ -755,67 +779,6 @@ visualization device.
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBI};
-\end{groupplot}
-\end{scope}
-\end{tikzpicture}
-\tikzexternaldisable
-}\par\vspace{.62cm}
-
-\makebox[40.0cm][l]{\DTAGExternalEnable
-\tikzsetnextfilename{dtag-figure2-row-3}
-\begin{tikzpicture}
-\tikzpicturedependsonfile{\DTAGMetadataCSV}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAJ}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAK}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAL}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBB}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBC}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBD}
-\begin{scope}[shift={(1.9cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=.72cm,vertical sep=0cm},
- scale only axis,publication axis,
- width=3.10cm,height=3.10cm,xmin=.5,xmax=\DTAGXMax,ymin=.5,ymax=\DTAGYMax,
- y dir=reverse,axis on top,xtick={1,\DTAGHalfSteps,\DTAGSteps},ytick={1,\DTAGHalfReps,\DTAGReps},
- xticklabel style={font=\footnotesize\bfseries},yticklabel style={font=\footnotesize\bfseries},
- colormap={questionmap}{
-   rgb255=(33,102,172);
-   rgb255=(103,169,207);
-   rgb255=(209,229,240);
-   rgb255=(247,247,247);
-   rgb255=(253,219,199);
-   rgb255=(239,138,98);
-   rgb255=(178,24,43)},
- point meta min=1,point meta max=\DTAGIdMax
-]
-\nextgroupplot[ylabel={Texas},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAL};
-\nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAJ};
-\nextgroupplot[yticklabels={},xticklabels={},
-colorbar,
-colorbar style={
- at={(1.18,0.5)},anchor=west,height=2.8cm,width=.24cm,
- title={ID},
- title style={font=\scriptsize\bfseries,text=black},
- ytick={1,80,\DTAGIdMax},
- yticklabel style={font=\scriptsize\bfseries,text=black},
- tick style={draw=black,line width=.8pt},
- axis line style={draw=black,line width=.9pt},
- scaled y ticks=false
-}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAK};
-\end{groupplot}
-\end{scope}
-\begin{scope}[shift={(15.1cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=1.30cm,vertical sep=0cm},
- publication axis,scale only axis,width=5.78cm,height=3.10cm,
- xmin=-\DTAGOrderBound,xmax=\DTAGOrderBound,ymin=.5,ymax=3.5,
- ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},
- xtick={-.04,-.02,0,.02,.04},
- xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
-]
 \nextgroupplot[ylabel={Texas},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
@@ -834,56 +797,6 @@ colorbar style={
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBC};
-\end{groupplot}
-\end{scope}
-\end{tikzpicture}
-\tikzexternaldisable
-}\par\vspace{.62cm}
-
-\makebox[40.0cm][l]{\DTAGExternalEnable
-\tikzsetnextfilename{dtag-figure2-row-4}
-\begin{tikzpicture}
-\tikzpicturedependsonfile{\DTAGMetadataCSV}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAM}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAN}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAO}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBE}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBF}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBG}
-\begin{scope}[shift={(1.9cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=.72cm,vertical sep=0cm},
- scale only axis,publication axis,
- width=3.10cm,height=3.10cm,xmin=.5,xmax=\DTAGXMax,ymin=.5,ymax=\DTAGYMax,
- y dir=reverse,axis on top,xtick={1,\DTAGHalfSteps,\DTAGSteps},ytick={1,\DTAGHalfReps,\DTAGReps},
- xticklabel style={font=\footnotesize\bfseries},yticklabel style={font=\footnotesize\bfseries},
- colormap={questionmap}{
-   rgb255=(33,102,172);
-   rgb255=(103,169,207);
-   rgb255=(209,229,240);
-   rgb255=(247,247,247);
-   rgb255=(253,219,199);
-   rgb255=(239,138,98);
-   rgb255=(178,24,43)},
- point meta min=1,point meta max=\DTAGIdMax
-]
-\nextgroupplot[ylabel={Seattle},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAO};
-\nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAM};
-\nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAN};
-\end{groupplot}
-\end{scope}
-\begin{scope}[shift={(15.1cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=1.30cm,vertical sep=0cm},
- publication axis,scale only axis,width=5.78cm,height=3.10cm,
- xmin=-\DTAGOrderBound,xmax=\DTAGOrderBound,ymin=.5,ymax=3.5,
- ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},
- xtick={-.04,-.02,0,.02,.04},
- xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
-]
 \nextgroupplot[ylabel={Seattle},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
@@ -902,56 +815,6 @@ colorbar style={
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBF};
-\end{groupplot}
-\end{scope}
-\end{tikzpicture}
-\tikzexternaldisable
-}\par\vspace{.62cm}
-
-\makebox[40.0cm][l]{\DTAGExternalEnable
-\tikzsetnextfilename{dtag-figure2-row-5}
-\begin{tikzpicture}
-\tikzpicturedependsonfile{\DTAGMetadataCSV}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAG}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAH}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAI}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAY}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAZ}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoBA}
-\begin{scope}[shift={(1.9cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=.72cm,vertical sep=0cm},
- scale only axis,publication axis,
- width=3.10cm,height=3.10cm,xmin=.5,xmax=\DTAGXMax,ymin=.5,ymax=\DTAGYMax,
- y dir=reverse,axis on top,xtick={1,\DTAGHalfSteps,\DTAGSteps},ytick={1,\DTAGHalfReps,\DTAGReps},
- xticklabel style={font=\footnotesize\bfseries},yticklabel style={font=\footnotesize\bfseries},
- colormap={questionmap}{
-   rgb255=(33,102,172);
-   rgb255=(103,169,207);
-   rgb255=(209,229,240);
-   rgb255=(247,247,247);
-   rgb255=(253,219,199);
-   rgb255=(239,138,98);
-   rgb255=(178,24,43)},
- point meta min=1,point meta max=\DTAGIdMax
-]
-\nextgroupplot[ylabel={Arizona},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAI};
-\nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAG};
-\nextgroupplot[yticklabels={},xticklabels={}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAH};
-\end{groupplot}
-\end{scope}
-\begin{scope}[shift={(15.1cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=1.30cm,vertical sep=0cm},
- publication axis,scale only axis,width=5.78cm,height=3.10cm,
- xmin=-\DTAGOrderBound,xmax=\DTAGOrderBound,ymin=.5,ymax=3.5,
- ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},
- xtick={-.04,-.02,0,.02,.04},
- xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
-]
 \nextgroupplot[ylabel={Arizona},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
@@ -970,56 +833,6 @@ colorbar style={
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAZ};
-\end{groupplot}
-\end{scope}
-\end{tikzpicture}
-\tikzexternaldisable
-}\par\vspace{.62cm}
-
-\makebox[40.0cm][l]{\DTAGExternalEnable
-\tikzsetnextfilename{dtag-figure2-row-6}
-\begin{tikzpicture}
-\tikzpicturedependsonfile{\DTAGMetadataCSV}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAA}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAB}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAC}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAS}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAT}
-\tikzpicturedependsonfile{\DTAGCSVFigureTwoAU}
-\begin{scope}[shift={(1.9cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=.72cm,vertical sep=0cm},
- scale only axis,publication axis,
- width=3.10cm,height=3.10cm,xmin=.5,xmax=\DTAGXMax,ymin=.5,ymax=\DTAGYMax,
- y dir=reverse,axis on top,xtick={1,\DTAGHalfSteps,\DTAGSteps},ytick={1,\DTAGHalfReps,\DTAGReps},
- xticklabel style={font=\footnotesize\bfseries},yticklabel style={font=\footnotesize\bfseries},
- colormap={questionmap}{
-   rgb255=(33,102,172);
-   rgb255=(103,169,207);
-   rgb255=(209,229,240);
-   rgb255=(247,247,247);
-   rgb255=(253,219,199);
-   rgb255=(239,138,98);
-   rgb255=(178,24,43)},
- point meta min=1,point meta max=\DTAGIdMax
-]
-\nextgroupplot[ylabel={Atlanta},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAC};
-\nextgroupplot[yticklabels={},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAA};
-\nextgroupplot[yticklabels={},xlabel={Position}]
-\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAB};
-\end{groupplot}
-\end{scope}
-\begin{scope}[shift={(15.1cm,0cm)}]
-\begin{groupplot}[
- group style={group size=3 by 1,horizontal sep=1.30cm,vertical sep=0cm},
- publication axis,scale only axis,width=5.78cm,height=3.10cm,
- xmin=-\DTAGOrderBound,xmax=\DTAGOrderBound,ymin=.5,ymax=3.5,
- ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},
- xtick={-.04,-.02,0,.02,.04},
- xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
-]
 \nextgroupplot[ylabel={Atlanta},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
@@ -1043,6 +856,16 @@ colorbar style={
 \end{tikzpicture}
 \tikzexternaldisable
 }\par\vspace{.62cm}
+
+
+
+
+
+
+
+
+
+
 
 \end{center}
 \end{minipage}}
