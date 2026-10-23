@@ -105,7 +105,7 @@ The greedy optimizer scores \emph{the next question only} under the current stat
     at={(.5,1.07)},anchor=south,column sep=9pt},
 ]
 \addplot[black,line width=1.1pt,forget plot] coordinates {(0,.45)(0,6.55)};
-\addplot+[dtred,only marks,mark=*,mark size=2.2pt,
+\addplot[dtred,only marks,mark=*,mark size=2.2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.8pt},
  error mark options={mark size=1.7pt}]
  table[row sep=\\,x=x,y=y,x error minus=minus,x error plus=plus] {
@@ -118,7 +118,7 @@ x y minus plus\\
 0.0529358 0.73 0.0136412 0.0142329\\
 };
 \addlegendentry{Right push}
-\addplot+[dtblue,only marks,mark=square*,mark size=2pt,
+\addplot[dtblue,only marks,mark=square*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.8pt},
  error mark options={mark size=1.7pt}]
  table[row sep=\\,x=x,y=y,x error minus=minus,x error plus=plus] {
@@ -131,7 +131,7 @@ x y minus plus\\
 -0.0572509 0.91 0.0133079 0.0139557\\
 };
 \addlegendentry{Left push}
-\addplot+[dtgray,only marks,mark=diamond*,mark size=2pt,
+\addplot[dtgray,only marks,mark=diamond*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.8pt},
  error mark options={mark size=1.7pt}]
  table[row sep=\\,x=x,y=y,x error minus=minus,x error plus=plus] {
@@ -144,7 +144,7 @@ x y minus plus\\
 0.0002293 1.09 0.0003453 0.0004147\\
 };
 \addlegendentry{Neutral drift}
-\addplot+[black,only marks,mark=triangle*,mark size=2pt,
+\addplot[black,only marks,mark=triangle*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.8pt},
  error mark options={mark size=1.7pt}]
  table[row sep=\\,x=x,y=y,x error minus=minus,x error plus=plus] {
@@ -163,11 +163,13 @@ x y minus plus\\
 \begin{minipage}[t]{.575\textwidth}
 \centering
 {\Large\bfseries (b) Question-by-question trajectories}\par\vspace{.20cm}
+{\small\bfseries
+\textcolor{dtred}{\rule{0.75cm}{1.6pt}} Right push\quad
+\textcolor{dtblue}{\rule{0.75cm}{1.6pt}} Left push\quad
+\textcolor{dtgray}{-- --} Neutral\quad
+\rule{0.75cm}{1.6pt} Random}\par\vspace{.1cm}
 \begin{tikzpicture}
-\node[anchor=west,font=\small\bfseries] at (0,0.1){\textcolor{dtred}{\rule{0.9cm}{1.5pt}} Right push
-\hspace{.5cm}\textcolor{dtblue}{\rule{0.9cm}{1.5pt}} Left push
-\hspace{.5cm}\textcolor{dtgray}{-- --} Neutral
-\hspace{.5cm}\rule{0.9cm}{1.5pt} Random};
+
 \begin{scope}[shift={(2.05cm,-.8cm)}]
 \begin{groupplot}[
  group style={group size=2 by 3,horizontal sep=1.35cm,vertical sep=1.45cm},
@@ -178,7 +180,7 @@ x y minus plus\\
 ]
 \nextgroupplot[title={Alabama},xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
-\addplot+[draw=none,forget plot,name path=p0rightlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p0rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 0.01009 0.0020909 0.0167559\\
@@ -202,7 +204,7 @@ t mean low high\\
 19 0.0645062 0.0490529 0.0801212\\
 20 0.0642254 0.0488868 0.0799259\\
 };
-\addplot+[draw=none,forget plot,name path=p0righthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p0righthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 0.01009 0.0020909 0.0167559\\
@@ -226,8 +228,8 @@ t mean low high\\
 19 0.0645062 0.0490529 0.0801212\\
 20 0.0642254 0.0488868 0.0799259\\
 };
-\addplot+[draw=none,forget plot,fill=dtred!13] fill between[of=p0righthi and p0rightlo];
-\addplot+[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtred!13] fill between[of=p0righthi and p0rightlo];
+\addplot[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.01009 0.0020909 0.0167559\\
@@ -251,7 +253,7 @@ t mean low high\\
 19 0.0645062 0.0490529 0.0801212\\
 20 0.0642254 0.0488868 0.0799259\\
 };
-\addplot+[draw=none,forget plot,name path=p0leftlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p0leftlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0063088 -0.0113524 -0.0007486\\
@@ -275,7 +277,7 @@ t mean low high\\
 19 -0.0618642 -0.0746287 -0.0481416\\
 20 -0.0625925 -0.0753923 -0.0494587\\
 };
-\addplot+[draw=none,forget plot,name path=p0lefthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p0lefthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0063088 -0.0113524 -0.0007486\\
@@ -299,8 +301,8 @@ t mean low high\\
 19 -0.0618642 -0.0746287 -0.0481416\\
 20 -0.0625925 -0.0753923 -0.0494587\\
 };
-\addplot+[draw=none,forget plot,fill=dtblue!13] fill between[of=p0lefthi and p0leftlo];
-\addplot+[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtblue!13] fill between[of=p0lefthi and p0leftlo];
+\addplot[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0063088 -0.0113524 -0.0007486\\
@@ -324,7 +326,7 @@ t mean low high\\
 19 -0.0618642 -0.0746287 -0.0481416\\
 20 -0.0625925 -0.0753923 -0.0494587\\
 };
-\addplot+[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0 0 0\\
@@ -348,7 +350,7 @@ t mean low high\\
 19 -0.0002233 -0.000427 -0.0000144\\
 20 -0.0002066 -0.0004059 -0.0000077\\
 };
-\addplot+[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.0010025 -0.001347 0.0030875\\
@@ -374,7 +376,7 @@ t mean low high\\
 };
 \nextgroupplot[title={New York},yticklabels={},xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
-\addplot+[draw=none,forget plot,name path=p1rightlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p1rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 0.01009 0.0020909 0.0167559\\
@@ -398,7 +400,7 @@ t mean low high\\
 19 0.0692953 0.0496429 0.0883645\\
 20 0.0712563 0.0517466 0.0896326\\
 };
-\addplot+[draw=none,forget plot,name path=p1righthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p1righthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 0.01009 0.0020909 0.0167559\\
@@ -422,8 +424,8 @@ t mean low high\\
 19 0.0692953 0.0496429 0.0883645\\
 20 0.0712563 0.0517466 0.0896326\\
 };
-\addplot+[draw=none,forget plot,fill=dtred!13] fill between[of=p1righthi and p1rightlo];
-\addplot+[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtred!13] fill between[of=p1righthi and p1rightlo];
+\addplot[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.01009 0.0020909 0.0167559\\
@@ -447,7 +449,7 @@ t mean low high\\
 19 0.0692953 0.0496429 0.0883645\\
 20 0.0712563 0.0517466 0.0896326\\
 };
-\addplot+[draw=none,forget plot,name path=p1leftlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p1leftlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0010219 -0.0060782 0.0043163\\
@@ -471,7 +473,7 @@ t mean low high\\
 19 -0.0534185 -0.0716206 -0.0363662\\
 20 -0.0565152 -0.0747526 -0.0379615\\
 };
-\addplot+[draw=none,forget plot,name path=p1lefthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p1lefthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0010219 -0.0060782 0.0043163\\
@@ -495,8 +497,8 @@ t mean low high\\
 19 -0.0534185 -0.0716206 -0.0363662\\
 20 -0.0565152 -0.0747526 -0.0379615\\
 };
-\addplot+[draw=none,forget plot,fill=dtblue!13] fill between[of=p1lefthi and p1leftlo];
-\addplot+[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtblue!13] fill between[of=p1lefthi and p1leftlo];
+\addplot[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0010219 -0.0060782 0.0043163\\
@@ -520,7 +522,7 @@ t mean low high\\
 19 -0.0534185 -0.0716206 -0.0363662\\
 20 -0.0565152 -0.0747526 -0.0379615\\
 };
-\addplot+[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0 0 0\\
@@ -544,7 +546,7 @@ t mean low high\\
 19 -0.0000349 -0.0001256 0.0000634\\
 20 -0.0000554 -0.0001427 0.0000466\\
 };
-\addplot+[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0001579 -0.001764 0.0015846\\
@@ -570,7 +572,7 @@ t mean low high\\
 };
 \nextgroupplot[title={Texas},xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
-\addplot+[draw=none,forget plot,name path=p2rightlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p2rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 0.0154227 0.0087568 0.0207554\\
@@ -594,7 +596,7 @@ t mean low high\\
 19 0.0585438 0.0425924 0.0737356\\
 20 0.0587796 0.0427648 0.0745223\\
 };
-\addplot+[draw=none,forget plot,name path=p2righthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p2righthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 0.0154227 0.0087568 0.0207554\\
@@ -618,8 +620,8 @@ t mean low high\\
 19 0.0585438 0.0425924 0.0737356\\
 20 0.0587796 0.0427648 0.0745223\\
 };
-\addplot+[draw=none,forget plot,fill=dtred!13] fill between[of=p2righthi and p2rightlo];
-\addplot+[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtred!13] fill between[of=p2righthi and p2rightlo];
+\addplot[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.0154227 0.0087568 0.0207554\\
@@ -643,7 +645,7 @@ t mean low high\\
 19 0.0585438 0.0425924 0.0737356\\
 20 0.0587796 0.0427648 0.0745223\\
 };
-\addplot+[draw=none,forget plot,name path=p2leftlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p2leftlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0069447 -0.0135643 -0.0003423\\
@@ -667,7 +669,7 @@ t mean low high\\
 19 -0.0756235 -0.0890881 -0.0618605\\
 20 -0.0777441 -0.091424 -0.0639956\\
 };
-\addplot+[draw=none,forget plot,name path=p2lefthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p2lefthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0069447 -0.0135643 -0.0003423\\
@@ -691,8 +693,8 @@ t mean low high\\
 19 -0.0756235 -0.0890881 -0.0618605\\
 20 -0.0777441 -0.091424 -0.0639956\\
 };
-\addplot+[draw=none,forget plot,fill=dtblue!13] fill between[of=p2lefthi and p2leftlo];
-\addplot+[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtblue!13] fill between[of=p2lefthi and p2leftlo];
+\addplot[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0069447 -0.0135643 -0.0003423\\
@@ -716,7 +718,7 @@ t mean low high\\
 19 -0.0756235 -0.0890881 -0.0618605\\
 20 -0.0777441 -0.091424 -0.0639956\\
 };
-\addplot+[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0 0 0\\
@@ -740,7 +742,7 @@ t mean low high\\
 19 0.0001072 -0.0000297 0.0002516\\
 20 0.0001715 -0.0001624 0.0004764\\
 };
-\addplot+[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.0000405 -0.0013817 0.0015666\\
@@ -766,7 +768,7 @@ t mean low high\\
 };
 \nextgroupplot[title={Seattle},yticklabels={},xticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
-\addplot+[draw=none,forget plot,name path=p3rightlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p3rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 0.0020909 -0.0059082 0.01009\\
@@ -790,7 +792,7 @@ t mean low high\\
 19 0.0510009 0.0374324 0.063183\\
 20 0.051394 0.039196 0.0636808\\
 };
-\addplot+[draw=none,forget plot,name path=p3righthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p3righthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 0.0020909 -0.0059082 0.01009\\
@@ -814,8 +816,8 @@ t mean low high\\
 19 0.0510009 0.0374324 0.063183\\
 20 0.051394 0.039196 0.0636808\\
 };
-\addplot+[draw=none,forget plot,fill=dtred!13] fill between[of=p3righthi and p3rightlo];
-\addplot+[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtred!13] fill between[of=p3righthi and p3rightlo];
+\addplot[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.0020909 -0.0059082 0.01009\\
@@ -839,7 +841,7 @@ t mean low high\\
 19 0.0510009 0.0374324 0.063183\\
 20 0.051394 0.039196 0.0636808\\
 };
-\addplot+[draw=none,forget plot,name path=p3leftlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p3leftlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0096342 -0.01351 -0.0050051\\
@@ -863,7 +865,7 @@ t mean low high\\
 19 -0.0565755 -0.0709997 -0.0417041\\
 20 -0.0594172 -0.074145 -0.0441829\\
 };
-\addplot+[draw=none,forget plot,name path=p3lefthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p3lefthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0096342 -0.01351 -0.0050051\\
@@ -887,8 +889,8 @@ t mean low high\\
 19 -0.0565755 -0.0709997 -0.0417041\\
 20 -0.0594172 -0.074145 -0.0441829\\
 };
-\addplot+[draw=none,forget plot,fill=dtblue!13] fill between[of=p3lefthi and p3leftlo];
-\addplot+[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtblue!13] fill between[of=p3lefthi and p3leftlo];
+\addplot[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0096342 -0.01351 -0.0050051\\
@@ -912,7 +914,7 @@ t mean low high\\
 19 -0.0565755 -0.0709997 -0.0417041\\
 20 -0.0594172 -0.074145 -0.0441829\\
 };
-\addplot+[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0 0 0\\
@@ -936,7 +938,7 @@ t mean low high\\
 19 0.000163 -0.0000796 0.00041\\
 20 0.0001622 -0.0001214 0.0004936\\
 };
-\addplot+[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0001133 -0.0019504 0.0015677\\
@@ -962,7 +964,7 @@ t mean low high\\
 };
 \nextgroupplot[title={Arizona}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
-\addplot+[draw=none,forget plot,name path=p4rightlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p4rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 0.0114232 0.0034241 0.0180891\\
@@ -986,7 +988,7 @@ t mean low high\\
 19 0.0620305 0.0484303 0.075999\\
 20 0.062396 0.0480878 0.0769358\\
 };
-\addplot+[draw=none,forget plot,name path=p4righthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p4righthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 0.0114232 0.0034241 0.0180891\\
@@ -1010,8 +1012,8 @@ t mean low high\\
 19 0.0620305 0.0484303 0.075999\\
 20 0.062396 0.0480878 0.0769358\\
 };
-\addplot+[draw=none,forget plot,fill=dtred!13] fill between[of=p4righthi and p4rightlo];
-\addplot+[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtred!13] fill between[of=p4righthi and p4rightlo];
+\addplot[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.0114232 0.0034241 0.0180891\\
@@ -1035,7 +1037,7 @@ t mean low high\\
 19 0.0620305 0.0484303 0.075999\\
 20 0.062396 0.0480878 0.0769358\\
 };
-\addplot+[draw=none,forget plot,name path=p4leftlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p4leftlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0037111 -0.0111957 0.0037736\\
@@ -1059,7 +1061,7 @@ t mean low high\\
 19 -0.0534353 -0.068427 -0.0371836\\
 20 -0.0547563 -0.0690406 -0.0397661\\
 };
-\addplot+[draw=none,forget plot,name path=p4lefthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p4lefthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0037111 -0.0111957 0.0037736\\
@@ -1083,8 +1085,8 @@ t mean low high\\
 19 -0.0534353 -0.068427 -0.0371836\\
 20 -0.0547563 -0.0690406 -0.0397661\\
 };
-\addplot+[draw=none,forget plot,fill=dtblue!13] fill between[of=p4lefthi and p4leftlo];
-\addplot+[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtblue!13] fill between[of=p4lefthi and p4leftlo];
+\addplot[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0037111 -0.0111957 0.0037736\\
@@ -1108,7 +1110,7 @@ t mean low high\\
 19 -0.0534353 -0.068427 -0.0371836\\
 20 -0.0547563 -0.0690406 -0.0397661\\
 };
-\addplot+[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0 0 0\\
@@ -1132,7 +1134,7 @@ t mean low high\\
 19 -0.0002157 -0.0006116 0.0002037\\
 20 0.0008247 -0.0003773 0.0022262\\
 };
-\addplot+[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0006182 -0.0033801 0.0014251\\
@@ -1158,7 +1160,7 @@ t mean low high\\
 };
 \nextgroupplot[title={Atlanta},yticklabels={}]
 \addplot[black!30,densely dotted,forget plot] coordinates{(0,0)(20,0)};
-\addplot+[draw=none,forget plot,name path=p5rightlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p5rightlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 0.0074236 0.0007244 0.0140895\\
@@ -1182,7 +1184,7 @@ t mean low high\\
 19 0.0514164 0.038401 0.0655507\\
 20 0.0529358 0.0388255 0.0668942\\
 };
-\addplot+[draw=none,forget plot,name path=p5righthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p5righthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 0.0074236 0.0007244 0.0140895\\
@@ -1206,8 +1208,8 @@ t mean low high\\
 19 0.0514164 0.038401 0.0655507\\
 20 0.0529358 0.0388255 0.0668942\\
 };
-\addplot+[draw=none,forget plot,fill=dtred!13] fill between[of=p5righthi and p5rightlo];
-\addplot+[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtred!13] fill between[of=p5righthi and p5rightlo];
+\addplot[dtred,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.0074236 0.0007244 0.0140895\\
@@ -1231,7 +1233,7 @@ t mean low high\\
 19 0.0514164 0.038401 0.0655507\\
 20 0.0529358 0.0388255 0.0668942\\
 };
-\addplot+[draw=none,forget plot,name path=p5leftlo] table[row sep=\\,x=t,y=low] {
+\addplot[draw=none,forget plot,name path=p5leftlo] table[row sep=\\,x=t,y=low] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0024636 -0.0087009 0.005021\\
@@ -1255,7 +1257,7 @@ t mean low high\\
 19 -0.0544947 -0.0672623 -0.0402492\\
 20 -0.0572509 -0.0706234 -0.0434451\\
 };
-\addplot+[draw=none,forget plot,name path=p5lefthi] table[row sep=\\,x=t,y=high] {
+\addplot[draw=none,forget plot,name path=p5lefthi] table[row sep=\\,x=t,y=high] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0024636 -0.0087009 0.005021\\
@@ -1279,8 +1281,8 @@ t mean low high\\
 19 -0.0544947 -0.0672623 -0.0402492\\
 20 -0.0572509 -0.0706234 -0.0434451\\
 };
-\addplot+[draw=none,forget plot,fill=dtblue!13] fill between[of=p5lefthi and p5leftlo];
-\addplot+[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[draw=none,forget plot,fill=dtblue!13] fill between[of=p5lefthi and p5leftlo];
+\addplot[dtblue,very thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 -0.0024636 -0.0087009 0.005021\\
@@ -1304,7 +1306,7 @@ t mean low high\\
 19 -0.0544947 -0.0672623 -0.0402492\\
 20 -0.0572509 -0.0706234 -0.0434451\\
 };
-\addplot+[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[dtgray,thick,densely dashed,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0 0 0\\
@@ -1328,7 +1330,7 @@ t mean low high\\
 19 0.0002605 -0.0000705 0.0006778\\
 20 0.0002293 -0.0001215 0.0006397\\
 };
-\addplot+[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
+\addplot[black,thick,no marks,forget plot] table[row sep=\\,x=t,y=mean] {
 t mean low high\\
 0 0 0 0\\
 1 0.0012259 0.0001856 0.0023562\\
@@ -1365,11 +1367,12 @@ The LSM conditionals, rather than real human belief transitions, determine the r
 \par\vfill\clearpage
 
 \noindent{\LARGE\bfseries Figure 3. Question identities and fixed-item order effects (20 questions)}
-\vspace{.2cm}
+\vspace{.3cm}
+\noindent\hspace{1cm}{\Large\bfseries (a) Question identities (globally optimized IDs)}
+\hfill{\Large\bfseries (b) Fixed-item order effects}\hspace{4cm}\par\vspace{.15cm}
 \begin{center}
 \begin{tikzpicture}
-\node[font=\Large\bfseries,anchor=south] at (5.9cm,.7cm) {Question identities (globally optimized IDs)};
-\node[font=\Large\bfseries,anchor=south] at (25.1cm,.7cm) {Fixed-item order effects};
+
 \begin{scope}[shift={(1.9cm,0cm)}]
 \begin{groupplot}[
  group style={group size=3 by 6,horizontal sep=.72cm,vertical sep=.72cm},
@@ -1388,7 +1391,7 @@ The LSM conditionals, rather than real human belief transitions, determine the r
  point meta min=1,point meta max=161
 ]
 \nextgroupplot[title={Right push},ylabel={Alabama},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -2192,7 +2195,7 @@ x y value\\
 20 40 38\\
 };
 \nextgroupplot[title={Left push},yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 46\\
 2 1 58\\
@@ -2996,7 +2999,7 @@ x y value\\
 20 40 109\\
 };
 \nextgroupplot[title={Neutral},yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -3800,7 +3803,7 @@ x y value\\
 20 40 26\\
 };
 \nextgroupplot[ylabel={New York},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -4604,7 +4607,7 @@ x y value\\
 20 40 150\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 46\\
 2 1 59\\
@@ -5408,7 +5411,7 @@ x y value\\
 20 40 104\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -6212,7 +6215,7 @@ x y value\\
 20 40 159\\
 };
 \nextgroupplot[ylabel={Texas},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -7016,7 +7019,7 @@ x y value\\
 20 40 140\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 46\\
 2 1 59\\
@@ -7820,7 +7823,7 @@ x y value\\
 20 40 81\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -8624,7 +8627,7 @@ x y value\\
 20 40 157\\
 };
 \nextgroupplot[ylabel={Seattle},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -9428,7 +9431,7 @@ x y value\\
 20 40 106\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 46\\
 2 1 48\\
@@ -10232,7 +10235,7 @@ x y value\\
 20 40 112\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -11036,7 +11039,7 @@ x y value\\
 20 40 157\\
 };
 \nextgroupplot[ylabel={Arizona},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 59\\
@@ -11840,7 +11843,7 @@ x y value\\
 20 40 81\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 48\\
 2 1 46\\
@@ -12644,7 +12647,7 @@ x y value\\
 20 40 80\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 33\\
 2 1 32\\
@@ -13448,7 +13451,7 @@ x y value\\
 20 40 27\\
 };
 \nextgroupplot[ylabel={Atlanta},xlabel={Position}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 151\\
 2 1 64\\
@@ -14252,7 +14255,7 @@ x y value\\
 20 40 45\\
 };
 \nextgroupplot[yticklabels={},xlabel={Position}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 48\\
 2 1 46\\
@@ -15056,7 +15059,7 @@ x y value\\
 20 40 109\\
 };
 \nextgroupplot[yticklabels={},xlabel={Position}]
-\addplot+[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[row sep=\\,x index=0,y index=1,meta index=2]{
 x y value\\
 1 1 1\\
 2 1 4\\
@@ -15872,7 +15875,7 @@ x y value\\
 ]
 \nextgroupplot[title={Right-derived},ylabel={Alabama},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15883,7 +15886,7 @@ mean y minus plus\\
 };
 \nextgroupplot[title={Left-derived},yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15894,7 +15897,7 @@ mean y minus plus\\
 };
 \nextgroupplot[title={Neutral-derived},yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15905,7 +15908,7 @@ mean y minus plus\\
 };
 \nextgroupplot[ylabel={New York},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15916,7 +15919,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15927,7 +15930,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15938,7 +15941,7 @@ mean y minus plus\\
 };
 \nextgroupplot[ylabel={Texas},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15949,7 +15952,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15960,7 +15963,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15971,7 +15974,7 @@ mean y minus plus\\
 };
 \nextgroupplot[ylabel={Seattle},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15982,7 +15985,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -15993,7 +15996,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -16004,7 +16007,7 @@ mean y minus plus\\
 };
 \nextgroupplot[ylabel={Arizona},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -16015,7 +16018,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -16026,7 +16029,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xticklabels={}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -16037,7 +16040,7 @@ mean y minus plus\\
 };
 \nextgroupplot[ylabel={Atlanta},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -16048,7 +16051,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
@@ -16059,7 +16062,7 @@ mean y minus plus\\
 };
 \nextgroupplot[yticklabels={},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
-\addplot+[black,only marks,mark=*,mark size=2pt,
+\addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={mark size=1.65pt}]
  table[row sep=\\,x=mean,y=y,x error minus=minus,x error plus=plus] {
