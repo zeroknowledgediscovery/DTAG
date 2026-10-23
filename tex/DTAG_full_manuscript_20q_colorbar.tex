@@ -20,7 +20,7 @@
 % Plain pdflatex: render inline, with no shell-escape requirement.
 % pdflatex -shell-escape: create/reuse external vector PDFs.
 \newif\ifDTAGExternalPDF
-\ifnum\pdfshellescape>0
+\ifnum\pdfshellescape=1
   \DTAGExternalPDFtrue
 \else
   \DTAGExternalPDFfalse
