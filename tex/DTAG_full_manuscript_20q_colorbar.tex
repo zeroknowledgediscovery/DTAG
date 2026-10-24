@@ -286,31 +286,6 @@ H(Y\mid s)-\EE_{A_v\mid s}[H(Y\mid s,v=A_v)].
 \end{equation}
 For a compatible joint law this is nonnegative conditional mutual information, distinct from geometric displacement $\mu_v$ in (\ref{eq:mu}). Refinement can be tested by revealing held-out archival answers.
 
-\subsection{Phenotypic construction: querying a reflexive system}
-Under construction, response $A_t$ to query $q$ may alter latent state $Z_t$:
-\begin{equation}
-K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
-\label{eq:kernel}
-\end{equation}
-Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; otherwise transitions depend on prior beliefs, framing, trust, or history. Cross-sectional LSM conditionals cannot identify $T_q$, even with perfect observational fit.
-
-Clarification, temporary salience, and lasting revision call for independent outcomes, delayed measurement, and no-query controls. We test whether statistical geometry predicts responsiveness as well as reconstruction.
-
-\subsection{Why question-order effects are not automatically persuasion}
-A coherent static joint model implies
-\begin{equation}
-P(a\mid s,v)P(b\mid s,v=a,w)
-=P(b\mid s,w)P(a\mid s,w=b,v).
-\label{eq:compat}
-\end{equation}
-With a coherent joint law, terminal predictions after both answers are order-invariant, though intermediate states differ. Incompatible local conditionals can create order artifacts (\ref{eq:compat}) \cite{heckerman2000}; genuine human operators $K_A,K_B$ may fail to commute. Simulation alone cannot distinguish them.
-
-\section{Native GSS 2024 Computational Experiments}
-\label{sec:native}
-
-\subsection{Adaptive questioning of fixed synthetic personas}
-We used six fixed synthetic GSS 2024 states (Table~\ref{tab:personas}), querying survey items directly without running LLM question mapping or verbalization. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. Answers were drawn from LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
-
 \begin{table*}[!t]
 \centering
 \caption{Six pinned synthetic personas in the native GSS 2024 simulations.}
@@ -341,22 +316,7 @@ Atlanta & 47-year-old Black woman living in Atlanta, a large central city in the
 pole and negative values toward the left pole.}
 \end{table*}
 
-
-
-
-Right- and left-seeking policies moved the index in their expected directions across all six personas; neutral minimized \emph{geometric drift}, not psychological sensitivity.
-
-\subsection{Question selection as observed paths}
-Each observed question was assigned a shared categorical index without reordering runs or constructing modal paths. Of 228 items across all policies, 161 appeared in the 18 displayed right/left/neutral heatmaps (six personas by three policies; 40 runs of 20 questions). The global index permutation approximately minimizes
-\begin{equation}
-\mathcal C(\pi)=\sum_{p,u,t}\sum_{r<r'}
-\big|\pi(v_{purt})-\pi(v_{pur't})\big|,
-\label{eq:question-seriation}
-\end{equation}
-Here $u$ ranges over displayed policies. The all-pairs objective is independent of run numbering. The 67 random-only items remain in the lookup; index distances have no scientific meaning.
-
-
-\begin{figure*}[!t]
+\begin{figure*}[!ht]
 \centering
 \tikzsetnextfilename{dtag-fig2}
 \tikzexternalenable
@@ -374,6 +334,46 @@ These are fixed-set replays, not the fully adaptive runs in Fig.~\ref{fig:arch_a
 \label{fig:question-map}
 \label{fig:order-effects}
 \end{figure*}
+\subsection{Phenotypic construction: querying a reflexive system}
+Under construction, response $A_t$ to query $q$ may alter latent state $Z_t$:
+\begin{equation}
+K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
+\label{eq:kernel}
+\end{equation}
+Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; otherwise transitions depend on prior beliefs, framing, trust, or history. Cross-sectional LSM conditionals cannot identify $T_q$, even with perfect observational fit.
+
+Clarification, temporary salience, and lasting revision call for independent outcomes, delayed measurement, and no-query controls. We test whether statistical geometry predicts responsiveness as well as reconstruction.
+
+\subsection{Why question-order effects are not automatically persuasion}
+A coherent static joint model implies
+\begin{equation}
+P(a\mid s,v)P(b\mid s,v=a,w)
+=P(b\mid s,w)P(a\mid s,w=b,v).
+\label{eq:compat}
+\end{equation}
+With a coherent joint law, terminal predictions after both answers are order-invariant, though intermediate states differ. Incompatible local conditionals can create order artifacts (\ref{eq:compat}) \cite{heckerman2000}; genuine human operators $K_A,K_B$ may fail to commute. Simulation alone cannot distinguish them.
+
+\section{Native GSS 2024 Computational Experiments}
+\label{sec:native}
+
+\subsection{Adaptive questioning of fixed synthetic personas}
+We used six fixed synthetic GSS 2024 states (Table~\ref{tab:personas}), querying survey items directly without running LLM question mapping or verbalization. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. Answers were drawn from LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
+
+
+
+
+Right- and left-seeking policies moved the index in their expected directions across all six personas; neutral minimized \emph{geometric drift}, not psychological sensitivity.
+
+\subsection{Question selection as observed paths}
+Each observed question was assigned a shared categorical index without reordering runs or constructing modal paths. Of 228 items across all policies, 161 appeared in the 18 displayed right/left/neutral heatmaps (six personas by three policies; 40 runs of 20 questions). The global index permutation approximately minimizes
+\begin{equation}
+\mathcal C(\pi)=\sum_{p,u,t}\sum_{r<r'}
+\big|\pi(v_{purt})-\pi(v_{pur't})\big|,
+\label{eq:question-seriation}
+\end{equation}
+Here $u$ ranges over displayed policies. The all-pairs objective is independent of run numbering. The 67 random-only items remain in the lookup; index distances have no scientific meaning.
+
+
 
 \subsection{Fixed-set replay: robustness to question ordering}
 For each of six personas and three source policies (right, left, neutral), we froze the 20 questions from adaptive replicate zero without selecting on outcomes. Each set was replayed in its original, reversed, and two shuffled orders, with 40 fresh conditional draws per order ($18\times4\times40=2{,}880$ runs). Question-specific uniform draws were coupled across orders to reduce sampling variability.

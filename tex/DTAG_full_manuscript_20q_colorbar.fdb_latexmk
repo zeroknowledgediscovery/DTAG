@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex DTAG_full_manuscript_20q_colorbar"] 1792855939.83453 "DTAG_full_manuscript_20q_colorbar.aux" "DTAG_full_manuscript_20q_colorbar.bbl" "DTAG_full_manuscript_20q_colorbar" 1792855941.9705 0
+["bibtex DTAG_full_manuscript_20q_colorbar"] 1792856528.77543 "DTAG_full_manuscript_20q_colorbar.aux" "DTAG_full_manuscript_20q_colorbar.bbl" "DTAG_full_manuscript_20q_colorbar" 1792856530.80708 0
   "./references.bib" 1792667762.09379 7522 be53968d3c6872ca4d2d15fa4cdd046e ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "DTAG_full_manuscript_20q_colorbar.aux" 1792855941.39309 15013 bdb48e467cdef4b750290acc216626c7 "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.aux" 1792856530.22602 14913 68f1b691d6e91844569c1583b8851d25 "pdflatex"
   (generated)
   "DTAG_full_manuscript_20q_colorbar.bbl"
   "DTAG_full_manuscript_20q_colorbar.blg"
   (rewritten before read)
-["pdflatex"] 1792855939.97575 "DTAG_full_manuscript_20q_colorbar.tex" "DTAG_full_manuscript_20q_colorbar.pdf" "DTAG_full_manuscript_20q_colorbar" 1792855941.97095 0
+["pdflatex"] 1792856528.93554 "DTAG_full_manuscript_20q_colorbar.tex" "DTAG_full_manuscript_20q_colorbar.pdf" "DTAG_full_manuscript_20q_colorbar" 1792856530.80751 0
   "/home/ishanu/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1761826432 7876974 f2cd925b113ba9a0dabb379c0b5c7f29 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
@@ -310,10 +310,10 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty" 1655066402 56148 51a9a8571c07b9921892ae11063ae853 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1750827853.32322 40137 30ddae71a82d27ae43dc007b58e0b0cb ""
   "/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761279164.64469 4549816 8b48a19c039e80731c3bbbcb2dbcf0fc ""
-  "DTAG_full_manuscript_20q_colorbar.aux" 1792855941.39309 15013 bdb48e467cdef4b750290acc216626c7 "pdflatex"
-  "DTAG_full_manuscript_20q_colorbar.bbl" 1792855939.96105 6549 3f4d7f7eee7fc26ed95dd8ce76fd9682 "bibtex DTAG_full_manuscript_20q_colorbar"
-  "DTAG_full_manuscript_20q_colorbar.out" 1792855941.39409 6250 401406fe576f1d9e105a8b1128a90fd9 "pdflatex"
-  "DTAG_full_manuscript_20q_colorbar.tex" 1792855936.95497 30916 eee5e6347a2e17b0a23d4157656dcdce ""
+  "DTAG_full_manuscript_20q_colorbar.aux" 1792856530.22602 14913 68f1b691d6e91844569c1583b8851d25 "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.bbl" 1792856528.91298 6549 3f4d7f7eee7fc26ed95dd8ce76fd9682 "bibtex DTAG_full_manuscript_20q_colorbar"
+  "DTAG_full_manuscript_20q_colorbar.out" 1792856530.22702 6222 7e9b620548d216afd1f218fff04ca36d "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.tex" 1792856525.7279 29872 4f1f729a2f5c531cb3911af82faf1e31 ""
   "Figures/External/dtag-fig1.pdf" 1792855613.65622 161384 921cf980fc935d67b01426e2d4f344ef ""
   "Figures/External/dtag-fig2.pdf" 1792854033.10776 326209 688d61059ae849d977bcec09844d1c63 ""
   "Figures/publication_metadata.csv" 1792853396.65164 125 8770103e7d52628180f5dc89d7290110 ""
