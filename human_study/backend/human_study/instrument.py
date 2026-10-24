@@ -17,6 +17,18 @@ from .study_config import StudyConfig
 BASELINE = "confinan conbus coneduc conpress conmedic contv conjudge consci conlegis conarmy trust fair helpful".split()
 OUTCOMES = "cappun courts tax".split()
 
+# Audited against the checked-in GSS 2024 semantic map. These are excerpts,
+# truncated labels or question fragments, NOT verified verbatim 2024 questions.
+# Retain the source strings; the question generator must complete and validate
+# a neutral respondent-facing question from the excerpt and native answer options.
+INCOMPLETE_GSS_2024 = frozenset("""
+confinan
+nataid natchld natcity natcrime natcrimy natdrug nateduc natenrgy
+natenviy natheal natrace natroad natsci natspac
+eqwlth helppoor helpsick helpnot letin1a fehire fejobaff fefam
+workhard helpoth
+""".split())
+
 
 def build(adapter, steps=20):
     from optimize_question_sets import askable
@@ -35,7 +47,8 @@ def build(adapter, steps=20):
                 if phase != "intervention":
                     raise ValueError(f"instrument requires reviewed replacement for {v}")
                 continue
-            items.append({"item_id": v, "original_wording": ctx.var_map[v], "choices": [
+            items.append({"item_id": v, "original_wording": ctx.var_map[v],
+                          "source_text_incomplete": v in INCOMPLETE_GSS_2024, "choices": [
                 {"native_value": a, "display_label": a} for a in labels], "phase": phase,
                 "required": False, "version": "draft-1"})
     config = StudyConfig(study_id="pilot-001", intervention_steps=steps, items=items)
