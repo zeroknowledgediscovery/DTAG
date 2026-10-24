@@ -90,7 +90,7 @@
 
 \maketitle
 \begin{abstract}
-Digital Twin Anchored Generation (DTAG) couples a language interface with Large Science Models (LSMs) of survey-response dependencies. Conditional predictions for unasked items define a \emph{predictive phenotype}, refined by successive answers; geometric adaptive querying selects questions by expected movement of a pole-relative index. We distinguish such inference from \emph{phenotypic construction}, in which interaction changes future reports or beliefs. Native GSS 2024 simulations with six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Directional shifts persisted when optimized question sets were replayed in reversed order; all 54 pointwise bootstrap intervals for mean between-order contrasts contained zero. These experiments evaluate the native conditional model, not held-out human refinement accuracy, language-mapping accuracy, or persuasion. Future randomized human studies will test response prediction, directional adaptive querying, and order effects with independent outcomes and delayed follow-up.
+Digital Twin Anchored Generation (DTAG) couples a language interface with Large Science Models (LSMs) of survey-response dependencies. Conditional predictions for unasked items define a \emph{predictive phenotype}, refined by successive answers; geometric adaptive querying selects questions by expected movement of a pole-relative index. We distinguish such inference from \emph{phenotypic construction}, in which interaction changes future reports or beliefs. Native GSS 2024 simulations with six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Right- and left-derived question sets retained their directional shifts under original, reversed, and shuffled fixed-order replays, while neutral-derived sets remained near zero; no mean ordering effect was detected. These native-model experiments do not establish human persuasion or validate language mapping. A prospective randomized study will test whether adaptive questions move the estimated ideology in the predicted direction when answered by real respondents.
 \end{abstract}
 \begin{IEEEkeywords}
 Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
@@ -375,42 +375,24 @@ These are fixed-set replays, not the fully adaptive runs in Fig.~\ref{fig:arch_a
 \label{fig:order-effects}
 \end{figure*}
 
-\subsection{Order sensitivity with twenty-question content fixed}
-For each persona and right/left/neutral policy, we froze the 20 items from replicate zero without endpoint selection. Each of the 18 sets was replayed in original, reversed, and two fixed shuffled orders, with 40 conditional-sampling repetitions: $18\times4\times40=2{,}880$ trajectories. Paired orders shared question-specific uniform draws to reduce Monte Carlo noise. We compared final-sign and movement-direction reversals:
-\begin{align}
-F_{pSr\pi}^{\mathrm{end}}
-&=\mathbf 1\{I_{20}^{(\pi)} I_{20}^{(0)}<0\},\\
-F_{pSr\pi}^{\mathrm{move}}
-&=\mathbf 1\{(I_{20}^{(\pi)}-I_0)(I_{20}^{(0)}-I_0)<0\}.
-\end{align}
-Sign reversals require both signed quantities to exceed $10^{-9}$ in magnitude.
+\subsection{Fixed-set replay: robustness to question ordering}
+For each of six personas and three source policies (right, left, neutral), we froze the 20 questions from adaptive replicate zero without selecting on outcomes. Each set was replayed in its original, reversed, and two shuffled orders, with 40 fresh conditional draws per order ($18\times4\times40=2{,}880$ runs). Question-specific uniform draws were coupled across orders to reduce sampling variability.
 
+Figure~\ref{fig:order-effects} shows baseline-relative displacement for the reordered fixed sets. Directional movement persists: averaged across the six persona means, right-derived sets yield $+0.0381$ (original) and $+0.0377$ (reversed), while left-derived sets yield $-0.0399$ and $-0.0410$. For both original and reversed replays, all six persona-specific pointwise 95\% bootstrap intervals exclude zero in the intended direction; both shuffles give the same directional pattern, and neutral-derived drift remains negligible.
 
-
-Figure~\ref{fig:order-effects} now reports absolute baseline-relative drift for each fixed question set and ordering. Reversal \emph{does not erase} its direction: the mean over six persona-level means is $+0.0381$ (original) versus $+0.0377$ (reversed) for right-derived sets, and $-0.0399$ versus $-0.0410$ for left-derived sets. In each direction all six persona-specific 95\% bootstrap intervals exclude zero for both original and reversed orders; neutral-derived drift remains near zero. The original order is itself a fresh \emph{fixed-set replay}, not the adaptively reselected sequence in Fig.~\ref{fig:arch_adaptive}.
-
-The paired original-minus-permuted analysis remains informative: among 720 matched comparisons per source policy, movement-direction sign reversals numbered 107 (right), 68 (left), and 10 (neutral); terminal-sign reversals numbered 69, 54, and 0. All 54 pointwise bootstrap intervals for \emph{mean between-order contrasts} included zero. Thus the selected questions generate robust directional index movement in these native replays, but there is no demonstrated population-mean ordering effect. Paired pathwise sign reversals depend on the sampling coupling and cannot substitute for a significant between-order contrast.
+All 54 pointwise bootstrap intervals for \emph{paired mean between-order contrasts} include zero. Thus we find robust effects of the \emph{selected question sets}, not evidence that permutation systematically changes the mean endpoint. These fixed-set replays are distinct from the continuously reoptimized trajectories of Fig.~\ref{fig:arch_adaptive} and do not establish human belief change.
 
 \paragraph{Cross-environment limitation.}
 Historical ten-question local and CI runs yielded different initial indices despite matching persona, semantic-map, and pole-file hashes. Model binaries were not hashed in both manifests, so absolute cross-environment comparison requires runtime/model parity checks. Within-study results remain consistent.
 
 
-\section{Testable Hypotheses and Future Human Experiments}
-\textbf{H1 (predictive refinement).} Given an initial answer set $s_0$, DTAG's conditional distributions for unasked questions predict participants' actual responses. Held-out log score should improve as additional answers enter $s_t$, while probability forecasts remain calibrated; demographic-only and fixed-query baselines provide comparisons.
+\section{Testable Hypotheses and Prospective Validation}
+\textbf{H1 (predictive refinement).} The LSM's conditional response distributions should predict unasked answers from an initial set $s_0$, with improving held-out predictive scores as actual answers accumulate. Prior LSM reconstruction results motivate this assumption; prospective calibration is a supporting check, not the principal DTAG intervention test.
 
-\textbf{H2 (directional adaptive querying).} After a common initial question sequence estimates baseline $I_\Ph(s_0)$, the one-step rightward/leftward policies based on $\mu_v(s)$ should produce corresponding directional changes in the index computed from participants' subsequent \emph{actual} answers, relative to neutral and random-query controls. Separately held-out responses assess whether any change extends beyond the queried items.
-
-\textbf{H3 (question-order effects).} After the same baseline, presenting an identical question set in forward versus reversed order should alter the resulting ideological response, measured on independent held-out items. The predicted direction and size of the order contrast must be specified before observing outcomes; intermediate index movement or coupled synthetic replay differences alone are insufficient.
+\textbf{H2 (directional adaptive querying).} After the same initial question sequence establishes $I_\Ph(s_0)$, successive questions selected by the one-step objective $\mu_v(s)$ should produce rightward or leftward shifts in $I_\Ph$ computed from respondents' \emph{actual} answers, relative to neutral and random questioning. The direction of displacement, not a change in latent belief, is the primary falsifiable prediction.
 
 \paragraph{Future validation on Prolific.}
-We propose, but have not conducted, randomized human experiments. A common baseline battery establishes $s_0$. For H1, distributions are recorded \emph{before} each response and evaluated over increasing anchor budgets. For H2, participants are randomly assigned to rightward, leftward, neutral, or random question-selection policies without persuasive messaging. For H3, a separate randomization assigns the same prespecified modules in orders $AB$ or $BA$. Independent outcome items $Y$, optional 7--14-day follow-up, preregistered contrasts, and a pilot-based power calculation will distinguish model-index refinement from persistent response change. Prolific supports longitudinal recontact \cite{prolific2026}. The delayed order contrast is
-\begin{equation}
-\tau_{\mathrm{order}}=
-\EE[Y_{\mathrm{delay}}\mid\Do(AB)]-
-\EE[Y_{\mathrm{delay}}\mid\Do(BA)].
-\label{eq:tau}
-\end{equation}
-The native LSM does not identify causal belief transitions; this is future validation, not a finding. Human-subjects oversight and safeguards against individually targeted political influence will be required. The focus is question elicitation, not social-media exposure as in \cite{bail2018}.
+We propose a randomized study, not yet conducted, with a common baseline questionnaire and four question-selection arms: rightward, leftward, neutral, and random. The main comparisons test whether baseline-to-endpoint index displacement is positive under rightward selection and negative under leftward selection, beyond the control arms, using preregistered questions, policies, and confidence intervals. Predictive probabilities will be recorded before each answer to assess calibration; independent unasked items and an optional delayed follow-up may explore whether changes extend beyond the fitted index. Sample size will follow pilot-based power analysis. Prolific permits recontact \cite{prolific2026}; human-subjects oversight and safeguards against individually targeted political influence are required. This is a test of model-guided \emph{estimation}, not an intervention designed to persuade voters. Order-specific human effects are secondary future questions, not required arms of this initial study.
 
 \section{Discussion and Limitations}
 DTAG models \emph{what a respondent might report}, not yet \emph{what an interaction makes them believe}. Associations can reflect common causes, sorting, survey design, or history. Incompatible LSM conditionals or semantic mappings may create synthetic order effects unrelated to human reflexivity.
@@ -418,7 +400,7 @@ DTAG models \emph{what a respondent might report}, not yet \emph{what an interac
 Under passive observation of a coherent joint law, the posterior mean of a fixed trait $g(X)$ is a martingale. DTAG's nonlinear index $I_\Ph(s)$ is generally not that posterior mean and may drift without persuasion. Limitations also include pole and wave dependence, missingness calibration, wording, demand, response modes, and eviction of old anchors. Human experiments need measurement invariance and delayed outcomes.
 
 \section{Conclusion}
-DTAG uses high-dimensional conditional predictions for adaptive querying and model-based phenotypic refinement. Synthetic trajectories need not represent human change; held-out reconstruction and randomized human order experiments remain distinct validation tests.
+DTAG converts learned conditional survey dependencies into an operational question-selection policy that systematically shifts estimated ideology in native simulations. The shift persists when selected question sets are replayed in different orders. The central prospective test is whether the policy predicts the direction of estimated-ideology movement from actual human answers, without equating such movement with persuasion.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
