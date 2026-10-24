@@ -157,7 +157,65 @@ I_\Ph(s)=\frac{\theta_\Ph(s_L,s)-\theta_\Ph(s_R,s)}
 {\theta_\Ph(s_L,s_R)}.
 \label{eq:ideology}
 \end{equation}
-Following the semantic pole construction of \cite{dahal2026}, $s_L,s_R$ pin opposing responses on socially contentious items (abortion, firearms, public spending, religion, and civil liberties); other coordinates are missing. Of 43 canonical items, 27 have valid left/right labels in GSS 2024 (\texttt{assets/polar\_vectors/gss/gss\_2024\_polar\_vectors.csv}). They are reference configurations, not demographic prototypes or observed respondents. Our sign convention makes the right pole positive; $I_\Ph$ is a pole-relative geometric index, not self-reported ideology.
+The semantically defined poles \cite{dahal2026} specify 27 opposing GSS 2024 responses on social policy, civil liberties, public spending, and religion (Table~\ref{tab:poles}); all other coordinates remain unspecified. They are reference configurations, not typical respondents. The pole-relative index is not a self-reported ideology score.
+
+\begin{table*}[!t]
+\centering
+\caption{\textbf{GSS 2024 left/right reference poles.} The 27 listed
+item--response assignments are the complete nonmissing coordinates of
+the two pole states used to compute $I_\Phi$. All other survey variables
+are unspecified. Topics paraphrase item wording; categorical responses
+match the simulation definitions. The poles yield $I_\Phi=-1$ and $+1$.}
+\label{tab:poles}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.02}
+\begin{minipage}[t]{.495\textwidth}
+\begin{tabularx}{\linewidth}{@{}lX>{\raggedright\arraybackslash}p{.70in}>{\raggedright\arraybackslash}p{.70in}@{}}
+\toprule
+\textbf{Item} & \textbf{Survey topic} & \textbf{Left} & \textbf{Right} \\
+\midrule
+\texttt{abany} & Abortion on request & yes & no \\
+\texttt{abdefect} & Abortion: fetal defect & yes & no \\
+\texttt{abnomore} & Abortion: no more children & yes & no \\
+\texttt{abpoor} & Abortion: low income & yes & no \\
+\texttt{abrape} & Abortion after rape & yes & no \\
+\texttt{absingle} & Abortion: unmarried & yes & no \\
+\texttt{bible} & Bible interpretation & ancient book & inspired word \\
+\texttt{colcom} & Communist as college teacher & not fired & yes, fired \\
+\texttt{confed} & Trust in federal government & a great deal & hardly any \\
+\texttt{conlabor} & Trust in organized labor & a great deal & hardly any \\
+\texttt{grass} & Marijuana legalization & should be legal & should not be legal \\
+\texttt{gunlaw} & Permit to purchase gun & favor & oppose \\
+\texttt{libcom} & Communist books in library & not remove & remove \\
+\texttt{libmslm} & Muslim cleric books in library & not remove & remove \\
+\bottomrule
+\end{tabularx}
+\end{minipage}\hfill
+\begin{minipage}[t]{.495\textwidth}
+\begin{tabularx}{\linewidth}{@{}lX>{\raggedright\arraybackslash}p{.70in}>{\raggedright\arraybackslash}p{.70in}@{}}
+\toprule
+\textbf{Item} & \textbf{Survey topic} & \textbf{Left} & \textbf{Right} \\
+\midrule
+\texttt{natarms} & Military spending & too much & about right \\
+\texttt{natenvir} & Environmental spending & too little & about right \\
+\texttt{natfare} & Welfare spending & too little & too much \\
+\texttt{natsoc} & Social Security spending & too little & about right \\
+\texttt{owngun} & Guns in household & no & yes \\
+\texttt{pillok} & Contraception access & strongly agree & disagree \\
+\texttt{polabuse} & Police strike insulting citizen & yes & no \\
+\texttt{pray} & Frequency of prayer & never & several times a day \\
+\texttt{prayer} & Bible prayer in public schools & approve & disapprove \\
+\texttt{reliten} & Personal religiosity & no religion & strong \\
+\texttt{rowngun} & Respondent owns a gun & no & yes \\
+\texttt{shotgun} & Owns a shotgun & no & yes \\
+\texttt{spkcom} & Communist public speech & yes, allowed to speak & not allowed \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\endgroup
+\end{table*}
 
 \section{DTAG: A Conditional Theory-of-Mind Interface}
 \subsection{Architecture and generative semantics}
