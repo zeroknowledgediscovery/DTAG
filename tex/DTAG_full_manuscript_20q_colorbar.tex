@@ -90,7 +90,7 @@
 
 \maketitle
 \begin{abstract}
-Digital Twin Anchored Generation (DTAG) couples a language interface with Large Science Models (LSMs) of survey-response dependencies. Conditional predictions for unasked items define a \emph{predictive phenotype}, refined by successive answers; geometric adaptive querying selects questions by expected movement of a pole-relative index. We distinguish such inference from \emph{phenotypic construction}, in which interaction changes future reports or beliefs. Native GSS 2024 simulations with six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Reordering changed coupled sample paths, including some endpoint signs, but all 54 signed-mean order-contrast bootstrap confidence intervals contained zero. These experiments evaluate the native conditional model, not held-out human refinement accuracy, language-mapping accuracy, or persuasion. A proposed five-arm randomized human study tests order effects with reversed sequences, single-module and neutral controls, independent outcomes, and delayed follow-up.
+Digital Twin Anchored Generation (DTAG) couples a language interface with Large Science Models (LSMs) of survey-response dependencies. Conditional predictions for unasked items define a \emph{predictive phenotype}, refined by successive answers; geometric adaptive querying selects questions by expected movement of a pole-relative index. We distinguish such inference from \emph{phenotypic construction}, in which interaction changes future reports or beliefs. Native GSS 2024 simulations with six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Reordering changed coupled sample paths, including some endpoint signs, but all 54 signed-mean order-contrast bootstrap confidence intervals contained zero. These experiments evaluate the native conditional model, not held-out human refinement accuracy, language-mapping accuracy, or persuasion. Future randomized human studies will test response prediction, directional adaptive querying, and order effects with independent outcomes and delayed follow-up.
 \end{abstract}
 \begin{IEEEkeywords}
 Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
@@ -722,43 +722,22 @@ Coupled pathwise reversals do not necessarily change marginal terminal distribut
 Historical ten-question local and CI runs yielded different initial indices despite matching persona, semantic-map, and pole-file hashes. Model binaries were not hashed in both manifests, so absolute cross-environment comparison requires runtime/model parity checks. Within-study results remain consistent.
 
 
-\section{Testable Hypotheses and a Prolific Experiment}
-\subsection{Predictions that discriminate the mechanisms}
-\textbf{H1 (predictive ToM):} With equal anchor budgets, DTAG improves held-out log score and calibration over demographic/psychometric, retrieval, and prompted-LLM baselines. This tests inference, not influence.
+\section{Testable Hypotheses and Future Human Experiments}
+\textbf{H1 (predictive refinement).} Given an initial answer set $s_0$, DTAG's conditional distributions for unasked questions predict participants' actual responses. Held-out log score should improve as additional answers enter $s_t$, while probability forecasts remain calibrated; demographic-only and fixed-query baselines provide comparisons.
 
-\textbf{H2 (geometric sensitivity):} Cross-domain changes $R_j$ predict informative held-out responses; large geometric displacements without predictive gains do not validate refinement.
+\textbf{H2 (directional adaptive querying).} After a common initial question sequence estimates baseline $I_\Ph(s_0)$, the one-step rightward/leftward policies based on $\mu_v(s)$ should produce corresponding directional changes in the index computed from participants' subsequent \emph{actual} answers, relative to neutral and random-query controls. Separately held-out responses assess whether any change extends beyond the queried items.
 
-\textbf{H3 (question-order response):} With content fixed, human $A\to B$ versus $B\to A$ randomization yields prospectively predicted differences in independent outcomes. Immediate contrasts alone do not establish durability.
+\textbf{H3 (question-order effects).} After the same baseline, presenting an identical question set in forward versus reversed order should alter the resulting ideological response, measured on independent held-out items. The predicted direction and size of the order contrast must be specified before observing outcomes; intermediate index movement or coupled synthetic replay differences alone are insufficient.
 
-\textbf{H4 (geometric prior to responsiveness):} Locked LSM propagation and uncertainty features predict heterogeneous human responses beyond conventional baseline predictors without assuming identified causal transitions.
-
-\textbf{H5 (durability and construct separation):} Persistent effects survive delayed alternate-wording measurement; immediate wording-specific effects suggest transient context dependence.
-
-\subsection{Study design: reverse order, single exposure, and independent outcomes}
-A proposed Prolific study assigns consenting adults, after common anchors $S_0$, to five balanced arms independently of political opinions: (i) $A\to B$, (ii) $B\to A$, (iii) $A$ only, (iv) $B$ only, or (v) duration-matched neutral control. Preregistered modules address neutral public issues and institutional trust; contextual information remains factual, balanced, and identical. There is no personalized political messaging or voting intervention; directional index optimization has dual-use risks and is not proposed for individual political targeting.
-
-Independent unasked outcomes $Y$ and negative controls are locked before recruitment from predicted cross-domain dependencies. Arms share instructions, survey time, and blinded presentation. Follow-up at 7--14 days uses validated alternate wording where available. A pilot checks question interpretation, scale reliability, timing, exclusions, and attrition.
-
-The \emph{primary randomized estimand} is the delayed intent-to-treat order contrast
+\paragraph{Future validation on Prolific.}
+We propose, but have not conducted, randomized human experiments. A common baseline battery establishes $s_0$. For H1, distributions are recorded \emph{before} each response and evaluated over increasing anchor budgets. For H2, participants are randomly assigned to rightward, leftward, neutral, or random question-selection policies without persuasive messaging. For H3, a separate randomization assigns the same prespecified modules in orders $AB$ or $BA$. Independent outcome items $Y$, optional 7--14-day follow-up, preregistered contrasts, and a pilot-based power calculation will distinguish model-index refinement from persistent response change. Prolific supports longitudinal recontact \cite{prolific2026}. The delayed order contrast is
 \begin{equation}
 \tau_{\mathrm{order}}=
 \EE[Y_{\mathrm{delay}}\mid\Do(AB)]-
 \EE[Y_{\mathrm{delay}}\mid\Do(BA)].
 \label{eq:tau}
 \end{equation}
-Single-module and control arms estimate elicitation effects. A preregistered outcome composite, plus exploratory item-wise results, prevents selective reporting. Delayed contrasts are primary for persistence. Randomization identifies report changes, not a unique latent mechanism.
-
-\subsection{Locked prediction pipeline and quantitative analysis}
-Before human outcomes, freeze the LSM survey wave, poles, mapping, source commit, seeds, eligible $A,B,Y$ sets, predictions, and analysis. Static DTAG forecasts $Y$ conditionals but \emph{cannot} alone forecast causal order effects. Compare a zero-causal-order baseline against a separately pilot-trained transition model, testing incremental held-out accuracy and heterogeneity predicted by uncertainty, pole distances, and $\mathcal P_\Ph$.
-
-Estimate intention-to-treat contrasts using arm indicators, preregistered covariates, robust standard errors, and attrition sensitivity bounds. Prespecify discrete or composite outcomes, calibration, multiplicity adjustments, and confidence intervals. Baseline strata explain heterogeneity; they do not target messages.
-
-Feasibility targets are $N\approx150$ in a pilot and $N\approx1500$ in the main wave (about 300 per arm before attrition), \emph{not} a power calculation. Final numbers depend on pilot variance, relevant effects, error rates, and retention. Prolific supports recontact \cite{prolific2026}; human-participants approval is required.
-
-
-
-\subsection{Relationship to Bail \emph{et al.} and expected contribution}
-Bail \emph{et al.} \cite{bail2018} showed cross-cutting exposure need not depolarize. Our study instead isolates whether query order changes independent subsequent outcomes and whether model geometry predicts the response distribution. Information-exposure interventions require a separate study; this is not Bail's treatment.
+The native LSM does not identify causal belief transitions; this is future validation, not a finding. Human-subjects oversight and safeguards against individually targeted political influence will be required. The focus is question elicitation, not social-media exposure as in \cite{bail2018}.
 
 \section{Discussion and Limitations}
 DTAG models \emph{what a respondent might report}, not yet \emph{what an interaction makes them believe}. Associations can reflect common causes, sorting, survey design, or history. Incompatible LSM conditionals or semantic mappings may create synthetic order effects unrelated to human reflexivity.
