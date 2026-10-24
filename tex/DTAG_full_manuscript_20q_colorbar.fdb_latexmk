@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex DTAG_full_manuscript_20q_colorbar"] 1792848935.33115 "DTAG_full_manuscript_20q_colorbar.aux" "DTAG_full_manuscript_20q_colorbar.bbl" "DTAG_full_manuscript_20q_colorbar" 1792848937.49523 0
+["bibtex DTAG_full_manuscript_20q_colorbar"] 1792855939.83453 "DTAG_full_manuscript_20q_colorbar.aux" "DTAG_full_manuscript_20q_colorbar.bbl" "DTAG_full_manuscript_20q_colorbar" 1792855941.9705 0
   "./references.bib" 1792667762.09379 7522 be53968d3c6872ca4d2d15fa4cdd046e ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "DTAG_full_manuscript_20q_colorbar.aux" 1792848936.88009 15883 608d470f3d94953244eacd9fa88492a8 "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.aux" 1792855941.39309 15013 bdb48e467cdef4b750290acc216626c7 "pdflatex"
   (generated)
   "DTAG_full_manuscript_20q_colorbar.bbl"
   "DTAG_full_manuscript_20q_colorbar.blg"
   (rewritten before read)
-["pdflatex"] 1792848935.47413 "DTAG_full_manuscript_20q_colorbar.tex" "DTAG_full_manuscript_20q_colorbar.pdf" "DTAG_full_manuscript_20q_colorbar" 1792848937.49577 0
+["pdflatex"] 1792855939.97575 "DTAG_full_manuscript_20q_colorbar.tex" "DTAG_full_manuscript_20q_colorbar.pdf" "DTAG_full_manuscript_20q_colorbar" 1792855941.97095 0
   "/home/ishanu/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1761826432 7876974 f2cd925b113ba9a0dabb379c0b5c7f29 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
@@ -46,7 +46,6 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri7.tfm" 1254269338 17168 78a37e395d0470967cfda94332b0716a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri8.tfm" 1254269338 17152 c8240fef851c4991afefdae37a539ee1 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri9.tfm" 1254269338 17148 ca1ae65757b004f470b8cd636199f6fc ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmtcsc10.tfm" 1254269338 1384 dbc46a6206739b89af9a1424c7082c77 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmtt8.tfm" 1254269338 1380 64228d979098ac090aa3f98d5aa8ad3e ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy10.tfm" 1148093231 1300 2df9da0fc09d4a8c772b3dd386a47c6a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy5.tfm" 1148093231 1304 2ff0a255ae754422adbc0e6519ed2658 ""
@@ -105,7 +104,6 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy7.pfb" 1254269338 27941 d1f5d03f61a46c3fcc3a2ba904ddda52 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb" 1254269338 27802 5c876bb2c4040caaf035d60bd74a86bd ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy9.pfb" 1254269338 27835 16c2fa83351d4ef8cf5aebfab8a44bc1 ""
-  "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtcsc10.pfb" 1255129361 109031 f0468b2a456d1f2ea2bd0c9341b43493 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt8.pfb" 1255129361 115291 2ae7034c644e971beb573b1e6606f863 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1714953600 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
@@ -312,21 +310,13 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty" 1655066402 56148 51a9a8571c07b9921892ae11063ae853 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1750827853.32322 40137 30ddae71a82d27ae43dc007b58e0b0cb ""
   "/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761279164.64469 4549816 8b48a19c039e80731c3bbbcb2dbcf0fc ""
-  "DTAG_full_manuscript_20q_colorbar.aux" 1792848936.88009 15883 608d470f3d94953244eacd9fa88492a8 "pdflatex"
-  "DTAG_full_manuscript_20q_colorbar.bbl" 1792848935.46205 6549 3f4d7f7eee7fc26ed95dd8ce76fd9682 "bibtex DTAG_full_manuscript_20q_colorbar"
-  "DTAG_full_manuscript_20q_colorbar.out" 1792848936.88209 6250 401406fe576f1d9e105a8b1128a90fd9 "pdflatex"
-  "DTAG_full_manuscript_20q_colorbar.tex" 1792848931.35694 53748 fa52bb3af4fdfbee30e974090f9b6144 ""
-  "Figures/External/dtag-circuit.dpth" 1792780533.11113 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "Figures/External/dtag-circuit.md5" 1792780532.0841 62 62cabef0e4eaad0e470d01aac42cd732 ""
-  "Figures/External/dtag-circuit.pdf" 1792780533.51314 111718 79d66c5c13dfa73a3b0526992c00714f ""
-  "Figures/External/dtag-endpoints.dpth" 1792780573.42021 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "Figures/External/dtag-endpoints.md5" 1792780572.37218 62 c08ab2ea408bca5107694642ffd082c9 ""
-  "Figures/External/dtag-endpoints.pdf" 1792780574.00222 108076 9d095abaf1029856770c9530311618b3 ""
-  "Figures/External/dtag-trajectories.dpth" 1792780720.12114 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "Figures/External/dtag-trajectories.md5" 1792780719.08011 62 256f828009781d22e1e36189289493d7 ""
-  "Figures/External/dtag-trajectories.pdf" 1792780721.23117 63190 1873a369889e85523b1a66dedc40db77 ""
-  "Figures/External/dtagfig2.pdf" 1792790837.88154 332395 b2569f5a137148d1127d62187708bf75 ""
-  "Figures/publication_metadata.csv" 1792775674.69484 126 fff0e9230973356a68c7cad5bacd1279 ""
+  "DTAG_full_manuscript_20q_colorbar.aux" 1792855941.39309 15013 bdb48e467cdef4b750290acc216626c7 "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.bbl" 1792855939.96105 6549 3f4d7f7eee7fc26ed95dd8ce76fd9682 "bibtex DTAG_full_manuscript_20q_colorbar"
+  "DTAG_full_manuscript_20q_colorbar.out" 1792855941.39409 6250 401406fe576f1d9e105a8b1128a90fd9 "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.tex" 1792855936.95497 30916 eee5e6347a2e17b0a23d4157656dcdce ""
+  "Figures/External/dtag-fig1.pdf" 1792855613.65622 161384 921cf980fc935d67b01426e2d4f344ef ""
+  "Figures/External/dtag-fig2.pdf" 1792854033.10776 326209 688d61059ae849d977bcec09844d1c63 ""
+  "Figures/publication_metadata.csv" 1792853396.65164 125 8770103e7d52628180f5dc89d7290110 ""
   (generated)
   "DTAG_full_manuscript_20q_colorbar.aux"
   "DTAG_full_manuscript_20q_colorbar.auxlock"

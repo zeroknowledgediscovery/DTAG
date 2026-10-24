@@ -5,8 +5,45 @@
 }\par\vspace{1mm}
 % Two independent TikZ pictures, side by side. No nested wrappers.
 %\resizebox{\textwidth}{!}{%
+% -------- Figure 2 CSV definitions (one per input table) --------
+\def\DTAGCSVFigureTwoAA{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGCSVFigureTwoAB{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGCSVFigureTwoAC{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGCSVFigureTwoAD{\DTAGFigureDir/heatmap_cm_rural_alabama_left.csv}
+\def\DTAGCSVFigureTwoAE{\DTAGFigureDir/heatmap_cm_rural_alabama_neutral.csv}
+\def\DTAGCSVFigureTwoAF{\DTAGFigureDir/heatmap_cm_rural_alabama_right.csv}
+\def\DTAGCSVFigureTwoAG{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGCSVFigureTwoAH{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGCSVFigureTwoAI{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGCSVFigureTwoAJ{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_left.csv}
+\def\DTAGCSVFigureTwoAK{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGCSVFigureTwoAL{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_right.csv}
+\def\DTAGCSVFigureTwoAM{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_left.csv}
+\def\DTAGCSVFigureTwoAN{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGCSVFigureTwoAO{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_right.csv}
+\def\DTAGCSVFigureTwoAP{\DTAGFigureDir/heatmap_wf_new_york_city_left.csv}
+\def\DTAGCSVFigureTwoAQ{\DTAGFigureDir/heatmap_wf_new_york_city_neutral.csv}
+\def\DTAGCSVFigureTwoAR{\DTAGFigureDir/heatmap_wf_new_york_city_right.csv}
+\def\DTAGCSVFigureTwoAS{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGCSVFigureTwoAT{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGCSVFigureTwoAU{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGCSVFigureTwoAV{\DTAGFigureDir/pub_order_cm_rural_alabama_left.csv}
+\def\DTAGCSVFigureTwoAW{\DTAGFigureDir/pub_order_cm_rural_alabama_neutral.csv}
+\def\DTAGCSVFigureTwoAX{\DTAGFigureDir/pub_order_cm_rural_alabama_right.csv}
+\def\DTAGCSVFigureTwoAY{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGCSVFigureTwoAZ{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGCSVFigureTwoBA{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGCSVFigureTwoBB{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_left.csv}
+\def\DTAGCSVFigureTwoBC{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGCSVFigureTwoBD{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_right.csv}
+\def\DTAGCSVFigureTwoBE{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_left.csv}
+\def\DTAGCSVFigureTwoBF{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGCSVFigureTwoBG{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_right.csv}
+\def\DTAGCSVFigureTwoBH{\DTAGFigureDir/pub_order_wf_new_york_city_left.csv}
+\def\DTAGCSVFigureTwoBI{\DTAGFigureDir/pub_order_wf_new_york_city_neutral.csv}
+\def\DTAGCSVFigureTwoBJ{\DTAGFigureDir/pub_order_wf_new_york_city_right.csv}
 \begin{tikzpicture}[font=\bf\sffamily\fontsize{9}{9}\selectfont]
-\node[] (A) at (0,0) {
+\node[label={90:(a) Question seuences}] (A) at (0,0) {
 \begin{tikzpicture}[anchor=center]
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAF}
@@ -95,7 +132,7 @@ colorbar style={
 \addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAB};
 \end{groupplot}
 \end{tikzpicture}};%
-\node[anchor=north west] at (A.north east) {
+\node[anchor=north west,label={90:(b) Question re-ordering effect}] at (A.north east) {
 \begin{tikzpicture}[anchor=center]
 \tikzpicturedependsonfile{\DTAGMetadataCSV}
 \tikzpicturedependsonfile{\DTAGCSVFigureTwoAX}
@@ -121,7 +158,7 @@ colorbar style={
  publication axis,scale only axis,width=1in,height=.78in,
  xmin=-\DTAGOrderBound,xmax=\DTAGOrderBound,ymin=.5,ymax=3.5,
  ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},
- xtick={-.04,-.02,0,.02,.04},
+ %xtick={-.04,-.02,0,.02,.04},
  xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
 ]
 \nextgroupplot[title={Right-derived},ylabel={Alabama},xticklabels={}]
