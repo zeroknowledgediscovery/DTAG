@@ -90,7 +90,7 @@
 
 \maketitle
 \begin{abstract}
-Digital Twin Anchored Generation (DTAG) couples a language interface with Large Science Models (LSMs) of survey-response dependencies. Conditional predictions for unasked items define a \emph{predictive phenotype}, refined by successive answers; geometric adaptive querying selects questions by expected movement of a pole-relative index. We distinguish such inference from \emph{phenotypic construction}, in which interaction changes future reports or beliefs. Native GSS 2024 simulations with six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Reordering changed coupled sample paths, including some endpoint signs, but all 54 signed-mean order-contrast bootstrap confidence intervals contained zero. These experiments evaluate the native conditional model, not held-out human refinement accuracy, language-mapping accuracy, or persuasion. Future randomized human studies will test response prediction, directional adaptive querying, and order effects with independent outcomes and delayed follow-up.
+Digital Twin Anchored Generation (DTAG) couples a language interface with Large Science Models (LSMs) of survey-response dependencies. Conditional predictions for unasked items define a \emph{predictive phenotype}, refined by successive answers; geometric adaptive querying selects questions by expected movement of a pole-relative index. We distinguish such inference from \emph{phenotypic construction}, in which interaction changes future reports or beliefs. Native GSS 2024 simulations with six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Directional shifts persisted when optimized question sets were replayed in reversed order; all 54 pointwise bootstrap intervals for mean between-order contrasts contained zero. These experiments evaluate the native conditional model, not held-out human refinement accuracy, language-mapping accuracy, or persuasion. Future randomized human studies will test response prediction, directional adaptive querying, and order effects with independent outcomes and delayed follow-up.
 \end{abstract}
 \begin{IEEEkeywords}
 Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
@@ -682,22 +682,236 @@ Here $u$ ranges over displayed policies. The all-pairs objective is independent 
 
 \begin{figure*}[!t]
 \centering
-\tikzexternalenable
-\tikzsetnextfilename{dtagfig2}
+\tikzexternaldisable
+\begin{minipage}[t]{.42\textwidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/External/dtag-figure2a-question-identities}
+\end{minipage}\hfill
+\begin{minipage}[t]{.56\textwidth}
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}
+\begin{groupplot}[
+  group style={group size=3 by 6,horizontal sep=.69cm,vertical sep=.40cm},
+  width=2.46cm,height=1.54cm,scale only axis,
+  xmin=-.085,xmax=.085,ymin=.5,ymax=4.5,
+  ytick={1,2,3,4},yticklabels={Shuffle 2,Shuffle 1,Reverse,Original},
+  xtick={-.08,0,.08},
+  xticklabel style={font=\tiny},yticklabel style={font=\scriptsize},
+  label style={font=\scriptsize},
+  title style={font=\scriptsize\bfseries},
+  grid=major,grid style={draw=black!7},
+  axis line style={draw=black!35},tick style={draw=black!30},
+  scaled x ticks=false,
+  xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}}
+]
+\nextgroupplot[title={Right-derived},ylabel={Alabama},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(0.055366425,4) += (0.015606101,0) -= (0.016226342,0)
+(0.052437674,3) += (0.015541022,0) -= (0.017133144,0)
+(0.051686591,2) += (0.016770126,0) -= (0.016987307,0)
+(0.055062402,1) += (0.015145447,0) -= (0.016113853,0)
+};
+\nextgroupplot[title={Left-derived},yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.042844302,4) += (0.015734364,0) -= (0.015542368,0)
+(-0.044740665,3) += (0.014465748,0) -= (0.013516761,0)
+(-0.041493397,2) += (0.014679605,0) -= (0.013035483,0)
+(-0.043419185,1) += (0.014298065,0) -= (0.013979382,0)
+};
+\nextgroupplot[title={Neutral-derived},yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.000080062,4) += (0.000235733,0) -= (0.000224719,0)
+(-0.000080062,3) += (0.000232324,0) -= (0.000222595,0)
+(-0.000080062,2) += (0.000236260,0) -= (0.000228245,0)
+(-0.000080062,1) += (0.000241128,0) -= (0.000229333,0)
+};
+\nextgroupplot[ylabel={New York},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(0.020074819,4) += (0.016502046,0) -= (0.015822662,0)
+(0.030012756,3) += (0.019285116,0) -= (0.019392854,0)
+(0.028092908,2) += (0.018619829,0) -= (0.017889940,0)
+(0.017302551,1) += (0.013895987,0) -= (0.013281082,0)
+};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.047053914,4) += (0.012561893,0) -= (0.012432984,0)
+(-0.046138272,3) += (0.012656365,0) -= (0.013323495,0)
+(-0.047114543,2) += (0.013317570,0) -= (0.013399259,0)
+(-0.046766355,1) += (0.013177924,0) -= (0.012946464,0)
+};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(0.000021992,4) += (0.000137747,0) -= (0.000133004,0)
+(0.000021992,3) += (0.000144824,0) -= (0.000133463,0)
+(0.000021992,2) += (0.000143531,0) -= (0.000136659,0)
+(0.000021992,1) += (0.000139106,0) -= (0.000139307,0)
+};
+\nextgroupplot[ylabel={Texas},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(0.034843073,4) += (0.016954780,0) -= (0.015334125,0)
+(0.028522085,3) += (0.016090260,0) -= (0.016014353,0)
+(0.033928204,2) += (0.016461873,0) -= (0.016585977,0)
+(0.034001548,1) += (0.016345003,0) -= (0.015758339,0)
+};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.034241469,4) += (0.017803729,0) -= (0.016593253,0)
+(-0.036973308,3) += (0.014566862,0) -= (0.014371028,0)
+(-0.033242776,2) += (0.015351204,0) -= (0.015804641,0)
+(-0.035142717,1) += (0.017474890,0) -= (0.016949142,0)
+};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.000173905,4) += (0.000289983,0) -= (0.000356442,0)
+(-0.000163159,3) += (0.000281362,0) -= (0.000380337,0)
+(-0.000173905,2) += (0.000285637,0) -= (0.000390484,0)
+(-0.000173905,1) += (0.000288716,0) -= (0.000341626,0)
+};
+\nextgroupplot[ylabel={Seattle},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(0.029640508,4) += (0.013952438,0) -= (0.014326112,0)
+(0.033239864,3) += (0.017279577,0) -= (0.017704084,0)
+(0.029553194,2) += (0.013489574,0) -= (0.013312289,0)
+(0.027222513,1) += (0.014059898,0) -= (0.015069199,0)
+};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.039441025,4) += (0.018665036,0) -= (0.017018902,0)
+(-0.040772336,3) += (0.016772660,0) -= (0.016800111,0)
+(-0.039974348,2) += (0.016552948,0) -= (0.016901005,0)
+(-0.041020058,1) += (0.016940302,0) -= (0.016871323,0)
+};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.000101194,4) += (0.000311398,0) -= (0.000291952,0)
+(0.000015868,3) += (0.000357959,0) -= (0.000325745,0)
+(0.000015868,2) += (0.000360532,0) -= (0.000317970,0)
+(-0.000090447,1) += (0.000333532,0) -= (0.000306092,0)
+};
+\nextgroupplot[ylabel={Arizona},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(0.028067852,4) += (0.015084574,0) -= (0.012993954,0)
+(0.023103131,3) += (0.014784415,0) -= (0.015347797,0)
+(0.028751062,2) += (0.014585022,0) -= (0.013458526,0)
+(0.027556344,1) += (0.014061177,0) -= (0.013573954,0)
+};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.030049052,4) += (0.013786316,0) -= (0.012655768,0)
+(-0.034158047,3) += (0.014219559,0) -= (0.013359610,0)
+(-0.033274502,2) += (0.014439038,0) -= (0.013429800,0)
+(-0.029691692,1) += (0.014687609,0) -= (0.014335519,0)
+};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.000093391,4) += (0.000444345,0) -= (0.000395883,0)
+(-0.000115322,3) += (0.000423978,0) -= (0.000401703,0)
+(-0.000142596,2) += (0.000491258,0) -= (0.000402119,0)
+(-0.000115322,1) += (0.000425423,0) -= (0.000394591,0)
+};
+\nextgroupplot[ylabel={Atlanta},xlabel={$I_{20}-I_0$}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(0.060624407,4) += (0.015623758,0) -= (0.015745150,0)
+(0.058965739,3) += (0.015632402,0) -= (0.016796047,0)
+(0.059051240,2) += (0.017560320,0) -= (0.018311849,0)
+(0.061439698,1) += (0.015032504,0) -= (0.015310342,0)
+};
+\nextgroupplot[yticklabels={},xlabel={$I_{20}-I_0$}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(-0.045955674,4) += (0.015198567,0) -= (0.015678521,0)
+(-0.043366136,3) += (0.014862994,0) -= (0.015379751,0)
+(-0.046203619,2) += (0.016765911,0) -= (0.014825442,0)
+(-0.046644975,1) += (0.015594440,0) -= (0.014385846,0)
+};
+\nextgroupplot[yticklabels={},xlabel={$I_{20}-I_0$}]
+\addplot[black!35,thin,forget plot] coordinates {(0,.5)(0,4.5)};
+\addplot[only marks,black,mark=*,mark size=1.65pt,
+error bars/.cd,x dir=both,x explicit,
+error bar style={line width=.95pt,black!75},
+error mark options={mark size=1.4pt}] coordinates {
+(0.000189544,4) += (0.000379982,0) -= (0.000288585,0)
+(0.000189544,3) += (0.000379912,0) -= (0.000301520,0)
+(0.000189544,2) += (0.000376764,0) -= (0.000300499,0)
+(0.000189544,1) += (0.000363052,0) -= (0.000302312,0)
+};
+\end{groupplot}
+\end{tikzpicture}
+}
+\end{minipage}
+\vspace{-8pt}
 
-%\input{Figures/fig2}
-
-\includegraphics[width=\textwidth]{Figures/External/dtagfig2}
-
-\vspace{-10pt}
-
-\caption{\textbf{Question identities and fixed-item order effects over all six personas.}
-Left: 18 nearly square categorical heatmaps show \DTAGReps{} independent runs over
-\DTAGSteps{} question positions. The single colorbar denotes optimized question IDs (blue: low; red: high), not signed ideological effects. A single globally optimized categorical map covers
-\DTAGIdMax{} displayed items from \DTAGTotalQuestions{} observed questions.
-Right: original order versus reversal and two shuffles of fixed \DTAGSteps{}-item
-sets, displaying paired endpoint differences with 95\% bootstrap confidence intervals.
-The items are fixed; the displayed contrasts are model-based.}
+\caption{\textbf{Question identities and fixed-item directional displacement across six personas.}
+Left: adaptive-question identities for \DTAGReps{} runs of \DTAGSteps{} questions (one shared categorical colorbar; the colors do not indicate ideological direction).
+Right: mean absolute pole-relative displacement $I_{20}-I_0$ with pointwise 95\% bootstrap intervals for replaying each fixed optimized item set in original, reversed, and two shuffled orders (\DTAGReps{} runs per order). Right- and left-derived sets retain significant signed displacement under reversal; neutral-derived sets remain near zero. These fixed-set replay effects are distinct from the fully adaptive results in Fig.~\ref{fig:arch_adaptive}.}
 \label{fig:question-map}
 \label{fig:order-effects}
 \end{figure*}
@@ -714,9 +928,9 @@ Sign reversals require both signed quantities to exceed $10^{-9}$ in magnitude.
 
 
 
-Figure~\ref{fig:order-effects} shows paired mean contrasts. Among 720 matched comparisons per source policy, movement-direction reversals numbered 107 (right), 68 (left), and 10 (neutral); final-sign reversals numbered 69, 54, and 0. These coupling-dependent counts are descriptive, especially near zero drift. All 54 pointwise bootstrap intervals for mean contrasts contained zero.
+Figure~\ref{fig:order-effects} now reports absolute baseline-relative drift for each fixed question set and ordering. Reversal \emph{does not erase} its direction: the mean over six persona-level means is $+0.0381$ (original) versus $+0.0377$ (reversed) for right-derived sets, and $-0.0399$ versus $-0.0410$ for left-derived sets. In each direction all six persona-specific 95\% bootstrap intervals exclude zero for both original and reversed orders; neutral-derived drift remains near zero. The original order is itself a fresh \emph{fixed-set replay}, not the adaptively reselected sequence in Fig.~\ref{fig:arch_adaptive}.
 
-Coupled pathwise reversals do not necessarily change marginal terminal distributions: a coherent joint law can produce different paired paths with identical terminal laws. Full endpoint distributions require separate comparison.
+The paired original-minus-permuted analysis remains informative: among 720 matched comparisons per source policy, movement-direction sign reversals numbered 107 (right), 68 (left), and 10 (neutral); terminal-sign reversals numbered 69, 54, and 0. All 54 pointwise bootstrap intervals for \emph{mean between-order contrasts} included zero. Thus the selected questions generate robust directional index movement in these native replays, but there is no demonstrated population-mean ordering effect. Paired pathwise sign reversals depend on the sampling coupling and cannot substitute for a significant between-order contrast.
 
 \paragraph{Cross-environment limitation.}
 Historical ten-question local and CI runs yielded different initial indices despite matching persona, semantic-map, and pole-file hashes. Model binaries were not hashed in both manifests, so absolute cross-environment comparison requires runtime/model parity checks. Within-study results remain consistent.
