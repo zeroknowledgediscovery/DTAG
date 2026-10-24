@@ -90,7 +90,7 @@
 
 \maketitle
 \begin{abstract}
-Digital Twin Anchored Generation (DTAG) links a language interface to Large Science Models (LSMs) of high-dimensional survey responses. Predictions for unasked items define a respondent's \emph{predictive phenotype}; their geometry supports adaptive querying. We distinguish \emph{phenotypic refinement}, in which questions reveal a fixed state, from \emph{phenotypic construction}, in which interaction changes subsequent reports or beliefs. A model-derived ideology trajectory cannot establish which occurred. Native GSS 2024 simulations of six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Reordering produced pathwise movement-direction and endpoint-sign reversals, including neutral-derived cases, but all 54 signed-mean order-contrast bootstrap confidence intervals contained zero. These synthetic findings do not establish human persuasion. A proposed randomized five-arm human study will test order effects using reversed sequences, single-module and neutral controls, independent outcomes, and delayed follow-up.
+Digital Twin Anchored Generation (DTAG) couples a language interface with Large Science Models (LSMs) of survey-response dependencies. Conditional predictions for unasked items define a \emph{predictive phenotype}, refined by successive answers; geometric adaptive querying selects questions by expected movement of a pole-relative index. We distinguish such inference from \emph{phenotypic construction}, in which interaction changes future reports or beliefs. Native GSS 2024 simulations with six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Reordering changed coupled sample paths, including some endpoint signs, but all 54 signed-mean order-contrast bootstrap confidence intervals contained zero. These experiments evaluate the native conditional model, not held-out human refinement accuracy, language-mapping accuracy, or persuasion. A proposed five-arm randomized human study tests order effects with reversed sequences, single-module and neutral controls, independent outcomes, and delayed follow-up.
 \end{abstract}
 \begin{IEEEkeywords}
 Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
@@ -126,7 +126,7 @@ Let $X=(X_1,\ldots,X_n)$ range over $\calX=\prod_i\mathcal A_i$, with finite res
 \end{equation}
 estimated using coupled conditional inference trees \cite{hothorn2006,sizemore2024,dahal2026}. Edges $j\to i$ indicate prediction, not causation; separately fitted conditionals may be jointly incompatible \cite{heckerman2000}.
 
-The respondent state is a partial assignment $s=\{X_j=a_j:j\in S\}$, with unobserved coordinates missing. For unasked $v\notin S$,
+The respondent state is a partial assignment $s=\{X_j=a_j:j\in S\}$. In $\widetilde x_{-v}(s)$, all unanchored coordinates remain missing (no modal completion); the native trees marginalize missing splits by subtree-mass-weighted branch mixtures. This is a tree-wise prediction rule, not necessarily marginalization under one coherent joint law. For unasked $v\notin S$,
 \begin{equation}
 p_\Ph(a\mid s,v)=\phi_{v,c}(a\mid\widetilde x_{-v}(s)).
 \label{eq:predict}
@@ -157,7 +157,7 @@ I_\Ph(s)=\frac{\theta_\Ph(s_L,s)-\theta_\Ph(s_R,s)}
 {\theta_\Ph(s_L,s_R)}.
 \label{eq:ideology}
 \end{equation}
-Reference poles fix orientation; conditionals determine distance. The index is pole- and wave-dependent, not a universal calibrated ideology scale.
+Following the semantic pole construction of \cite{dahal2026}, $s_L,s_R$ pin opposing responses on socially contentious items (abortion, firearms, public spending, religion, and civil liberties); other coordinates are missing. Of 43 canonical items, 27 have valid left/right labels in GSS 2024 (\texttt{assets/polar\_vectors/gss/gss\_2024\_polar\_vectors.csv}). They are reference configurations, not demographic prototypes or observed respondents. Our sign convention makes the right pole positive; $I_\Ph$ is a pole-relative geometric index, not self-reported ideology.
 
 \section{DTAG: A Conditional Theory-of-Mind Interface}
 \subsection{Architecture and generative semantics}
@@ -167,7 +167,7 @@ A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\qquad v_t\in M(q_t),\label{eq:draw}\\
 s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
 \calB_{t+1}&=\calB_\Ph(s_{t+1}).\label{eq:posterior}
 \end{align}
-These updates assume draw mode without state eviction. Modal answering, multi-item and validated mappings, and direct item selection are distinct conditions. A fixed LSM performs statistical conditioning, not identified persuasion.
+In \emph{draw mode}, an answer is sampled, not chosen by the optimizer; \emph{pinned} anchors remain fixed. The system also supports modal answering, validated/multi-item mapping, and finite-memory \emph{eviction} of old anchors, none used in the reported native runs. The fixed LSM conditions responses; it does not identify persuasion.
 
 Figure~\ref{fig:arch_adaptive} combines the architecture and native experiment.
 
@@ -225,9 +225,7 @@ With a coherent joint law, terminal predictions after both answers are order-inv
 \label{sec:native}
 
 \subsection{Adaptive questioning of fixed synthetic personas}
-We used six fixed synthetic GSS 2024 respondent states (Table~\ref{tab:personas}). For each persona, the native optimizer chose eligible unasked questions to maximize expected rightward drift, minimize it for leftward drift, minimize absolute drift (neutral), or sample randomly. Answers were drawn from LSM conditionals. At $T=20$ questions and 40 repetitions per policy and persona, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
-
-Table~\ref{tab:personas} reports original pinned descriptions and initial geometric indices.
+We used six fixed synthetic GSS 2024 states (Table~\ref{tab:personas}), querying survey items directly without running LLM question mapping or verbalization. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. Answers were drawn from LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
 
 \begin{table*}[!t]
 \centering
@@ -641,7 +639,7 @@ Left: 18 nearly square categorical heatmaps show \DTAGReps{} independent runs ov
 \DTAGIdMax{} displayed items from \DTAGTotalQuestions{} observed questions.
 Right: original order versus reversal and two shuffles of fixed \DTAGSteps{}-item
 sets, displaying paired endpoint differences with 95\% bootstrap confidence intervals.
-The items are held fixed, and none of these model outcomes establish human persuasion.}
+The items are fixed; the displayed contrasts are model-based.}
 \label{fig:question-map}
 \label{fig:order-effects}
 \end{figure*}
@@ -654,11 +652,11 @@ F_{pSr\pi}^{\mathrm{end}}
 F_{pSr\pi}^{\mathrm{move}}
 &=\mathbf 1\{(I_{20}^{(\pi)}-I_0)(I_{20}^{(0)}-I_0)<0\}.
 \end{align}
-Near-zero values were excluded from sign-flip counts.
+Sign reversals require both signed quantities to exceed $10^{-9}$ in magnitude.
 
 
 
-Figure~\ref{fig:order-effects} shows paired signed-mean contrasts. Among 720 matched original--permuted comparisons per source policy, movement-direction reversals numbered 107 (right-derived), 68 (left-derived), and 10 (neutral-derived); final-sign reversals numbered 69, 54, and 0. All 54 pointwise bootstrap confidence intervals for signed mean contrasts contained zero. These are stochastic model replays, not human effects.
+Figure~\ref{fig:order-effects} shows paired mean contrasts. Among 720 matched comparisons per source policy, movement-direction reversals numbered 107 (right), 68 (left), and 10 (neutral); final-sign reversals numbered 69, 54, and 0. These coupling-dependent counts are descriptive, especially near zero drift. All 54 pointwise bootstrap intervals for mean contrasts contained zero.
 
 Coupled pathwise reversals do not necessarily change marginal terminal distributions: a coherent joint law can produce different paired paths with identical terminal laws. Full endpoint distributions require separate comparison.
 
@@ -679,7 +677,7 @@ Historical ten-question local and CI runs yielded different initial indices desp
 \textbf{H5 (durability and construct separation):} Persistent effects survive delayed alternate-wording measurement; immediate wording-specific effects suggest transient context dependence.
 
 \subsection{Study design: reverse order, single exposure, and independent outcomes}
-A proposed Prolific study assigns consenting adults, after common anchors $S_0$, to five balanced arms independently of political opinions: (i) $A\to B$, (ii) $B\to A$, (iii) $A$ only, (iv) $B$ only, or (v) duration-matched neutral control. Preregistered modules address neutral public issues and institutional trust; contextual information remains factual, balanced, and identical. No personalized political messaging, candidate promotion, or voting intervention is used.
+A proposed Prolific study assigns consenting adults, after common anchors $S_0$, to five balanced arms independently of political opinions: (i) $A\to B$, (ii) $B\to A$, (iii) $A$ only, (iv) $B$ only, or (v) duration-matched neutral control. Preregistered modules address neutral public issues and institutional trust; contextual information remains factual, balanced, and identical. There is no personalized political messaging or voting intervention; directional index optimization has dual-use risks and is not proposed for individual political targeting.
 
 Independent unasked outcomes $Y$ and negative controls are locked before recruitment from predicted cross-domain dependencies. Arms share instructions, survey time, and blinded presentation. Follow-up at 7--14 days uses validated alternate wording where available. A pilot checks question interpretation, scale reliability, timing, exclusions, and attrition.
 
@@ -710,7 +708,7 @@ DTAG models \emph{what a respondent might report}, not yet \emph{what an interac
 Under passive observation of a coherent joint law, the posterior mean of a fixed trait $g(X)$ is a martingale. DTAG's nonlinear index $I_\Ph(s)$ is generally not that posterior mean and may drift without persuasion. Limitations also include pole and wave dependence, missingness calibration, wording, demand, response modes, and eviction of old anchors. Human experiments need measurement invariance and delayed outcomes.
 
 \section{Conclusion}
-DTAG uses high-dimensional conditional response distributions for adaptive querying and phenotypic refinement. Its synthetic trajectories show that predictive reconstruction can resemble belief change without establishing it. Randomized human experiments with independent delayed outcomes will test whether the geometry also anticipates interaction-dependent responses.
+DTAG uses high-dimensional conditional predictions for adaptive querying and model-based phenotypic refinement. Synthetic trajectories need not represent human change; held-out reconstruction and randomized human order experiments remain distinct validation tests.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
