@@ -29,6 +29,8 @@ cd ../..
 DTAG_ENV=local DTAG_LLM_BACKEND=mock PORT=8080 python -m human_study
 ```
 
+The source wording in `config/study.example.yaml` is deliberately retained as extracted from the GSS 2024 map, including incomplete excerpts. The `source_text_incomplete` flag (25 items: 24 adaptive and one baseline) instructs the existing DTAG question LLM to produce a standalone neutral question from the available excerpt and exact response categories. Generated wording is NOT asserted to be a verbatim GSS question. Exact one-variable semantic remapping is required, and the source excerpt, displayed wording and attempt history are archived. If a known incomplete item cannot be generated or validated, the service returns a retryable 503 rather than showing the incomplete text. Unflagged baseline and outcome questions still display their canonical wording. This does not resolve ambiguous numeric scale labels or replace review of source semantics. The committed draft remains `reviewed: false`; copies created before this update must be refreshed to include the new flags.
+
 For live question generation, set `DTAG_LLM_BACKEND=openai` and provide `OPENAI_API_KEY` securely through the process environment. The pinned LLM model is part of the instrument; the existing DTAG question generator and mapper run on every newly selected intervention question. No live-key test runs by default. The app serves `/study` and `/api/human/*`; it never mounts the research workbench. Local mode uses in-memory storage and loses its test sessions on process restart. Use only synthetic traffic in that mode.
 
 For UI development when the native artifact is unavailable:
