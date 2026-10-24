@@ -1,5 +1,7 @@
 # DTAG — Digital Twin Anchored Generation
 
+**Public web application:** [DTAG web workbench source and setup](https://github.com/zeroknowledgediscovery/DTAG/tree/main/webapp) · [Webapp documentation](https://github.com/zeroknowledgediscovery/DTAG/blob/main/webapp/README.md). The application can be run locally or deployed from the public repository; this link is to the implementation, not a separately hosted demo.
+
 ZeD Lab, University of Kentucky · contact: ishanu_ch@uky.edu
 
 DTAG builds survey-grounded digital twins of respondents. Every answer is anchored to the
