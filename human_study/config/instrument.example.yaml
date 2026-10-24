@@ -22,7 +22,7 @@ held_out_item_ids: [cappun, courts, tax]
 intervention_steps: 20
 question_provider: openai
 llm_model: gpt-4.1-mini-2025-04-14
-prompt_version: dtag-core-survey-question-v1
+prompt_version: dtag-human-survey-question-v2-excerpt
 review_requirements:
   - Check full wording and response labels against the GSS instrument and native category support.
   - Check missing-value exclusions and ethics-disallowed topics.
