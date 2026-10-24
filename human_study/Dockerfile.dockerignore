@@ -1,0 +1,16 @@
+.git
+**/.env
+**/.env.*
+**/*credentials*
+**/*service-account*.json
+**/node_modules
+**/__pycache__
+**/.pytest_cache
+**/build
+**/test-results
+**/playwright-report
+outputs
+models
+data
+attachments
+human_study/config/study.yaml

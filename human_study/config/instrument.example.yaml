@@ -1,0 +1,30 @@
+# Specification for the native instrument builder, NOT a loadable study instrument.
+# Generate the full item/choice contracts using `python -m human_study.instrument`.
+# Choices must come from the actual native GSS 2024 source maps; they are not guessed here.
+model_key: gss/gss_2024
+model_release: v0.2.1
+reviewed: false
+baseline_item_ids:
+  - confinan
+  - conbus
+  - coneduc
+  - conpress
+  - conmedic
+  - contv
+  - conjudge
+  - consci
+  - conlegis
+  - conarmy
+  - trust
+  - fair
+  - helpful
+held_out_item_ids: [cappun, courts, tax]
+intervention_steps: 20
+question_provider: openai
+llm_model: gpt-4.1-mini-2025-04-14
+prompt_version: dtag-core-survey-question-v1
+review_requirements:
+  - Check full wording and response labels against the GSS instrument and native category support.
+  - Check missing-value exclusions and ethics-disallowed topics.
+  - Review baseline/outcome separation and intervention pool size.
+  - Obtain ethics and instrument approval before live recruitment.

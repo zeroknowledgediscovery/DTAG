@@ -1,0 +1,30 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #1c3039; background: #f0f4f4; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 760px; margin: 48px auto; padding: 40px; background: white; border-radius: 16px; box-shadow: 0 8px 40px #1c30390c; }
+header { margin-bottom: 32px; }
+h1 { font-size: 2.1rem; line-height: 1.2; margin: 12px 0; letter-spacing: -.03em; }
+h2 { font-size: 1.3rem; line-height: 1.5; margin-top: 0; }
+p { line-height: 1.7; }
+.eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .15em; color: #417c7b; }
+fieldset { border: 0; margin: 0; padding: 0; }
+.choice { display: flex; align-items: center; gap: 12px; border: 1px solid #cbd8d8; padding: 16px; border-radius: 8px; margin: 10px 0; cursor: pointer; min-height: 52px; }
+.choice:has(input:checked) { border-color: #17686b; background: #eff9f7; }
+input { accent-color: #17686b; min-width: 20px; min-height: 20px; }
+button { background: #17686b; color: white; border: 1px solid transparent; border-radius: 7px; min-height: 48px; padding: 12px 20px; font: inherit; font-weight: 650; cursor: pointer; }
+button:disabled { opacity: .5; cursor: wait; }
+.secondary { background: white; color: #31585c; border-color: #cbd8d8; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.ack { display: flex; align-items: flex-start; gap: 12px; line-height: 1.6; }
+.progress { margin: 0 0 32px; color: #526c73; font-size: .9rem; }
+progress { width: 100%; height: 8px; accent-color: #17686b; }
+.consent { white-space: pre-line; }
+aside { margin-top: 24px; padding: 18px; border: 1px solid #b27243; border-radius: 8px; color: #6b3b1d; }
+aside button { margin: 4px; }
+.receipt { letter-spacing: .1em; font-size: 1.5rem; font-weight: 700; }
+.muted, footer { color: #536970; font-size: .85rem; overflow-wrap: anywhere; }
+footer { border-top: 1px solid #e4ebeb; padding-top: 20px; margin-top: 36px; line-height: 1.6; }
+:focus-visible { outline: 3px solid #d7a345; outline-offset: 4px; }
+h2:focus { outline: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+@media (max-width: 600px) { main { margin: 0; padding: 28px 20px; min-height: 100vh; border-radius: 0; } h1 { font-size: 1.8rem; } .actions { flex-direction: column; } }

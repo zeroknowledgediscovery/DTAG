@@ -34,9 +34,9 @@ class NativeAdapter:
                            "model_content_sha256": digest(identity), "map_sha256": file_hash(self.world.map_path),
                            "poles_sha256": file_hash(poles), "pole_configuration": self.world.poles_summary(),
                            "core_question_prompt_sha256": file_hash(ROOT / "scripts/dtag_core.py"),
-                           "native_binary_sha256": file_hash(self.world.m._runtime.__class__.__module__ and
-                               __import__("dtag_lsm").__file__),
-                           "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()}
+                           "native_binary_sha256": file_hash(__import__("dtag_lsm").__file__),
+                           "code_commit": os.environ.get("DTAG_CODE_COMMIT") or
+                               subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()}
         self.index({})  # Fail readiness on invalid native geometry.
 
     def support(self, variable):

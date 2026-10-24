@@ -69,7 +69,10 @@ class StudyConfig(StrictModel):
         return [i for i in self.items if i.phase == phase]
 
     def item(self, item_id: str) -> Item:
-        return next(i for i in self.items if i.item_id == item_id)
+        found = next((i for i in self.items if i.item_id == item_id), None)
+        if found is None:
+            raise ValueError("unknown instrument item")
+        return found
 
     @property
     def config_hash(self) -> str:
