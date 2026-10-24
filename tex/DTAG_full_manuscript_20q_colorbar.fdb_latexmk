@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex DTAG_full_manuscript_20q_colorbar"] 1792790849.16243 "DTAG_full_manuscript_20q_colorbar.aux" "DTAG_full_manuscript_20q_colorbar.bbl" "DTAG_full_manuscript_20q_colorbar" 1792790879.26329 0
+["bibtex DTAG_full_manuscript_20q_colorbar"] 1792848935.33115 "DTAG_full_manuscript_20q_colorbar.aux" "DTAG_full_manuscript_20q_colorbar.bbl" "DTAG_full_manuscript_20q_colorbar" 1792848937.49523 0
   "./references.bib" 1792667762.09379 7522 be53968d3c6872ca4d2d15fa4cdd046e ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "DTAG_full_manuscript_20q_colorbar.aux" 1792790878.71964 14929 a3a88ffaed1184dcd94f16947d9057ca "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.aux" 1792848936.88009 15883 608d470f3d94953244eacd9fa88492a8 "pdflatex"
   (generated)
   "DTAG_full_manuscript_20q_colorbar.bbl"
   "DTAG_full_manuscript_20q_colorbar.blg"
   (rewritten before read)
-["pdflatex"] 1792790877.3673 "DTAG_full_manuscript_20q_colorbar.tex" "DTAG_full_manuscript_20q_colorbar.pdf" "DTAG_full_manuscript_20q_colorbar" 1792790879.26377 0
+["pdflatex"] 1792848935.47413 "DTAG_full_manuscript_20q_colorbar.tex" "DTAG_full_manuscript_20q_colorbar.pdf" "DTAG_full_manuscript_20q_colorbar" 1792848937.49577 0
   "/home/ishanu/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1761826432 7876974 f2cd925b113ba9a0dabb379c0b5c7f29 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
@@ -46,6 +46,8 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri7.tfm" 1254269338 17168 78a37e395d0470967cfda94332b0716a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri8.tfm" 1254269338 17152 c8240fef851c4991afefdae37a539ee1 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri9.tfm" 1254269338 17148 ca1ae65757b004f470b8cd636199f6fc ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmtcsc10.tfm" 1254269338 1384 dbc46a6206739b89af9a1424c7082c77 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmtt8.tfm" 1254269338 1380 64228d979098ac090aa3f98d5aa8ad3e ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy10.tfm" 1148093231 1300 2df9da0fc09d4a8c772b3dd386a47c6a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy5.tfm" 1148093231 1304 2ff0a255ae754422adbc0e6519ed2658 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy7.tfm" 1148093231 1304 535e0954c1961c817723e44bc6a9662c ""
@@ -103,6 +105,8 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy7.pfb" 1254269338 27941 d1f5d03f61a46c3fcc3a2ba904ddda52 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb" 1254269338 27802 5c876bb2c4040caaf035d60bd74a86bd ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy9.pfb" 1254269338 27835 16c2fa83351d4ef8cf5aebfab8a44bc1 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtcsc10.pfb" 1255129361 109031 f0468b2a456d1f2ea2bd0c9341b43493 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt8.pfb" 1255129361 115291 2ae7034c644e971beb573b1e6606f863 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1714953600 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
   "/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty" 1576625341 40635 c40361e206be584d448876bba8a64a3b ""
@@ -273,6 +277,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/lm/omxlmex.fd" 1616454256 568 a5494d810f2680caf10205cd1226c76c ""
   "/usr/share/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd" 1616454256 1882 28c08db1407ebff35a658fd141753d16 ""
   "/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmr.fd" 1616454256 1867 996fe743d88a01aca041ed22cc10e1bb ""
+  "/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd" 1616454256 2682 555da1faa2e266801e4b221d01a42cb5 ""
   "/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty" 1656621545 62269 5c1837a5bc5db4c0d255eedc225ca44b ""
   "/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty" 1616101747 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
   "/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def" 1678741534 48246 c3eed060aba663f58af3ff756e83f2bd ""
@@ -307,10 +312,10 @@
   "/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty" 1655066402 56148 51a9a8571c07b9921892ae11063ae853 ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1750827853.32322 40137 30ddae71a82d27ae43dc007b58e0b0cb ""
   "/usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1761279164.64469 4549816 8b48a19c039e80731c3bbbcb2dbcf0fc ""
-  "DTAG_full_manuscript_20q_colorbar.aux" 1792790878.71964 14929 a3a88ffaed1184dcd94f16947d9057ca "pdflatex"
-  "DTAG_full_manuscript_20q_colorbar.bbl" 1792790849.28985 6549 3f4d7f7eee7fc26ed95dd8ce76fd9682 "bibtex DTAG_full_manuscript_20q_colorbar"
-  "DTAG_full_manuscript_20q_colorbar.out" 1792790878.72064 7634 b8219bee060b14978151e8c26dfd2781 "pdflatex"
-  "DTAG_full_manuscript_20q_colorbar.tex" 1792790875.87656 65999 dc9238bbd16544716b8aa152c989b6a9 ""
+  "DTAG_full_manuscript_20q_colorbar.aux" 1792848936.88009 15883 608d470f3d94953244eacd9fa88492a8 "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.bbl" 1792848935.46205 6549 3f4d7f7eee7fc26ed95dd8ce76fd9682 "bibtex DTAG_full_manuscript_20q_colorbar"
+  "DTAG_full_manuscript_20q_colorbar.out" 1792848936.88209 6250 401406fe576f1d9e105a8b1128a90fd9 "pdflatex"
+  "DTAG_full_manuscript_20q_colorbar.tex" 1792848931.35694 53748 fa52bb3af4fdfbee30e974090f9b6144 ""
   "Figures/External/dtag-circuit.dpth" 1792780533.11113 0 d41d8cd98f00b204e9800998ecf8427e ""
   "Figures/External/dtag-circuit.md5" 1792780532.0841 62 62cabef0e4eaad0e470d01aac42cd732 ""
   "Figures/External/dtag-circuit.pdf" 1792780533.51314 111718 79d66c5c13dfa73a3b0526992c00714f ""
