@@ -111,14 +111,14 @@ Opinion-dynamics models often use low-dimensional transitions \cite{degroot1974,
 
 \section{Large Science Models and the Predictive Phenotype}
 \subsection{Conditional dependency model}
-Let $X=(X_1,\ldots,X_n)$ range over $\calX=\prod_i\mathcal A_i$, with finite response alphabets $\mathcal A_i$ and survey population, wave, or context $c$. An LSM is the conditional family
+Let $X=(X_1,\ldots,X_n)$ be categorical survey responses, with alphabets $\mathcal A_i$ and survey context $c$. An LSM comprises conditionals
 \begin{equation}
 \Ph_c=\{\phi_{i,c}(a\mid x_{-i}) : i=1,\ldots,n\},
 \label{eq:lsm}
 \end{equation}
-estimated using coupled conditional inference trees \cite{hothorn2006,sizemore2024,dahal2026}. Edges $j\to i$ indicate prediction, not causation; separately fitted conditionals may be jointly incompatible \cite{heckerman2000}.
+estimated by conditional inference trees \cite{hothorn2006,sizemore2024,dahal2026}. Their dependencies are predictive, not causal; the conditionals need not form a coherent joint law \cite{heckerman2000}.
 
-The respondent state is a partial assignment $s=\{X_j=a_j:j\in S\}$. In $\widetilde x_{-v}(s)$, all unanchored coordinates remain missing (no modal completion); the native trees marginalize missing splits by subtree-mass-weighted branch mixtures. This is a tree-wise prediction rule, not necessarily marginalization under one coherent joint law. For unasked $v\notin S$,
+A respondent state $s=\{X_j=a_j:j\in S\}$ holds observed responses. Unanchored variables remain missing in $\widetilde x_{-v}(s)$; each native tree averages over its missing branches. For unasked $v\notin S$,
 \begin{equation}
 p_\Ph(a\mid s,v)=\phi_{v,c}(a\mid\widetilde x_{-v}(s)).
 \label{eq:predict}
@@ -139,9 +139,9 @@ Conditional predictions induce a distance between complete or partial states $x,
 \right)}.
 \label{eq:metric}
 \end{equation}
-Here $\JS$ is Jensen--Shannon divergence as implemented by the native predictive-distance routine. Predictively indistinguishable states may be at zero distance: this is generally a pseudometric of \emph{predictive consequence}, not a postulated Euclidean manifold of minds.
+Here $\JS$ denotes Jensen--Shannon divergence. The resulting predictive pseudometric distinguishes states by their conditional consequences.
 
-With 80\% responses masked \cite{dahal2026}, mean LSM-distance distortion declined about 54.9\% (GSS) and 60.9\% (Eurobarometer). These results quantify the fidelity with which incomplete observations recover the model's predictive geometry.
+Prior LSM reconstruction reduced mean distance distortion by 54.9\% (GSS) and 60.9\% (Eurobarometer) with 80\% of responses masked \cite{dahal2026}.
 
 For GSS models with registered left and right reference states $s_L,s_R$, DTAG reports
 \begin{equation}
@@ -149,15 +149,11 @@ I_\Ph(s)=\frac{\theta_\Ph(s_L,s)-\theta_\Ph(s_R,s)}
 {\theta_\Ph(s_L,s_R)}.
 \label{eq:ideology}
 \end{equation}
-The semantically defined poles \cite{dahal2026} specify 27 opposing GSS 2024 responses on social policy, civil liberties, public spending, and religion (Table~\ref{tab:poles}); all other coordinates remain unspecified. They are reference configurations, not typical respondents. The pole-relative index is not a self-reported ideology score.
+The reference poles specify opposing responses on 27 GSS 2024 items covering policy, civil liberties, spending, and religion (Table~\ref{tab:poles}) \cite{dahal2026}. Other coordinates are unspecified; $I_\Ph$ measures predictive position rather than self-reported ideology.
 
 \begin{table*}[!t]
 \centering
-\caption{\textbf{GSS 2024 left/right reference poles.} The 27 listed
-item--response assignments are the complete nonmissing coordinates of
-the two pole states used to compute $I_\Phi$. All other survey variables
-are unspecified. Topics paraphrase item wording; categorical responses
-match the simulation definitions. The poles yield $I_\Phi=-1$ and $+1$.}
+\caption{\textbf{GSS 2024 reference poles.} Twenty-seven paired responses define $s_L,s_R$, with $I_\Phi=-1,+1$; all other coordinates are unspecified. Topics summarize survey wording.}
 \label{tab:poles}
 \begingroup
 \scriptsize
@@ -218,17 +214,10 @@ match the simulation definitions. The poles yield $I_\Phi=-1$ and $+1$.}
 
 \vspace{-10pt}
 
-\caption{\textbf{DTAG digital-twin circuit and adaptive native GSS 2024 results.}
-(a) A semantic LLM interface maps and verbalizes categorical survey questions,
-while the conditional LSM inside the digital twin predicts unasked responses;
-a myopic greedy circuit selects the next question using expected one-step
-pole-relative displacement and updates the anchored state with a model draw.
-(b) Mean displacement after \DTAGSteps{} questions across six synthetic personas;
-large markers and horizontal whiskers show 95\% bootstrap uncertainty.
-(c) Six aligned trajectories from \DTAGReps{} repetitions per persona and policy;
-shading denotes pointwise 95\% bootstrap intervals. Right = dark red,
-left = dark blue, neutral = dashed gray, random = black.
-The trajectories show model-generated phenotype refinement under each selection policy.}
+\caption{\textbf{DTAG architecture and native adaptive results.}
+(a) LSM-anchored responses and directional question selection; language mapping is a separate interface.
+(b) Mean endpoint displacement across six personas with 95\% bootstrap intervals.
+(c) Mean \DTAGSteps{}-question trajectories over \DTAGReps{} repetitions per persona and policy, with pointwise 95\% intervals (right: red; left: blue; neutral: dashed gray; random: black).}
 \label{fig:arch_adaptive}
 \label{fig:arch}
 \label{fig:persona-endpoints}
@@ -276,7 +265,7 @@ Under a coherent joint model this is conditional mutual information, distinct fr
 
 \begin{table*}[!t]
 \centering
-\caption{Six pinned synthetic personas in the native GSS 2024 simulations.}
+\caption{Pinned GSS 2024 synthetic personas and baseline pole-relative index.}
 \label{tab:personas}
 \begingroup
 \small
@@ -300,8 +289,7 @@ Atlanta & 47-year-old Atlanta Black woman; divorced, two children; employed full
 \bottomrule
 \end{tabularx}
 \endgroup
-{\flushleft \raggedleft Persona descriptions and  initial pole-relative ideology index $I_\Phi(s_0)$. Positive values point toward the designated right
-pole and negative values toward the left pole.}
+{\footnotesize\raggedright Positive values lie nearer the right reference pole; negative values nearer the left.\par}
 \end{table*}
 
 \begin{figure*}[!ht]
@@ -314,11 +302,9 @@ pole and negative values toward the left pole.}
 
 \vspace{-10pt}
 
-\caption{\textbf{Question identities and fixed-item directional displacement across six personas.}
-Left: 18 categorical heatmaps show \DTAGReps{} runs over \DTAGSteps{} question positions, with a shared colorbar identifying questions rather than ideological direction.
-Right: baseline-relative displacement $I_{20}-I_0$ and 95\% bootstrap intervals for fixed optimized question sets replayed in reverse and two shuffled orders (\DTAGReps{} repetitions each).
-Right- and left-derived sets retain directional movement; neutral-derived sets remain near zero.
-These are fixed-set replays, not the fully adaptive runs in Fig.~\ref{fig:arch_adaptive}.}
+\caption{\textbf{Selected questions and fixed-set replays.}
+Left: question-ID heatmaps for six personas and three selection policies (\DTAGReps{} runs each); color denotes item identity.
+Right: mean index displacement and 95\% bootstrap intervals for 20-item sets replayed in original, reversed, and two shuffled orders. Right- and left-derived sets retain their direction; neutral sets remain near zero.}
 \label{fig:question-map}
 \label{fig:order-effects}
 \end{figure*}
@@ -343,12 +329,12 @@ Separately fitted LSM conditionals may violate this identity \cite{heckerman2000
 \label{sec:native}
 
 \subsection{Adaptive questioning from pinned persona states}
-We initialized six synthetic respondents from the pinned GSS 2024 states in Table~\ref{tab:personas}. Each repetition draws a new response trajectory conditioned on the same initial anchors; these are independent synthetic response realizations, rather than repeated observations of one fully specified person. We queried survey items directly without executing the LLM mapping or verbalization layer. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. For every policy, the eligible item pool excluded \emph{all 27 variables used to define the left and right reference poles} (Table~\ref{tab:poles}); no pole-defining item was asked in any experimental trajectory. Answers to selected non-pole items were sampled from the LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ sampled answers.
+We fixed six initial GSS 2024 persona states (Table~\ref{tab:personas}) and generated 40 independent response sequences per persona and policy (right, left, neutral, random). Each sequence comprised 20 questions with responses sampled from the native LSM; no LLM mapping or verbalization was used. \emph{All 27 pole-defining items were excluded from selection in every policy} (Table~\ref{tab:poles}). Thus 960 adaptive trajectories contain 19,200 non-pole responses; repetitions share initial anchors but have independent sampled answers.
 
 
 
 
-Across all six initial states, the right- and left-seeking policies yielded displacement in their respective directions. Because the reference-pole items were excluded, these displacements arise from changes in the inferred phenotype when non-pole responses are observed, rather than from directly querying the items defining the index. The random policy provides a selection baseline; the neutral policy tests whether low expected geometric displacement can be maintained as the observed state grows.
+Across all six personas, right- and left-seeking policies moved the index in their intended directions (Fig.~\ref{fig:arch_adaptive}). As pole-defining questions were excluded, the movement results from conditioning on other survey items, not directly asking those used to define the reference index. Neutral and random policies provide comparisons.
 
 \begin{table}[!t]
 \centering
@@ -376,42 +362,35 @@ All four policies & 228 & 19,200 & 0\\
 \end{table}
 
 \subsection{Question selection as observed paths}
-Question identities and policy coverage are summarized in Table~\ref{tab:question-coverage}. Each observed item was assigned a shared categorical index without reordering runs. The 18 displayed right/left/neutral heatmaps contain 161 distinct items across six personas and 40 repetitions per policy. The global index permutation approximately minimizes
+Question identities are summarized in Table~\ref{tab:question-coverage}. The 18 displayed heatmaps contain 161 distinct items across right, left, and neutral selection (Fig.~\ref{fig:question-map}). A shared categorical ordering approximately minimizes
 \begin{equation}
 \mathcal C(\pi)=\sum_{p,u,t}\sum_{r<r'}
 \big|\pi(v_{purt})-\pi(v_{pur't})\big|,
 \label{eq:question-seriation}
 \end{equation}
-Here $u$ ranges over displayed policies. The all-pairs objective is independent of run numbering. The 67 random-only items remain in the lookup; index distances have no scientific meaning.
+Here $u$ indexes policies. Heatmap colors identify items, not ideological position; 67 further items occurred only in random selection.
 
 
 
 \subsection{Fixed-set replay: robustness to question ordering}
-For each of six personas and three source policies (right, left, neutral), we froze the 20 questions from adaptive replicate zero without selecting on outcomes. Each set was replayed in its original, reversed, and two shuffled orders, with 40 fresh conditional draws per order ($18\times4\times40=2{,}880$ runs). Question-specific uniform draws were coupled across orders to reduce sampling variability.
+For each persona and right/left/neutral policy, we froze the 20-item sequence from adaptive replicate zero, giving 18 fixed sets. Each set was replayed in original, reversed, and two shuffled orders with 40 fresh sampled responses per order (2,880 runs). Matched question-specific random variates reduced contrast variance.
 
-Figure~\ref{fig:order-effects} shows baseline-relative displacement for the reordered fixed sets. Directional movement persists: averaged across the six persona means, right-derived sets yield $+0.0381$ (original) and $+0.0377$ (reversed), while left-derived sets yield $-0.0399$ and $-0.0410$. For both original and reversed replays, all six persona-specific pointwise 95\% bootstrap intervals exclude zero in the intended direction; both shuffles give the same directional pattern, and neutral-derived drift remains negligible.
+The direction persisted across replays (Fig.~\ref{fig:order-effects}): right-derived sets yielded mean displacement $+0.0381$ (original) and $+0.0377$ (reversed); left-derived sets yielded $-0.0399$ and $-0.0410$. In both orders, all six persona-specific 95\% bootstrap intervals excluded zero in the prescribed direction. Shuffles followed the same pattern; neutral sets remained near zero.
 
-All 54 pointwise bootstrap intervals for \emph{paired mean between-order contrasts} include zero; no systematic mean endpoint difference was detected among the tested permutations. The selected question sets therefore retain directional effects without continued reoptimization. In conjunction with the adaptive results in Fig.~\ref{fig:arch_adaptive}, these replays distinguish question-set effects from sequential reselection and tested order effects.
+All 54 pointwise bootstrap intervals for paired mean between-order contrasts included zero; no systematic mean order effect was detected. Selected question sets therefore retained directional displacement without continuous reoptimization.
 
-\paragraph{Cross-environment limitation.}
-Historical ten-question local and CI runs yielded different initial indices despite matching persona, semantic-map, and pole-file hashes. Model binaries were not hashed in both manifests, so absolute cross-environment comparison requires runtime/model parity checks. Within-study results remain consistent.
+In historical ten-question runs, baseline indices differed across environments despite matched persona, map, and pole hashes; native binaries were not compared. Their absolute indices are not combined with the present experiment.
 
 
-\section{Testable Hypotheses and Prospective Validation}
-\textbf{H1 (adaptive phenotype refinement).} From a specified initial state $s_0$, directional optimization of $\mu_v(s)$ should yield repeatable, policy-specific displacement of the pole-relative index $I_\Ph(s)$ across independently sampled response sequences. The native trajectories and fixed-set replays evaluate this prediction and identify contributions from question selection and order.
+\section{Prospective Human Validation}
+The native experiments establish \textbf{H1}: directional question selection yields reproducible shifts of the inferred phenotype under the learned conditional model. The prospective human test addresses \textbf{H2}: whether the policy predicts the direction of index movement when questions are answered by people.
 
-\textbf{H2 (transfer to human responses).} With the same initialization protocol, questions chosen by the LSM-based policy should produce directional displacement of $I_\Ph$ computed from human answers, relative to neutral and random selection. This is a direct out-of-model test of whether learned conditional geometry supports predictive adaptive questioning.
+Prolific respondents will complete a common baseline battery and be randomized to right, left, neutral, or random question selection. All arms receive matched-length questioning. The primary outcome is $I_\Ph(s_T)-I_\Ph(s_0)$ from actual responses; prespecified arm contrasts test the directional prediction. Question-level probability scores assess calibration. A common held-out post-battery tests whether questioning history also affects later reports, beyond the information revealed; optional recontact \cite{prolific2026} assesses persistence. A pilot will set sample size, with consent and debriefing.
 
-\paragraph{Prospective Prolific experiment.}
-Respondents will complete a common baseline battery before randomization to right-seeking, left-seeking, neutral, or random question selection. The arms will have a matched-length adaptive phase, and the preregistered primary outcome will be $I_\Ph(s_T)-I_\Ph(s_0)$, using respondents' actual answers. Prespecified directional contrasts between arms will test H2; question-level predictive scores will assess calibration. A common held-out battery, administered after the adaptive phase, will assess whether question history also affects responses not selected by the policy. Such differences would indicate an effect on subsequent reporting beyond selective refinement, while optional delayed measurement would assess persistence. Pilot data will determine study power, with balanced protocols, informed consent, and debriefing. Prolific supports recontact \cite{prolific2026}.
+\section{Discussion and Conclusion}
+DTAG uses high-dimensional survey dependencies to select questions that systematically refine a predictive phenotype. The native experiments show directional movement using exclusively non-pole items; fixed-set replays indicate that selected question identities, rather than their precise order, account for much of the directionality. The index depends on the reference poles, candidate pool, and conditional model and should be interpreted as predictive position rather than a self-reported ideology score.
 
-\section{Discussion and Limitations}
-The native experiments characterize selective refinement within the geometry of an empirically fitted survey-response system. Each answer constrains the remaining predictive phenotype; the pole-relative index tracks the implied position of that changing conditional state. The directed trajectories and fixed-set replays show that adaptive optimization and the selected item sets yield reproducible geometric displacement. Effect magnitudes depend on pole construction, the candidate item pool, initial anchors, and model calibration. The index describes predictive position relative to reference configurations, not a self-reported ideology score.
-
-In human questioning, progressive elicitation may additionally reorganize accessible considerations or alter subsequent judgments. These effects might be transient, or they might persist as attitude change or persuasion. A common post-battery and delayed measurement can separate selective refinement from history-dependent reporting and investigate persistence. Model incompatibility may also create synthetic ordering effects, and the native experiments do not estimate a human belief-transition operator. These questions motivate the proposed external validation and continued sensitivity assessment of the reference poles and conditional model.
-
-\section{Conclusion}
-DTAG turns learned conditional survey geometry into an operational strategy for selecting questions that refine a predictive phenotype in a chosen direction. Native 20-question experiments demonstrate directional trajectories across six synthetic personas; fixed-set replays retain substantial movement under alternative orders and without continued optimization. The proposed human study will evaluate the transfer of this directional prediction to real answers and explore whether progressive questioning has further effects on subsequent reports, including the possibility of persistent attitude change.
+In people, asking questions may also alter the availability or content of later judgments, potentially including more persistent attitude change. The proposed human study tests conditional prediction directly and evaluates such response effects separately.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
