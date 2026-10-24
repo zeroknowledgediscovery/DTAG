@@ -1,7 +1,7 @@
 \noindent\makebox[\textwidth]{%
   \makebox[.38\textwidth]{\small\bfseries (a) Question identities}%
   \hfill
-  \makebox[.59\textwidth]{\small\bfseries (b) Fixed-item order effects}%
+  \makebox[.59\textwidth]{\small\bfseries (b) Fixed-order displacement}%
 }\par\vspace{1mm}
 % Two independent TikZ pictures, side by side. No nested wrappers.
 %\resizebox{\textwidth}{!}{%
@@ -214,20 +214,20 @@ colorbar style={
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={rotate=90,mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAZ};
-\nextgroupplot[ylabel={Atlanta},%% xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}
+\nextgroupplot[ylabel={Atlanta},%% xlabel={$I_{20}-I_0$}
 ]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={rotate=90,mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAU};
-\nextgroupplot[yticklabels={},xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}]
+\nextgroupplot[yticklabels={},xlabel={$I_{20}-I_0$}]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
  error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
  error mark options={rotate=90,mark size=1.65pt}]
  table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAS};
-\nextgroupplot[yticklabels={}%% ,xlabel={$I_{\mathrm{order}}-I_{\mathrm{original}}$}
+\nextgroupplot[yticklabels={}%% ,xlabel={$I_{20}-I_0$}
 ]
 \addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
 \addplot[black,only marks,mark=*,mark size=2pt,
