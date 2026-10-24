@@ -1,0 +1,80 @@
+"""Narrow native facade. Model/geometry only; no synthetic session is constructed."""
+from __future__ import annotations
+
+import hashlib
+import os
+import re
+import subprocess
+import threading
+from pathlib import Path
+
+from . import ROOT
+from .study_config import digest
+
+MISSING = re.compile(r"^(?:i?a?p|iap|dk|na|n/a|d/k|don't know|dont know|no answer|not applicable|not available|refused|skipped|not on web|not on ballot)(?:$|\b)", re.I)
+
+
+def file_hash(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+class NativeAdapter:
+    def __init__(self, config):
+        from optimizer.dtag_bridge import World, canonical_map, ensure_model
+        from optimizer.one_step_geometry import strict_native_index
+        self.lock = threading.RLock()
+        model_path = ensure_model(config.model_key, os.environ.get("DTAG_MODEL_ROOT"))
+        poles = ROOT / "assets/polar_vectors/gss/gss_2024_polar_vectors.csv"
+        self.world = World(str(model_path), str(canonical_map(config.model_key)), str(poles),
+                           os.environ.get("DTAG_ASSETS_DIR", str(Path.home() / ".cache/dtag/assets")))
+        self._index = strict_native_index
+        files = sorted(p for p in model_path.rglob("*") if p.is_file())
+        identity = [(str(p.relative_to(model_path)), file_hash(p)) for p in files]
+        self.provenance = {"model_key": config.model_key, "model_release": config.model_release,
+                           "model_content_sha256": digest(identity), "map_sha256": file_hash(self.world.map_path),
+                           "poles_sha256": file_hash(poles), "pole_configuration": self.world.poles_summary(),
+                           "core_question_prompt_sha256": file_hash(ROOT / "scripts/dtag_core.py"),
+                           "native_binary_sha256": file_hash(self.world.m._runtime.__class__.__module__ and
+                               __import__("dtag_lsm").__file__),
+                           "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()}
+        self.index({})  # Fail readiness on invalid native geometry.
+
+    def support(self, variable):
+        return self.world.ctx.possible.get(variable, [])
+
+    def validate_config(self, config):
+        for item in config.items:
+            if item.item_id not in self.world.ctx.var_map:
+                raise ValueError(f"missing model/map item: {item.item_id}")
+            for c in item.choices:
+                if c.native_value not in self.support(item.item_id) or MISSING.search(c.native_value):
+                    raise ValueError(f"invalid/missing native category: {item.item_id}={c.native_value}")
+        if len(self.eligible(config)) < config.intervention_steps:
+            raise ValueError("insufficient eligible items for configured intervention length")
+
+    def eligible(self, config):
+        from optimize_question_sets import askable
+        ctx, g = self.world.ctx, self.world.g
+        skip = set(g.left_map) | set(g.right_map) | set(config.excluded_ids) | set(config.ethics_disallowed_ids)
+        return sorted(i.item_id for i in config.bank("intervention") if i.item_id not in skip
+                      and i.item_id in ctx.var_map and i.item_id in ctx.idx_map
+                      and askable(i.item_id, ctx.var_map[i.item_id], ctx.feat)
+                      and all(c.native_value in self.support(i.item_id) and not MISSING.search(c.native_value)
+                              for c in i.choices))
+
+    def index(self, state):
+        with self.lock:
+            return self._index(self.world, state)
+
+    def distributions(self, state, variables):
+        from optimizer.one_step_geometry import native_distributions
+        with self.lock:
+            return native_distributions(self.world, state, variables)
+
+    def scores(self, state, candidates):
+        from optimizer.one_step_geometry import one_step_geometry, native_extension_indices, has_fast_extensions
+        with self.lock:
+            return one_step_geometry(state, candidates, lambda ss: [self.index(s) for s in ss],
+                                     self.distributions, text=self.world.text,
+                                     extension_fn=(lambda s, ps: native_extension_indices(self.world, s, ps))
+                                     if has_fast_extensions(self.world) else None)
