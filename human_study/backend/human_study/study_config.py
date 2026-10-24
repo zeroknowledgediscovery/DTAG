@@ -48,7 +48,7 @@ class StudyConfig(StrictModel):
     consent_text: str = "This internal pilot asks categorical survey questions. Participation is voluntary. You may stop at any time. Answers are stored for research. This receipt is not a payment code."
     intervention_steps: int = Field(default=20, ge=1, le=40)
     llm_model: str = "gpt-4.1-mini-2025-04-14"
-    prompt_version: str = "dtag-core-survey-question-v1"
+    prompt_version: str = "dtag-human-survey-question-v2-excerpt"
     excluded_ids: tuple[str, ...] = ()
     ethics_disallowed_ids: tuple[str, ...] = ()
     items: tuple[Item, ...] = Field(min_length=3, max_length=100)
