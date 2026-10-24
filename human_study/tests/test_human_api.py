@@ -57,6 +57,32 @@ def test_input_csrf_size_and_public_whitelist(instrument, adapter):
         assert response.headers["Cache-Control"] == "no-store"
 
 
+def test_cloud_run_https_origin_with_internal_http_scope(monkeypatch, instrument, adapter):
+    # Cloud Run terminates HTTPS and forwards HTTP to the application. The
+    # participant's browser Origin must still match the external HTTPS host.
+    monkeypatch.setenv("DTAG_ENV", "staging")
+    service = StudyService(instrument, adapter, FixtureLLM(), MemoryRepository(), MemoryArchive())
+    app = create_app(service, cookie_secret="test-secret-stable-not-for-deployment" * 2)
+    # No lifespan context: isolates the origin middleware without connecting
+    # the test fixture to production-only Firestore/GCS readiness checks.
+    c = TestClient(app, base_url="http://testserver")
+
+    route = "/api/human/start"
+    assert c.post(route, json={}).status_code == 403
+    assert c.post(route, json={}, headers={"Origin": "http://testserver"}).status_code == 403
+    assert c.post(route, json={}, headers={"Origin": "https://attacker.example"}).status_code == 403
+    # Do not honor untrusted proxy headers when authorizing browser writes.
+    assert c.post(route, json={}, headers={
+        "Origin": "http://testserver", "X-Forwarded-Proto": "http",
+    }).status_code == 403
+    ok = c.post(route, json={}, headers={
+        "Origin": "https://testserver", "X-Forwarded-Proto": "http",
+    })
+    assert ok.status_code == 200
+    assert ok.json()["phase"] == "consent"
+    assert "Secure" in ok.headers["set-cookie"]
+
+
 def test_unavailable_llm_never_exposes_incomplete_baseline_source(instrument, adapter):
     # A baseline source fragment is generated via LLM, never shown verbatim.
     first = instrument.items[0].model_copy(update={
