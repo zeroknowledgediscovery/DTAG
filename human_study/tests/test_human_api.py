@@ -57,6 +57,34 @@ def test_input_csrf_size_and_public_whitelist(instrument, adapter):
         assert response.headers["Cache-Control"] == "no-store"
 
 
+def test_unavailable_llm_never_exposes_incomplete_baseline_source(instrument, adapter):
+    # A baseline source fragment is generated via LLM, never shown verbatim.
+    first = instrument.items[0].model_copy(update={
+        "original_wording": "This original question is truncated at the",
+        "source_text_incomplete": True,
+    })
+    config = instrument.model_copy(update={"items": (first, *instrument.items[1:])})
+
+    class OfflineLLM:
+        def generate(self, item):
+            raise RuntimeError("provider unavailable")
+
+    svc = StudyService(config, adapter, OfflineLLM(), MemoryRepository(), MemoryArchive())
+    web = TestClient(create_app(svc, cookie_secret="test-secret-stable-not-for-deployment" * 2))
+    with web:
+        start = post(web, "start", {}).json()
+        response = post(web, "consent", {
+            "accepted": True, "expected_session_version": start["session_version"]})
+        assert response.status_code == 503
+        assert response.json()["status"] == "preparing_question"
+        snapshot = svc.repo.read(start["session_id"])
+        questions = [v for k, v in snapshot.records.items() if k.startswith("questions/")]
+        assert len(questions) == 1
+        assert questions[0]["status"] == "generating"
+        assert questions[0]["generation_failure_count"] == 1
+        assert "displayed_wording" not in questions[0]
+
+
 @pytest.mark.parametrize("mode", ["staging", "production"])
 def test_fail_closed_nonlocal_fixture_and_missing_secrets(monkeypatch, mode):
     monkeypatch.setenv("DTAG_ENV", mode)
