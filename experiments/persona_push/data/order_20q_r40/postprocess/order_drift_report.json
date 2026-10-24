@@ -1,7 +1,28 @@
 {
   "native_evaluations": 0,
-  "source_run": "local DTAG experiments/persona_push/runs/test_q3_r2 (20q/40r; archived summary copied)",
-  "interpretation": "Absolute drifts computed from existing endpoint summaries; original bootstrap CIs reused unchanged; no simulation/model runs",
+  "source_run": "/home/ishanu/Dropbox/ZED/Research/DTAG/experiments/persona_push/data/order_20q_r40",
+  "manifest": {
+    "model": "gss/gss_2024",
+    "model_path": "/home/ishanu/.cache/dtag/models/gss/gss_2024",
+    "map_sha256": "c63a32ccd194f4a94cb4d45b8363ef6cba9c428515b9a3e13783cc6112a9e13b",
+    "poles_sha256": "5f6f12c62dbb410696a34f5e264978b82ca012253c10ca5c26677f0edd76e283",
+    "persona_sha256": "3f4dcafbfef6a1f3ebc81fa78a3f7213431e687a84b54c278755534d52be67ec",
+    "set_file_sha256": "eece2b5662ba9399bb5b518a77f42393f0aad170724e674426c951ee40396a7d",
+    "git_commit": "7462d2981ee0c0c84b9f2088ac2e43f94c32aea4",
+    "fixed_sets": 18,
+    "orders_per_set": 4,
+    "repetitions": 40,
+    "questions_per_run": 20,
+    "seed": 20261021,
+    "bootstrap": 2000,
+    "workers": 10,
+    "runs": 2880,
+    "quick": false,
+    "answer_sampling": "native sequential conditionals, matched uniform draws by question ID",
+    "CIs": "pointwise percentile paired-run bootstrap; comparisons versus original",
+    "interpretation": "synthetic-model order dependence; not causal persuasion in human respondents"
+  },
+  "interpretation": "Uses existing per-order pointwise bootstrap intervals, not new tests",
   "counts": {
     "right": {
       "original": {
@@ -20,7 +41,7 @@
         "personas": 6
       },
       "shuffle2": {
-        "mean_of_six_persona_means": 0.03709750922327528,
+        "mean_of_six_persona_means": 0.037097509223275274,
         "pointwise_95pct_CI_excludes_zero": 6,
         "personas": 6
       }
@@ -49,22 +70,22 @@
     },
     "neutral": {
       "original": {
-        "mean_of_six_persona_means": -0.000039502692921787584,
+        "mean_of_six_persona_means": -3.9502692921787584e-05,
         "pointwise_95pct_CI_excludes_zero": 0,
         "personas": 6
       },
       "reverse": {
-        "mean_of_six_persona_means": -0.000021856503203723877,
+        "mean_of_six_persona_means": -2.1856503203723873e-05,
         "pointwise_95pct_CI_excludes_zero": 0,
         "personas": 6
       },
       "shuffle1": {
-        "mean_of_six_persona_means": -0.000028193257267722434,
+        "mean_of_six_persona_means": -2.819325726772243e-05,
         "pointwise_95pct_CI_excludes_zero": 0,
         "personas": 6
       },
       "shuffle2": {
-        "mean_of_six_persona_means": -0.00004136678407685296,
+        "mean_of_six_persona_means": -4.136678407685296e-05,
         "pointwise_95pct_CI_excludes_zero": 0,
         "personas": 6
       }
