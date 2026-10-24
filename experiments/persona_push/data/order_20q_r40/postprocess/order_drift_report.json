@@ -1,0 +1,73 @@
+{
+  "native_evaluations": 0,
+  "source_run": "local DTAG experiments/persona_push/runs/test_q3_r2 (20q/40r; archived summary copied)",
+  "interpretation": "Absolute drifts computed from existing endpoint summaries; original bootstrap CIs reused unchanged; no simulation/model runs",
+  "counts": {
+    "right": {
+      "original": {
+        "mean_of_six_persona_means": 0.03810284720717631,
+        "pointwise_95pct_CI_excludes_zero": 6,
+        "personas": 6
+      },
+      "reverse": {
+        "mean_of_six_persona_means": 0.03771354129714439,
+        "pointwise_95pct_CI_excludes_zero": 6,
+        "personas": 6
+      },
+      "shuffle1": {
+        "mean_of_six_persona_means": 0.038510533333538516,
+        "pointwise_95pct_CI_excludes_zero": 6,
+        "personas": 6
+      },
+      "shuffle2": {
+        "mean_of_six_persona_means": 0.03709750922327528,
+        "pointwise_95pct_CI_excludes_zero": 6,
+        "personas": 6
+      }
+    },
+    "left": {
+      "original": {
+        "mean_of_six_persona_means": -0.03993090601514214,
+        "pointwise_95pct_CI_excludes_zero": 6,
+        "personas": 6
+      },
+      "reverse": {
+        "mean_of_six_persona_means": -0.04102479402356146,
+        "pointwise_95pct_CI_excludes_zero": 6,
+        "personas": 6
+      },
+      "shuffle1": {
+        "mean_of_six_persona_means": -0.04021719739257701,
+        "pointwise_95pct_CI_excludes_zero": 6,
+        "personas": 6
+      },
+      "shuffle2": {
+        "mean_of_six_persona_means": -0.04044749702200361,
+        "pointwise_95pct_CI_excludes_zero": 6,
+        "personas": 6
+      }
+    },
+    "neutral": {
+      "original": {
+        "mean_of_six_persona_means": -0.000039502692921787584,
+        "pointwise_95pct_CI_excludes_zero": 0,
+        "personas": 6
+      },
+      "reverse": {
+        "mean_of_six_persona_means": -0.000021856503203723877,
+        "pointwise_95pct_CI_excludes_zero": 0,
+        "personas": 6
+      },
+      "shuffle1": {
+        "mean_of_six_persona_means": -0.000028193257267722434,
+        "pointwise_95pct_CI_excludes_zero": 0,
+        "personas": 6
+      },
+      "shuffle2": {
+        "mean_of_six_persona_means": -0.00004136678407685296,
+        "pointwise_95pct_CI_excludes_zero": 0,
+        "personas": 6
+      }
+    }
+  }
+}
