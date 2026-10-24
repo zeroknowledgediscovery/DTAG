@@ -30,6 +30,8 @@ class Choice(StrictModel):
 class Item(StrictModel):
     item_id: str = Field(pattern=r"^[A-Za-z0-9_]+$", max_length=80)
     original_wording: str = Field(min_length=4, max_length=5000)
+    # Preserve incomplete source text; allow LLM to create a labeled, non-verbatim question.
+    source_text_incomplete: bool = False
     choices: tuple[Choice, ...] = Field(min_length=2, max_length=20)
     phase: Literal["baseline", "intervention", "outcome", "control"]
     required: bool = True
