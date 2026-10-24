@@ -1,5 +1,5 @@
 \PassOptionsToPackage{usenames,x11names,dvipsnames}{xcolor}
-\documentclass[journal,10pt,compsoc]{IEEEtran}
+\documentclass[technote,10pt]{IEEEtran}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,mathtools,bm}
@@ -67,6 +67,23 @@
 \title{Digital Twin Anchored Generation: Adaptive Querying and Phenotypic Refinement}
 \author{Ishanu Chattopadhyay%
 \thanks{Working research draft, October 2026. University of Kentucky. Native GSS 2024 computational results and prospective human-study design.}}
+
+
+% ###################################
+\newcommand{\mnp}[2]{\begin{minipage}{#1}#2\end{minipage}} 
+\newcommand{\xtitaut}[2]{
+  \noindent\mnp{\textwidth}{
+    \mnp{\textwidth}{\raggedright\Huge \bf \sffamily #1}
+
+    \vskip 1em
+
+    {\bf \sffamily #2}
+  }
+  \vskip 2em
+}
+
+
+
 \begin{document}
 % Source data are external CSVs (not generated TeX files).
 % The build script links tex/figures to the desired completed experiment.
@@ -86,9 +103,10 @@
 \pgfmathtruncatemacro{\DTAGHalfSteps}{round(\DTAGSteps/2)}
 \pgfmathtruncatemacro{\DTAGHalfReps}{round(\DTAGReps/2)}
 
-
-
+%\xtitaut{\title}{Ishanu Chattopadhyay}
 \maketitle
+
+
 \begin{abstract}
 Digital Twin Anchored Generation (DTAG) adaptively refines a \emph{predictive phenotype}: conditional distributions over a respondent's unasked survey items. A Large Science Model (LSM) predicts responses, and an optimizer selects questions by their expected displacement of a pole-relative geometric index. In native GSS 2024 experiments, six pinned personas generated 960 adaptive 20-question trajectories. All 27 reference-pole items were excluded from selection. Right- and left-seeking policies produced directional index shifts; 2,880 fixed-set replays retained these directions under reversed and shuffled orders, without a detected systematic mean order effect. We describe a prospective randomized human study testing whether the predicted shifts transfer to actual responses and whether questioning also affects subsequent reports.
 \end{abstract}
@@ -153,7 +171,7 @@ The reference poles specify opposing responses on 27 GSS 2024 items covering pol
 
 \begin{table*}[!t]
 \centering
-\caption{\textbf{GSS 2024 reference poles.} Twenty-seven paired responses define $s_L,s_R$, with $I_\Phi=-1,+1$; all other coordinates are unspecified. Topics summarize survey wording.}
+\caption{\textbf{GSS 2024 reference poles.} Twenty-seven paired responses define $s_L,s_R$, with $I_\Phi=-1,+1$; all other coordinates are unspecified. }
 \label{tab:poles}
 \begingroup
 \scriptsize
@@ -289,6 +307,8 @@ Atlanta & 47-year-old Atlanta Black woman; divorced, two children; employed full
 \bottomrule
 \end{tabularx}
 \endgroup
+\vspace{2pt}
+
 {\footnotesize\raggedright Positive values lie nearer the right reference pole; negative values nearer the left.\par}
 \end{table*}
 
@@ -308,7 +328,7 @@ Right: mean index displacement and 95\% bootstrap intervals for 20-item sets rep
 \label{fig:question-map}
 \label{fig:order-effects}
 \end{figure*}
-\paragraph{Possible response effects.}
+\subsection{Possible response effects.}
 Questioning a person may change later reports. A response--transition kernel separates an observed answer from a possible latent-state update:
 \begin{equation}
 K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
@@ -316,7 +336,7 @@ K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
 \end{equation}
 Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; shifts in salience or belief can induce nontrivial transitions. A common held-out battery and delayed measurement can investigate these effects.
 
-\paragraph{Order dependence.}
+\subsection{Order dependence.}
 For fixed realized answers, the terminal index is order-independent; sequentially generated answers need not be. A coherent joint distribution satisfies
 \begin{equation}
 P(a\mid s,v)P(b\mid s,v=a,w)
