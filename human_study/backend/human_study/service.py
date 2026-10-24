@@ -185,12 +185,35 @@ class StudyService:
     def _render_claimed(self, sid, question):
         item = self.config.item(question["target_variable"])
         try:
-            if item.phase == "intervention":
+            # Adaptive items always use the LLM. Any nonadaptive item known to
+            # contain a source fragment must also be completed, not displayed raw.
+            if item.phase == "intervention" or item.source_text_incomplete:
                 rendered = self.llm.generate(item)
             else:
                 rendered = {"displayed_wording": item.original_wording, "question_provenance": {
-                    "provider": "canonical-common-instrument", "item_version": item.version, "fallback": False}}
-        except Exception:
+                    "provider": "canonical-common-instrument", "item_version": item.version,
+                    "source_text_incomplete": False, "fallback": False}}
+            if item.source_text_incomplete and (
+                rendered.get("question_provenance", {}).get("fallback", True) or
+                rendered.get("displayed_wording", "").strip() == item.original_wording.strip()
+            ):
+                raise ValueError("LLM did not complete an incomplete source question")
+        except Exception as exc:
+            if item.source_text_incomplete:
+                # Never expose the truncated source. Persist a short generation
+                # retry lease so the participant can resume after an LLM outage.
+                for _ in range(10):
+                    snap = self._load(sid)
+                    key = f"questions/{question['question_id']}"
+                    q = snap.records.get(key)
+                    if not q or q.get("generation_token") != question["generation_token"] or q["status"] != "generating":
+                        return
+                    q = {**q, "generation_lease_until": time.time() + 10,
+                         "generation_failure_count": q.get("generation_failure_count", 0) + 1,
+                         "last_generation_error": type(exc).__name__}
+                    if self._write(snap, {key: q}):
+                        raise GenerationPending("a complete question could not be prepared; retry shortly") from exc
+                raise Conflict("question generation is busy; retry")
             rendered = {"displayed_wording": item.original_wording, "question_provenance": {
                 "provider": "fallback", "fallback": True, "fallback_reason": "generation failed", "input_item_id": item.item_id}}
         for _ in range(10):
