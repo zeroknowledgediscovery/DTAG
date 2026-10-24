@@ -95,7 +95,12 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
             # Origin is required on browser writes; CLI clients should explicitly supply it.
             if request.method == "POST":
                 origin = request.headers.get("origin", "")
-                expected = f"{request.url.scheme}://{request.url.netloc}"
+                # Cloud Run terminates TLS upstream, so the internal ASGI scope
+                # can say "http" while the browser's Origin is HTTPS. Require
+                # the public HTTPS origin in staging/production without trusting
+                # user-supplied X-Forwarded-Proto (or weakening CSRF checks).
+                scheme = "https" if mode != "local" else request.url.scheme
+                expected = f"{scheme}://{request.url.netloc}"
                 if origin != expected:
                     return JSONResponse({"detail": "same-origin request required"}, status_code=403)
                 if "application/json" not in request.headers.get("content-type", ""):
