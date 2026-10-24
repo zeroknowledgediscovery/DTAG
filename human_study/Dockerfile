@@ -1,5 +1,5 @@
-# Build from a clean repository archive; do not send responses or credentials.
 # syntax=docker/dockerfile:1
+# Build from a clean repository archive; do not send responses or credentials.
 FROM node:22.21.1-bookworm-slim AS frontend
 WORKDIR /ui
 COPY human_study/frontend/package*.json ./
@@ -38,8 +38,11 @@ RUN --mount=type=secret,id=cloud_ca \
     fi \
  && pip install -r human_study/requirements.txt \
  && PYTHONPATH=native/lsm_runtime/python python -c 'import dtag_lsm; print("native runtime OK")' \
- && useradd --create-home --uid 10001 study
+ && useradd --create-home --uid 10001 study \
+ && chmod -R a+rX /src
 USER study
+RUN PYTHONPATH=/src/native/lsm_runtime/python python -c 'import dtag_lsm; print("unprivileged native runtime OK")' \
+ && python -c 'import human_study.__main__; print("participant entrypoint OK")'
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=120s CMD python -c "import urllib.request,os; urllib.request.urlopen('http://127.0.0.1:'+os.environ.get('PORT','8080')+'/api/human/health',timeout=4)"
 CMD ["python", "-m", "human_study"]

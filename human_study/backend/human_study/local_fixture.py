@@ -34,7 +34,11 @@ class LocalFixture:
 
 
 class LocalLLM:
+    def __init__(self):
+        self.calls = 0
+
     def generate(self, item):
+        self.calls += 1
         return {"displayed_wording": item.original_wording, "question_provenance": {
             "provider": "local-fixture", "llm_id": "fixture", "prompt_version": "1", "input_item_id": item.item_id,
             "mapper_hit": True, "cache_hit": False, "fallback": False}}

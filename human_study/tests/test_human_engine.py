@@ -86,6 +86,8 @@ def test_validation_exhaustion_missing_and_no_baseline_persona(instrument, adapt
         apply_observed_answer(state, {**q, "target_variable": state.reserved_outcome_ids[0]}, "yes", adapter, instrument)
     exhausted = choose_next_item(state, "random", set(adapter.eligible(instrument)), initial_rng(1), instrument, adapter)
     assert exhausted["status"] == "no_candidate" and exhausted["reason"]
+    with pytest.raises(ValueError, match="unknown instrument"):
+        apply_observed_answer(state, {**q, "target_variable": "unknown"}, "yes", adapter, instrument)
 
 
 def test_llm_generation_mapping_and_bounded_fallback(instrument, adapter, monkeypatch):

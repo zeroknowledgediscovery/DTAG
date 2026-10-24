@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 from human_study.app import create_app, configured_service
 from human_study.service import StudyService
 from human_study.storage import MemoryRepository, MemoryArchive
-from conftest import FixtureLLM
+from human_study.local_fixture import LocalLLM as FixtureLLM
 
 
 def client(config, adapter):

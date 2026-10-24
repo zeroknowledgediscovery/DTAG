@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import pytest
 
-from conftest import FixtureLLM
+from human_study.local_fixture import LocalLLM as FixtureLLM
 from human_study.service import StudyService, ExportPending, GenerationPending
 from human_study.storage import MemoryArchive, MemoryRepository, Conflict, IntegrityError
 from human_study.storage_firestore import encode, decode

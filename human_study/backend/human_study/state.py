@@ -84,8 +84,15 @@ def apply_observed_answer(state, question, native_value, adapter, config, *, mis
 
 
 def reconstruct_state(initial_baseline, events, adapter, config, session_id):
+    from .policy import choose_next_item
     state = initialize_human_state(config.model_key, initial_baseline, config, adapter, session_id)
     for event in events:
+        question = event["question"]
+        recorded = question.get("selection") or {}
+        if recorded.get("policy"):
+            replay = choose_next_item(state, recorded["policy"], set(), recorded["rng_state_before"], config, adapter)
+            if replay.get("variable") != question["target_variable"] or replay.get("eligible_ids") != recorded["eligible_ids"]:
+                raise ValueError("incompatible replay: recorded question diverges from the policy/state sequence")
         state, result = apply_observed_answer(state, event["question"], event["native_value"], adapter, config,
                                               missing_reason=event.get("missing_reason"))
         if abs(result["index_after"] - event["index_after"]) > 1e-10:
