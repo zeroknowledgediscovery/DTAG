@@ -108,6 +108,54 @@ def test_llm_generation_mapping_and_bounded_fallback(instrument, adapter, monkey
     assert out["question_provenance"]["fallback"] and len(out["question_provenance"]["attempts"]) == 2
 
 
+def test_incomplete_source_llm_completion_is_validated_and_never_falls_back(instrument, adapter, monkeypatch):
+    import dtag_core as core
+    import optimizer.dtag_bridge as bridge
+    from human_study.questions import QuestionGenerationError
+    adapter.world = object()
+    source = "Some people believe the government should"
+    item = instrument.bank("intervention")[0].model_copy(update={
+        "original_wording": source, "source_text_incomplete": True,
+    })
+    seen = []
+    def generate(*args, **kwargs):
+        seen.append(kwargs)
+        return "Should the government increase support for this service?"
+    monkeypatch.setattr(core, "llm_craft_survey_question", generate)
+    monkeypatch.setattr(bridge, "map_question", lambda *a: {"variables": [item.item_id]})
+    llm = QuestionLLM(adapter, instrument)
+    out = llm.generate(item)
+    assert seen == [{"source_incomplete": True}]
+    assert out["displayed_wording"] != source
+    assert out["question_provenance"]["wording_status"] == "llm_completion_of_unverified_excerpt"
+    assert not out["question_provenance"]["fallback"]
+
+    # The shared DTAG helper returns its source input on API errors.
+    # A known excerpt must NOT be shown to the respondent in that case.
+    monkeypatch.setattr(core, "llm_craft_survey_question", lambda *a, **kw: source)
+    with pytest.raises(QuestionGenerationError, match="complete"):
+        llm.generate(item)
+    # Off-target responses are also forbidden, even if grammatically complete.
+    monkeypatch.setattr(core, "llm_craft_survey_question", generate)
+    monkeypatch.setattr(bridge, "map_question", lambda *a: {"variables": ["item_47"]})
+    with pytest.raises(QuestionGenerationError, match="validated"):
+        llm.generate(item)
+
+
+def test_study_excerpt_flags_preserve_source_and_native_categories():
+    from pathlib import Path
+    from human_study.study_config import StudyConfig
+    from human_study.instrument import INCOMPLETE_GSS_2024
+    config = StudyConfig.load(Path(__file__).resolve().parents[1] / "config/study.example.yaml")
+    assert len(INCOMPLETE_GSS_2024) == 25
+    assert {i.item_id for i in config.items if i.source_text_incomplete} == INCOMPLETE_GSS_2024
+    assert len(config.bank("intervention")) == 28
+    assert len([i for i in config.bank("intervention") if i.source_text_incomplete]) == 24
+    assert config.item("eqwlth").original_wording.endswith("government should")
+    assert config.item("workhard").original_wording == "to work hard"
+    assert [c.native_value for c in config.item("eqwlth").choices]
+
+
 def test_real_native_index_and_withheld_predictions():
     from pathlib import Path
     root = Path(os.environ.get("DTAG_MODEL_ROOT", "/nonexistent"))
