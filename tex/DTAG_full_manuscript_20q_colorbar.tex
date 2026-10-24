@@ -90,33 +90,24 @@
 
 \maketitle
 \begin{abstract}
-Digital Twin Anchored Generation (DTAG) constructs a survey-grounded \emph{predictive phenotype} from Large Science Models (LSMs) of high-dimensional response dependencies. Each observed answer refines predictions for unasked items, while an adaptive policy selects questions by their expected displacement of a pole-relative geometric index. Native GSS 2024 experiments with six pinned personas produce 960 adaptive 20-question trajectories and 2,880 fixed-set order replays. Direction-seeking selection yields reproducible displacement toward either reference pole; sets frozen after adaptive selection retain this movement under reversed and shuffled interrogation, without a detected systematic mean order effect. These results characterize how learned conditional structure can be navigated through selective questioning. We formulate a prospective randomized human study to test the transfer of these predictions to real responses and to examine whether progressive questioning also influences answers beyond selective phenotype refinement.
-
+Digital Twin Anchored Generation (DTAG) adaptively refines a \emph{predictive phenotype}: conditional distributions over a respondent's unasked survey items. A Large Science Model (LSM) predicts responses, and an optimizer selects questions by their expected displacement of a pole-relative geometric index. In native GSS 2024 experiments, six pinned personas generated 960 adaptive 20-question trajectories. All 27 reference-pole items were excluded from selection. Right- and left-seeking policies produced directional index shifts; 2,880 fixed-set replays retained these directions under reversed and shuffled orders, without a detected systematic mean order effect. We describe a prospective randomized human study testing whether the predicted shifts transfer to actual responses and whether questioning also affects subsequent reports.
 \end{abstract}
+
 \begin{IEEEkeywords}
 Predictive phenotypes, large science models, conditional response modeling, digital twins, survey methodology, opinion dynamics, adaptive questioning, generative simulation.
 \end{IEEEkeywords}
 
 \section{Introduction}
-Opinions about social, political, religious, and economic questions form a coupled system: knowing a respondent's answers to a few items changes the expected answers to many others. This structure raises a quantitative question. Can questions be selected to refine a respondent's inferred position in a predictable direction, and how much of the resulting movement follows from measurement selection rather than changes in the respondent?
+Survey answers are statistically coupled: each response changes predictions for questions not yet asked. We investigate whether questions can be selected to refine a respondent's inferred opinion profile in a prescribed direction.
 
-We introduce Digital Twin Anchored Generation (DTAG), coupling a language-based questioning interface to a Large Science Model (LSM) of empirical conditional survey responses. Observed answers anchor a \emph{predictive phenotype}: a distribution over responses not yet observed. An LSM-derived geometry relates this predictive state to reference configurations, and an adaptive policy selects successive questions by their expected geometric displacement.
+Digital Twin Anchored Generation (DTAG) represents observed answers as a partial state and uses a Large Science Model (LSM) to predict unasked responses. This distributional description is the \emph{predictive phenotype}. A distance to two reference opinion configurations defines a pole-relative index; DTAG selects successive questions according to their expected effect on this index.
 
-Here we develop the framework and evaluate direction-seeking questioning in native GSS 2024 simulations. Fixed-question-set replays separate the effect of selecting particular items from the effect of continuously reoptimizing their sequence. A prospective human experiment then tests whether this conditional geometry predicts directional movement from actual answers. Progressive elicitation may additionally affect the considerations or beliefs available to respondents, a possibility examined through measurements beyond the selected questions.
+We derive the policy and evaluate it using six pinned GSS 2024 personas. Adaptive simulations test directional refinement; fixed-set replays examine sensitivity to order and continued optimization. All pole-defining items are withheld from questioning. We also outline a prospective human experiment to test directional prediction from real answers and possible effects on subsequent judgments.
 
-\section{Prior Work and the Scientific Gap}
-\subsection{Belief systems, cognitive organization, and survey response}
-Converse \cite{converse1964} identified weak issue constraint outside politically sophisticated groups; Zaller \cite{zaller1992} modeled reports as samples from accessible considerations. Later studies separate partisan sorting from issue alignment \cite{baldassarri2008} and show how homophily and influence couple otherwise weak affinities \cite{dellaposta2015}. These motivate measuring conditional attitude organization rather than assuming a single axis.
+\section{Related Work}
+Attitude dependencies need not align on one ideological axis \cite{converse1964,zaller1992}. Partisan sorting and social influence shape these dependencies \cite{baldassarri2008,dellaposta2015}; cognitive consistency, wording, and order can affect reported attitudes \cite{festinger1957,schwarz1999,taber2006}. This motivates separating information revealed by a question from any change induced by asking it.
 
-Work on cognitive consistency \cite{festinger1957}, survey wording and order \cite{schwarz1999}, and motivated evaluation \cite{taber2006} shows that elicitation can shape which considerations become salient and how attitudes are expressed. These findings motivate distinguishing the refinement of an inferred phenotype from possible effects of questioning on later reports.
-
-\subsection{Quantitative influence and experimental evidence}
-DeGroot \cite{degroot1974}, Friedkin--Johnsen \cite{friedkin1990}, and bounded-confidence \cite{hegselmann2002} models specify social transitions but typically use low-dimensional individual states. DTAG instead models high-dimensional conditional structure without yet identifying a causal human transition operator.
-
-Bail \emph{et al.} \cite{bail2018} randomized incentives to follow Twitter bots providing cross-cutting political content. Republicans assigned a liberal bot later reported more conservative views; the corresponding Democratic estimate was not significant. These observations motivate examining how heterogeneity interacts with structured questioning. Campaign-contact experiments found small general-election mean effects \cite{kalla2018}, whereas some structured conversations produced more persistent reported changes \cite{broockman2016}. These studies motivate examining heterogeneity in responses to structured sequences and distinguishing immediate response effects from persistent attitude change.
-
-\subsection{Generative simulation and conditional response prediction}
-Generative agents and profile-conditioned language-model respondents can produce survey-like behavior \cite{argyle2023,park2023}. DTAG instead grounds generated answers in empirically estimated dependencies among survey variables. Its conditional distributions describe the range and likelihood of unasked responses given observed answers, while explicit anchors and state updates make the refinement process inspectable and reproducible.
+Opinion-dynamics models often use low-dimensional transitions \cite{degroot1974,friedkin1990,hegselmann2002}, while experiments on exposure and contact report heterogeneous effects \cite{bail2018,kalla2018,broockman2016}. Generative agents and prompted survey personas can produce plausible responses \cite{argyle2023,park2023}. DTAG instead combines learned high-dimensional survey conditionals with an explicit question-selection objective.
 
 \section{Large Science Models and the Predictive Phenotype}
 \subsection{Conditional dependency model}
@@ -244,52 +235,44 @@ The trajectories show model-generated phenotype refinement under each selection 
 \label{fig:native-trajectories}
 \end{figure*}
 
-\section{DTAG: Conditional Response Generation and Adaptive Querying}
-\subsection{Architecture and generative semantics}
-A semantic interface maps question $q$ to survey variables $M(q)$. The LSM predicts responses, the answer anchors the state, and an LLM verbalizes it. For a selected survey item, the response is sampled from the conditional LSM distribution:
+\section{Adaptive Question Selection}
+A semantic interface can map a natural-language question $q$ to a survey item $v\in M(q)$ and verbalize its answer. The native experiments use item identifiers directly without the LLM layer. For a selected question, DTAG samples a response and updates the predictive phenotype:
 \begin{align}
-A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\qquad v_t\in M(q_t),\label{eq:draw}\\
+A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\label{eq:draw}\\
 s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
 \calB_{t+1}&=\calB_\Ph(s_{t+1}).\label{eq:posterior}
 \end{align}
-The sampled response is added to the anchored state and the predictions for unasked items are updated; initial persona anchors remain fixed. The optimizer selects questions using expected displacement but does not select the respondent's answers.
+The initial persona anchors remain fixed. The optimizer chooses the question, not its answer (Fig.~\ref{fig:arch_adaptive}).
 
-Figure~\ref{fig:arch_adaptive} combines the architecture and native experiment.
-
-\subsection{Sequential geometry and adaptive questioning}
-For every candidate item $v$ and response $a$, define
+For candidate item $v$ and answer $a$, define
 \begin{align}
 \Delta_v(a;s)&=I_\Ph(s\cup\{v=a\})-I_\Ph(s),\label{eq:delta}\\
 \mu_v(s)&=\sum_{a\in\mathcal A_v}p_\Ph(a\mid s,v)\Delta_v(a;s),\label{eq:mu}\\
 \sigma_v^2(s)&=\sum_a p_\Ph(a\mid s,v)(\Delta_v(a;s)-\mu_v(s))^2.
 \label{eq:var}
 \end{align}
-The expected realized displacement equals the selection score:
+Right- and left-seeking policies maximize and minimize $\mu_v(s)$; neutral minimizes $|\mu_v(s)|$, and random samples an eligible item. By construction,
 \begin{equation*}
 \EE[I_\Ph(s_{t+1})-I_\Ph(s_t)\mid s_t,v_t]=\mu_{v_t}(s_t).
 \end{equation*}
-This identity specifies the local optimization objective; the attainable movement over 20 questions, variation across initial states, and retention after sets are frozen are empirical properties of the fitted conditional system. The reported policies evaluate this objective under sampled conditional responses.
+The accumulated displacement depends on successive selected items and sampled answers.
 
-The predictive change at unasked item $j$ after observing $(v,a)$ is
+The effect on an unasked item $j$ after observing $(v,a)$ is
 \begin{equation}
 R_j(s;v,a)=\JS\!\bigl(p_\Ph(\cdot\mid s,j),
 p_\Ph(\cdot\mid s\cup\{v=a\},j)\bigr).
 \label{eq:ripple}
 \end{equation}
-A weighted score $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}}w_jR_j(s;v,a)$, with prespecified $w_j\geq0$, quantifies how one answer redistributes predictions across the remaining variables.
+A weighted sum $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}}w_jR_j(s;v,a)$ measures redistribution across the remaining items. Unlike text retrieval \cite{lewis2020}, DTAG maintains an explicit conditional response state. The public implementation includes a web application (\url{https://github.com/zeroknowledgediscovery/DTAG/tree/main/webapp}).
 
-\subsection{Difference from RAG and language-model personas}
-RAG provides grounding text \cite{lewis2020}; profile-prompted LLM personas seek plausible or distributionally faithful responses \cite{argyle2023,park2023}. DTAG instead exposes a native conditional model whose predictions for unasked responses can be calibrated as anchors accumulate. It complements text retrieval through an explicit probabilistic response mechanism. The public DTAG implementation includes the native inference engine and a browser-based workbench (\url{https://github.com/zeroknowledgediscovery/DTAG/tree/main/webapp}).
-
-\section{The Interpretation of Sequential Questions}
-\subsection{Phenotypic refinement: observing a fixed system}
-Under passive refinement, respondents possess fixed phenotypes $X^\star$ and answers increasingly constrain predictions along $s_0\subset s_1\subset\cdots\subset s_T$. For target items $Y$, the information value of query $v$ is
+\section{Refinement and Possible Response Effects}
+Under \emph{phenotypic refinement}, successive answers restrict predictions for unasked items. For held-out responses $Y$, the expected information from asking $v$ is
 \begin{equation}
 \mathcal G(v\mid s)=
 H(Y\mid s)-\EE_{A_v\mid s}[H(Y\mid s,v=A_v)].
 \label{eq:ig}
 \end{equation}
-For a compatible joint law this is nonnegative conditional mutual information, distinct from geometric displacement $\mu_v$ in (\ref{eq:mu}). Held-out response prediction as the observed answer set grows provides a direct assessment of phenotype refinement; fixed archival response records offer one possible external evaluation.
+Under a coherent joint model this is conditional mutual information, distinct from directional displacement $\mu_v(s)$. Held-out response prediction evaluates refinement directly.
 
 \begin{table*}[!t]
 \centering
@@ -298,22 +281,22 @@ For a compatible joint law this is nonnegative conditional mutual information, d
 \begingroup
 \small
 \footnotesize
-\renewcommand{\arraystretch}{1.12}
+\renewcommand{\arraystretch}{1.06}
 \begin{tabularx}{\textwidth}{@{}p{.75in}X>{\raggedleft\arraybackslash}p{.90in}@{}}
 \toprule
 \textbf{Persona} & \textbf{Pinned description} & \textbf{Initial $I_\Phi(s_0)$} \\
 \midrule
-Alabama & 45-year-old white man living in open country outside a small town in rural Alabama, in the South. He is married and has two children. He works full time in farming. He is a veteran who served 2 to 4 years of active duty in the armed forces. He reads a newspaper every day. His education ended with a high school diploma. He thinks of himself as conservative and is a strong Republican. He is Protestant and attends religious services every week. & $0.075706$ \\
+Alabama & 45-year-old rural Alabama white man; married, two children; full-time farmer and veteran; high school; conservative, strong Republican; Protestant, weekly attendance; daily newspaper. & $0.075706$ \\
 \addlinespace[2pt]
-New York & 22-year-old white woman living in New York City, a large central city in the Northeast. She has never been married and has no children. She works full time in retail. She has never served in the armed forces. She reads a newspaper every day. She has a bachelor's degree. She thinks of herself as extremely liberal and is a strong Democrat. She has no religion and never attends religious services. & $-0.163807$ \\
+New York & 22-year-old New York City white woman; unmarried, no children; full-time retail worker, nonveteran; bachelor's degree; extremely liberal, strong Democrat; nonreligious; daily newspaper. & $-0.163807$ \\
 \addlinespace[2pt]
-Texas & 61-year-old white woman in a small town in Texas, in the South. She is married with three children and keeps house. Her education ended with high school. She thinks of herself as extremely conservative and is a strong Republican. She is Protestant and attends religious services several times a week. She reads a newspaper every day. & $0.045379$ \\
+Texas & 61-year-old small-town Texas white woman; married, three children; homemaker, high school; extremely conservative, strong Republican; Protestant, attends services several times weekly; daily newspaper. & $0.045379$ \\
 \addlinespace[2pt]
-Seattle & 34-year-old white man living in Seattle, a large central city in the West. He has never been married and has no children. He works full time and has a graduate degree. He thinks of himself as liberal and is a Democrat, but not a very strong one. He has no religion and never attends religious services. He reads a newspaper a few times a week. & $-0.119639$ \\
+Seattle & 34-year-old Seattle white man; unmarried, no children; employed full time, graduate degree; liberal, weak Democrat; nonreligious; newspaper several times weekly. & $-0.119639$ \\
 \addlinespace[2pt]
-Arizona & 39-year-old Mexican American man living in a medium-size city in Arizona, in the West. He is married with three children and works full time. His education ended with high school. He thinks of himself as conservative and is a Republican, but not a very strong one. He is Catholic and attends religious services nearly every week. & $-0.020437$ \\
+Arizona & 39-year-old Mexican American man in an Arizona city; married, three children; employed full time, high school; conservative, weak Republican; Catholic, nearly weekly attendance. & $-0.020437$ \\
 \addlinespace[2pt]
-Atlanta & 47-year-old Black woman living in Atlanta, a large central city in the South. She is divorced with two children and works full time. She has a bachelor's degree. She thinks of herself as liberal and is a strong Democrat. She is Protestant and attends religious services every week. She reads a newspaper every day. & $-0.030807$ \\
+Atlanta & 47-year-old Atlanta Black woman; divorced, two children; employed full time, bachelor's degree; liberal, strong Democrat; Protestant, weekly attendance; daily newspaper. & $-0.030807$ \\
 \bottomrule
 \end{tabularx}
 \endgroup
@@ -339,24 +322,22 @@ These are fixed-set replays, not the fully adaptive runs in Fig.~\ref{fig:arch_a
 \label{fig:question-map}
 \label{fig:order-effects}
 \end{figure*}
-\subsection{Phenotypic construction: querying a reflexive system}
-Questioning may also affect subsequent reports or attitudes. To represent this possibility, let $Z_t$ denote a respondent's latent state and define the response--transition operator
+\paragraph{Possible response effects.}
+Questioning a person may change later reports. A response--transition kernel separates an observed answer from a possible latent-state update:
 \begin{equation}
 K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
 \label{eq:kernel}
 \end{equation}
-Here $O_q$ generates the response from the current state, and $T_q$ describes any change following the question and answer. Passive observation corresponds to $T_q(z'\mid z,a)=\delta_z(z')$; nontrivial transitions may reflect altered accessibility, interpretation, or belief. The LSM describes conditional reports, while a human transition operator requires experimental identification.
+Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; shifts in salience or belief can induce nontrivial transitions. A common held-out battery and delayed measurement can investigate these effects.
 
-A common held-out battery following randomized questioning can test whether earlier question selection affects later reports beyond selective revelation. Delayed measurement can distinguish transient response-context effects from more persistent changes, potentially including persuasion.
-
-\subsection{Question order and conditional compatibility}
-For fixed realized answers, the terminal partial state and its computed $I_\Ph$ do not depend on the order in which answers were entered. The \emph{distribution} of sequentially generated answers may nevertheless be order-dependent when fitted conditionals are incompatible. A coherent static joint distribution satisfies
+\paragraph{Order dependence.}
+For fixed realized answers, the terminal index is order-independent; sequentially generated answers need not be. A coherent joint distribution satisfies
 \begin{equation}
 P(a\mid s,v)P(b\mid s,v=a,w)
 =P(b\mid s,w)P(a\mid s,w=b,v).
 \label{eq:compat}
 \end{equation}
-Separately fitted conditional models need not satisfy this equality \cite{heckerman2000}. In human respondents, question-dependent $K_q$ operators introduce a further possible source of order effects. Fixed-set native replay evaluates the model's order sensitivity while holding the selected questions constant.
+Separately fitted LSM conditionals may violate this identity \cite{heckerman2000}. Fixed-set replays evaluate its consequences for native response sequences.
 
 \section{Native GSS 2024 Computational Experiments}
 \label{sec:native}
