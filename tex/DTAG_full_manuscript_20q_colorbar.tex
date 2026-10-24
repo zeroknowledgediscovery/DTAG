@@ -66,7 +66,7 @@
 \definecolor{modteal}{RGB}{22,117,108}
 \title{Digital Twin Anchored Generation: Adaptive Querying and Phenotypic Refinement}
 \author{Ishanu Chattopadhyay%
-\thanks{Working research draft, October 2026. University of Kentucky. DTAG computations and human-subject studies described as proposed must not be interpreted as observed results.}}
+\thanks{Working research draft, October 2026. University of Kentucky. Native GSS 2024 computational results and prospective human-study design.}}
 \begin{document}
 % Source data are external CSVs (not generated TeX files).
 % The build script links tex/figures to the desired completed experiment.
@@ -113,7 +113,7 @@ Work on cognitive consistency \cite{festinger1957}, survey wording and order \ci
 \subsection{Quantitative influence and experimental evidence}
 DeGroot \cite{degroot1974}, Friedkin--Johnsen \cite{friedkin1990}, and bounded-confidence \cite{hegselmann2002} models specify social transitions but typically use low-dimensional individual states. DTAG instead models high-dimensional conditional structure without yet identifying a causal human transition operator.
 
-Bail \emph{et al.} \cite{bail2018} randomized incentives to follow Twitter bots providing cross-cutting political content. Republicans assigned a liberal bot later reported more conservative views; the corresponding Democratic estimate was not significant. This asymmetry motivates, but does not validate, DTAG. Campaign-contact experiments found small general-election mean effects \cite{kalla2018}, whereas some structured conversations produced more persistent reported changes \cite{broockman2016}. These studies motivate examining heterogeneity in responses to structured sequences and distinguishing immediate response effects from persistent attitude change.
+Bail \emph{et al.} \cite{bail2018} randomized incentives to follow Twitter bots providing cross-cutting political content. Republicans assigned a liberal bot later reported more conservative views; the corresponding Democratic estimate was not significant. These observations motivate examining how heterogeneity interacts with structured questioning. Campaign-contact experiments found small general-election mean effects \cite{kalla2018}, whereas some structured conversations produced more persistent reported changes \cite{broockman2016}. These studies motivate examining heterogeneity in responses to structured sequences and distinguishing immediate response effects from persistent attitude change.
 
 \subsection{Theory of mind and generative simulation}
 Theory of mind infers unobserved mental states from behavior \cite{premack1978,dennett1987}; inverse planning formalizes this inference \cite{baker2009}. DTAG makes one component of this problem operational: predicting distributions of \emph{unasked attitudes} from observed answers. Synthetic LLM personas \cite{argyle2023,park2023} may reproduce profiles without calibrated individual conditionals; DTAG exposes states, probabilities, and response provenance.
@@ -279,7 +279,7 @@ p_\Ph(\cdot\mid s\cup\{v=a\},j)\bigr).
 A weighted score $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}}w_jR_j(s;v,a)$, with prespecified $w_j\geq0$, quantifies how one answer redistributes predictions across the remaining variables.
 
 \subsection{Difference from RAG and language-model personas}
-RAG provides grounding text \cite{lewis2020}; profile-prompted LLM personas seek plausible or distributionally faithful responses \cite{argyle2023,park2023}. DTAG instead exposes a native conditional model whose predictions for unasked responses can be calibrated as anchors accumulate. It complements text retrieval through an explicit probabilistic response mechanism. The public implementation, including the DTAG web workbench and native LSM inference engine, is available at \url{https://github.com/zeroknowledgediscovery/DTAG/tree/main/webapp}.
+RAG provides grounding text \cite{lewis2020}; profile-prompted LLM personas seek plausible or distributionally faithful responses \cite{argyle2023,park2023}. DTAG instead exposes a native conditional model whose predictions for unasked responses can be calibrated as anchors accumulate. It complements text retrieval through an explicit probabilistic response mechanism. The public DTAG implementation includes the native inference engine and a browser-based workbench (\url{https://github.com/zeroknowledgediscovery/DTAG/tree/main/webapp}).
 
 \section{The Interpretation of Sequential Questions}
 \subsection{Phenotypic refinement: observing a fixed system}
@@ -361,7 +361,7 @@ Separately fitted conditional models need not satisfy this equality \cite{hecker
 \section{Native GSS 2024 Computational Experiments}
 \label{sec:native}
 
-\subsection{Adaptive questioning of fixed synthetic personas}
+\subsection{Adaptive questioning from pinned persona states}
 We initialized six synthetic respondents from the pinned GSS 2024 states in Table~\ref{tab:personas}. Each repetition draws a new response trajectory conditioned on the same initial anchors; these are independent synthetic response realizations, rather than repeated observations of one fully specified person. We queried survey items directly without executing the LLM mapping or verbalization layer. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. Answers were drawn from LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
 
 
