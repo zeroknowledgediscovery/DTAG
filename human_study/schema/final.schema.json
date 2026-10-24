@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DTAG human study immutable final research object v1",
+  "type": "object",
+  "required": ["schema_version", "kind", "study_id", "session_id", "timestamp", "receipt", "policy", "config_hash", "content_sha256", "provenance", "baseline_index", "final_index", "questions", "source_objects", "study_configuration"],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "kind": {"const": "session_final"},
+    "study_id": {"type": "string"},
+    "session_id": {"type": "string", "pattern": "^[a-f0-9]{32}$"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "receipt": {"type": "string", "description": "Internal receipt, never a Prolific completion code"},
+    "policy": {"enum": ["right", "left", "neutral", "random"]},
+    "config_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "content_sha256": {"type": "string", "description": "SHA256 of canonical JSON before adding this field"},
+    "provenance": {"type": "object", "description": "Exact code/model/map/pole/native-binary/prompt source identities"},
+    "baseline_index": {"type": "number"},
+    "final_index": {"type": "number"},
+    "consent_version": {"type": "string"},
+    "source_objects": {"type": "array", "items": {"type": "string"}},
+    "study_configuration": {"type": "object"},
+    "questions": {"type": "array", "items": {"$ref": "#/$defs/answered_question"}}
+  },
+  "$defs": {
+    "answered_question": {
+      "type": "object",
+      "required": ["question_id", "phase", "step", "target_variable", "original_wording", "displayed_wording", "choices", "question_provenance", "conditional_distribution", "status", "response_value", "response_timestamp", "response_elapsed_seconds"],
+      "properties": {
+        "question_id": {"type": "string"},
+        "phase": {"enum": ["baseline", "intervention", "outcome"]},
+        "step": {"type": "integer"},
+        "target_variable": {"type": "string"},
+        "original_wording": {"type": "string"},
+        "displayed_wording": {"type": "string"},
+        "choices": {"type": "array", "items": {"type": "object", "required": ["native_value", "display_label"]}},
+        "question_provenance": {"type": "object"},
+        "conditional_distribution": {"type": "object", "additionalProperties": {"type": "number"}},
+        "status": {"const": "answered"},
+        "response_value": {"type": ["string", "null"]},
+        "missing_reason": {"type": ["string", "null"]},
+        "response_timestamp": {"type": "string", "format": "date-time"},
+        "response_elapsed_seconds": {"type": "number", "minimum": 0},
+        "index_result": {"type": "object", "required": ["index_before", "index_after", "predicted_model_delta", "observed_conditional_index_delta"],
+          "description": "Intervention only. An observed conditional index change is not evidence of human belief change."},
+        "selection": {"type": ["object", "null"], "description": "Server-only eligible pool, policy, expected delta, top candidates, per-answer probabilities/deltas and persisted RNG state"}
+      }
+    }
+  }
+}

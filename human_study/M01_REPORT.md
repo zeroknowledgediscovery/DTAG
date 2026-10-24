@@ -10,7 +10,7 @@ The separate `backend/human_study` package uses `World`, `ModelContext`, wave-sp
 Validation performed:
 
 ```
-PATH=/workspace/.venv/bin:$PATH pytest -q human_study/tests/test_engine.py
+PATH=/workspace/.venv/bin:$PATH pytest -q human_study/tests/test_human_engine.py
 7 passed, 1 skipped
 
 DTAG_TEST_OFFLINE=1 DTAG_WEB_DATA_DIR=/workspace/.cache/dtag/webapp \
