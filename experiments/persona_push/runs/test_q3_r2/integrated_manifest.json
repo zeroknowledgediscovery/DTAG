@@ -1,0 +1,16 @@
+{
+  "model": "gss/gss_2024",
+  "steps": 20,
+  "reps": 40,
+  "seed": 20261021,
+  "bootstrap": 2000,
+  "workers": 10,
+  "objective": "allpairs",
+  "max_swaps": 12,
+  "figures_only": false,
+  "resume": false,
+  "adaptive": "/home/ishanu/Dropbox/ZED/Research/DTAG/experiments/persona_push/runs/test_q3_r2/adaptive",
+  "fixed_sets": "/home/ishanu/Dropbox/ZED/Research/DTAG/experiments/persona_push/runs/test_q3_r2/fixed_question_sets.json",
+  "order": "/home/ishanu/Dropbox/ZED/Research/DTAG/experiments/persona_push/runs/test_q3_r2/order",
+  "figures": "/home/ishanu/Dropbox/ZED/Research/DTAG/experiments/persona_push/runs/test_q3_r2/figures"
+}

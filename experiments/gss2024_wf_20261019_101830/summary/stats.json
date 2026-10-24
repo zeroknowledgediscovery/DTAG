@@ -1,0 +1,404 @@
+{
+  "runs": 20,
+  "ideology_enabled": true,
+  "checkpoints": [
+    {
+      "action": 0,
+      "label": "start",
+      "n": 20,
+      "mean": -0.08758672368309137,
+      "sd": 0.002846993063979925,
+      "ci_lo": -0.08887567258903539,
+      "ci_hi": -0.08635345262787561,
+      "min": -0.09289173206312873,
+      "max": -0.08439110027554476
+    },
+    {
+      "action": 1,
+      "label": "Auto-push up \u00d710 (realistic)",
+      "n": 20,
+      "mean": -0.0499755029768572,
+      "sd": 0.13832577661897072,
+      "ci_lo": -0.11324040224412577,
+      "ci_hi": 0.0035699421081510987,
+      "min": -0.3099539637177696,
+      "max": 0.09497526610862432
+    }
+  ],
+  "per_run": [
+    {
+      "run": 1,
+      "seed": 817206045,
+      "ideology": [
+        -0.08446080162607085,
+        -0.013138900914901611
+      ],
+      "questions": 10,
+      "seconds": 51.82
+    },
+    {
+      "run": 2,
+      "seed": 817206046,
+      "ideology": [
+        -0.08933673136034388,
+        0.0201967571364194
+      ],
+      "questions": 10,
+      "seconds": 60.06
+    },
+    {
+      "run": 3,
+      "seed": 817206047,
+      "ideology": [
+        -0.09005137978977841,
+        0.07133880127140341
+      ],
+      "questions": 10,
+      "seconds": 53.94
+    },
+    {
+      "run": 4,
+      "seed": 817206048,
+      "ideology": [
+        -0.08439110027554476,
+        0.013505161597133325
+      ],
+      "questions": 10,
+      "seconds": 52.99
+    },
+    {
+      "run": 5,
+      "seed": 817206049,
+      "ideology": [
+        -0.0919437779324568,
+        0.02770916429259152
+      ],
+      "questions": 10,
+      "seconds": 54.16
+    },
+    {
+      "run": 6,
+      "seed": 817206050,
+      "ideology": [
+        -0.08575951751543465,
+        -0.07270902247038605
+      ],
+      "questions": 10,
+      "seconds": 53.57
+    },
+    {
+      "run": 7,
+      "seed": 817206051,
+      "ideology": [
+        -0.08446080162607085,
+        -0.30782565960087815
+      ],
+      "questions": 10,
+      "seconds": 48.24
+    },
+    {
+      "run": 8,
+      "seed": 817206052,
+      "ideology": [
+        -0.08446080162607085,
+        -0.25947513252436544
+      ],
+      "questions": 10,
+      "seconds": 50.16
+    },
+    {
+      "run": 9,
+      "seed": 817206053,
+      "ideology": [
+        -0.08933673136034388,
+        -0.10770581548749245
+      ],
+      "questions": 10,
+      "seconds": 51.42
+    },
+    {
+      "run": 10,
+      "seed": 817206054,
+      "ideology": [
+        -0.08596559528654746,
+        0.09497526610862432
+      ],
+      "questions": 10,
+      "seconds": 55.19
+    },
+    {
+      "run": 11,
+      "seed": 817206055,
+      "ideology": [
+        -0.0910546921518706,
+        0.020367514700762788
+      ],
+      "questions": 10,
+      "seconds": 49.89
+    },
+    {
+      "run": 12,
+      "seed": 817206056,
+      "ideology": [
+        -0.08446080162607085,
+        0.0855577680502735
+      ],
+      "questions": 10,
+      "seconds": 50.19
+    },
+    {
+      "run": 13,
+      "seed": 817206057,
+      "ideology": [
+        -0.08926703000981807,
+        0.048728643111662875
+      ],
+      "questions": 10,
+      "seconds": 51.42
+    },
+    {
+      "run": 14,
+      "seed": 817206058,
+      "ideology": [
+        -0.08596559528654746,
+        -0.3011848893513049
+      ],
+      "questions": 10,
+      "seconds": 55.19
+    },
+    {
+      "run": 15,
+      "seed": 817206059,
+      "ideology": [
+        -0.08926703000981807,
+        -0.3099539637177696
+      ],
+      "questions": 10,
+      "seconds": 50.05
+    },
+    {
+      "run": 16,
+      "seed": 817206060,
+      "ideology": [
+        -0.08566549247020434,
+        -0.06612851390843502
+      ],
+      "questions": 10,
+      "seconds": 55.92
+    },
+    {
+      "run": 17,
+      "seed": 817206061,
+      "ideology": [
+        -0.08926703000981807,
+        -0.09542931008272725
+      ],
+      "questions": 10,
+      "seconds": 51.45
+    },
+    {
+      "run": 18,
+      "seed": 817206062,
+      "ideology": [
+        -0.08446080162607085,
+        0.07185864500107358
+      ],
+      "questions": 10,
+      "seconds": 48.48
+    },
+    {
+      "run": 19,
+      "seed": 817206063,
+      "ideology": [
+        -0.08926703000981807,
+        0.04898718345562611
+      ],
+      "questions": 10,
+      "seconds": 53.25
+    },
+    {
+      "run": 20,
+      "seed": 817206064,
+      "ideology": [
+        -0.09289173206312873,
+        0.030816243795545692
+      ],
+      "questions": 10,
+      "seconds": 48.53
+    }
+  ],
+  "net_change": {
+    "n": 20,
+    "mean": 0.037611220706234176,
+    "sd": 0.13901310954567864,
+    "ci_lo": -0.02363128969978032,
+    "ci_hi": 0.09386468276445613
+  },
+  "push": {
+    "n": 200,
+    "hit_rate": 1.0,
+    "mean_realized": 0.0037611220706234177
+  },
+  "questions": [
+    {
+      "action": 1,
+      "label": "Auto-push up \u00d710 (realistic)",
+      "asked": 200,
+      "distinct": 27,
+      "top": [
+        {
+          "question": "Do you think a person like this should be allowed to teach at a college or university?",
+          "count": 20
+        },
+        {
+          "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+          "count": 20
+        },
+        {
+          "question": "To what extent do you agree or disagree with the statement that immigrants take jobs away?",
+          "count": 20
+        },
+        {
+          "question": "Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",
+          "count": 17
+        },
+        {
+          "question": "Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",
+          "count": 14
+        }
+      ],
+      "skipped": 0
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.08706784819818347,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.08706784819818347
+      },
+      {
+        "step": 1,
+        "ideology": -0.033679094889894484
+      },
+      {
+        "step": 2,
+        "ideology": -0.0025309553491537165
+      },
+      {
+        "step": 3,
+        "ideology": 0.04278357316300701
+      },
+      {
+        "step": 4,
+        "ideology": 0.0552287789365327
+      },
+      {
+        "step": 5,
+        "ideology": 0.06703955530593111
+      },
+      {
+        "step": 6,
+        "ideology": 0.0675298438606108
+      },
+      {
+        "step": 7,
+        "ideology": 0.05645694142268668
+      },
+      {
+        "step": 8,
+        "ideology": 0.06309542100526917
+      },
+      {
+        "step": 9,
+        "ideology": 0.07804083914825426
+      },
+      {
+        "step": 10,
+        "ideology": 0.07057351725919704
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think a person like this should be allowed to teach at a college or university?",
+        "selected_variables": [
+          "colrac",
+          "colmslm",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",
+        "selected_variables": [
+          "spkracy",
+          "spkrac",
+          "librac",
+          "colrac"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+        "selected_variables": [
+          "relpersn"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "How important is it to you to be a Christian?",
+        "selected_variables": [
+          "amchrstn"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "To what extent do you agree or disagree with the statement that immigrants take jobs away?",
+        "selected_variables": [
+          "immjobs1",
+          "immjobs",
+          "immwlfare"
+        ]
+      },
+      {
+        "query_idx": 6,
+        "question": "Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",
+        "selected_variables": [
+          "marhisp"
+        ]
+      },
+      {
+        "query_idx": 7,
+        "question": "On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",
+        "selected_variables": [
+          "ratechall124"
+        ]
+      },
+      {
+        "query_idx": 8,
+        "question": "Do you agree or disagree that the United States would be a better country if religion had less influence?",
+        "selected_variables": [
+          "religinf"
+        ]
+      },
+      {
+        "query_idx": 9,
+        "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+        "selected_variables": [
+          "premarsx"
+        ]
+      },
+      {
+        "query_idx": 10,
+        "question": "Do you think having sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teenagers aged 14 to 16?",
+        "selected_variables": [
+          "teensex"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+variable,value,survey_question
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,female,CODE RESPONDENT'S SEX
+res16,"in a large city (over 250,000)",Which of these categories comes closest to the type of place you were living in when you were 16 years old?
+polviews,liberal,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+colath,"yes, allowed to teach","(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+natheal,too little,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
+sprtprsn,very spiritual,"To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?"
+teensex,almost always wrong,"What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+premarsx,not wrong at all,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"

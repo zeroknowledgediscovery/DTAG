@@ -1,0 +1,72 @@
+run,query_idx,action,variable,answer
+8,0,0,polnews,several times a day
+8,0,0,polviews,liberal
+8,0,0,race,white
+8,0,0,res16,"in a large city (over 250,000)"
+8,0,0,sex,female
+8,0,0,whatsp2,retail trade
+8,0,0,wrkstat,working full time
+8,0,0,year,2024
+8,1,1,polnews,several times a day
+8,1,1,polviews,liberal
+8,1,1,premarsx,always wrong
+8,1,1,race,white
+8,1,1,res16,"in a large city (over 250,000)"
+8,1,1,sex,female
+8,1,1,teensex,always wrong
+8,1,1,whatsp2,retail trade
+8,1,1,wrkstat,working full time
+8,1,1,year,2024
+8,2,1,colath,not allowed
+8,2,1,polnews,several times a day
+8,2,1,polviews,liberal
+8,2,1,premarsx,always wrong
+8,2,1,race,white
+8,2,1,res16,"in a large city (over 250,000)"
+8,2,1,sex,female
+8,2,1,teensex,always wrong
+8,2,1,whatsp2,retail trade
+8,2,1,wrkstat,working full time
+8,2,1,year,2024
+8,3,1,colath,not allowed
+8,3,1,polnews,several times a day
+8,3,1,polviews,liberal
+8,3,1,premarsx,always wrong
+8,3,1,race,white
+8,3,1,res16,"in a large city (over 250,000)"
+8,3,1,sex,female
+8,3,1,spkmslm,not allowed
+8,3,1,spkmslmy,not allowed
+8,3,1,teensex,always wrong
+8,3,1,whatsp2,retail trade
+8,3,1,wrkstat,working full time
+8,3,1,year,2024
+8,4,1,colath,not allowed
+8,4,1,polnews,several times a day
+8,4,1,polviews,liberal
+8,4,1,premarsx,always wrong
+8,4,1,race,white
+8,4,1,res16,"in a large city (over 250,000)"
+8,4,1,sex,female
+8,4,1,spkmslm,not allowed
+8,4,1,spkmslmy,not allowed
+8,4,1,sprtprsn,slightly spiritual
+8,4,1,teensex,always wrong
+8,4,1,whatsp2,retail trade
+8,4,1,wrkstat,working full time
+8,4,1,year,2024
+8,5,1,colath,not allowed
+8,5,1,polnews,several times a day
+8,5,1,polviews,liberal
+8,5,1,premarsx,always wrong
+8,5,1,race,white
+8,5,1,relpersn,slightly religious
+8,5,1,res16,"in a large city (over 250,000)"
+8,5,1,sex,female
+8,5,1,spkmslm,not allowed
+8,5,1,spkmslmy,not allowed
+8,5,1,sprtprsn,slightly spiritual
+8,5,1,teensex,always wrong
+8,5,1,whatsp2,retail trade
+8,5,1,wrkstat,working full time
+8,5,1,year,2024

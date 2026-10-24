@@ -1,0 +1,42 @@
+variable,value,survey_question
+region,south,REGION OF INTERVIEW
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,male,CODE RESPONDENT'S SEX
+vetyears,"yes, more than 4 years",Have you ever been on active duty for military training or service for two consecutive months or more? IF YES: What was your total time on active duty?
+polviews,conservative,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+polnews,several times a day,how often use media to get political news
+colmslm,not allowed,"Should such a person be allowed to teach in a college or university, or not?"
+colath,"yes, allowed to teach","(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+colcomy,not fired,"(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?"
+colcom,not fired,"(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?"
+spkrac,not allowed,"Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
+spkracy,"yes, allowed to speak","Or consider a person who believes that Black people are genetically inferior… If such a person wanted to make a speech in your community, should this person be allowed to speak, or not?"
+libracy,remove,"(Or consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book this person wrote should be taken out of your public library, would you favor removing this boo"
+librac,not remove,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+colrac,not allowed,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+spkmslmy,not allowed,"Now consider a Islamic religious leader who preaches hatred of the United States. If such a person wanted to make a speech in your communit, should this person be allowed to speak, or not?"
+spkmslm,not allowed,"Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?"
+marsame,agree,HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY
+marsamey,disagree,SAME-SEX COUPLES SHOULD HAVE RIGHT TO MARRY
+belikeus,agree,agree better if people were more like americans
+premarsx,not wrong at all,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+teensex,not wrong at all,"What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+natheal,too little,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
+racdif1,yes,"On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . . Mainly due to discrimination?"
+racdif1x,no,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are...Mainly due to"
+racdif2,yes,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Mainly due to less in-born ability to learn?"
+racdif2x,no,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+racdif3,yes,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Don't have the chance for education that it takes to rise out of poverty?"
+racdif3x,yes,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+racdif4,yes,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Don't have the motivation or will power to pull themselves up out of poverty?"
+racdif4x,yes,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+racdif5,yes,"On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Mainly due to upbringing?"
+racdif5x,no,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Upbringing"
+polhitok,yes,Are there any situations you can imagine in which you would approve of a policeman striking an adult male citizen?
+polhitoky,yes,Are there any situations you can imagine in which you would approve of a police officer striking an adult male citizen?
+polmurdr,no,(Would you approve of a policeman striking a citizen who…) Was being questioned as a suspect in a murder case?
+polabusey,no,(Would you approve of a policeman striking a citizen who...) Had said vulgar and obscene things to the police officer?
+polabuse,yes,(Would you approve of a policeman striking a citizen who...) Had said vulgar and obscene things to the policeman?
+polattaky,yes,Would you approve if the citizen was attacking the police officer with his fists?
+polattak,no,Was attacking the policeman with his fists?
+polescap,no,Was attempting to escape from custody?

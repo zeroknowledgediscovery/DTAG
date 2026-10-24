@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.007557070540966767,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.03417114237186093,0.0417282129128277,0.0417282129128277
+2,2,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,0.01858896075955215,-0.015582181612308784,0.026146031300518915
+3,3,Do you agree or disagree that homosexual couples should have the right to marry?,DIRECT,True,0.025506462446822666,0.006917501687270518,0.03306353298778943
+4,4,"How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.05918048234493453,0.03367401989811186,0.0667375528859013
+5,5,Do you agree or disagree with the statement that things would be better if people acted more like Americans?,DIRECT,True,0.06302211110722834,0.003841628762293811,0.07057918164819511
+6,6,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.04557038411211748,-0.017451726995110863,0.053127454653084244
+7,7,Should a person who is against all churches and religion be allowed to make a speech expressing these views in your community?,DIRECT,True,0.06619288127438709,0.02062249716226961,0.07374995181535386
+8,8,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.05707960303944596,-0.009113278234941131,0.06463667358041272
+9,9,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.07190806643887264,0.01482846339942668,0.07946513697983941
+10,10,Do you believe a person has the right to end their own life if they have an incurable disease?,DIRECT,True,0.07113166218616156,-0.0007764042527110826,0.07868873272712833

@@ -1,0 +1,19 @@
+{
+  "job_id": "a4fbaa1c33de40a09992d1e7b1de0dfd",
+  "name": "gss2024_wf",
+  "runs_requested": 20,
+  "runs_completed": 20,
+  "status": "done",
+  "error": null,
+  "base_seed": 511592278,
+  "seeds": "base_seed + run (1..20)",
+  "model_key": "gss/gss_2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "profile": "gss2024_wf",
+  "llm_backend": "openai",
+  "llm_model": null,
+  "git_commit": "b2ef25d",
+  "started_at": "2026-10-17T15:30:09",
+  "finished_at": "2026-10-17T15:48:43",
+  "variation": "fresh respondent per run (persona interpretation may differ); pushes and next questions re-chosen at each run's own state; per-run seed for drawn responses"
+}

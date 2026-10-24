@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.03872258824324945,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.008281881400916144,0.047004469644165596,0.047004469644165596
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,-0.003118761239477143,-0.011400642640393286,0.035603827003772306
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,0.03081234960749891,0.03393111084697605,0.06953493785074837
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,0.033972447180530774,0.003160097573031862,0.07269503542378022
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,0.038637496435341236,0.004665049254810462,0.07736008467859068
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.020048667844853554,-0.01858882859048768,0.058771256088103005
+7,7,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.028391079866507525,0.00834241202165397,0.06711366810975697
+8,8,"Do you think we are spending too much, too little, or about the right amount on help with childcare?",DIRECT,True,0.014285196140608953,-0.014105883725898572,0.053007784383858406
+9,9,"Do you think we are spending too much, too little, or about the right amount on solving the problems of big cities?",DIRECT,True,0.014689662477076124,0.000404466336467171,0.05341225072032557
+10,10,"Do you think we spend too much, too little, or about the right amount on developing alternative energy sources?",DIRECT,True,0.022376444219618506,0.007686781742542382,0.06109903246286796

@@ -1,0 +1,32 @@
+variable,value,survey_question
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,female,CODE RESPONDENT'S SEX
+res16,"in a large city (over 250,000)",Which of these categories comes closest to the type of place you were living in when you were 16 years old?
+polviews,liberal,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+polnews,once a day,how often use media to get political news
+year,2024,gss year for this respondent
+colmslm,not allowed,"Should such a person be allowed to teach in a college or university, or not?"
+colath,"yes, allowed to teach","(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+colcomy,not fired,"(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?"
+colcom,"yes, fired","(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?"
+spkracy,not allowed,"Or consider a person who believes that Black people are genetically inferior… If such a person wanted to make a speech in your community, should this person be allowed to speak, or not?"
+spkrac,not allowed,"Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
+librac,remove,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+colrac,not allowed,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+libracy,remove,"(Or consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book this person wrote should be taken out of your public library, would you favor removing this boo"
+spkmslmy,"yes, allowed to speak","Now consider a Islamic religious leader who preaches hatred of the United States. If such a person wanted to make a speech in your communit, should this person be allowed to speak, or not?"
+spkmslm,not allowed,"Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?"
+libmslmy,remove,"(Now consider a Islamic religious leader who preaches hatred of the United States…) If some people in your community suggested that a book this person wrote should be taken out of your public library, would you favor removing this book, or not?"
+libmslm,remove,"(Now consider a Muslim clergyman who preaches hatred of the United States…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+goodlife,agree,"The way things are in America, people like me and my family have a good chance of improving our standard of living -- do you agree or disagree?"
+belikeus,disagree,agree better if people were more like americans
+premarsx,not wrong at all,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+homosex,not wrong at all,"What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+marsame,strongly agree,HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY
+marsamey,strongly agree,SAME-SEX COUPLES SHOULD HAVE RIGHT TO MARRY
+spkathy,"yes, allowed to speak","(For instance, somebody who is against all churches and religion…) If such a person wanted to make a speech in your community against churches and religion, shouldhis person be allowed to speak, or not?"
+spkath,"yes, allowed to speak","For instance, somebody who is against all churches and religion . . . If such a person wanted to make a speech in your (city/town/community) against churches and religion, Should he be allowed to speak, or not?"
+befair,try to be fair most of the time,how often do you think people take advantage
+fair,would try to be fair,"Do you think most people would try to take advantage of you if they got a chance, or would they try to be fair?"
+fairv,depends (phone mode only: volunteered),"Do you think most people would try to take advantage of you if they got a chance, or would they try to be fair?"
+fairnv,would take advantage of you,"Do you think most people would try to take advantage of you if they got a chance, or would they try to be fair?"

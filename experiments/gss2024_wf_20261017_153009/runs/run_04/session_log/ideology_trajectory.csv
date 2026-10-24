@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.03702243685267023,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.04489872064174383,0.08192115749441406,0.08192115749441406
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,0.08195024138074641,0.037051520739002586,0.11897267823341665
+3,3,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,0.08511033895377891,0.003160097573032497,0.12213277580644914
+4,4,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,0.08977538820858959,0.004665049254810677,0.1267978250612598
+5,5,"How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",DIRECT,True,0.08622520556459275,-0.003550182643996841,0.12324764241726298
+6,6,"If someone wanted to make a speech in your community against churches and religion, should they be allowed to speak or not?",DIRECT,True,0.09999577693438942,0.013770571369796675,0.13701821378705964
+7,7,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.08141788615962016,-0.018577890774769262,0.11844032301229039
+8,8,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.09564133634620756,0.014223450186587397,0.1326637731988778
+9,9,"Do you think we spend too much, too little, or about the right amount on developing alternative energy sources?",DIRECT,True,0.10230926076452322,0.0066679244183156655,0.13933169761719344
+10,10,"Do you think we are spending too much, too little, or about the right amount on help with childcare?",DIRECT,True,0.09193397203815493,-0.010375288726368295,0.12895640889082516

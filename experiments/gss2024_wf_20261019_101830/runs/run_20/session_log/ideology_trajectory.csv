@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.09289173206312873,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.10721372811650066,-0.014321996053371935,-0.014321996053371935
+2,2,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.06174479195193664,0.045468936164564024,0.031146940111192088
+3,3,"If a Muslim clergyman wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",DIRECT,True,-0.01969841981801184,0.0420463721339248,0.07319331224511688
+4,4,How important is it to you to be a Christian?,DIRECT,True,-0.006156263897240702,0.013542155920771138,0.08673546816588802
+5,5,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,0.012206226510781524,0.018362490408022226,0.10509795857391026
+6,6,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,0.018674173757047118,0.006467947246265595,0.11156590582017585
+7,7,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.019109817679634586,0.0004356439225874677,0.11200154974276331
+8,8,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,0.0167525516695531,-0.0023572660100814845,0.10964428373268183
+9,9,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,0.029332080955458677,0.012579529285905576,0.12222381301858741
+10,10,Were you attempting to escape from custody?,DIRECT,True,0.030816243795545692,0.0014841628400870145,0.12370797585867442

@@ -1,0 +1,248 @@
+{
+  "runs": 10,
+  "ideology_enabled": true,
+  "checkpoints": [
+    {
+      "action": 0,
+      "label": "start",
+      "n": 10,
+      "mean": -0.009188522909280477,
+      "sd": 0.0010399667539289362,
+      "ci_lo": -0.009863562981731884,
+      "ci_hi": -0.008676755027494109,
+      "min": -0.01178070157911598,
+      "max": -0.008405501216858947
+    },
+    {
+      "action": 1,
+      "label": "Auto-push up \u00d75 (realistic)",
+      "n": 10,
+      "mean": 0.032310144963365914,
+      "sd": 0.051537575967534416,
+      "ci_lo": 0.0009732377822585679,
+      "ci_hi": 0.06085116035293211,
+      "min": -0.07699566861919255,
+      "max": 0.12133846349147304
+    }
+  ],
+  "per_run": [
+    {
+      "run": 1,
+      "seed": 416240820,
+      "ideology": [
+        -0.008790369643871762,
+        -0.0036688043659248264
+      ],
+      "questions": 5,
+      "seconds": 27.68
+    },
+    {
+      "run": 2,
+      "seed": 416240821,
+      "ideology": [
+        -0.008405501216858947,
+        0.06272210808866589
+      ],
+      "questions": 5,
+      "seconds": 30.62
+    },
+    {
+      "run": 3,
+      "seed": 416240822,
+      "ideology": [
+        -0.008790369643871762,
+        0.02815980810549142
+      ],
+      "questions": 5,
+      "seconds": 27.92
+    },
+    {
+      "run": 4,
+      "seed": 416240823,
+      "ideology": [
+        -0.01178070157911598,
+        0.05284264511294197
+      ],
+      "questions": 5,
+      "seconds": 39.16
+    },
+    {
+      "run": 5,
+      "seed": 416240824,
+      "ideology": [
+        -0.008990692440591119,
+        0.12133846349147304
+      ],
+      "questions": 5,
+      "seconds": 27.42
+    },
+    {
+      "run": 6,
+      "seed": 416240825,
+      "ideology": [
+        -0.00976311124545277,
+        0.007654134214238275
+      ],
+      "questions": 5,
+      "seconds": 26.07
+    },
+    {
+      "run": 7,
+      "seed": 416240826,
+      "ideology": [
+        -0.00976311124545277,
+        0.05814164262613519
+      ],
+      "questions": 5,
+      "seconds": 26.29
+    },
+    {
+      "run": 8,
+      "seed": 416240827,
+      "ideology": [
+        -0.008790369643871762,
+        0.030814803083234255
+      ],
+      "questions": 5,
+      "seconds": 26.45
+    },
+    {
+      "run": 9,
+      "seed": 416240828,
+      "ideology": [
+        -0.008405501216858947,
+        -0.07699566861919255
+      ],
+      "questions": 5,
+      "seconds": 26.44
+    },
+    {
+      "run": 10,
+      "seed": 416240829,
+      "ideology": [
+        -0.008405501216858947,
+        0.04209231789659649
+      ],
+      "questions": 5,
+      "seconds": 27.8
+    }
+  ],
+  "net_change": {
+    "n": 10,
+    "mean": 0.041498667872646396,
+    "sd": 0.051778138767171966,
+    "ci_lo": 0.012309031609073583,
+    "ci_hi": 0.06983320606793335
+  },
+  "push": {
+    "n": 50,
+    "hit_rate": 1.0,
+    "mean_realized": 0.008299733574529278
+  },
+  "questions": [
+    {
+      "action": 1,
+      "label": "Auto-push up \u00d75 (realistic)",
+      "asked": 50,
+      "distinct": 13,
+      "top": [
+        {
+          "question": "Do you think a person like this should be allowed to teach at a college or university?",
+          "count": 10
+        },
+        {
+          "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+          "count": 7
+        },
+        {
+          "question": "Do you agree or disagree that same-sex couples should have the right to marry?",
+          "count": 7
+        },
+        {
+          "question": "How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",
+          "count": 4
+        },
+        {
+          "question": "Do you agree or disagree with the statement: \"Things would be better if people were more like Americans\"?",
+          "count": 4
+        }
+      ],
+      "skipped": 0
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.007557070540966767,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.007557070540966767
+      },
+      {
+        "step": 1,
+        "ideology": 0.03239871434423793
+      },
+      {
+        "step": 2,
+        "ideology": 0.05230826683544088
+      },
+      {
+        "step": 3,
+        "ideology": 0.060878232316998244
+      },
+      {
+        "step": 4,
+        "ideology": 0.06873158470361111
+      },
+      {
+        "step": 5,
+        "ideology": 0.058915484622904
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think a person like this should be allowed to teach at a college or university?",
+        "selected_variables": [
+          "colrac",
+          "colmslm",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Should a person who says that Black people are genetically inferior be allowed to make a speech claiming that in your community, or should they not be allowed to speak?",
+        "selected_variables": [
+          "spkrac",
+          "spkracy"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "Do you agree or disagree that same-sex couples should have the right to marry?",
+        "selected_variables": [
+          "marsamey",
+          "marsame"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+        "selected_variables": [
+          "spkmslmy",
+          "spkmslm"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "If someone wanted to give a speech in your community opposing churches and religion, should they be allowed to speak or not?",
+        "selected_variables": [
+          "spkathy",
+          "spkath"
+        ]
+      }
+    ]
+  }
+}

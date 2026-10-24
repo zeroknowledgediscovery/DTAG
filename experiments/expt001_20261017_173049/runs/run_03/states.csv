@@ -1,0 +1,40 @@
+run,query_idx,action,variable,answer
+3,0,0,polviews,liberal
+3,0,0,race,white
+3,0,0,res16,"in a large city (over 250,000)"
+3,0,0,sex,female
+3,1,1,polviews,liberal
+3,1,1,premarsx,wrong only sometimes
+3,1,1,race,white
+3,1,1,res16,"in a large city (over 250,000)"
+3,1,1,sex,female
+3,2,1,colath,"yes, allowed to teach"
+3,2,1,polviews,liberal
+3,2,1,premarsx,wrong only sometimes
+3,2,1,race,white
+3,2,1,res16,"in a large city (over 250,000)"
+3,2,1,sex,female
+3,3,1,colath,"yes, allowed to teach"
+3,3,1,natheal,too little
+3,3,1,polviews,liberal
+3,3,1,premarsx,wrong only sometimes
+3,3,1,race,white
+3,3,1,res16,"in a large city (over 250,000)"
+3,3,1,sex,female
+3,4,1,colath,"yes, allowed to teach"
+3,4,1,natheal,too little
+3,4,1,polviews,liberal
+3,4,1,premarsx,wrong only sometimes
+3,4,1,race,white
+3,4,1,res16,"in a large city (over 250,000)"
+3,4,1,sex,female
+3,4,1,sprtprsn,very spiritual
+3,5,1,colath,"yes, allowed to teach"
+3,5,1,natheal,too little
+3,5,1,polviews,liberal
+3,5,1,premarsx,not wrong at all
+3,5,1,race,white
+3,5,1,res16,"in a large city (over 250,000)"
+3,5,1,sex,female
+3,5,1,sprtprsn,very spiritual
+3,5,1,teensex,almost always wrong

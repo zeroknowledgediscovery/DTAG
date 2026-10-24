@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08926703000981807,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.03103517031232143,0.05823185969749664,0.05823185969749664
+2,2,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.01426720677924552,0.04530237709156695,0.1035342367890636
+3,3,How important is it to you to be a Christian?,DIRECT,True,0.026666191003365772,0.012398984224120252,0.11593322101318385
+4,4,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,0.02075577876444491,-0.0059104122389208626,0.11002280877426299
+5,5,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,0.026422876901086245,0.005667098136641336,0.11568990691090432
+6,6,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.026902301079577737,0.00047942417849149155,0.11616933108939581
+7,7,"Do you think we are spending too much, too little, or about the right amount on supporting scientific research?",DIRECT,True,0.036284753279702216,0.009382452200124479,0.1255517832895203
+8,8,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.050030673881323,0.013745920601620783,0.13929770389114107
+9,9,"How would you rate Joe Biden on a scale where you can choose from the following numbers: 0, 2, 20, 25, 29, 30, 45, 55, 60, 65, 75, 85, 90, 99, or 100?",DIRECT,True,0.04560604996096941,-0.0044246239203535875,0.13487307997078749
+10,10,"Do you think society has gone too far, not far enough, or about far enough in accepting people?",DIRECT,True,0.048728643111662875,0.0031225931506934645,0.13799567312148095

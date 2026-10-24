@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08596559528654746,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.01194314698592047,0.07402244830062699,0.07402244830062699
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,0.0053080337293959735,0.017251180715316443,0.09127362901594344
+3,3,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.05063947812249511,0.04533144439309914,0.13660507340904257
+4,4,How important is it to you to be a Christian?,DIRECT,True,0.06418172149967352,0.013542243377178409,0.15014731678622098
+5,5,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,0.08135834276234047,0.017176621262666947,0.16732393804888793
+6,6,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.08299912720285428,0.0016407844405138122,0.16896472248940175
+7,7,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,0.08505578430039235,0.0020566570975380644,0.1710213795869398
+8,8,How do you feel about a close relative marrying an Asian American person?,DIRECT,True,0.08430765480029521,-0.0007481295000971305,0.1702732500868427
+9,9,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,0.09391073979103838,0.009603084990743166,0.17987633507758582
+10,10,Were you attempting to escape from custody?,DIRECT,True,0.09497526610862432,0.0010645263175859399,0.1809408613951718

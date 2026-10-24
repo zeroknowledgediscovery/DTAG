@@ -1,0 +1,236 @@
+run,query_idx,action,variable,answer
+17,0,0,polnews,several times a day
+17,0,0,polviews,liberal
+17,0,0,race,white
+17,0,0,res16,"in a large city (over 250,000)"
+17,0,0,sex,female
+17,0,0,whatsp2,retail trade
+17,0,0,wrkstat,working full time
+17,0,0,year,2024
+17,1,1,colath,"yes, allowed to teach"
+17,1,1,colcom,not fired
+17,1,1,colcomy,not fired
+17,1,1,colmslm,not allowed
+17,1,1,colrac,not allowed
+17,1,1,polnews,several times a day
+17,1,1,polviews,liberal
+17,1,1,race,white
+17,1,1,res16,"in a large city (over 250,000)"
+17,1,1,sex,female
+17,1,1,whatsp2,retail trade
+17,1,1,wrkstat,working full time
+17,1,1,year,2024
+17,2,1,colath,"yes, allowed to teach"
+17,2,1,colcom,not fired
+17,2,1,colcomy,not fired
+17,2,1,colmslm,not allowed
+17,2,1,colrac,not allowed
+17,2,1,librac,not remove
+17,2,1,libracy,not remove
+17,2,1,polnews,several times a day
+17,2,1,polviews,liberal
+17,2,1,race,white
+17,2,1,res16,"in a large city (over 250,000)"
+17,2,1,sex,female
+17,2,1,spkrac,"yes, allowed to speak"
+17,2,1,spkracy,not allowed
+17,2,1,whatsp2,retail trade
+17,2,1,wrkstat,working full time
+17,2,1,year,2024
+17,3,1,colath,"yes, allowed to teach"
+17,3,1,colcom,not fired
+17,3,1,colcomy,not fired
+17,3,1,colmslm,not allowed
+17,3,1,colrac,not allowed
+17,3,1,libath,remove
+17,3,1,libathy,not remove
+17,3,1,librac,not remove
+17,3,1,libracy,not remove
+17,3,1,polnews,several times a day
+17,3,1,polviews,liberal
+17,3,1,race,white
+17,3,1,res16,"in a large city (over 250,000)"
+17,3,1,sex,female
+17,3,1,spkrac,"yes, allowed to speak"
+17,3,1,spkracy,not allowed
+17,3,1,whatsp2,retail trade
+17,3,1,wrkstat,working full time
+17,3,1,year,2024
+17,4,1,affrmact,not strongly opposes
+17,4,1,colath,"yes, allowed to teach"
+17,4,1,colcom,not fired
+17,4,1,colcomy,not fired
+17,4,1,colmslm,not allowed
+17,4,1,colrac,not allowed
+17,4,1,discaff,somewhat likely
+17,4,1,fehire,agree
+17,4,1,libath,remove
+17,4,1,libathy,not remove
+17,4,1,librac,not remove
+17,4,1,libracy,not remove
+17,4,1,polnews,several times a day
+17,4,1,polviews,liberal
+17,4,1,race,white
+17,4,1,res16,"in a large city (over 250,000)"
+17,4,1,sex,female
+17,4,1,spkrac,"yes, allowed to speak"
+17,4,1,spkracy,not allowed
+17,4,1,whatsp2,retail trade
+17,4,1,wrkstat,working full time
+17,4,1,year,2024
+17,5,1,affrmact,not strongly opposes
+17,5,1,colath,"yes, allowed to teach"
+17,5,1,colcom,not fired
+17,5,1,colcomy,not fired
+17,5,1,colmslm,not allowed
+17,5,1,colrac,not allowed
+17,5,1,conjudge,a great deal
+17,5,1,discaff,somewhat likely
+17,5,1,fehire,agree
+17,5,1,libath,remove
+17,5,1,libathy,not remove
+17,5,1,librac,not remove
+17,5,1,libracy,not remove
+17,5,1,polnews,several times a day
+17,5,1,polviews,liberal
+17,5,1,race,white
+17,5,1,res16,"in a large city (over 250,000)"
+17,5,1,sex,female
+17,5,1,spkrac,"yes, allowed to speak"
+17,5,1,spkracy,not allowed
+17,5,1,whatsp2,retail trade
+17,5,1,wrkstat,working full time
+17,5,1,year,2024
+17,6,2,affrmact,not strongly opposes
+17,6,2,colath,"yes, allowed to teach"
+17,6,2,colcom,not fired
+17,6,2,colcomy,not fired
+17,6,2,colmslm,not allowed
+17,6,2,colrac,not allowed
+17,6,2,conjudge,a great deal
+17,6,2,discaff,somewhat likely
+17,6,2,fehire,agree
+17,6,2,libath,remove
+17,6,2,libathy,not remove
+17,6,2,librac,not remove
+17,6,2,libracy,not remove
+17,6,2,polnews,several times a day
+17,6,2,polviews,liberal
+17,6,2,premarsx,not wrong at all
+17,6,2,race,white
+17,6,2,res16,"in a large city (over 250,000)"
+17,6,2,sex,female
+17,6,2,spkrac,"yes, allowed to speak"
+17,6,2,spkracy,not allowed
+17,6,2,whatsp2,retail trade
+17,6,2,wrkstat,working full time
+17,6,2,year,2024
+17,7,2,affrmact,not strongly opposes
+17,7,2,colath,"yes, allowed to teach"
+17,7,2,colcom,not fired
+17,7,2,colcomy,not fired
+17,7,2,colmslm,not allowed
+17,7,2,colrac,not allowed
+17,7,2,conjudge,a great deal
+17,7,2,discaff,somewhat likely
+17,7,2,fehire,agree
+17,7,2,homosex,not wrong at all
+17,7,2,libath,remove
+17,7,2,libathy,not remove
+17,7,2,librac,not remove
+17,7,2,libracy,not remove
+17,7,2,polnews,several times a day
+17,7,2,polviews,liberal
+17,7,2,premarsx,not wrong at all
+17,7,2,race,white
+17,7,2,res16,"in a large city (over 250,000)"
+17,7,2,sex,female
+17,7,2,spkrac,"yes, allowed to speak"
+17,7,2,spkracy,not allowed
+17,7,2,whatsp2,retail trade
+17,7,2,wrkstat,working full time
+17,7,2,year,2024
+17,8,2,affrmact,not strongly opposes
+17,8,2,colath,"yes, allowed to teach"
+17,8,2,colcom,not fired
+17,8,2,colcomy,not fired
+17,8,2,colmslm,not allowed
+17,8,2,colrac,not allowed
+17,8,2,conjudge,a great deal
+17,8,2,discaff,somewhat likely
+17,8,2,fehire,agree
+17,8,2,homosex,not wrong at all
+17,8,2,libath,remove
+17,8,2,libathy,not remove
+17,8,2,librac,not remove
+17,8,2,libracy,not remove
+17,8,2,natheal,too little
+17,8,2,nathealy,too little
+17,8,2,polnews,several times a day
+17,8,2,polviews,liberal
+17,8,2,premarsx,not wrong at all
+17,8,2,race,white
+17,8,2,res16,"in a large city (over 250,000)"
+17,8,2,sex,female
+17,8,2,spkrac,"yes, allowed to speak"
+17,8,2,spkracy,not allowed
+17,8,2,whatsp2,retail trade
+17,8,2,wrkstat,working full time
+17,8,2,year,2024
+17,9,2,affrmact,not strongly opposes
+17,9,2,colath,"yes, allowed to teach"
+17,9,2,colcom,not fired
+17,9,2,colcomy,not fired
+17,9,2,colmslm,not allowed
+17,9,2,colrac,not allowed
+17,9,2,conjudge,a great deal
+17,9,2,discaff,somewhat likely
+17,9,2,fehire,agree
+17,9,2,homosex,not wrong at all
+17,9,2,libath,remove
+17,9,2,libathy,not remove
+17,9,2,librac,not remove
+17,9,2,libracy,not remove
+17,9,2,natheal,too little
+17,9,2,nathealy,too little
+17,9,2,polnews,several times a day
+17,9,2,polviews,liberal
+17,9,2,premarsx,not wrong at all
+17,9,2,race,white
+17,9,2,ratechall224,0.0
+17,9,2,res16,"in a large city (over 250,000)"
+17,9,2,sex,female
+17,9,2,spkrac,"yes, allowed to speak"
+17,9,2,spkracy,not allowed
+17,9,2,whatsp2,retail trade
+17,9,2,wrkstat,working full time
+17,9,2,year,2024
+17,10,2,affrmact,not strongly opposes
+17,10,2,colath,"yes, allowed to teach"
+17,10,2,colcom,not fired
+17,10,2,colcomy,not fired
+17,10,2,colmslm,not allowed
+17,10,2,colrac,not allowed
+17,10,2,conjudge,a great deal
+17,10,2,conlegis,only some
+17,10,2,discaff,somewhat likely
+17,10,2,fehire,agree
+17,10,2,homosex,not wrong at all
+17,10,2,libath,remove
+17,10,2,libathy,not remove
+17,10,2,librac,not remove
+17,10,2,libracy,not remove
+17,10,2,natheal,too little
+17,10,2,nathealy,too little
+17,10,2,polnews,several times a day
+17,10,2,polviews,liberal
+17,10,2,premarsx,not wrong at all
+17,10,2,race,white
+17,10,2,ratechall224,0.0
+17,10,2,res16,"in a large city (over 250,000)"
+17,10,2,sex,female
+17,10,2,spkrac,"yes, allowed to speak"
+17,10,2,spkracy,not allowed
+17,10,2,whatsp2,retail trade
+17,10,2,wrkstat,working full time
+17,10,2,year,2024

@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.038722588243249666,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.013258791310849047,0.02546379693240062,0.02546379693240062
+2,2,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.011762107931348742,0.0014966833795003048,0.026960480311900924
+3,3,"How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",DIRECT,True,-0.00034658816392099537,0.011415519767427747,0.03837600007932867
+4,4,"If someone in your community wrote a book against churches and religion, would you support removing that book from the library or not?",DIRECT,True,-0.003879836186876267,-0.0035332480229552715,0.0348427520563734
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.0025909986456526626,0.0012888375412236043,0.036131589597597005
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.02128981472004885,-0.018698816074396187,0.017432773523200815
+7,7,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.030446466766135216,-0.009156652046086365,0.00827612147711445
+8,8,"If someone wanted to make a speech in your community against churches and religion, should they be allowed to speak or not?",DIRECT,True,-0.04252847906949768,-0.012082012303362463,-0.0038058908262480137
+9,9,"If someone in your community suggested removing a book written by a person who believes that Black people are genetically inferior, would you support removing that book from your public library or not?",DIRECT,True,-0.05172326437673604,-0.009194785307238364,-0.013000676133486377
+10,10,"What is your rating of Kamala Harris on a scale from 0 to 100, where 0 means the lowest and 100 means the highest?",DIRECT,True,-0.05127373749954157,0.0004495268771944755,-0.012551149256291902

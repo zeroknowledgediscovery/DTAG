@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.038722588243249666,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.008281881400916144,0.04700446964416581,0.04700446964416581
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,0.01923023275464991,0.010948351353733765,0.05795282099789957
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,0.06446729742731376,0.04523706467266385,0.10318988567056342
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,0.06786691683794074,0.0033996194106269834,0.10658950508119042
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,0.07170219069930456,0.0038352738613638138,0.11042477894255423
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.09018048763212276,0.018478296932818203,0.12890307587537242
+7,7,"Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.06143602679704008,-0.028744460835082683,0.10015861504028975
+8,8,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.08754640225425903,0.02611037545721895,0.1262689904975087
+9,9,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.07812733978688179,-0.00941906246737724,0.11684992803013144
+10,10,Do you believe a person has the right to end their own life if they have an incurable disease?,DIRECT,True,0.08307587042642119,0.0049485306395394,0.12179845866967084

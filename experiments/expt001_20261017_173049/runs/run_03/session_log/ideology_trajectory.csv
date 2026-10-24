@@ -1,0 +1,7 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.03972281546903248,,0.0
+1,1,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.024530476093227515,0.015192339375804966,0.015192339375804966
+2,2,Do you think a person who is against all churches and religion should be allowed to teach in a college or university?,DIRECT,True,-0.04813294675581889,-0.023602470662591375,-0.008410131286786408
+3,3,"Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",DIRECT,True,-0.05738410664227122,-0.00925115988645233,-0.01766129117323874
+4,4,"How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.03629849534115424,0.021085611301116983,0.0034243201278782442
+5,5,"Do you think having sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teens aged 14 to 16?",DIRECT,True,-0.07891359756805116,-0.04261510222689693,-0.03919078209901868

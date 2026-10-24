@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.04023838803192821,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.03745029125276586,0.0027880967791623495,0.0027880967791623495
+2,2,"If someone in your community wrote a book against churches and religion, would you support removing that book from the library or not?",DIRECT,True,-0.03794375166126478,-0.0004934604084989164,0.002294636370663433
+3,3,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.03458504413286347,0.0033587075284013043,0.0056533438990647375
+4,4,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.030747173170388678,0.0038378709624747945,0.009491214861539532
+5,5,"Do you think the government in Washington should help people pay for doctors and hospital bills, people should take care of these costs themselves, or do you agree with both ideas?",DIRECT,True,-0.03460670920804752,-0.003859536037658845,0.005631678823880687
+6,6,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,-0.08730542496347952,-0.052698715755432,-0.047067036931551315
+7,7,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.06833707472695336,0.01896835023652617,-0.028098686695025146
+8,8,"Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.07482161418580927,-0.006484539458855909,-0.034583226153881055
+9,9,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.0842338739054305,-0.00941225971962123,-0.043995485873502285
+10,10,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,-0.0909003779213343,-0.00666650401590381,-0.050661989889406095

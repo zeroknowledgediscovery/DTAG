@@ -1,0 +1,10 @@
+{
+  "recovered_from_saved_native_runs": true,
+  "model_evaluation_performed": false,
+  "steps": 3,
+  "repetitions": 2,
+  "completed_replays_verified": 144,
+  "saved_endpoints_sha256": "510a6717bba06ab181583ca8ab58e12348c1d9e2e3060b100d4a24b9c1f6f2fa",
+  "saved_draws_sha256": "e82fb892f4103e506205c56ec0fa28e3cd76b9dec015efe41ee3083016faa11f",
+  "note": "This restores figures and summaries after a post-run plotting failure. It does not recover a missing native model hash."
+}

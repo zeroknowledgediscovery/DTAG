@@ -1,0 +1,315 @@
+variable,answer,runs,share
+acpttg,too far,4,0.08
+acpttg,about far enough,1,0.02
+acpttg,not far enough,1,0.02
+adoptus,do both,1,0.02
+affrmact,not strongly opposes,13,0.26
+affrmact,strongly opposes,11,0.22
+affrmact,not strongly favors,4,0.08
+affrmact,strongly favors,2,0.04
+amownway,neither agree nor disagree,4,0.08
+amownway,agree,3,0.06
+amownway,agree strongly,1,0.02
+belikeus,neither agree nor disagree,21,0.42
+belikeus,disagree,14,0.28
+belikeus,strongly agree,6,0.12
+belikeus,strongly disagree,5,0.1
+belikeus,agree,4,0.08
+cantrust,you usually can't be too careful in dealing with people,4,0.08
+cantrust,people can usually be trusted,1,0.02
+cappun,favor,5,0.1
+cappun,oppose,1,0.02
+childsinhh,2,36,0.72
+chngdocs,"no, the law should not allow",2,0.04
+colath,"yes, allowed to teach",33,0.66
+colath,not allowed,17,0.34
+colcom,not fired,33,0.66
+colcom,"yes, fired",17,0.34
+colcomy,not fired,34,0.68
+colcomy,"yes, fired",16,0.32
+colmslm,not allowed,36,0.72
+colmslm,"yes, allowed to teach",14,0.28
+colrac,not allowed,30,0.6
+colrac,"yes, allowed to teach",20,0.4
+conarmy,a great deal,5,0.1
+conarmy,only some,3,0.06
+conarmy,hardly any,2,0.04
+conbus,only some,8,0.16
+conbus,a great deal,2,0.04
+conclerg,hardly any,6,0.12
+conclerg,only some,4,0.08
+conclerg,a great deal,2,0.04
+coneduc,a great deal,7,0.14
+coneduc,only some,2,0.04
+coneduc,hardly any,1,0.02
+confed,hardly any,7,0.14
+confed,only some,3,0.06
+confinan,only some,4,0.08
+confinan,a great deal,3,0.06
+confinan,hardly any,3,0.06
+conjudge,hardly any,27,0.54
+conjudge,only some,17,0.34
+conjudge,a great deal,6,0.12
+conlabor,only some,5,0.1
+conlabor,hardly any,4,0.08
+conlabor,a great deal,1,0.02
+conlegis,hardly any,17,0.34
+conlegis,only some,9,0.18
+conmedic,only some,8,0.16
+conmedic,a great deal,2,0.04
+conmedic,hardly any,2,0.04
+conpress,hardly any,8,0.16
+conpress,only some,2,0.04
+consci,a great deal,6,0.12
+consci,hardly any,3,0.06
+consci,only some,1,0.02
+contv,hardly any,8,0.16
+contv,only some,4,0.08
+contv,a great deal,2,0.04
+demtoday,very well,1,0.02
+discaff,not very likely,23,0.46
+discaff,somewhat likely,18,0.36
+discaff,very likely,5,0.1
+disrspct,a few times a year,12,0.24
+disrspct,never,5,0.1
+disrspct,almost every day,3,0.06
+disrspct,a few times a month,3,0.06
+disrspct,less than once a year,3,0.06
+disrspct,at least once a week,2,0.04
+econstat,bad,2,0.04
+econstat,very bad,1,0.02
+econstat,very good,1,0.02
+econstat,neither bad nor good,1,0.02
+fefam,disagree,1,0.02
+fefam,strongly agree,1,0.02
+fehire,disagree,11,0.22
+fehire,agree,11,0.22
+fehire,strongly agree,5,0.1
+fehire,strongly disagree,2,0.04
+fehire,neither agree nor disagree,1,0.02
+fejobaff,strongly favor,10,0.2
+fejobaff,strongly oppose,9,0.18
+fejobaff,not strongly favor,6,0.12
+fejobaff,not strongly oppose,5,0.1
+getahead,hard work most important,1,0.02
+getaheadnv,hard work most important,1,0.02
+getaheadv,"hard work, luck equally important (phone mode only: volunteered",1,0.02
+god,higher power,1,0.02
+goodlife,agree,20,0.4
+goodlife,disagree,10,0.2
+goodlife,strongly disagree,8,0.16
+goodlife,neither agree nor disagree,6,0.12
+goodlife,strongly agree,5,0.1
+helpblk,4.0,10,0.2
+helpblk,no special treatment,8,0.16
+helpblk,agree with both,7,0.14
+helpblk,2.0,3,0.06
+helpblk,government should help,2,0.04
+helpsick,government should help,1,0.02
+helpsick,agree with both,1,0.02
+homosex,always wrong,8,0.16
+homosex,not wrong at all,2,0.04
+homosex,almost always wrong,2,0.04
+ifwrong,disagree,3,0.06
+ifwrong,neither agree nor disagree,2,0.04
+ifwrong,agree,2,0.04
+immameco,disagree strongly,1,0.02
+immameco,disagree,1,0.02
+immameco,agree,1,0.02
+immassim,immigrants should retain their culture of origin and also adopt american culture,3,0.06
+immcrime,disagree,3,0.06
+immcrime,neither agree nor disagree,2,0.04
+immcrime1,disagree,2,0.04
+immcrime1,agree,2,0.04
+immcrime1,agree strongly,1,0.02
+immfate,become permanent legal residents,1,0.02
+immideas1,agree,3,0.06
+immjobs,disagree strongly,2,0.04
+immjobs,agree,2,0.04
+immjobs,neither agree nor disagree,1,0.02
+immjobs1,disagree,4,0.08
+immjobs1,agree,1,0.02
+immwlfare,agree strongly,2,0.04
+immwlfare,disagree,1,0.02
+immwlfare,neither agree nor disagree,1,0.02
+letin1,reduced a lot,6,0.12
+letin1,increased a little,3,0.06
+letin1,reduced a little,2,0.04
+letin1,remain the same as it is,2,0.04
+letin1a,remain the same as it is,7,0.14
+letin1a,increased a little,4,0.08
+letin1a,reduced a lot,4,0.08
+letin1a,reduced a little,4,0.08
+letin1a,increased a lot,1,0.02
+letinasn,left the same as it is now,12,0.24
+letinasn,decreased a lot,4,0.08
+letinasn,decreased a little,2,0.04
+letinhsp,left the same as it is now,9,0.18
+letinhsp,decreased a lot,3,0.06
+letinhsp,decreased a little,2,0.04
+libath,not remove,26,0.52
+libath,remove,2,0.04
+libathy,not remove,20,0.4
+libathy,remove,8,0.16
+librac,remove,11,0.22
+librac,not remove,9,0.18
+libracy,not remove,14,0.28
+libracy,remove,6,0.12
+liveblks,strongly favor,1,0.02
+marasian,neither favor nor oppose,1,0.02
+marblk,oppose,1,0.02
+marhisp,neither favor nor oppose,1,0.02
+marsame,strongly disagree,13,0.26
+marsame,neither agree nor disagree,12,0.24
+marsame,agree,11,0.22
+marsame,strongly agree,7,0.14
+marsame,disagree,5,0.1
+marsamey,strongly agree,19,0.38
+marsamey,neither agree nor disagree,12,0.24
+marsamey,agree,9,0.18
+marsamey,strongly disagree,6,0.12
+marsamey,disagree,2,0.04
+marwht,strongly favor,1,0.02
+natchld,about right,1,0.02
+natcrime,about right,1,0.02
+natcrimy,too little,1,0.02
+natcrimy,too much,1,0.02
+natdrug,too little,9,0.18
+natdrug,too much,4,0.08
+natdrug,about right,4,0.08
+natdrugy,too little,11,0.22
+natdrugy,about right,3,0.06
+natdrugy,too much,3,0.06
+natenvir,too little,3,0.06
+natenvir,about right,1,0.02
+natenviy,too little,4,0.08
+natsci,about right,6,0.12
+natsci,too much,3,0.06
+natsci,too little,3,0.06
+papernews,somewhat unreliable,7,0.14
+papernews,somewhat reliable,7,0.14
+papernews,very unreliable,2,0.04
+polnews,several times a day,31,0.62
+polnews,once a day,16,0.32
+polnews,1-2 days a week,2,0.04
+polnewsfrom,newspapers (in print or access via internet),4,0.08
+polviews,conservative,50,1.0
+pornlaw,there should be laws against the distribution of pornography to persons under 18,1,0.02
+premarsx,always wrong,2,0.04
+premarsx,wrong only sometimes,1,0.02
+racdif1,yes,2,0.04
+racdif1,no,1,0.02
+racdif1x,yes,1,0.02
+racdif4,no,3,0.06
+racdif5,no,1,0.02
+racdif5,yes,1,0.02
+race,white,50,1.0
+racecen1,white,3,0.06
+racecen2,white,1,0.02
+racecen2,asian indian,1,0.02
+racecen2,some other race,1,0.02
+racecen3,american indian or alaska native,1,0.02
+racecen3,white,1,0.02
+racecen3,other pacific islander,1,0.02
+racerank1,white,1,0.02
+racerank2,native hawaiian,1,0.02
+racerank3,white,1,0.02
+ratechall124,0.0,7,0.14
+ratechall124,90.0,2,0.04
+ratechall124,100.0,2,0.04
+ratechall124,95.0,2,0.04
+ratechall124,85.0,2,0.04
+ratechall124,5.0,1,0.02
+ratechall124,15.0,1,0.02
+ratechall124,40.0,1,0.02
+ratechall124,50.0,1,0.02
+ratechall124,10.0,1,0.02
+ratechall124,75.0,1,0.02
+ratechall224,0.0,2,0.04
+ratedemp,0.0,1,0.02
+rateincumb24,0.0,2,0.04
+raterepp,0.0,2,0.04
+raterepp,50.0,1,0.02
+raterepp,75.0,1,0.02
+raterepp,54.0,1,0.02
+raterepp,55.0,1,0.02
+raterepp,70.0,1,0.02
+raterepp,20.0,1,0.02
+raterepp,60.0,1,0.02
+reg16,south,1,0.02
+region,south,49,0.98
+relactiv,never,1,0.02
+religinf,neither agree nor disagree,8,0.16
+religinf,disagree,8,0.16
+religinf,strongly disagree,8,0.16
+religinf,agree,3,0.06
+religinf,strongly agree,2,0.04
+relpersn,moderately religious,21,0.42
+relpersn,not religious at all,14,0.28
+relpersn,slightly religious,7,0.14
+relpersn,very religious,6,0.12
+res16,farm,6,0.12
+satdemoc,not at all satisfied,1,0.02
+sex,male,43,0.86
+spanking,strongly disagree,3,0.06
+spanking,disagree,1,0.02
+spanking,strongly agree,1,0.02
+spanking,agree,1,0.02
+spanself,have been able to do the interview easily in english,13,0.26
+spdeg,high school,4,0.08
+spkath,"yes, allowed to speak",18,0.36
+spkath,not allowed,3,0.06
+spkathy,"yes, allowed to speak",18,0.36
+spkathy,not allowed,3,0.06
+spkmslm,not allowed,20,0.4
+spkmslm,"yes, allowed to speak",3,0.06
+spkmslmy,not allowed,17,0.34
+spkmslmy,"yes, allowed to speak",6,0.12
+spkrac,not allowed,23,0.46
+spkrac,"yes, allowed to speak",12,0.24
+spkracy,not allowed,19,0.38
+spkracy,"yes, allowed to speak",15,0.3
+sprtprsn,very spiritual,6,0.12
+sprtprsn,slightly spiritual,2,0.04
+sprtprsn,moderately spiritual,1,0.02
+teensex,not wrong at all,1,0.02
+teensex,always wrong,1,0.02
+trust,can't be too careful,3,0.06
+trust,depends,2,0.04
+trustnv,can't be too careful,5,0.1
+trustv,depends (phone mode only: volunteered),4,0.08
+trustv,can't be too careful,1,0.02
+tvnews1,somewhat reliable,1,0.02
+vetyears,"yes, more than 4 years",50,1.0
+whatslf2,"other (agriculture, construction, service, government, etc.)",25,0.5
+whatsp2,"other (agriculture, construction, service, government, etc.)",8,0.16
+wlthblks,5.0,26,0.52
+wlthblks,4.0,9,0.18
+wlthblks,6.0,8,0.16
+wlthblks,7 - poor,3,0.06
+wlthblks,3.0,2,0.04
+wlthhsps,4.0,28,0.56
+wlthhsps,5.0,14,0.28
+wlthhsps,6.0,3,0.06
+wlthhsps,3.0,3,0.06
+wlthwhts,4.0,28,0.56
+wlthwhts,3.0,14,0.28
+wlthwhts,2.0,3,0.06
+wlthwhts,6.0,1,0.02
+wlthwhts,1 - rich,1,0.02
+wlthwhts,7 - poor,1,0.02
+workblks,4.0,26,0.52
+workblks,3.0,7,0.14
+workblks,1 - hard-working,5,0.1
+workblks,2.0,4,0.08
+workblks,7 - lazy,4,0.08
+workblks,6.0,2,0.04
+workhard,most important,1,0.02
+workwhts,4.0,24,0.48
+workwhts,5.0,9,0.18
+workwhts,3.0,9,0.18
+workwhts,7 - lazy,3,0.06
+workwhts,1 - hard-working,2,0.04
+workwhts,6.0,1,0.02
+wrkstat,working full time,30,0.6
+wrldgovt,agree,1,0.02

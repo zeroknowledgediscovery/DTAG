@@ -1,0 +1,56 @@
+variable,answer,runs,share
+belikeus,disagree,2,0.2
+belikeus,strongly disagree,2,0.2
+childsinhh,2,7,0.7
+colath,"yes, allowed to teach",5,0.5
+colath,not allowed,3,0.3
+colcom,not fired,5,0.5
+colcom,"yes, fired",3,0.3
+colcomy,not fired,6,0.6
+colcomy,"yes, fired",2,0.2
+colmslm,not allowed,8,0.8
+colmslm,"yes, allowed to teach",2,0.2
+colrac,"yes, allowed to teach",4,0.4
+colrac,not allowed,4,0.4
+conjudge,hardly any,2,0.2
+homosex,always wrong,2,0.2
+homosex,wrong only sometimes,1,0.1
+libath,not remove,3,0.3
+libathy,not remove,3,0.3
+librac,remove,1,0.1
+libracy,remove,1,0.1
+marsame,agree,2,0.2
+marsame,neither agree nor disagree,2,0.2
+marsame,strongly disagree,1,0.1
+marsame,disagree,1,0.1
+marsame,strongly agree,1,0.1
+marsamey,strongly agree,4,0.4
+marsamey,disagree,2,0.2
+marsamey,strongly disagree,1,0.1
+polnews,several times a day,9,0.9
+polnews,once a day,1,0.1
+polviews,conservative,10,1.0
+race,white,10,1.0
+region,south,10,1.0
+religinf,strongly agree,1,0.1
+relpersn,very religious,2,0.2
+relpersn,moderately religious,1,0.1
+relpersn,not religious at all,1,0.1
+sex,male,9,0.9
+spanself,have been able to do the interview easily in english,1,0.1
+spdeg,high school,1,0.1
+spkath,"yes, allowed to speak",2,0.2
+spkathy,not allowed,1,0.1
+spkathy,"yes, allowed to speak",1,0.1
+spkmslm,not allowed,5,0.5
+spkmslm,"yes, allowed to speak",2,0.2
+spkmslmy,not allowed,6,0.6
+spkmslmy,"yes, allowed to speak",1,0.1
+spkrac,not allowed,4,0.4
+spkracy,"yes, allowed to speak",4,0.4
+sprtprsn,very spiritual,1,0.1
+sprtprsn,slightly spiritual,1,0.1
+vetyears,"yes, more than 4 years",10,1.0
+whatslf2,"other (agriculture, construction, service, government, etc.)",7,0.7
+whatsp2,"other (agriculture, construction, service, government, etc.)",3,0.3
+wrkstat,working full time,2,0.2

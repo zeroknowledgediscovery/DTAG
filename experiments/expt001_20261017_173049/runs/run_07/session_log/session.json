@@ -1,0 +1,914 @@
+{
+ "export_schema": "dtag-session-export/1",
+ "exported_at": "2026-10-17T21:34:04+00:00",
+ "dtag": {
+  "version": "0.2.0.dev1",
+  "git_commit": "343e4ba73314a05ff46fe1d9450d1d3d3b13a25f",
+  "native_runtime": "bundled_persistent"
+ },
+ "session_id": "954366d6bf3f4fa296b48ef32309b59b",
+ "created_at": "2026-10-17T21:33:37+00:00",
+ "history": {
+  "since": "2026-10-17T21:33:37+00:00",
+  "resets": 0,
+  "note": "Questions and state changes since the session was created or last reset."
+ },
+ "profile": {
+  "name": "gss2024_wf",
+  "source": "configured",
+  "description": "Native pooled GSS 2024; progressive urban female persona.",
+  "family": "gss",
+  "model_key": "gss/gss_2024",
+  "model_label": "GSS 2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "country": "United States",
+  "continent": "",
+  "year": 2024,
+  "date": null,
+  "za": null,
+  "polar_set": "gss_default",
+  "ideology": true,
+  "base_profile": null,
+  "run": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "seed": 632680336,
+   "state_keep": 500,
+   "semantic_fallback": "update_state",
+   "resp_mode": "draw",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "semantic_embedding_model": "text-embedding-3-small",
+   "timing": true,
+   "require_polar_vectors": true
+  },
+  "temporal": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024"
+  },
+  "warnings": [
+   "Country is contextual only for this model."
+  ]
+ },
+ "model": {
+  "key": "gss/gss_2024",
+  "release": "v0.2.1",
+  "sha256": "00879d10a99f59bff97f01e653e25dc65293aadc61b9f15e94d5f1e4b2b3dabf",
+  "archive": "gss/gss_2024.tar.zst",
+  "archive_bytes": 11787960,
+  "features": 811,
+  "usable_trees": 811
+ },
+ "map": {
+  "key": "gss/gss_2024_map.csv",
+  "family": "gss",
+  "available": true,
+  "rows": 813,
+  "columns": [
+   "variable",
+   "question_text",
+   "question_text_filled",
+   "source",
+   "source_year",
+   "codebook_page",
+   "codebook_source",
+   "map_provenance"
+  ],
+  "provenance_counts": {
+   "YEAR_SPECIFIC": 158,
+   "YEAR_CODEBOOK": 654,
+   "NATIVE_NAME": 1
+  },
+  "has_fallback_provenance": false
+ },
+ "persona": {
+  "base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "full_text": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024"
+ },
+ "geography": {
+  "requested": {
+   "country": "United States",
+   "continent": ""
+  },
+  "resolved": {
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country": "united states",
+   "resolved_continent": null,
+   "conditioning_mode": "survey_context_only",
+   "conditioned_variables": {},
+   "target_coordinates": null,
+   "context_text": {
+    "country": true,
+    "continent": false,
+    "note": "Country/continent are also added to the persona text given to the LLM; only conditioned_variables constrain the native LSM."
+   },
+   "warnings": [
+    "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned."
+   ]
+  }
+ },
+ "time": {
+  "requested": {
+   "year": 2024,
+   "date": null,
+   "za": null
+  },
+  "resolved": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024",
+   "conditioned_variables": {},
+   "warnings": [],
+   "note": "Time selects the GSS survey-wave model; no year variable is hard-conditioned."
+  }
+ },
+ "config": {
+  "k": 50,
+  "prefilter": 200,
+  "min_map_score": 1.0,
+  "semantic_fallback": "update_state",
+  "semantic_k": 6,
+  "semantic_prefilter": 80,
+  "semantic_min_confidence": 0.35,
+  "semantic_embedding_model": "text-embedding-3-small",
+  "semantic_resp_mode": "max",
+  "openai_model": "gpt-4.1-mini",
+  "max_assign": 50,
+  "assign_prefilter": 500,
+  "resp_mode": "draw",
+  "seed": 632680336,
+  "state_keep": 500,
+  "year": 2024,
+  "country": "United States",
+  "continent": "",
+  "no_ideology": false,
+  "require_polar_vectors": true,
+  "timing": true
+ },
+ "random_seed": 632680336,
+ "response_mode": "draw",
+ "semantic_fallback": "update_state",
+ "llm": {
+  "backend": "openai",
+  "openai_model": "gpt-4.1-mini",
+  "mock": false,
+  "note": null
+ },
+ "initialization": {
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024",
+  "persona_base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "config": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_fallback": "update_state",
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "semantic_embedding_model": "text-embedding-3-small",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "resp_mode": "draw",
+   "seed": 632680336,
+   "state_keep": 500,
+   "year": 2024,
+   "country": "United States",
+   "continent": "",
+   "no_ideology": false,
+   "require_polar_vectors": true,
+   "timing": true
+  },
+  "initial_state": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal",
+   "polnews": "once a day"
+  },
+  "current_state": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal",
+   "polnews": "once a day",
+   "premarsx": "almost always wrong",
+   "colath": "not allowed",
+   "spkmslmy": "not allowed",
+   "spkmslm": "not allowed",
+   "sprtprsn": "not spiritual at all",
+   "relpersn": "not religious at all"
+  },
+  "question_count": 5,
+  "persona_assignment_rationale": "The persona is a 22-year-old white female living in urban New York (a large city), working in retail trade, and is highly progressive (liberal). She is a regular news consumer, so polnews is set to once a day. These variables clearly follow from the persona description and match allowed responses.",
+  "persona_assignments_llm_raw": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal",
+   "spocc10": "retail trade",
+   "polnews": "once a day"
+  },
+  "persona_assignments_dropped": [
+   "spocc10=retail trade (not allowed)"
+  ],
+  "forced_assignments": {},
+  "geography": {
+   "requested_year": 2024,
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country_key": "united states",
+   "resolved_continent_key": null,
+   "target_longitude": null,
+   "target_latitude": null,
+   "snapped_O1_LONGITUDE": null,
+   "snapped_O2_LATITUDE": null,
+   "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_conditioning_mode": "context_only",
+   "hard_conditioned_country": false
+  },
+  "ideology_enabled": true,
+  "ideology_disable_reason": "",
+  "ideology_initial": -0.04023838803192821,
+  "ideology_series": [
+   [
+    0,
+    -0.04023838803192821
+   ],
+   [
+    1,
+    -0.012437723570451574
+   ],
+   [
+    2,
+    0.013856779971270954
+   ],
+   [
+    3,
+    0.023279879835168986
+   ],
+   [
+    4,
+    -0.007080220572759336
+   ],
+   [
+    5,
+    -0.045246010205939276
+   ]
+  ],
+  "timings_init": {
+   "load_polar_vectors": 0.04332995414733887,
+   "prep_persona_allowed": 0.014146804809570312,
+   "llm_persona_init": 1.9723002910614014,
+   "forced_assignments": 0.0006308555603027344,
+   "ideology_init": 0.06734395027160645
+  }
+ },
+ "init_timings": {
+  "model_ready": 9.5367431640625e-06,
+  "model_was_resident": 1.0,
+  "context": 6.151199340820312e-05,
+  "load_polar_vectors": 0.04332995414733887,
+  "prep_persona_allowed": 0.014146804809570312,
+  "llm_persona_init": 1.9723002910614014,
+  "forced_assignments": 0.0006308555603027344,
+  "ideology_init": 0.06734395027160645,
+  "total": 2.0703694820404053
+ },
+ "ideology": {
+  "enabled": true,
+  "initial": -0.04023838803192821,
+  "current": -0.045246010205939276,
+  "change_from_initial": -0.005007622174011066,
+  "disable_reason": null,
+  "polar_set": "gss_default",
+  "convention": "I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR); native LSM qdistance; L/R are the columns of the registered polar-vector file.",
+  "poles": {
+   "file": "gss_2024_polar_vectors.csv",
+   "wave_specific": true,
+   "items": 27,
+   "dropped": [],
+   "not_in_model": []
+  },
+  "trajectory": [
+   {
+    "step": 0,
+    "ideology": -0.04023838803192821,
+    "delta": null,
+    "question": null,
+    "selected_variables": [],
+    "anchors": {},
+    "mapping": "INITIAL"
+   },
+   {
+    "step": 1,
+    "ideology": -0.012437723570451574,
+    "delta": 0.027800664461476637,
+    "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+    "selected_variables": [
+     "premarsx"
+    ],
+    "anchors": {
+     "premarsx": "almost always wrong"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 2,
+    "ideology": 0.013856779971270954,
+    "delta": 0.02629450354172253,
+    "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+    "selected_variables": [
+     "colath"
+    ],
+    "anchors": {
+     "colath": "not allowed"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 3,
+    "ideology": 0.023279879835168986,
+    "delta": 0.009423099863898032,
+    "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+    "selected_variables": [
+     "spkmslmy",
+     "spkmslm"
+    ],
+    "anchors": {
+     "spkmslmy": "not allowed",
+     "spkmslm": "not allowed"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 4,
+    "ideology": -0.007080220572759336,
+    "delta": -0.030360100407928324,
+    "question": "How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+    "selected_variables": [
+     "sprtprsn"
+    ],
+    "anchors": {
+     "sprtprsn": "not spiritual at all"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 5,
+    "ideology": -0.045246010205939276,
+    "delta": -0.03816578963317994,
+    "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+    "selected_variables": [
+     "relpersn"
+    ],
+    "anchors": {
+     "relpersn": "not religious at all"
+    },
+    "mapping": "DIRECT"
+   }
+  ]
+ },
+ "questions": [
+  {
+   "query_idx": 1,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "answer": "Honestly, I think it’s almost always wrong for a man and a woman to have sexual relations before marriage. I believe in the importance of commitment and building a strong foundation before being intimate. Even though I live in a city where people are more open about these things, I still feel that waiting until marriage is the right choice for me.",
+   "selected_variables": [
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically addresses this exact question, making it the most semantically direct match among the candidates.",
+   "display_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically addresses this exact question, making it the most semantically direct match among the candidates.",
+   "anchors": [
+    {
+     "variable": "premarsx",
+     "survey_question": "If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron",
+     "response": "almost always wrong",
+     "distribution": {
+      "not wrong at all": 0.6547983452016548,
+      "always wrong": 0.1685008314991685,
+      "wrong only sometimes": 0.12043587956412044,
+      "almost always wrong": 0.056264943735056264
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "premarsx": "almost always wrong"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 6,
+   "ideology": {
+    "enabled": true,
+    "before": -0.04023838803192821,
+    "after": -0.012437723570451574,
+    "delta": 0.027800664461476637,
+    "initial": -0.04023838803192821
+   },
+   "timings": {
+    "prefilters": 0.023242473602294922,
+    "llm_select": 1.24261474609375,
+    "native_predict": 0.0010204315185546875,
+    "draw": 0.00029921531677246094,
+    "state_update": 1.0251998901367188e-05,
+    "ideology": 0.05591464042663574,
+    "llm_final": 1.1289129257202148,
+    "total": 2.452054262161255
+   },
+   "lexical_candidates": 125,
+   "targeted": false
+  },
+  {
+   "query_idx": 2,
+   "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "answer": "Honestly, I don’t think someone who is completely against all churches and religion should be allowed to teach in a college or university. I believe that higher education should promote respect for diverse beliefs, even if the instructor disagrees personally. Being openly hostile towards religion might create a hostile environment for students who hold those beliefs, and that doesn’t feel fair or inclusive to me.",
+   "selected_variables": [
+    "colath"
+   ],
+   "selection_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "display_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "anchors": [
+    {
+     "variable": "colath",
+     "survey_question": "(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "yes, allowed to teach": 0.633028,
+      "not allowed": 0.366972
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "colath": "not allowed"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 7,
+   "ideology": {
+    "enabled": true,
+    "before": -0.012437723570451574,
+    "after": 0.013856779971270954,
+    "delta": 0.02629450354172253,
+    "initial": -0.04023838803192821
+   },
+   "timings": {
+    "prefilters": 0.015108108520507812,
+    "llm_select": 0.9964132308959961,
+    "native_predict": 0.0009605884552001953,
+    "draw": 0.00038313865661621094,
+    "state_update": 1.1682510375976562e-05,
+    "ideology": 0.05598735809326172,
+    "llm_final": 1.0149316787719727,
+    "total": 2.083836317062378
+   },
+   "lexical_candidates": 100,
+   "targeted": false
+  },
+  {
+   "query_idx": 3,
+   "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+   "question_source": "ideology_push",
+   "answer": "I don’t think someone who preaches hatred of the United States should be allowed to speak in my community. While I believe in free speech generally, promoting hatred can be dangerous and divisive, especially here in New York where we value diversity and inclusion. Allowing that kind of message could create tension and harm the sense of safety for many people around me.",
+   "selected_variables": [
+    "spkmslmy",
+    "spkmslm"
+   ],
+   "selection_rationale": "The user question directly matches the survey variables 'spkmslmy' and 'spkmslm', which ask about allowing a Muslim religious leader or clergyman preaching hatred of the United States to speak in the community. These are the most semantically direct matches to the user's question.",
+   "display_rationale": "The user question directly matches the survey variables 'spkmslmy' and 'spkmslm', which ask about allowing a Muslim religious leader or clergyman preaching hatred of the United States to speak in the community. These are the most semantically direct matches to the user's question.",
+   "anchors": [
+    {
+     "variable": "spkmslmy",
+     "survey_question": "Now consider a Islamic religious leader who preaches hatred of the United States. If such a person wanted to make a speech in your communit, should this person be allowed to speak, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.647664,
+      "yes, allowed to speak": 0.352336
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "spkmslm",
+     "survey_question": "Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.567979,
+      "yes, allowed to speak": 0.432021
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 9,
+   "ideology": {
+    "enabled": true,
+    "before": 0.013856779971270954,
+    "after": 0.023279879835168986,
+    "delta": 0.009423099863898032,
+    "initial": -0.04023838803192821
+   },
+   "timings": {
+    "prefilters": 0.021746397018432617,
+    "llm_select": 1.0350213050842285,
+    "native_predict": 0.0012471675872802734,
+    "draw": 0.0006191730499267578,
+    "state_update": 1.9311904907226562e-05,
+    "ideology": 0.0553131103515625,
+    "llm_final": 1.1395270824432373,
+    "total": 2.2535455226898193
+   },
+   "lexical_candidates": 92,
+   "targeted": false
+  },
+  {
+   "query_idx": 4,
+   "question": "How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+   "question_source": "ideology_push",
+   "answer": "I don’t consider myself spiritual at all. My beliefs are more grounded in science and social justice rather than any religious or spiritual practices. I focus on tangible ways to make a difference in my community and the world around me. Spirituality just hasn’t been a part of my life or values.",
+   "selected_variables": [
+    "sprtprsn"
+   ],
+   "selection_rationale": "The variable 'sprtprsn' directly asks about the extent to which a person considers themselves spiritual, with the exact response options: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all, matching the user question perfectly.",
+   "display_rationale": "The variable 'sprtprsn' directly asks about the extent to which a person considers themselves spiritual, with the exact response options: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all, matching the user question perfectly.",
+   "anchors": [
+    {
+     "variable": "sprtprsn",
+     "survey_question": "To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+     "response": "not spiritual at all",
+     "distribution": {
+      "moderately spiritual": 0.337653,
+      "very spiritual": 0.298766,
+      "slightly spiritual": 0.238777,
+      "not spiritual at all": 0.124804
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "sprtprsn": "not spiritual at all"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 10,
+   "ideology": {
+    "enabled": true,
+    "before": 0.023279879835168986,
+    "after": -0.007080220572759336,
+    "delta": -0.030360100407928324,
+    "initial": -0.04023838803192821
+   },
+   "timings": {
+    "prefilters": 0.03214311599731445,
+    "llm_select": 1.3533523082733154,
+    "native_predict": 0.0013527870178222656,
+    "draw": 0.0003733634948730469,
+    "state_update": 1.1444091796875e-05,
+    "ideology": 0.057985544204711914,
+    "llm_final": 1.1593704223632812,
+    "total": 2.604637622833252
+   },
+   "lexical_candidates": 123,
+   "targeted": false
+  },
+  {
+   "query_idx": 5,
+   "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+   "question_source": "ideology_push",
+   "answer": "I consider myself not religious at all. Growing up in New York, I’ve been exposed to a lot of different beliefs, but I don’t personally practice any religion or follow religious traditions. My values and worldview are more influenced by social justice and progressive ideas than religious teachings. Religion just isn’t a part of my daily life or identity.",
+   "selected_variables": [
+    "relpersn"
+   ],
+   "selection_rationale": "The user question directly matches the variable 'relpersn', which asks: 'To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?' This is a perfect semantic match to the user question. Other variables related to religious strength or spirituality are less direct or conditional on religious preference, so 'relpersn' is the best and most direct variable to select.",
+   "display_rationale": "The user question directly matches the variable 'relpersn', which asks: 'To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?' This is a perfect semantic match to the user question. Other variables related to religious strength or spirituality are less direct or conditional on religious preference, so 'relpersn' is the best and most direct variable to select.",
+   "anchors": [
+    {
+     "variable": "relpersn",
+     "survey_question": "To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?",
+     "response": "not religious at all",
+     "distribution": {
+      "not religious at all": 0.420703,
+      "moderately religious": 0.274391,
+      "slightly religious": 0.188385,
+      "very religious": 0.116521
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "relpersn": "not religious at all"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 11,
+   "ideology": {
+    "enabled": true,
+    "before": -0.007080220572759336,
+    "after": -0.045246010205939276,
+    "delta": -0.03816578963317994,
+    "initial": -0.04023838803192821
+   },
+   "timings": {
+    "prefilters": 0.01498556137084961,
+    "llm_select": 1.3116786479949951,
+    "native_predict": 0.0009932518005371094,
+    "draw": 0.00028896331787109375,
+    "state_update": 1.0967254638671875e-05,
+    "ideology": 0.061009883880615234,
+    "llm_final": 1.2201037406921387,
+    "total": 2.6091153621673584
+   },
+   "lexical_candidates": 128,
+   "targeted": false
+  }
+ ],
+ "records_cli_schema": [
+  {
+   "query_idx": 1,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically addresses this exact question, making it the most semantically direct match among the candidates.",
+   "responses": {
+    "premarsx": "almost always wrong"
+   },
+   "state_updates": {
+    "premarsx": "almost always wrong"
+   },
+   "ideology_index": -0.012437723570451574,
+   "answer": "Honestly, I think it’s almost always wrong for a man and a woman to have sexual relations before marriage. I believe in the importance of commitment and building a strong foundation before being intimate. Even though I live in a city where people are more open about these things, I still feel that waiting until marriage is the right choice for me.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.023242473602294922,
+    "llm_select": 1.24261474609375,
+    "native_predict": 0.0010204315185546875,
+    "draw": 0.00029921531677246094,
+    "state_update": 1.0251998901367188e-05,
+    "ideology": 0.05591464042663574,
+    "llm_final": 1.1289129257202148,
+    "total": 2.452054262161255
+   }
+  },
+  {
+   "query_idx": 2,
+   "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "colath"
+   ],
+   "selection_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "responses": {
+    "colath": "not allowed"
+   },
+   "state_updates": {
+    "colath": "not allowed"
+   },
+   "ideology_index": 0.013856779971270954,
+   "answer": "Honestly, I don’t think someone who is completely against all churches and religion should be allowed to teach in a college or university. I believe that higher education should promote respect for diverse beliefs, even if the instructor disagrees personally. Being openly hostile towards religion might create a hostile environment for students who hold those beliefs, and that doesn’t feel fair or inclusive to me.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.015108108520507812,
+    "llm_select": 0.9964132308959961,
+    "native_predict": 0.0009605884552001953,
+    "draw": 0.00038313865661621094,
+    "state_update": 1.1682510375976562e-05,
+    "ideology": 0.05598735809326172,
+    "llm_final": 1.0149316787719727,
+    "total": 2.083836317062378
+   }
+  },
+  {
+   "query_idx": 3,
+   "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "spkmslmy",
+    "spkmslm"
+   ],
+   "selection_rationale": "The user question directly matches the survey variables 'spkmslmy' and 'spkmslm', which ask about allowing a Muslim religious leader or clergyman preaching hatred of the United States to speak in the community. These are the most semantically direct matches to the user's question.",
+   "responses": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "state_updates": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "ideology_index": 0.023279879835168986,
+   "answer": "I don’t think someone who preaches hatred of the United States should be allowed to speak in my community. While I believe in free speech generally, promoting hatred can be dangerous and divisive, especially here in New York where we value diversity and inclusion. Allowing that kind of message could create tension and harm the sense of safety for many people around me.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.021746397018432617,
+    "llm_select": 1.0350213050842285,
+    "native_predict": 0.0012471675872802734,
+    "draw": 0.0006191730499267578,
+    "state_update": 1.9311904907226562e-05,
+    "ideology": 0.0553131103515625,
+    "llm_final": 1.1395270824432373,
+    "total": 2.2535455226898193
+   }
+  },
+  {
+   "query_idx": 4,
+   "question": "How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "sprtprsn"
+   ],
+   "selection_rationale": "The variable 'sprtprsn' directly asks about the extent to which a person considers themselves spiritual, with the exact response options: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all, matching the user question perfectly.",
+   "responses": {
+    "sprtprsn": "not spiritual at all"
+   },
+   "state_updates": {
+    "sprtprsn": "not spiritual at all"
+   },
+   "ideology_index": -0.007080220572759336,
+   "answer": "I don’t consider myself spiritual at all. My beliefs are more grounded in science and social justice rather than any religious or spiritual practices. I focus on tangible ways to make a difference in my community and the world around me. Spirituality just hasn’t been a part of my life or values.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.03214311599731445,
+    "llm_select": 1.3533523082733154,
+    "native_predict": 0.0013527870178222656,
+    "draw": 0.0003733634948730469,
+    "state_update": 1.1444091796875e-05,
+    "ideology": 0.057985544204711914,
+    "llm_final": 1.1593704223632812,
+    "total": 2.604637622833252
+   }
+  },
+  {
+   "query_idx": 5,
+   "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "relpersn"
+   ],
+   "selection_rationale": "The user question directly matches the variable 'relpersn', which asks: 'To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?' This is a perfect semantic match to the user question. Other variables related to religious strength or spirituality are less direct or conditional on religious preference, so 'relpersn' is the best and most direct variable to select.",
+   "responses": {
+    "relpersn": "not religious at all"
+   },
+   "state_updates": {
+    "relpersn": "not religious at all"
+   },
+   "ideology_index": -0.045246010205939276,
+   "answer": "I consider myself not religious at all. Growing up in New York, I’ve been exposed to a lot of different beliefs, but I don’t personally practice any religion or follow religious traditions. My values and worldview are more influenced by social justice and progressive ideas than religious teachings. Religion just isn’t a part of my daily life or identity.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.01498556137084961,
+    "llm_select": 1.3116786479949951,
+    "native_predict": 0.0009932518005371094,
+    "draw": 0.00028896331787109375,
+    "state_update": 1.0967254638671875e-05,
+    "ideology": 0.061009883880615234,
+    "llm_final": 1.2201037406921387,
+    "total": 2.6091153621673584
+   }
+  }
+ ],
+ "final_state": {
+  "race": "white",
+  "sex": "female",
+  "res16": "in a large city (over 250,000)",
+  "polviews": "liberal",
+  "polnews": "once a day",
+  "premarsx": "almost always wrong",
+  "colath": "not allowed",
+  "spkmslmy": "not allowed",
+  "spkmslm": "not allowed",
+  "sprtprsn": "not spiritual at all",
+  "relpersn": "not religious at all"
+ },
+ "label": "run07"
+}

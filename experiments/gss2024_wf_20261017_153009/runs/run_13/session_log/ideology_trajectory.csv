@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.039980302693709405,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.005966571158417196,0.045946873852126605,0.045946873852126605
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,-0.005886897021980837,-0.011853468180398032,0.03409340567172857
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,0.025410441584534125,0.031297338606514964,0.06539074427824353
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,0.028810060995161108,0.0033996194106269834,0.06879036368887051
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,0.03010181482179811,0.0012917538266370016,0.07008211751550751
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.04578338766414238,0.015681572842344272,0.08576369035785178
+7,7,"Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.015745508354173744,-0.030037879309968638,0.05572581104788315
+8,8,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.021116058696771352,-0.03686156705094509,0.018864243996938052
+9,9,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.012783588400373717,0.008332470296397635,0.027196714293335686
+10,10,"Do you think we are spending too much, too little, or about the right amount on help with childcare?",DIRECT,True,-0.026830244609953566,-0.01404665620957985,0.013150058083755838

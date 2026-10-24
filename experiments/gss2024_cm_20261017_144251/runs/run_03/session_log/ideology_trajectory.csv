@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.008790369643871762,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.016897033952470056,-0.008106664308598294,-0.008106664308598294
+2,2,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,-0.022404558161572687,-0.005507524209102631,-0.013614188517700925
+3,3,Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?,DIRECT,True,-0.012775099455770869,0.009629458705801818,-0.003984729811899106
+4,4,Do you agree or disagree that homosexual couples should have the right to marry?,DIRECT,True,-0.005849891269082956,0.006925208186687913,0.0029404783747888066
+5,5,"How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.02709453364444994,0.032944424913532895,0.0358849032883217
+6,6,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.009688178099010925,-0.017406355545439012,0.018478547742882687
+7,7,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,-0.008610116157604913,-0.01829829425661584,0.0001802534862668497
+8,8,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.01774813326165442,-0.009138017104049507,-0.008957763617782657
+9,9,Do you believe a person has the right to end their own life if they have an incurable disease?,DIRECT,True,-0.031380471338565114,-0.013632338076910694,-0.022590101694693353
+10,10,"Do you think that the differences in jobs, income, and housing between Black people and White people are mostly because of people's own actions or choices?",DIRECT,True,-0.02432559422337386,0.0070548771151912534,-0.015535224579502098

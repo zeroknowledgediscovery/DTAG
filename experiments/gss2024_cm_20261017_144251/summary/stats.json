@@ -1,0 +1,355 @@
+{
+  "runs": 10,
+  "ideology_enabled": true,
+  "checkpoints": [
+    {
+      "action": 0,
+      "label": "start",
+      "n": 10,
+      "mean": -0.00857749128204554,
+      "sd": 0.001984216290694827,
+      "ci_lo": -0.009964715673790342,
+      "ci_hi": -0.007625412407829347,
+      "min": -0.013605387068037014,
+      "max": -0.006166328104672268
+    },
+    {
+      "action": 1,
+      "label": "Auto-push up \u00d75 (realistic)",
+      "n": 10,
+      "mean": 0.03326825003584548,
+      "sd": 0.03849758255047128,
+      "ci_lo": 0.010289809213619803,
+      "ci_hi": 0.054811104204278385,
+      "min": -0.030601190131518706,
+      "max": 0.08234021762052125
+    },
+    {
+      "action": 2,
+      "label": "Auto-push down \u00d75 (realistic)",
+      "n": 10,
+      "mean": 0.020784143983628107,
+      "sd": 0.05516053790658325,
+      "ci_lo": -0.011978223956048075,
+      "ci_hi": 0.05412589791164614,
+      "min": -0.06684309619517903,
+      "max": 0.10800320272443421
+    }
+  ],
+  "per_run": [
+    {
+      "run": 1,
+      "seed": 638299362,
+      "ideology": [
+        -0.009420669833847987,
+        0.047313023824694836,
+        -0.03493760568746893
+      ],
+      "questions": 10,
+      "seconds": 62.63
+    },
+    {
+      "run": 2,
+      "seed": 638299363,
+      "ideology": [
+        -0.008405501216858947,
+        -0.030091230306536418,
+        -0.06684309619517903
+      ],
+      "questions": 10,
+      "seconds": 60.71
+    },
+    {
+      "run": 3,
+      "seed": 638299364,
+      "ideology": [
+        -0.008790369643871762,
+        0.02709453364444994,
+        -0.02432559422337386
+      ],
+      "questions": 10,
+      "seconds": 57.88
+    },
+    {
+      "run": 4,
+      "seed": 638299365,
+      "ideology": [
+        -0.007557070540966767,
+        0.06302211110722834,
+        0.07113166218616156
+      ],
+      "questions": 10,
+      "seconds": 59.68
+    },
+    {
+      "run": 5,
+      "seed": 638299366,
+      "ideology": [
+        -0.008487225944149676,
+        0.08234021762052125,
+        0.08399957769621413
+      ],
+      "questions": 10,
+      "seconds": 55.78
+    },
+    {
+      "run": 6,
+      "seed": 638299367,
+      "ideology": [
+        -0.008405501216858947,
+        -0.030601190131518706,
+        0.017239146678326992
+      ],
+      "questions": 10,
+      "seconds": 58.61
+    },
+    {
+      "run": 7,
+      "seed": 638299368,
+      "ideology": [
+        -0.013605387068037014,
+        0.027427834739091057,
+        0.024312108906440474
+      ],
+      "questions": 10,
+      "seconds": 59.93
+    },
+    {
+      "run": 8,
+      "seed": 638299369,
+      "ideology": [
+        -0.007557070540966557,
+        0.0720626025311115,
+        0.027415112401721235
+      ],
+      "questions": 10,
+      "seconds": 55.92
+    },
+    {
+      "run": 9,
+      "seed": 638299370,
+      "ideology": [
+        -0.006166328104672268,
+        0.02844629082628412,
+        0.0018469253490043204
+      ],
+      "questions": 10,
+      "seconds": 56.64
+    },
+    {
+      "run": 10,
+      "seed": 638299371,
+      "ideology": [
+        -0.007379788710225471,
+        0.0456683065031289,
+        0.10800320272443421
+      ],
+      "questions": 10,
+      "seconds": 54.87
+    }
+  ],
+  "net_change": {
+    "n": 10,
+    "mean": 0.029361635265673654,
+    "sd": 0.05490189630984699,
+    "ci_lo": -0.0013542725528455318,
+    "ci_hi": 0.06263568405739343
+  },
+  "push": {
+    "n": 100,
+    "hit_rate": 1.0,
+    "mean_realized": 0.002936163526567365
+  },
+  "questions": [
+    {
+      "action": 1,
+      "label": "Auto-push up \u00d75 (realistic)",
+      "asked": 50,
+      "distinct": 11,
+      "top": [
+        {
+          "question": "Do you think a person like this should be allowed to teach in a college or university?",
+          "count": 10
+        },
+        {
+          "question": "Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?",
+          "count": 9
+        },
+        {
+          "question": "Do you agree or disagree with the statement that things would be better if people acted more like Americans?",
+          "count": 7
+        },
+        {
+          "question": "Do you agree or disagree that homosexual couples should have the right to marry?",
+          "count": 6
+        },
+        {
+          "question": "How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",
+          "count": 6
+        }
+      ],
+      "skipped": 0
+    },
+    {
+      "action": 2,
+      "label": "Auto-push down \u00d75 (realistic)",
+      "asked": 50,
+      "distinct": 17,
+      "top": [
+        {
+          "question": "Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+          "count": 9
+        },
+        {
+          "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+          "count": 9
+        },
+        {
+          "question": "How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+          "count": 6
+        },
+        {
+          "question": "Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+          "count": 4
+        },
+        {
+          "question": "Do you think that the differences in jobs, income, and housing between Black people and White people are mostly because of people's own actions or choices?",
+          "count": 3
+        }
+      ],
+      "skipped": 0
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.008990692440591119,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.008990692440591119
+      },
+      {
+        "step": 1,
+        "ideology": 0.031161088826054045
+      },
+      {
+        "step": 2,
+        "ideology": 0.036341155140033825
+      },
+      {
+        "step": 3,
+        "ideology": 0.0447871907326527
+      },
+      {
+        "step": 4,
+        "ideology": 0.0534291879667805
+      },
+      {
+        "step": 5,
+        "ideology": 0.0580822628858961
+      },
+      {
+        "step": 6,
+        "ideology": 0.027607006645699872
+      },
+      {
+        "step": 7,
+        "ideology": 0.05650224911870612
+      },
+      {
+        "step": 8,
+        "ideology": 0.06531556967482044
+      },
+      {
+        "step": 9,
+        "ideology": 0.0704884945415012
+      },
+      {
+        "step": 10,
+        "ideology": 0.07976069842985402
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think a person like this should be allowed to teach in a college or university?",
+        "selected_variables": [
+          "colrac",
+          "colmslm",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?",
+        "selected_variables": [
+          "spkrac",
+          "spkracy",
+          "libracy",
+          "librac",
+          "colrac"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?",
+        "selected_variables": [
+          "spkmslmy",
+          "spkmslm"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "Do you agree or disagree that homosexual couples should have the right to marry?",
+        "selected_variables": [
+          "marsame",
+          "marsamey"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "Do you agree or disagree with the statement that things would be better if people acted more like Americans?",
+        "selected_variables": [
+          "belikeus"
+        ]
+      },
+      {
+        "query_idx": 6,
+        "question": "How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+        "selected_variables": [
+          "sprtprsn"
+        ]
+      },
+      {
+        "query_idx": 7,
+        "question": "How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",
+        "selected_variables": [
+          "relpersn"
+        ]
+      },
+      {
+        "query_idx": 8,
+        "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+        "selected_variables": [
+          "natheal"
+        ]
+      },
+      {
+        "query_idx": 9,
+        "question": "Do you think we are spending too much, too little, or about the right amount on developing alternative energy sources?",
+        "selected_variables": [
+          "natenrgy"
+        ]
+      },
+      {
+        "query_idx": 10,
+        "question": "Do you think that the amount spent on assistance for childcare is about right, too much, or too little?",
+        "selected_variables": [
+          "natchld"
+        ]
+      }
+    ]
+  }
+}

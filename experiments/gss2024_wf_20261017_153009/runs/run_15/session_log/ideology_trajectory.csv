@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.041938476369688414,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.010138841820495686,0.031799634549192726,0.031799634549192726
+2,2,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,-0.0646863342893238,-0.05454749246882811,-0.022747857919635385
+3,3,"If someone in your community wrote a book against churches and religion, would you support removing that book from the library or not?",DIRECT,True,-0.06436587467836756,0.0003204596109562391,-0.022427398308679146
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.061205777105335285,0.003160097573032275,-0.01926730073564687
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.05991402327869849,0.0012917538266367934,-0.017975546909010078
+6,6,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,-0.02628235453128015,0.03363166874741834,0.015656121838408265
+7,7,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.01060078168893525,0.0156815728423449,0.03133769468075316
+8,8,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.020000152841914063,-0.009399371152978814,0.02193832352777435
+9,9,"Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.03867690622484405,-0.018676753382929987,0.003261570144844364
+10,10,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.04508911845746596,-0.006412212232621908,-0.0031506420877775443

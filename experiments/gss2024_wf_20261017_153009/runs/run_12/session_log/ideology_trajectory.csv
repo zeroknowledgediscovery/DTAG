@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.04023838803192821,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.042257762178591216,0.08249615021051943,0.08249615021051943
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,0.047486648132704874,0.005228885954113659,0.08772503616463309
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,0.08629835269541718,0.0388117045627123,0.1265367407273454
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,0.08775412419269243,0.0014557714972752572,0.12799251222462066
+5,5,"How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",DIRECT,True,0.09916132088082615,0.011407196688133711,0.13939970891275436
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.11476030872692594,0.015598987846099796,0.15499869675885414
+7,7,"Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.10748620705145817,-0.00727410167546777,0.14772459508338637
+8,8,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.09805633815905125,-0.00942986889240692,0.13829472619097946
+9,9,"Do you think we are spending too much, too little, or about the right amount on improving the conditions of Black people?",DIRECT,True,0.09480210012336697,-0.0032542380356842815,0.13504048815529518
+10,10,"Do you think that on average, Black people have worse jobs, income, and housing than White people?",DIRECT,True,0.07781354977165039,-0.016988550351716578,0.1180519378035786

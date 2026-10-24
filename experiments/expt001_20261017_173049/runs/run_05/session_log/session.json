@@ -1,0 +1,920 @@
+{
+ "export_schema": "dtag-session-export/1",
+ "exported_at": "2026-10-17T21:33:08+00:00",
+ "dtag": {
+  "version": "0.2.0.dev1",
+  "git_commit": "343e4ba73314a05ff46fe1d9450d1d3d3b13a25f",
+  "native_runtime": "bundled_persistent"
+ },
+ "session_id": "69ca936933a84355a54ac829c57ac73f",
+ "created_at": "2026-10-17T21:32:41+00:00",
+ "history": {
+  "since": "2026-10-17T21:32:41+00:00",
+  "resets": 0,
+  "note": "Questions and state changes since the session was created or last reset."
+ },
+ "profile": {
+  "name": "gss2024_wf",
+  "source": "configured",
+  "description": "Native pooled GSS 2024; progressive urban female persona.",
+  "family": "gss",
+  "model_key": "gss/gss_2024",
+  "model_label": "GSS 2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "country": "United States",
+  "continent": "",
+  "year": 2024,
+  "date": null,
+  "za": null,
+  "polar_set": "gss_default",
+  "ideology": true,
+  "base_profile": null,
+  "run": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "seed": 632680334,
+   "state_keep": 500,
+   "semantic_fallback": "update_state",
+   "resp_mode": "draw",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "semantic_embedding_model": "text-embedding-3-small",
+   "timing": true,
+   "require_polar_vectors": true
+  },
+  "temporal": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024"
+  },
+  "warnings": [
+   "Country is contextual only for this model."
+  ]
+ },
+ "model": {
+  "key": "gss/gss_2024",
+  "release": "v0.2.1",
+  "sha256": "00879d10a99f59bff97f01e653e25dc65293aadc61b9f15e94d5f1e4b2b3dabf",
+  "archive": "gss/gss_2024.tar.zst",
+  "archive_bytes": 11787960,
+  "features": 811,
+  "usable_trees": 811
+ },
+ "map": {
+  "key": "gss/gss_2024_map.csv",
+  "family": "gss",
+  "available": true,
+  "rows": 813,
+  "columns": [
+   "variable",
+   "question_text",
+   "question_text_filled",
+   "source",
+   "source_year",
+   "codebook_page",
+   "codebook_source",
+   "map_provenance"
+  ],
+  "provenance_counts": {
+   "YEAR_SPECIFIC": 158,
+   "YEAR_CODEBOOK": 654,
+   "NATIVE_NAME": 1
+  },
+  "has_fallback_provenance": false
+ },
+ "persona": {
+  "base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "full_text": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024"
+ },
+ "geography": {
+  "requested": {
+   "country": "United States",
+   "continent": ""
+  },
+  "resolved": {
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country": "united states",
+   "resolved_continent": null,
+   "conditioning_mode": "survey_context_only",
+   "conditioned_variables": {},
+   "target_coordinates": null,
+   "context_text": {
+    "country": true,
+    "continent": false,
+    "note": "Country/continent are also added to the persona text given to the LLM; only conditioned_variables constrain the native LSM."
+   },
+   "warnings": [
+    "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned."
+   ]
+  }
+ },
+ "time": {
+  "requested": {
+   "year": 2024,
+   "date": null,
+   "za": null
+  },
+  "resolved": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024",
+   "conditioned_variables": {},
+   "warnings": [],
+   "note": "Time selects the GSS survey-wave model; no year variable is hard-conditioned."
+  }
+ },
+ "config": {
+  "k": 50,
+  "prefilter": 200,
+  "min_map_score": 1.0,
+  "semantic_fallback": "update_state",
+  "semantic_k": 6,
+  "semantic_prefilter": 80,
+  "semantic_min_confidence": 0.35,
+  "semantic_embedding_model": "text-embedding-3-small",
+  "semantic_resp_mode": "max",
+  "openai_model": "gpt-4.1-mini",
+  "max_assign": 50,
+  "assign_prefilter": 500,
+  "resp_mode": "draw",
+  "seed": 632680334,
+  "state_keep": 500,
+  "year": 2024,
+  "country": "United States",
+  "continent": "",
+  "no_ideology": false,
+  "require_polar_vectors": true,
+  "timing": true
+ },
+ "random_seed": 632680334,
+ "response_mode": "draw",
+ "semantic_fallback": "update_state",
+ "llm": {
+  "backend": "openai",
+  "openai_model": "gpt-4.1-mini",
+  "mock": false,
+  "note": null
+ },
+ "initialization": {
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024",
+  "persona_base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "config": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_fallback": "update_state",
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "semantic_embedding_model": "text-embedding-3-small",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "resp_mode": "draw",
+   "seed": 632680334,
+   "state_keep": 500,
+   "year": 2024,
+   "country": "United States",
+   "continent": "",
+   "no_ideology": false,
+   "require_polar_vectors": true,
+   "timing": true
+  },
+  "initial_state": {
+   "race": "white",
+   "sex": "female",
+   "reg16": "northeast",
+   "res16": "in a large city (over 250,000)",
+   "wrkstat": "working part time",
+   "polviews": "liberal",
+   "polnews": "once a day"
+  },
+  "current_state": {
+   "race": "white",
+   "sex": "female",
+   "reg16": "northeast",
+   "res16": "in a large city (over 250,000)",
+   "wrkstat": "working part time",
+   "polviews": "liberal",
+   "polnews": "once a day",
+   "premarsx": "not wrong at all",
+   "teensex": "not wrong at all",
+   "colath": "yes, allowed to teach",
+   "natheal": "about right",
+   "natchld": "about right",
+   "natenrgy": "about right"
+  },
+  "question_count": 5,
+  "persona_assignment_rationale": "The persona is a 22 year old white female living in urban New York, which corresponds to 'white', 'female', 'northeast' region, and 'in a large city (over 250,000)'. She works in retail, which is often part-time or full-time; given no explicit full-time, 'working part time' is chosen. She is highly progressive, so 'liberal' is selected for political views. She is a regular news consumer, so 'once a day' news consumption is appropriate for polnews variable.",
+  "persona_assignments_llm_raw": {
+   "race": "white",
+   "sex": "female",
+   "reg16": "northeast",
+   "res16": "in a large city (over 250,000)",
+   "wrkstat": "working part time",
+   "polviews": "liberal",
+   "polnews": "once a day"
+  },
+  "persona_assignments_dropped": [],
+  "forced_assignments": {},
+  "geography": {
+   "requested_year": 2024,
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country_key": "united states",
+   "resolved_continent_key": null,
+   "target_longitude": null,
+   "target_latitude": null,
+   "snapped_O1_LONGITUDE": null,
+   "snapped_O2_LATITUDE": null,
+   "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_conditioning_mode": "context_only",
+   "hard_conditioned_country": false
+  },
+  "ideology_enabled": true,
+  "ideology_disable_reason": "",
+  "ideology_initial": -0.041112780599496954,
+  "ideology_series": [
+   [
+    0,
+    -0.041112780599496954
+   ],
+   [
+    1,
+    -0.06744986283630952
+   ],
+   [
+    2,
+    -0.09165647217602998
+   ],
+   [
+    3,
+    -0.08319353655269278
+   ],
+   [
+    4,
+    -0.07316514179424889
+   ],
+   [
+    5,
+    -0.06800453467444248
+   ]
+  ],
+  "timings_init": {
+   "load_polar_vectors": 0.04332995414733887,
+   "prep_persona_allowed": 0.027007341384887695,
+   "llm_persona_init": 2.421212911605835,
+   "forced_assignments": 0.0010120868682861328,
+   "ideology_init": 0.0661771297454834
+  }
+ },
+ "init_timings": {
+  "model_ready": 8.106231689453125e-06,
+  "model_was_resident": 1.0,
+  "context": 9.703636169433594e-05,
+  "load_polar_vectors": 0.04332995414733887,
+  "prep_persona_allowed": 0.027007341384887695,
+  "llm_persona_init": 2.421212911605835,
+  "forced_assignments": 0.0010120868682861328,
+  "ideology_init": 0.0661771297454834,
+  "total": 2.531658172607422
+ },
+ "ideology": {
+  "enabled": true,
+  "initial": -0.041112780599496954,
+  "current": -0.06800453467444248,
+  "change_from_initial": -0.026891754074945526,
+  "disable_reason": null,
+  "polar_set": "gss_default",
+  "convention": "I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR); native LSM qdistance; L/R are the columns of the registered polar-vector file.",
+  "poles": {
+   "file": "gss_2024_polar_vectors.csv",
+   "wave_specific": true,
+   "items": 27,
+   "dropped": [],
+   "not_in_model": []
+  },
+  "trajectory": [
+   {
+    "step": 0,
+    "ideology": -0.041112780599496954,
+    "delta": null,
+    "question": null,
+    "selected_variables": [],
+    "anchors": {},
+    "mapping": "INITIAL"
+   },
+   {
+    "step": 1,
+    "ideology": -0.06744986283630952,
+    "delta": -0.026337082236812567,
+    "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+    "selected_variables": [
+     "premarsx",
+     "teensex"
+    ],
+    "anchors": {
+     "premarsx": "not wrong at all",
+     "teensex": "not wrong at all"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 2,
+    "ideology": -0.09165647217602998,
+    "delta": -0.024206609339720464,
+    "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+    "selected_variables": [
+     "colath"
+    ],
+    "anchors": {
+     "colath": "yes, allowed to teach"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 3,
+    "ideology": -0.08319353655269278,
+    "delta": 0.008462935623337206,
+    "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+    "selected_variables": [
+     "natheal"
+    ],
+    "anchors": {
+     "natheal": "about right"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 4,
+    "ideology": -0.07316514179424889,
+    "delta": 0.010028394758443887,
+    "question": "Do you think we are spending too much, too little, or about the right amount on assistance for childcare?",
+    "selected_variables": [
+     "natchld"
+    ],
+    "anchors": {
+     "natchld": "about right"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 5,
+    "ideology": -0.06800453467444248,
+    "delta": 0.005160607119806412,
+    "question": "Do you think we are spending too much, too little, or about the right amount on developing alternative energy sources?",
+    "selected_variables": [
+     "natenrgy"
+    ],
+    "anchors": {
+     "natenrgy": "about right"
+    },
+    "mapping": "DIRECT"
+   }
+  ]
+ },
+ "questions": [
+  {
+   "query_idx": 1,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "answer": "I believe it’s not wrong at all for a man and a woman to have sexual relations before marriage. In fact, I think consenting adults should be free to make those decisions for themselves without judgment. Even when it comes to teenagers around 14 to 16, I feel that with proper education and consent, it’s not inherently wrong either. People’s relationships and choices are personal, and I trust that they can navigate them responsibly.",
+   "selected_variables": [
+    "premarsx",
+    "teensex"
+   ],
+   "selection_rationale": "The user question asks about opinions on sexual relations before marriage between a man and a woman. The variable 'premarsx' directly asks if such relations are always wrong, almost always wrong, wrong only sometimes, or not wrong at all. Additionally, 'teensex' asks a similar question but specifically about early teens (14 to 16 years old), which complements the main question by addressing a related age-specific context. Other candidate variables are about different contexts (e.g., married persons having relations outside marriage, homosexual relations) or unrelated topics, so they are not selected.",
+   "display_rationale": "The user question asks about opinions on sexual relations before marriage between a man and a woman. The variable 'premarsx' directly asks if such relations are always wrong, almost always wrong, wrong only sometimes, or not wrong at all. Additionally, 'teensex' asks a similar question but specifically about early teens (14 to 16 years old), which complements the main question by addressing a related age-specific context. Other candidate variables are about different contexts (e.g., married persons having relations outside marriage, homosexual relations) or unrelated topics, so they are not selected.",
+   "anchors": [
+    {
+     "variable": "premarsx",
+     "survey_question": "If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron",
+     "response": "not wrong at all",
+     "distribution": {
+      "not wrong at all": 0.6547983452016548,
+      "always wrong": 0.1685008314991685,
+      "wrong only sometimes": 0.12043587956412044,
+      "almost always wrong": 0.056264943735056264
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "teensex",
+     "survey_question": "What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+     "response": "not wrong at all",
+     "distribution": {
+      "always wrong": 0.4842204842204842,
+      "almost always wrong": 0.18652818652818653,
+      "wrong only sometimes": 0.17805017805017806,
+      "not wrong at all": 0.1512011512011512
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "premarsx": "not wrong at all",
+    "teensex": "not wrong at all"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 9,
+   "ideology": {
+    "enabled": true,
+    "before": -0.041112780599496954,
+    "after": -0.06744986283630952,
+    "delta": -0.026337082236812567,
+    "initial": -0.041112780599496954
+   },
+   "timings": {
+    "prefilters": 0.014400005340576172,
+    "llm_select": 1.6166162490844727,
+    "native_predict": 0.0010700225830078125,
+    "draw": 0.0003960132598876953,
+    "state_update": 1.3113021850585938e-05,
+    "ideology": 0.05453348159790039,
+    "llm_final": 1.140113353729248,
+    "total": 2.827192783355713
+   },
+   "lexical_candidates": 125,
+   "targeted": false
+  },
+  {
+   "query_idx": 2,
+   "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "answer": "I believe that someone who is against all churches and religion should definitely be allowed to teach in a college or university. Colleges are places for diverse ideas and critical thinking, so having instructors with different viewpoints helps foster open discussions. As long as they respect students and academic freedom, their personal beliefs shouldn’t prevent them from teaching.",
+   "selected_variables": [
+    "colath"
+   ],
+   "selection_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "display_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "anchors": [
+    {
+     "variable": "colath",
+     "survey_question": "(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "yes, allowed to teach",
+     "distribution": {
+      "yes, allowed to teach": 0.633028,
+      "not allowed": 0.366972
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "colath": "yes, allowed to teach"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 10,
+   "ideology": {
+    "enabled": true,
+    "before": -0.06744986283630952,
+    "after": -0.09165647217602998,
+    "delta": -0.024206609339720464,
+    "initial": -0.041112780599496954
+   },
+   "timings": {
+    "prefilters": 0.026016950607299805,
+    "llm_select": 1.170034646987915,
+    "native_predict": 0.0011706352233886719,
+    "draw": 0.00034499168395996094,
+    "state_update": 9.775161743164062e-06,
+    "ideology": 0.055983781814575195,
+    "llm_final": 0.990795373916626,
+    "total": 2.244400978088379
+   },
+   "lexical_candidates": 100,
+   "targeted": false
+  },
+  {
+   "query_idx": 3,
+   "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+   "question_source": "ideology_push",
+   "answer": "I think we’re spending about the right amount on improving and protecting the nation’s health. Given the challenges we face, like pandemics and healthcare access disparities, it feels like the current level of investment is necessary to keep things moving forward. Of course, there’s always room for improvement, but I don’t believe we’re over or underfunding it at this point.",
+   "selected_variables": [
+    "natheal"
+   ],
+   "selection_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or national spending are less directly relevant.",
+   "display_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or national spending are less directly relevant.",
+   "anchors": [
+    {
+     "variable": "natheal",
+     "survey_question": "(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health",
+     "response": "about right",
+     "distribution": {
+      "too little": 0.744073,
+      "about right": 0.178723,
+      "too much": 0.077204
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "natheal": "about right"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 11,
+   "ideology": {
+    "enabled": true,
+    "before": -0.09165647217602998,
+    "after": -0.08319353655269278,
+    "delta": 0.008462935623337206,
+    "initial": -0.041112780599496954
+   },
+   "timings": {
+    "prefilters": 0.01387786865234375,
+    "llm_select": 1.3320715427398682,
+    "native_predict": 0.0011641979217529297,
+    "draw": 0.00037980079650878906,
+    "state_update": 1.2636184692382812e-05,
+    "ideology": 0.05299520492553711,
+    "llm_final": 1.025362491607666,
+    "total": 2.425909996032715
+   },
+   "lexical_candidates": 123,
+   "targeted": false
+  },
+  {
+   "query_idx": 4,
+   "question": "Do you think we are spending too much, too little, or about the right amount on assistance for childcare?",
+   "question_source": "ideology_push",
+   "answer": "I think we are spending about the right amount on assistance for childcare. I see how important affordable childcare is, especially for working parents trying to balance jobs and family life. In a city like New York, where costs are high, having support in this area feels necessary and helps many people, including those in retail like me. It’s crucial to maintain that balance so families get the help they need without overextending resources.",
+   "selected_variables": [
+    "natchld"
+   ],
+   "selection_rationale": "The user question directly asks about opinions on spending for assistance for childcare, which exactly matches the candidate variable 'natchld' that asks about whether we are spending too much, too little, or about the right amount on assistance for childcare. No other candidate variables are as semantically relevant or direct.",
+   "display_rationale": "The user question directly asks about opinions on spending for assistance for childcare, which exactly matches the candidate variable 'natchld' that asks about whether we are spending too much, too little, or about the right amount on assistance for childcare. No other candidate variables are as semantically relevant or direct.",
+   "anchors": [
+    {
+     "variable": "natchld",
+     "survey_question": "(... are we spending too much, too little, or about the right amount on) Assistance for childcare",
+     "response": "about right",
+     "distribution": {
+      "too little": 0.617843,
+      "about right": 0.294464,
+      "too much": 0.087693
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "natchld": "about right"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 12,
+   "ideology": {
+    "enabled": true,
+    "before": -0.08319353655269278,
+    "after": -0.07316514179424889,
+    "delta": 0.010028394758443887,
+    "initial": -0.041112780599496954
+   },
+   "timings": {
+    "prefilters": 0.023632526397705078,
+    "llm_select": 1.2904729843139648,
+    "native_predict": 0.0011298656463623047,
+    "draw": 0.0003414154052734375,
+    "state_update": 1.049041748046875e-05,
+    "ideology": 0.055913448333740234,
+    "llm_final": 1.2771060466766357,
+    "total": 2.648658514022827
+   },
+   "lexical_candidates": 113,
+   "targeted": false
+  },
+  {
+   "query_idx": 5,
+   "question": "Do you think we are spending too much, too little, or about the right amount on developing alternative energy sources?",
+   "question_source": "ideology_push",
+   "answer": "I think we are spending about the right amount on developing alternative energy sources right now. It feels like there’s a real push to invest in cleaner, renewable options, which is crucial for the future. I see a lot of coverage about new technologies and government initiatives, so it seems like the effort matches the urgency of addressing climate change. Of course, I hope they keep up the momentum and don’t let funding stall.",
+   "selected_variables": [
+    "natenrgy"
+   ],
+   "selection_rationale": "The user question directly asks about spending on developing alternative energy sources, which matches exactly with the candidate variable 'natenrgy' that asks about spending on developing alternative energy sources. No other variables are as semantically relevant.",
+   "display_rationale": "The user question directly asks about spending on developing alternative energy sources, which matches exactly with the candidate variable 'natenrgy' that asks about spending on developing alternative energy sources. No other variables are as semantically relevant.",
+   "anchors": [
+    {
+     "variable": "natenrgy",
+     "survey_question": "(... are we spending too much, too little, or about the right amount on) Developing alternative energy sources",
+     "response": "about right",
+     "distribution": {
+      "too little": 0.471707,
+      "about right": 0.343869,
+      "too much": 0.184424
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "natenrgy": "about right"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 13,
+   "ideology": {
+    "enabled": true,
+    "before": -0.07316514179424889,
+    "after": -0.06800453467444248,
+    "delta": 0.005160607119806412,
+    "initial": -0.041112780599496954
+   },
+   "timings": {
+    "prefilters": 0.014242887496948242,
+    "llm_select": 1.1506917476654053,
+    "native_predict": 0.0010311603546142578,
+    "draw": 0.0003445148468017578,
+    "state_update": 1.0013580322265625e-05,
+    "ideology": 0.05797576904296875,
+    "llm_final": 1.1151764392852783,
+    "total": 2.3395144939422607
+   },
+   "lexical_candidates": 117,
+   "targeted": false
+  }
+ ],
+ "records_cli_schema": [
+  {
+   "query_idx": 1,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "premarsx",
+    "teensex"
+   ],
+   "selection_rationale": "The user question asks about opinions on sexual relations before marriage between a man and a woman. The variable 'premarsx' directly asks if such relations are always wrong, almost always wrong, wrong only sometimes, or not wrong at all. Additionally, 'teensex' asks a similar question but specifically about early teens (14 to 16 years old), which complements the main question by addressing a related age-specific context. Other candidate variables are about different contexts (e.g., married persons having relations outside marriage, homosexual relations) or unrelated topics, so they are not selected.",
+   "responses": {
+    "premarsx": "not wrong at all",
+    "teensex": "not wrong at all"
+   },
+   "state_updates": {
+    "premarsx": "not wrong at all",
+    "teensex": "not wrong at all"
+   },
+   "ideology_index": -0.06744986283630952,
+   "answer": "I believe it’s not wrong at all for a man and a woman to have sexual relations before marriage. In fact, I think consenting adults should be free to make those decisions for themselves without judgment. Even when it comes to teenagers around 14 to 16, I feel that with proper education and consent, it’s not inherently wrong either. People’s relationships and choices are personal, and I trust that they can navigate them responsibly.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014400005340576172,
+    "llm_select": 1.6166162490844727,
+    "native_predict": 0.0010700225830078125,
+    "draw": 0.0003960132598876953,
+    "state_update": 1.3113021850585938e-05,
+    "ideology": 0.05453348159790039,
+    "llm_final": 1.140113353729248,
+    "total": 2.827192783355713
+   }
+  },
+  {
+   "query_idx": 2,
+   "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "colath"
+   ],
+   "selection_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "responses": {
+    "colath": "yes, allowed to teach"
+   },
+   "state_updates": {
+    "colath": "yes, allowed to teach"
+   },
+   "ideology_index": -0.09165647217602998,
+   "answer": "I believe that someone who is against all churches and religion should definitely be allowed to teach in a college or university. Colleges are places for diverse ideas and critical thinking, so having instructors with different viewpoints helps foster open discussions. As long as they respect students and academic freedom, their personal beliefs shouldn’t prevent them from teaching.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.026016950607299805,
+    "llm_select": 1.170034646987915,
+    "native_predict": 0.0011706352233886719,
+    "draw": 0.00034499168395996094,
+    "state_update": 9.775161743164062e-06,
+    "ideology": 0.055983781814575195,
+    "llm_final": 0.990795373916626,
+    "total": 2.244400978088379
+   }
+  },
+  {
+   "query_idx": 3,
+   "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "natheal"
+   ],
+   "selection_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or national spending are less directly relevant.",
+   "responses": {
+    "natheal": "about right"
+   },
+   "state_updates": {
+    "natheal": "about right"
+   },
+   "ideology_index": -0.08319353655269278,
+   "answer": "I think we’re spending about the right amount on improving and protecting the nation’s health. Given the challenges we face, like pandemics and healthcare access disparities, it feels like the current level of investment is necessary to keep things moving forward. Of course, there’s always room for improvement, but I don’t believe we’re over or underfunding it at this point.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.01387786865234375,
+    "llm_select": 1.3320715427398682,
+    "native_predict": 0.0011641979217529297,
+    "draw": 0.00037980079650878906,
+    "state_update": 1.2636184692382812e-05,
+    "ideology": 0.05299520492553711,
+    "llm_final": 1.025362491607666,
+    "total": 2.425909996032715
+   }
+  },
+  {
+   "query_idx": 4,
+   "question": "Do you think we are spending too much, too little, or about the right amount on assistance for childcare?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "natchld"
+   ],
+   "selection_rationale": "The user question directly asks about opinions on spending for assistance for childcare, which exactly matches the candidate variable 'natchld' that asks about whether we are spending too much, too little, or about the right amount on assistance for childcare. No other candidate variables are as semantically relevant or direct.",
+   "responses": {
+    "natchld": "about right"
+   },
+   "state_updates": {
+    "natchld": "about right"
+   },
+   "ideology_index": -0.07316514179424889,
+   "answer": "I think we are spending about the right amount on assistance for childcare. I see how important affordable childcare is, especially for working parents trying to balance jobs and family life. In a city like New York, where costs are high, having support in this area feels necessary and helps many people, including those in retail like me. It’s crucial to maintain that balance so families get the help they need without overextending resources.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.023632526397705078,
+    "llm_select": 1.2904729843139648,
+    "native_predict": 0.0011298656463623047,
+    "draw": 0.0003414154052734375,
+    "state_update": 1.049041748046875e-05,
+    "ideology": 0.055913448333740234,
+    "llm_final": 1.2771060466766357,
+    "total": 2.648658514022827
+   }
+  },
+  {
+   "query_idx": 5,
+   "question": "Do you think we are spending too much, too little, or about the right amount on developing alternative energy sources?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "natenrgy"
+   ],
+   "selection_rationale": "The user question directly asks about spending on developing alternative energy sources, which matches exactly with the candidate variable 'natenrgy' that asks about spending on developing alternative energy sources. No other variables are as semantically relevant.",
+   "responses": {
+    "natenrgy": "about right"
+   },
+   "state_updates": {
+    "natenrgy": "about right"
+   },
+   "ideology_index": -0.06800453467444248,
+   "answer": "I think we are spending about the right amount on developing alternative energy sources right now. It feels like there’s a real push to invest in cleaner, renewable options, which is crucial for the future. I see a lot of coverage about new technologies and government initiatives, so it seems like the effort matches the urgency of addressing climate change. Of course, I hope they keep up the momentum and don’t let funding stall.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014242887496948242,
+    "llm_select": 1.1506917476654053,
+    "native_predict": 0.0010311603546142578,
+    "draw": 0.0003445148468017578,
+    "state_update": 1.0013580322265625e-05,
+    "ideology": 0.05797576904296875,
+    "llm_final": 1.1151764392852783,
+    "total": 2.3395144939422607
+   }
+  }
+ ],
+ "final_state": {
+  "race": "white",
+  "sex": "female",
+  "reg16": "northeast",
+  "res16": "in a large city (over 250,000)",
+  "wrkstat": "working part time",
+  "polviews": "liberal",
+  "polnews": "once a day",
+  "premarsx": "not wrong at all",
+  "teensex": "not wrong at all",
+  "colath": "yes, allowed to teach",
+  "natheal": "about right",
+  "natchld": "about right",
+  "natenrgy": "about right"
+ },
+ "label": "run05"
+}

@@ -1,0 +1,212 @@
+run,query_idx,action,variable,answer
+5,0,0,polnews,once a day
+5,0,0,polviews,liberal
+5,0,0,race,white
+5,0,0,region,northeast
+5,0,0,res16,"in a large city (over 250,000)"
+5,0,0,sex,female
+5,0,0,spwksup,no
+5,0,0,spwrksta,working full time
+5,1,1,colath,not allowed
+5,1,1,colcom,"yes, fired"
+5,1,1,colcomy,"yes, fired"
+5,1,1,colmslm,not allowed
+5,1,1,colrac,not allowed
+5,1,1,polnews,once a day
+5,1,1,polviews,liberal
+5,1,1,race,white
+5,1,1,region,northeast
+5,1,1,res16,"in a large city (over 250,000)"
+5,1,1,sex,female
+5,1,1,spwksup,no
+5,1,1,spwrksta,working full time
+5,2,1,colath,not allowed
+5,2,1,colcom,"yes, fired"
+5,2,1,colcomy,"yes, fired"
+5,2,1,colmslm,not allowed
+5,2,1,colrac,"yes, allowed to teach"
+5,2,1,librac,remove
+5,2,1,polnews,once a day
+5,2,1,polviews,liberal
+5,2,1,race,white
+5,2,1,region,northeast
+5,2,1,res16,"in a large city (over 250,000)"
+5,2,1,sex,female
+5,2,1,spkrac,not allowed
+5,2,1,spkracy,not allowed
+5,2,1,spwksup,no
+5,2,1,spwrksta,working full time
+5,3,1,colath,not allowed
+5,3,1,colcom,"yes, fired"
+5,3,1,colcomy,"yes, fired"
+5,3,1,colmslm,not allowed
+5,3,1,colrac,"yes, allowed to teach"
+5,3,1,librac,remove
+5,3,1,polnews,once a day
+5,3,1,polviews,liberal
+5,3,1,race,white
+5,3,1,region,northeast
+5,3,1,relpersn,very religious
+5,3,1,res16,"in a large city (over 250,000)"
+5,3,1,sex,female
+5,3,1,spkrac,not allowed
+5,3,1,spkracy,not allowed
+5,3,1,spwksup,no
+5,3,1,spwrksta,working full time
+5,4,1,amchrstn,very important
+5,4,1,colath,not allowed
+5,4,1,colcom,"yes, fired"
+5,4,1,colcomy,"yes, fired"
+5,4,1,colmslm,not allowed
+5,4,1,colrac,"yes, allowed to teach"
+5,4,1,librac,remove
+5,4,1,polnews,once a day
+5,4,1,polviews,liberal
+5,4,1,race,white
+5,4,1,region,northeast
+5,4,1,relpersn,very religious
+5,4,1,res16,"in a large city (over 250,000)"
+5,4,1,sex,female
+5,4,1,spkrac,not allowed
+5,4,1,spkracy,not allowed
+5,4,1,spwksup,no
+5,4,1,spwrksta,working full time
+5,5,1,amchrstn,very important
+5,5,1,colath,not allowed
+5,5,1,colcom,"yes, fired"
+5,5,1,colcomy,"yes, fired"
+5,5,1,colmslm,not allowed
+5,5,1,colrac,"yes, allowed to teach"
+5,5,1,librac,remove
+5,5,1,polnews,once a day
+5,5,1,polviews,liberal
+5,5,1,race,white
+5,5,1,region,northeast
+5,5,1,religinf,neither agree nor disagree
+5,5,1,relpersn,very religious
+5,5,1,res16,"in a large city (over 250,000)"
+5,5,1,sex,female
+5,5,1,spkrac,not allowed
+5,5,1,spkracy,not allowed
+5,5,1,spwksup,no
+5,5,1,spwrksta,working full time
+5,6,1,amchrstn,very important
+5,6,1,colath,not allowed
+5,6,1,colcom,"yes, fired"
+5,6,1,colcomy,"yes, fired"
+5,6,1,colmslm,not allowed
+5,6,1,colrac,"yes, allowed to teach"
+5,6,1,immjobs,disagree strongly
+5,6,1,immjobs1,agree
+5,6,1,immwlfare,agree
+5,6,1,librac,remove
+5,6,1,polnews,once a day
+5,6,1,polviews,liberal
+5,6,1,race,white
+5,6,1,region,northeast
+5,6,1,religinf,neither agree nor disagree
+5,6,1,relpersn,very religious
+5,6,1,res16,"in a large city (over 250,000)"
+5,6,1,sex,female
+5,6,1,spkrac,not allowed
+5,6,1,spkracy,not allowed
+5,6,1,spwksup,no
+5,6,1,spwrksta,working full time
+5,7,1,amchrstn,very important
+5,7,1,colath,not allowed
+5,7,1,colcom,"yes, fired"
+5,7,1,colcomy,"yes, fired"
+5,7,1,colmslm,not allowed
+5,7,1,colrac,"yes, allowed to teach"
+5,7,1,immjobs,disagree strongly
+5,7,1,immjobs1,agree
+5,7,1,immwlfare,agree
+5,7,1,librac,remove
+5,7,1,polnews,once a day
+5,7,1,polviews,liberal
+5,7,1,race,white
+5,7,1,region,northeast
+5,7,1,religinf,neither agree nor disagree
+5,7,1,relpersn,very religious
+5,7,1,res16,"in a large city (over 250,000)"
+5,7,1,sex,female
+5,7,1,spkrac,not allowed
+5,7,1,spkracy,not allowed
+5,7,1,sprtprsn,very spiritual
+5,7,1,spwksup,no
+5,7,1,spwrksta,working full time
+5,8,1,amchrstn,very important
+5,8,1,colath,not allowed
+5,8,1,colcom,"yes, fired"
+5,8,1,colcomy,"yes, fired"
+5,8,1,colmslm,not allowed
+5,8,1,colrac,"yes, allowed to teach"
+5,8,1,immjobs,disagree strongly
+5,8,1,immjobs1,agree
+5,8,1,immwlfare,agree
+5,8,1,librac,remove
+5,8,1,polnews,once a day
+5,8,1,polviews,liberal
+5,8,1,race,white
+5,8,1,raterepp,0.0
+5,8,1,region,northeast
+5,8,1,religinf,neither agree nor disagree
+5,8,1,relpersn,very religious
+5,8,1,res16,"in a large city (over 250,000)"
+5,8,1,sex,female
+5,8,1,spkrac,not allowed
+5,8,1,spkracy,not allowed
+5,8,1,sprtprsn,very spiritual
+5,8,1,spwksup,no
+5,8,1,spwrksta,working full time
+5,9,1,amchrstn,very important
+5,9,1,colath,not allowed
+5,9,1,colcom,"yes, fired"
+5,9,1,colcomy,"yes, fired"
+5,9,1,colmslm,not allowed
+5,9,1,colrac,"yes, allowed to teach"
+5,9,1,immjobs,disagree strongly
+5,9,1,immjobs1,agree
+5,9,1,immwlfare,agree
+5,9,1,librac,remove
+5,9,1,marhisp,strongly favor
+5,9,1,polnews,once a day
+5,9,1,polviews,liberal
+5,9,1,race,white
+5,9,1,raterepp,0.0
+5,9,1,region,northeast
+5,9,1,religinf,neither agree nor disagree
+5,9,1,relpersn,very religious
+5,9,1,res16,"in a large city (over 250,000)"
+5,9,1,sex,female
+5,9,1,spkrac,not allowed
+5,9,1,spkracy,not allowed
+5,9,1,sprtprsn,very spiritual
+5,9,1,spwksup,no
+5,9,1,spwrksta,working full time
+5,10,1,amchrstn,very important
+5,10,1,colath,not allowed
+5,10,1,colcom,"yes, fired"
+5,10,1,colcomy,"yes, fired"
+5,10,1,colmslm,not allowed
+5,10,1,colrac,"yes, allowed to teach"
+5,10,1,immjobs,disagree strongly
+5,10,1,immjobs1,agree
+5,10,1,immwlfare,agree
+5,10,1,librac,remove
+5,10,1,marhisp,strongly favor
+5,10,1,polnews,once a day
+5,10,1,polviews,liberal
+5,10,1,race,white
+5,10,1,ratechall124,0.0
+5,10,1,raterepp,0.0
+5,10,1,region,northeast
+5,10,1,religinf,neither agree nor disagree
+5,10,1,relpersn,very religious
+5,10,1,res16,"in a large city (over 250,000)"
+5,10,1,sex,female
+5,10,1,spkrac,not allowed
+5,10,1,spkracy,not allowed
+5,10,1,sprtprsn,very spiritual
+5,10,1,spwksup,no
+5,10,1,spwrksta,working full time

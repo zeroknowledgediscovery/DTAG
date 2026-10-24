@@ -1,0 +1,202 @@
+run,query_idx,action,variable,answer
+9,0,0,childsinhh,2
+9,0,0,polnews,1-2 days a week
+9,0,0,polnewsfrom,newspapers (in print or access via internet)
+9,0,0,polviews,conservative
+9,0,0,race,white
+9,0,0,region,south
+9,0,0,sex,male
+9,0,0,vetyears,"yes, more than 4 years"
+9,0,0,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,1,1,childsinhh,2
+9,1,1,colath,not allowed
+9,1,1,colcom,"yes, fired"
+9,1,1,colcomy,not fired
+9,1,1,colmslm,not allowed
+9,1,1,colrac,"yes, allowed to teach"
+9,1,1,polnews,1-2 days a week
+9,1,1,polnewsfrom,newspapers (in print or access via internet)
+9,1,1,polviews,conservative
+9,1,1,race,white
+9,1,1,region,south
+9,1,1,sex,male
+9,1,1,vetyears,"yes, more than 4 years"
+9,1,1,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,2,1,childsinhh,2
+9,2,1,colath,not allowed
+9,2,1,colcom,"yes, fired"
+9,2,1,colcomy,not fired
+9,2,1,colmslm,not allowed
+9,2,1,colrac,"yes, allowed to teach"
+9,2,1,polnews,1-2 days a week
+9,2,1,polnewsfrom,newspapers (in print or access via internet)
+9,2,1,polviews,conservative
+9,2,1,race,white
+9,2,1,region,south
+9,2,1,relpersn,not religious at all
+9,2,1,sex,male
+9,2,1,vetyears,"yes, more than 4 years"
+9,2,1,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,3,1,belikeus,strongly agree
+9,3,1,childsinhh,2
+9,3,1,colath,not allowed
+9,3,1,colcom,"yes, fired"
+9,3,1,colcomy,not fired
+9,3,1,colmslm,not allowed
+9,3,1,colrac,"yes, allowed to teach"
+9,3,1,polnews,1-2 days a week
+9,3,1,polnewsfrom,newspapers (in print or access via internet)
+9,3,1,polviews,conservative
+9,3,1,race,white
+9,3,1,region,south
+9,3,1,relpersn,not religious at all
+9,3,1,sex,male
+9,3,1,vetyears,"yes, more than 4 years"
+9,3,1,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,4,1,belikeus,strongly agree
+9,4,1,childsinhh,2
+9,4,1,colath,not allowed
+9,4,1,colcom,"yes, fired"
+9,4,1,colcomy,not fired
+9,4,1,colmslm,not allowed
+9,4,1,colrac,"yes, allowed to teach"
+9,4,1,conjudge,only some
+9,4,1,polnews,1-2 days a week
+9,4,1,polnewsfrom,newspapers (in print or access via internet)
+9,4,1,polviews,conservative
+9,4,1,race,white
+9,4,1,region,south
+9,4,1,relpersn,not religious at all
+9,4,1,sex,male
+9,4,1,vetyears,"yes, more than 4 years"
+9,4,1,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,5,1,belikeus,strongly agree
+9,5,1,childsinhh,2
+9,5,1,colath,not allowed
+9,5,1,colcom,"yes, fired"
+9,5,1,colcomy,not fired
+9,5,1,colmslm,not allowed
+9,5,1,colrac,"yes, allowed to teach"
+9,5,1,conjudge,only some
+9,5,1,goodlife,agree
+9,5,1,polnews,1-2 days a week
+9,5,1,polnewsfrom,newspapers (in print or access via internet)
+9,5,1,polviews,conservative
+9,5,1,race,white
+9,5,1,region,south
+9,5,1,relpersn,not religious at all
+9,5,1,sex,male
+9,5,1,vetyears,"yes, more than 4 years"
+9,5,1,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,6,2,belikeus,strongly agree
+9,6,2,childsinhh,2
+9,6,2,colath,not allowed
+9,6,2,colcom,"yes, fired"
+9,6,2,colcomy,not fired
+9,6,2,colmslm,not allowed
+9,6,2,colrac,"yes, allowed to teach"
+9,6,2,conjudge,only some
+9,6,2,goodlife,agree
+9,6,2,polnews,1-2 days a week
+9,6,2,polnewsfrom,newspapers (in print or access via internet)
+9,6,2,polviews,conservative
+9,6,2,race,white
+9,6,2,region,south
+9,6,2,relpersn,not religious at all
+9,6,2,sex,male
+9,6,2,sprtprsn,not spiritual at all
+9,6,2,vetyears,"yes, more than 4 years"
+9,6,2,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,7,2,belikeus,strongly agree
+9,7,2,childsinhh,2
+9,7,2,colath,not allowed
+9,7,2,colcom,"yes, fired"
+9,7,2,colcomy,not fired
+9,7,2,colmslm,not allowed
+9,7,2,colrac,"yes, allowed to teach"
+9,7,2,conjudge,only some
+9,7,2,goodlife,agree
+9,7,2,polnews,1-2 days a week
+9,7,2,polnewsfrom,newspapers (in print or access via internet)
+9,7,2,polviews,conservative
+9,7,2,premarsx,always wrong
+9,7,2,race,white
+9,7,2,region,south
+9,7,2,relpersn,not religious at all
+9,7,2,sex,male
+9,7,2,sprtprsn,not spiritual at all
+9,7,2,teensex,almost always wrong
+9,7,2,vetyears,"yes, more than 4 years"
+9,7,2,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,8,2,belikeus,strongly agree
+9,8,2,childsinhh,2
+9,8,2,colath,not allowed
+9,8,2,colcom,"yes, fired"
+9,8,2,colcomy,not fired
+9,8,2,colmslm,not allowed
+9,8,2,colrac,"yes, allowed to teach"
+9,8,2,conjudge,only some
+9,8,2,goodlife,agree
+9,8,2,natheal,too little
+9,8,2,polnews,1-2 days a week
+9,8,2,polnewsfrom,newspapers (in print or access via internet)
+9,8,2,polviews,conservative
+9,8,2,premarsx,always wrong
+9,8,2,race,white
+9,8,2,region,south
+9,8,2,relpersn,not religious at all
+9,8,2,sex,male
+9,8,2,sprtprsn,not spiritual at all
+9,8,2,teensex,almost always wrong
+9,8,2,vetyears,"yes, more than 4 years"
+9,8,2,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,9,2,belikeus,strongly agree
+9,9,2,childsinhh,2
+9,9,2,colath,not allowed
+9,9,2,colcom,"yes, fired"
+9,9,2,colcomy,not fired
+9,9,2,colmslm,not allowed
+9,9,2,colrac,"yes, allowed to teach"
+9,9,2,conjudge,only some
+9,9,2,goodlife,agree
+9,9,2,natheal,too little
+9,9,2,polnews,1-2 days a week
+9,9,2,polnewsfrom,newspapers (in print or access via internet)
+9,9,2,polviews,conservative
+9,9,2,premarsx,always wrong
+9,9,2,race,white
+9,9,2,region,south
+9,9,2,relpersn,not religious at all
+9,9,2,sex,male
+9,9,2,spkath,"yes, allowed to speak"
+9,9,2,spkathy,not allowed
+9,9,2,sprtprsn,not spiritual at all
+9,9,2,teensex,almost always wrong
+9,9,2,vetyears,"yes, more than 4 years"
+9,9,2,whatslf2,"other (agriculture, construction, service, government, etc.)"
+9,10,2,belikeus,strongly agree
+9,10,2,childsinhh,2
+9,10,2,colath,not allowed
+9,10,2,colcom,"yes, fired"
+9,10,2,colcomy,not fired
+9,10,2,colmslm,not allowed
+9,10,2,colrac,"yes, allowed to teach"
+9,10,2,conjudge,only some
+9,10,2,goodlife,agree
+9,10,2,librac,remove
+9,10,2,libracy,not remove
+9,10,2,natheal,too little
+9,10,2,polnews,1-2 days a week
+9,10,2,polnewsfrom,newspapers (in print or access via internet)
+9,10,2,polviews,conservative
+9,10,2,premarsx,always wrong
+9,10,2,race,white
+9,10,2,region,south
+9,10,2,relpersn,not religious at all
+9,10,2,sex,male
+9,10,2,spkath,"yes, allowed to speak"
+9,10,2,spkathy,not allowed
+9,10,2,sprtprsn,not spiritual at all
+9,10,2,teensex,almost always wrong
+9,10,2,vetyears,"yes, more than 4 years"
+9,10,2,whatslf2,"other (agriculture, construction, service, government, etc.)"

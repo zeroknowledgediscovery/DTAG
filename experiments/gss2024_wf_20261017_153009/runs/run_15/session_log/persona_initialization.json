@@ -1,0 +1,48 @@
+{
+ "persona_assignments_llm_raw": {
+  "race": "white",
+  "sex": "female",
+  "reg16": "northeast",
+  "res16": "in a large city (over 250,000)",
+  "wrkstat": "working full time",
+  "whatsp2": "retail trade",
+  "polviews": "liberal",
+  "polnews": "several times a day"
+ },
+ "persona_assignments_dropped": [],
+ "persona_assignment_rationale": "The persona is a 22-year-old white female living in urban New York, which places her in the northeast region and in a large city. She works in retail, so occupation and work status are assigned accordingly. She is highly progressive, which aligns with a liberal political view. She is a regular news consumer, so frequency of political news consumption is set to 'several times a day'. Age is not directly assignable from the variables provided, so it is omitted.",
+ "forced_assignments": {},
+ "geography": {
+  "requested_year": 2024,
+  "requested_country": "United States",
+  "requested_continent": null,
+  "resolved_country_key": "united states",
+  "resolved_continent_key": null,
+  "target_longitude": null,
+  "target_latitude": null,
+  "snapped_O1_LONGITUDE": null,
+  "snapped_O2_LATITUDE": null,
+  "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+  "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+  "geography_conditioning_mode": "context_only",
+  "hard_conditioned_country": false
+ },
+ "initial_state": {
+  "race": "white",
+  "sex": "female",
+  "reg16": "northeast",
+  "res16": "in a large city (over 250,000)",
+  "wrkstat": "working full time",
+  "whatsp2": "retail trade",
+  "polviews": "liberal",
+  "polnews": "several times a day"
+ },
+ "ideology_initial": -0.041938476369688414,
+ "timings_init": {
+  "load_polar_vectors": 0.04224658012390137,
+  "prep_persona_allowed": 0.01688218116760254,
+  "llm_persona_init": 2.027252197265625,
+  "forced_assignments": 0.000560760498046875,
+  "ideology_init": 0.05397915840148926
+ }
+}

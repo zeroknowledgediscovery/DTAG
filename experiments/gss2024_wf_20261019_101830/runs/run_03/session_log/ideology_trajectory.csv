@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.09005137978977841,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.03652056776583274,0.05353081202394567,0.05353081202394567
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.01926667785721041,0.01725388990862233,0.070784701932568
+3,3,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.026035699234355975,0.045302377091566384,0.11608707902413438
+4,4,How important is it to you to be a Christian?,DIRECT,True,0.03213699755578179,0.006101298321425815,0.1221883773455602
+5,5,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,0.030724827336438165,-0.001412170219343624,0.12077620712621658
+6,6,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.04121371626322779,0.010488888926789626,0.1312650960530062
+7,7,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,0.05878532990269191,0.01757161363946412,0.14883670969247031
+8,8,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,0.061304314277303595,0.002518984374611684,0.151355694067082
+9,9,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.054473963038533656,-0.00683035123876994,0.14452534282831206
+10,10,"How would you rate Joe Biden on a scale where you can choose from the following numbers: 0, 2, 20, 25, 29, 30, 45, 55, 60, 65, 75, 85, 90, 99, or 100?",DIRECT,True,0.07133880127140341,0.01686483823286975,0.1613901810611818

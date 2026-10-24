@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.008405501216858947,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.06398594868969455,-0.05558044747283561,-0.05558044747283561
+2,2,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,-0.06379992455883025,0.00018602413086429848,-0.05539442334197131
+3,3,Do you agree or disagree that homosexual couples should have the right to marry?,DIRECT,True,-0.034603629666234495,0.02919629489259576,-0.02619812844937555
+4,4,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,-0.026454712653631817,0.008148917012602678,-0.01804921143677287
+5,5,How likely do you think it is these days that a white person will miss out on a job or promotion while an equally or less qualified Black person receives it instead?,DIRECT,True,-0.030091230306536418,-0.0036365176529046007,-0.02168572908967747
+6,6,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,-0.04603010947954084,-0.01593887917300442,-0.037624608262681894
+7,7,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.055082722306107286,-0.009052612826566449,-0.046677221089248336
+8,8,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.045654106609567154,0.009428615696540132,-0.0372486053927082
+9,9,Do you think a woman should be allowed to make decisions about her pregnancy if her own health is seriously endangered by it?,DIRECT,True,-0.05357279935802988,-0.007918692748462727,-0.04516729814117093
+10,10,"Do you think that the differences in jobs, income, and housing between Black people and White people are mostly because of people's own actions or choices?",DIRECT,True,-0.06684309619517903,-0.01327029683714915,-0.05843759497832009

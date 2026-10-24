@@ -1,0 +1,20 @@
+{
+  "job_id": "a167ab878ee04296978a0e0854a42472",
+  "name": "gss2024_wf",
+  "runs_requested": 20,
+  "runs_completed": 20,
+  "status": "done",
+  "error": null,
+  "base_seed": 817206044,
+  "seeds": "base_seed + run (1..20)",
+  "model_key": "gss/gss_2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "profile": "gss2024_wf",
+  "llm_backend": "openai",
+  "llm_model": null,
+  "git_commit": "918aefe",
+  "started_at": "2026-10-19T10:18:30",
+  "finished_at": "2026-10-19T10:35:56",
+  "credit": "DTAG \u00b7 ZeD Lab, University of Kentucky \u00b7 ishanu_ch@uky.edu",
+  "variation": "fresh respondent per run (persona interpretation may differ); pushes and next questions re-chosen at each run's own state; per-run seed for drawn responses"
+}

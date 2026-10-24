@@ -1,0 +1,19 @@
+persona,label,policy,n_comparisons,final_sign_flip_pct,direction_sign_flip_pct,mean_abs_change
+cm_rural_alabama,Alabama,right,120,1.6666666666666667,5.833333333333333,0.014177919554802403
+cm_rural_alabama,Alabama,left,120,19.166666666666668,19.166666666666668,0.029571953050728784
+cm_rural_alabama,Alabama,neutral,120,0.0,0.0,0.0
+wf_new_york_city,New York,right,120,0.8333333333333334,15.0,0.0294366571840026
+wf_new_york_city,New York,left,120,0.0,5.0,0.004012807775671358
+wf_new_york_city,New York,neutral,120,0.0,0.0,2.0122792321330962e-17
+religious_conservative_woman_texas,Texas,right,120,4.166666666666667,19.166666666666668,0.0267116789701541
+religious_conservative_woman_texas,Texas,left,120,15.833333333333334,9.166666666666666,0.016889790315622908
+religious_conservative_woman_texas,Texas,neutral,120,0.0,0.8333333333333334,3.5820973136033626e-06
+secular_liberal_man_seattle,Seattle,right,120,1.6666666666666667,17.5,0.023718562147572796
+secular_liberal_man_seattle,Seattle,left,120,0.0,6.666666666666667,0.0075098394484658885
+secular_liberal_man_seattle,Seattle,neutral,120,0.0,4.166666666666667,8.162322080609227e-05
+hispanic_catholic_man_arizona,Arizona,right,120,26.666666666666668,25.833333333333332,0.029964186875324695
+hispanic_catholic_man_arizona,Arizona,left,120,8.333333333333334,13.333333333333334,0.0200993160546187
+hispanic_catholic_man_arizona,Arizona,neutral,120,0.0,3.3333333333333335,7.028531653605902e-05
+black_churchgoing_woman_atlanta,Atlanta,right,120,22.5,5.833333333333333,0.018847841011215196
+black_churchgoing_woman_atlanta,Atlanta,left,120,1.6666666666666667,3.3333333333333335,0.006870248228551753
+black_churchgoing_woman_atlanta,Atlanta,neutral,120,0.0,0.0,0.0

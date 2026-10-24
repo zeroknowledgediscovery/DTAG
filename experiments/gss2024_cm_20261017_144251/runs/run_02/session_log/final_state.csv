@@ -1,0 +1,38 @@
+variable,value,survey_question
+region,south,REGION OF INTERVIEW
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,male,CODE RESPONDENT'S SEX
+childsinhh,2,total children in hh (household composition version)
+whatsp2,"other (agriculture, construction, service, government, etc.)",classify place where spouse works
+vetyears,"yes, more than 4 years",Have you ever been on active duty for military training or service for two consecutive months or more? IF YES: What was your total time on active duty?
+polviews,conservative,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+polnews,once a day,how often use media to get political news
+colmslm,"yes, allowed to teach","Should such a person be allowed to teach in a college or university, or not?"
+colath,"yes, allowed to teach","(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+colcomy,not fired,"(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?"
+colcom,not fired,"(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?"
+spkrac,not allowed,"Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
+spkracy,not allowed,"Or consider a person who believes that Black people are genetically inferior… If such a person wanted to make a speech in your community, should this person be allowed to speak, or not?"
+libracy,not remove,"(Or consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book this person wrote should be taken out of your public library, would you favor removing this boo"
+librac,remove,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+colrac,"yes, allowed to teach","(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+marsame,agree,HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY
+marsamey,disagree,SAME-SEX COUPLES SHOULD HAVE RIGHT TO MARRY
+homosex,almost always wrong,"What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+discaff,not very likely,"What do you think the chances are these days that a white person won't get a job or promotion while an equally or less qualified black person gets one instead? Is this very likely, somewhat likely, or not very likely to happen these days?"
+premarsx,not wrong at all,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+teensex,almost always wrong,"What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+natheal,too little,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
+sprtprsn,very spiritual,"To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?"
+abhlthg,yes,If the woman's own health is seriously endangered by the pregnancy?
+abhlth,yes,If the woman's own health is seriously endangered by the pregnancy?
+racdif1,yes,"On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . . Mainly due to discrimination?"
+racdif1x,yes,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are...Mainly due to"
+racdif2,no,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Mainly due to less in-born ability to learn?"
+racdif2x,no,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+racdif3,no,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Don't have the chance for education that it takes to rise out of poverty?"
+racdif3x,yes,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+racdif4,no,"(On the average Black people have worse jobs, income, and housing than white people. Do you think these differences are . . .) Don't have the motivation or will power to pull themselves up out of poverty?"
+racdif4x,no,"(The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people). Do you think these differences are…because most"
+racdif5,no,"On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Mainly due to upbringing?"
+racdif5x,yes,"The next questions have been asked for almost 50 years. For historical comparison, we would like to ask them again here. On the average Black people have worse jobs, income, and housing than White people. Do you think these differences are… Upbringing"

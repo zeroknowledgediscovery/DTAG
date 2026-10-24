@@ -1,0 +1,48 @@
+{
+ "persona_assignments_llm_raw": {
+  "region": "south",
+  "race": "white",
+  "sex": "male",
+  "childsinhh": "2",
+  "whatsp2": "other (agriculture, construction, service, government, etc.)",
+  "vetyears": "yes, more than 4 years",
+  "polviews": "conservative",
+  "polnews": "once a day"
+ },
+ "persona_assignments_dropped": [],
+ "persona_assignment_rationale": "The persona is a 45-year-old white male with children living in rural Alabama, working in farming, a veteran, and conservative who regularly consumes news. Variables chosen include region (south), race (white), sex (male), number of children in household (2, inferred from 'children'), occupation sector (other - agriculture, construction, service, government, etc. to represent farming), veteran status (more than 4 years active duty), political views (conservative), and frequency of news consumption (once a day). These variables directly reflect the persona's key demographic and attitudinal characteristics.",
+ "forced_assignments": {},
+ "geography": {
+  "requested_year": 2024,
+  "requested_country": "United States",
+  "requested_continent": null,
+  "resolved_country_key": "united states",
+  "resolved_continent_key": null,
+  "target_longitude": null,
+  "target_latitude": null,
+  "snapped_O1_LONGITUDE": null,
+  "snapped_O2_LATITUDE": null,
+  "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+  "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+  "geography_conditioning_mode": "context_only",
+  "hard_conditioned_country": false
+ },
+ "initial_state": {
+  "region": "south",
+  "race": "white",
+  "sex": "male",
+  "childsinhh": "2",
+  "whatsp2": "other (agriculture, construction, service, government, etc.)",
+  "vetyears": "yes, more than 4 years",
+  "polviews": "conservative",
+  "polnews": "once a day"
+ },
+ "ideology_initial": -0.008405501216858947,
+ "timings_init": {
+  "load_polar_vectors": 0.04751133918762207,
+  "prep_persona_allowed": 0.018167734146118164,
+  "llm_persona_init": 2.2492520809173584,
+  "forced_assignments": 0.0011110305786132812,
+  "ideology_init": 0.06545352935791016
+ }
+}

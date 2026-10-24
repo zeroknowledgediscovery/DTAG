@@ -1,0 +1,19 @@
+{
+  "job_id": "bc3687d4a6d94b4ba2bf55b29499683d",
+  "name": "CM_5_plus",
+  "runs_requested": 10,
+  "runs_completed": 10,
+  "status": "done",
+  "error": null,
+  "base_seed": 416240819,
+  "seeds": "base_seed + run (1..10)",
+  "model_key": "gss/gss_2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "profile": "gss2024_cm",
+  "llm_backend": "openai",
+  "llm_model": null,
+  "git_commit": "a9587a5",
+  "started_at": "2026-10-17T13:13:34",
+  "finished_at": "2026-10-17T13:18:20",
+  "variation": "fresh respondent per run (persona interpretation may differ); pushes and next questions re-chosen at each run's own state; per-run seed for drawn responses"
+}

@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.04023838803192821,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.007341776394422718,0.04758016442635093,0.04758016442635093
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,0.04884850914694484,0.04150673275252212,0.08908689717887305
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,0.08913865353556683,0.04029014438862199,0.12937704156749502
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,0.09225783922637416,0.0031191856908073384,0.13249622725830237
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,0.09355219015412193,0.0012943509277477672,0.13379057818605014
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.07472640383429843,-0.018825786319823498,0.11496479186622664
+7,7,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.053911032818808165,-0.020815371015490268,0.09414942085073638
+8,8,Do you agree or disagree that homosexual couples should have the right to marry?,DIRECT,True,0.03996718587685868,-0.013943846941949486,0.08020557390878688
+9,9,"If someone wanted to make a speech in your community against churches and religion, should they be allowed to speak or not?",DIRECT,True,0.03195874217225949,-0.008008443704599189,0.07219713020418769
+10,10,How often do you think people try to take advantage rather than be fair?,DIRECT,True,0.02510442348068877,-0.006854318691570719,0.06534281151261698

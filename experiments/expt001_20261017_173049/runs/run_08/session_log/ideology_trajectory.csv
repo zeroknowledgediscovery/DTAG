@@ -1,0 +1,7 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.039980302693709405,,0.0
+1,1,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.02109270813321749,0.018887594560491914,0.018887594560491914
+2,2,Do you think a person who is against all churches and religion should be allowed to teach in a college or university?,DIRECT,True,0.005309611504825906,0.026402319638043396,0.045289914198535314
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",DIRECT,True,0.014747736772596954,0.009438125267771049,0.05472803946630636
+4,4,"How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.003374926833283958,-0.018122663605880912,0.03660537586042545
+5,5,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.013894817347541116,-0.010519890514257158,0.026085485346168287

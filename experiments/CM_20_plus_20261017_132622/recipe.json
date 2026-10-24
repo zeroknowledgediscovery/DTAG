@@ -1,0 +1,258 @@
+{
+  "version": 1,
+  "name": "CM_20_plus",
+  "created_at": "2026-10-17T13:26:22",
+  "source_session": "5f08009ae9ce47dfa9008e3dd6f8341d",
+  "respondent": {
+    "spec": {
+      "name": "gss2024_cm",
+      "source": "configured",
+      "description": "Native pooled GSS 2024; conservative rural male persona.",
+      "family": "gss",
+      "model_key": "gss/gss_2024",
+      "model_label": "GSS 2024",
+      "map_key": "gss/gss_2024_map.csv",
+      "persona": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative",
+      "country": "United States",
+      "continent": "",
+      "year": 2024,
+      "date": null,
+      "za": null,
+      "polar_set": "gss_default",
+      "ideology": true,
+      "base_profile": null,
+      "run": {
+        "k": 50,
+        "prefilter": 200,
+        "min_map_score": 1.0,
+        "semantic_k": 6,
+        "semantic_prefilter": 80,
+        "semantic_min_confidence": 0.35,
+        "max_assign": 50,
+        "assign_prefilter": 500,
+        "seed": 1000,
+        "state_keep": 500,
+        "semantic_fallback": "update_state",
+        "resp_mode": "draw",
+        "semantic_resp_mode": "max",
+        "openai_model": "gpt-4.1-mini",
+        "semantic_embedding_model": "text-embedding-3-small",
+        "timing": true,
+        "require_polar_vectors": true
+      },
+      "temporal": {
+        "family": "gss",
+        "mode": "wave_model_selection",
+        "requested_year": 2024,
+        "selected_model": "gss/gss_2024",
+        "wave": "GSS 2024"
+      },
+      "warnings": [
+        "Country is contextual only for this model."
+      ]
+    }
+  },
+  "actions": [
+    {
+      "auto_push": "up",
+      "steps": 15,
+      "mode": "realistic",
+      "include_pole_items": false
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.010924977980239413,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.010924977980239413
+      },
+      {
+        "step": 1,
+        "ideology": 0.029226338605892202
+      },
+      {
+        "step": 2,
+        "ideology": 0.049170131521990186
+      },
+      {
+        "step": 3,
+        "ideology": 0.0784385102185622
+      },
+      {
+        "step": 4,
+        "ideology": 0.08631916201715477
+      },
+      {
+        "step": 5,
+        "ideology": 0.0730335805567948
+      },
+      {
+        "step": 6,
+        "ideology": 0.0743783960542521
+      },
+      {
+        "step": 7,
+        "ideology": 0.08978616684464523
+      },
+      {
+        "step": 8,
+        "ideology": 0.08462298010081498
+      },
+      {
+        "step": 9,
+        "ideology": 0.08700717259417878
+      },
+      {
+        "step": 10,
+        "ideology": 0.08964000883037342
+      },
+      {
+        "step": 11,
+        "ideology": 0.09174010916420909
+      },
+      {
+        "step": 12,
+        "ideology": 0.09502044929456716
+      },
+      {
+        "step": 13,
+        "ideology": 0.09491170693751182
+      },
+      {
+        "step": 14,
+        "ideology": 0.09623644140522286
+      },
+      {
+        "step": 15,
+        "ideology": 0.09876131536740881
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think this person should be allowed to teach at a college or university?",
+        "selected_variables": [
+          "colmslm",
+          "colrac",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Should a person who says Black people are genetically inferior be allowed to make a speech in your community claiming this?",
+        "selected_variables": [
+          "spkrac",
+          "spkracy"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "Do you agree or disagree that homosexual couples should have the right to marry?",
+        "selected_variables": [
+          "marsame",
+          "marsamey"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "If a Muslim religious leader wanted to give a speech in your community that criticized the United States, do you think they should be allowed to speak or not?",
+        "selected_variables": [
+          "spkmslmy",
+          "spkmslm"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "If someone who is against all churches and religion wanted to make a speech in your community opposing churches and religion, should they be allowed to speak or not?",
+        "selected_variables": [
+          "spkathy",
+          "spkath"
+        ]
+      },
+      {
+        "query_idx": 6,
+        "question": "Do you agree or disagree with the statement: You would agree better if people were more like Americans?",
+        "selected_variables": [
+          "belikeus"
+        ]
+      },
+      {
+        "query_idx": 7,
+        "question": "Do you think sexual relations between two consenting adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+        "selected_variables": [
+          "homosex"
+        ]
+      },
+      {
+        "query_idx": 8,
+        "question": "How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",
+        "selected_variables": [
+          "conjudge"
+        ]
+      },
+      {
+        "query_idx": 9,
+        "question": "Do you agree or disagree that people like you and your family have a good chance of improving their standard of living in America?",
+        "selected_variables": [
+          "goodlife"
+        ]
+      },
+      {
+        "query_idx": 10,
+        "question": "How likely do you think it is nowadays that a white person will miss out on a job or promotion while an equally or less qualified Black person receives it instead?",
+        "selected_variables": [
+          "discaff",
+          "affrmact",
+          "fejobaff",
+          "fehire",
+          "helpblk",
+          "disrspct"
+        ]
+      },
+      {
+        "query_idx": 11,
+        "question": "On a scale from 1 to 7, where 1 means almost all people are rich and 7 means almost all people are poor, how would you rate the group I am about to describe?",
+        "selected_variables": [
+          "workwhts",
+          "workblks",
+          "wlthwhts",
+          "wlthblks",
+          "wlthhsps"
+        ]
+      },
+      {
+        "query_idx": 12,
+        "question": "Do you think we are spending too much, too little, or about the right amount on supporting scientific research?",
+        "selected_variables": [
+          "natsci"
+        ]
+      },
+      {
+        "query_idx": 13,
+        "question": "To what extent do you agree or disagree that America should act in its own interests?",
+        "selected_variables": [
+          "amownway",
+          "ifwrong"
+        ]
+      },
+      {
+        "query_idx": 14,
+        "question": "How reliable do you think newspapers are?",
+        "selected_variables": [
+          "papernews"
+        ]
+      },
+      {
+        "query_idx": 15,
+        "question": "Do you favor or oppose the death penalty for people convicted of murder?",
+        "selected_variables": [
+          "cappun"
+        ]
+      }
+    ]
+  }
+}

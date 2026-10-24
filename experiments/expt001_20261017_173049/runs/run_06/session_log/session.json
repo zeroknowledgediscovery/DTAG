@@ -1,0 +1,944 @@
+{
+ "export_schema": "dtag-session-export/1",
+ "exported_at": "2026-10-17T21:33:35+00:00",
+ "dtag": {
+  "version": "0.2.0.dev1",
+  "git_commit": "343e4ba73314a05ff46fe1d9450d1d3d3b13a25f",
+  "native_runtime": "bundled_persistent"
+ },
+ "session_id": "63e207e7fa344b70af8d67fb7cd7e54e",
+ "created_at": "2026-10-17T21:33:10+00:00",
+ "history": {
+  "since": "2026-10-17T21:33:10+00:00",
+  "resets": 0,
+  "note": "Questions and state changes since the session was created or last reset."
+ },
+ "profile": {
+  "name": "gss2024_wf",
+  "source": "configured",
+  "description": "Native pooled GSS 2024; progressive urban female persona.",
+  "family": "gss",
+  "model_key": "gss/gss_2024",
+  "model_label": "GSS 2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "country": "United States",
+  "continent": "",
+  "year": 2024,
+  "date": null,
+  "za": null,
+  "polar_set": "gss_default",
+  "ideology": true,
+  "base_profile": null,
+  "run": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "seed": 632680335,
+   "state_keep": 500,
+   "semantic_fallback": "update_state",
+   "resp_mode": "draw",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "semantic_embedding_model": "text-embedding-3-small",
+   "timing": true,
+   "require_polar_vectors": true
+  },
+  "temporal": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024"
+  },
+  "warnings": [
+   "Country is contextual only for this model."
+  ]
+ },
+ "model": {
+  "key": "gss/gss_2024",
+  "release": "v0.2.1",
+  "sha256": "00879d10a99f59bff97f01e653e25dc65293aadc61b9f15e94d5f1e4b2b3dabf",
+  "archive": "gss/gss_2024.tar.zst",
+  "archive_bytes": 11787960,
+  "features": 811,
+  "usable_trees": 811
+ },
+ "map": {
+  "key": "gss/gss_2024_map.csv",
+  "family": "gss",
+  "available": true,
+  "rows": 813,
+  "columns": [
+   "variable",
+   "question_text",
+   "question_text_filled",
+   "source",
+   "source_year",
+   "codebook_page",
+   "codebook_source",
+   "map_provenance"
+  ],
+  "provenance_counts": {
+   "YEAR_SPECIFIC": 158,
+   "YEAR_CODEBOOK": 654,
+   "NATIVE_NAME": 1
+  },
+  "has_fallback_provenance": false
+ },
+ "persona": {
+  "base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "full_text": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024"
+ },
+ "geography": {
+  "requested": {
+   "country": "United States",
+   "continent": ""
+  },
+  "resolved": {
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country": "united states",
+   "resolved_continent": null,
+   "conditioning_mode": "survey_context_only",
+   "conditioned_variables": {},
+   "target_coordinates": null,
+   "context_text": {
+    "country": true,
+    "continent": false,
+    "note": "Country/continent are also added to the persona text given to the LLM; only conditioned_variables constrain the native LSM."
+   },
+   "warnings": [
+    "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned."
+   ]
+  }
+ },
+ "time": {
+  "requested": {
+   "year": 2024,
+   "date": null,
+   "za": null
+  },
+  "resolved": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024",
+   "conditioned_variables": {},
+   "warnings": [],
+   "note": "Time selects the GSS survey-wave model; no year variable is hard-conditioned."
+  }
+ },
+ "config": {
+  "k": 50,
+  "prefilter": 200,
+  "min_map_score": 1.0,
+  "semantic_fallback": "update_state",
+  "semantic_k": 6,
+  "semantic_prefilter": 80,
+  "semantic_min_confidence": 0.35,
+  "semantic_embedding_model": "text-embedding-3-small",
+  "semantic_resp_mode": "max",
+  "openai_model": "gpt-4.1-mini",
+  "max_assign": 50,
+  "assign_prefilter": 500,
+  "resp_mode": "draw",
+  "seed": 632680335,
+  "state_keep": 500,
+  "year": 2024,
+  "country": "United States",
+  "continent": "",
+  "no_ideology": false,
+  "require_polar_vectors": true,
+  "timing": true
+ },
+ "random_seed": 632680335,
+ "response_mode": "draw",
+ "semantic_fallback": "update_state",
+ "llm": {
+  "backend": "openai",
+  "openai_model": "gpt-4.1-mini",
+  "mock": false,
+  "note": null
+ },
+ "initialization": {
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024",
+  "persona_base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "config": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_fallback": "update_state",
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "semantic_embedding_model": "text-embedding-3-small",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "resp_mode": "draw",
+   "seed": 632680335,
+   "state_keep": 500,
+   "year": 2024,
+   "country": "United States",
+   "continent": "",
+   "no_ideology": false,
+   "require_polar_vectors": true,
+   "timing": true
+  },
+  "initial_state": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal",
+   "polnews": "several times a day",
+   "wrkstat": "working part time",
+   "region": "northeast"
+  },
+  "current_state": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal",
+   "polnews": "several times a day",
+   "wrkstat": "working part time",
+   "region": "northeast",
+   "premarsx": "not wrong at all",
+   "colath": "not allowed",
+   "spkmslmy": "not allowed",
+   "spkmslm": "not allowed",
+   "natheal": "too little",
+   "marsamey": "neither agree nor disagree",
+   "marsame": "strongly agree"
+  },
+  "question_count": 5,
+  "persona_assignment_rationale": "The persona is a 22 year old white female living in urban New York (a large city in the northeast), working in retail (likely part time), highly progressive (mapped to liberal ideology), and a regular news consumer (mapped to several times a day news consumption). Selected variables reflect race, sex, urban residence, region, political views, news consumption frequency, and work status.",
+  "persona_assignments_llm_raw": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal",
+   "polnews": "several times a day",
+   "wrkstat": "working part time",
+   "region": "northeast"
+  },
+  "persona_assignments_dropped": [],
+  "forced_assignments": {},
+  "geography": {
+   "requested_year": 2024,
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country_key": "united states",
+   "resolved_continent_key": null,
+   "target_longitude": null,
+   "target_latitude": null,
+   "snapped_O1_LONGITUDE": null,
+   "snapped_O2_LATITUDE": null,
+   "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_conditioning_mode": "context_only",
+   "hard_conditioned_country": false
+  },
+  "ideology_enabled": true,
+  "ideology_disable_reason": "",
+  "ideology_initial": -0.03872258824324945,
+  "ideology_series": [
+   [
+    0,
+    -0.03872258824324945
+   ],
+   [
+    1,
+    -0.057438643355861234
+   ],
+   [
+    2,
+    -0.03174719453476559
+   ],
+   [
+    3,
+    -0.022309069266994757
+   ],
+   [
+    4,
+    -0.03153583864699946
+   ],
+   [
+    5,
+    -0.04287189451846777
+   ]
+  ],
+  "timings_init": {
+   "load_polar_vectors": 0.04332995414733887,
+   "prep_persona_allowed": 0.014778375625610352,
+   "llm_persona_init": 1.7073159217834473,
+   "forced_assignments": 0.0008840560913085938,
+   "ideology_init": 0.05048561096191406
+  }
+ },
+ "init_timings": {
+  "model_ready": 1.2636184692382812e-05,
+  "model_was_resident": 1.0,
+  "context": 6.508827209472656e-05,
+  "load_polar_vectors": 0.04332995414733887,
+  "prep_persona_allowed": 0.014778375625610352,
+  "llm_persona_init": 1.7073159217834473,
+  "forced_assignments": 0.0008840560913085938,
+  "ideology_init": 0.05048561096191406,
+  "total": 1.7900753021240234
+ },
+ "ideology": {
+  "enabled": true,
+  "initial": -0.03872258824324945,
+  "current": -0.04287189451846777,
+  "change_from_initial": -0.004149306275218319,
+  "disable_reason": null,
+  "polar_set": "gss_default",
+  "convention": "I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR); native LSM qdistance; L/R are the columns of the registered polar-vector file.",
+  "poles": {
+   "file": "gss_2024_polar_vectors.csv",
+   "wave_specific": true,
+   "items": 27,
+   "dropped": [],
+   "not_in_model": []
+  },
+  "trajectory": [
+   {
+    "step": 0,
+    "ideology": -0.03872258824324945,
+    "delta": null,
+    "question": null,
+    "selected_variables": [],
+    "anchors": {},
+    "mapping": "INITIAL"
+   },
+   {
+    "step": 1,
+    "ideology": -0.057438643355861234,
+    "delta": -0.018716055112611783,
+    "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+    "selected_variables": [
+     "premarsx"
+    ],
+    "anchors": {
+     "premarsx": "not wrong at all"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 2,
+    "ideology": -0.03174719453476559,
+    "delta": 0.02569144882109564,
+    "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+    "selected_variables": [
+     "colath"
+    ],
+    "anchors": {
+     "colath": "not allowed"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 3,
+    "ideology": -0.022309069266994757,
+    "delta": 0.009438125267770835,
+    "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+    "selected_variables": [
+     "spkmslmy",
+     "spkmslm"
+    ],
+    "anchors": {
+     "spkmslmy": "not allowed",
+     "spkmslm": "not allowed"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 4,
+    "ideology": -0.03153583864699946,
+    "delta": -0.0092267693800047,
+    "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+    "selected_variables": [
+     "natheal"
+    ],
+    "anchors": {
+     "natheal": "too little"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 5,
+    "ideology": -0.04287189451846777,
+    "delta": -0.011336055871468312,
+    "question": "Do you agree or disagree that same-sex couples should have the right to marry?",
+    "selected_variables": [
+     "marsamey",
+     "marsame"
+    ],
+    "anchors": {
+     "marsamey": "neither agree nor disagree",
+     "marsame": "strongly agree"
+    },
+    "mapping": "DIRECT"
+   }
+  ]
+ },
+ "questions": [
+  {
+   "query_idx": 1,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "answer": "I definitely think it's not wrong at all for a man and a woman to have sexual relations before marriage. In today’s world, I believe people should have the freedom to make their own choices about their relationships without judgment. It’s important to respect individual values and experiences, and I think being progressive means supporting that kind of personal autonomy.",
+   "selected_variables": [
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' explicitly asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?' This is a direct semantic match to the user question.",
+   "display_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' explicitly asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?' This is a direct semantic match to the user question.",
+   "anchors": [
+    {
+     "variable": "premarsx",
+     "survey_question": "If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron",
+     "response": "not wrong at all",
+     "distribution": {
+      "not wrong at all": 0.6547983452016548,
+      "always wrong": 0.1685008314991685,
+      "wrong only sometimes": 0.12043587956412044,
+      "almost always wrong": 0.056264943735056264
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "premarsx": "not wrong at all"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 8,
+   "ideology": {
+    "enabled": true,
+    "before": -0.03872258824324945,
+    "after": -0.057438643355861234,
+    "delta": -0.018716055112611783,
+    "initial": -0.03872258824324945
+   },
+   "timings": {
+    "prefilters": 0.017617225646972656,
+    "llm_select": 1.3846948146820068,
+    "native_predict": 0.0011637210845947266,
+    "draw": 0.0003654956817626953,
+    "state_update": 1.0728836059570312e-05,
+    "ideology": 0.05977129936218262,
+    "llm_final": 1.0250468254089355,
+    "total": 2.4887144565582275
+   },
+   "lexical_candidates": 125,
+   "targeted": false
+  },
+  {
+   "query_idx": 2,
+   "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "answer": "I believe that someone who is against all churches and religion should not be allowed to teach in a college or university. I think it's important for educators to respect diverse beliefs and foster an inclusive environment. If a person is openly opposed to religion, it might create a hostile or biased atmosphere for students who hold religious views. Colleges should be spaces where all perspectives are respected, even if someone personally disagrees with them.",
+   "selected_variables": [
+    "colath"
+   ],
+   "selection_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "display_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "anchors": [
+    {
+     "variable": "colath",
+     "survey_question": "(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "yes, allowed to teach": 0.633028,
+      "not allowed": 0.366972
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "colath": "not allowed"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 9,
+   "ideology": {
+    "enabled": true,
+    "before": -0.057438643355861234,
+    "after": -0.03174719453476559,
+    "delta": 0.02569144882109564,
+    "initial": -0.03872258824324945
+   },
+   "timings": {
+    "prefilters": 0.014142751693725586,
+    "llm_select": 0.9520032405853271,
+    "native_predict": 0.0006611347198486328,
+    "draw": 0.0002353191375732422,
+    "state_update": 6.67572021484375e-06,
+    "ideology": 0.05103302001953125,
+    "llm_final": 1.0832645893096924,
+    "total": 2.101383924484253
+   },
+   "lexical_candidates": 100,
+   "targeted": false
+  },
+  {
+   "query_idx": 3,
+   "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+   "question_source": "ideology_push",
+   "answer": "I don’t think someone who preaches hatred of the United States should be allowed to give a speech in my community. While I believe in free speech, promoting hatred can lead to division and harm, especially in a diverse place like New York. It’s important to maintain respect and unity rather than encouraging hostility.",
+   "selected_variables": [
+    "spkmslmy",
+    "spkmslm"
+   ],
+   "selection_rationale": "The user question directly matches the survey variables 'spkmslmy' and 'spkmslm', which ask about allowing a Muslim religious leader or Muslim clergyman preaching hatred of the United States to speak in the community. These are the most semantically direct matches to the user's question.",
+   "display_rationale": "The user question directly matches the survey variables 'spkmslmy' and 'spkmslm', which ask about allowing a Muslim religious leader or Muslim clergyman preaching hatred of the United States to speak in the community. These are the most semantically direct matches to the user's question.",
+   "anchors": [
+    {
+     "variable": "spkmslmy",
+     "survey_question": "Now consider a Islamic religious leader who preaches hatred of the United States. If such a person wanted to make a speech in your communit, should this person be allowed to speak, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.647664,
+      "yes, allowed to speak": 0.352336
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "spkmslm",
+     "survey_question": "Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.567979,
+      "yes, allowed to speak": 0.432021
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 11,
+   "ideology": {
+    "enabled": true,
+    "before": -0.03174719453476559,
+    "after": -0.022309069266994757,
+    "delta": 0.009438125267770835,
+    "initial": -0.03872258824324945
+   },
+   "timings": {
+    "prefilters": 0.014356374740600586,
+    "llm_select": 1.3433361053466797,
+    "native_predict": 0.0006496906280517578,
+    "draw": 0.00026702880859375,
+    "state_update": 1.1920928955078125e-05,
+    "ideology": 0.05282330513000488,
+    "llm_final": 1.257326602935791,
+    "total": 2.668818235397339
+   },
+   "lexical_candidates": 92,
+   "targeted": false
+  },
+  {
+   "query_idx": 4,
+   "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+   "question_source": "ideology_push",
+   "answer": "I definitely think we're spending too little on improving and protecting the nation's health. Living in New York, I see how important it is to have accessible healthcare and strong public health programs, especially with ongoing challenges like pandemics and mental health issues. It feels like more investment is needed to address these problems effectively and ensure everyone has the support they need.",
+   "selected_variables": [
+    "natheal"
+   ],
+   "selection_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or environment are less direct or about different topics, so 'natheal' is the most semantically direct and relevant match.",
+   "display_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or environment are less direct or about different topics, so 'natheal' is the most semantically direct and relevant match.",
+   "anchors": [
+    {
+     "variable": "natheal",
+     "survey_question": "(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health",
+     "response": "too little",
+     "distribution": {
+      "too little": 0.744073,
+      "about right": 0.178723,
+      "too much": 0.077204
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "natheal": "too little"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 12,
+   "ideology": {
+    "enabled": true,
+    "before": -0.022309069266994757,
+    "after": -0.03153583864699946,
+    "delta": -0.0092267693800047,
+    "initial": -0.03872258824324945
+   },
+   "timings": {
+    "prefilters": 0.014819860458374023,
+    "llm_select": 1.1573543548583984,
+    "native_predict": 0.0013222694396972656,
+    "draw": 0.0004584789276123047,
+    "state_update": 1.2874603271484375e-05,
+    "ideology": 0.06322169303894043,
+    "llm_final": 1.467214584350586,
+    "total": 2.7044565677642822
+   },
+   "lexical_candidates": 123,
+   "targeted": false
+  },
+  {
+   "query_idx": 5,
+   "question": "Do you agree or disagree that same-sex couples should have the right to marry?",
+   "question_source": "ideology_push",
+   "answer": "I strongly agree that homosexual couples should have the right to marry. I believe everyone deserves equal rights and the freedom to marry who they love. Marriage equality is an important step toward fairness and acceptance in our society. It's something I support wholeheartedly.",
+   "selected_variables": [
+    "marsamey",
+    "marsame"
+   ],
+   "selection_rationale": "The user question directly asks about agreement or disagreement with the right of same-sex couples to marry. The variables 'marsamey' (SAME-SEX COUPLES SHOULD HAVE RIGHT TO MARRY) and 'marsame' (HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY) are semantically the most direct matches to this question.",
+   "display_rationale": "The user question directly asks about agreement or disagreement with the right of same-sex couples to marry. The variables 'marsamey' (SAME-SEX COUPLES SHOULD HAVE RIGHT TO MARRY) and 'marsame' (HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY) are semantically the most direct matches to this question.",
+   "anchors": [
+    {
+     "variable": "marsamey",
+     "survey_question": "SAME-SEX COUPLES SHOULD HAVE RIGHT TO MARRY",
+     "response": "neither agree nor disagree",
+     "distribution": {
+      "strongly agree": 0.37757,
+      "agree": 0.214019,
+      "neither agree nor disagree": 0.152336,
+      "strongly disagree": 0.147664,
+      "disagree": 0.108411
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "marsame",
+     "survey_question": "HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY",
+     "response": "strongly agree",
+     "distribution": {
+      "strongly agree": 0.543221,
+      "agree": 0.144445,
+      "strongly disagree": 0.121562,
+      "neither agree nor disagree": 0.119787,
+      "disagree": 0.070985
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "marsamey": "neither agree nor disagree",
+    "marsame": "strongly agree"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 14,
+   "ideology": {
+    "enabled": true,
+    "before": -0.03153583864699946,
+    "after": -0.04287189451846777,
+    "delta": -0.011336055871468312,
+    "initial": -0.03872258824324945
+   },
+   "timings": {
+    "prefilters": 0.031103849411010742,
+    "llm_select": 1.4052917957305908,
+    "native_predict": 0.001142263412475586,
+    "draw": 0.0004456043243408203,
+    "state_update": 1.1920928955078125e-05,
+    "ideology": 0.05267500877380371,
+    "llm_final": 1.0769457817077637,
+    "total": 2.567669630050659
+   },
+   "lexical_candidates": 116,
+   "targeted": false
+  }
+ ],
+ "records_cli_schema": [
+  {
+   "query_idx": 1,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' explicitly asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?' This is a direct semantic match to the user question.",
+   "responses": {
+    "premarsx": "not wrong at all"
+   },
+   "state_updates": {
+    "premarsx": "not wrong at all"
+   },
+   "ideology_index": -0.057438643355861234,
+   "answer": "I definitely think it's not wrong at all for a man and a woman to have sexual relations before marriage. In today’s world, I believe people should have the freedom to make their own choices about their relationships without judgment. It’s important to respect individual values and experiences, and I think being progressive means supporting that kind of personal autonomy.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.017617225646972656,
+    "llm_select": 1.3846948146820068,
+    "native_predict": 0.0011637210845947266,
+    "draw": 0.0003654956817626953,
+    "state_update": 1.0728836059570312e-05,
+    "ideology": 0.05977129936218262,
+    "llm_final": 1.0250468254089355,
+    "total": 2.4887144565582275
+   }
+  },
+  {
+   "query_idx": 2,
+   "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "colath"
+   ],
+   "selection_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "responses": {
+    "colath": "not allowed"
+   },
+   "state_updates": {
+    "colath": "not allowed"
+   },
+   "ideology_index": -0.03174719453476559,
+   "answer": "I believe that someone who is against all churches and religion should not be allowed to teach in a college or university. I think it's important for educators to respect diverse beliefs and foster an inclusive environment. If a person is openly opposed to religion, it might create a hostile or biased atmosphere for students who hold religious views. Colleges should be spaces where all perspectives are respected, even if someone personally disagrees with them.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014142751693725586,
+    "llm_select": 0.9520032405853271,
+    "native_predict": 0.0006611347198486328,
+    "draw": 0.0002353191375732422,
+    "state_update": 6.67572021484375e-06,
+    "ideology": 0.05103302001953125,
+    "llm_final": 1.0832645893096924,
+    "total": 2.101383924484253
+   }
+  },
+  {
+   "query_idx": 3,
+   "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "spkmslmy",
+    "spkmslm"
+   ],
+   "selection_rationale": "The user question directly matches the survey variables 'spkmslmy' and 'spkmslm', which ask about allowing a Muslim religious leader or Muslim clergyman preaching hatred of the United States to speak in the community. These are the most semantically direct matches to the user's question.",
+   "responses": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "state_updates": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "ideology_index": -0.022309069266994757,
+   "answer": "I don’t think someone who preaches hatred of the United States should be allowed to give a speech in my community. While I believe in free speech, promoting hatred can lead to division and harm, especially in a diverse place like New York. It’s important to maintain respect and unity rather than encouraging hostility.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014356374740600586,
+    "llm_select": 1.3433361053466797,
+    "native_predict": 0.0006496906280517578,
+    "draw": 0.00026702880859375,
+    "state_update": 1.1920928955078125e-05,
+    "ideology": 0.05282330513000488,
+    "llm_final": 1.257326602935791,
+    "total": 2.668818235397339
+   }
+  },
+  {
+   "query_idx": 4,
+   "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "natheal"
+   ],
+   "selection_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or environment are less direct or about different topics, so 'natheal' is the most semantically direct and relevant match.",
+   "responses": {
+    "natheal": "too little"
+   },
+   "state_updates": {
+    "natheal": "too little"
+   },
+   "ideology_index": -0.03153583864699946,
+   "answer": "I definitely think we're spending too little on improving and protecting the nation's health. Living in New York, I see how important it is to have accessible healthcare and strong public health programs, especially with ongoing challenges like pandemics and mental health issues. It feels like more investment is needed to address these problems effectively and ensure everyone has the support they need.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014819860458374023,
+    "llm_select": 1.1573543548583984,
+    "native_predict": 0.0013222694396972656,
+    "draw": 0.0004584789276123047,
+    "state_update": 1.2874603271484375e-05,
+    "ideology": 0.06322169303894043,
+    "llm_final": 1.467214584350586,
+    "total": 2.7044565677642822
+   }
+  },
+  {
+   "query_idx": 5,
+   "question": "Do you agree or disagree that same-sex couples should have the right to marry?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "marsamey",
+    "marsame"
+   ],
+   "selection_rationale": "The user question directly asks about agreement or disagreement with the right of same-sex couples to marry. The variables 'marsamey' (SAME-SEX COUPLES SHOULD HAVE RIGHT TO MARRY) and 'marsame' (HOMOSEXUAL COUPLES SHOULD HAVE RIGHT TO MARRY) are semantically the most direct matches to this question.",
+   "responses": {
+    "marsamey": "neither agree nor disagree",
+    "marsame": "strongly agree"
+   },
+   "state_updates": {
+    "marsamey": "neither agree nor disagree",
+    "marsame": "strongly agree"
+   },
+   "ideology_index": -0.04287189451846777,
+   "answer": "I strongly agree that homosexual couples should have the right to marry. I believe everyone deserves equal rights and the freedom to marry who they love. Marriage equality is an important step toward fairness and acceptance in our society. It's something I support wholeheartedly.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.031103849411010742,
+    "llm_select": 1.4052917957305908,
+    "native_predict": 0.001142263412475586,
+    "draw": 0.0004456043243408203,
+    "state_update": 1.1920928955078125e-05,
+    "ideology": 0.05267500877380371,
+    "llm_final": 1.0769457817077637,
+    "total": 2.567669630050659
+   }
+  }
+ ],
+ "final_state": {
+  "race": "white",
+  "sex": "female",
+  "res16": "in a large city (over 250,000)",
+  "polviews": "liberal",
+  "polnews": "several times a day",
+  "wrkstat": "working part time",
+  "region": "northeast",
+  "premarsx": "not wrong at all",
+  "colath": "not allowed",
+  "spkmslmy": "not allowed",
+  "spkmslm": "not allowed",
+  "natheal": "too little",
+  "marsamey": "neither agree nor disagree",
+  "marsame": "strongly agree"
+ },
+ "label": "run06"
+}

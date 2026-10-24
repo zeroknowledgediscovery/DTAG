@@ -1,0 +1,7 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.039980302693709405,,0.0
+1,1,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.055449827420340034,-0.015469524726630629,-0.015469524726630629
+2,2,"Do you think sexual relations between two consenting adults of the same sex are always wrong, almost always wrong, sometimes wrong, or not wrong at all?",DIRECT,True,-0.0783349216999976,-0.02288509427965757,-0.0383546190062882
+3,3,Do you agree or disagree that same-sex couples should have the right to marry?,DIRECT,True,-0.0981700653043794,-0.019835143604381794,-0.05818976261066999
+4,4,Do you think a person who is against all churches and religion should be allowed to teach in a college or university?,DIRECT,True,-0.12166840317978399,-0.02349833787540459,-0.08168810048607458
+5,5,"Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",DIRECT,True,-0.1324010095358006,-0.010732606356016625,-0.09242070684209121

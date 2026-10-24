@@ -1,0 +1,132 @@
+{
+  "version": 1,
+  "name": "expt001",
+  "created_at": "2026-10-17T17:30:49",
+  "source_session": "e354e1eb1704474ca9b9517227af0eef",
+  "respondent": {
+    "spec": {
+      "name": "gss2024_wf",
+      "source": "configured",
+      "description": "Native pooled GSS 2024; progressive urban female persona.",
+      "family": "gss",
+      "model_key": "gss/gss_2024",
+      "model_label": "GSS 2024",
+      "map_key": "gss/gss_2024_map.csv",
+      "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+      "country": "United States",
+      "continent": "",
+      "year": 2024,
+      "date": null,
+      "za": null,
+      "polar_set": "gss_default",
+      "ideology": true,
+      "base_profile": null,
+      "run": {
+        "k": 50,
+        "prefilter": 200,
+        "min_map_score": 1.0,
+        "semantic_k": 6,
+        "semantic_prefilter": 80,
+        "semantic_min_confidence": 0.35,
+        "max_assign": 50,
+        "assign_prefilter": 500,
+        "seed": 1000,
+        "state_keep": 500,
+        "semantic_fallback": "update_state",
+        "resp_mode": "draw",
+        "semantic_resp_mode": "max",
+        "openai_model": "gpt-4.1-mini",
+        "semantic_embedding_model": "text-embedding-3-small",
+        "timing": true,
+        "require_polar_vectors": true
+      },
+      "temporal": {
+        "family": "gss",
+        "mode": "wave_model_selection",
+        "requested_year": 2024,
+        "selected_model": "gss/gss_2024",
+        "wave": "GSS 2024"
+      },
+      "warnings": [
+        "Country is contextual only for this model."
+      ]
+    }
+  },
+  "actions": [
+    {
+      "auto_push": "down",
+      "steps": 5,
+      "mode": "realistic",
+      "include_pole_items": false
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.039980302693709405,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.039980302693709405
+      },
+      {
+        "step": 1,
+        "ideology": -0.0587447795778653
+      },
+      {
+        "step": 2,
+        "ideology": -0.08223927634134906
+      },
+      {
+        "step": 3,
+        "ideology": -0.09297215151696288
+      },
+      {
+        "step": 4,
+        "ideology": -0.0791081803823418
+      },
+      {
+        "step": 5,
+        "ideology": -0.08815362754712672
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+        "selected_variables": [
+          "premarsx"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+        "selected_variables": [
+          "colath"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+        "selected_variables": [
+          "natheal",
+          "nathealy"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "Do you agree or disagree that same-sex couples should have the right to marry?",
+        "selected_variables": [
+          "marsamey",
+          "marsame"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+        "selected_variables": [
+          "sprtprsn"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "name": "gss2024_wf",
+  "created_at": "2026-10-17T15:30:09",
+  "source_session": "924c395d02264b978021d34017e72fad",
+  "respondent": {
+    "spec": {
+      "name": "gss2024_wf",
+      "source": "configured",
+      "description": "Native pooled GSS 2024; progressive urban female persona.",
+      "family": "gss",
+      "model_key": "gss/gss_2024",
+      "model_label": "GSS 2024",
+      "map_key": "gss/gss_2024_map.csv",
+      "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+      "country": "United States",
+      "continent": "",
+      "year": 2024,
+      "date": null,
+      "za": null,
+      "polar_set": "gss_default",
+      "ideology": true,
+      "base_profile": null,
+      "run": {
+        "k": 50,
+        "prefilter": 200,
+        "min_map_score": 1.0,
+        "semantic_k": 6,
+        "semantic_prefilter": 80,
+        "semantic_min_confidence": 0.35,
+        "max_assign": 50,
+        "assign_prefilter": 500,
+        "seed": 1000,
+        "state_keep": 500,
+        "semantic_fallback": "update_state",
+        "resp_mode": "draw",
+        "semantic_resp_mode": "max",
+        "openai_model": "gpt-4.1-mini",
+        "semantic_embedding_model": "text-embedding-3-small",
+        "timing": true,
+        "require_polar_vectors": true
+      },
+      "temporal": {
+        "family": "gss",
+        "mode": "wave_model_selection",
+        "requested_year": 2024,
+        "selected_model": "gss/gss_2024",
+        "wave": "GSS 2024"
+      },
+      "warnings": [
+        "Country is contextual only for this model."
+      ]
+    }
+  },
+  "actions": [
+    {
+      "auto_push": "up",
+      "steps": 5,
+      "mode": "realistic",
+      "include_pole_items": false
+    },
+    {
+      "auto_push": "down",
+      "steps": 5,
+      "mode": "realistic",
+      "include_pole_items": false
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.038722588243249666,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.038722588243249666
+      },
+      {
+        "step": 1,
+        "ideology": 0.0006578667336064502
+      },
+      {
+        "step": 2,
+        "ideology": 0.03770842887636273
+      },
+      {
+        "step": 3,
+        "ideology": 0.040868526449394586
+      },
+      {
+        "step": 4,
+        "ideology": 0.04553357570420463
+      },
+      {
+        "step": 5,
+        "ideology": 0.04057649751777139
+      },
+      {
+        "step": 6,
+        "ideology": 0.021998606743002334
+      },
+      {
+        "step": 7,
+        "ideology": 0.042303324707455105
+      },
+      {
+        "step": 8,
+        "ideology": 0.03811715037613603
+      },
+      {
+        "step": 9,
+        "ideology": 0.04660434167755475
+      },
+      {
+        "step": 10,
+        "ideology": 0.05674062189689582
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think a person like this should be allowed to teach in a college or university?",
+        "selected_variables": [
+          "colrac",
+          "colmslm",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?",
+        "selected_variables": [
+          "spkracy",
+          "spkrac",
+          "librac",
+          "colrac",
+          "libracy"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?",
+        "selected_variables": [
+          "goodlife"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?",
+        "selected_variables": [
+          "belikeus"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",
+        "selected_variables": [
+          "conjudge"
+        ]
+      },
+      {
+        "query_idx": 6,
+        "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+        "selected_variables": [
+          "premarsx"
+        ]
+      },
+      {
+        "query_idx": 7,
+        "question": "Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+        "selected_variables": [
+          "homosex"
+        ]
+      },
+      {
+        "query_idx": 8,
+        "question": "Do you think that sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teenagers aged 14 to 16?",
+        "selected_variables": [
+          "teensex"
+        ]
+      },
+      {
+        "query_idx": 9,
+        "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+        "selected_variables": [
+          "natheal"
+        ]
+      },
+      {
+        "query_idx": 10,
+        "question": "Do you think we are spending too much, too little, or about the right amount on help with childcare?",
+        "selected_variables": [
+          "natchld"
+        ]
+      }
+    ]
+  }
+}

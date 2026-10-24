@@ -1,0 +1,63 @@
+run,query_idx,action,variable,answer
+5,0,0,polnews,once a day
+5,0,0,polviews,liberal
+5,0,0,race,white
+5,0,0,reg16,northeast
+5,0,0,res16,"in a large city (over 250,000)"
+5,0,0,sex,female
+5,0,0,wrkstat,working part time
+5,1,1,polnews,once a day
+5,1,1,polviews,liberal
+5,1,1,premarsx,not wrong at all
+5,1,1,race,white
+5,1,1,reg16,northeast
+5,1,1,res16,"in a large city (over 250,000)"
+5,1,1,sex,female
+5,1,1,teensex,not wrong at all
+5,1,1,wrkstat,working part time
+5,2,1,colath,"yes, allowed to teach"
+5,2,1,polnews,once a day
+5,2,1,polviews,liberal
+5,2,1,premarsx,not wrong at all
+5,2,1,race,white
+5,2,1,reg16,northeast
+5,2,1,res16,"in a large city (over 250,000)"
+5,2,1,sex,female
+5,2,1,teensex,not wrong at all
+5,2,1,wrkstat,working part time
+5,3,1,colath,"yes, allowed to teach"
+5,3,1,natheal,about right
+5,3,1,polnews,once a day
+5,3,1,polviews,liberal
+5,3,1,premarsx,not wrong at all
+5,3,1,race,white
+5,3,1,reg16,northeast
+5,3,1,res16,"in a large city (over 250,000)"
+5,3,1,sex,female
+5,3,1,teensex,not wrong at all
+5,3,1,wrkstat,working part time
+5,4,1,colath,"yes, allowed to teach"
+5,4,1,natchld,about right
+5,4,1,natheal,about right
+5,4,1,polnews,once a day
+5,4,1,polviews,liberal
+5,4,1,premarsx,not wrong at all
+5,4,1,race,white
+5,4,1,reg16,northeast
+5,4,1,res16,"in a large city (over 250,000)"
+5,4,1,sex,female
+5,4,1,teensex,not wrong at all
+5,4,1,wrkstat,working part time
+5,5,1,colath,"yes, allowed to teach"
+5,5,1,natchld,about right
+5,5,1,natenrgy,about right
+5,5,1,natheal,about right
+5,5,1,polnews,once a day
+5,5,1,polviews,liberal
+5,5,1,premarsx,not wrong at all
+5,5,1,race,white
+5,5,1,reg16,northeast
+5,5,1,res16,"in a large city (over 250,000)"
+5,5,1,sex,female
+5,5,1,teensex,not wrong at all
+5,5,1,wrkstat,working part time

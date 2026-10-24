@@ -1,0 +1,48 @@
+{
+ "persona_assignments_llm_raw": {
+  "region": "south",
+  "race": "white",
+  "sex": "male",
+  "res16": "farm",
+  "vetyears": "yes, more than 4 years",
+  "polviews": "conservative",
+  "polnews": "once a day",
+  "wrkstat": "working full time"
+ },
+ "persona_assignments_dropped": [],
+ "persona_assignment_rationale": "The persona is a 45-year-old white male living in rural Alabama, working in farming, a veteran, conservative, and a regular news consumer. Alabama is in the South region. Race is white, sex is male. Living in a rural area and working in farming corresponds to 'farm' residence. Veteran status with more than 4 years active duty fits 'yes, more than 4 years' for vetyears. Political views are conservative. Regular news consumer suggests daily news consumption, so polnews is set to 'once a day'. Employment is working full time.",
+ "forced_assignments": {},
+ "geography": {
+  "requested_year": 2024,
+  "requested_country": "United States",
+  "requested_continent": null,
+  "resolved_country_key": "united states",
+  "resolved_continent_key": null,
+  "target_longitude": null,
+  "target_latitude": null,
+  "snapped_O1_LONGITUDE": null,
+  "snapped_O2_LATITUDE": null,
+  "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+  "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+  "geography_conditioning_mode": "context_only",
+  "hard_conditioned_country": false
+ },
+ "initial_state": {
+  "region": "south",
+  "race": "white",
+  "sex": "male",
+  "res16": "farm",
+  "vetyears": "yes, more than 4 years",
+  "polviews": "conservative",
+  "polnews": "once a day",
+  "wrkstat": "working full time"
+ },
+ "ideology_initial": -0.007379788710225471,
+ "timings_init": {
+  "load_polar_vectors": 0.04751133918762207,
+  "prep_persona_allowed": 0.017149686813354492,
+  "llm_persona_init": 2.1243841648101807,
+  "forced_assignments": 0.0009899139404296875,
+  "ideology_init": 0.05328488349914551
+ }
+}

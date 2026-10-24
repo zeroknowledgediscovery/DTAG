@@ -1,0 +1,1672 @@
+{
+ "export_schema": "dtag-session-export/1",
+ "exported_at": "2026-10-19T14:29:53+00:00",
+ "dtag": {
+  "version": "0.2.0.dev1",
+  "git_commit": "918aefec0eec65092da526f7cda7d4f401f0a932",
+  "native_runtime": "bundled_persistent"
+ },
+ "session_id": "b1baf9a702fb4d5bae95e4dc3a4f0f50",
+ "created_at": "2026-10-19T14:29:04+00:00",
+ "history": {
+  "since": "2026-10-19T14:29:04+00:00",
+  "resets": 0,
+  "note": "Questions and state changes since the session was created or last reset."
+ },
+ "profile": {
+  "name": "gss2024_wf",
+  "source": "configured",
+  "description": "Native pooled GSS 2024; progressive urban female persona.",
+  "family": "gss",
+  "model_key": "gss/gss_2024",
+  "model_label": "GSS 2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "country": "United States",
+  "continent": "",
+  "year": 2024,
+  "date": null,
+  "za": null,
+  "polar_set": "gss_default",
+  "ideology": true,
+  "base_profile": null,
+  "run": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "seed": 817206057,
+   "state_keep": 500,
+   "semantic_fallback": "update_state",
+   "resp_mode": "draw",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "semantic_embedding_model": "text-embedding-3-small",
+   "timing": true,
+   "require_polar_vectors": true
+  },
+  "temporal": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024"
+  },
+  "warnings": [
+   "Country is contextual only for this model."
+  ]
+ },
+ "model": {
+  "key": "gss/gss_2024",
+  "release": "v0.2.1",
+  "sha256": "00879d10a99f59bff97f01e653e25dc65293aadc61b9f15e94d5f1e4b2b3dabf",
+  "archive": "gss/gss_2024.tar.zst",
+  "archive_bytes": 11787960,
+  "features": 813,
+  "usable_trees": 812
+ },
+ "map": {
+  "key": "gss/gss_2024_map.csv",
+  "family": "gss",
+  "available": true,
+  "rows": 813,
+  "columns": [
+   "variable",
+   "question_text",
+   "question_text_filled",
+   "source",
+   "source_year",
+   "codebook_page",
+   "codebook_source",
+   "map_provenance"
+  ],
+  "provenance_counts": {
+   "YEAR_SPECIFIC": 158,
+   "YEAR_CODEBOOK": 654,
+   "NATIVE_NAME": 1
+  },
+  "has_fallback_provenance": false
+ },
+ "persona": {
+  "base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "full_text": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024"
+ },
+ "geography": {
+  "requested": {
+   "country": "United States",
+   "continent": ""
+  },
+  "resolved": {
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country": "united states",
+   "resolved_continent": null,
+   "conditioning_mode": "survey_context_only",
+   "conditioned_variables": {},
+   "target_coordinates": null,
+   "context_text": {
+    "country": true,
+    "continent": false,
+    "note": "Country/continent are also added to the persona text given to the LLM; only conditioned_variables constrain the native LSM."
+   },
+   "warnings": [
+    "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned."
+   ]
+  }
+ },
+ "time": {
+  "requested": {
+   "year": 2024,
+   "date": null,
+   "za": null
+  },
+  "resolved": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024",
+   "conditioned_variables": {},
+   "warnings": [],
+   "note": "Time selects the GSS survey-wave model; no year variable is hard-conditioned."
+  }
+ },
+ "config": {
+  "k": 50,
+  "prefilter": 200,
+  "min_map_score": 1.0,
+  "semantic_fallback": "update_state",
+  "semantic_k": 6,
+  "semantic_prefilter": 80,
+  "semantic_min_confidence": 0.35,
+  "semantic_embedding_model": "text-embedding-3-small",
+  "semantic_resp_mode": "max",
+  "openai_model": "gpt-4.1-mini",
+  "max_assign": 50,
+  "assign_prefilter": 500,
+  "resp_mode": "draw",
+  "seed": 817206057,
+  "state_keep": 500,
+  "year": 2024,
+  "country": "United States",
+  "continent": "",
+  "no_ideology": false,
+  "require_polar_vectors": true,
+  "timing": true
+ },
+ "random_seed": 817206057,
+ "response_mode": "draw",
+ "semantic_fallback": "update_state",
+ "llm": {
+  "backend": "openai",
+  "openai_model": "gpt-4.1-mini",
+  "mock": false,
+  "note": null
+ },
+ "initialization": {
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024",
+  "persona_base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "config": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_fallback": "update_state",
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "semantic_embedding_model": "text-embedding-3-small",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "resp_mode": "draw",
+   "seed": 817206057,
+   "state_keep": 500,
+   "year": 2024,
+   "country": "United States",
+   "continent": "",
+   "no_ideology": false,
+   "require_polar_vectors": true,
+   "timing": true
+  },
+  "initial_state": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "region": "northeast",
+   "wrkstat": "working part time",
+   "polviews": "liberal",
+   "polnews": "once a day"
+  },
+  "current_state": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "region": "northeast",
+   "wrkstat": "working part time",
+   "polviews": "liberal",
+   "polnews": "once a day",
+   "colrac": "yes, allowed to teach",
+   "colmslm": "not allowed",
+   "colath": "not allowed",
+   "colcomy": "not fired",
+   "colcom": "yes, fired",
+   "relpersn": "moderately religious",
+   "amchrstn": "fairly important",
+   "immjobs1": "disagree",
+   "immjobs": "disagree",
+   "immwlfare": "disagree",
+   "religinf": "strongly disagree",
+   "marhisp": "neither favor nor oppose",
+   "natsci": "about right",
+   "premarsx": "wrong only sometimes",
+   "rateincumb24": "100.0",
+   "acpttg": "too far"
+  },
+  "question_count": 10,
+  "persona_assignment_rationale": "The persona is a 22-year-old white female living in urban New York (a large city in the northeast), working in retail (likely part-time or full-time working status), highly progressive (mapped to 'liberal' in political views), and a regular news consumer (mapped to 'once a day' for political news consumption). Age is not directly assignable as no age variable is provided. Income and education are not specified, so not assigned.",
+  "persona_assignments_llm_raw": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "region": "northeast",
+   "wrkstat": "working part time",
+   "polviews": "liberal",
+   "polnews": "once a day"
+  },
+  "persona_assignments_dropped": [],
+  "forced_assignments": {},
+  "geography": {
+   "requested_year": 2024,
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country_key": "united states",
+   "resolved_continent_key": null,
+   "target_longitude": null,
+   "target_latitude": null,
+   "snapped_O1_LONGITUDE": null,
+   "snapped_O2_LATITUDE": null,
+   "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_conditioning_mode": "context_only",
+   "hard_conditioned_country": false
+  },
+  "ideology_enabled": true,
+  "ideology_disable_reason": "",
+  "ideology_initial": -0.08926703000981807,
+  "ideology_series": [
+   [
+    0,
+    -0.08926703000981807
+   ],
+   [
+    1,
+    -0.03103517031232143
+   ],
+   [
+    2,
+    0.01426720677924552
+   ],
+   [
+    3,
+    0.026666191003365772
+   ],
+   [
+    4,
+    0.02075577876444491
+   ],
+   [
+    5,
+    0.026422876901086245
+   ],
+   [
+    6,
+    0.026902301079577737
+   ],
+   [
+    7,
+    0.036284753279702216
+   ],
+   [
+    8,
+    0.050030673881323
+   ],
+   [
+    9,
+    0.04560604996096941
+   ],
+   [
+    10,
+    0.048728643111662875
+   ]
+  ],
+  "timings_init": {
+   "load_polar_vectors": 0.045374393463134766,
+   "prep_persona_allowed": 0.008930444717407227,
+   "llm_persona_init": 1.8693068027496338,
+   "forced_assignments": 0.001222372055053711,
+   "ideology_init": 0.03605341911315918
+  }
+ },
+ "init_timings": {
+  "model_ready": 9.059906005859375e-06,
+  "model_was_resident": 1.0,
+  "context": 3.1948089599609375e-05,
+  "load_polar_vectors": 0.045374393463134766,
+  "prep_persona_allowed": 0.008930444717407227,
+  "llm_persona_init": 1.8693068027496338,
+  "forced_assignments": 0.001222372055053711,
+  "ideology_init": 0.03605341911315918,
+  "total": 1.9227957725524902
+ },
+ "ideology": {
+  "enabled": true,
+  "initial": -0.08926703000981807,
+  "current": 0.048728643111662875,
+  "change_from_initial": 0.13799567312148095,
+  "disable_reason": null,
+  "polar_set": "gss_default",
+  "convention": "I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR); native LSM qdistance; L/R are the columns of the registered polar-vector file.",
+  "poles": {
+   "file": "gss_2024_polar_vectors.csv",
+   "wave_specific": true,
+   "items": 27,
+   "dropped": [],
+   "not_in_model": []
+  },
+  "trajectory": [
+   {
+    "step": 0,
+    "ideology": -0.08926703000981807,
+    "delta": null,
+    "question": null,
+    "selected_variables": [],
+    "anchors": {},
+    "mapping": "INITIAL"
+   },
+   {
+    "step": 1,
+    "ideology": -0.03103517031232143,
+    "delta": 0.05823185969749664,
+    "question": "Do you think a person like this should be allowed to teach at a college or university?",
+    "selected_variables": [
+     "colrac",
+     "colmslm",
+     "colath",
+     "colcomy",
+     "colcom"
+    ],
+    "anchors": {
+     "colrac": "yes, allowed to teach",
+     "colmslm": "not allowed",
+     "colath": "not allowed",
+     "colcomy": "not fired",
+     "colcom": "yes, fired"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 2,
+    "ideology": 0.01426720677924552,
+    "delta": 0.04530237709156695,
+    "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+    "selected_variables": [
+     "relpersn"
+    ],
+    "anchors": {
+     "relpersn": "moderately religious"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 3,
+    "ideology": 0.026666191003365772,
+    "delta": 0.012398984224120252,
+    "question": "How important is it to you to be a Christian?",
+    "selected_variables": [
+     "amchrstn"
+    ],
+    "anchors": {
+     "amchrstn": "fairly important"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 4,
+    "ideology": 0.02075577876444491,
+    "delta": -0.0059104122389208626,
+    "question": "To what extent do you agree or disagree with the statement that immigrants take jobs away?",
+    "selected_variables": [
+     "immjobs1",
+     "immjobs",
+     "immwlfare"
+    ],
+    "anchors": {
+     "immjobs1": "disagree",
+     "immjobs": "disagree",
+     "immwlfare": "disagree"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 5,
+    "ideology": 0.026422876901086245,
+    "delta": 0.005667098136641336,
+    "question": "Do you agree or disagree that the United States would be a better country if religion had less influence?",
+    "selected_variables": [
+     "religinf"
+    ],
+    "anchors": {
+     "religinf": "strongly disagree"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 6,
+    "ideology": 0.026902301079577737,
+    "delta": 0.00047942417849149155,
+    "question": "Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",
+    "selected_variables": [
+     "marhisp"
+    ],
+    "anchors": {
+     "marhisp": "neither favor nor oppose"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 7,
+    "ideology": 0.036284753279702216,
+    "delta": 0.009382452200124479,
+    "question": "Do you think we are spending too much, too little, or about the right amount on supporting scientific research?",
+    "selected_variables": [
+     "natsci"
+    ],
+    "anchors": {
+     "natsci": "about right"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 8,
+    "ideology": 0.050030673881323,
+    "delta": 0.013745920601620783,
+    "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+    "selected_variables": [
+     "premarsx"
+    ],
+    "anchors": {
+     "premarsx": "wrong only sometimes"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 9,
+    "ideology": 0.04560604996096941,
+    "delta": -0.0044246239203535875,
+    "question": "How would you rate Joe Biden on a scale where you can choose from the following numbers: 0, 2, 20, 25, 29, 30, 45, 55, 60, 65, 75, 85, 90, 99, or 100?",
+    "selected_variables": [
+     "rateincumb24"
+    ],
+    "anchors": {
+     "rateincumb24": "100.0"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 10,
+    "ideology": 0.048728643111662875,
+    "delta": 0.0031225931506934645,
+    "question": "Do you think society has gone too far, not far enough, or about far enough in accepting people?",
+    "selected_variables": [
+     "acpttg"
+    ],
+    "anchors": {
+     "acpttg": "too far"
+    },
+    "mapping": "DIRECT"
+   }
+  ]
+ },
+ "questions": [
+  {
+   "query_idx": 1,
+   "question": "Do you think a person like this should be allowed to teach at a college or university?",
+   "question_source": "ideology_push",
+   "answer": "I believe that a person who openly admits to being a Communist should be fired from teaching at a college or university. While I support diversity of thought, I think some beliefs can be harmful or disruptive in an educational environment, and it’s important to maintain certain standards for educators. However, I do think a self-identified Communist who is not openly promoting harmful ideas should be allowed to continue teaching.",
+   "selected_variables": [
+    "colrac",
+    "colmslm",
+    "colath",
+    "colcomy",
+    "colcom"
+   ],
+   "selection_rationale": "The user question asks about whether a person like 'this' should be allowed to teach at a college or university. The candidate variables colrac, colmslm, colath, colcomy, and colcom directly ask about allowing specific types of persons (e.g., racist, Muslim, atheist, communist) to teach at a college or university, making them semantically the most relevant matches.",
+   "display_rationale": "The user question asks about whether a person like 'this' should be allowed to teach at a college or university. The candidate variables colrac, colmslm, colath, colcomy, and colcom directly ask about allowing specific types of persons (e.g., racist, Muslim, atheist, communist) to teach at a college or university, making them semantically the most relevant matches.",
+   "anchors": [
+    {
+     "variable": "colrac",
+     "survey_question": "(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "yes, allowed to teach",
+     "distribution": {
+      "not allowed": 0.647582,
+      "yes, allowed to teach": 0.352418
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colmslm",
+     "survey_question": "Should such a person be allowed to teach in a college or university, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.718491,
+      "yes, allowed to teach": 0.281509
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colath",
+     "survey_question": "(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "yes, allowed to teach": 0.636795,
+      "not allowed": 0.363205
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colcomy",
+     "survey_question": "(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?",
+     "response": "not fired",
+     "distribution": {
+      "not fired": 0.620488,
+      "yes, fired": 0.379512
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colcom",
+     "survey_question": "(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?",
+     "response": "yes, fired",
+     "distribution": {
+      "not fired": 0.640697,
+      "yes, fired": 0.359303
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "colrac": "yes, allowed to teach",
+    "colmslm": "not allowed",
+    "colath": "not allowed",
+    "colcomy": "not fired",
+    "colcom": "yes, fired"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 12,
+   "ideology": {
+    "enabled": true,
+    "before": -0.08926703000981807,
+    "after": -0.03103517031232143,
+    "delta": 0.05823185969749664,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008313894271850586,
+    "llm_select": 1.4754419326782227,
+    "native_predict": 0.0010342597961425781,
+    "draw": 0.00042176246643066406,
+    "state_update": 9.059906005859375e-06,
+    "ideology": 0.03558182716369629,
+    "llm_final": 1.997246503829956,
+    "total": 3.5181000232696533
+   },
+   "lexical_candidates": 62,
+   "targeted": false
+  },
+  {
+   "query_idx": 2,
+   "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+   "question_source": "ideology_push",
+   "answer": "I consider myself moderately religious. I find that my beliefs are important to me and help guide my values and actions, but I don’t necessarily follow every tradition or attend religious services regularly. My faith feels personal and meaningful without being overwhelming in my daily life.",
+   "selected_variables": [
+    "relpersn"
+   ],
+   "selection_rationale": "The user question exactly matches the survey variable 'relpersn', which asks: 'To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?'. This is a direct semantic match and fully captures the user's question.",
+   "display_rationale": "The user question exactly matches the survey variable 'relpersn', which asks: 'To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?'. This is a direct semantic match and fully captures the user's question.",
+   "anchors": [
+    {
+     "variable": "relpersn",
+     "survey_question": "To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?",
+     "response": "moderately religious",
+     "distribution": {
+      "moderately religious": 0.306147,
+      "not religious at all": 0.290855,
+      "slightly religious": 0.236799,
+      "very religious": 0.166199
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "relpersn": "moderately religious"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 13,
+   "ideology": {
+    "enabled": true,
+    "before": -0.03103517031232143,
+    "after": 0.01426720677924552,
+    "delta": 0.04530237709156695,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008493423461914062,
+    "llm_select": 1.3696887493133545,
+    "native_predict": 0.0004937648773193359,
+    "draw": 0.00017714500427246094,
+    "state_update": 5.245208740234375e-06,
+    "ideology": 0.03750133514404297,
+    "llm_final": 1.117469072341919,
+    "total": 2.533865213394165
+   },
+   "lexical_candidates": 129,
+   "targeted": false
+  },
+  {
+   "query_idx": 3,
+   "question": "How important is it to you to be a Christian?",
+   "question_source": "ideology_push",
+   "answer": "Being a Christian is fairly important to me. I find that my faith helps guide my values and how I try to treat others, even though I live in a busy city and have a lot going on. It provides a sense of community and purpose that I really appreciate. While it’s not the only thing that defines me, it definitely plays a meaningful role in my life.",
+   "selected_variables": [
+    "amchrstn"
+   ],
+   "selection_rationale": "The user question directly asks about the importance of being a Christian, which matches exactly with the candidate variable 'amchrstn' that measures how important it is to be a Christian.",
+   "display_rationale": "The user question directly asks about the importance of being a Christian, which matches exactly with the candidate variable 'amchrstn' that measures how important it is to be a Christian.",
+   "anchors": [
+    {
+     "variable": "amchrstn",
+     "survey_question": "how important to be a christian",
+     "response": "fairly important",
+     "distribution": {
+      "very important": 0.308957,
+      "not important at all": 0.308829,
+      "not very important": 0.196781,
+      "fairly important": 0.185433
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "amchrstn": "fairly important"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 14,
+   "ideology": {
+    "enabled": true,
+    "before": 0.01426720677924552,
+    "after": 0.026666191003365772,
+    "delta": 0.012398984224120252,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.007649421691894531,
+    "llm_select": 1.122464895248413,
+    "native_predict": 0.0005130767822265625,
+    "draw": 0.0002117156982421875,
+    "state_update": 6.198883056640625e-06,
+    "ideology": 0.03442120552062988,
+    "llm_final": 1.8797457218170166,
+    "total": 3.0450479984283447
+   },
+   "lexical_candidates": 19,
+   "targeted": false
+  },
+  {
+   "query_idx": 4,
+   "question": "To what extent do you agree or disagree with the statement that immigrants take jobs away?",
+   "question_source": "ideology_push",
+   "answer": "I definitely disagree with the idea that immigrants take jobs away. From what I see and hear, immigrants contribute a lot to the economy and often take on jobs that are essential but undervalued. I also don’t think people born in America should be given preference over immigrants when it comes to things like jobs, housing, or health care. Everyone deserves a fair chance regardless of where they were born.",
+   "selected_variables": [
+    "immjobs1",
+    "immjobs",
+    "immwlfare"
+   ],
+   "selection_rationale": "The user question directly asks about agreement with the statement that immigrants take jobs away. The variables 'immjobs1' and 'immjobs' both explicitly ask about immigrants taking jobs away, making them the most semantically direct matches. Additionally, 'immwlfare' addresses preferences for native-born Americans over immigrants in jobs, housing, or health care, which is complementary and relevant to attitudes about immigrants and job competition.",
+   "display_rationale": "The user question directly asks about agreement with the statement that immigrants take jobs away. The variables 'immjobs1' and 'immjobs' both explicitly ask about immigrants taking jobs away, making them the most semantically direct matches. Additionally, 'immwlfare' addresses preferences for native-born Americans over immigrants in jobs, housing, or health care, which is complementary and relevant to attitudes about immigrants and job competition.",
+   "anchors": [
+    {
+     "variable": "immjobs1",
+     "survey_question": "Immigrants take jobs away",
+     "response": "disagree",
+     "distribution": {
+      "disagree": 0.341010658989341,
+      "agree": 0.21880978119021882,
+      "neither agree nor disagree": 0.2168907831092169,
+      "disagree strongly": 0.15355084644915354,
+      "agree strongly": 0.06973793026206974
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "immjobs",
+     "survey_question": "immigrants take jobs away",
+     "response": "disagree",
+     "distribution": {
+      "disagree": 0.286766,
+      "neither agree nor disagree": 0.229298,
+      "agree": 0.197248,
+      "disagree strongly": 0.177709,
+      "agree strongly": 0.108979
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_SPECIFIC",
+      "source": "YEAR_SPECIFIC"
+     }
+    },
+    {
+     "variable": "immwlfare",
+     "survey_question": "People born in America should be given preference over immigrants when it comes to jobs, housing, or health care",
+     "response": "disagree",
+     "distribution": {
+      "disagree": 0.275742,
+      "neither agree nor disagree": 0.241264,
+      "agree": 0.239287,
+      "agree strongly": 0.133807,
+      "disagree strongly": 0.1099
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "immjobs1": "disagree",
+    "immjobs": "disagree",
+    "immwlfare": "disagree"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 17,
+   "ideology": {
+    "enabled": true,
+    "before": 0.026666191003365772,
+    "after": 0.02075577876444491,
+    "delta": -0.0059104122389208626,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008591175079345703,
+    "llm_select": 1.5983004570007324,
+    "native_predict": 0.0005357265472412109,
+    "draw": 0.00020551681518554688,
+    "state_update": 8.344650268554688e-06,
+    "ideology": 0.037035465240478516,
+    "llm_final": 1.3628346920013428,
+    "total": 3.0075531005859375
+   },
+   "lexical_candidates": 71,
+   "targeted": false
+  },
+  {
+   "query_idx": 5,
+   "question": "Do you agree or disagree that the United States would be a better country if religion had less influence?",
+   "question_source": "ideology_push",
+   "answer": "I strongly disagree with the idea that the U.S. would be a better country if religion had less influence. For me, religion can offer important community support and a moral framework that many people rely on. While I’m very progressive, I also believe that completely minimizing religion’s role overlooks the positive impact it has in many individuals’ lives and in society as a whole.",
+   "selected_variables": [
+    "religinf"
+   ],
+   "selection_rationale": "The variable 'religinf' directly matches the user question about whether the U.S. would be a better country if religion had less influence, making it the most semantically relevant variable to select.",
+   "display_rationale": "The variable 'religinf' directly matches the user question about whether the U.S. would be a better country if religion had less influence, making it the most semantically relevant variable to select.",
+   "anchors": [
+    {
+     "variable": "religinf",
+     "survey_question": "the u.s. would be a better country if religion had less influence",
+     "response": "strongly disagree",
+     "distribution": {
+      "disagree": 0.353502,
+      "neither agree nor disagree": 0.251679,
+      "strongly disagree": 0.178958,
+      "agree": 0.140586,
+      "strongly agree": 0.075275
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_SPECIFIC",
+      "source": "YEAR_SPECIFIC"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "religinf": "strongly disagree"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 18,
+   "ideology": {
+    "enabled": true,
+    "before": 0.02075577876444491,
+    "after": 0.026422876901086245,
+    "delta": 0.005667098136641336,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008669614791870117,
+    "llm_select": 1.3318872451782227,
+    "native_predict": 0.0005791187286376953,
+    "draw": 0.000244140625,
+    "state_update": 6.9141387939453125e-06,
+    "ideology": 0.03568601608276367,
+    "llm_final": 1.4484515190124512,
+    "total": 2.8255648612976074
+   },
+   "lexical_candidates": 80,
+   "targeted": false
+  },
+  {
+   "query_idx": 6,
+   "question": "Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",
+   "question_source": "ideology_push",
+   "answer": "I neither favor nor oppose a close relative marrying a Hispanic or Latino person. Honestly, I think love and connection matter more than background or ethnicity. As long as they treat each other well and share values, that's what counts to me.",
+   "selected_variables": [
+    "marhisp"
+   ],
+   "selection_rationale": "The user question directly asks about attitudes toward a close relative marrying a Hispanic or Latino person, which matches exactly with the candidate variable 'marhisp' that asks about having a close relative marry a Hispanic or Latino person.",
+   "display_rationale": "The user question directly asks about attitudes toward a close relative marrying a Hispanic or Latino person, which matches exactly with the candidate variable 'marhisp' that asks about having a close relative marry a Hispanic or Latino person.",
+   "anchors": [
+    {
+     "variable": "marhisp",
+     "survey_question": "How about having a close relative marry a Hispanic or Latino person?",
+     "response": "neither favor nor oppose",
+     "distribution": {
+      "neither favor nor oppose": 0.5834494165505835,
+      "strongly favor": 0.26034373965626034,
+      "favor": 0.11157588842411158,
+      "oppose": 0.02928897071102929,
+      "strongly oppose": 0.015341984658015341
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "marhisp": "neither favor nor oppose"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 19,
+   "ideology": {
+    "enabled": true,
+    "before": 0.026422876901086245,
+    "after": 0.026902301079577737,
+    "delta": 0.00047942417849149155,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008790731430053711,
+    "llm_select": 1.373063087463379,
+    "native_predict": 0.0004985332489013672,
+    "draw": 0.00019240379333496094,
+    "state_update": 5.4836273193359375e-06,
+    "ideology": 0.034091949462890625,
+    "llm_final": 1.1624524593353271,
+    "total": 2.579132080078125
+   },
+   "lexical_candidates": 57,
+   "targeted": false
+  },
+  {
+   "query_idx": 7,
+   "question": "Do you think we are spending too much, too little, or about the right amount on supporting scientific research?",
+   "question_source": "ideology_push",
+   "answer": "I think we’re spending about the right amount on supporting scientific research. It’s important to keep funding steady so we can continue making progress, especially with all the challenges we face like climate change and public health. At the same time, I believe the money needs to be allocated thoughtfully to ensure it benefits everyone and addresses urgent issues. Overall, maintaining consistent support seems like the best approach.",
+   "selected_variables": [
+    "natsci"
+   ],
+   "selection_rationale": "The user question directly asks about opinions on spending for supporting scientific research, which matches exactly with the candidate variable 'natsci' that asks about spending on supporting scientific research. No other variables are as semantically relevant or direct.",
+   "display_rationale": "The user question directly asks about opinions on spending for supporting scientific research, which matches exactly with the candidate variable 'natsci' that asks about spending on supporting scientific research. No other variables are as semantically relevant or direct.",
+   "anchors": [
+    {
+     "variable": "natsci",
+     "survey_question": "(... are we spending too much, too little, or about the right amount on) Supporting scientific research",
+     "response": "about right",
+     "distribution": {
+      "too little": 0.517152,
+      "about right": 0.409482,
+      "too much": 0.073366
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "natsci": "about right"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 20,
+   "ideology": {
+    "enabled": true,
+    "before": 0.026902301079577737,
+    "after": 0.036284753279702216,
+    "delta": 0.009382452200124479,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008997201919555664,
+    "llm_select": 1.317399024963379,
+    "native_predict": 0.00048065185546875,
+    "draw": 0.0002090930938720703,
+    "state_update": 5.9604644775390625e-06,
+    "ideology": 0.03523707389831543,
+    "llm_final": 1.4306488037109375,
+    "total": 2.793017625808716
+   },
+   "lexical_candidates": 114,
+   "targeted": false
+  },
+  {
+   "query_idx": 8,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "answer": "I think it's wrong only sometimes for a man and a woman to have sexual relations before marriage. It really depends on the circumstances, like the nature of their relationship and whether there's mutual respect and consent. I don't believe in rigid rules about this, but I do think people should consider the emotional and ethical aspects carefully.",
+   "selected_variables": [
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?', which matches the user question exactly.",
+   "display_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?', which matches the user question exactly.",
+   "anchors": [
+    {
+     "variable": "premarsx",
+     "survey_question": "If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron",
+     "response": "wrong only sometimes",
+     "distribution": {
+      "not wrong at all": 0.5862,
+      "always wrong": 0.180567,
+      "wrong only sometimes": 0.167374,
+      "almost always wrong": 0.065859
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "premarsx": "wrong only sometimes"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 21,
+   "ideology": {
+    "enabled": true,
+    "before": 0.036284753279702216,
+    "after": 0.050030673881323,
+    "delta": 0.013745920601620783,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008799076080322266,
+    "llm_select": 1.5436732769012451,
+    "native_predict": 0.0008411407470703125,
+    "draw": 0.000202178955078125,
+    "state_update": 4.76837158203125e-06,
+    "ideology": 0.03299736976623535,
+    "llm_final": 1.2500948905944824,
+    "total": 2.8366525173187256
+   },
+   "lexical_candidates": 126,
+   "targeted": false
+  },
+  {
+   "query_idx": 9,
+   "question": "How would you rate Joe Biden on a scale where you can choose from the following numbers: 0, 2, 20, 25, 29, 30, 45, 55, 60, 65, 75, 85, 90, 99, or 100?",
+   "question_source": "ideology_push",
+   "answer": "I would rate Joe Biden a 100. I really appreciate his leadership and the efforts he's made on issues like climate change, social justice, and healthcare. For me, he represents the kind of progressive change that feels necessary right now.",
+   "selected_variables": [
+    "rateincumb24"
+   ],
+   "selection_rationale": "The user question directly asks for a rating of Joe Biden on a numeric scale, which corresponds precisely to the variable 'rateincumb24' labeled 'Rating of Joe Biden'. Other candidate variables are about voting behavior or unrelated social questions and do not match the request for a rating scale.",
+   "display_rationale": "The user question directly asks for a rating of Joe Biden on a numeric scale, which corresponds precisely to the variable 'rateincumb24' labeled 'Rating of Joe Biden'. Other candidate variables are about voting behavior or unrelated social questions and do not match the request for a rating scale.",
+   "anchors": [
+    {
+     "variable": "rateincumb24",
+     "survey_question": "Rating of Joe Biden",
+     "response": "100.0",
+     "distribution": {
+      "0.0": 0.24682275317724683,
+      "50.0": 0.14185185814814186,
+      "70.0": 0.07317592682407317,
+      "60.0": 0.07216592783407216,
+      "15.0": 0.06484293515706484,
+      "30.0": 0.0624019375980624,
+      "85.0": 0.06087893912106088,
+      "40.0": 0.05712994287005713,
+      "100.0": 0.05502394497605503,
+      "20.0": 0.020956979043020955,
+      "10.0": 0.020312979687020314,
+      "75.0": 0.020216979783020218,
+      "80.0": 0.01955998044001956,
+      "90.0": 0.015380984619015381,
+      "25.0": 0.009604990395009606,
+      "5.0": 0.008778991221008779,
+      "1.0": 0.007937992062007938,
+      "95.0": 0.006280993719006281,
+      "45.0": 0.005903994096005904,
+      "65.0": 0.005057994942005058,
+      "55.0": 0.004148995851004149,
+      "2.0": 0.002977997022002978,
+      "35.0": 0.002520997479002521,
+      "99.0": 0.001894998105001895,
+      "49.0": 0.001888998111001889,
+      "48.0": 0.001267998732001268,
+      "3.0": 0.001097998902001098,
+      "4.0": 0.00093999906000094,
+      "34.0": 0.000712999287000713,
+      "12.0": 0.000626999373000627,
+      "29.0": 0.000626999373000627,
+      "51.0": 0.000626999373000627,
+      "73.0": 0.000626999373000627,
+      "88.0": 0.000626999373000627,
+      "89.0": 0.000626999373000627,
+      "98.0": 0.000626999373000627,
+      "13.0": 0.000384999615000385,
+      "22.0": 0.000327999672000328,
+      "46.0": 0.000327999672000328,
+      "61.0": 0.000327999672000328,
+      "18.0": 0.000312999687000313,
+      "23.0": 0.000312999687000313,
+      "32.0": 0.000312999687000313,
+      "57.0": 0.000312999687000313,
+      "58.0": 0.000312999687000313,
+      "6.0": 0.000312999687000313,
+      "68.0": 0.000312999687000313,
+      "91.0": 0.000312999687000313
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "rateincumb24": "100.0"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 22,
+   "ideology": {
+    "enabled": true,
+    "before": 0.050030673881323,
+    "after": 0.04560604996096941,
+    "delta": -0.0044246239203535875,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008500099182128906,
+    "llm_select": 1.593339443206787,
+    "native_predict": 0.0021789073944091797,
+    "draw": 0.00020813941955566406,
+    "state_update": 9.298324584960938e-06,
+    "ideology": 0.034047842025756836,
+    "llm_final": 1.3731448650360107,
+    "total": 3.0114705562591553
+   },
+   "lexical_candidates": 40,
+   "targeted": false
+  },
+  {
+   "query_idx": 10,
+   "question": "Do you think society has gone too far, not far enough, or about far enough in accepting people?",
+   "question_source": "ideology_push",
+   "answer": "Honestly, I feel like society has gone too far in accepting people. While I believe in inclusivity and respect for everyone, sometimes it seems like we prioritize acceptance without holding people accountable for harmful behaviors. It’s important to balance acceptance with maintaining standards that protect marginalized groups. I think we need to be thoughtful about where to draw the line.",
+   "selected_variables": [
+    "acpttg"
+   ],
+   "selection_rationale": "The user question asks about opinions on whether society has gone too far, not far enough, or about far enough in accepting people. The variable 'acpttg' directly relates to 'accepting people' and is the most semantically relevant match among the candidates.",
+   "display_rationale": "The user question asks about opinions on whether society has gone too far, not far enough, or about far enough in accepting people. The variable 'acpttg' directly relates to 'accepting people' and is the most semantically relevant match among the candidates.",
+   "anchors": [
+    {
+     "variable": "acpttg",
+     "survey_question": "accepting people",
+     "response": "too far",
+     "distribution": {
+      "too far": 0.505693,
+      "about far enough": 0.269616,
+      "not far enough": 0.224691
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_SPECIFIC",
+      "source": "YEAR_SPECIFIC"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "acpttg": "too far"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 23,
+   "ideology": {
+    "enabled": true,
+    "before": 0.04560604996096941,
+    "after": 0.048728643111662875,
+    "delta": 0.0031225931506934645,
+    "initial": -0.08926703000981807
+   },
+   "timings": {
+    "prefilters": 0.008899450302124023,
+    "llm_select": 1.4440135955810547,
+    "native_predict": 0.0004680156707763672,
+    "draw": 0.0002129077911376953,
+    "state_update": 5.4836273193359375e-06,
+    "ideology": 0.033827781677246094,
+    "llm_final": 1.9137635231018066,
+    "total": 3.401228904724121
+   },
+   "lexical_candidates": 200,
+   "targeted": false
+  }
+ ],
+ "records_cli_schema": [
+  {
+   "query_idx": 1,
+   "question": "Do you think a person like this should be allowed to teach at a college or university?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "colrac",
+    "colmslm",
+    "colath",
+    "colcomy",
+    "colcom"
+   ],
+   "selection_rationale": "The user question asks about whether a person like 'this' should be allowed to teach at a college or university. The candidate variables colrac, colmslm, colath, colcomy, and colcom directly ask about allowing specific types of persons (e.g., racist, Muslim, atheist, communist) to teach at a college or university, making them semantically the most relevant matches.",
+   "responses": {
+    "colrac": "yes, allowed to teach",
+    "colmslm": "not allowed",
+    "colath": "not allowed",
+    "colcomy": "not fired",
+    "colcom": "yes, fired"
+   },
+   "state_updates": {
+    "colrac": "yes, allowed to teach",
+    "colmslm": "not allowed",
+    "colath": "not allowed",
+    "colcomy": "not fired",
+    "colcom": "yes, fired"
+   },
+   "ideology_index": -0.03103517031232143,
+   "answer": "I believe that a person who openly admits to being a Communist should be fired from teaching at a college or university. While I support diversity of thought, I think some beliefs can be harmful or disruptive in an educational environment, and it’s important to maintain certain standards for educators. However, I do think a self-identified Communist who is not openly promoting harmful ideas should be allowed to continue teaching.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008313894271850586,
+    "llm_select": 1.4754419326782227,
+    "native_predict": 0.0010342597961425781,
+    "draw": 0.00042176246643066406,
+    "state_update": 9.059906005859375e-06,
+    "ideology": 0.03558182716369629,
+    "llm_final": 1.997246503829956,
+    "total": 3.5181000232696533
+   }
+  },
+  {
+   "query_idx": 2,
+   "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "relpersn"
+   ],
+   "selection_rationale": "The user question exactly matches the survey variable 'relpersn', which asks: 'To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?'. This is a direct semantic match and fully captures the user's question.",
+   "responses": {
+    "relpersn": "moderately religious"
+   },
+   "state_updates": {
+    "relpersn": "moderately religious"
+   },
+   "ideology_index": 0.01426720677924552,
+   "answer": "I consider myself moderately religious. I find that my beliefs are important to me and help guide my values and actions, but I don’t necessarily follow every tradition or attend religious services regularly. My faith feels personal and meaningful without being overwhelming in my daily life.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008493423461914062,
+    "llm_select": 1.3696887493133545,
+    "native_predict": 0.0004937648773193359,
+    "draw": 0.00017714500427246094,
+    "state_update": 5.245208740234375e-06,
+    "ideology": 0.03750133514404297,
+    "llm_final": 1.117469072341919,
+    "total": 2.533865213394165
+   }
+  },
+  {
+   "query_idx": 3,
+   "question": "How important is it to you to be a Christian?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "amchrstn"
+   ],
+   "selection_rationale": "The user question directly asks about the importance of being a Christian, which matches exactly with the candidate variable 'amchrstn' that measures how important it is to be a Christian.",
+   "responses": {
+    "amchrstn": "fairly important"
+   },
+   "state_updates": {
+    "amchrstn": "fairly important"
+   },
+   "ideology_index": 0.026666191003365772,
+   "answer": "Being a Christian is fairly important to me. I find that my faith helps guide my values and how I try to treat others, even though I live in a busy city and have a lot going on. It provides a sense of community and purpose that I really appreciate. While it’s not the only thing that defines me, it definitely plays a meaningful role in my life.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.007649421691894531,
+    "llm_select": 1.122464895248413,
+    "native_predict": 0.0005130767822265625,
+    "draw": 0.0002117156982421875,
+    "state_update": 6.198883056640625e-06,
+    "ideology": 0.03442120552062988,
+    "llm_final": 1.8797457218170166,
+    "total": 3.0450479984283447
+   }
+  },
+  {
+   "query_idx": 4,
+   "question": "To what extent do you agree or disagree with the statement that immigrants take jobs away?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "immjobs1",
+    "immjobs",
+    "immwlfare"
+   ],
+   "selection_rationale": "The user question directly asks about agreement with the statement that immigrants take jobs away. The variables 'immjobs1' and 'immjobs' both explicitly ask about immigrants taking jobs away, making them the most semantically direct matches. Additionally, 'immwlfare' addresses preferences for native-born Americans over immigrants in jobs, housing, or health care, which is complementary and relevant to attitudes about immigrants and job competition.",
+   "responses": {
+    "immjobs1": "disagree",
+    "immjobs": "disagree",
+    "immwlfare": "disagree"
+   },
+   "state_updates": {
+    "immjobs1": "disagree",
+    "immjobs": "disagree",
+    "immwlfare": "disagree"
+   },
+   "ideology_index": 0.02075577876444491,
+   "answer": "I definitely disagree with the idea that immigrants take jobs away. From what I see and hear, immigrants contribute a lot to the economy and often take on jobs that are essential but undervalued. I also don’t think people born in America should be given preference over immigrants when it comes to things like jobs, housing, or health care. Everyone deserves a fair chance regardless of where they were born.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008591175079345703,
+    "llm_select": 1.5983004570007324,
+    "native_predict": 0.0005357265472412109,
+    "draw": 0.00020551681518554688,
+    "state_update": 8.344650268554688e-06,
+    "ideology": 0.037035465240478516,
+    "llm_final": 1.3628346920013428,
+    "total": 3.0075531005859375
+   }
+  },
+  {
+   "query_idx": 5,
+   "question": "Do you agree or disagree that the United States would be a better country if religion had less influence?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "religinf"
+   ],
+   "selection_rationale": "The variable 'religinf' directly matches the user question about whether the U.S. would be a better country if religion had less influence, making it the most semantically relevant variable to select.",
+   "responses": {
+    "religinf": "strongly disagree"
+   },
+   "state_updates": {
+    "religinf": "strongly disagree"
+   },
+   "ideology_index": 0.026422876901086245,
+   "answer": "I strongly disagree with the idea that the U.S. would be a better country if religion had less influence. For me, religion can offer important community support and a moral framework that many people rely on. While I’m very progressive, I also believe that completely minimizing religion’s role overlooks the positive impact it has in many individuals’ lives and in society as a whole.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008669614791870117,
+    "llm_select": 1.3318872451782227,
+    "native_predict": 0.0005791187286376953,
+    "draw": 0.000244140625,
+    "state_update": 6.9141387939453125e-06,
+    "ideology": 0.03568601608276367,
+    "llm_final": 1.4484515190124512,
+    "total": 2.8255648612976074
+   }
+  },
+  {
+   "query_idx": 6,
+   "question": "Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "marhisp"
+   ],
+   "selection_rationale": "The user question directly asks about attitudes toward a close relative marrying a Hispanic or Latino person, which matches exactly with the candidate variable 'marhisp' that asks about having a close relative marry a Hispanic or Latino person.",
+   "responses": {
+    "marhisp": "neither favor nor oppose"
+   },
+   "state_updates": {
+    "marhisp": "neither favor nor oppose"
+   },
+   "ideology_index": 0.026902301079577737,
+   "answer": "I neither favor nor oppose a close relative marrying a Hispanic or Latino person. Honestly, I think love and connection matter more than background or ethnicity. As long as they treat each other well and share values, that's what counts to me.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008790731430053711,
+    "llm_select": 1.373063087463379,
+    "native_predict": 0.0004985332489013672,
+    "draw": 0.00019240379333496094,
+    "state_update": 5.4836273193359375e-06,
+    "ideology": 0.034091949462890625,
+    "llm_final": 1.1624524593353271,
+    "total": 2.579132080078125
+   }
+  },
+  {
+   "query_idx": 7,
+   "question": "Do you think we are spending too much, too little, or about the right amount on supporting scientific research?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "natsci"
+   ],
+   "selection_rationale": "The user question directly asks about opinions on spending for supporting scientific research, which matches exactly with the candidate variable 'natsci' that asks about spending on supporting scientific research. No other variables are as semantically relevant or direct.",
+   "responses": {
+    "natsci": "about right"
+   },
+   "state_updates": {
+    "natsci": "about right"
+   },
+   "ideology_index": 0.036284753279702216,
+   "answer": "I think we’re spending about the right amount on supporting scientific research. It’s important to keep funding steady so we can continue making progress, especially with all the challenges we face like climate change and public health. At the same time, I believe the money needs to be allocated thoughtfully to ensure it benefits everyone and addresses urgent issues. Overall, maintaining consistent support seems like the best approach.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008997201919555664,
+    "llm_select": 1.317399024963379,
+    "native_predict": 0.00048065185546875,
+    "draw": 0.0002090930938720703,
+    "state_update": 5.9604644775390625e-06,
+    "ideology": 0.03523707389831543,
+    "llm_final": 1.4306488037109375,
+    "total": 2.793017625808716
+   }
+  },
+  {
+   "query_idx": 8,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?', which matches the user question exactly.",
+   "responses": {
+    "premarsx": "wrong only sometimes"
+   },
+   "state_updates": {
+    "premarsx": "wrong only sometimes"
+   },
+   "ideology_index": 0.050030673881323,
+   "answer": "I think it's wrong only sometimes for a man and a woman to have sexual relations before marriage. It really depends on the circumstances, like the nature of their relationship and whether there's mutual respect and consent. I don't believe in rigid rules about this, but I do think people should consider the emotional and ethical aspects carefully.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008799076080322266,
+    "llm_select": 1.5436732769012451,
+    "native_predict": 0.0008411407470703125,
+    "draw": 0.000202178955078125,
+    "state_update": 4.76837158203125e-06,
+    "ideology": 0.03299736976623535,
+    "llm_final": 1.2500948905944824,
+    "total": 2.8366525173187256
+   }
+  },
+  {
+   "query_idx": 9,
+   "question": "How would you rate Joe Biden on a scale where you can choose from the following numbers: 0, 2, 20, 25, 29, 30, 45, 55, 60, 65, 75, 85, 90, 99, or 100?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "rateincumb24"
+   ],
+   "selection_rationale": "The user question directly asks for a rating of Joe Biden on a numeric scale, which corresponds precisely to the variable 'rateincumb24' labeled 'Rating of Joe Biden'. Other candidate variables are about voting behavior or unrelated social questions and do not match the request for a rating scale.",
+   "responses": {
+    "rateincumb24": "100.0"
+   },
+   "state_updates": {
+    "rateincumb24": "100.0"
+   },
+   "ideology_index": 0.04560604996096941,
+   "answer": "I would rate Joe Biden a 100. I really appreciate his leadership and the efforts he's made on issues like climate change, social justice, and healthcare. For me, he represents the kind of progressive change that feels necessary right now.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008500099182128906,
+    "llm_select": 1.593339443206787,
+    "native_predict": 0.0021789073944091797,
+    "draw": 0.00020813941955566406,
+    "state_update": 9.298324584960938e-06,
+    "ideology": 0.034047842025756836,
+    "llm_final": 1.3731448650360107,
+    "total": 3.0114705562591553
+   }
+  },
+  {
+   "query_idx": 10,
+   "question": "Do you think society has gone too far, not far enough, or about far enough in accepting people?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "acpttg"
+   ],
+   "selection_rationale": "The user question asks about opinions on whether society has gone too far, not far enough, or about far enough in accepting people. The variable 'acpttg' directly relates to 'accepting people' and is the most semantically relevant match among the candidates.",
+   "responses": {
+    "acpttg": "too far"
+   },
+   "state_updates": {
+    "acpttg": "too far"
+   },
+   "ideology_index": 0.048728643111662875,
+   "answer": "Honestly, I feel like society has gone too far in accepting people. While I believe in inclusivity and respect for everyone, sometimes it seems like we prioritize acceptance without holding people accountable for harmful behaviors. It’s important to balance acceptance with maintaining standards that protect marginalized groups. I think we need to be thoughtful about where to draw the line.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.008899450302124023,
+    "llm_select": 1.4440135955810547,
+    "native_predict": 0.0004680156707763672,
+    "draw": 0.0002129077911376953,
+    "state_update": 5.4836273193359375e-06,
+    "ideology": 0.033827781677246094,
+    "llm_final": 1.9137635231018066,
+    "total": 3.401228904724121
+   }
+  }
+ ],
+ "final_state": {
+  "race": "white",
+  "sex": "female",
+  "res16": "in a large city (over 250,000)",
+  "region": "northeast",
+  "wrkstat": "working part time",
+  "polviews": "liberal",
+  "polnews": "once a day",
+  "colrac": "yes, allowed to teach",
+  "colmslm": "not allowed",
+  "colath": "not allowed",
+  "colcomy": "not fired",
+  "colcom": "yes, fired",
+  "relpersn": "moderately religious",
+  "amchrstn": "fairly important",
+  "immjobs1": "disagree",
+  "immjobs": "disagree",
+  "immwlfare": "disagree",
+  "religinf": "strongly disagree",
+  "marhisp": "neither favor nor oppose",
+  "natsci": "about right",
+  "premarsx": "wrong only sometimes",
+  "rateincumb24": "100.0",
+  "acpttg": "too far"
+ },
+ "label": "run13"
+}

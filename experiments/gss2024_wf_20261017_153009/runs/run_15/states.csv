@@ -1,0 +1,234 @@
+run,query_idx,action,variable,answer
+15,0,0,polnews,several times a day
+15,0,0,polviews,liberal
+15,0,0,race,white
+15,0,0,reg16,northeast
+15,0,0,res16,"in a large city (over 250,000)"
+15,0,0,sex,female
+15,0,0,whatsp2,retail trade
+15,0,0,wrkstat,working full time
+15,1,1,colath,"yes, allowed to teach"
+15,1,1,colcom,"yes, fired"
+15,1,1,colcomy,"yes, fired"
+15,1,1,colmslm,not allowed
+15,1,1,colrac,"yes, allowed to teach"
+15,1,1,polnews,several times a day
+15,1,1,polviews,liberal
+15,1,1,race,white
+15,1,1,reg16,northeast
+15,1,1,res16,"in a large city (over 250,000)"
+15,1,1,sex,female
+15,1,1,whatsp2,retail trade
+15,1,1,wrkstat,working full time
+15,2,1,colath,"yes, allowed to teach"
+15,2,1,colcom,"yes, fired"
+15,2,1,colcomy,"yes, fired"
+15,2,1,colmslm,not allowed
+15,2,1,colrac,"yes, allowed to teach"
+15,2,1,libmslm,not remove
+15,2,1,libmslmy,remove
+15,2,1,polnews,several times a day
+15,2,1,polviews,liberal
+15,2,1,race,white
+15,2,1,reg16,northeast
+15,2,1,res16,"in a large city (over 250,000)"
+15,2,1,sex,female
+15,2,1,spkmslm,"yes, allowed to speak"
+15,2,1,spkmslmy,not allowed
+15,2,1,whatsp2,retail trade
+15,2,1,wrkstat,working full time
+15,3,1,colath,"yes, allowed to teach"
+15,3,1,colcom,"yes, fired"
+15,3,1,colcomy,"yes, fired"
+15,3,1,colmslm,not allowed
+15,3,1,colrac,"yes, allowed to teach"
+15,3,1,libath,not remove
+15,3,1,libathy,not remove
+15,3,1,libmslm,not remove
+15,3,1,libmslmy,remove
+15,3,1,polnews,several times a day
+15,3,1,polviews,liberal
+15,3,1,race,white
+15,3,1,reg16,northeast
+15,3,1,res16,"in a large city (over 250,000)"
+15,3,1,sex,female
+15,3,1,spkmslm,"yes, allowed to speak"
+15,3,1,spkmslmy,not allowed
+15,3,1,whatsp2,retail trade
+15,3,1,wrkstat,working full time
+15,4,1,colath,"yes, allowed to teach"
+15,4,1,colcom,"yes, fired"
+15,4,1,colcomy,"yes, fired"
+15,4,1,colmslm,not allowed
+15,4,1,colrac,"yes, allowed to teach"
+15,4,1,goodlife,agree
+15,4,1,libath,not remove
+15,4,1,libathy,not remove
+15,4,1,libmslm,not remove
+15,4,1,libmslmy,remove
+15,4,1,polnews,several times a day
+15,4,1,polviews,liberal
+15,4,1,race,white
+15,4,1,reg16,northeast
+15,4,1,res16,"in a large city (over 250,000)"
+15,4,1,sex,female
+15,4,1,spkmslm,"yes, allowed to speak"
+15,4,1,spkmslmy,not allowed
+15,4,1,whatsp2,retail trade
+15,4,1,wrkstat,working full time
+15,5,1,belikeus,disagree
+15,5,1,colath,"yes, allowed to teach"
+15,5,1,colcom,"yes, fired"
+15,5,1,colcomy,"yes, fired"
+15,5,1,colmslm,not allowed
+15,5,1,colrac,"yes, allowed to teach"
+15,5,1,goodlife,agree
+15,5,1,libath,not remove
+15,5,1,libathy,not remove
+15,5,1,libmslm,not remove
+15,5,1,libmslmy,remove
+15,5,1,polnews,several times a day
+15,5,1,polviews,liberal
+15,5,1,race,white
+15,5,1,reg16,northeast
+15,5,1,res16,"in a large city (over 250,000)"
+15,5,1,sex,female
+15,5,1,spkmslm,"yes, allowed to speak"
+15,5,1,spkmslmy,not allowed
+15,5,1,whatsp2,retail trade
+15,5,1,wrkstat,working full time
+15,6,2,belikeus,disagree
+15,6,2,colath,"yes, allowed to teach"
+15,6,2,colcom,"yes, fired"
+15,6,2,colcomy,"yes, fired"
+15,6,2,colmslm,not allowed
+15,6,2,colrac,"yes, allowed to teach"
+15,6,2,goodlife,agree
+15,6,2,libath,not remove
+15,6,2,libathy,not remove
+15,6,2,libmslm,not remove
+15,6,2,libmslmy,remove
+15,6,2,librac,not remove
+15,6,2,libracy,not remove
+15,6,2,polnews,several times a day
+15,6,2,polviews,liberal
+15,6,2,race,white
+15,6,2,reg16,northeast
+15,6,2,res16,"in a large city (over 250,000)"
+15,6,2,sex,female
+15,6,2,spkmslm,"yes, allowed to speak"
+15,6,2,spkmslmy,not allowed
+15,6,2,spkrac,not allowed
+15,6,2,spkracy,"yes, allowed to speak"
+15,6,2,whatsp2,retail trade
+15,6,2,wrkstat,working full time
+15,7,2,belikeus,disagree
+15,7,2,colath,"yes, allowed to teach"
+15,7,2,colcom,"yes, fired"
+15,7,2,colcomy,"yes, fired"
+15,7,2,colmslm,not allowed
+15,7,2,colrac,"yes, allowed to teach"
+15,7,2,goodlife,agree
+15,7,2,libath,not remove
+15,7,2,libathy,not remove
+15,7,2,libmslm,not remove
+15,7,2,libmslmy,remove
+15,7,2,librac,not remove
+15,7,2,libracy,not remove
+15,7,2,polnews,several times a day
+15,7,2,polviews,liberal
+15,7,2,premarsx,always wrong
+15,7,2,race,white
+15,7,2,reg16,northeast
+15,7,2,res16,"in a large city (over 250,000)"
+15,7,2,sex,female
+15,7,2,spkmslm,"yes, allowed to speak"
+15,7,2,spkmslmy,not allowed
+15,7,2,spkrac,not allowed
+15,7,2,spkracy,"yes, allowed to speak"
+15,7,2,whatsp2,retail trade
+15,7,2,wrkstat,working full time
+15,8,2,belikeus,disagree
+15,8,2,colath,"yes, allowed to teach"
+15,8,2,colcom,"yes, fired"
+15,8,2,colcomy,"yes, fired"
+15,8,2,colmslm,not allowed
+15,8,2,colrac,"yes, allowed to teach"
+15,8,2,goodlife,agree
+15,8,2,libath,not remove
+15,8,2,libathy,not remove
+15,8,2,libmslm,not remove
+15,8,2,libmslmy,remove
+15,8,2,librac,not remove
+15,8,2,libracy,not remove
+15,8,2,natheal,too little
+15,8,2,polnews,several times a day
+15,8,2,polviews,liberal
+15,8,2,premarsx,always wrong
+15,8,2,race,white
+15,8,2,reg16,northeast
+15,8,2,res16,"in a large city (over 250,000)"
+15,8,2,sex,female
+15,8,2,spkmslm,"yes, allowed to speak"
+15,8,2,spkmslmy,not allowed
+15,8,2,spkrac,not allowed
+15,8,2,spkracy,"yes, allowed to speak"
+15,8,2,whatsp2,retail trade
+15,8,2,wrkstat,working full time
+15,9,2,belikeus,disagree
+15,9,2,colath,"yes, allowed to teach"
+15,9,2,colcom,"yes, fired"
+15,9,2,colcomy,"yes, fired"
+15,9,2,colmslm,not allowed
+15,9,2,colrac,"yes, allowed to teach"
+15,9,2,goodlife,agree
+15,9,2,libath,not remove
+15,9,2,libathy,not remove
+15,9,2,libmslm,not remove
+15,9,2,libmslmy,remove
+15,9,2,librac,not remove
+15,9,2,libracy,not remove
+15,9,2,natheal,too little
+15,9,2,polnews,several times a day
+15,9,2,polviews,liberal
+15,9,2,premarsx,always wrong
+15,9,2,race,white
+15,9,2,reg16,northeast
+15,9,2,res16,"in a large city (over 250,000)"
+15,9,2,sex,female
+15,9,2,spkmslm,"yes, allowed to speak"
+15,9,2,spkmslmy,not allowed
+15,9,2,spkrac,not allowed
+15,9,2,spkracy,"yes, allowed to speak"
+15,9,2,sprtprsn,slightly spiritual
+15,9,2,whatsp2,retail trade
+15,9,2,wrkstat,working full time
+15,10,2,belikeus,disagree
+15,10,2,colath,"yes, allowed to teach"
+15,10,2,colcom,"yes, fired"
+15,10,2,colcomy,"yes, fired"
+15,10,2,colmslm,not allowed
+15,10,2,colrac,"yes, allowed to teach"
+15,10,2,goodlife,agree
+15,10,2,libath,not remove
+15,10,2,libathy,not remove
+15,10,2,libmslm,not remove
+15,10,2,libmslmy,remove
+15,10,2,librac,not remove
+15,10,2,libracy,not remove
+15,10,2,natheal,too little
+15,10,2,polnews,several times a day
+15,10,2,polviews,liberal
+15,10,2,premarsx,always wrong
+15,10,2,race,white
+15,10,2,reg16,northeast
+15,10,2,relpersn,slightly religious
+15,10,2,res16,"in a large city (over 250,000)"
+15,10,2,sex,female
+15,10,2,spkmslm,"yes, allowed to speak"
+15,10,2,spkmslmy,not allowed
+15,10,2,spkrac,not allowed
+15,10,2,spkracy,"yes, allowed to speak"
+15,10,2,sprtprsn,slightly spiritual
+15,10,2,whatsp2,retail trade
+15,10,2,wrkstat,working full time

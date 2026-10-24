@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08446080162607085,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.059345762951278795,0.025115038674792055,0.025115038674792055
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.07317208851493322,-0.013826325563654422,0.011288713111137633
+3,3,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.027859263026795377,0.04531282548813784,0.05660153859927547
+4,4,How important is it to you to be a Christian?,DIRECT,True,-0.015460278802674938,0.01239898422412044,0.06900052282339592
+5,5,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,-0.01683225274303935,-0.0013719739403644134,0.06762854888303149
+6,6,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,-0.018782679778464144,-0.0019504270354247927,0.06567812184760671
+7,7,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,-0.009977200595511602,0.008805479182952542,0.07448360103055925
+8,8,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,-0.007994122164444053,0.001983078431067549,0.0764666794616268
+9,9,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.01462306375498731,-0.006628941590543256,0.06983773787108354
+10,10,Were you attempting to escape from custody?,DIRECT,True,-0.013138900914901611,0.0014841628400856979,0.07132190071116924

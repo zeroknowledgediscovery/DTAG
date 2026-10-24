@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.039980302693709405,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.013805634944360821,0.026174667749348582,0.026174667749348582
+2,2,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.01064553737132875,0.0031600975730320703,0.029334765322380656
+3,3,"If someone in your community wrote a book against churches and religion, would you support removing that book from the library or not?",DIRECT,True,-0.014178785394284233,-0.0035332480229554823,0.02580151729942517
+4,4,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.010343511532920206,0.003835273861364027,0.029636791160789197
+5,5,"How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",DIRECT,True,0.0018157276855258041,0.01215923921844601,0.04179603037923521
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.014354343864338455,0.012538616178812651,0.05433464655804786
+7,7,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.005217857747892565,-0.00913648611644589,0.04519816044160197
+8,8,"If someone wanted to make a speech in your community against churches and religion, should they be allowed to speak or not?",DIRECT,True,-0.006863148736238091,-0.012081006484130656,0.033117153957471314
+9,9,"If someone in your community suggested removing a book written by a person who believes that Black people are genetically inferior, would you support removing that book from your public library or not?",DIRECT,True,-0.01605793404347624,-0.009194785307238149,0.023922368650233165
+10,10,"Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.042841239899464235,-0.026783305855987996,-0.0028609372057548307

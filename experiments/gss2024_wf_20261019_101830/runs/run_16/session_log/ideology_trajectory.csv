@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08566549247020434,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.06078902596888385,0.024876466501320492,0.024876466501320492
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.04353616097561316,0.017252864993270695,0.042129331494591186
+3,3,"If a Muslim clergyman wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",DIRECT,True,-0.0545146798264656,-0.010978518850852444,0.031150812643738743
+4,4,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.10201227696799706,-0.047497597141531456,-0.016346784497792713
+5,5,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,-0.10323891183110485,-0.0012266348631077978,-0.01757341936090051
+6,6,Which of the following best describes what you believe about God?,DIRECT,True,-0.0746887486272871,0.028550163203817758,0.010976743842917247
+7,7,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,-0.07678421842116259,-0.0020954697938754957,0.008881274049041751
+8,8,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,-0.06773950390847185,0.009044714512690746,0.017925988561732498
+9,9,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.07296084659272892,-0.0052213426842570715,0.012704645877475426
+10,10,How important is it to you to obey?,DIRECT,True,-0.06612851390843502,0.006832332684293896,0.019536978561769322

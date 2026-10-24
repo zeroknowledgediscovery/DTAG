@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.039980302693709405,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.04801144727687818,-0.008031144583168774,-0.008031144583168774
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,-0.05356740926913208,-0.005555961992253902,-0.013587106575422676
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,-0.03161993128238513,0.021947477986746948,0.008360371411324272
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.028459833709353063,0.0031600975730320703,0.011520468984356342
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.024624559847989034,0.003835273861364029,0.01535574284572037
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.010050668203739897,0.014573891644249137,0.029929634489969506
+7,7,Do you agree or disagree that homosexual couples should have the right to marry?,DIRECT,True,0.022273258144772153,0.03232392634851205,0.06225356083848156
+8,8,"Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.005866756392768438,-0.028140014537540593,0.03411354630094097
+9,9,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.014937778392368012,-0.009071021999599574,0.025042524301341393
+10,10,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-2.042549612069078e-05,0.014917352896247321,0.039959877197588714

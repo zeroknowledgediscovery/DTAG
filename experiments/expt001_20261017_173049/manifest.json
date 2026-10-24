@@ -1,0 +1,20 @@
+{
+  "job_id": "6216676816054ee4b3507de9b43a26a8",
+  "name": "expt001",
+  "runs_requested": 20,
+  "runs_completed": 0,
+  "status": "queued",
+  "error": null,
+  "base_seed": 632680329,
+  "seeds": "base_seed + run (1..20)",
+  "model_key": "gss/gss_2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "profile": "gss2024_wf",
+  "llm_backend": "openai",
+  "llm_model": null,
+  "git_commit": "343e4ba",
+  "started_at": "2026-10-17T17:30:49",
+  "finished_at": null,
+  "credit": "DTAG \u00b7 ZeD Lab, University of Kentucky \u00b7 ishanu_ch@uky.edu",
+  "variation": "fresh respondent per run (persona interpretation may differ); pushes and next questions re-chosen at each run's own state; per-run seed for drawn responses"
+}

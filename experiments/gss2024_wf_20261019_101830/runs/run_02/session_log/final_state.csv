@@ -1,0 +1,26 @@
+variable,value,survey_question
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,female,CODE RESPONDENT'S SEX
+res16,"in a large city (over 250,000)",Which of these categories comes closest to the type of place you were living in when you were 16 years old?
+region,northeast,REGION OF INTERVIEW
+wrkstat,working full time,"Last week were you working full time, part time, going to school, keeping house, or what?"
+whatsp2,retail trade,classify place where spouse works
+polviews,liberal,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+polnews,once a day,how often use media to get political news
+colrac,not allowed,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+colmslm,"yes, allowed to teach","Should such a person be allowed to teach in a college or university, or not?"
+colath,"yes, allowed to teach","(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+colcomy,not fired,"(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?"
+colcom,"yes, fired","(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?"
+relpersn,moderately religious,"To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?"
+amchrstn,fairly important,how important to be a christian
+religinf,agree,the u.s. would be a better country if religion had less influence
+immjobs1,disagree strongly,Immigrants take jobs away
+immjobs,agree strongly,immigrants take jobs away
+immwlfare,neither agree nor disagree,"People born in America should be given preference over immigrants when it comes to jobs, housing, or health care"
+premarsx,wrong only sometimes,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+marhisp,oppose,How about having a close relative marry a Hispanic or Latino person?
+ratechall124,25.0,Rating of Donald Trump
+libathy,not remove,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book this person wrote against churches and religion be removed from the library. Would you favor removing, or not?"
+libath,not remove,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book he wrote against churches and religion should be removed from the library. Would you favor removing this book, or not?"
+marasian,oppose,How about having a close relative marry an Asian American person?

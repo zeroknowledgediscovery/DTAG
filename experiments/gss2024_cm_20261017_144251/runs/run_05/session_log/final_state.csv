@@ -1,0 +1,30 @@
+variable,value,survey_question
+region,south,REGION OF INTERVIEW
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,male,CODE RESPONDENT'S SEX
+spanself,have been able to do the interview easily in english,"If this interview had only been available in English, would you..."
+wrkstat,working full time,"Last week were you working full time, part time, going to school, keeping house, or what?"
+whatslf2,"other (agriculture, construction, service, government, etc.)",how would you classify the place where you {#whatslf2fill}? was this mainly...?
+vetyears,"yes, more than 4 years",Have you ever been on active duty for military training or service for two consecutive months or more? IF YES: What was your total time on active duty?
+polviews,conservative,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+polnewsfrom,newspapers (in print or access via internet),Where R gets political news
+polnews,once a day,how often use media to get political news
+colmslm,not allowed,"Should such a person be allowed to teach in a college or university, or not?"
+colath,not allowed,"(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+colcomy,not fired,"(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?"
+colcom,"yes, fired","(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?"
+spkrac,not allowed,"Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
+spkracy,"yes, allowed to speak","Or consider a person who believes that Black people are genetically inferior… If such a person wanted to make a speech in your community, should this person be allowed to speak, or not?"
+libracy,remove,"(Or consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book this person wrote should be taken out of your public library, would you favor removing this boo"
+librac,not remove,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+colrac,not allowed,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+spkmslmy,not allowed,"Now consider a Islamic religious leader who preaches hatred of the United States. If such a person wanted to make a speech in your communit, should this person be allowed to speak, or not?"
+spkmslm,not allowed,"Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?"
+belikeus,neither agree nor disagree,agree better if people were more like americans
+relpersn,slightly religious,"To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?"
+premarsx,not wrong at all,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+teensex,always wrong,"What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+sprtprsn,very spiritual,"To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?"
+homosex,wrong only sometimes,"What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+natheal,about right,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
+natchld,too little,"(... are we spending too much, too little, or about the right amount on) Assistance for childcare"

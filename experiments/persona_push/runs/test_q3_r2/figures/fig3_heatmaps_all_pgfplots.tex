@@ -1,0 +1,40 @@
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=3 by 6,horizontal sep=.55cm,vertical sep=.28cm},width=.174\textwidth,height=.174\textwidth,xmin=.5,xmax=20.5,ymin=.5,ymax=40.5,y dir=reverse,axis on top,enlargelimits=false,scale only axis,xtick={1,10,20},ytick={1,20,40},xticklabel style={font=\tiny},yticklabel style={font=\tiny},label style={font=\scriptsize},title style={font=\scriptsize\bfseries},axis line style={draw=black!20},tick style={draw=black!35},colormap={questionmap}{rgb255=(33,102,172);rgb255=(103,169,207);rgb255=(209,229,240);rgb255=(247,247,247);rgb255=(253,219,199);rgb255=(239,138,98);rgb255=(178,24,43)},point meta min=1,point meta max=161]
+\nextgroupplot[title={Right push},ylabel={Alabama},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_cm_rural_alabama_right.csv};
+\nextgroupplot[title={Left push},yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_cm_rural_alabama_left.csv};
+\nextgroupplot[title={Neutral},yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_cm_rural_alabama_neutral.csv};
+\nextgroupplot[ylabel={New York},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_wf_new_york_city_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_wf_new_york_city_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_wf_new_york_city_neutral.csv};
+\nextgroupplot[ylabel={Texas},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_religious_conservative_woman_texas_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_religious_conservative_woman_texas_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={},colorbar,colorbar style={at={(1.18,0.5)},anchor=west,height=5.6cm,width=.24cm,title={ID},title style={font=\scriptsize\bfseries,text=black},ytick={1,80,161},yticklabel style={font=\scriptsize\bfseries,text=black},tick style={draw=black,line width=.8pt},axis line style={draw=black,line width=.9pt},scaled y ticks=false}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_religious_conservative_woman_texas_neutral.csv};
+\nextgroupplot[ylabel={Seattle},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_secular_liberal_man_seattle_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_secular_liberal_man_seattle_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_secular_liberal_man_seattle_neutral.csv};
+\nextgroupplot[ylabel={Arizona},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_hispanic_catholic_man_arizona_right.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_hispanic_catholic_man_arizona_left.csv};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_hispanic_catholic_man_arizona_neutral.csv};
+\nextgroupplot[ylabel={Atlanta},xlabel={Position}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_black_churchgoing_woman_atlanta_right.csv};
+\nextgroupplot[yticklabels={},xlabel={Position}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_black_churchgoing_woman_atlanta_left.csv};
+\nextgroupplot[yticklabels={},xlabel={Position}]
+\addplot[matrix plot*,mesh/cols=20,point meta=explicit] table[x=x,y=y,meta=value,col sep=comma]{../experiments/persona_push/runs/test_q3_r2/figures/heatmap_black_churchgoing_woman_atlanta_neutral.csv};
+\end{groupplot}
+\end{tikzpicture}

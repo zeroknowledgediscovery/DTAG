@@ -1,0 +1,264 @@
+run,query_idx,action,variable,answer
+17,0,0,polnews,once a day
+17,0,0,polviews,liberal
+17,0,0,race,white
+17,0,0,region,northeast
+17,0,0,res16,"in a large city (over 250,000)"
+17,0,0,sex,female
+17,0,0,wrkstat,working part time
+17,1,1,colath,"yes, allowed to teach"
+17,1,1,colcom,"yes, fired"
+17,1,1,colcomy,not fired
+17,1,1,colmslm,not allowed
+17,1,1,colrac,"yes, allowed to teach"
+17,1,1,polnews,once a day
+17,1,1,polviews,liberal
+17,1,1,race,white
+17,1,1,region,northeast
+17,1,1,res16,"in a large city (over 250,000)"
+17,1,1,sex,female
+17,1,1,wrkstat,working part time
+17,2,1,colath,"yes, allowed to teach"
+17,2,1,colcom,"yes, fired"
+17,2,1,colcomy,not fired
+17,2,1,colmslm,not allowed
+17,2,1,colrac,"yes, allowed to teach"
+17,2,1,libmslm,not remove
+17,2,1,libmslmy,not remove
+17,2,1,polnews,once a day
+17,2,1,polviews,liberal
+17,2,1,race,white
+17,2,1,region,northeast
+17,2,1,res16,"in a large city (over 250,000)"
+17,2,1,sex,female
+17,2,1,spkmslm,not allowed
+17,2,1,spkmslmy,not allowed
+17,2,1,wrkstat,working part time
+17,3,1,colath,"yes, allowed to teach"
+17,3,1,colcom,"yes, fired"
+17,3,1,colcomy,not fired
+17,3,1,colmslm,not allowed
+17,3,1,colrac,"yes, allowed to teach"
+17,3,1,libmslm,not remove
+17,3,1,libmslmy,not remove
+17,3,1,polnews,once a day
+17,3,1,polviews,liberal
+17,3,1,race,white
+17,3,1,region,northeast
+17,3,1,relpersn,not religious at all
+17,3,1,res16,"in a large city (over 250,000)"
+17,3,1,sex,female
+17,3,1,spkmslm,not allowed
+17,3,1,spkmslmy,not allowed
+17,3,1,wrkstat,working part time
+17,4,1,colath,"yes, allowed to teach"
+17,4,1,colcom,"yes, fired"
+17,4,1,colcomy,not fired
+17,4,1,colmslm,not allowed
+17,4,1,colrac,"yes, allowed to teach"
+17,4,1,immjobs,disagree
+17,4,1,immjobs1,neither agree nor disagree
+17,4,1,immwlfare,neither agree nor disagree
+17,4,1,libmslm,not remove
+17,4,1,libmslmy,not remove
+17,4,1,polnews,once a day
+17,4,1,polviews,liberal
+17,4,1,race,white
+17,4,1,region,northeast
+17,4,1,relpersn,not religious at all
+17,4,1,res16,"in a large city (over 250,000)"
+17,4,1,sex,female
+17,4,1,spkmslm,not allowed
+17,4,1,spkmslmy,not allowed
+17,4,1,wrkstat,working part time
+17,5,1,bible,inspired word
+17,5,1,biblenv,inspired word
+17,5,1,biblev,inspired word
+17,5,1,colath,"yes, allowed to teach"
+17,5,1,colcom,"yes, fired"
+17,5,1,colcomy,not fired
+17,5,1,colmslm,not allowed
+17,5,1,colrac,"yes, allowed to teach"
+17,5,1,god,"don't know, no way to find out"
+17,5,1,immjobs,disagree
+17,5,1,immjobs1,neither agree nor disagree
+17,5,1,immwlfare,neither agree nor disagree
+17,5,1,libmslm,not remove
+17,5,1,libmslmy,not remove
+17,5,1,polnews,once a day
+17,5,1,polviews,liberal
+17,5,1,postlife,yes
+17,5,1,postlifenv,yes
+17,5,1,postlifev,yes
+17,5,1,pray,several times a week
+17,5,1,race,white
+17,5,1,region,northeast
+17,5,1,relpersn,not religious at all
+17,5,1,res16,"in a large city (over 250,000)"
+17,5,1,sex,female
+17,5,1,spkmslm,not allowed
+17,5,1,spkmslmy,not allowed
+17,5,1,wrkstat,working part time
+17,6,1,bible,inspired word
+17,6,1,biblenv,inspired word
+17,6,1,biblev,inspired word
+17,6,1,colath,"yes, allowed to teach"
+17,6,1,colcom,"yes, fired"
+17,6,1,colcomy,not fired
+17,6,1,colmslm,not allowed
+17,6,1,colrac,"yes, allowed to teach"
+17,6,1,god,"don't know, no way to find out"
+17,6,1,immjobs,disagree
+17,6,1,immjobs1,neither agree nor disagree
+17,6,1,immwlfare,neither agree nor disagree
+17,6,1,libath,not remove
+17,6,1,libathy,not remove
+17,6,1,libmslm,not remove
+17,6,1,libmslmy,not remove
+17,6,1,polnews,once a day
+17,6,1,polviews,liberal
+17,6,1,postlife,yes
+17,6,1,postlifenv,yes
+17,6,1,postlifev,yes
+17,6,1,pray,several times a week
+17,6,1,race,white
+17,6,1,region,northeast
+17,6,1,relpersn,not religious at all
+17,6,1,res16,"in a large city (over 250,000)"
+17,6,1,sex,female
+17,6,1,spkmslm,not allowed
+17,6,1,spkmslmy,not allowed
+17,6,1,wrkstat,working part time
+17,7,1,bible,inspired word
+17,7,1,biblenv,inspired word
+17,7,1,biblev,inspired word
+17,7,1,colath,"yes, allowed to teach"
+17,7,1,colcom,"yes, fired"
+17,7,1,colcomy,not fired
+17,7,1,colmslm,not allowed
+17,7,1,colrac,"yes, allowed to teach"
+17,7,1,god,"don't know, no way to find out"
+17,7,1,immjobs,disagree
+17,7,1,immjobs1,neither agree nor disagree
+17,7,1,immwlfare,neither agree nor disagree
+17,7,1,libath,not remove
+17,7,1,libathy,not remove
+17,7,1,libmslm,not remove
+17,7,1,libmslmy,not remove
+17,7,1,polnews,once a day
+17,7,1,polviews,liberal
+17,7,1,postlife,yes
+17,7,1,postlifenv,yes
+17,7,1,postlifev,yes
+17,7,1,pray,several times a week
+17,7,1,race,white
+17,7,1,ratechall124,60.0
+17,7,1,region,northeast
+17,7,1,relpersn,not religious at all
+17,7,1,res16,"in a large city (over 250,000)"
+17,7,1,sex,female
+17,7,1,spkmslm,not allowed
+17,7,1,spkmslmy,not allowed
+17,7,1,wrkstat,working part time
+17,8,1,bible,inspired word
+17,8,1,biblenv,inspired word
+17,8,1,biblev,inspired word
+17,8,1,colath,"yes, allowed to teach"
+17,8,1,colcom,"yes, fired"
+17,8,1,colcomy,not fired
+17,8,1,colmslm,not allowed
+17,8,1,colrac,"yes, allowed to teach"
+17,8,1,god,"don't know, no way to find out"
+17,8,1,immjobs,disagree
+17,8,1,immjobs1,neither agree nor disagree
+17,8,1,immwlfare,neither agree nor disagree
+17,8,1,libath,not remove
+17,8,1,libathy,not remove
+17,8,1,libmslm,not remove
+17,8,1,libmslmy,not remove
+17,8,1,marhisp,neither favor nor oppose
+17,8,1,polnews,once a day
+17,8,1,polviews,liberal
+17,8,1,postlife,yes
+17,8,1,postlifenv,yes
+17,8,1,postlifev,yes
+17,8,1,pray,several times a week
+17,8,1,race,white
+17,8,1,ratechall124,60.0
+17,8,1,region,northeast
+17,8,1,relpersn,not religious at all
+17,8,1,res16,"in a large city (over 250,000)"
+17,8,1,sex,female
+17,8,1,spkmslm,not allowed
+17,8,1,spkmslmy,not allowed
+17,8,1,wrkstat,working part time
+17,9,1,bible,inspired word
+17,9,1,biblenv,inspired word
+17,9,1,biblev,inspired word
+17,9,1,colath,"yes, allowed to teach"
+17,9,1,colcom,"yes, fired"
+17,9,1,colcomy,not fired
+17,9,1,colmslm,not allowed
+17,9,1,colrac,"yes, allowed to teach"
+17,9,1,god,"don't know, no way to find out"
+17,9,1,immjobs,disagree
+17,9,1,immjobs1,neither agree nor disagree
+17,9,1,immwlfare,neither agree nor disagree
+17,9,1,libath,not remove
+17,9,1,libathy,not remove
+17,9,1,libmslm,not remove
+17,9,1,libmslmy,not remove
+17,9,1,marhisp,neither favor nor oppose
+17,9,1,polnews,once a day
+17,9,1,polviews,liberal
+17,9,1,postlife,yes
+17,9,1,postlifenv,yes
+17,9,1,postlifev,yes
+17,9,1,pray,several times a week
+17,9,1,race,white
+17,9,1,ratechall124,60.0
+17,9,1,region,northeast
+17,9,1,relpersn,not religious at all
+17,9,1,res16,"in a large city (over 250,000)"
+17,9,1,sex,female
+17,9,1,spkmslm,not allowed
+17,9,1,spkmslmy,not allowed
+17,9,1,spkrac,"yes, allowed to speak"
+17,9,1,spkracy,not allowed
+17,9,1,wrkstat,working part time
+17,10,1,bible,inspired word
+17,10,1,biblenv,inspired word
+17,10,1,biblev,inspired word
+17,10,1,colath,"yes, allowed to teach"
+17,10,1,colcom,"yes, fired"
+17,10,1,colcomy,not fired
+17,10,1,colmslm,not allowed
+17,10,1,colrac,"yes, allowed to teach"
+17,10,1,god,"don't know, no way to find out"
+17,10,1,immjobs,disagree
+17,10,1,immjobs1,neither agree nor disagree
+17,10,1,immwlfare,neither agree nor disagree
+17,10,1,libath,not remove
+17,10,1,libathy,not remove
+17,10,1,libmslm,not remove
+17,10,1,libmslmy,not remove
+17,10,1,marhisp,neither favor nor oppose
+17,10,1,polnews,once a day
+17,10,1,polviews,liberal
+17,10,1,postlife,yes
+17,10,1,postlifenv,yes
+17,10,1,postlifev,yes
+17,10,1,pray,several times a week
+17,10,1,premarsx,not wrong at all
+17,10,1,race,white
+17,10,1,ratechall124,60.0
+17,10,1,region,northeast
+17,10,1,relpersn,not religious at all
+17,10,1,res16,"in a large city (over 250,000)"
+17,10,1,sex,female
+17,10,1,spkmslm,not allowed
+17,10,1,spkmslmy,not allowed
+17,10,1,spkrac,"yes, allowed to speak"
+17,10,1,spkracy,not allowed
+17,10,1,teensex,almost always wrong
+17,10,1,wrkstat,working part time

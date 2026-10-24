@@ -1,0 +1,29 @@
+variable,value,survey_question
+region,south,REGION OF INTERVIEW
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,male,CODE RESPONDENT'S SEX
+childsinhh,2,total children in hh (household composition version)
+whatsp2,"other (agriculture, construction, service, government, etc.)",classify place where spouse works
+vetyears,"yes, more than 4 years",Have you ever been on active duty for military training or service for two consecutive months or more? IF YES: What was your total time on active duty?
+polviews,conservative,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+polnews,once a day,how often use media to get political news
+colmslm,"yes, allowed to teach","Should such a person be allowed to teach in a college or university, or not?"
+colath,"yes, allowed to teach","(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+colcomy,not fired,"(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?"
+colcom,"yes, fired","(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?"
+libathy,not remove,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book this person wrote against churches and religion be removed from the library. Would you favor removing, or not?"
+libath,not remove,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book he wrote against churches and religion should be removed from the library. Would you favor removing this book, or not?"
+relpersn,not religious at all,"To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?"
+belikeus,neither agree nor disagree,agree better if people were more like americans
+spkrac,not allowed,"Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
+spkracy,not allowed,"Or consider a person who believes that Black people are genetically inferior… If such a person wanted to make a speech in your community, should this person be allowed to speak, or not?"
+libracy,not remove,"(Or consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book this person wrote should be taken out of your public library, would you favor removing this boo"
+librac,not remove,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+colrac,not allowed,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+sprtprsn,very spiritual,"To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?"
+homosex,wrong only sometimes,"What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+premarsx,always wrong,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+teensex,always wrong,"What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+natheal,too little,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
+abhlthg,yes,If the woman's own health is seriously endangered by the pregnancy?
+abhlth,no,If the woman's own health is seriously endangered by the pregnancy?

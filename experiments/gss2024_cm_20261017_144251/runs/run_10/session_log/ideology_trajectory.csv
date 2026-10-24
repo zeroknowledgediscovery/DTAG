@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.007379788710225471,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.03448430230344546,0.04186409101367093,0.04186409101367093
+2,2,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,0.010256664595295777,-0.02422763770814968,0.017636453305521247
+3,3,Do you agree or disagree that homosexual couples should have the right to marry?,DIRECT,True,0.028199095156983323,0.017942430561687546,0.035578883867208796
+4,4,Do you agree or disagree with the statement that things would be better if people acted more like Americans?,DIRECT,True,0.03292428545834953,0.004725190301366207,0.040304074168575
+5,5,"How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",DIRECT,True,0.0456683065031289,0.012744021044779369,0.05304809521335437
+6,6,Should a person who is against all churches and religion be allowed to make a speech expressing these views in your community?,DIRECT,True,0.059362601247689564,0.013694294744560666,0.06674238995791504
+7,7,Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?,DIRECT,True,0.11535213234504366,0.05598953109735409,0.12273192105526913
+8,8,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.09640763564469822,-0.01894449670034544,0.10378742435492369
+9,9,"How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.09430626962144467,-0.0021013660232535453,0.10168605833167015
+10,10,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.10800320272443421,0.013696933102989542,0.11538299143465969

@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.008487225944149676,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.0746294544028486,0.08311668034699828,0.08311668034699828
+2,2,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,0.07917036584362008,0.0045409114407714835,0.08765759178776976
+3,3,Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?,DIRECT,True,0.08513387482513271,0.005963508981512627,0.09362110076928239
+4,4,Do you agree or disagree with the statement that things would be better if people acted more like Americans?,DIRECT,True,0.08897085104663054,0.003836976221497826,0.09745807699078021
+5,5,"How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.08234021762052125,-0.006630633426109284,0.09082744356467093
+6,6,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.06508363593184664,-0.01725658168867461,0.07357086187599632
+7,7,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.08638051619192438,0.02129688026007774,0.09486774213607406
+8,8,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.08890713771537019,0.0025266215234458073,0.09739436365951987
+9,9,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.09759804146655099,0.008690903751180798,0.10608526741070066
+10,10,"Do you think that the amount spent on assistance for childcare is about right, too much, or too little?",DIRECT,True,0.08399957769621413,-0.013598463770336855,0.09248680364036381

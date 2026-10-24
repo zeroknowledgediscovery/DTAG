@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08926703000981807,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.08022372685634685,0.009043303153471224,0.009043303153471224
+2,2,"If a Muslim clergyman wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",DIRECT,True,-0.08535807443134222,-0.005134347574995368,0.003908955578475856
+3,3,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.13288549429272484,-0.04752741986138262,-0.04361846428290676
+4,4,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,-0.13421632354595617,-0.0013308292532313304,-0.044949293536138094
+5,5,Which of the following best describes what you believe about God?,DIRECT,True,-0.10485206403109923,0.02936425951485694,-0.015585034021281155
+6,6,"If someone in your community wrote a book against all churches and religion, would you support removing that book from the library or not?",DIRECT,True,-0.10512576159549795,-0.0002736975643987255,-0.01585873158567988
+7,7,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,-0.08631300554063656,0.018812756054861393,0.0029540244691815126
+8,8,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,-0.08579209339873163,0.0005209121419049306,0.0034749366110864432
+9,9,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.08642853750939183,-0.0006364441106602031,0.00283849250042624
+10,10,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.09542931008272725,-0.009000772573335411,-0.006162280072909171

@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.013605387068037014,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.02163572977844923,-0.008030342710412218,-0.008030342710412218
+2,2,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,-0.02715633308174148,-0.005520603303292248,-0.013550946013704466
+3,3,Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?,DIRECT,True,-0.017526394734102464,0.009629938347639016,-0.00392100766606545
+4,4,Do you agree or disagree that homosexual couples should have the right to marry?,DIRECT,True,-0.012345655958375456,0.005180738775727008,0.0012597311096615577
+5,5,"If a person in your community wrote a book against churches and religion, would you favor removing that book from the library or not?",DIRECT,True,0.027427834739091057,0.03977349069746651,0.04103322180712807
+6,6,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.045888002470187206,0.01846016773109615,0.05949338953822422
+7,7,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.04216264440292264,-0.003725358067264567,0.055768031470959656
+8,8,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.03301698595552761,-0.009145658447395032,0.04662237302356462
+9,9,Do you think the law should allow you to change your official documents?,DIRECT,True,0.03226417253470169,-0.0007528134208259138,0.04586955960273871
+10,10,Can you think of any situation where you would approve of a policeman hitting an adult man?,DIRECT,True,0.024312108906440474,-0.00795206362826122,0.03791749597447749

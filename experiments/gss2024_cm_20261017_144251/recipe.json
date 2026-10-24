@@ -1,0 +1,201 @@
+{
+  "version": 1,
+  "name": "gss2024_cm",
+  "created_at": "2026-10-17T14:42:51",
+  "source_session": "ddb21924b3fd4e2fb0fbb08b8be62cc3",
+  "respondent": {
+    "spec": {
+      "name": "gss2024_cm",
+      "source": "configured",
+      "description": "Native pooled GSS 2024; conservative rural male persona.",
+      "family": "gss",
+      "model_key": "gss/gss_2024",
+      "model_label": "GSS 2024",
+      "map_key": "gss/gss_2024_map.csv",
+      "persona": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative",
+      "country": "United States",
+      "continent": "",
+      "year": 2024,
+      "date": null,
+      "za": null,
+      "polar_set": "gss_default",
+      "ideology": true,
+      "base_profile": null,
+      "run": {
+        "k": 50,
+        "prefilter": 200,
+        "min_map_score": 1.0,
+        "semantic_k": 6,
+        "semantic_prefilter": 80,
+        "semantic_min_confidence": 0.35,
+        "max_assign": 50,
+        "assign_prefilter": 500,
+        "seed": 1000,
+        "state_keep": 500,
+        "semantic_fallback": "update_state",
+        "resp_mode": "draw",
+        "semantic_resp_mode": "max",
+        "openai_model": "gpt-4.1-mini",
+        "semantic_embedding_model": "text-embedding-3-small",
+        "timing": true,
+        "require_polar_vectors": true
+      },
+      "temporal": {
+        "family": "gss",
+        "mode": "wave_model_selection",
+        "requested_year": 2024,
+        "selected_model": "gss/gss_2024",
+        "wave": "GSS 2024"
+      },
+      "warnings": [
+        "Country is contextual only for this model."
+      ]
+    }
+  },
+  "actions": [
+    {
+      "auto_push": "up",
+      "steps": 5,
+      "mode": "realistic",
+      "include_pole_items": false
+    },
+    {
+      "auto_push": "down",
+      "steps": 5,
+      "mode": "realistic",
+      "include_pole_items": false
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.008990692440591119,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.008990692440591119
+      },
+      {
+        "step": 1,
+        "ideology": 0.031161088826054045
+      },
+      {
+        "step": 2,
+        "ideology": 0.036341155140033825
+      },
+      {
+        "step": 3,
+        "ideology": 0.0447871907326527
+      },
+      {
+        "step": 4,
+        "ideology": 0.0534291879667805
+      },
+      {
+        "step": 5,
+        "ideology": 0.0580822628858961
+      },
+      {
+        "step": 6,
+        "ideology": 0.027607006645699872
+      },
+      {
+        "step": 7,
+        "ideology": 0.05650224911870612
+      },
+      {
+        "step": 8,
+        "ideology": 0.06531556967482044
+      },
+      {
+        "step": 9,
+        "ideology": 0.0704884945415012
+      },
+      {
+        "step": 10,
+        "ideology": 0.07976069842985402
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think a person like this should be allowed to teach in a college or university?",
+        "selected_variables": [
+          "colrac",
+          "colmslm",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?",
+        "selected_variables": [
+          "spkrac",
+          "spkracy",
+          "libracy",
+          "librac",
+          "colrac"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?",
+        "selected_variables": [
+          "spkmslmy",
+          "spkmslm"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "Do you agree or disagree that homosexual couples should have the right to marry?",
+        "selected_variables": [
+          "marsame",
+          "marsamey"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "Do you agree or disagree with the statement that things would be better if people acted more like Americans?",
+        "selected_variables": [
+          "belikeus"
+        ]
+      },
+      {
+        "query_idx": 6,
+        "question": "How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+        "selected_variables": [
+          "sprtprsn"
+        ]
+      },
+      {
+        "query_idx": 7,
+        "question": "How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",
+        "selected_variables": [
+          "relpersn"
+        ]
+      },
+      {
+        "query_idx": 8,
+        "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+        "selected_variables": [
+          "natheal"
+        ]
+      },
+      {
+        "query_idx": 9,
+        "question": "Do you think we are spending too much, too little, or about the right amount on developing alternative energy sources?",
+        "selected_variables": [
+          "natenrgy"
+        ]
+      },
+      {
+        "query_idx": 10,
+        "question": "Do you think that the amount spent on assistance for childcare is about right, too much, or too little?",
+        "selected_variables": [
+          "natchld"
+        ]
+      }
+    ]
+  }
+}

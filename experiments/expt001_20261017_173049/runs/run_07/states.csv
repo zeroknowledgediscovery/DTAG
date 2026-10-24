@@ -1,0 +1,49 @@
+run,query_idx,action,variable,answer
+7,0,0,polnews,once a day
+7,0,0,polviews,liberal
+7,0,0,race,white
+7,0,0,res16,"in a large city (over 250,000)"
+7,0,0,sex,female
+7,1,1,polnews,once a day
+7,1,1,polviews,liberal
+7,1,1,premarsx,almost always wrong
+7,1,1,race,white
+7,1,1,res16,"in a large city (over 250,000)"
+7,1,1,sex,female
+7,2,1,colath,not allowed
+7,2,1,polnews,once a day
+7,2,1,polviews,liberal
+7,2,1,premarsx,almost always wrong
+7,2,1,race,white
+7,2,1,res16,"in a large city (over 250,000)"
+7,2,1,sex,female
+7,3,1,colath,not allowed
+7,3,1,polnews,once a day
+7,3,1,polviews,liberal
+7,3,1,premarsx,almost always wrong
+7,3,1,race,white
+7,3,1,res16,"in a large city (over 250,000)"
+7,3,1,sex,female
+7,3,1,spkmslm,not allowed
+7,3,1,spkmslmy,not allowed
+7,4,1,colath,not allowed
+7,4,1,polnews,once a day
+7,4,1,polviews,liberal
+7,4,1,premarsx,almost always wrong
+7,4,1,race,white
+7,4,1,res16,"in a large city (over 250,000)"
+7,4,1,sex,female
+7,4,1,spkmslm,not allowed
+7,4,1,spkmslmy,not allowed
+7,4,1,sprtprsn,not spiritual at all
+7,5,1,colath,not allowed
+7,5,1,polnews,once a day
+7,5,1,polviews,liberal
+7,5,1,premarsx,almost always wrong
+7,5,1,race,white
+7,5,1,relpersn,not religious at all
+7,5,1,res16,"in a large city (over 250,000)"
+7,5,1,sex,female
+7,5,1,spkmslm,not allowed
+7,5,1,spkmslmy,not allowed
+7,5,1,sprtprsn,not spiritual at all

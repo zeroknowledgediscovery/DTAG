@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.006166328104672268,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.06301623896318223,0.0691825670678545,0.0691825670678545
+2,2,"How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.025226283068948748,-0.03778995589423348,0.031392611173621014
+3,3,Do you agree or disagree with the statement that things would be better if people acted more like Americans?,DIRECT,True,0.029560455176204106,0.004334172107255358,0.035726783280876376
+4,4,"How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",DIRECT,True,0.026108962055077765,-0.0034514931211263415,0.03227529015975003
+5,5,Do you agree or disagree that people like you and your family have a good chance of improving their standard of living in America?,DIRECT,True,0.02844629082628412,0.0023373287712063553,0.034612618930956386
+6,6,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.002821848452879465,-0.03126813927916358,0.003344479651792803
+7,7,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.011373355378562346,0.014195203831441811,0.017539683483234612
+8,8,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.0019638626206952134,-0.009409492757867132,0.00813019072536748
+9,9,Should a person who is against all churches and religion be allowed to make a speech expressing these views in your community?,DIRECT,True,-0.009627786513064044,-0.011591649133759256,-0.003461458408391776
+10,10,"If someone in your community suggested removing a book written by a person who believes Black people are genetically inferior, would you support removing that book from your public library or not?",DIRECT,True,0.0018469253490043204,0.011474711862068363,0.008013253453676587

@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.039980302693709405,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.04624218150438494,-0.006261878810675532,-0.006261878810675532
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,-0.06859967472255012,-0.02235749321816518,-0.02861937202884071
+3,3,"If someone in your community wrote a book against churches and religion, would you support removing that book from the library or not?",DIRECT,True,-0.02330120037101374,0.045298474351536375,0.016679102322695663
+4,4,How likely do you think it is that a white person will not get a job or promotion while an equally or less qualified black person gets one instead?,DIRECT,True,-0.019105083383927905,0.004196116987085836,0.0208752193097815
+5,5,"How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",DIRECT,True,-0.02408339374270737,-0.004978310358779464,0.015896908951002035
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.04280549323894982,-0.01872209949624245,-0.0028251905452404136
+7,7,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,-0.06366016914019779,-0.020854675901247968,-0.023679866446488382
+8,8,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.07414454157013134,-0.010484372429933553,-0.034164238876421935
+9,9,"What is your rating of Kamala Harris on a scale from 0 to 100, where 0 means the lowest and 100 means the highest?",DIRECT,True,-0.05513959994530775,0.019004941624823586,-0.015159297251598348
+10,10,"How much confidence do you have in the people running Congress: a great deal, only some, or hardly any?",DIRECT,True,-0.056670009583277406,-0.0015304096379696527,-0.016689706889568

@@ -1,0 +1,47 @@
+{
+ "persona_assignments_llm_raw": {
+  "race": "white",
+  "sex": "female",
+  "res16": "in a large city (over 250,000)",
+  "polviews": "liberal",
+  "spocc10": "retail trade",
+  "polnews": "once a day",
+  "year": "2024"
+ },
+ "persona_assignments_dropped": [
+  "spocc10=retail trade (not allowed)"
+ ],
+ "persona_assignment_rationale": "The persona is a 22 year old white female living in urban New York (large city), working in retail trade, highly progressive (liberal), and a regular news consumer (once a day). The survey year is 2024. Age is not directly available as a variable, so it is omitted.",
+ "forced_assignments": {},
+ "geography": {
+  "requested_year": 2024,
+  "requested_country": "United States",
+  "requested_continent": null,
+  "resolved_country_key": "united states",
+  "resolved_continent_key": null,
+  "target_longitude": null,
+  "target_latitude": null,
+  "snapped_O1_LONGITUDE": null,
+  "snapped_O2_LATITUDE": null,
+  "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+  "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+  "geography_conditioning_mode": "context_only",
+  "hard_conditioned_country": false
+ },
+ "initial_state": {
+  "race": "white",
+  "sex": "female",
+  "res16": "in a large city (over 250,000)",
+  "polviews": "liberal",
+  "polnews": "once a day",
+  "year": "2024"
+ },
+ "ideology_initial": -0.04023838803192821,
+ "timings_init": {
+  "load_polar_vectors": 0.04224658012390137,
+  "prep_persona_allowed": 0.015208005905151367,
+  "llm_persona_init": 1.5951220989227295,
+  "forced_assignments": 0.0008087158203125,
+  "ideology_init": 0.09320259094238281
+ }
+}

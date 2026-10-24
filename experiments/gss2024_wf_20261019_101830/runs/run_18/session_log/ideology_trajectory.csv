@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08446080162607085,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.03092910372659728,0.05353169789947357,0.05353169789947357
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.02980062707349208,0.0011284766531051982,0.054660174552578766
+3,3,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.0038559479557223717,0.03365657502921445,0.08831674958179322
+4,4,How important is it to you to be a Christian?,DIRECT,True,-0.002463287344739259,-0.006319235300461631,0.08199751428133159
+5,5,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,0.013529326398765766,0.015992613743505024,0.09799012802483661
+6,6,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,0.0017416491829380866,-0.01178767721582768,0.08620245080900894
+7,7,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.012624057967556416,0.01088240878461833,0.09708485959362727
+8,8,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.01296181711564338,0.00033775914808696454,0.09742261874171423
+9,9,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.05983332332902529,0.0468715062133819,0.14429412495509614
+10,10,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.07185864500107358,0.012025321672048297,0.15631944662714442

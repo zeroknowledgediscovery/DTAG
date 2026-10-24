@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.04023838803192821,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.0014894876886559572,0.041727875720584166,0.041727875720584166
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,-0.01350338664687295,-0.014992874335528907,0.02673500138505526
+3,3,"If someone in your community wrote a book against churches and religion, would you support removing that book from the library or not?",DIRECT,True,-0.017109621416681493,-0.003606234769808543,0.023128766615246717
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.013990435725874262,0.003119185690807231,0.026247952306053948
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.010152564763399676,0.0038378709624745863,0.030085823268528534
+6,6,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,0.05165415782201129,0.061806722585410964,0.0918925458539395
+7,7,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.032828371502188106,-0.018825786319823186,0.07306675953411632
+8,8,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.054201053984544834,0.021372682482356728,0.09443944201647304
+9,9,"Do you think that sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teenagers aged 14 to 16?",DIRECT,True,0.046051546840128306,-0.008149507144416528,0.08628993487205652
+10,10,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.036914815053526465,-0.009136731786601841,0.07715320308545467

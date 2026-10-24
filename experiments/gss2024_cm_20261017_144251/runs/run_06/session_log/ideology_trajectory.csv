@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.008405501216858947,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.005560491862623551,0.002845009354235396,0.002845009354235396
+2,2,"If a person in your community wrote a book against churches and religion, would you favor removing that book from the library or not?",DIRECT,True,-0.006039223110271221,-0.0004787312476476702,0.002366278106587726
+3,3,"How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.04378800731875199,-0.03774878420848077,-0.035382506101893044
+4,4,Do you agree or disagree with the statement that things would be better if people acted more like Americans?,DIRECT,True,-0.03994340340825414,0.0038446039104978458,-0.0315379021913952
+5,5,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,-0.030601190131518706,0.009342213276735435,-0.02219568891465976
+6,6,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.008694699264559668,0.02190649086695904,-0.00028919804770072104
+7,7,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,-0.00670506917551595,0.0019896300890437178,0.0017004320413429967
+8,8,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.009236636564890625,0.015941705740406577,0.01764213778174957
+9,9,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.00013965539324178454,-0.00937629195813241,0.008265845823617161
+10,10,Do you think a woman should be allowed to make decisions about her pregnancy if her own health is seriously endangered by it?,DIRECT,True,0.017239146678326992,0.017378802071568777,0.02564464789518594

@@ -1,0 +1,234 @@
+run,query_idx,action,variable,answer
+14,0,0,polnews,several times a day
+14,0,0,polviews,liberal
+14,0,0,race,white
+14,0,0,res16,"in a large city (over 250,000)"
+14,0,0,sex,female
+14,0,0,year,2024
+14,1,1,colath,"yes, allowed to teach"
+14,1,1,colcom,not fired
+14,1,1,colcomy,"yes, fired"
+14,1,1,colmslm,not allowed
+14,1,1,colrac,not allowed
+14,1,1,polnews,several times a day
+14,1,1,polviews,liberal
+14,1,1,race,white
+14,1,1,res16,"in a large city (over 250,000)"
+14,1,1,sex,female
+14,1,1,year,2024
+14,2,1,colath,"yes, allowed to teach"
+14,2,1,colcom,not fired
+14,2,1,colcomy,"yes, fired"
+14,2,1,colmslm,not allowed
+14,2,1,colrac,not allowed
+14,2,1,polnews,several times a day
+14,2,1,polviews,liberal
+14,2,1,race,white
+14,2,1,res16,"in a large city (over 250,000)"
+14,2,1,sex,female
+14,2,1,spkrac,"yes, allowed to speak"
+14,2,1,spkracy,not allowed
+14,2,1,year,2024
+14,3,1,colath,"yes, allowed to teach"
+14,3,1,colcom,not fired
+14,3,1,colcomy,"yes, fired"
+14,3,1,colmslm,not allowed
+14,3,1,colrac,not allowed
+14,3,1,polnews,several times a day
+14,3,1,polviews,liberal
+14,3,1,race,white
+14,3,1,relpersn,not religious at all
+14,3,1,res16,"in a large city (over 250,000)"
+14,3,1,sex,female
+14,3,1,spkrac,"yes, allowed to speak"
+14,3,1,spkracy,not allowed
+14,3,1,year,2024
+14,4,1,colath,"yes, allowed to teach"
+14,4,1,colcom,not fired
+14,4,1,colcomy,"yes, fired"
+14,4,1,colmslm,not allowed
+14,4,1,colrac,not allowed
+14,4,1,immjobs,disagree
+14,4,1,immjobs1,neither agree nor disagree
+14,4,1,immwlfare,disagree
+14,4,1,polnews,several times a day
+14,4,1,polviews,liberal
+14,4,1,race,white
+14,4,1,relpersn,not religious at all
+14,4,1,res16,"in a large city (over 250,000)"
+14,4,1,sex,female
+14,4,1,spkrac,"yes, allowed to speak"
+14,4,1,spkracy,not allowed
+14,4,1,year,2024
+14,5,1,bible,ancient book
+14,5,1,biblenv,ancient book
+14,5,1,biblev,inspired word
+14,5,1,colath,"yes, allowed to teach"
+14,5,1,colcom,not fired
+14,5,1,colcomy,"yes, fired"
+14,5,1,colmslm,not allowed
+14,5,1,colrac,not allowed
+14,5,1,god,no doubts
+14,5,1,immjobs,disagree
+14,5,1,immjobs1,neither agree nor disagree
+14,5,1,immwlfare,disagree
+14,5,1,polnews,several times a day
+14,5,1,polviews,liberal
+14,5,1,postlife,no
+14,5,1,postlifenv,yes
+14,5,1,postlifev,no
+14,5,1,pray,never
+14,5,1,race,white
+14,5,1,relpersn,not religious at all
+14,5,1,res16,"in a large city (over 250,000)"
+14,5,1,sex,female
+14,5,1,spkrac,"yes, allowed to speak"
+14,5,1,spkracy,not allowed
+14,5,1,year,2024
+14,6,1,bible,ancient book
+14,6,1,biblenv,ancient book
+14,6,1,biblev,inspired word
+14,6,1,colath,"yes, allowed to teach"
+14,6,1,colcom,not fired
+14,6,1,colcomy,"yes, fired"
+14,6,1,colmslm,not allowed
+14,6,1,colrac,not allowed
+14,6,1,god,no doubts
+14,6,1,immjobs,disagree
+14,6,1,immjobs1,neither agree nor disagree
+14,6,1,immwlfare,disagree
+14,6,1,polnews,several times a day
+14,6,1,polviews,liberal
+14,6,1,postlife,no
+14,6,1,postlifenv,yes
+14,6,1,postlifev,no
+14,6,1,pray,never
+14,6,1,race,white
+14,6,1,ratemaga,10.0
+14,6,1,relpersn,not religious at all
+14,6,1,res16,"in a large city (over 250,000)"
+14,6,1,sex,female
+14,6,1,spkrac,"yes, allowed to speak"
+14,6,1,spkracy,not allowed
+14,6,1,year,2024
+14,7,1,bible,ancient book
+14,7,1,biblenv,ancient book
+14,7,1,biblev,inspired word
+14,7,1,colath,"yes, allowed to teach"
+14,7,1,colcom,not fired
+14,7,1,colcomy,"yes, fired"
+14,7,1,colmslm,not allowed
+14,7,1,colrac,not allowed
+14,7,1,god,no doubts
+14,7,1,immjobs,disagree
+14,7,1,immjobs1,neither agree nor disagree
+14,7,1,immwlfare,disagree
+14,7,1,polnews,several times a day
+14,7,1,polviews,liberal
+14,7,1,postlife,no
+14,7,1,postlifenv,yes
+14,7,1,postlifev,no
+14,7,1,pray,never
+14,7,1,premarsx,wrong only sometimes
+14,7,1,race,white
+14,7,1,ratemaga,10.0
+14,7,1,relpersn,not religious at all
+14,7,1,res16,"in a large city (over 250,000)"
+14,7,1,sex,female
+14,7,1,spkrac,"yes, allowed to speak"
+14,7,1,spkracy,not allowed
+14,7,1,teensex,always wrong
+14,7,1,year,2024
+14,8,1,bible,ancient book
+14,8,1,biblenv,ancient book
+14,8,1,biblev,inspired word
+14,8,1,colath,"yes, allowed to teach"
+14,8,1,colcom,not fired
+14,8,1,colcomy,"yes, fired"
+14,8,1,colmslm,not allowed
+14,8,1,colrac,not allowed
+14,8,1,feovrwrk,disagree
+14,8,1,fepresch,disagree
+14,8,1,god,no doubts
+14,8,1,immjobs,disagree
+14,8,1,immjobs1,neither agree nor disagree
+14,8,1,immwlfare,disagree
+14,8,1,polnews,several times a day
+14,8,1,polviews,liberal
+14,8,1,postlife,no
+14,8,1,postlifenv,yes
+14,8,1,postlifev,no
+14,8,1,pray,never
+14,8,1,premarsx,wrong only sometimes
+14,8,1,race,white
+14,8,1,ratemaga,10.0
+14,8,1,relpersn,not religious at all
+14,8,1,res16,"in a large city (over 250,000)"
+14,8,1,sex,female
+14,8,1,spkrac,"yes, allowed to speak"
+14,8,1,spkracy,not allowed
+14,8,1,teensex,always wrong
+14,8,1,year,2024
+14,9,1,bible,ancient book
+14,9,1,biblenv,ancient book
+14,9,1,biblev,inspired word
+14,9,1,colath,"yes, allowed to teach"
+14,9,1,colcom,not fired
+14,9,1,colcomy,"yes, fired"
+14,9,1,colmslm,not allowed
+14,9,1,colrac,not allowed
+14,9,1,feovrwrk,disagree
+14,9,1,fepresch,disagree
+14,9,1,god,no doubts
+14,9,1,immjobs,disagree
+14,9,1,immjobs1,neither agree nor disagree
+14,9,1,immwlfare,disagree
+14,9,1,marhisp,neither favor nor oppose
+14,9,1,polnews,several times a day
+14,9,1,polviews,liberal
+14,9,1,postlife,no
+14,9,1,postlifenv,yes
+14,9,1,postlifev,no
+14,9,1,pray,never
+14,9,1,premarsx,wrong only sometimes
+14,9,1,race,white
+14,9,1,ratemaga,10.0
+14,9,1,relpersn,not religious at all
+14,9,1,res16,"in a large city (over 250,000)"
+14,9,1,sex,female
+14,9,1,spkrac,"yes, allowed to speak"
+14,9,1,spkracy,not allowed
+14,9,1,teensex,always wrong
+14,9,1,year,2024
+14,10,1,bible,ancient book
+14,10,1,biblenv,ancient book
+14,10,1,biblev,inspired word
+14,10,1,colath,"yes, allowed to teach"
+14,10,1,colcom,not fired
+14,10,1,colcomy,"yes, fired"
+14,10,1,colmslm,not allowed
+14,10,1,colrac,not allowed
+14,10,1,feovrwrk,disagree
+14,10,1,fepresch,disagree
+14,10,1,god,no doubts
+14,10,1,immjobs,disagree
+14,10,1,immjobs1,neither agree nor disagree
+14,10,1,immwlfare,disagree
+14,10,1,marhisp,neither favor nor oppose
+14,10,1,polnews,several times a day
+14,10,1,polviews,liberal
+14,10,1,postlife,no
+14,10,1,postlifenv,yes
+14,10,1,postlifev,no
+14,10,1,pray,never
+14,10,1,premarsx,wrong only sometimes
+14,10,1,race,white
+14,10,1,ratemaga,10.0
+14,10,1,relactiv,never
+14,10,1,relpersn,not religious at all
+14,10,1,res16,"in a large city (over 250,000)"
+14,10,1,sex,female
+14,10,1,spkrac,"yes, allowed to speak"
+14,10,1,spkracy,not allowed
+14,10,1,teensex,always wrong
+14,10,1,year,2024

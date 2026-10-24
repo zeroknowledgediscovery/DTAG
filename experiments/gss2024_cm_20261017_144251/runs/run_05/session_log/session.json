@@ -1,0 +1,1719 @@
+{
+ "export_schema": "dtag-session-export/1",
+ "exported_at": "2026-10-17T18:47:48+00:00",
+ "dtag": {
+  "version": "0.2.0.dev1",
+  "git_commit": "ed5b834ae2a35afa75b7596b91ae585095e5dabd",
+  "native_runtime": "bundled_persistent"
+ },
+ "session_id": "bc6df44466684752b7d939b55f99d077",
+ "created_at": "2026-10-17T18:46:55+00:00",
+ "history": {
+  "since": "2026-10-17T18:46:55+00:00",
+  "resets": 0,
+  "note": "Questions and state changes since the session was created or last reset."
+ },
+ "profile": {
+  "name": "gss2024_cm",
+  "source": "configured",
+  "description": "Native pooled GSS 2024; conservative rural male persona.",
+  "family": "gss",
+  "model_key": "gss/gss_2024",
+  "model_label": "GSS 2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "persona": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative",
+  "country": "United States",
+  "continent": "",
+  "year": 2024,
+  "date": null,
+  "za": null,
+  "polar_set": "gss_default",
+  "ideology": true,
+  "base_profile": null,
+  "run": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "seed": 638299366,
+   "state_keep": 500,
+   "semantic_fallback": "update_state",
+   "resp_mode": "draw",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "semantic_embedding_model": "text-embedding-3-small",
+   "timing": true,
+   "require_polar_vectors": true
+  },
+  "temporal": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024"
+  },
+  "warnings": [
+   "Country is contextual only for this model."
+  ]
+ },
+ "model": {
+  "key": "gss/gss_2024",
+  "release": "v0.2.1",
+  "sha256": "00879d10a99f59bff97f01e653e25dc65293aadc61b9f15e94d5f1e4b2b3dabf",
+  "archive": "gss/gss_2024.tar.zst",
+  "archive_bytes": 11787960,
+  "features": 811,
+  "usable_trees": 811
+ },
+ "map": {
+  "key": "gss/gss_2024_map.csv",
+  "family": "gss",
+  "available": true,
+  "rows": 813,
+  "columns": [
+   "variable",
+   "question_text",
+   "question_text_filled",
+   "source",
+   "source_year",
+   "codebook_page",
+   "codebook_source",
+   "map_provenance"
+  ],
+  "provenance_counts": {
+   "YEAR_SPECIFIC": 158,
+   "YEAR_CODEBOOK": 654,
+   "NATIVE_NAME": 1
+  },
+  "has_fallback_provenance": false
+ },
+ "persona": {
+  "base": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative",
+  "full_text": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative\nCountry context: United States\nSurvey year: 2024"
+ },
+ "geography": {
+  "requested": {
+   "country": "United States",
+   "continent": ""
+  },
+  "resolved": {
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country": "united states",
+   "resolved_continent": null,
+   "conditioning_mode": "survey_context_only",
+   "conditioned_variables": {},
+   "target_coordinates": null,
+   "context_text": {
+    "country": true,
+    "continent": false,
+    "note": "Country/continent are also added to the persona text given to the LLM; only conditioned_variables constrain the native LSM."
+   },
+   "warnings": [
+    "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned."
+   ]
+  }
+ },
+ "time": {
+  "requested": {
+   "year": 2024,
+   "date": null,
+   "za": null
+  },
+  "resolved": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024",
+   "conditioned_variables": {},
+   "warnings": [],
+   "note": "Time selects the GSS survey-wave model; no year variable is hard-conditioned."
+  }
+ },
+ "config": {
+  "k": 50,
+  "prefilter": 200,
+  "min_map_score": 1.0,
+  "semantic_fallback": "update_state",
+  "semantic_k": 6,
+  "semantic_prefilter": 80,
+  "semantic_min_confidence": 0.35,
+  "semantic_embedding_model": "text-embedding-3-small",
+  "semantic_resp_mode": "max",
+  "openai_model": "gpt-4.1-mini",
+  "max_assign": 50,
+  "assign_prefilter": 500,
+  "resp_mode": "draw",
+  "seed": 638299366,
+  "state_keep": 500,
+  "year": 2024,
+  "country": "United States",
+  "continent": "",
+  "no_ideology": false,
+  "require_polar_vectors": true,
+  "timing": true
+ },
+ "random_seed": 638299366,
+ "response_mode": "draw",
+ "semantic_fallback": "update_state",
+ "llm": {
+  "backend": "openai",
+  "openai_model": "gpt-4.1-mini",
+  "mock": false,
+  "note": null
+ },
+ "initialization": {
+  "persona": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative\nCountry context: United States\nSurvey year: 2024",
+  "persona_base": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative",
+  "config": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_fallback": "update_state",
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "semantic_embedding_model": "text-embedding-3-small",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "resp_mode": "draw",
+   "seed": 638299366,
+   "state_keep": 500,
+   "year": 2024,
+   "country": "United States",
+   "continent": "",
+   "no_ideology": false,
+   "require_polar_vectors": true,
+   "timing": true
+  },
+  "initial_state": {
+   "region": "south",
+   "race": "white",
+   "sex": "male",
+   "spanself": "have been able to do the interview easily in english",
+   "wrkstat": "working full time",
+   "whatslf2": "other (agriculture, construction, service, government, etc.)",
+   "vetyears": "yes, more than 4 years",
+   "polviews": "conservative",
+   "polnewsfrom": "newspapers (in print or access via internet)",
+   "polnews": "once a day"
+  },
+  "current_state": {
+   "region": "south",
+   "race": "white",
+   "sex": "male",
+   "spanself": "have been able to do the interview easily in english",
+   "wrkstat": "working full time",
+   "whatslf2": "other (agriculture, construction, service, government, etc.)",
+   "vetyears": "yes, more than 4 years",
+   "polviews": "conservative",
+   "polnewsfrom": "newspapers (in print or access via internet)",
+   "polnews": "once a day",
+   "colmslm": "not allowed",
+   "colath": "not allowed",
+   "colcomy": "not fired",
+   "colcom": "yes, fired",
+   "spkrac": "not allowed",
+   "spkracy": "yes, allowed to speak",
+   "libracy": "remove",
+   "librac": "not remove",
+   "colrac": "not allowed",
+   "spkmslmy": "not allowed",
+   "spkmslm": "not allowed",
+   "belikeus": "neither agree nor disagree",
+   "relpersn": "slightly religious",
+   "premarsx": "not wrong at all",
+   "teensex": "always wrong",
+   "sprtprsn": "very spiritual",
+   "homosex": "wrong only sometimes",
+   "natheal": "about right",
+   "natchld": "too little"
+  },
+  "question_count": 10,
+  "persona_assignment_rationale": "The persona is a 45-year-old white male from rural Alabama working in farming, a veteran, conservative, and regular news consumer. Variables chosen reflect geographic region (south), race (white), sex (male), number of children (2, inferred as plural children), English fluency (assumed easy), employment status (working full time), occupation sector (other, agriculture-related), veteran status (more than 4 years), political ideology (conservative), news source (newspapers), and frequency of news consumption (once a day). These variables directly correspond to the persona details and allowed response options.",
+  "persona_assignments_llm_raw": {
+   "region": "south",
+   "race": "white",
+   "sex": "male",
+   "childs": "2",
+   "spanself": "have been able to do the interview easily in english",
+   "wrkstat": "working full time",
+   "whatslf2": "other (agriculture, construction, service, government, etc.)",
+   "vetyears": "yes, more than 4 years",
+   "polviews": "conservative",
+   "polnewsfrom": "newspapers (in print or access via internet)",
+   "polnews": "once a day"
+  },
+  "persona_assignments_dropped": [
+   "childs=2 (not allowed)"
+  ],
+  "forced_assignments": {},
+  "geography": {
+   "requested_year": 2024,
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country_key": "united states",
+   "resolved_continent_key": null,
+   "target_longitude": null,
+   "target_latitude": null,
+   "snapped_O1_LONGITUDE": null,
+   "snapped_O2_LATITUDE": null,
+   "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_conditioning_mode": "context_only",
+   "hard_conditioned_country": false
+  },
+  "ideology_enabled": true,
+  "ideology_disable_reason": "",
+  "ideology_initial": -0.008487225944149676,
+  "ideology_series": [
+   [
+    0,
+    -0.008487225944149676
+   ],
+   [
+    1,
+    0.0746294544028486
+   ],
+   [
+    2,
+    0.07917036584362008
+   ],
+   [
+    3,
+    0.08513387482513271
+   ],
+   [
+    4,
+    0.08897085104663054
+   ],
+   [
+    5,
+    0.08234021762052125
+   ],
+   [
+    6,
+    0.06508363593184664
+   ],
+   [
+    7,
+    0.08638051619192438
+   ],
+   [
+    8,
+    0.08890713771537019
+   ],
+   [
+    9,
+    0.09759804146655099
+   ],
+   [
+    10,
+    0.08399957769621413
+   ]
+  ],
+  "timings_init": {
+   "load_polar_vectors": 0.04751133918762207,
+   "prep_persona_allowed": 0.033228158950805664,
+   "llm_persona_init": 2.471576452255249,
+   "forced_assignments": 0.0008108615875244141,
+   "ideology_init": 0.06355452537536621
+  }
+ },
+ "init_timings": {
+  "model_ready": 1.3113021850585938e-05,
+  "model_was_resident": 1.0,
+  "context": 0.00012612342834472656,
+  "load_polar_vectors": 0.04751133918762207,
+  "prep_persona_allowed": 0.033228158950805664,
+  "llm_persona_init": 2.471576452255249,
+  "forced_assignments": 0.0008108615875244141,
+  "ideology_init": 0.06355452537536621,
+  "total": 2.6039180755615234
+ },
+ "ideology": {
+  "enabled": true,
+  "initial": -0.008487225944149676,
+  "current": 0.08399957769621413,
+  "change_from_initial": 0.09248680364036381,
+  "disable_reason": null,
+  "polar_set": "gss_default",
+  "convention": "I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR); native LSM qdistance; L/R are the columns of the registered polar-vector file.",
+  "poles": {
+   "file": "gss_2024_polar_vectors.csv",
+   "wave_specific": true,
+   "items": 27,
+   "dropped": [],
+   "not_in_model": []
+  },
+  "trajectory": [
+   {
+    "step": 0,
+    "ideology": -0.008487225944149676,
+    "delta": null,
+    "question": null,
+    "selected_variables": [],
+    "anchors": {},
+    "mapping": "INITIAL"
+   },
+   {
+    "step": 1,
+    "ideology": 0.0746294544028486,
+    "delta": 0.08311668034699828,
+    "question": "Do you think a person like this should be allowed to teach in a college or university?",
+    "selected_variables": [
+     "colrac",
+     "colmslm",
+     "colath",
+     "colcomy",
+     "colcom"
+    ],
+    "anchors": {
+     "colrac": "not allowed",
+     "colmslm": "not allowed",
+     "colath": "not allowed",
+     "colcomy": "not fired",
+     "colcom": "yes, fired"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 2,
+    "ideology": 0.07917036584362008,
+    "delta": 0.0045409114407714835,
+    "question": "Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?",
+    "selected_variables": [
+     "spkrac",
+     "spkracy",
+     "libracy",
+     "librac",
+     "colrac"
+    ],
+    "anchors": {
+     "spkrac": "not allowed",
+     "spkracy": "yes, allowed to speak",
+     "libracy": "remove",
+     "librac": "not remove",
+     "colrac": "not allowed"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 3,
+    "ideology": 0.08513387482513271,
+    "delta": 0.005963508981512627,
+    "question": "Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?",
+    "selected_variables": [
+     "spkmslmy",
+     "spkmslm"
+    ],
+    "anchors": {
+     "spkmslmy": "not allowed",
+     "spkmslm": "not allowed"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 4,
+    "ideology": 0.08897085104663054,
+    "delta": 0.003836976221497826,
+    "question": "Do you agree or disagree with the statement that things would be better if people acted more like Americans?",
+    "selected_variables": [
+     "belikeus"
+    ],
+    "anchors": {
+     "belikeus": "neither agree nor disagree"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 5,
+    "ideology": 0.08234021762052125,
+    "delta": -0.006630633426109284,
+    "question": "How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",
+    "selected_variables": [
+     "relpersn"
+    ],
+    "anchors": {
+     "relpersn": "slightly religious"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 6,
+    "ideology": 0.06508363593184664,
+    "delta": -0.01725658168867461,
+    "question": "Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+    "selected_variables": [
+     "premarsx",
+     "teensex"
+    ],
+    "anchors": {
+     "premarsx": "not wrong at all",
+     "teensex": "always wrong"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 7,
+    "ideology": 0.08638051619192438,
+    "delta": 0.02129688026007774,
+    "question": "How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+    "selected_variables": [
+     "sprtprsn"
+    ],
+    "anchors": {
+     "sprtprsn": "very spiritual"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 8,
+    "ideology": 0.08890713771537019,
+    "delta": 0.0025266215234458073,
+    "question": "Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+    "selected_variables": [
+     "homosex"
+    ],
+    "anchors": {
+     "homosex": "wrong only sometimes"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 9,
+    "ideology": 0.09759804146655099,
+    "delta": 0.008690903751180798,
+    "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+    "selected_variables": [
+     "natheal"
+    ],
+    "anchors": {
+     "natheal": "about right"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 10,
+    "ideology": 0.08399957769621413,
+    "delta": -0.013598463770336855,
+    "question": "Do you think that the amount spent on assistance for childcare is about right, too much, or too little?",
+    "selected_variables": [
+     "natchld"
+    ],
+    "anchors": {
+     "natchld": "too little"
+    },
+    "mapping": "DIRECT"
+   }
+  ]
+ },
+ "questions": [
+  {
+   "query_idx": 1,
+   "question": "Do you think a person like this should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "answer": "I believe that someone who holds views claiming Black people are genetically inferior should not be allowed to teach in a college or university. Such beliefs are harmful and have no place in an educational setting where students deserve respect and accurate information. Allowing that kind of person to teach could promote division and misinformation. I think colleges need to maintain a standard that protects all students from discriminatory ideas.",
+   "selected_variables": [
+    "colrac",
+    "colmslm",
+    "colath",
+    "colcomy",
+    "colcom"
+   ],
+   "selection_rationale": "The user question asks about whether a person like 'this' should be allowed to teach in a college or university. The candidate variables colrac, colmslm, colath, colcomy, and colcom directly ask about allowing a person with specific controversial beliefs or identities (racist, Muslim, atheist, Communist) to teach in a college or university. These are the most semantically direct matches to the user question.",
+   "display_rationale": "The user question asks about whether a person like 'this' should be allowed to teach in a college or university. The candidate variables colrac, colmslm, colath, colcomy, and colcom directly ask about allowing a person with specific controversial beliefs or identities (racist, Muslim, atheist, Communist) to teach in a college or university. These are the most semantically direct matches to the user question.",
+   "anchors": [
+    {
+     "variable": "colrac",
+     "survey_question": "(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.647925,
+      "yes, allowed to teach": 0.352075
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colmslm",
+     "survey_question": "Should such a person be allowed to teach in a college or university, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.718491,
+      "yes, allowed to teach": 0.281509
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colath",
+     "survey_question": "(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "yes, allowed to teach": 0.633028,
+      "not allowed": 0.366972
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colcomy",
+     "survey_question": "(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?",
+     "response": "not fired",
+     "distribution": {
+      "not fired": 0.620488,
+      "yes, fired": 0.379512
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colcom",
+     "survey_question": "(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?",
+     "response": "yes, fired",
+     "distribution": {
+      "not fired": 0.640697,
+      "yes, fired": 0.359303
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "colrac": "not allowed",
+    "colmslm": "not allowed",
+    "colath": "not allowed",
+    "colcomy": "not fired",
+    "colcom": "yes, fired"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 15,
+   "ideology": {
+    "enabled": true,
+    "before": -0.008487225944149676,
+    "after": 0.0746294544028486,
+    "delta": 0.08311668034699828,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.015124320983886719,
+    "llm_select": 1.506253719329834,
+    "native_predict": 0.0010900497436523438,
+    "draw": 0.0006101131439208984,
+    "state_update": 1.8835067749023438e-05,
+    "ideology": 0.06019473075866699,
+    "llm_final": 1.0957036018371582,
+    "total": 2.6790530681610107
+   },
+   "lexical_candidates": 62,
+   "targeted": false
+  },
+  {
+   "query_idx": 2,
+   "question": "Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?",
+   "question_source": "ideology_push",
+   "answer": "I don’t think someone who claims that Black people are genetically inferior should be allowed to make a speech in my community. Such ideas are harmful and go against the values of respect and equality that I believe in. Allowing that kind of speech could create division and hurt people around me, especially my kids. I want my community to be a place where everyone is treated fairly and with dignity.",
+   "selected_variables": [
+    "spkrac",
+    "spkracy",
+    "libracy",
+    "librac",
+    "colrac"
+   ],
+   "selection_rationale": "The user question directly matches the survey variables spkrac and spkracy, which ask about allowing a person who believes Black people are genetically inferior to make a speech in the community. Complementary variables include libracy and librac, which ask about removing such a person's book from the public library, and colrac, which asks about allowing such a person to teach in a college or university. These variables collectively cover the core issue of freedom of speech and expression related to the belief stated in the question.",
+   "display_rationale": "The user question directly matches the survey variables spkrac and spkracy, which ask about allowing a person who believes Black people are genetically inferior to make a speech in the community. Complementary variables include libracy and librac, which ask about removing such a person's book from the public library, and colrac, which asks about allowing such a person to teach in a college or university. These variables collectively cover the core issue of freedom of speech and expression related to the belief stated in the question.",
+   "anchors": [
+    {
+     "variable": "spkrac",
+     "survey_question": "Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.628788,
+      "yes, allowed to speak": 0.371212
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "spkracy",
+     "survey_question": "Or consider a person who believes that Black people are genetically inferior… If such a person wanted to make a speech in your community, should this person be allowed to speak, or not?",
+     "response": "yes, allowed to speak",
+     "distribution": {
+      "not allowed": 0.594198,
+      "yes, allowed to speak": 0.405802
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "libracy",
+     "survey_question": "(Or consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book this person wrote should be taken out of your public library, would you favor removing this boo",
+     "response": "remove",
+     "distribution": {
+      "not remove": 0.615959,
+      "remove": 0.384041
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "librac",
+     "survey_question": "(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?",
+     "response": "not remove",
+     "distribution": {
+      "not remove": 0.550816,
+      "remove": 0.449184
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "colrac",
+     "survey_question": "(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.909053,
+      "yes, allowed to teach": 0.090947
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "spkrac": "not allowed",
+    "spkracy": "yes, allowed to speak",
+    "libracy": "remove",
+    "librac": "not remove",
+    "colrac": "not allowed"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 19,
+   "ideology": {
+    "enabled": true,
+    "before": 0.0746294544028486,
+    "after": 0.07917036584362008,
+    "delta": 0.0045409114407714835,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.01430964469909668,
+    "llm_select": 1.6036884784698486,
+    "native_predict": 0.0009531974792480469,
+    "draw": 0.0006017684936523438,
+    "state_update": 1.8835067749023438e-05,
+    "ideology": 0.054340362548828125,
+    "llm_final": 1.1693577766418457,
+    "total": 2.8433210849761963
+   },
+   "lexical_candidates": 138,
+   "targeted": false
+  },
+  {
+   "query_idx": 3,
+   "question": "Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?",
+   "question_source": "ideology_push",
+   "answer": "I don’t think someone who preaches hatred of the United States should be allowed to speak in my community. We have to protect our values and keep our neighborhoods safe from messages that promote division and hostility. Freedom of speech is important, but it shouldn’t come at the expense of encouraging hate or undermining our country.",
+   "selected_variables": [
+    "spkmslmy",
+    "spkmslm"
+   ],
+   "selection_rationale": "The user question directly matches the variables spkmslmy and spkmslm, which ask about allowing a Muslim religious leader or clergyman who preaches hatred of the United States to give a speech in the community. These are the most semantically direct matches to the user question.",
+   "display_rationale": "The user question directly matches the variables spkmslmy and spkmslm, which ask about allowing a Muslim religious leader or clergyman who preaches hatred of the United States to give a speech in the community. These are the most semantically direct matches to the user question.",
+   "anchors": [
+    {
+     "variable": "spkmslmy",
+     "survey_question": "Now consider a Islamic religious leader who preaches hatred of the United States. If such a person wanted to make a speech in your communit, should this person be allowed to speak, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.688732,
+      "yes, allowed to speak": 0.311268
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "spkmslm",
+     "survey_question": "Now consider a Muslim clergyman who preaches hatred of the United States. If such a person wanted to make a speech in your community preaching hatred of the United States, should he be allowed to speak, or not?",
+     "response": "not allowed",
+     "distribution": {
+      "not allowed": 0.875017,
+      "yes, allowed to speak": 0.124983
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 21,
+   "ideology": {
+    "enabled": true,
+    "before": 0.07917036584362008,
+    "after": 0.08513387482513271,
+    "delta": 0.005963508981512627,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.015410423278808594,
+    "llm_select": 1.3079731464385986,
+    "native_predict": 0.0009679794311523438,
+    "draw": 0.00044155120849609375,
+    "state_update": 1.239776611328125e-05,
+    "ideology": 0.05656313896179199,
+    "llm_final": 1.1162943840026855,
+    "total": 2.4977293014526367
+   },
+   "lexical_candidates": 87,
+   "targeted": false
+  },
+  {
+   "query_idx": 4,
+   "question": "Do you agree or disagree with the statement that things would be better if people acted more like Americans?",
+   "question_source": "ideology_push",
+   "answer": "I can see both sides of that statement, but I’m not sure I fully agree or disagree. There are definitely values I appreciate about Americans, like hard work and community spirit, especially where I live in rural Alabama. But I also think it’s important to respect different cultures and ways of doing things. So, I’d say I neither agree nor disagree that things would be better if everyone acted more like Americans.",
+   "selected_variables": [
+    "belikeus"
+   ],
+   "selection_rationale": "The user question directly matches the variable 'belikeus' which asks about agreement with the statement that things would be better if people were more like Americans. This is the most semantically direct and relevant variable for the user's question.",
+   "display_rationale": "The user question directly matches the variable 'belikeus' which asks about agreement with the statement that things would be better if people were more like Americans. This is the most semantically direct and relevant variable for the user's question.",
+   "anchors": [
+    {
+     "variable": "belikeus",
+     "survey_question": "agree better if people were more like americans",
+     "response": "neither agree nor disagree",
+     "distribution": {
+      "neither agree nor disagree": 0.39485539485539484,
+      "disagree": 0.27717027717027715,
+      "agree": 0.1504821504821505,
+      "strongly disagree": 0.10610910610910611,
+      "strongly agree": 0.07138307138307139
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "belikeus": "neither agree nor disagree"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 22,
+   "ideology": {
+    "enabled": true,
+    "before": 0.08513387482513271,
+    "after": 0.08897085104663054,
+    "delta": 0.003836976221497826,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.016144752502441406,
+    "llm_select": 1.1792426109313965,
+    "native_predict": 0.0010073184967041016,
+    "draw": 0.0003402233123779297,
+    "state_update": 1.4066696166992188e-05,
+    "ideology": 0.05940699577331543,
+    "llm_final": 1.071099042892456,
+    "total": 2.327300786972046
+   },
+   "lexical_candidates": 158,
+   "targeted": false
+  },
+  {
+   "query_idx": 5,
+   "question": "How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",
+   "question_source": "ideology_push",
+   "answer": "I would say I’m slightly religious. I believe in God and attend church occasionally, but I don’t follow every practice or engage deeply in religious activities. My faith is important to me, but it’s more of a personal thing rather than something I live by strictly every day.",
+   "selected_variables": [
+    "relpersn"
+   ],
+   "selection_rationale": "The user question directly matches the variable 'relpersn', which asks to what extent the respondent considers themselves a religious person with the same response options: very religious, moderately religious, slightly religious, or not religious at all. This is the most semantically direct match.",
+   "display_rationale": "The user question directly matches the variable 'relpersn', which asks to what extent the respondent considers themselves a religious person with the same response options: very religious, moderately religious, slightly religious, or not religious at all. This is the most semantically direct match.",
+   "anchors": [
+    {
+     "variable": "relpersn",
+     "survey_question": "To what extent do you consider yourself a religious person? Are you very religious, moderately religious, slightly religious, or not religious at all?",
+     "response": "slightly religious",
+     "distribution": {
+      "moderately religious": 0.318826,
+      "not religious at all": 0.283108,
+      "slightly religious": 0.24303,
+      "very religious": 0.155036
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "relpersn": "slightly religious"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 23,
+   "ideology": {
+    "enabled": true,
+    "before": 0.08897085104663054,
+    "after": 0.08234021762052125,
+    "delta": -0.006630633426109284,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.014974594116210938,
+    "llm_select": 1.2761759757995605,
+    "native_predict": 0.0009214878082275391,
+    "draw": 0.000278472900390625,
+    "state_update": 6.4373016357421875e-06,
+    "ideology": 0.055999755859375,
+    "llm_final": 0.9848594665527344,
+    "total": 2.3332667350769043
+   },
+   "lexical_candidates": 128,
+   "targeted": false
+  },
+  {
+   "query_idx": 6,
+   "question": "Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+   "question_source": "ideology_push",
+   "answer": "I don’t see sexual relations between a man and a woman before marriage as always wrong. For adults, I think it’s not wrong at all. However, when it comes to young teens, like 14 to 16 years old, I believe it is always wrong because they’re too young to fully understand the consequences. My values come from my upbringing and life experience, and I think there should be clear boundaries for younger people.",
+   "selected_variables": [
+    "premarsx",
+    "teensex"
+   ],
+   "selection_rationale": "The user question directly asks about opinions on sexual relations between a man and a woman before marriage, including the degree of wrongness. The variable 'premarsx' exactly matches this topic. Additionally, 'teensex' addresses sexual relations before marriage specifically for early teens, which is a relevant complementary variable given the age context often associated with premarital sex attitudes.",
+   "display_rationale": "The user question directly asks about opinions on sexual relations between a man and a woman before marriage, including the degree of wrongness. The variable 'premarsx' exactly matches this topic. Additionally, 'teensex' addresses sexual relations before marriage specifically for early teens, which is a relevant complementary variable given the age context often associated with premarital sex attitudes.",
+   "anchors": [
+    {
+     "variable": "premarsx",
+     "survey_question": "If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron",
+     "response": "not wrong at all",
+     "distribution": {
+      "not wrong at all": 0.769076,
+      "wrong only sometimes": 0.097257,
+      "always wrong": 0.09236,
+      "almost always wrong": 0.041307
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "teensex",
+     "survey_question": "What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+     "response": "always wrong",
+     "distribution": {
+      "always wrong": 0.4842204842204842,
+      "almost always wrong": 0.18652818652818653,
+      "wrong only sometimes": 0.17805017805017806,
+      "not wrong at all": 0.1512011512011512
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "premarsx": "not wrong at all",
+    "teensex": "always wrong"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 25,
+   "ideology": {
+    "enabled": true,
+    "before": 0.08234021762052125,
+    "after": 0.06508363593184664,
+    "delta": -0.01725658168867461,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.014392614364624023,
+    "llm_select": 1.2758896350860596,
+    "native_predict": 0.0008404254913330078,
+    "draw": 0.0003178119659423828,
+    "state_update": 7.62939453125e-06,
+    "ideology": 0.049001216888427734,
+    "llm_final": 1.3155200481414795,
+    "total": 2.6560120582580566
+   },
+   "lexical_candidates": 127,
+   "targeted": false
+  },
+  {
+   "query_idx": 7,
+   "question": "How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+   "question_source": "ideology_push",
+   "answer": "I consider myself very spiritual. My faith has always been a big part of my life, especially living out here in rural Alabama and raising my kids. It helps guide me through the challenges of farming and everyday life, and I find a lot of strength in it. Being a veteran, I’ve also relied on my spirituality to keep me grounded and focused.",
+   "selected_variables": [
+    "sprtprsn"
+   ],
+   "selection_rationale": "The variable 'sprtprsn' directly asks the extent to which a person considers themselves a spiritual person, with the same response options as the user question: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all. This is the most semantically direct match.",
+   "display_rationale": "The variable 'sprtprsn' directly asks the extent to which a person considers themselves a spiritual person, with the same response options as the user question: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all. This is the most semantically direct match.",
+   "anchors": [
+    {
+     "variable": "sprtprsn",
+     "survey_question": "To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+     "response": "very spiritual",
+     "distribution": {
+      "slightly spiritual": 0.48931248931248933,
+      "moderately spiritual": 0.24202624202624204,
+      "very spiritual": 0.1615001615001615,
+      "not spiritual at all": 0.10716110716110716
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "sprtprsn": "very spiritual"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 26,
+   "ideology": {
+    "enabled": true,
+    "before": 0.06508363593184664,
+    "after": 0.08638051619192438,
+    "delta": 0.02129688026007774,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.014912128448486328,
+    "llm_select": 1.138261318206787,
+    "native_predict": 0.0008020401000976562,
+    "draw": 0.0002384185791015625,
+    "state_update": 5.9604644775390625e-06,
+    "ideology": 0.05741453170776367,
+    "llm_final": 1.3277761936187744,
+    "total": 2.5394551753997803
+   },
+   "lexical_candidates": 123,
+   "targeted": false
+  },
+  {
+   "query_idx": 8,
+   "question": "Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+   "question_source": "ideology_push",
+   "answer": "I think sexual relations between two adults of the same sex are wrong only sometimes. While I hold traditional values and believe in marriage between a man and a woman, I also recognize that there are different circumstances and personal beliefs that affect how people view this issue. It's not something I see as always wrong, but there are situations where I feel it doesn't align with my values.",
+   "selected_variables": [
+    "homosex"
+   ],
+   "selection_rationale": "The user question directly matches the candidate variable 'homosex', which asks about opinions on sexual relations between two adults of the same sex being always wrong, almost always wrong, wrong only sometimes, or not wrong at all. This is a direct semantic match and the most relevant variable to select.",
+   "display_rationale": "The user question directly matches the candidate variable 'homosex', which asks about opinions on sexual relations between two adults of the same sex being always wrong, almost always wrong, wrong only sometimes, or not wrong at all. This is a direct semantic match and the most relevant variable to select.",
+   "anchors": [
+    {
+     "variable": "homosex",
+     "survey_question": "What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+     "response": "wrong only sometimes",
+     "distribution": {
+      "not wrong at all": 0.562434,
+      "always wrong": 0.309619,
+      "wrong only sometimes": 0.078404,
+      "almost always wrong": 0.049543
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "homosex": "wrong only sometimes"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 27,
+   "ideology": {
+    "enabled": true,
+    "before": 0.08638051619192438,
+    "after": 0.08890713771537019,
+    "delta": 0.0025266215234458073,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.014503717422485352,
+    "llm_select": 1.3925094604492188,
+    "native_predict": 0.0011179447174072266,
+    "draw": 0.0003437995910644531,
+    "state_update": 9.775161743164062e-06,
+    "ideology": 0.04931783676147461,
+    "llm_final": 1.115339756011963,
+    "total": 2.573211193084717
+   },
+   "lexical_candidates": 175,
+   "targeted": false
+  },
+  {
+   "query_idx": 9,
+   "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+   "question_source": "ideology_push",
+   "answer": "I think we are spending about the right amount on improving and protecting the nation's health. From where I stand, especially living in a rural area and dealing with the challenges that come with it, the current level of investment seems balanced. It's important to maintain good health services, but I don’t see the need for major increases right now. The system seems to be managing fairly well as it is.",
+   "selected_variables": [
+    "natheal"
+   ],
+   "selection_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending too much, too little, or about the right amount on improving and protecting the nation's health.",
+   "display_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending too much, too little, or about the right amount on improving and protecting the nation's health.",
+   "anchors": [
+    {
+     "variable": "natheal",
+     "survey_question": "(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health",
+     "response": "about right",
+     "distribution": {
+      "too little": 0.744689,
+      "about right": 0.178672,
+      "too much": 0.076639
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "natheal": "about right"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 28,
+   "ideology": {
+    "enabled": true,
+    "before": 0.08890713771537019,
+    "after": 0.09759804146655099,
+    "delta": 0.008690903751180798,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.014131546020507812,
+    "llm_select": 1.3169794082641602,
+    "native_predict": 0.0010051727294921875,
+    "draw": 0.0003380775451660156,
+    "state_update": 9.5367431640625e-06,
+    "ideology": 0.05973958969116211,
+    "llm_final": 1.1342155933380127,
+    "total": 2.5264804363250732
+   },
+   "lexical_candidates": 123,
+   "targeted": false
+  },
+  {
+   "query_idx": 10,
+   "question": "Do you think that the amount spent on assistance for childcare is about right, too much, or too little?",
+   "question_source": "ideology_push",
+   "answer": "I think we're spending too little on assistance for childcare. As a father and someone who works hard in farming, I know how important it is to have reliable, affordable childcare so parents can focus on their jobs. In rural areas like mine, options are limited, and more support would make a big difference for families trying to make ends meet. It’s something that deserves more attention and funding.",
+   "selected_variables": [
+    "natchld"
+   ],
+   "selection_rationale": "The user question directly asks about the amount spent on assistance for childcare, which matches exactly with the candidate variable 'natchld' that asks about spending on assistance for childcare.",
+   "display_rationale": "The user question directly asks about the amount spent on assistance for childcare, which matches exactly with the candidate variable 'natchld' that asks about spending on assistance for childcare.",
+   "anchors": [
+    {
+     "variable": "natchld",
+     "survey_question": "(... are we spending too much, too little, or about the right amount on) Assistance for childcare",
+     "response": "too little",
+     "distribution": {
+      "too little": 0.6184203815796184,
+      "about right": 0.29478270521729477,
+      "too much": 0.0867969132030868
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "natchld": "too little"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 29,
+   "ideology": {
+    "enabled": true,
+    "before": 0.09759804146655099,
+    "after": 0.08399957769621413,
+    "delta": -0.013598463770336855,
+    "initial": -0.008487225944149676
+   },
+   "timings": {
+    "prefilters": 0.014068841934204102,
+    "llm_select": 1.0459084510803223,
+    "native_predict": 0.0008945465087890625,
+    "draw": 0.00027632713317871094,
+    "state_update": 2.5272369384765625e-05,
+    "ideology": 0.05397224426269531,
+    "llm_final": 1.259904384613037,
+    "total": 2.3751301765441895
+   },
+   "lexical_candidates": 114,
+   "targeted": false
+  }
+ ],
+ "records_cli_schema": [
+  {
+   "query_idx": 1,
+   "question": "Do you think a person like this should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "colrac",
+    "colmslm",
+    "colath",
+    "colcomy",
+    "colcom"
+   ],
+   "selection_rationale": "The user question asks about whether a person like 'this' should be allowed to teach in a college or university. The candidate variables colrac, colmslm, colath, colcomy, and colcom directly ask about allowing a person with specific controversial beliefs or identities (racist, Muslim, atheist, Communist) to teach in a college or university. These are the most semantically direct matches to the user question.",
+   "responses": {
+    "colrac": "not allowed",
+    "colmslm": "not allowed",
+    "colath": "not allowed",
+    "colcomy": "not fired",
+    "colcom": "yes, fired"
+   },
+   "state_updates": {
+    "colrac": "not allowed",
+    "colmslm": "not allowed",
+    "colath": "not allowed",
+    "colcomy": "not fired",
+    "colcom": "yes, fired"
+   },
+   "ideology_index": 0.0746294544028486,
+   "answer": "I believe that someone who holds views claiming Black people are genetically inferior should not be allowed to teach in a college or university. Such beliefs are harmful and have no place in an educational setting where students deserve respect and accurate information. Allowing that kind of person to teach could promote division and misinformation. I think colleges need to maintain a standard that protects all students from discriminatory ideas.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.015124320983886719,
+    "llm_select": 1.506253719329834,
+    "native_predict": 0.0010900497436523438,
+    "draw": 0.0006101131439208984,
+    "state_update": 1.8835067749023438e-05,
+    "ideology": 0.06019473075866699,
+    "llm_final": 1.0957036018371582,
+    "total": 2.6790530681610107
+   }
+  },
+  {
+   "query_idx": 2,
+   "question": "Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "spkrac",
+    "spkracy",
+    "libracy",
+    "librac",
+    "colrac"
+   ],
+   "selection_rationale": "The user question directly matches the survey variables spkrac and spkracy, which ask about allowing a person who believes Black people are genetically inferior to make a speech in the community. Complementary variables include libracy and librac, which ask about removing such a person's book from the public library, and colrac, which asks about allowing such a person to teach in a college or university. These variables collectively cover the core issue of freedom of speech and expression related to the belief stated in the question.",
+   "responses": {
+    "spkrac": "not allowed",
+    "spkracy": "yes, allowed to speak",
+    "libracy": "remove",
+    "librac": "not remove",
+    "colrac": "not allowed"
+   },
+   "state_updates": {
+    "spkrac": "not allowed",
+    "spkracy": "yes, allowed to speak",
+    "libracy": "remove",
+    "librac": "not remove",
+    "colrac": "not allowed"
+   },
+   "ideology_index": 0.07917036584362008,
+   "answer": "I don’t think someone who claims that Black people are genetically inferior should be allowed to make a speech in my community. Such ideas are harmful and go against the values of respect and equality that I believe in. Allowing that kind of speech could create division and hurt people around me, especially my kids. I want my community to be a place where everyone is treated fairly and with dignity.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.01430964469909668,
+    "llm_select": 1.6036884784698486,
+    "native_predict": 0.0009531974792480469,
+    "draw": 0.0006017684936523438,
+    "state_update": 1.8835067749023438e-05,
+    "ideology": 0.054340362548828125,
+    "llm_final": 1.1693577766418457,
+    "total": 2.8433210849761963
+   }
+  },
+  {
+   "query_idx": 3,
+   "question": "Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "spkmslmy",
+    "spkmslm"
+   ],
+   "selection_rationale": "The user question directly matches the variables spkmslmy and spkmslm, which ask about allowing a Muslim religious leader or clergyman who preaches hatred of the United States to give a speech in the community. These are the most semantically direct matches to the user question.",
+   "responses": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "state_updates": {
+    "spkmslmy": "not allowed",
+    "spkmslm": "not allowed"
+   },
+   "ideology_index": 0.08513387482513271,
+   "answer": "I don’t think someone who preaches hatred of the United States should be allowed to speak in my community. We have to protect our values and keep our neighborhoods safe from messages that promote division and hostility. Freedom of speech is important, but it shouldn’t come at the expense of encouraging hate or undermining our country.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.015410423278808594,
+    "llm_select": 1.3079731464385986,
+    "native_predict": 0.0009679794311523438,
+    "draw": 0.00044155120849609375,
+    "state_update": 1.239776611328125e-05,
+    "ideology": 0.05656313896179199,
+    "llm_final": 1.1162943840026855,
+    "total": 2.4977293014526367
+   }
+  },
+  {
+   "query_idx": 4,
+   "question": "Do you agree or disagree with the statement that things would be better if people acted more like Americans?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "belikeus"
+   ],
+   "selection_rationale": "The user question directly matches the variable 'belikeus' which asks about agreement with the statement that things would be better if people were more like Americans. This is the most semantically direct and relevant variable for the user's question.",
+   "responses": {
+    "belikeus": "neither agree nor disagree"
+   },
+   "state_updates": {
+    "belikeus": "neither agree nor disagree"
+   },
+   "ideology_index": 0.08897085104663054,
+   "answer": "I can see both sides of that statement, but I’m not sure I fully agree or disagree. There are definitely values I appreciate about Americans, like hard work and community spirit, especially where I live in rural Alabama. But I also think it’s important to respect different cultures and ways of doing things. So, I’d say I neither agree nor disagree that things would be better if everyone acted more like Americans.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.016144752502441406,
+    "llm_select": 1.1792426109313965,
+    "native_predict": 0.0010073184967041016,
+    "draw": 0.0003402233123779297,
+    "state_update": 1.4066696166992188e-05,
+    "ideology": 0.05940699577331543,
+    "llm_final": 1.071099042892456,
+    "total": 2.327300786972046
+   }
+  },
+  {
+   "query_idx": 5,
+   "question": "How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "relpersn"
+   ],
+   "selection_rationale": "The user question directly matches the variable 'relpersn', which asks to what extent the respondent considers themselves a religious person with the same response options: very religious, moderately religious, slightly religious, or not religious at all. This is the most semantically direct match.",
+   "responses": {
+    "relpersn": "slightly religious"
+   },
+   "state_updates": {
+    "relpersn": "slightly religious"
+   },
+   "ideology_index": 0.08234021762052125,
+   "answer": "I would say I’m slightly religious. I believe in God and attend church occasionally, but I don’t follow every practice or engage deeply in religious activities. My faith is important to me, but it’s more of a personal thing rather than something I live by strictly every day.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014974594116210938,
+    "llm_select": 1.2761759757995605,
+    "native_predict": 0.0009214878082275391,
+    "draw": 0.000278472900390625,
+    "state_update": 6.4373016357421875e-06,
+    "ideology": 0.055999755859375,
+    "llm_final": 0.9848594665527344,
+    "total": 2.3332667350769043
+   }
+  },
+  {
+   "query_idx": 6,
+   "question": "Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "premarsx",
+    "teensex"
+   ],
+   "selection_rationale": "The user question directly asks about opinions on sexual relations between a man and a woman before marriage, including the degree of wrongness. The variable 'premarsx' exactly matches this topic. Additionally, 'teensex' addresses sexual relations before marriage specifically for early teens, which is a relevant complementary variable given the age context often associated with premarital sex attitudes.",
+   "responses": {
+    "premarsx": "not wrong at all",
+    "teensex": "always wrong"
+   },
+   "state_updates": {
+    "premarsx": "not wrong at all",
+    "teensex": "always wrong"
+   },
+   "ideology_index": 0.06508363593184664,
+   "answer": "I don’t see sexual relations between a man and a woman before marriage as always wrong. For adults, I think it’s not wrong at all. However, when it comes to young teens, like 14 to 16 years old, I believe it is always wrong because they’re too young to fully understand the consequences. My values come from my upbringing and life experience, and I think there should be clear boundaries for younger people.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014392614364624023,
+    "llm_select": 1.2758896350860596,
+    "native_predict": 0.0008404254913330078,
+    "draw": 0.0003178119659423828,
+    "state_update": 7.62939453125e-06,
+    "ideology": 0.049001216888427734,
+    "llm_final": 1.3155200481414795,
+    "total": 2.6560120582580566
+   }
+  },
+  {
+   "query_idx": 7,
+   "question": "How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "sprtprsn"
+   ],
+   "selection_rationale": "The variable 'sprtprsn' directly asks the extent to which a person considers themselves a spiritual person, with the same response options as the user question: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all. This is the most semantically direct match.",
+   "responses": {
+    "sprtprsn": "very spiritual"
+   },
+   "state_updates": {
+    "sprtprsn": "very spiritual"
+   },
+   "ideology_index": 0.08638051619192438,
+   "answer": "I consider myself very spiritual. My faith has always been a big part of my life, especially living out here in rural Alabama and raising my kids. It helps guide me through the challenges of farming and everyday life, and I find a lot of strength in it. Being a veteran, I’ve also relied on my spirituality to keep me grounded and focused.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014912128448486328,
+    "llm_select": 1.138261318206787,
+    "native_predict": 0.0008020401000976562,
+    "draw": 0.0002384185791015625,
+    "state_update": 5.9604644775390625e-06,
+    "ideology": 0.05741453170776367,
+    "llm_final": 1.3277761936187744,
+    "total": 2.5394551753997803
+   }
+  },
+  {
+   "query_idx": 8,
+   "question": "Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "homosex"
+   ],
+   "selection_rationale": "The user question directly matches the candidate variable 'homosex', which asks about opinions on sexual relations between two adults of the same sex being always wrong, almost always wrong, wrong only sometimes, or not wrong at all. This is a direct semantic match and the most relevant variable to select.",
+   "responses": {
+    "homosex": "wrong only sometimes"
+   },
+   "state_updates": {
+    "homosex": "wrong only sometimes"
+   },
+   "ideology_index": 0.08890713771537019,
+   "answer": "I think sexual relations between two adults of the same sex are wrong only sometimes. While I hold traditional values and believe in marriage between a man and a woman, I also recognize that there are different circumstances and personal beliefs that affect how people view this issue. It's not something I see as always wrong, but there are situations where I feel it doesn't align with my values.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014503717422485352,
+    "llm_select": 1.3925094604492188,
+    "native_predict": 0.0011179447174072266,
+    "draw": 0.0003437995910644531,
+    "state_update": 9.775161743164062e-06,
+    "ideology": 0.04931783676147461,
+    "llm_final": 1.115339756011963,
+    "total": 2.573211193084717
+   }
+  },
+  {
+   "query_idx": 9,
+   "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "natheal"
+   ],
+   "selection_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending too much, too little, or about the right amount on improving and protecting the nation's health.",
+   "responses": {
+    "natheal": "about right"
+   },
+   "state_updates": {
+    "natheal": "about right"
+   },
+   "ideology_index": 0.09759804146655099,
+   "answer": "I think we are spending about the right amount on improving and protecting the nation's health. From where I stand, especially living in a rural area and dealing with the challenges that come with it, the current level of investment seems balanced. It's important to maintain good health services, but I don’t see the need for major increases right now. The system seems to be managing fairly well as it is.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014131546020507812,
+    "llm_select": 1.3169794082641602,
+    "native_predict": 0.0010051727294921875,
+    "draw": 0.0003380775451660156,
+    "state_update": 9.5367431640625e-06,
+    "ideology": 0.05973958969116211,
+    "llm_final": 1.1342155933380127,
+    "total": 2.5264804363250732
+   }
+  },
+  {
+   "query_idx": 10,
+   "question": "Do you think that the amount spent on assistance for childcare is about right, too much, or too little?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "natchld"
+   ],
+   "selection_rationale": "The user question directly asks about the amount spent on assistance for childcare, which matches exactly with the candidate variable 'natchld' that asks about spending on assistance for childcare.",
+   "responses": {
+    "natchld": "too little"
+   },
+   "state_updates": {
+    "natchld": "too little"
+   },
+   "ideology_index": 0.08399957769621413,
+   "answer": "I think we're spending too little on assistance for childcare. As a father and someone who works hard in farming, I know how important it is to have reliable, affordable childcare so parents can focus on their jobs. In rural areas like mine, options are limited, and more support would make a big difference for families trying to make ends meet. It’s something that deserves more attention and funding.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.014068841934204102,
+    "llm_select": 1.0459084510803223,
+    "native_predict": 0.0008945465087890625,
+    "draw": 0.00027632713317871094,
+    "state_update": 2.5272369384765625e-05,
+    "ideology": 0.05397224426269531,
+    "llm_final": 1.259904384613037,
+    "total": 2.3751301765441895
+   }
+  }
+ ],
+ "final_state": {
+  "region": "south",
+  "race": "white",
+  "sex": "male",
+  "spanself": "have been able to do the interview easily in english",
+  "wrkstat": "working full time",
+  "whatslf2": "other (agriculture, construction, service, government, etc.)",
+  "vetyears": "yes, more than 4 years",
+  "polviews": "conservative",
+  "polnewsfrom": "newspapers (in print or access via internet)",
+  "polnews": "once a day",
+  "colmslm": "not allowed",
+  "colath": "not allowed",
+  "colcomy": "not fired",
+  "colcom": "yes, fired",
+  "spkrac": "not allowed",
+  "spkracy": "yes, allowed to speak",
+  "libracy": "remove",
+  "librac": "not remove",
+  "colrac": "not allowed",
+  "spkmslmy": "not allowed",
+  "spkmslm": "not allowed",
+  "belikeus": "neither agree nor disagree",
+  "relpersn": "slightly religious",
+  "premarsx": "not wrong at all",
+  "teensex": "always wrong",
+  "sprtprsn": "very spiritual",
+  "homosex": "wrong only sometimes",
+  "natheal": "about right",
+  "natchld": "too little"
+ },
+ "label": "run05"
+}

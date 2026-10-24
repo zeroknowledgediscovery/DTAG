@@ -1,0 +1,62 @@
+run,query_idx,action,variable,answer
+6,0,0,polnews,several times a day
+6,0,0,polviews,liberal
+6,0,0,race,white
+6,0,0,region,northeast
+6,0,0,res16,"in a large city (over 250,000)"
+6,0,0,sex,female
+6,0,0,wrkstat,working part time
+6,1,1,polnews,several times a day
+6,1,1,polviews,liberal
+6,1,1,premarsx,not wrong at all
+6,1,1,race,white
+6,1,1,region,northeast
+6,1,1,res16,"in a large city (over 250,000)"
+6,1,1,sex,female
+6,1,1,wrkstat,working part time
+6,2,1,colath,not allowed
+6,2,1,polnews,several times a day
+6,2,1,polviews,liberal
+6,2,1,premarsx,not wrong at all
+6,2,1,race,white
+6,2,1,region,northeast
+6,2,1,res16,"in a large city (over 250,000)"
+6,2,1,sex,female
+6,2,1,wrkstat,working part time
+6,3,1,colath,not allowed
+6,3,1,polnews,several times a day
+6,3,1,polviews,liberal
+6,3,1,premarsx,not wrong at all
+6,3,1,race,white
+6,3,1,region,northeast
+6,3,1,res16,"in a large city (over 250,000)"
+6,3,1,sex,female
+6,3,1,spkmslm,not allowed
+6,3,1,spkmslmy,not allowed
+6,3,1,wrkstat,working part time
+6,4,1,colath,not allowed
+6,4,1,natheal,too little
+6,4,1,polnews,several times a day
+6,4,1,polviews,liberal
+6,4,1,premarsx,not wrong at all
+6,4,1,race,white
+6,4,1,region,northeast
+6,4,1,res16,"in a large city (over 250,000)"
+6,4,1,sex,female
+6,4,1,spkmslm,not allowed
+6,4,1,spkmslmy,not allowed
+6,4,1,wrkstat,working part time
+6,5,1,colath,not allowed
+6,5,1,marsame,strongly agree
+6,5,1,marsamey,neither agree nor disagree
+6,5,1,natheal,too little
+6,5,1,polnews,several times a day
+6,5,1,polviews,liberal
+6,5,1,premarsx,not wrong at all
+6,5,1,race,white
+6,5,1,region,northeast
+6,5,1,res16,"in a large city (over 250,000)"
+6,5,1,sex,female
+6,5,1,spkmslm,not allowed
+6,5,1,spkmslmy,not allowed
+6,5,1,wrkstat,working part time

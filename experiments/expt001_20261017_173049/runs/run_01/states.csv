@@ -1,0 +1,73 @@
+run,query_idx,action,variable,answer
+1,0,0,polnews,once a day
+1,0,0,polviews,liberal
+1,0,0,race,white
+1,0,0,res16,"in a large city (over 250,000)"
+1,0,0,sex,female
+1,0,0,whatsp2,retail trade
+1,0,0,wrkstat,working full time
+1,0,0,year,2024
+1,1,1,polnews,once a day
+1,1,1,polviews,liberal
+1,1,1,premarsx,not wrong at all
+1,1,1,race,white
+1,1,1,res16,"in a large city (over 250,000)"
+1,1,1,sex,female
+1,1,1,teensex,always wrong
+1,1,1,whatsp2,retail trade
+1,1,1,wrkstat,working full time
+1,1,1,year,2024
+1,2,1,homosex,not wrong at all
+1,2,1,polnews,once a day
+1,2,1,polviews,liberal
+1,2,1,premarsx,not wrong at all
+1,2,1,race,white
+1,2,1,res16,"in a large city (over 250,000)"
+1,2,1,sex,female
+1,2,1,teensex,always wrong
+1,2,1,whatsp2,retail trade
+1,2,1,wrkstat,working full time
+1,2,1,year,2024
+1,3,1,homosex,not wrong at all
+1,3,1,marsame,strongly agree
+1,3,1,marsamey,strongly agree
+1,3,1,polnews,once a day
+1,3,1,polviews,liberal
+1,3,1,premarsx,not wrong at all
+1,3,1,race,white
+1,3,1,res16,"in a large city (over 250,000)"
+1,3,1,sex,female
+1,3,1,teensex,always wrong
+1,3,1,whatsp2,retail trade
+1,3,1,wrkstat,working full time
+1,3,1,year,2024
+1,4,1,colath,"yes, allowed to teach"
+1,4,1,homosex,not wrong at all
+1,4,1,marsame,strongly agree
+1,4,1,marsamey,strongly agree
+1,4,1,polnews,once a day
+1,4,1,polviews,liberal
+1,4,1,premarsx,not wrong at all
+1,4,1,race,white
+1,4,1,res16,"in a large city (over 250,000)"
+1,4,1,sex,female
+1,4,1,teensex,always wrong
+1,4,1,whatsp2,retail trade
+1,4,1,wrkstat,working full time
+1,4,1,year,2024
+1,5,1,colath,"yes, allowed to teach"
+1,5,1,homosex,not wrong at all
+1,5,1,marsame,strongly agree
+1,5,1,marsamey,strongly agree
+1,5,1,natheal,too little
+1,5,1,nathealy,too little
+1,5,1,polnews,once a day
+1,5,1,polviews,liberal
+1,5,1,premarsx,not wrong at all
+1,5,1,race,white
+1,5,1,res16,"in a large city (over 250,000)"
+1,5,1,sex,female
+1,5,1,teensex,always wrong
+1,5,1,whatsp2,retail trade
+1,5,1,wrkstat,working full time
+1,5,1,year,2024

@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08446080162607085,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.059346648826807076,0.025114152799263774,0.025114152799263774
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.042095468111490536,0.01725118071531654,0.042365333514580314
+3,3,"If a Muslim clergyman wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",DIRECT,True,0.007877958588943707,0.04997342670043424,0.09233876021501455
+4,4,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.053190784077081735,0.04531282548813803,0.13765158570315258
+5,5,How important is it to you to be a Christian?,DIRECT,True,0.05929208239850736,0.006101298321425627,0.1437528840245782
+6,6,"If someone in your community said a book written by a person who believes that Black people are genetically inferior should be taken out of your public library, would you support removing it or not?",DIRECT,True,0.06877666730109998,0.009484584902592616,0.15323746892717083
+7,7,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,0.06393372577483475,-0.004842941526265229,0.14839452740090558
+8,8,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.0641877795363125,0.00025405376147774605,0.14864858116238333
+9,9,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.07902812173898989,0.014840342202677395,0.16348892336506074
+10,10,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,0.0855577680502735,0.00652964631128361,0.17001856967634435

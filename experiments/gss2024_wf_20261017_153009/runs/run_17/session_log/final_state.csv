@@ -1,0 +1,30 @@
+variable,value,survey_question
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,female,CODE RESPONDENT'S SEX
+res16,"in a large city (over 250,000)",Which of these categories comes closest to the type of place you were living in when you were 16 years old?
+polviews,liberal,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+polnews,several times a day,how often use media to get political news
+wrkstat,working full time,"Last week were you working full time, part time, going to school, keeping house, or what?"
+whatsp2,retail trade,classify place where spouse works
+year,2024,gss year for this respondent
+colmslm,not allowed,"Should such a person be allowed to teach in a college or university, or not?"
+colath,"yes, allowed to teach","(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?"
+colcomy,not fired,"(Now,we would like to ask you some questions about a self-identified Communist...) Suppose this person is teaching in a college. Should this person be fired, or not?"
+colcom,not fired,"(Now,we would like to ask you some questions about a man who admits he is a Communist…) Suppose he is teaching in a college. Should he be fired, or not?"
+spkracy,not allowed,"Or consider a person who believes that Black people are genetically inferior… If such a person wanted to make a speech in your community, should this person be allowed to speak, or not?"
+spkrac,"yes, allowed to speak","Or consider a person who believes that Black people are genetically inferior. If such a person wanted to make a speech in your community claiming that Black people are inferior, should he be allowed to speak, or not?"
+librac,not remove,"(consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book he wrote should be taken out of your public library, would you favor removing this book, or not?"
+colrac,not allowed,"(consider a person who believes that Black people are genetically inferior…) Should such a person be allowed to teach in a college or university, or not?"
+libracy,not remove,"(Or consider a person who believes that Black people are genetically inferior…) If some people in your community suggested that a book this person wrote should be taken out of your public library, would you favor removing this boo"
+libathy,not remove,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book this person wrote against churches and religion be removed from the library. Would you favor removing, or not?"
+libath,remove,"(For instance, somebody who is against all churches and religion…) If some people in your community suggested that a book he wrote against churches and religion should be removed from the library. Would you favor removing this book, or not?"
+discaff,somewhat likely,"What do you think the chances are these days that a white person won't get a job or promotion while an equally or less qualified black person gets one instead? Is this very likely, somewhat likely, or not very likely to happen these days?"
+affrmact,not strongly opposes,favor preference in hiring Black people
+fehire,agree,"Now I'm going to read several statements. As I read each one, please tell me whether you strongly agree, agree, neither agree nor disagree, Because of past discrimination, employers should make special efforts to hire and promote qualified women."
+conjudge,a great deal,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) U.S. Supreme Court"
+premarsx,not wrong at all,"If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron"
+homosex,not wrong at all,"What about sexual relations between two adults of the same sex--do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?"
+natheal,too little,"(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health"
+nathealy,too little,"(... are we spending too much, too little, or about the right amount on) Health"
+ratechall224,0.0,Rating of Kamala Harris
+conlegis,only some,"(I am going to name some institutions in this country. As far as the people running these institutions are concerned, would you say you have a great deal of confidence, only some confidence, or hardly any confidence at all in them?) Congress"

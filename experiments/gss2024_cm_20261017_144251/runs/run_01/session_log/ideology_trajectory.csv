@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.009420669833847987,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.015818186650549012,-0.006397516816701025,-0.006397516816701025
+2,2,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,0.0007897133514094252,0.01660790000195844,0.010210383185257412
+3,3,Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?,DIRECT,True,0.01336642160247161,0.012576708251062186,0.022787091436319597
+4,4,Do you agree or disagree that homosexual couples should have the right to marry?,DIRECT,True,0.042584401451764564,0.029217979849292953,0.05200507128561255
+5,5,Do you agree or disagree with the statement that things would be better if people acted more like Americans?,DIRECT,True,0.047313023824694836,0.004728622372930272,0.05673369365854282
+6,6,"Do you think sexual relations between a man and a woman before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,0.021802389242259388,-0.025510634582435448,0.031223059076107375
+7,7,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.012684028919342725,-0.009118360322916663,0.02210469875319071
+8,8,"Do you think that the differences in jobs, income, and housing between Black people and White people are mostly because of people's own actions or choices?",DIRECT,True,0.021454007809514397,0.008769978890171672,0.030874677643362384
+9,9,Can you think of any situation where you would approve of a policeman hitting an adult man?,DIRECT,True,-0.029123470815098376,-0.05057747862461277,-0.01970280098125039
+10,10,Did you try to escape from custody?,DIRECT,True,-0.03493760568746893,-0.005814134872370556,-0.025516935853620946

@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "name": "CM_5_plus",
+  "created_at": "2026-10-17T13:13:34",
+  "source_session": "86da285e0ed84ab589351b9a55f69889",
+  "respondent": {
+    "spec": {
+      "name": "gss2024_cm",
+      "source": "configured",
+      "description": "Native pooled GSS 2024; conservative rural male persona.",
+      "family": "gss",
+      "model_key": "gss/gss_2024",
+      "model_label": "GSS 2024",
+      "map_key": "gss/gss_2024_map.csv",
+      "persona": "45 year old white male with children in rural Alabama, regular news consumer, working in farming, veteran, conservative",
+      "country": "United States",
+      "continent": "",
+      "year": 2024,
+      "date": null,
+      "za": null,
+      "polar_set": "gss_default",
+      "ideology": true,
+      "base_profile": null,
+      "run": {
+        "k": 50,
+        "prefilter": 200,
+        "min_map_score": 1.0,
+        "semantic_k": 6,
+        "semantic_prefilter": 80,
+        "semantic_min_confidence": 0.35,
+        "max_assign": 50,
+        "assign_prefilter": 500,
+        "seed": 1000,
+        "state_keep": 500,
+        "semantic_fallback": "update_state",
+        "resp_mode": "draw",
+        "semantic_resp_mode": "max",
+        "openai_model": "gpt-4.1-mini",
+        "semantic_embedding_model": "text-embedding-3-small",
+        "timing": true,
+        "require_polar_vectors": true
+      },
+      "temporal": {
+        "family": "gss",
+        "mode": "wave_model_selection",
+        "requested_year": 2024,
+        "selected_model": "gss/gss_2024",
+        "wave": "GSS 2024"
+      },
+      "warnings": [
+        "Country is contextual only for this model."
+      ]
+    }
+  },
+  "actions": [
+    {
+      "auto_push": "up",
+      "steps": 5,
+      "mode": "realistic",
+      "include_pole_items": false
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.007557070540966767,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.007557070540966767
+      },
+      {
+        "step": 1,
+        "ideology": 0.03239871434423793
+      },
+      {
+        "step": 2,
+        "ideology": 0.05230826683544088
+      },
+      {
+        "step": 3,
+        "ideology": 0.060878232316998244
+      },
+      {
+        "step": 4,
+        "ideology": 0.06873158470361111
+      },
+      {
+        "step": 5,
+        "ideology": 0.058915484622904
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think a person like this should be allowed to teach at a college or university?",
+        "selected_variables": [
+          "colrac",
+          "colmslm",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Should a person who says that Black people are genetically inferior be allowed to make a speech claiming that in your community, or should they not be allowed to speak?",
+        "selected_variables": [
+          "spkrac",
+          "spkracy"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "Do you agree or disagree that same-sex couples should have the right to marry?",
+        "selected_variables": [
+          "marsamey",
+          "marsame"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",
+        "selected_variables": [
+          "spkmslmy",
+          "spkmslm"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "If someone wanted to give a speech in your community opposing churches and religion, should they be allowed to speak or not?",
+        "selected_variables": [
+          "spkathy",
+          "spkath"
+        ]
+      }
+    ]
+  }
+}

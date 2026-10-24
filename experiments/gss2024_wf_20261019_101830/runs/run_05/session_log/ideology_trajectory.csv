@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.0919437779324568,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.017921288152559795,0.074022489779897,0.074022489779897
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.010555372074612069,0.0073659160779477265,0.08138840585784472
+3,3,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.023135354785919295,0.033690726860531366,0.1150791327183761
+4,4,How important is it to you to be a Christian?,DIRECT,True,0.03629292669368742,0.013157571907768128,0.12823670462614423
+5,5,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,0.0391878907877357,0.002894964094048276,0.1311316687201925
+6,6,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,0.028506016241871535,-0.010681874545864164,0.12044979417432833
+7,7,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.03930323563086013,0.010797219388988592,0.13124701356331692
+8,8,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate the Republican Party?",DIRECT,True,0.028506681644718,-0.010796553986142127,0.12045045957717479
+9,9,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.037678865765810164,0.009172184121092164,0.12962264369826695
+10,10,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,0.02770916429259152,-0.009969701473218646,0.11965294222504831

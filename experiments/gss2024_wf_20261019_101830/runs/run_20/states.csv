@@ -1,0 +1,215 @@
+run,query_idx,action,variable,answer
+20,0,0,polnews,once a day
+20,0,0,polviews,liberal
+20,0,0,race,white
+20,0,0,reg16,northeast
+20,0,0,res16,"in a large city (over 250,000)"
+20,0,0,sex,female
+20,0,0,wrkstat,working part time
+20,1,1,colath,"yes, allowed to teach"
+20,1,1,colcom,not fired
+20,1,1,colcomy,not fired
+20,1,1,colmslm,not allowed
+20,1,1,colrac,"yes, allowed to teach"
+20,1,1,polnews,once a day
+20,1,1,polviews,liberal
+20,1,1,race,white
+20,1,1,reg16,northeast
+20,1,1,res16,"in a large city (over 250,000)"
+20,1,1,sex,female
+20,1,1,wrkstat,working part time
+20,2,1,colath,"yes, allowed to teach"
+20,2,1,colcom,not fired
+20,2,1,colcomy,not fired
+20,2,1,colmslm,not allowed
+20,2,1,colrac,"yes, allowed to teach"
+20,2,1,polnews,once a day
+20,2,1,polviews,liberal
+20,2,1,race,white
+20,2,1,reg16,northeast
+20,2,1,relpersn,moderately religious
+20,2,1,res16,"in a large city (over 250,000)"
+20,2,1,sex,female
+20,2,1,wrkstat,working part time
+20,3,1,colath,"yes, allowed to teach"
+20,3,1,colcom,not fired
+20,3,1,colcomy,not fired
+20,3,1,colmslm,not allowed
+20,3,1,colrac,"yes, allowed to teach"
+20,3,1,libmslm,remove
+20,3,1,libmslmy,not remove
+20,3,1,polnews,once a day
+20,3,1,polviews,liberal
+20,3,1,race,white
+20,3,1,reg16,northeast
+20,3,1,relpersn,moderately religious
+20,3,1,res16,"in a large city (over 250,000)"
+20,3,1,sex,female
+20,3,1,spkmslm,not allowed
+20,3,1,spkmslmy,not allowed
+20,3,1,wrkstat,working part time
+20,4,1,amchrstn,very important
+20,4,1,colath,"yes, allowed to teach"
+20,4,1,colcom,not fired
+20,4,1,colcomy,not fired
+20,4,1,colmslm,not allowed
+20,4,1,colrac,"yes, allowed to teach"
+20,4,1,libmslm,remove
+20,4,1,libmslmy,not remove
+20,4,1,polnews,once a day
+20,4,1,polviews,liberal
+20,4,1,race,white
+20,4,1,reg16,northeast
+20,4,1,relpersn,moderately religious
+20,4,1,res16,"in a large city (over 250,000)"
+20,4,1,sex,female
+20,4,1,spkmslm,not allowed
+20,4,1,spkmslmy,not allowed
+20,4,1,wrkstat,working part time
+20,5,1,amchrstn,very important
+20,5,1,colath,"yes, allowed to teach"
+20,5,1,colcom,not fired
+20,5,1,colcomy,not fired
+20,5,1,colmslm,not allowed
+20,5,1,colrac,"yes, allowed to teach"
+20,5,1,immjobs,agree
+20,5,1,immjobs1,disagree strongly
+20,5,1,immwlfare,neither agree nor disagree
+20,5,1,libmslm,remove
+20,5,1,libmslmy,not remove
+20,5,1,polnews,once a day
+20,5,1,polviews,liberal
+20,5,1,race,white
+20,5,1,reg16,northeast
+20,5,1,relpersn,moderately religious
+20,5,1,res16,"in a large city (over 250,000)"
+20,5,1,sex,female
+20,5,1,spkmslm,not allowed
+20,5,1,spkmslmy,not allowed
+20,5,1,wrkstat,working part time
+20,6,1,amchrstn,very important
+20,6,1,colath,"yes, allowed to teach"
+20,6,1,colcom,not fired
+20,6,1,colcomy,not fired
+20,6,1,colmslm,not allowed
+20,6,1,colrac,"yes, allowed to teach"
+20,6,1,immjobs,agree
+20,6,1,immjobs1,disagree strongly
+20,6,1,immwlfare,neither agree nor disagree
+20,6,1,libmslm,remove
+20,6,1,libmslmy,not remove
+20,6,1,polnews,once a day
+20,6,1,polviews,liberal
+20,6,1,race,white
+20,6,1,reg16,northeast
+20,6,1,religinf,disagree
+20,6,1,relpersn,moderately religious
+20,6,1,res16,"in a large city (over 250,000)"
+20,6,1,sex,female
+20,6,1,spkmslm,not allowed
+20,6,1,spkmslmy,not allowed
+20,6,1,wrkstat,working part time
+20,7,1,amchrstn,very important
+20,7,1,colath,"yes, allowed to teach"
+20,7,1,colcom,not fired
+20,7,1,colcomy,not fired
+20,7,1,colmslm,not allowed
+20,7,1,colrac,"yes, allowed to teach"
+20,7,1,immjobs,agree
+20,7,1,immjobs1,disagree strongly
+20,7,1,immwlfare,neither agree nor disagree
+20,7,1,libmslm,remove
+20,7,1,libmslmy,not remove
+20,7,1,marhisp,neither favor nor oppose
+20,7,1,polnews,once a day
+20,7,1,polviews,liberal
+20,7,1,race,white
+20,7,1,reg16,northeast
+20,7,1,religinf,disagree
+20,7,1,relpersn,moderately religious
+20,7,1,res16,"in a large city (over 250,000)"
+20,7,1,sex,female
+20,7,1,spkmslm,not allowed
+20,7,1,spkmslmy,not allowed
+20,7,1,wrkstat,working part time
+20,8,1,amchrstn,very important
+20,8,1,colath,"yes, allowed to teach"
+20,8,1,colcom,not fired
+20,8,1,colcomy,not fired
+20,8,1,colmslm,not allowed
+20,8,1,colrac,"yes, allowed to teach"
+20,8,1,immjobs,agree
+20,8,1,immjobs1,disagree strongly
+20,8,1,immwlfare,neither agree nor disagree
+20,8,1,libmslm,remove
+20,8,1,libmslmy,not remove
+20,8,1,librac,not remove
+20,8,1,marhisp,neither favor nor oppose
+20,8,1,polnews,once a day
+20,8,1,polviews,liberal
+20,8,1,race,white
+20,8,1,reg16,northeast
+20,8,1,religinf,disagree
+20,8,1,relpersn,moderately religious
+20,8,1,res16,"in a large city (over 250,000)"
+20,8,1,sex,female
+20,8,1,spkmslm,not allowed
+20,8,1,spkmslmy,not allowed
+20,8,1,spkrac,"yes, allowed to speak"
+20,8,1,spkracy,"yes, allowed to speak"
+20,8,1,wrkstat,working part time
+20,9,1,amchrstn,very important
+20,9,1,colath,"yes, allowed to teach"
+20,9,1,colcom,not fired
+20,9,1,colcomy,not fired
+20,9,1,colmslm,not allowed
+20,9,1,colrac,"yes, allowed to teach"
+20,9,1,immjobs,agree
+20,9,1,immjobs1,disagree strongly
+20,9,1,immwlfare,neither agree nor disagree
+20,9,1,libmslm,remove
+20,9,1,libmslmy,not remove
+20,9,1,librac,not remove
+20,9,1,marhisp,neither favor nor oppose
+20,9,1,polnews,once a day
+20,9,1,polviews,liberal
+20,9,1,race,white
+20,9,1,ratechall124,60.0
+20,9,1,reg16,northeast
+20,9,1,religinf,disagree
+20,9,1,relpersn,moderately religious
+20,9,1,res16,"in a large city (over 250,000)"
+20,9,1,sex,female
+20,9,1,spkmslm,not allowed
+20,9,1,spkmslmy,not allowed
+20,9,1,spkrac,"yes, allowed to speak"
+20,9,1,spkracy,"yes, allowed to speak"
+20,9,1,wrkstat,working part time
+20,10,1,amchrstn,very important
+20,10,1,colath,"yes, allowed to teach"
+20,10,1,colcom,not fired
+20,10,1,colcomy,not fired
+20,10,1,colmslm,not allowed
+20,10,1,colrac,"yes, allowed to teach"
+20,10,1,immjobs,agree
+20,10,1,immjobs1,disagree strongly
+20,10,1,immwlfare,neither agree nor disagree
+20,10,1,libmslm,remove
+20,10,1,libmslmy,not remove
+20,10,1,librac,not remove
+20,10,1,marhisp,neither favor nor oppose
+20,10,1,polescap,no
+20,10,1,polnews,once a day
+20,10,1,polviews,liberal
+20,10,1,race,white
+20,10,1,ratechall124,60.0
+20,10,1,reg16,northeast
+20,10,1,religinf,disagree
+20,10,1,relpersn,moderately religious
+20,10,1,res16,"in a large city (over 250,000)"
+20,10,1,sex,female
+20,10,1,spkmslm,not allowed
+20,10,1,spkmslmy,not allowed
+20,10,1,spkrac,"yes, allowed to speak"
+20,10,1,spkracy,"yes, allowed to speak"
+20,10,1,wrkstat,working part time

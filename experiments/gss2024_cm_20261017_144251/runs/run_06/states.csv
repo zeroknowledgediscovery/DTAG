@@ -1,0 +1,215 @@
+run,query_idx,action,variable,answer
+6,0,0,childsinhh,2
+6,0,0,polnews,once a day
+6,0,0,polviews,conservative
+6,0,0,race,white
+6,0,0,region,south
+6,0,0,sex,male
+6,0,0,vetyears,"yes, more than 4 years"
+6,0,0,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,1,1,childsinhh,2
+6,1,1,colath,"yes, allowed to teach"
+6,1,1,colcom,"yes, fired"
+6,1,1,colcomy,not fired
+6,1,1,colmslm,"yes, allowed to teach"
+6,1,1,colrac,not allowed
+6,1,1,polnews,once a day
+6,1,1,polviews,conservative
+6,1,1,race,white
+6,1,1,region,south
+6,1,1,sex,male
+6,1,1,vetyears,"yes, more than 4 years"
+6,1,1,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,2,1,childsinhh,2
+6,2,1,colath,"yes, allowed to teach"
+6,2,1,colcom,"yes, fired"
+6,2,1,colcomy,not fired
+6,2,1,colmslm,"yes, allowed to teach"
+6,2,1,colrac,not allowed
+6,2,1,libath,not remove
+6,2,1,libathy,not remove
+6,2,1,polnews,once a day
+6,2,1,polviews,conservative
+6,2,1,race,white
+6,2,1,region,south
+6,2,1,sex,male
+6,2,1,vetyears,"yes, more than 4 years"
+6,2,1,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,3,1,childsinhh,2
+6,3,1,colath,"yes, allowed to teach"
+6,3,1,colcom,"yes, fired"
+6,3,1,colcomy,not fired
+6,3,1,colmslm,"yes, allowed to teach"
+6,3,1,colrac,not allowed
+6,3,1,libath,not remove
+6,3,1,libathy,not remove
+6,3,1,polnews,once a day
+6,3,1,polviews,conservative
+6,3,1,race,white
+6,3,1,region,south
+6,3,1,relpersn,not religious at all
+6,3,1,sex,male
+6,3,1,vetyears,"yes, more than 4 years"
+6,3,1,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,4,1,belikeus,neither agree nor disagree
+6,4,1,childsinhh,2
+6,4,1,colath,"yes, allowed to teach"
+6,4,1,colcom,"yes, fired"
+6,4,1,colcomy,not fired
+6,4,1,colmslm,"yes, allowed to teach"
+6,4,1,colrac,not allowed
+6,4,1,libath,not remove
+6,4,1,libathy,not remove
+6,4,1,polnews,once a day
+6,4,1,polviews,conservative
+6,4,1,race,white
+6,4,1,region,south
+6,4,1,relpersn,not religious at all
+6,4,1,sex,male
+6,4,1,vetyears,"yes, more than 4 years"
+6,4,1,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,5,1,belikeus,neither agree nor disagree
+6,5,1,childsinhh,2
+6,5,1,colath,"yes, allowed to teach"
+6,5,1,colcom,"yes, fired"
+6,5,1,colcomy,not fired
+6,5,1,colmslm,"yes, allowed to teach"
+6,5,1,colrac,not allowed
+6,5,1,libath,not remove
+6,5,1,libathy,not remove
+6,5,1,librac,not remove
+6,5,1,libracy,not remove
+6,5,1,polnews,once a day
+6,5,1,polviews,conservative
+6,5,1,race,white
+6,5,1,region,south
+6,5,1,relpersn,not religious at all
+6,5,1,sex,male
+6,5,1,spkrac,not allowed
+6,5,1,spkracy,not allowed
+6,5,1,vetyears,"yes, more than 4 years"
+6,5,1,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,6,2,belikeus,neither agree nor disagree
+6,6,2,childsinhh,2
+6,6,2,colath,"yes, allowed to teach"
+6,6,2,colcom,"yes, fired"
+6,6,2,colcomy,not fired
+6,6,2,colmslm,"yes, allowed to teach"
+6,6,2,colrac,not allowed
+6,6,2,libath,not remove
+6,6,2,libathy,not remove
+6,6,2,librac,not remove
+6,6,2,libracy,not remove
+6,6,2,polnews,once a day
+6,6,2,polviews,conservative
+6,6,2,race,white
+6,6,2,region,south
+6,6,2,relpersn,not religious at all
+6,6,2,sex,male
+6,6,2,spkrac,not allowed
+6,6,2,spkracy,not allowed
+6,6,2,sprtprsn,very spiritual
+6,6,2,vetyears,"yes, more than 4 years"
+6,6,2,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,7,2,belikeus,neither agree nor disagree
+6,7,2,childsinhh,2
+6,7,2,colath,"yes, allowed to teach"
+6,7,2,colcom,"yes, fired"
+6,7,2,colcomy,not fired
+6,7,2,colmslm,"yes, allowed to teach"
+6,7,2,colrac,not allowed
+6,7,2,homosex,wrong only sometimes
+6,7,2,libath,not remove
+6,7,2,libathy,not remove
+6,7,2,librac,not remove
+6,7,2,libracy,not remove
+6,7,2,polnews,once a day
+6,7,2,polviews,conservative
+6,7,2,race,white
+6,7,2,region,south
+6,7,2,relpersn,not religious at all
+6,7,2,sex,male
+6,7,2,spkrac,not allowed
+6,7,2,spkracy,not allowed
+6,7,2,sprtprsn,very spiritual
+6,7,2,vetyears,"yes, more than 4 years"
+6,7,2,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,8,2,belikeus,neither agree nor disagree
+6,8,2,childsinhh,2
+6,8,2,colath,"yes, allowed to teach"
+6,8,2,colcom,"yes, fired"
+6,8,2,colcomy,not fired
+6,8,2,colmslm,"yes, allowed to teach"
+6,8,2,colrac,not allowed
+6,8,2,homosex,wrong only sometimes
+6,8,2,libath,not remove
+6,8,2,libathy,not remove
+6,8,2,librac,not remove
+6,8,2,libracy,not remove
+6,8,2,polnews,once a day
+6,8,2,polviews,conservative
+6,8,2,premarsx,always wrong
+6,8,2,race,white
+6,8,2,region,south
+6,8,2,relpersn,not religious at all
+6,8,2,sex,male
+6,8,2,spkrac,not allowed
+6,8,2,spkracy,not allowed
+6,8,2,sprtprsn,very spiritual
+6,8,2,teensex,always wrong
+6,8,2,vetyears,"yes, more than 4 years"
+6,8,2,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,9,2,belikeus,neither agree nor disagree
+6,9,2,childsinhh,2
+6,9,2,colath,"yes, allowed to teach"
+6,9,2,colcom,"yes, fired"
+6,9,2,colcomy,not fired
+6,9,2,colmslm,"yes, allowed to teach"
+6,9,2,colrac,not allowed
+6,9,2,homosex,wrong only sometimes
+6,9,2,libath,not remove
+6,9,2,libathy,not remove
+6,9,2,librac,not remove
+6,9,2,libracy,not remove
+6,9,2,natheal,too little
+6,9,2,polnews,once a day
+6,9,2,polviews,conservative
+6,9,2,premarsx,always wrong
+6,9,2,race,white
+6,9,2,region,south
+6,9,2,relpersn,not religious at all
+6,9,2,sex,male
+6,9,2,spkrac,not allowed
+6,9,2,spkracy,not allowed
+6,9,2,sprtprsn,very spiritual
+6,9,2,teensex,always wrong
+6,9,2,vetyears,"yes, more than 4 years"
+6,9,2,whatsp2,"other (agriculture, construction, service, government, etc.)"
+6,10,2,abhlth,no
+6,10,2,abhlthg,yes
+6,10,2,belikeus,neither agree nor disagree
+6,10,2,childsinhh,2
+6,10,2,colath,"yes, allowed to teach"
+6,10,2,colcom,"yes, fired"
+6,10,2,colcomy,not fired
+6,10,2,colmslm,"yes, allowed to teach"
+6,10,2,colrac,not allowed
+6,10,2,homosex,wrong only sometimes
+6,10,2,libath,not remove
+6,10,2,libathy,not remove
+6,10,2,librac,not remove
+6,10,2,libracy,not remove
+6,10,2,natheal,too little
+6,10,2,polnews,once a day
+6,10,2,polviews,conservative
+6,10,2,premarsx,always wrong
+6,10,2,race,white
+6,10,2,region,south
+6,10,2,relpersn,not religious at all
+6,10,2,sex,male
+6,10,2,spkrac,not allowed
+6,10,2,spkracy,not allowed
+6,10,2,sprtprsn,very spiritual
+6,10,2,teensex,always wrong
+6,10,2,vetyears,"yes, more than 4 years"
+6,10,2,whatsp2,"other (agriculture, construction, service, government, etc.)"

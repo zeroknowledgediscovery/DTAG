@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08439110027554476,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.06070648942804232,0.023684610847502445,0.023684610847502445
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.07788738405644376,-0.017180894628401437,0.006503716219101008
+3,3,"If a Muslim clergyman wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",DIRECT,True,-0.03463182515653014,0.043255558899913615,0.04975927511901462
+4,4,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.000975250127315498,0.033656575029214646,0.08341585014822926
+5,5,How important is it to you to be a Christian?,DIRECT,True,0.012135332082776949,0.013110582210092446,0.09652643235832171
+6,6,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,0.015027765642995494,0.002892433560218545,0.09941886591854025
+7,7,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,0.004419859192591232,-0.010607906450404263,0.088810959468136
+8,8,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,0.015239039787601652,0.01081918059501042,0.09963014006314641
+9,9,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate the Republican Party?",DIRECT,True,0.004437971639243055,-0.010801068148358597,0.08882907191478782
+10,10,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.013505161597133325,0.00906718995789027,0.0978962618726781

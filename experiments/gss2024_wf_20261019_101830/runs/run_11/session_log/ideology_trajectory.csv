@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.0910546921518706,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.11469851851137026,-0.02364382635949966,-0.02364382635949966
+2,2,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.06922958234680643,0.045468936164563836,0.021825109805064177
+3,3,How important is it to you to be a Christian?,DIRECT,True,-0.05568742642603566,0.013542155920770765,0.03536726572583494
+4,4,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,-0.037664023795155384,0.01802340263088028,0.05339066835671522
+5,5,Do you think a person who believes that Black people are genetically inferior should be allowed to teach in a college or university?,DIRECT,True,-0.023380737561754582,0.014283286233400801,0.06767395459011602
+6,6,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,-0.021351222127238504,0.0020295154345160785,0.0697034700246321
+7,7,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,-0.012409142192841385,0.008942079934397119,0.07864554995902923
+8,8,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,-0.002839501023094575,0.00956964116974681,0.08821519112877603
+9,9,Were you attempting to escape from custody?,DIRECT,True,-0.0013553381830073746,0.0014841628400872006,0.08969935396886324
+10,10,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate the Republican Party?",DIRECT,True,0.020367514700762788,0.021722852883770162,0.11142220685263339

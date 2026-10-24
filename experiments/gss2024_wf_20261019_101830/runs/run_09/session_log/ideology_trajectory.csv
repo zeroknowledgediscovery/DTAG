@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08933673136034388,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.08761792822719934,0.001718803133144542,0.001718803133144542
+2,2,"Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",DIRECT,True,-0.10476842207700471,-0.017150493849805368,-0.015431690716660826
+3,3,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.0983535949414567,0.006414827135548001,-0.009016863581112824
+4,4,"If a Muslim clergyman wanted to give a speech in your community expressing hatred of the United States, should he be allowed to speak or not?",DIRECT,True,-0.10464367759764401,-0.006290082656187301,-0.015306946237300126
+5,5,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,-0.08619771115993081,0.018445966437713193,0.0031390202004130674
+6,6,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,-0.10055746646628023,-0.01435975530634942,-0.011220735105936352
+7,7,How important is it to you to be a Christian?,DIRECT,True,-0.0893503686853822,0.01120709778089804,-1.3637325038312609e-05
+8,8,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,-0.08893627956444035,0.00041408912094184624,0.00040045179590353364
+9,9,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,-0.10477754711131061,-0.015841267546870264,-0.01544081575096673
+10,10,How often do you participate in activities or organizations at a church or place of worship besides attending services?,DIRECT,True,-0.10770581548749245,-0.0029282683761818334,-0.018369084127148563

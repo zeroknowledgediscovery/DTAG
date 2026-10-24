@@ -1,0 +1,203 @@
+run,query_idx,action,variable,answer
+6,0,0,polviews,liberal
+6,0,0,race,white
+6,0,0,res16,"in a large city (over 250,000)"
+6,0,0,sex,female
+6,1,1,colath,"yes, allowed to teach"
+6,1,1,colcom,not fired
+6,1,1,colcomy,"yes, fired"
+6,1,1,colmslm,not allowed
+6,1,1,colrac,not allowed
+6,1,1,polviews,liberal
+6,1,1,race,white
+6,1,1,res16,"in a large city (over 250,000)"
+6,1,1,sex,female
+6,2,1,colath,"yes, allowed to teach"
+6,2,1,colcom,not fired
+6,2,1,colcomy,"yes, fired"
+6,2,1,colmslm,not allowed
+6,2,1,colrac,not allowed
+6,2,1,polviews,liberal
+6,2,1,race,white
+6,2,1,res16,"in a large city (over 250,000)"
+6,2,1,sex,female
+6,2,1,spkrac,not allowed
+6,2,1,spkracy,"yes, allowed to speak"
+6,3,1,colath,"yes, allowed to teach"
+6,3,1,colcom,not fired
+6,3,1,colcomy,"yes, fired"
+6,3,1,colmslm,not allowed
+6,3,1,colrac,not allowed
+6,3,1,libmslm,not remove
+6,3,1,libmslmy,remove
+6,3,1,polviews,liberal
+6,3,1,race,white
+6,3,1,res16,"in a large city (over 250,000)"
+6,3,1,sex,female
+6,3,1,spkmslm,not allowed
+6,3,1,spkmslmy,"yes, allowed to speak"
+6,3,1,spkrac,not allowed
+6,3,1,spkracy,"yes, allowed to speak"
+6,4,1,colath,"yes, allowed to teach"
+6,4,1,colcom,not fired
+6,4,1,colcomy,"yes, fired"
+6,4,1,colmslm,not allowed
+6,4,1,colrac,not allowed
+6,4,1,libmslm,not remove
+6,4,1,libmslmy,remove
+6,4,1,polviews,liberal
+6,4,1,race,white
+6,4,1,relpersn,not religious at all
+6,4,1,res16,"in a large city (over 250,000)"
+6,4,1,sex,female
+6,4,1,spkmslm,not allowed
+6,4,1,spkmslmy,"yes, allowed to speak"
+6,4,1,spkrac,not allowed
+6,4,1,spkracy,"yes, allowed to speak"
+6,5,1,colath,"yes, allowed to teach"
+6,5,1,colcom,not fired
+6,5,1,colcomy,"yes, fired"
+6,5,1,colmslm,not allowed
+6,5,1,colrac,not allowed
+6,5,1,immjobs,disagree strongly
+6,5,1,immjobs1,agree
+6,5,1,immwlfare,agree
+6,5,1,libmslm,not remove
+6,5,1,libmslmy,remove
+6,5,1,polviews,liberal
+6,5,1,race,white
+6,5,1,relpersn,not religious at all
+6,5,1,res16,"in a large city (over 250,000)"
+6,5,1,sex,female
+6,5,1,spkmslm,not allowed
+6,5,1,spkmslmy,"yes, allowed to speak"
+6,5,1,spkrac,not allowed
+6,5,1,spkracy,"yes, allowed to speak"
+6,6,1,colath,"yes, allowed to teach"
+6,6,1,colcom,not fired
+6,6,1,colcomy,"yes, fired"
+6,6,1,colmslm,not allowed
+6,6,1,colrac,not allowed
+6,6,1,immjobs,disagree strongly
+6,6,1,immjobs1,agree
+6,6,1,immwlfare,agree
+6,6,1,libmslm,not remove
+6,6,1,libmslmy,remove
+6,6,1,polviews,liberal
+6,6,1,race,white
+6,6,1,raterepp,50.0
+6,6,1,relpersn,not religious at all
+6,6,1,res16,"in a large city (over 250,000)"
+6,6,1,sex,female
+6,6,1,spkmslm,not allowed
+6,6,1,spkmslmy,"yes, allowed to speak"
+6,6,1,spkrac,not allowed
+6,6,1,spkracy,"yes, allowed to speak"
+6,7,1,bible,inspired word
+6,7,1,biblenv,word of god
+6,7,1,biblev,other (phone mode only: volunteered)
+6,7,1,colath,"yes, allowed to teach"
+6,7,1,colcom,not fired
+6,7,1,colcomy,"yes, fired"
+6,7,1,colmslm,not allowed
+6,7,1,colrac,not allowed
+6,7,1,god,believe sometimes
+6,7,1,immjobs,disagree strongly
+6,7,1,immjobs1,agree
+6,7,1,immwlfare,agree
+6,7,1,libmslm,not remove
+6,7,1,libmslmy,remove
+6,7,1,polviews,liberal
+6,7,1,race,white
+6,7,1,raterepp,50.0
+6,7,1,relpersn,not religious at all
+6,7,1,res16,"in a large city (over 250,000)"
+6,7,1,sex,female
+6,7,1,spkmslm,not allowed
+6,7,1,spkmslmy,"yes, allowed to speak"
+6,7,1,spkrac,not allowed
+6,7,1,spkracy,"yes, allowed to speak"
+6,8,1,bible,inspired word
+6,8,1,biblenv,word of god
+6,8,1,biblev,other (phone mode only: volunteered)
+6,8,1,colath,"yes, allowed to teach"
+6,8,1,colcom,not fired
+6,8,1,colcomy,"yes, fired"
+6,8,1,colmslm,not allowed
+6,8,1,colrac,not allowed
+6,8,1,god,believe sometimes
+6,8,1,immjobs,disagree strongly
+6,8,1,immjobs1,agree
+6,8,1,immwlfare,agree
+6,8,1,libmslm,not remove
+6,8,1,libmslmy,remove
+6,8,1,marhisp,strongly favor
+6,8,1,polviews,liberal
+6,8,1,race,white
+6,8,1,raterepp,50.0
+6,8,1,relpersn,not religious at all
+6,8,1,res16,"in a large city (over 250,000)"
+6,8,1,sex,female
+6,8,1,spkmslm,not allowed
+6,8,1,spkmslmy,"yes, allowed to speak"
+6,8,1,spkrac,not allowed
+6,8,1,spkracy,"yes, allowed to speak"
+6,9,1,amgovt,very important
+6,9,1,bible,inspired word
+6,9,1,biblenv,word of god
+6,9,1,biblev,other (phone mode only: volunteered)
+6,9,1,colath,"yes, allowed to teach"
+6,9,1,colcom,not fired
+6,9,1,colcomy,"yes, fired"
+6,9,1,colmslm,not allowed
+6,9,1,colrac,not allowed
+6,9,1,god,believe sometimes
+6,9,1,immjobs,disagree strongly
+6,9,1,immjobs1,agree
+6,9,1,immwlfare,agree
+6,9,1,libmslm,not remove
+6,9,1,libmslmy,remove
+6,9,1,marhisp,strongly favor
+6,9,1,obey,2nd important
+6,9,1,obeylaws,6.0
+6,9,1,paytaxes,very important
+6,9,1,polviews,liberal
+6,9,1,race,white
+6,9,1,raterepp,50.0
+6,9,1,relpersn,not religious at all
+6,9,1,res16,"in a large city (over 250,000)"
+6,9,1,sex,female
+6,9,1,spkmslm,not allowed
+6,9,1,spkmslmy,"yes, allowed to speak"
+6,9,1,spkrac,not allowed
+6,9,1,spkracy,"yes, allowed to speak"
+6,10,1,amgovt,very important
+6,10,1,bible,inspired word
+6,10,1,biblenv,word of god
+6,10,1,biblev,other (phone mode only: volunteered)
+6,10,1,colath,"yes, allowed to teach"
+6,10,1,colcom,not fired
+6,10,1,colcomy,"yes, fired"
+6,10,1,colmslm,not allowed
+6,10,1,colrac,not allowed
+6,10,1,god,believe sometimes
+6,10,1,homosex,almost always wrong
+6,10,1,immjobs,disagree strongly
+6,10,1,immjobs1,agree
+6,10,1,immwlfare,agree
+6,10,1,libmslm,not remove
+6,10,1,libmslmy,remove
+6,10,1,marhisp,strongly favor
+6,10,1,obey,2nd important
+6,10,1,obeylaws,6.0
+6,10,1,paytaxes,very important
+6,10,1,polviews,liberal
+6,10,1,race,white
+6,10,1,raterepp,50.0
+6,10,1,relpersn,not religious at all
+6,10,1,res16,"in a large city (over 250,000)"
+6,10,1,sex,female
+6,10,1,spkmslm,not allowed
+6,10,1,spkmslmy,"yes, allowed to speak"
+6,10,1,spkrac,not allowed
+6,10,1,spkracy,"yes, allowed to speak"

@@ -1,0 +1,7 @@
+variable,value,survey_question
+region,south,REGION OF INTERVIEW
+race,white,What race do you consider yourself? RECORD VERBATIM AND CODE. CODE WITHOUT ASKING ONLY IF THERE IS NO DOUBT IN YOUR MIND.
+sex,male,CODE RESPONDENT'S SEX
+vetyears,"yes, more than 4 years",Have you ever been on active duty for military training or service for two consecutive months or more? IF YES: What was your total time on active duty?
+polviews,conservative,I'm going to show you a seven-point scale on which the political views that people might hold are arranged from extremely liberal--point 1--to extremely conservative--point 7. Where would you place yourself?
+polnews,several times a day,how often use media to get political news

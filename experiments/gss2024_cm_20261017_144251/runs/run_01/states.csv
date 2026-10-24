@@ -1,0 +1,248 @@
+run,query_idx,action,variable,answer
+1,0,0,polnews,several times a day
+1,0,0,polviews,conservative
+1,0,0,race,white
+1,0,0,region,south
+1,0,0,sex,male
+1,0,0,vetyears,"yes, more than 4 years"
+1,1,1,colath,"yes, allowed to teach"
+1,1,1,colcom,not fired
+1,1,1,colcomy,not fired
+1,1,1,colmslm,not allowed
+1,1,1,colrac,not allowed
+1,1,1,polnews,several times a day
+1,1,1,polviews,conservative
+1,1,1,race,white
+1,1,1,region,south
+1,1,1,sex,male
+1,1,1,vetyears,"yes, more than 4 years"
+1,2,1,colath,"yes, allowed to teach"
+1,2,1,colcom,not fired
+1,2,1,colcomy,not fired
+1,2,1,colmslm,not allowed
+1,2,1,colrac,not allowed
+1,2,1,librac,not remove
+1,2,1,libracy,remove
+1,2,1,polnews,several times a day
+1,2,1,polviews,conservative
+1,2,1,race,white
+1,2,1,region,south
+1,2,1,sex,male
+1,2,1,spkrac,not allowed
+1,2,1,spkracy,"yes, allowed to speak"
+1,2,1,vetyears,"yes, more than 4 years"
+1,3,1,colath,"yes, allowed to teach"
+1,3,1,colcom,not fired
+1,3,1,colcomy,not fired
+1,3,1,colmslm,not allowed
+1,3,1,colrac,not allowed
+1,3,1,librac,not remove
+1,3,1,libracy,remove
+1,3,1,polnews,several times a day
+1,3,1,polviews,conservative
+1,3,1,race,white
+1,3,1,region,south
+1,3,1,sex,male
+1,3,1,spkmslm,not allowed
+1,3,1,spkmslmy,not allowed
+1,3,1,spkrac,not allowed
+1,3,1,spkracy,"yes, allowed to speak"
+1,3,1,vetyears,"yes, more than 4 years"
+1,4,1,colath,"yes, allowed to teach"
+1,4,1,colcom,not fired
+1,4,1,colcomy,not fired
+1,4,1,colmslm,not allowed
+1,4,1,colrac,not allowed
+1,4,1,librac,not remove
+1,4,1,libracy,remove
+1,4,1,marsame,agree
+1,4,1,marsamey,disagree
+1,4,1,polnews,several times a day
+1,4,1,polviews,conservative
+1,4,1,race,white
+1,4,1,region,south
+1,4,1,sex,male
+1,4,1,spkmslm,not allowed
+1,4,1,spkmslmy,not allowed
+1,4,1,spkrac,not allowed
+1,4,1,spkracy,"yes, allowed to speak"
+1,4,1,vetyears,"yes, more than 4 years"
+1,5,1,belikeus,agree
+1,5,1,colath,"yes, allowed to teach"
+1,5,1,colcom,not fired
+1,5,1,colcomy,not fired
+1,5,1,colmslm,not allowed
+1,5,1,colrac,not allowed
+1,5,1,librac,not remove
+1,5,1,libracy,remove
+1,5,1,marsame,agree
+1,5,1,marsamey,disagree
+1,5,1,polnews,several times a day
+1,5,1,polviews,conservative
+1,5,1,race,white
+1,5,1,region,south
+1,5,1,sex,male
+1,5,1,spkmslm,not allowed
+1,5,1,spkmslmy,not allowed
+1,5,1,spkrac,not allowed
+1,5,1,spkracy,"yes, allowed to speak"
+1,5,1,vetyears,"yes, more than 4 years"
+1,6,2,belikeus,agree
+1,6,2,colath,"yes, allowed to teach"
+1,6,2,colcom,not fired
+1,6,2,colcomy,not fired
+1,6,2,colmslm,not allowed
+1,6,2,colrac,not allowed
+1,6,2,librac,not remove
+1,6,2,libracy,remove
+1,6,2,marsame,agree
+1,6,2,marsamey,disagree
+1,6,2,polnews,several times a day
+1,6,2,polviews,conservative
+1,6,2,premarsx,not wrong at all
+1,6,2,race,white
+1,6,2,region,south
+1,6,2,sex,male
+1,6,2,spkmslm,not allowed
+1,6,2,spkmslmy,not allowed
+1,6,2,spkrac,not allowed
+1,6,2,spkracy,"yes, allowed to speak"
+1,6,2,teensex,not wrong at all
+1,6,2,vetyears,"yes, more than 4 years"
+1,7,2,belikeus,agree
+1,7,2,colath,"yes, allowed to teach"
+1,7,2,colcom,not fired
+1,7,2,colcomy,not fired
+1,7,2,colmslm,not allowed
+1,7,2,colrac,not allowed
+1,7,2,librac,not remove
+1,7,2,libracy,remove
+1,7,2,marsame,agree
+1,7,2,marsamey,disagree
+1,7,2,natheal,too little
+1,7,2,polnews,several times a day
+1,7,2,polviews,conservative
+1,7,2,premarsx,not wrong at all
+1,7,2,race,white
+1,7,2,region,south
+1,7,2,sex,male
+1,7,2,spkmslm,not allowed
+1,7,2,spkmslmy,not allowed
+1,7,2,spkrac,not allowed
+1,7,2,spkracy,"yes, allowed to speak"
+1,7,2,teensex,not wrong at all
+1,7,2,vetyears,"yes, more than 4 years"
+1,8,2,belikeus,agree
+1,8,2,colath,"yes, allowed to teach"
+1,8,2,colcom,not fired
+1,8,2,colcomy,not fired
+1,8,2,colmslm,not allowed
+1,8,2,colrac,not allowed
+1,8,2,librac,not remove
+1,8,2,libracy,remove
+1,8,2,marsame,agree
+1,8,2,marsamey,disagree
+1,8,2,natheal,too little
+1,8,2,polnews,several times a day
+1,8,2,polviews,conservative
+1,8,2,premarsx,not wrong at all
+1,8,2,racdif1,yes
+1,8,2,racdif1x,no
+1,8,2,racdif2,yes
+1,8,2,racdif2x,no
+1,8,2,racdif3,yes
+1,8,2,racdif3x,yes
+1,8,2,racdif4,yes
+1,8,2,racdif4x,yes
+1,8,2,racdif5,yes
+1,8,2,racdif5x,no
+1,8,2,race,white
+1,8,2,region,south
+1,8,2,sex,male
+1,8,2,spkmslm,not allowed
+1,8,2,spkmslmy,not allowed
+1,8,2,spkrac,not allowed
+1,8,2,spkracy,"yes, allowed to speak"
+1,8,2,teensex,not wrong at all
+1,8,2,vetyears,"yes, more than 4 years"
+1,9,2,belikeus,agree
+1,9,2,colath,"yes, allowed to teach"
+1,9,2,colcom,not fired
+1,9,2,colcomy,not fired
+1,9,2,colmslm,not allowed
+1,9,2,colrac,not allowed
+1,9,2,librac,not remove
+1,9,2,libracy,remove
+1,9,2,marsame,agree
+1,9,2,marsamey,disagree
+1,9,2,natheal,too little
+1,9,2,polabuse,yes
+1,9,2,polabusey,no
+1,9,2,polattak,no
+1,9,2,polattaky,yes
+1,9,2,polhitok,yes
+1,9,2,polhitoky,yes
+1,9,2,polmurdr,no
+1,9,2,polnews,several times a day
+1,9,2,polviews,conservative
+1,9,2,premarsx,not wrong at all
+1,9,2,racdif1,yes
+1,9,2,racdif1x,no
+1,9,2,racdif2,yes
+1,9,2,racdif2x,no
+1,9,2,racdif3,yes
+1,9,2,racdif3x,yes
+1,9,2,racdif4,yes
+1,9,2,racdif4x,yes
+1,9,2,racdif5,yes
+1,9,2,racdif5x,no
+1,9,2,race,white
+1,9,2,region,south
+1,9,2,sex,male
+1,9,2,spkmslm,not allowed
+1,9,2,spkmslmy,not allowed
+1,9,2,spkrac,not allowed
+1,9,2,spkracy,"yes, allowed to speak"
+1,9,2,teensex,not wrong at all
+1,9,2,vetyears,"yes, more than 4 years"
+1,10,2,belikeus,agree
+1,10,2,colath,"yes, allowed to teach"
+1,10,2,colcom,not fired
+1,10,2,colcomy,not fired
+1,10,2,colmslm,not allowed
+1,10,2,colrac,not allowed
+1,10,2,librac,not remove
+1,10,2,libracy,remove
+1,10,2,marsame,agree
+1,10,2,marsamey,disagree
+1,10,2,natheal,too little
+1,10,2,polabuse,yes
+1,10,2,polabusey,no
+1,10,2,polattak,no
+1,10,2,polattaky,yes
+1,10,2,polescap,no
+1,10,2,polhitok,yes
+1,10,2,polhitoky,yes
+1,10,2,polmurdr,no
+1,10,2,polnews,several times a day
+1,10,2,polviews,conservative
+1,10,2,premarsx,not wrong at all
+1,10,2,racdif1,yes
+1,10,2,racdif1x,no
+1,10,2,racdif2,yes
+1,10,2,racdif2x,no
+1,10,2,racdif3,yes
+1,10,2,racdif3x,yes
+1,10,2,racdif4,yes
+1,10,2,racdif4x,yes
+1,10,2,racdif5,yes
+1,10,2,racdif5x,no
+1,10,2,race,white
+1,10,2,region,south
+1,10,2,sex,male
+1,10,2,spkmslm,not allowed
+1,10,2,spkmslmy,not allowed
+1,10,2,spkrac,not allowed
+1,10,2,spkracy,"yes, allowed to speak"
+1,10,2,teensex,not wrong at all
+1,10,2,vetyears,"yes, more than 4 years"

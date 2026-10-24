@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "name": "gss2024_wf",
+  "created_at": "2026-10-19T10:18:30",
+  "source_session": "04567c7aa36d4186a247cae38c2553d9",
+  "respondent": {
+    "spec": {
+      "name": "gss2024_wf",
+      "source": "configured",
+      "description": "Native pooled GSS 2024; progressive urban female persona.",
+      "family": "gss",
+      "model_key": "gss/gss_2024",
+      "model_label": "GSS 2024",
+      "map_key": "gss/gss_2024_map.csv",
+      "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+      "country": "United States",
+      "continent": "",
+      "year": 2024,
+      "date": null,
+      "za": null,
+      "polar_set": "gss_default",
+      "ideology": true,
+      "base_profile": null,
+      "run": {
+        "k": 50,
+        "prefilter": 200,
+        "min_map_score": 1.0,
+        "semantic_k": 6,
+        "semantic_prefilter": 80,
+        "semantic_min_confidence": 0.35,
+        "max_assign": 50,
+        "assign_prefilter": 500,
+        "seed": 1000,
+        "state_keep": 500,
+        "semantic_fallback": "update_state",
+        "resp_mode": "draw",
+        "semantic_resp_mode": "max",
+        "openai_model": "gpt-4.1-mini",
+        "semantic_embedding_model": "text-embedding-3-small",
+        "timing": true,
+        "require_polar_vectors": true
+      },
+      "temporal": {
+        "family": "gss",
+        "mode": "wave_model_selection",
+        "requested_year": 2024,
+        "selected_model": "gss/gss_2024",
+        "wave": "GSS 2024"
+      },
+      "warnings": [
+        "Country is contextual only for this model."
+      ]
+    }
+  },
+  "actions": [
+    {
+      "auto_push": "up",
+      "steps": 10,
+      "mode": "realistic",
+      "include_pole_items": false
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.08706784819818347,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.08706784819818347
+      },
+      {
+        "step": 1,
+        "ideology": -0.033679094889894484
+      },
+      {
+        "step": 2,
+        "ideology": -0.0025309553491537165
+      },
+      {
+        "step": 3,
+        "ideology": 0.04278357316300701
+      },
+      {
+        "step": 4,
+        "ideology": 0.0552287789365327
+      },
+      {
+        "step": 5,
+        "ideology": 0.06703955530593111
+      },
+      {
+        "step": 6,
+        "ideology": 0.0675298438606108
+      },
+      {
+        "step": 7,
+        "ideology": 0.05645694142268668
+      },
+      {
+        "step": 8,
+        "ideology": 0.06309542100526917
+      },
+      {
+        "step": 9,
+        "ideology": 0.07804083914825426
+      },
+      {
+        "step": 10,
+        "ideology": 0.07057351725919704
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think a person like this should be allowed to teach at a college or university?",
+        "selected_variables": [
+          "colrac",
+          "colmslm",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Should a person who wants to say that Black people are genetically inferior be allowed to make a speech in your community, or should they not be allowed to speak?",
+        "selected_variables": [
+          "spkracy",
+          "spkrac",
+          "librac",
+          "colrac"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+        "selected_variables": [
+          "relpersn"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "How important is it to you to be a Christian?",
+        "selected_variables": [
+          "amchrstn"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "To what extent do you agree or disagree with the statement that immigrants take jobs away?",
+        "selected_variables": [
+          "immjobs1",
+          "immjobs",
+          "immwlfare"
+        ]
+      },
+      {
+        "query_idx": 6,
+        "question": "Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",
+        "selected_variables": [
+          "marhisp"
+        ]
+      },
+      {
+        "query_idx": 7,
+        "question": "On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",
+        "selected_variables": [
+          "ratechall124"
+        ]
+      },
+      {
+        "query_idx": 8,
+        "question": "Do you agree or disagree that the United States would be a better country if religion had less influence?",
+        "selected_variables": [
+          "religinf"
+        ]
+      },
+      {
+        "query_idx": 9,
+        "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+        "selected_variables": [
+          "premarsx"
+        ]
+      },
+      {
+        "query_idx": 10,
+        "question": "Do you think having sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teenagers aged 14 to 16?",
+        "selected_variables": [
+          "teensex"
+        ]
+      }
+    ]
+  }
+}

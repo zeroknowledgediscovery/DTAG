@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.04023838803192821,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.00028294033896714973,0.03995544769296106,0.03995544769296106
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,0.0042971074796366105,0.004580047818603761,0.04453549551156482
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,-0.011559412053075735,-0.015856519532712346,0.028678975978852474
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.008200704524674326,0.0033587075284014084,0.03203768350725388
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.007948528730506185,0.0002521757941681413,0.03228985930142202
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,0.0077098282695628444,0.01565835700006903,0.047948216301491056
+7,7,"Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.02235596315568769,-0.030065791425250538,0.01788242487624052
+8,8,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.02861730596434789,-0.0062613428086601974,0.011621082067580321
+9,9,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.013430817155341368,0.015186488809006521,0.02680757087658684
+10,10,"Do you think we are spending too much, too little, or about the right amount on solving the problems of big cities?",DIRECT,True,-0.015109904842830453,-0.0016790876874890857,0.02512848318909776

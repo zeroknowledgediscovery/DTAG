@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08926703000981807,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.10770980301401864,-0.018442773004200566,-0.018442773004200566
+2,2,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.15523722287540126,-0.04752741986138262,-0.06597019286558319
+3,3,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,-0.15639980193434522,-0.0011625790589439577,-0.06713277192452714
+4,4,Which of the following best describes what you believe about God?,DIRECT,True,-0.3413219076504856,-0.18492210571614037,-0.25205487764066753
+5,5,"How would you rate MAGA Republicans on a scale from 0 to 100, where 0 means very negative and 100 means very positive?",DIRECT,True,-0.34565176617535487,-0.004329858524869279,-0.2563847361655368
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.3248591610711258,0.02079260510422909,-0.23559213106130772
+7,7,Do you agree or disagree that family life suffers when women work?,DIRECT,True,-0.3240379155330243,0.0008212455381014783,-0.23477088552320624
+8,8,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,-0.3197435397081411,0.004294375824883179,-0.23047650969832306
+9,9,"Do you think having sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teenagers aged 14 to 16?",DIRECT,True,-0.31028641917389144,0.009457120534249686,-0.22101938916407338
+10,10,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,-0.3099539637177696,0.00033245545612181626,-0.22068693370795156

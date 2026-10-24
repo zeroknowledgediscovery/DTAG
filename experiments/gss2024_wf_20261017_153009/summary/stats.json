@@ -1,0 +1,463 @@
+{
+  "runs": 20,
+  "ideology_enabled": true,
+  "checkpoints": [
+    {
+      "action": 0,
+      "label": "start",
+      "n": 20,
+      "mean": -0.03973261040474314,
+      "sd": 0.0011859751640874387,
+      "ci_lo": -0.04020539896906703,
+      "ci_hi": -0.039206531157794065,
+      "min": -0.041938476369688414,
+      "max": -0.03702243685267023
+    },
+    {
+      "action": 1,
+      "label": "Auto-push up \u00d75 (realistic)",
+      "n": 20,
+      "mean": 0.005314079815204006,
+      "sd": 0.05750140631045306,
+      "ci_lo": -0.01955863219240527,
+      "ci_hi": 0.029687378142085007,
+      "min": -0.09933953480955066,
+      "max": 0.09916132088082615
+    },
+    {
+      "action": 2,
+      "label": "Auto-push down \u00d75 (realistic)",
+      "n": 20,
+      "mean": -0.01208940184096029,
+      "sd": 0.06589461572322595,
+      "ci_lo": -0.040295390318672054,
+      "ci_hi": 0.014690770180543686,
+      "min": -0.12385384419319628,
+      "max": 0.09193397203815493
+    }
+  ],
+  "per_run": [
+    {
+      "run": 1,
+      "seed": 511592279,
+      "ideology": [
+        -0.040238388031928106,
+        -0.046730841800685,
+        -0.07421393905178045
+      ],
+      "questions": 10,
+      "seconds": 58.69
+    },
+    {
+      "run": 2,
+      "seed": 511592280,
+      "ideology": [
+        -0.039980302693709405,
+        0.05380301012606238,
+        0.09138024120525849
+      ],
+      "questions": 10,
+      "seconds": 52.7
+    },
+    {
+      "run": 3,
+      "seed": 511592281,
+      "ideology": [
+        -0.03872258824324945,
+        0.038637496435341236,
+        0.022376444219618506
+      ],
+      "questions": 10,
+      "seconds": 52.73
+    },
+    {
+      "run": 4,
+      "seed": 511592282,
+      "ideology": [
+        -0.03702243685267023,
+        0.08622520556459275,
+        0.09193397203815493
+      ],
+      "questions": 10,
+      "seconds": 52.8
+    },
+    {
+      "run": 5,
+      "seed": 511592283,
+      "ideology": [
+        -0.04033365556143968,
+        -0.024065083770560925,
+        -0.028353984110127673
+      ],
+      "questions": 10,
+      "seconds": 58.47
+    },
+    {
+      "run": 6,
+      "seed": 511592284,
+      "ideology": [
+        -0.039980302693709405,
+        -0.024624559847989034,
+        -2.042549612069078e-05
+      ],
+      "questions": 10,
+      "seconds": 53.22
+    },
+    {
+      "run": 7,
+      "seed": 511592285,
+      "ideology": [
+        -0.04023838803192821,
+        -0.007948528730506185,
+        -0.015109904842830453
+      ],
+      "questions": 10,
+      "seconds": 56.01
+    },
+    {
+      "run": 8,
+      "seed": 511592286,
+      "ideology": [
+        -0.03972281546903248,
+        0.04411049048497193,
+        -0.003025060587582841
+      ],
+      "questions": 10,
+      "seconds": 58.11
+    },
+    {
+      "run": 9,
+      "seed": 511592287,
+      "ideology": [
+        -0.04023838803192821,
+        0.09355219015412193,
+        0.02510442348068877
+      ],
+      "questions": 10,
+      "seconds": 56.14
+    },
+    {
+      "run": 10,
+      "seed": 511592288,
+      "ideology": [
+        -0.038722588243249666,
+        0.07170219069930456,
+        0.08307587042642119
+      ],
+      "questions": 10,
+      "seconds": 60.79
+    },
+    {
+      "run": 11,
+      "seed": 511592289,
+      "ideology": [
+        -0.04023838803192821,
+        -0.03460670920804752,
+        -0.0909003779213343
+      ],
+      "questions": 10,
+      "seconds": 53.6
+    },
+    {
+      "run": 12,
+      "seed": 511592290,
+      "ideology": [
+        -0.04023838803192821,
+        0.09916132088082615,
+        0.07781354977165039
+      ],
+      "questions": 10,
+      "seconds": 57.92
+    },
+    {
+      "run": 13,
+      "seed": 511592291,
+      "ideology": [
+        -0.039980302693709405,
+        0.03010181482179811,
+        -0.026830244609953566
+      ],
+      "questions": 10,
+      "seconds": 57.58
+    },
+    {
+      "run": 14,
+      "seed": 511592292,
+      "ideology": [
+        -0.038722588243249666,
+        -0.0025909986456526626,
+        -0.05127373749954157
+      ],
+      "questions": 10,
+      "seconds": 54.47
+    },
+    {
+      "run": 15,
+      "seed": 511592293,
+      "ideology": [
+        -0.041938476369688414,
+        -0.05991402327869849,
+        -0.04508911845746596
+      ],
+      "questions": 10,
+      "seconds": 56.33
+    },
+    {
+      "run": 16,
+      "seed": 511592294,
+      "ideology": [
+        -0.041112780599496954,
+        -0.09933953480955066,
+        -0.11220546676184912
+      ],
+      "questions": 10,
+      "seconds": 56.46
+    },
+    {
+      "run": 17,
+      "seed": 511592295,
+      "ideology": [
+        -0.039980302693709405,
+        -0.02408339374270737,
+        -0.056670009583277406
+      ],
+      "questions": 10,
+      "seconds": 55.0
+    },
+    {
+      "run": 18,
+      "seed": 511592296,
+      "ideology": [
+        -0.04023838803192821,
+        -0.010152564763399676,
+        0.036914815053526465
+      ],
+      "questions": 10,
+      "seconds": 54.64
+    },
+    {
+      "run": 19,
+      "seed": 511592297,
+      "ideology": [
+        -0.03702243685267023,
+        -0.0787716119506672,
+        -0.12385384419319628
+      ],
+      "questions": 10,
+      "seconds": 52.93
+    },
+    {
+      "run": 20,
+      "seed": 511592298,
+      "ideology": [
+        -0.039980302693709405,
+        0.0018157276855258041,
+        -0.042841239899464235
+      ],
+      "questions": 10,
+      "seconds": 54.68
+    }
+  ],
+  "net_change": {
+    "n": 20,
+    "mean": 0.027643208563782856,
+    "sd": 0.06569040079828328,
+    "ci_lo": 0.0011463031551512705,
+    "ci_hi": 0.055108267589917256
+  },
+  "push": {
+    "n": 200,
+    "hit_rate": 1.0,
+    "mean_realized": 0.002764320856378286
+  },
+  "questions": [
+    {
+      "action": 1,
+      "label": "Auto-push up \u00d75 (realistic)",
+      "asked": 100,
+      "distinct": 9,
+      "top": [
+        {
+          "question": "Do you think a person like this should be allowed to teach in a college or university?",
+          "count": 20
+        },
+        {
+          "question": "Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?",
+          "count": 19
+        },
+        {
+          "question": "To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?",
+          "count": 18
+        },
+        {
+          "question": "Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?",
+          "count": 15
+        },
+        {
+          "question": "If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",
+          "count": 10
+        }
+      ],
+      "skipped": 0
+    },
+    {
+      "action": 2,
+      "label": "Auto-push down \u00d75 (realistic)",
+      "asked": 100,
+      "distinct": 23,
+      "top": [
+        {
+          "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+          "count": 20
+        },
+        {
+          "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+          "count": 19
+        },
+        {
+          "question": "Would you say you are very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+          "count": 12
+        },
+        {
+          "question": "How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",
+          "count": 6
+        },
+        {
+          "question": "Do you think we are spending too much, too little, or about the right amount on help with childcare?",
+          "count": 5
+        }
+      ],
+      "skipped": 0
+    }
+  ],
+  "original": {
+    "ideology_enabled": true,
+    "initial_ideology": -0.038722588243249666,
+    "trajectory": [
+      {
+        "step": 0,
+        "ideology": -0.038722588243249666
+      },
+      {
+        "step": 1,
+        "ideology": 0.0006578667336064502
+      },
+      {
+        "step": 2,
+        "ideology": 0.03770842887636273
+      },
+      {
+        "step": 3,
+        "ideology": 0.040868526449394586
+      },
+      {
+        "step": 4,
+        "ideology": 0.04553357570420463
+      },
+      {
+        "step": 5,
+        "ideology": 0.04057649751777139
+      },
+      {
+        "step": 6,
+        "ideology": 0.021998606743002334
+      },
+      {
+        "step": 7,
+        "ideology": 0.042303324707455105
+      },
+      {
+        "step": 8,
+        "ideology": 0.03811715037613603
+      },
+      {
+        "step": 9,
+        "ideology": 0.04660434167755475
+      },
+      {
+        "step": 10,
+        "ideology": 0.05674062189689582
+      }
+    ],
+    "questions": [
+      {
+        "query_idx": 1,
+        "question": "Do you think a person like this should be allowed to teach in a college or university?",
+        "selected_variables": [
+          "colrac",
+          "colmslm",
+          "colath",
+          "colcomy",
+          "colcom"
+        ]
+      },
+      {
+        "query_idx": 2,
+        "question": "Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?",
+        "selected_variables": [
+          "spkracy",
+          "spkrac",
+          "librac",
+          "colrac",
+          "libracy"
+        ]
+      },
+      {
+        "query_idx": 3,
+        "question": "Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?",
+        "selected_variables": [
+          "goodlife"
+        ]
+      },
+      {
+        "query_idx": 4,
+        "question": "To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?",
+        "selected_variables": [
+          "belikeus"
+        ]
+      },
+      {
+        "query_idx": 5,
+        "question": "How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",
+        "selected_variables": [
+          "conjudge"
+        ]
+      },
+      {
+        "query_idx": 6,
+        "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+        "selected_variables": [
+          "premarsx"
+        ]
+      },
+      {
+        "query_idx": 7,
+        "question": "Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+        "selected_variables": [
+          "homosex"
+        ]
+      },
+      {
+        "query_idx": 8,
+        "question": "Do you think that sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teenagers aged 14 to 16?",
+        "selected_variables": [
+          "teensex"
+        ]
+      },
+      {
+        "query_idx": 9,
+        "question": "Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",
+        "selected_variables": [
+          "natheal"
+        ]
+      },
+      {
+        "query_idx": 10,
+        "question": "Do you think we are spending too much, too little, or about the right amount on help with childcare?",
+        "selected_variables": [
+          "natchld"
+        ]
+      }
+    ]
+  }
+}

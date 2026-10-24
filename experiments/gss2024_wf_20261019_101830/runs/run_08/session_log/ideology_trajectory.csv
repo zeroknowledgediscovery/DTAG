@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08446080162607085,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.06625242960203274,0.018208372024038105,0.018208372024038105
+2,2,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.1137351751671845,-0.04748274556515175,-0.029274373541113646
+3,3,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,-0.12398274021479319,-0.010247565047608695,-0.03952193858872234
+4,4,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate the Republican Party?",DIRECT,True,-0.11520214296996517,0.00878059724482802,-0.03074134134389432
+5,5,Which of the following best describes what you believe about God?,DIRECT,True,-0.25331922109638105,-0.13811707812641588,-0.16885841947031022
+6,6,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,-0.2655858559694155,-0.012266634873034421,-0.18112505434334464
+7,7,"Do you think having sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teenagers aged 14 to 16?",DIRECT,True,-0.24535348519456063,0.020232370774854846,-0.1608926835684898
+8,8,How often do you participate in activities or organizations at a church or place of worship besides attending services?,DIRECT,True,-0.24085128564408856,0.004502199550472069,-0.1563904840180177
+9,9,"How spiritual do you consider yourself: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",DIRECT,True,-0.24595973179000621,-0.0051084461459176556,-0.16149893016393535
+10,10,"Do you think sexual relations between two adults of the same sex are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",DIRECT,True,-0.25947513252436544,-0.013515400734359223,-0.1750143308982946

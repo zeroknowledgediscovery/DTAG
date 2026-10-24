@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.08933673136034388,,0.0
+1,1,Do you think a person like this should be allowed to teach at a college or university?,DIRECT,True,-0.10598746097443555,-0.01665072961409167,-0.01665072961409167
+2,2,"How religious do you consider yourself to be: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,-0.06068508388286823,0.04530237709156732,0.02865164747747565
+3,3,How important is it to you to be a Christian?,DIRECT,True,-0.04828609965874892,0.012398984224119308,0.04105063170159496
+4,4,Do you agree or disagree that the United States would be a better country if religion had less influence?,DIRECT,True,-0.04520313743280329,0.003082962225945632,0.04413359392754059
+5,5,To what extent do you agree or disagree with the statement that immigrants take jobs away?,DIRECT,True,-0.027873158290978632,0.01732997914182466,0.06146357306936525
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.012907949839944801,0.01496520845103383,0.07642878152039909
+7,7,"Do you strongly oppose, oppose, neither favor nor oppose, favor, or strongly favor a close relative marrying a Hispanic or Latino person?",DIRECT,True,0.0017217319056527115,0.014629681745597513,0.09105846326599659
+8,8,"On a scale from 0 to 100, where 0 means very unfavorable and 100 means very favorable, how would you rate Donald Trump?",DIRECT,True,0.0182129323557504,0.016491200450097686,0.10754966371609428
+9,9,"If someone in your community wrote a book against all churches and religion, would you support removing that book from the library or not?",DIRECT,True,0.018515697875815227,0.000302765520064828,0.1078524292361591
+10,10,How do you feel about a close relative marrying an Asian American person?,DIRECT,True,0.0201967571364194,0.0016810592606041723,0.10953348849676328

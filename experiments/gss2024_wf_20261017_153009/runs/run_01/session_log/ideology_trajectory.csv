@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.040238388031928106,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.04663624204087308,-0.006397854008944971,-0.006397854008944971
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,-0.052130625249028485,-0.005494383208155408,-0.01189223721710038
+3,3,"If a Muslim religious leader wanted to give a speech in your community expressing hatred toward the United States, do you think he should be allowed to speak or not?",DIRECT,True,-0.05114437841923979,0.0009862468297886923,-0.010905990387311687
+4,4,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.04802519272843267,0.0031191856908071233,-0.007786804696504564
+5,5,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.046730841800685,0.00129435092774767,-0.006492453768756894
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.06555662812050818,-0.01882578631982318,-0.025318240088580073
+7,7,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.0570819120682478,0.008474716052260377,-0.016843524036319696
+8,8,"Do you think we are spending too much, too little, or about the right amount on help with childcare?",DIRECT,True,-0.07067241703240895,-0.01359050496416115,-0.030434029000480846
+9,9,"Do you think we are spending too much, too little, or about the right amount on solving the problems of big cities?",DIRECT,True,-0.0812869867750662,-0.010614569742657246,-0.04104859874313809
+10,10,"What is your rating of Kamala Harris on a scale from 0 to 100, where 0 means the lowest and 100 means the highest?",DIRECT,True,-0.07421393905178045,0.00707304772328575,-0.03397555101985234

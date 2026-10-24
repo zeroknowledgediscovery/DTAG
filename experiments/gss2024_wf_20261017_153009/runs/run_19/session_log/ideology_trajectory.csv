@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.03702243685267023,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,-0.0950924673511639,-0.05807003049849367,-0.05807003049849367
+2,2,Do you think a person who says that Black people are genetically inferior should be allowed to speak in your community or not?,DIRECT,True,-0.09792624559378708,-0.0028337782426231806,-0.06090380874111685
+3,3,Do you agree or disagree that people like you and your family have a good chance of improving your standard of living in America?,DIRECT,True,-0.09476614802075521,0.0031600975730318726,-0.05774371116808498
+4,4,To what extent do you agree or disagree with the statement: You would agree more with people if they were more like Americans?,DIRECT,True,-0.0909308741593916,0.0038352738613636056,-0.053908437306721374
+5,5,"How much confidence do you have in the people running the U.S. Supreme Court: a great deal, only some, or hardly any?",DIRECT,True,-0.0787716119506672,0.012159262208724403,-0.04174917509799697
+6,6,"Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",DIRECT,True,-0.09749596003092145,-0.01872434808025425,-0.06047352317825122
+7,7,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,-0.08900770393488956,0.00848825609603189,-0.05198526708221933
+8,8,"Do you think we are spending too much, too little, or about the right amount on help with childcare?",DIRECT,True,-0.10270129063095451,-0.01369358669606495,-0.06567885377828428
+9,9,"Do you think we are spending too much, too little, or about the right amount on solving the problems of big cities?",DIRECT,True,-0.10562241217466724,-0.0029211215437127264,-0.068599975321997
+10,10,"Do you think we spend too much, too little, or about the right amount on developing alternative energy sources?",DIRECT,True,-0.12385384419319628,-0.018231432018529045,-0.08683140734052605

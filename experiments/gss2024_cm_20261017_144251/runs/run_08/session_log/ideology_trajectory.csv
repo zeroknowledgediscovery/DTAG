@@ -1,0 +1,12 @@
+step,query_idx,question,mapping,state_changed,ideology,delta,change_from_initial
+0,,(initial state),,,-0.007557070540966557,,0.0
+1,1,Do you think a person like this should be allowed to teach in a college or university?,DIRECT,True,0.04002035286037342,0.047577423401339976,0.047577423401339976
+2,2,Should a person who believes that Black people are genetically inferior be allowed to make a speech in your community claiming that Black people are inferior?,DIRECT,True,0.007904701359280123,-0.0321156515010933,0.01546177190024668
+3,3,Should a Muslim religious leader who preaches hatred of the United States be allowed to give a speech in your community or not?,DIRECT,True,0.03544866510758348,0.027543963748303358,0.043005735648550036
+4,4,Do you agree or disagree with the statement that things would be better if people acted more like Americans?,DIRECT,True,0.039854135897969066,0.004405470790385585,0.04741120643893562
+5,5,"How religious do you consider yourself: very religious, moderately religious, slightly religious, or not religious at all?",DIRECT,True,0.0720626025311115,0.03220846663314244,0.07961967307207807
+6,6,"Do you think we are spending too much, about the right amount, or too little on improving and protecting the nation's health?",DIRECT,True,0.08073443866869058,0.008671836137579075,0.08829150920965714
+7,7,"Do you think that the amount spent on assistance for childcare is about right, too much, or too little?",DIRECT,True,0.06705740201470635,-0.013677036653984231,0.07461447255567291
+8,8,"Do you think we are spending too much, about the right amount, or too little on solving the problems of big cities?",DIRECT,True,0.05580444466565709,-0.011252957349049263,0.06336151520662364
+9,9,Do you believe a person has the right to end their own life if they have an incurable disease?,DIRECT,True,0.04294571650998964,-0.012858728155667444,0.0505027870509562
+10,10,"Do you think we are spending too much, too little, or about the right amount on developing alternative energy sources?",DIRECT,True,0.027415112401721235,-0.015530604108268408,0.03497218294268779

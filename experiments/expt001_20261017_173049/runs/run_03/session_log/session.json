@@ -1,0 +1,913 @@
+{
+ "export_schema": "dtag-session-export/1",
+ "exported_at": "2026-10-17T21:32:11+00:00",
+ "dtag": {
+  "version": "0.2.0.dev1",
+  "git_commit": "343e4ba73314a05ff46fe1d9450d1d3d3b13a25f",
+  "native_runtime": "bundled_persistent"
+ },
+ "session_id": "00e689d42552457c95f420ad51391f7e",
+ "created_at": "2026-10-17T21:31:46+00:00",
+ "history": {
+  "since": "2026-10-17T21:31:46+00:00",
+  "resets": 0,
+  "note": "Questions and state changes since the session was created or last reset."
+ },
+ "profile": {
+  "name": "gss2024_wf",
+  "source": "configured",
+  "description": "Native pooled GSS 2024; progressive urban female persona.",
+  "family": "gss",
+  "model_key": "gss/gss_2024",
+  "model_label": "GSS 2024",
+  "map_key": "gss/gss_2024_map.csv",
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "country": "United States",
+  "continent": "",
+  "year": 2024,
+  "date": null,
+  "za": null,
+  "polar_set": "gss_default",
+  "ideology": true,
+  "base_profile": null,
+  "run": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "seed": 632680332,
+   "state_keep": 500,
+   "semantic_fallback": "update_state",
+   "resp_mode": "draw",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "semantic_embedding_model": "text-embedding-3-small",
+   "timing": true,
+   "require_polar_vectors": true
+  },
+  "temporal": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024"
+  },
+  "warnings": [
+   "Country is contextual only for this model."
+  ]
+ },
+ "model": {
+  "key": "gss/gss_2024",
+  "release": "v0.2.1",
+  "sha256": "00879d10a99f59bff97f01e653e25dc65293aadc61b9f15e94d5f1e4b2b3dabf",
+  "archive": "gss/gss_2024.tar.zst",
+  "archive_bytes": 11787960,
+  "features": 811,
+  "usable_trees": 811
+ },
+ "map": {
+  "key": "gss/gss_2024_map.csv",
+  "family": "gss",
+  "available": true,
+  "rows": 813,
+  "columns": [
+   "variable",
+   "question_text",
+   "question_text_filled",
+   "source",
+   "source_year",
+   "codebook_page",
+   "codebook_source",
+   "map_provenance"
+  ],
+  "provenance_counts": {
+   "YEAR_SPECIFIC": 158,
+   "YEAR_CODEBOOK": 654,
+   "NATIVE_NAME": 1
+  },
+  "has_fallback_provenance": false
+ },
+ "persona": {
+  "base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "full_text": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024"
+ },
+ "geography": {
+  "requested": {
+   "country": "United States",
+   "continent": ""
+  },
+  "resolved": {
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country": "united states",
+   "resolved_continent": null,
+   "conditioning_mode": "survey_context_only",
+   "conditioned_variables": {},
+   "target_coordinates": null,
+   "context_text": {
+    "country": true,
+    "continent": false,
+    "note": "Country/continent are also added to the persona text given to the LLM; only conditioned_variables constrain the native LSM."
+   },
+   "warnings": [
+    "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned."
+   ]
+  }
+ },
+ "time": {
+  "requested": {
+   "year": 2024,
+   "date": null,
+   "za": null
+  },
+  "resolved": {
+   "family": "gss",
+   "mode": "wave_model_selection",
+   "requested_year": 2024,
+   "selected_model": "gss/gss_2024",
+   "wave": "GSS 2024",
+   "conditioned_variables": {},
+   "warnings": [],
+   "note": "Time selects the GSS survey-wave model; no year variable is hard-conditioned."
+  }
+ },
+ "config": {
+  "k": 50,
+  "prefilter": 200,
+  "min_map_score": 1.0,
+  "semantic_fallback": "update_state",
+  "semantic_k": 6,
+  "semantic_prefilter": 80,
+  "semantic_min_confidence": 0.35,
+  "semantic_embedding_model": "text-embedding-3-small",
+  "semantic_resp_mode": "max",
+  "openai_model": "gpt-4.1-mini",
+  "max_assign": 50,
+  "assign_prefilter": 500,
+  "resp_mode": "draw",
+  "seed": 632680332,
+  "state_keep": 500,
+  "year": 2024,
+  "country": "United States",
+  "continent": "",
+  "no_ideology": false,
+  "require_polar_vectors": true,
+  "timing": true
+ },
+ "random_seed": 632680332,
+ "response_mode": "draw",
+ "semantic_fallback": "update_state",
+ "llm": {
+  "backend": "openai",
+  "openai_model": "gpt-4.1-mini",
+  "mock": false,
+  "note": null
+ },
+ "initialization": {
+  "persona": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive\nCountry context: United States\nSurvey year: 2024",
+  "persona_base": "22 year old white female without children in urban New York, regular news consumer, working in retail, highly progressive",
+  "config": {
+   "k": 50,
+   "prefilter": 200,
+   "min_map_score": 1.0,
+   "semantic_fallback": "update_state",
+   "semantic_k": 6,
+   "semantic_prefilter": 80,
+   "semantic_min_confidence": 0.35,
+   "semantic_embedding_model": "text-embedding-3-small",
+   "semantic_resp_mode": "max",
+   "openai_model": "gpt-4.1-mini",
+   "max_assign": 50,
+   "assign_prefilter": 500,
+   "resp_mode": "draw",
+   "seed": 632680332,
+   "state_keep": 500,
+   "year": 2024,
+   "country": "United States",
+   "continent": "",
+   "no_ideology": false,
+   "require_polar_vectors": true,
+   "timing": true
+  },
+  "initial_state": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal"
+  },
+  "current_state": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal",
+   "colath": "yes, allowed to teach",
+   "natheal": "too little",
+   "sprtprsn": "very spiritual",
+   "teensex": "almost always wrong",
+   "premarsx": "not wrong at all"
+  },
+  "question_count": 5,
+  "persona_assignment_rationale": "The persona is a 22 year old white female working in retail in urban New York. She is highly progressive, which aligns with a liberal political view. New York is a large city with population over 250,000. Education level is not specified, but likely at least high school. Variables chosen reflect race, sex, urban residence, occupation sector, political ideology, and education level.",
+  "persona_assignments_llm_raw": {
+   "race": "white",
+   "sex": "female",
+   "res16": "in a large city (over 250,000)",
+   "polviews": "liberal",
+   "spocc10": "retail trade",
+   "speduc": "high school"
+  },
+  "persona_assignments_dropped": [
+   "spocc10=retail trade (not allowed)",
+   "speduc=high school (not allowed)"
+  ],
+  "forced_assignments": {},
+  "geography": {
+   "requested_year": 2024,
+   "requested_country": "United States",
+   "requested_continent": null,
+   "resolved_country_key": "united states",
+   "resolved_continent_key": null,
+   "target_longitude": null,
+   "target_latitude": null,
+   "snapped_O1_LONGITUDE": null,
+   "snapped_O2_LATITUDE": null,
+   "year_warning": "A_YEAR not in model features; requested year was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_warning": "O1_LONGITUDE/O2_LATITUDE not both in model features; requested geography was recorded in metadata/persona text but not hard-conditioned.",
+   "geography_conditioning_mode": "context_only",
+   "hard_conditioned_country": false
+  },
+  "ideology_enabled": true,
+  "ideology_disable_reason": "",
+  "ideology_initial": -0.03972281546903248,
+  "ideology_series": [
+   [
+    0,
+    -0.03972281546903248
+   ],
+   [
+    1,
+    -0.024530476093227515
+   ],
+   [
+    2,
+    -0.04813294675581889
+   ],
+   [
+    3,
+    -0.05738410664227122
+   ],
+   [
+    4,
+    -0.03629849534115424
+   ],
+   [
+    5,
+    -0.07891359756805116
+   ]
+  ],
+  "timings_init": {
+   "load_polar_vectors": 0.04332995414733887,
+   "prep_persona_allowed": 0.02151632308959961,
+   "llm_persona_init": 1.7647509574890137,
+   "forced_assignments": 0.0008549690246582031,
+   "ideology_init": 0.054526329040527344
+  }
+ },
+ "init_timings": {
+  "model_ready": 1.1205673217773438e-05,
+  "model_was_resident": 1.0,
+  "context": 0.0001456737518310547,
+  "load_polar_vectors": 0.04332995414733887,
+  "prep_persona_allowed": 0.02151632308959961,
+  "llm_persona_init": 1.7647509574890137,
+  "forced_assignments": 0.0008549690246582031,
+  "ideology_init": 0.054526329040527344,
+  "total": 1.8727073669433594
+ },
+ "ideology": {
+  "enabled": true,
+  "initial": -0.03972281546903248,
+  "current": -0.07891359756805116,
+  "change_from_initial": -0.03919078209901868,
+  "disable_reason": null,
+  "polar_set": "gss_default",
+  "convention": "I(s) = (d(sL, s) - d(sR, s)) / d(sL, sR); native LSM qdistance; L/R are the columns of the registered polar-vector file.",
+  "poles": {
+   "file": "gss_2024_polar_vectors.csv",
+   "wave_specific": true,
+   "items": 27,
+   "dropped": [],
+   "not_in_model": []
+  },
+  "trajectory": [
+   {
+    "step": 0,
+    "ideology": -0.03972281546903248,
+    "delta": null,
+    "question": null,
+    "selected_variables": [],
+    "anchors": {},
+    "mapping": "INITIAL"
+   },
+   {
+    "step": 1,
+    "ideology": -0.024530476093227515,
+    "delta": 0.015192339375804966,
+    "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+    "selected_variables": [
+     "premarsx"
+    ],
+    "anchors": {
+     "premarsx": "wrong only sometimes"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 2,
+    "ideology": -0.04813294675581889,
+    "delta": -0.023602470662591375,
+    "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+    "selected_variables": [
+     "colath"
+    ],
+    "anchors": {
+     "colath": "yes, allowed to teach"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 3,
+    "ideology": -0.05738410664227122,
+    "delta": -0.00925115988645233,
+    "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+    "selected_variables": [
+     "natheal"
+    ],
+    "anchors": {
+     "natheal": "too little"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 4,
+    "ideology": -0.03629849534115424,
+    "delta": 0.021085611301116983,
+    "question": "How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+    "selected_variables": [
+     "sprtprsn"
+    ],
+    "anchors": {
+     "sprtprsn": "very spiritual"
+    },
+    "mapping": "DIRECT"
+   },
+   {
+    "step": 5,
+    "ideology": -0.07891359756805116,
+    "delta": -0.04261510222689693,
+    "question": "Do you think having sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teens aged 14 to 16?",
+    "selected_variables": [
+     "teensex",
+     "premarsx"
+    ],
+    "anchors": {
+     "teensex": "almost always wrong",
+     "premarsx": "not wrong at all"
+    },
+    "mapping": "DIRECT"
+   }
+  ]
+ },
+ "questions": [
+  {
+   "query_idx": 1,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "answer": "I think having sexual relations before marriage is wrong only sometimes. It really depends on the context and the people involved. For me, it’s important that it’s consensual, respectful, and that both partners are on the same page about their relationship. I don’t think it should be judged harshly all the time, but there are situations where it might not be the best choice.",
+   "selected_variables": [
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?' This is a direct semantic match to the user question.",
+   "display_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?' This is a direct semantic match to the user question.",
+   "anchors": [
+    {
+     "variable": "premarsx",
+     "survey_question": "If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron",
+     "response": "wrong only sometimes",
+     "distribution": {
+      "not wrong at all": 0.6547983452016548,
+      "always wrong": 0.1685008314991685,
+      "wrong only sometimes": 0.12043587956412044,
+      "almost always wrong": 0.056264943735056264
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "premarsx": "wrong only sometimes"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 5,
+   "ideology": {
+    "enabled": true,
+    "before": -0.03972281546903248,
+    "after": -0.024530476093227515,
+    "delta": 0.015192339375804966,
+    "initial": -0.03972281546903248
+   },
+   "timings": {
+    "prefilters": 0.01624608039855957,
+    "llm_select": 1.1384384632110596,
+    "native_predict": 0.0010564327239990234,
+    "draw": 0.0003070831298828125,
+    "state_update": 9.775161743164062e-06,
+    "ideology": 0.05400991439819336,
+    "llm_final": 1.1397888660430908,
+    "total": 2.34989595413208
+   },
+   "lexical_candidates": 125,
+   "targeted": false
+  },
+  {
+   "query_idx": 2,
+   "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "answer": "Absolutely, I believe that a person who is against all churches and religion should be allowed to teach in a college or university. Academic freedom is crucial, and universities should be spaces where diverse viewpoints, including critical perspectives on religion, can be explored and debated. As long as the person is qualified and respectful, their personal beliefs shouldn’t disqualify them from teaching.",
+   "selected_variables": [
+    "colath"
+   ],
+   "selection_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "display_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "anchors": [
+    {
+     "variable": "colath",
+     "survey_question": "(For instance, somebody who is against all churches and religion…) Should such a person be allowed to teach in a college or university, or not?",
+     "response": "yes, allowed to teach",
+     "distribution": {
+      "yes, allowed to teach": 0.633028,
+      "not allowed": 0.366972
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "colath": "yes, allowed to teach"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 6,
+   "ideology": {
+    "enabled": true,
+    "before": -0.024530476093227515,
+    "after": -0.04813294675581889,
+    "delta": -0.023602470662591375,
+    "initial": -0.03972281546903248
+   },
+   "timings": {
+    "prefilters": 0.013588428497314453,
+    "llm_select": 1.0953340530395508,
+    "native_predict": 0.0009629726409912109,
+    "draw": 0.00035119056701660156,
+    "state_update": 1.1444091796875e-05,
+    "ideology": 0.05496954917907715,
+    "llm_final": 1.3267967700958252,
+    "total": 2.492058277130127
+   },
+   "lexical_candidates": 100,
+   "targeted": false
+  },
+  {
+   "query_idx": 3,
+   "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+   "question_source": "ideology_push",
+   "answer": "I definitely think we are spending too little on improving and protecting the nation's health. With all the challenges we face, from public health crises to mental health issues, it feels like the government isn't investing enough to truly support everyone. Especially in urban areas like where I live, access to quality healthcare and preventive services should be a higher priority. We need more funding to make healthcare affordable and accessible for all.",
+   "selected_variables": [
+    "natheal"
+   ],
+   "selection_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or national spending are less direct or about different topics, so 'natheal' is the most semantically direct and relevant match.",
+   "display_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or national spending are less direct or about different topics, so 'natheal' is the most semantically direct and relevant match.",
+   "anchors": [
+    {
+     "variable": "natheal",
+     "survey_question": "(... are we spending too much, too little, or about the right amount on) Improving and protecting the nation's health",
+     "response": "too little",
+     "distribution": {
+      "too little": 0.744073,
+      "about right": 0.178723,
+      "too much": 0.077204
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "natheal": "too little"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 7,
+   "ideology": {
+    "enabled": true,
+    "before": -0.04813294675581889,
+    "after": -0.05738410664227122,
+    "delta": -0.00925115988645233,
+    "initial": -0.03972281546903248
+   },
+   "timings": {
+    "prefilters": 0.016591787338256836,
+    "llm_select": 1.2310054302215576,
+    "native_predict": 0.0010652542114257812,
+    "draw": 0.0003542900085449219,
+    "state_update": 1.0251998901367188e-05,
+    "ideology": 0.06546258926391602,
+    "llm_final": 0.9908318519592285,
+    "total": 2.3053696155548096
+   },
+   "lexical_candidates": 123,
+   "targeted": false
+  },
+  {
+   "query_idx": 4,
+   "question": "How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+   "question_source": "ideology_push",
+   "answer": "I consider myself very spiritual. Even though I live in a busy city like New York and work in retail, I make time to connect with my inner self and reflect on deeper meanings in life. My spirituality helps me stay grounded and compassionate, which is important to me given how fast-paced and sometimes overwhelming urban life can be. It’s a big part of who I am.",
+   "selected_variables": [
+    "sprtprsn"
+   ],
+   "selection_rationale": "The variable 'sprtprsn' directly asks the extent to which a person considers themselves spiritual with the exact response options: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all, matching the user question precisely.",
+   "display_rationale": "The variable 'sprtprsn' directly asks the extent to which a person considers themselves spiritual with the exact response options: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all, matching the user question precisely.",
+   "anchors": [
+    {
+     "variable": "sprtprsn",
+     "survey_question": "To what extent do you consider yourself a spiritual person? Are you very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+     "response": "very spiritual",
+     "distribution": {
+      "moderately spiritual": 0.337653,
+      "very spiritual": 0.298766,
+      "slightly spiritual": 0.238777,
+      "not spiritual at all": 0.124804
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "sprtprsn": "very spiritual"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 8,
+   "ideology": {
+    "enabled": true,
+    "before": -0.05738410664227122,
+    "after": -0.03629849534115424,
+    "delta": 0.021085611301116983,
+    "initial": -0.03972281546903248
+   },
+   "timings": {
+    "prefilters": 0.013596057891845703,
+    "llm_select": 1.1158761978149414,
+    "native_predict": 0.0010781288146972656,
+    "draw": 0.00032806396484375,
+    "state_update": 9.775161743164062e-06,
+    "ideology": 0.054409027099609375,
+    "llm_final": 1.0110373497009277,
+    "total": 2.1963768005371094
+   },
+   "lexical_candidates": 123,
+   "targeted": false
+  },
+  {
+   "query_idx": 5,
+   "question": "Do you think having sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teens aged 14 to 16?",
+   "question_source": "ideology_push",
+   "answer": "I believe that for teens aged 14 to 16, having sex before marriage is almost always wrong. At that age, I think they’re still figuring out who they are and might not be ready for the emotional and physical consequences that come with it. However, when it comes to adults, I don’t see sex before marriage as wrong at all. People should have the freedom to make their own choices about their relationships and bodies.",
+   "selected_variables": [
+    "teensex",
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly matches the 'teensex' variable, which asks about opinions on sex before marriage specifically for teens aged 14 to 16, using the exact wording. The 'premarsx' variable is also relevant as it asks about sexual relations before marriage in general, providing complementary context.",
+   "display_rationale": "The user question directly matches the 'teensex' variable, which asks about opinions on sex before marriage specifically for teens aged 14 to 16, using the exact wording. The 'premarsx' variable is also relevant as it asks about sexual relations before marriage in general, providing complementary context.",
+   "anchors": [
+    {
+     "variable": "teensex",
+     "survey_question": "What if they are in their early teens, say 14 to 16 years old? In that case, do you think sex relations before marriage are always wrong, almost always wrong, wrong only sometimes, or not wrong at all?",
+     "response": "almost always wrong",
+     "distribution": {
+      "always wrong": 0.5203475203475203,
+      "almost always wrong": 0.24264024264024264,
+      "wrong only sometimes": 0.19203119203119204,
+      "not wrong at all": 0.04498104498104498
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    },
+    {
+     "variable": "premarsx",
+     "survey_question": "If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wron",
+     "response": "not wrong at all",
+     "distribution": {
+      "not wrong at all": 0.586358,
+      "always wrong": 0.246857,
+      "wrong only sometimes": 0.114128,
+      "almost always wrong": 0.052657
+     },
+     "map_provenance": {
+      "map_provenance": "YEAR_CODEBOOK",
+      "source": "YEAR_CODEBOOK"
+     }
+    }
+   ],
+   "mapping": {
+    "type": "direct",
+    "label": "DIRECT",
+    "direct_mapping": true,
+    "semantic_fallback": false,
+    "semantic_fallback_mode": "update_state",
+    "semantic_trigger": null,
+    "state_updated": true,
+    "skipped": false,
+    "skip_reason": null,
+    "semantic_bridge_items": []
+   },
+   "state_updates": {
+    "teensex": "almost always wrong",
+    "premarsx": "not wrong at all"
+   },
+   "state_evicted": [],
+   "state_changed": true,
+   "state_size": 9,
+   "ideology": {
+    "enabled": true,
+    "before": -0.03629849534115424,
+    "after": -0.07891359756805116,
+    "delta": -0.04261510222689693,
+    "initial": -0.03972281546903248
+   },
+   "timings": {
+    "prefilters": 0.015140056610107422,
+    "llm_select": 1.300339937210083,
+    "native_predict": 0.0011584758758544922,
+    "draw": 0.0004639625549316406,
+    "state_update": 1.8835067749023438e-05,
+    "ideology": 0.05930614471435547,
+    "llm_final": 1.1050233840942383,
+    "total": 2.4814963340759277
+   },
+   "lexical_candidates": 160,
+   "targeted": false
+  }
+ ],
+ "records_cli_schema": [
+  {
+   "query_idx": 1,
+   "question": "Do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for a man and a woman to have sexual relations before marriage?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly asks about the moral judgment of sexual relations before marriage between a man and a woman. The variable 'premarsx' specifically asks: 'If a man and a woman have sexual relations before marriage, do you think it is always wrong, almost always wrong, wrong only sometimes, or not wrong at all?' This is a direct semantic match to the user question.",
+   "responses": {
+    "premarsx": "wrong only sometimes"
+   },
+   "state_updates": {
+    "premarsx": "wrong only sometimes"
+   },
+   "ideology_index": -0.024530476093227515,
+   "answer": "I think having sexual relations before marriage is wrong only sometimes. It really depends on the context and the people involved. For me, it’s important that it’s consensual, respectful, and that both partners are on the same page about their relationship. I don’t think it should be judged harshly all the time, but there are situations where it might not be the best choice.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.01624608039855957,
+    "llm_select": 1.1384384632110596,
+    "native_predict": 0.0010564327239990234,
+    "draw": 0.0003070831298828125,
+    "state_update": 9.775161743164062e-06,
+    "ideology": 0.05400991439819336,
+    "llm_final": 1.1397888660430908,
+    "total": 2.34989595413208
+   }
+  },
+  {
+   "query_idx": 2,
+   "question": "Do you think a person who is against all churches and religion should be allowed to teach in a college or university?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "colath"
+   ],
+   "selection_rationale": "The variable 'colath' directly asks whether a person who is against all churches and religion should be allowed to teach in a college or university, which exactly matches the user's question.",
+   "responses": {
+    "colath": "yes, allowed to teach"
+   },
+   "state_updates": {
+    "colath": "yes, allowed to teach"
+   },
+   "ideology_index": -0.04813294675581889,
+   "answer": "Absolutely, I believe that a person who is against all churches and religion should be allowed to teach in a college or university. Academic freedom is crucial, and universities should be spaces where diverse viewpoints, including critical perspectives on religion, can be explored and debated. As long as the person is qualified and respectful, their personal beliefs shouldn’t disqualify them from teaching.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.013588428497314453,
+    "llm_select": 1.0953340530395508,
+    "native_predict": 0.0009629726409912109,
+    "draw": 0.00035119056701660156,
+    "state_update": 1.1444091796875e-05,
+    "ideology": 0.05496954917907715,
+    "llm_final": 1.3267967700958252,
+    "total": 2.492058277130127
+   }
+  },
+  {
+   "query_idx": 3,
+   "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the nation's health?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "natheal"
+   ],
+   "selection_rationale": "The user question directly asks about spending on improving and protecting the nation's health, which matches exactly with the variable 'natheal' that asks about spending on improving and protecting the nation's health. Other variables related to health or national spending are less direct or about different topics, so 'natheal' is the most semantically direct and relevant match.",
+   "responses": {
+    "natheal": "too little"
+   },
+   "state_updates": {
+    "natheal": "too little"
+   },
+   "ideology_index": -0.05738410664227122,
+   "answer": "I definitely think we are spending too little on improving and protecting the nation's health. With all the challenges we face, from public health crises to mental health issues, it feels like the government isn't investing enough to truly support everyone. Especially in urban areas like where I live, access to quality healthcare and preventive services should be a higher priority. We need more funding to make healthcare affordable and accessible for all.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.016591787338256836,
+    "llm_select": 1.2310054302215576,
+    "native_predict": 0.0010652542114257812,
+    "draw": 0.0003542900085449219,
+    "state_update": 1.0251998901367188e-05,
+    "ideology": 0.06546258926391602,
+    "llm_final": 0.9908318519592285,
+    "total": 2.3053696155548096
+   }
+  },
+  {
+   "query_idx": 4,
+   "question": "How spiritual do you consider yourself to be: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "sprtprsn"
+   ],
+   "selection_rationale": "The variable 'sprtprsn' directly asks the extent to which a person considers themselves spiritual with the exact response options: very spiritual, moderately spiritual, slightly spiritual, or not spiritual at all, matching the user question precisely.",
+   "responses": {
+    "sprtprsn": "very spiritual"
+   },
+   "state_updates": {
+    "sprtprsn": "very spiritual"
+   },
+   "ideology_index": -0.03629849534115424,
+   "answer": "I consider myself very spiritual. Even though I live in a busy city like New York and work in retail, I make time to connect with my inner self and reflect on deeper meanings in life. My spirituality helps me stay grounded and compassionate, which is important to me given how fast-paced and sometimes overwhelming urban life can be. It’s a big part of who I am.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.013596057891845703,
+    "llm_select": 1.1158761978149414,
+    "native_predict": 0.0010781288146972656,
+    "draw": 0.00032806396484375,
+    "state_update": 9.775161743164062e-06,
+    "ideology": 0.054409027099609375,
+    "llm_final": 1.0110373497009277,
+    "total": 2.1963768005371094
+   }
+  },
+  {
+   "query_idx": 5,
+   "question": "Do you think having sex before marriage is always wrong, almost always wrong, wrong only sometimes, or not wrong at all for teens aged 14 to 16?",
+   "question_source": "ideology_push",
+   "selected_variables": [
+    "teensex",
+    "premarsx"
+   ],
+   "selection_rationale": "The user question directly matches the 'teensex' variable, which asks about opinions on sex before marriage specifically for teens aged 14 to 16, using the exact wording. The 'premarsx' variable is also relevant as it asks about sexual relations before marriage in general, providing complementary context.",
+   "responses": {
+    "teensex": "almost always wrong",
+    "premarsx": "not wrong at all"
+   },
+   "state_updates": {
+    "teensex": "almost always wrong",
+    "premarsx": "not wrong at all"
+   },
+   "ideology_index": -0.07891359756805116,
+   "answer": "I believe that for teens aged 14 to 16, having sex before marriage is almost always wrong. At that age, I think they’re still figuring out who they are and might not be ready for the emotional and physical consequences that come with it. However, when it comes to adults, I don’t see sex before marriage as wrong at all. People should have the freedom to make their own choices about their relationships and bodies.",
+   "skipped": false,
+   "skip_reason": "",
+   "direct_mapping": true,
+   "semantic_fallback": false,
+   "semantic_trigger": "",
+   "semantic_state_updated": false,
+   "semantic_bridge_items": [],
+   "timings": {
+    "prefilters": 0.015140056610107422,
+    "llm_select": 1.300339937210083,
+    "native_predict": 0.0011584758758544922,
+    "draw": 0.0004639625549316406,
+    "state_update": 1.8835067749023438e-05,
+    "ideology": 0.05930614471435547,
+    "llm_final": 1.1050233840942383,
+    "total": 2.4814963340759277
+   }
+  }
+ ],
+ "final_state": {
+  "race": "white",
+  "sex": "female",
+  "res16": "in a large city (over 250,000)",
+  "polviews": "liberal",
+  "colath": "yes, allowed to teach",
+  "natheal": "too little",
+  "sprtprsn": "very spiritual",
+  "teensex": "almost always wrong",
+  "premarsx": "not wrong at all"
+ },
+ "label": "run03"
+}

@@ -1,0 +1,135 @@
+variable,answer,runs,share
+acpttg,too far,1,0.05
+amchrstn,very important,5,0.25
+amchrstn,fairly important,4,0.2
+amchrstn,not very important,2,0.1
+amchrstn,not important at all,1,0.05
+amgovt,very important,2,0.1
+amgovt,fairly important,1,0.05
+bible,inspired word,4,0.2
+bible,ancient book,2,0.1
+bible,word of god,1,0.05
+biblenv,word of god,3,0.15
+biblenv,ancient book,2,0.1
+biblenv,inspired word,2,0.1
+biblev,inspired word,4,0.2
+biblev,other (phone mode only: volunteered),3,0.15
+biblev,ancient book,1,0.05
+colath,"yes, allowed to teach",13,0.65
+colath,not allowed,6,0.3
+colcom,"yes, fired",13,0.65
+colcom,not fired,6,0.3
+colcomy,not fired,10,0.5
+colcomy,"yes, fired",9,0.45
+colmslm,not allowed,16,0.8
+colmslm,"yes, allowed to teach",4,0.2
+colrac,not allowed,12,0.6
+colrac,"yes, allowed to teach",8,0.4
+feovrwrk,disagree,2,0.1
+fepresch,disagree,2,0.1
+god,believe sometimes,3,0.15
+god,no doubts,3,0.15
+god,"don't know, no way to find out",2,0.1
+homosex,almost always wrong,1,0.05
+homosex,not wrong at all,1,0.05
+homosex,always wrong,1,0.05
+immjobs,disagree,8,0.4
+immjobs,disagree strongly,7,0.35
+immjobs,agree,4,0.2
+immjobs,agree strongly,1,0.05
+immjobs1,agree,8,0.4
+immjobs1,neither agree nor disagree,6,0.3
+immjobs1,disagree strongly,4,0.2
+immjobs1,disagree,2,0.1
+immwlfare,agree,8,0.4
+immwlfare,neither agree nor disagree,7,0.35
+immwlfare,disagree,3,0.15
+immwlfare,disagree strongly,2,0.1
+libath,not remove,2,0.1
+libathy,not remove,2,0.1
+libmslm,not remove,5,0.25
+libmslm,remove,4,0.2
+libmslmy,remove,6,0.3
+libmslmy,not remove,3,0.15
+librac,not remove,5,0.25
+librac,remove,2,0.1
+libracy,not remove,1,0.05
+libracy,remove,1,0.05
+marasian,oppose,1,0.05
+marasian,strongly favor,1,0.05
+marhisp,neither favor nor oppose,8,0.4
+marhisp,strongly favor,6,0.3
+marhisp,oppose,2,0.1
+marhisp,favor,1,0.05
+natsci,about right,1,0.05
+obey,2nd important,1,0.05
+obey,3rd important,1,0.05
+obey,most important,1,0.05
+obeylaws,very important,2,0.1
+obeylaws,6.0,1,0.05
+paytaxes,very important,3,0.15
+polescap,no,4,0.2
+polnews,once a day,11,0.55
+polnews,several times a day,6,0.3
+polnews,1-2 days a week,1,0.05
+polviews,liberal,20,1.0
+postlife,yes,5,0.25
+postlife,no,2,0.1
+postlifenv,yes,4,0.2
+postlifenv,no,2,0.1
+postlifev,yes,4,0.2
+postlifev,no,2,0.1
+pray,never,4,0.2
+pray,several times a week,2,0.1
+pray,several times a day,1,0.05
+premarsx,wrong only sometimes,6,0.3
+premarsx,not wrong at all,4,0.2
+premarsx,always wrong,1,0.05
+race,white,20,1.0
+ratechall124,25.0,3,0.15
+ratechall124,60.0,3,0.15
+ratechall124,0.0,2,0.1
+ratechall124,45.0,2,0.1
+ratechall124,50.0,1,0.05
+ratechall124,30.0,1,0.05
+rateincumb24,0.0,1,0.05
+rateincumb24,100.0,1,0.05
+ratemaga,10.0,2,0.1
+ratemaga,30.0,1,0.05
+raterepp,50.0,3,0.15
+raterepp,0.0,2,0.1
+raterepp,70.0,1,0.05
+raterepp,15.0,1,0.05
+reg16,northeast,2,0.1
+region,northeast,8,0.4
+relactiv,never,2,0.1
+relactiv,2-3 times a month,1,0.05
+religinf,neither agree nor disagree,6,0.3
+religinf,strongly agree,3,0.15
+religinf,agree,2,0.1
+religinf,disagree,2,0.1
+religinf,strongly disagree,1,0.05
+relpersn,moderately religious,8,0.4
+relpersn,not religious at all,8,0.4
+relpersn,very religious,3,0.15
+relpersn,slightly religious,1,0.05
+res16,"in a large city (over 250,000)",20,1.0
+sex,female,20,1.0
+spkmslm,not allowed,9,0.45
+spkmslmy,not allowed,7,0.35
+spkmslmy,"yes, allowed to speak",2,0.1
+spkrac,not allowed,10,0.5
+spkrac,"yes, allowed to speak",4,0.2
+spkracy,not allowed,8,0.4
+spkracy,"yes, allowed to speak",6,0.3
+sprtprsn,very spiritual,3,0.15
+sprtprsn,moderately spiritual,1,0.05
+sprtprsn,not spiritual at all,1,0.05
+spwksup,no,1,0.05
+spwrksta,working full time,1,0.05
+teensex,almost always wrong,3,0.15
+teensex,always wrong,2,0.1
+whatsp2,retail trade,7,0.35
+wrkstat,working full time,8,0.4
+wrkstat,working part time,7,0.35
+year,2024,7,0.35
