@@ -5,7 +5,7 @@ Base: `b6f20cf5e87af9d23ef947de43355934da17980c` (`origin/dev`, freshly fetched)
 Validated runtime implementation: `7ae6a03b31cfe2a7aec20c96d080933a535bd735`.
 The final report/test-only commit follows that runtime commit; its exact SHA is returned in the completion message and by `git rev-parse HEAD`. A committed report cannot contain its own commit hash.
 
-Implemented a separate participant application, native human-state adapter, four policies, live DTAG question generation/mapper, immutable question presentation, signed anonymous sessions, transactional Firestore operational state, mandatory GCS outbox reconciliation, completion receipts, private investigator export, React UI, container and parameterized deployment tooling. Existing simulator source, dependency declarations and lockfiles were not modified. Local/mocked verification is complete; **the live/native GSS and Google Cloud acceptance criteria are not claimed complete**.
+Implemented a separate participant application, native human-state adapter, four policies, live DTAG question generation/mapper, immutable question presentation, signed anonymous sessions, transactional Firestore operational state, mandatory GCS outbox reconciliation, completion receipts, private investigator export, React UI, container and parameterized deployment tooling. Existing simulator source, dependency declarations and lockfiles were not modified. Local/mock and real-native GSS checks ran; **live OpenAI and deployed Google Cloud acceptance criteria are not claimed complete**.
 
 ## Architecture and file changes
 
@@ -51,6 +51,7 @@ Implemented a separate participant application, native human-state adapter, four
 | `deploy/cloudbuild.yaml` | Parameterized image build with exact source SHA |
 | `deploy/smoke.sh` | Read-only probes for a later explicitly authorized HTTPS deployment |
 | `config/instrument.example.yaml` | Proposed native IDs and review requirements; not a loadable or validated instrument |
+| `config/study.example.yaml` | Full generated instrument validated against the real native GSS categories/map; `reviewed=false` |
 | `schema/final.schema.json` | Sanitized final-object schema without participant records |
 | `README.md` | Local/native/LLM/test/container/deploy/export commands, settings and outstanding review |
 | `SPEC.md` | Protocol assumptions, scientific boundaries, state/selection/persistence/security contracts |
@@ -80,7 +81,9 @@ PLAYWRIGHT_BROWSERS_PATH=/workspace/.cache/ms-playwright npm run test:e2e
 
 Frontend compilation/build passed. Both Playwright tests passed against the running container: 37-question mobile keyboard flow including refresh and receipt resumption; simulated network failure with retry and preserved wording. Screenshot evidence is generated locally at `human_study/frontend/test-results/mobile-receipt.png` and deliberately not committed.
 
-The final combined backend/container run passed **174 tests, 15 skipped in 19.08 seconds**. The separate opt-in container test passed **1 test**. Detailed output is in `/workspace/.setup/final-tests.log`; the skipped native tier is kept distinct from passed fixture tests.
+The initial combined backend/container run passed **174 tests, 15 skipped in 19.08 seconds** while the model was blocked. After GSS installation, the full regression command with `DTAG_MODEL_ROOT=/workspace/.cache/dtag/models`, **without** `DTAG_TEST_OFFLINE`, passed **185 tests, four skipped in 92.90 seconds**. See `/workspace/.setup/native-final-tests.log`. Those four skips are the stopped external-container test (already independently passed), missing non-GSS coverage and Afrobarometer R5, and uninstalled GSS 2018. They do not skip the GSS 2024 integration tier.
+
+Four further native recorded-answer replay tests were then added, one per policy. The final engine run `DTAG_MODEL_ROOT=/workspace/.cache/dtag/models DTAG_ASSETS_DIR=/workspace/.cache/dtag/assets /workspace/.venv/bin/pytest -q human_study/tests/test_human_engine.py` passed **12 tests in 59.67 seconds**. Each new test records 20 exact categorical fixture choices, compares the updated index with native qdistance, and reconstructs/recomputes all selections and indices from the records. The separate opt-in container test passed **1 test**, and both browser tests passed against that container. These are separate runs; their overlapping counts must not be added as independent tests.
 
 The second repository, `/workspace/lsm` at `f4a19c8b77c6e6b79a66d3823644b7ff189310a1`, was built with CMake Release, profiling off, Python bindings on, terminal logging on, Python 3.12 and four build workers. Boost was extracted locally from signed Debian package indexes. Results:
 
@@ -141,7 +144,7 @@ Provision and deploy scripts were syntax-checked and executed in **dry-run mode 
 
 ## Outstanding validation and limits
 
-`storage.googleapis.com` returned proxy HTTP 403 for the existing public v0.2.1 GSS manifest. Its domain was saved in the environment configuration draft, but saving does not apply the runtime policy. Apply that change in environment settings, rerun the native model download, generate/review the instrument and run the native test. The draft instrument's categories and availability are therefore **not yet validated on the real GSS model**. The native runtime imports, but that alone cannot establish model behavior. No verification was bypassed.
+The initial `storage.googleapis.com` HTTP 403 was resolved after the environment's network policy changed. A retry installed GSS 2024 with the existing SHA256-verifying downloader. `python -m human_study.instrument --out human_study/config/study.yaml` produced 44 native-validated items (13 baseline, 28 intervention, three outcomes); the generated draft is also saved as `config/study.example.yaml` with `reviewed=false`. Real-native index equality and withheld-outcome predictions passed. A 36-answer native GSS flow using `QuestionLLM(..., 'mock')` and the real native adapter completed through consent, baseline, assignment, 20 adaptive questions, three outcomes and receipt. It created 75 immutable local archive objects. These were synthetic recorded choices, not responses sampled from the model. No verification was bypassed.
 
 Live LLM wording/mapping, Firestore transactional behavior against a deployed database, private GCS permissions/reconciliation against a real bucket, Cloud Run restarts/autoscaling and latency/cost remain unverified. Unit adapter contracts and shared-store restart simulations cannot replace a staging test. The conservative instrument, ethics/eligibility/retention/support wording, model/data license and baseline/outcome validity require investigator review. Frozen prompt/code/model versions must be retained for interrupted sessions; version mismatches fail safely instead of silently reinterpreting data.
 

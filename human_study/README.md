@@ -56,7 +56,7 @@ The browser tests exercise all 37 fixture questions at mobile width, keyboard in
 
 ## Configuration and deployment
 
-Generate a full instrument from actual native categories with `instrument.py`; [config/instrument.example.yaml](config/instrument.example.yaml) records the proposed IDs and review requirements without inventing labels. Set `reviewed: true` only after investigator approval. A GCP-backed staging/production start fails without the reviewed instrument, native model/runtime, durable database/bucket, and stable cookie secret. The deployment script requires a separate reviewed instrument path and packages it explicitly.
+The full [config/study.example.yaml](config/study.example.yaml) was generated and validated against real native GSS 2024 categories: 13 baseline items, 28 eligible intervention items, three outcomes. It is marked `reviewed: false`. Regenerate from actual native categories with `instrument.py`; [config/instrument.example.yaml](config/instrument.example.yaml) records the proposed IDs and review requirements. Set `reviewed: true` only after investigator approval. A GCP-backed staging/production start fails without the reviewed instrument, native model/runtime, durable database/bucket, and stable cookie secret. The deployment script requires a separate reviewed instrument path and packages it explicitly.
 
 | Setting | Behavior |
 | --- | --- |

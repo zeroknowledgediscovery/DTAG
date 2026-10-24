@@ -1,0 +1,663 @@
+schema_version: '1'
+study_id: pilot-001
+model_key: gss/gss_2024
+model_release: v0.2.1
+reviewed: false
+consent_version: pilot-draft-1
+consent_text: This internal pilot asks categorical survey questions. Participation
+  is voluntary. You may stop at any time. Answers are stored for research. This receipt
+  is not a payment code.
+intervention_steps: 20
+llm_model: gpt-4.1-mini-2025-04-14
+prompt_version: dtag-core-survey-question-v1
+excluded_ids: []
+ethics_disallowed_ids: []
+items:
+- item_id: confinan
+  original_wording: As far as the people running this institution are concerned, would
+    you say you have a great deal of confidence, only some confidence, or hardly any
+    confidence at all in them? Banks and financial inst
+  choices:
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: conbus
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) Major companies
+  choices:
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: coneduc
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) Education
+  choices:
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: conpress
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) Press
+  choices:
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: conmedic
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) Medicine
+  choices:
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: contv
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) TV
+  choices:
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: conjudge
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) U.S. Supreme Court
+  choices:
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: consci
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) Scientific Community
+  choices:
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: conlegis
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) Congress
+  choices:
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: conarmy
+  original_wording: (I am going to name some institutions in this country. As far
+    as the people running these institutions are concerned, would you say you have
+    a great deal of confidence, only some confidence, or hardly any confidence at
+    all in them?) Military
+  choices:
+  - native_value: hardly any
+    display_label: hardly any
+  - native_value: a great deal
+    display_label: a great deal
+  - native_value: only some
+    display_label: only some
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: trust
+  original_wording: Generally speaking, would you say that most people can be trusted
+    or that you can't be too careful in dealing with people?
+  choices:
+  - native_value: most people can be trusted
+    display_label: most people can be trusted
+  - native_value: depends
+    display_label: depends
+  - native_value: can't be too careful
+    display_label: can't be too careful
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: fair
+  original_wording: Do you think most people would try to take advantage of you if
+    they got a chance, or would they try to be fair?
+  choices:
+  - native_value: depends
+    display_label: depends
+  - native_value: would take advantage of you
+    display_label: would take advantage of you
+  - native_value: would try to be fair
+    display_label: would try to be fair
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: helpful
+  original_wording: Would you say that most of the time people try to be helpful,
+    or that they are mostly just looking out for themselves?
+  choices:
+  - native_value: try to be helpful
+    display_label: try to be helpful
+  - native_value: looking out for themselves
+    display_label: looking out for themselves
+  - native_value: depends
+    display_label: depends
+  phase: baseline
+  required: false
+  version: draft-1
+- item_id: cappun
+  original_wording: Do you favor or oppose the death penalty for persons convicted
+    of murder?
+  choices:
+  - native_value: favor
+    display_label: favor
+  - native_value: oppose
+    display_label: oppose
+  phase: outcome
+  required: false
+  version: draft-1
+- item_id: courts
+  original_wording: In general, do you think the courts in this area deal too harshly
+    or not harshly enough with criminals?
+  choices:
+  - native_value: too harshly
+    display_label: too harshly
+  - native_value: about right
+    display_label: about right
+  - native_value: not harshly enough
+    display_label: not harshly enough
+  phase: outcome
+  required: false
+  version: draft-1
+- item_id: tax
+  original_wording: Do you consider the amount of federal income tax which you have
+    to pay as too high, about right, or too low?
+  choices:
+  - native_value: too low
+    display_label: too low
+  - native_value: too high
+    display_label: too high
+  - native_value: about right
+    display_label: about right
+  phase: outcome
+  required: false
+  version: draft-1
+- item_id: nataid
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Foreign aid
+  choices:
+  - native_value: too little
+    display_label: too little
+  - native_value: about right
+    display_label: about right
+  - native_value: too much
+    display_label: too much
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natchld
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Assistance for childcare
+  choices:
+  - native_value: about right
+    display_label: about right
+  - native_value: too much
+    display_label: too much
+  - native_value: too little
+    display_label: too little
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natcity
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Solving the problems of big cities
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natcrime
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Halting the rising crime rate
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natcrimy
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Law enforcement
+  choices:
+  - native_value: too little
+    display_label: too little
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natdrug
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Dealing with drug addiction
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: too little
+    display_label: too little
+  - native_value: about right
+    display_label: about right
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: nateduc
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Improving the nation's education system
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natenrgy
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Developing alternative energy sources
+  choices:
+  - native_value: about right
+    display_label: about right
+  - native_value: too much
+    display_label: too much
+  - native_value: too little
+    display_label: too little
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natenviy
+  original_wording: Improving and protecting the environment
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: too little
+    display_label: too little
+  - native_value: about right
+    display_label: about right
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natheal
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Improving and protecting the nation's health
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natrace
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Improving the conditions of Black people
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natroad
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Highways and bridges
+  choices:
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  - native_value: too much
+    display_label: too much
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natsci
+  original_wording: (... are we spending too much, too little, or about the right
+    amount on) Supporting scientific research
+  choices:
+  - native_value: too little
+    display_label: too little
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: natspac
+  original_wording: We are faced with many problems in this country, none of which
+    can be solved easily or inexpensively. (... are we spending too much, too little,
+    or about the right amount on) Space exploration program
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: too little
+    display_label: too little
+  - native_value: about right
+    display_label: about right
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: eqwlth
+  original_wording: Some people think that the government in Washington ought to reduce
+    the income differences between the rich and the poor, perhaps by raising the taxes
+    of wealthy families or by giving income assistance to the poor. Others think that
+    the government should
+  choices:
+  - native_value: '2.0'
+    display_label: '2.0'
+  - native_value: '6.0'
+    display_label: '6.0'
+  - native_value: '5.0'
+    display_label: '5.0'
+  - native_value: '4.0'
+    display_label: '4.0'
+  - native_value: the government should not concern itself with reducing income differences
+    display_label: the government should not concern itself with reducing income differences
+  - native_value: '3.0'
+    display_label: '3.0'
+  - native_value: the government should reduce income differences
+    display_label: the government should reduce income differences
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: helppoor
+  original_wording: Next, here are issues that some people tell us are important.
+    Some people think that the government in Washington should do everything possible
+    to improve the standard of living of all poor Americans, they are at Point 1 on
+    the scale below. Other people t
+  choices:
+  - native_value: '2.0'
+    display_label: '2.0'
+  - native_value: '4.0'
+    display_label: '4.0'
+  - native_value: people should care for themselves
+    display_label: people should care for themselves
+  - native_value: agree with both
+    display_label: agree with both
+  - native_value: government should help
+    display_label: government should help
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: helpsick
+  original_wording: In general, some people think that it is the responsibility of
+    the government in Washington to see to it that people have help in paying for
+    doctors and hospital bills. Others think that these matters are not the responsibility
+    of the federal government a
+  choices:
+  - native_value: '4.0'
+    display_label: '4.0'
+  - native_value: people should care for themselves
+    display_label: people should care for themselves
+  - native_value: '2.0'
+    display_label: '2.0'
+  - native_value: agree with both
+    display_label: agree with both
+  - native_value: government should help
+    display_label: government should help
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: helpnot
+  original_wording: Some people think that the government in Washington is trying
+    to do too many things that should be left to individuals and private businesses.
+    Others disagree and think that the government should do even more to solve our
+    country's problems. Still others
+  choices:
+  - native_value: '2.0'
+    display_label: '2.0'
+  - native_value: '4.0'
+    display_label: '4.0'
+  - native_value: government should do more
+    display_label: government should do more
+  - native_value: government does too much
+    display_label: government does too much
+  - native_value: agree with both
+    display_label: agree with both
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: letin1a
+  original_wording: Do you think the number of immigrants to America nowadays should
+    be
+  choices:
+  - native_value: increased a lot
+    display_label: increased a lot
+  - native_value: increased a little
+    display_label: increased a little
+  - native_value: reduced a lot
+    display_label: reduced a lot
+  - native_value: remain the same as it is
+    display_label: remain the same as it is
+  - native_value: reduced a little
+    display_label: reduced a little
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: getahead
+  original_wording: Some people say that people get ahead by their own hard work;
+    others say that lucky breaks or help from other people are more important. Which
+    do you think is most important?
+  choices:
+  - native_value: hard work, luck equally important
+    display_label: hard work, luck equally important
+  - native_value: luck most important
+    display_label: luck most important
+  - native_value: hard work most important
+    display_label: hard work most important
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: goodlife
+  original_wording: The way things are in America, people like me and my family have
+    a good chance of improving our standard of living -- do you agree or disagree?
+  choices:
+  - native_value: strongly agree
+    display_label: strongly agree
+  - native_value: neither agree nor disagree
+    display_label: neither agree nor disagree
+  - native_value: strongly disagree
+    display_label: strongly disagree
+  - native_value: agree
+    display_label: agree
+  - native_value: disagree
+    display_label: disagree
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: fehire
+  original_wording: Now I'm going to read several statements. As I read each one,
+    please tell me whether you strongly agree, agree, neither agree nor disagree,
+    Because of past discrimination, employers should make special efforts to hire
+    and promote qualified women.
+  choices:
+  - native_value: strongly disagree
+    display_label: strongly disagree
+  - native_value: neither agree nor disagree
+    display_label: neither agree nor disagree
+  - native_value: strongly agree
+    display_label: strongly agree
+  - native_value: agree
+    display_label: agree
+  - native_value: disagree
+    display_label: disagree
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: fejobaff
+  original_wording: Some people say that because of past discrimination, women should
+    be given preference in hiring and promotion. Others say that such preference in
+    hiring and promotion of women is wrong because it discriminates against men. What
+    about your opinion -are you
+  choices:
+  - native_value: strongly oppose
+    display_label: strongly oppose
+  - native_value: not strongly oppose
+    display_label: not strongly oppose
+  - native_value: strongly favor
+    display_label: strongly favor
+  - native_value: not strongly favor
+    display_label: not strongly favor
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: fefam
+  original_wording: "(Please read the following statements and indicate whether you\
+    \ strongly agree, agree, disagree, or strongly disagree with each statement\u2026\
+    ) It is much better for everyone involved if the man is the achiever outside the\
+    \ home and the woman takes care of the"
+  choices:
+  - native_value: strongly disagree
+    display_label: strongly disagree
+  - native_value: agree
+    display_label: agree
+  - native_value: strongly agree
+    display_label: strongly agree
+  - native_value: disagree
+    display_label: disagree
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: happy
+  original_wording: Taken all together, how would you say things are these days--would
+    you say that you are very happy, pretty happy, or not too happy?
+  choices:
+  - native_value: pretty happy
+    display_label: pretty happy
+  - native_value: very happy
+    display_label: very happy
+  - native_value: not too happy
+    display_label: not too happy
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: health
+  original_wording: Would you say your own health, in general, is excellent, good,
+    fair, or poor?
+  choices:
+  - native_value: poor
+    display_label: poor
+  - native_value: fair
+    display_label: fair
+  - native_value: excellent
+    display_label: excellent
+  - native_value: good
+    display_label: good
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: workhard
+  original_wording: to work hard
+  choices:
+  - native_value: 4th important
+    display_label: 4th important
+  - native_value: 2nd important
+    display_label: 2nd important
+  - native_value: least important
+    display_label: least important
+  - native_value: 3rd important
+    display_label: 3rd important
+  - native_value: most important
+    display_label: most important
+  phase: intervention
+  required: false
+  version: draft-1
+- item_id: helpoth
+  original_wording: to help others
+  choices:
+  - native_value: 4th important
+    display_label: 4th important
+  - native_value: 2nd important
+    display_label: 2nd important
+  - native_value: least important
+    display_label: least important
+  - native_value: most important
+    display_label: most important
+  - native_value: 3rd important
+    display_label: 3rd important
+  phase: intervention
+  required: false
+  version: draft-1

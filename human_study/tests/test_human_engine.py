@@ -132,3 +132,33 @@ def test_real_native_index_and_withheld_predictions():
     for v, probabilities in dists.items():
         assert sum(probabilities.values()) == pytest.approx(1, abs=1e-8)
         assert set(probabilities) <= set(adapter.support(v))
+
+
+@pytest.mark.parametrize("policy", POLICIES)
+def test_real_native_twenty_observed_answer_replay(policy):
+    from pathlib import Path
+    root = Path(os.environ.get("DTAG_MODEL_ROOT", "/nonexistent"))
+    if not (root / "gss/gss_2024/trees/binary").is_dir():
+        pytest.skip("native GSS 2024 artifact is not installed")
+    from human_study.adapter import NativeAdapter
+    from human_study.study_config import StudyConfig
+    config = StudyConfig.load(Path(__file__).resolve().parents[1] / "config/study.example.yaml")
+    native = NativeAdapter(config)
+    native.validate_config(config)
+    observations = [Observation(str(i), item.item_id, item.choices[0].native_value, "baseline")
+                    for i, item in enumerate(config.bank("baseline"))]
+    state = initialize_human_state(config.model_key, observations, config, native, "native-replay-test")
+    rng, events = initial_rng(481), []
+    for step in range(20):
+        chosen = choose_next_item(state, policy, set(), rng, config, native)
+        rng = chosen["rng_state"]
+        question = {"question_id": str(step), "target_variable": chosen["variable"], "selection": chosen,
+                    "conditional_distribution": {r["answer"]: r["conditional_probability"] for r in chosen["per_answer"]}}
+        # A fixed recorded fixture choice, independent of model probabilities or modal labels.
+        answer = config.item(chosen["variable"]).choices[step % len(config.item(chosen["variable"]).choices)].native_value
+        state, result = apply_observed_answer(state, question, answer, native, config)
+        assert result["index_after"] == pytest.approx(native.index(state.observed_state), abs=1e-12)
+        events.append({"question": question, "native_value": answer, "index_after": result["index_after"]})
+    replayed = reconstruct_state(observations, events, native, config, "native-replay-test")
+    assert dict(replayed.observed_state) == dict(state.observed_state)
+    assert replayed.current_index == pytest.approx(state.current_index, abs=1e-12)
