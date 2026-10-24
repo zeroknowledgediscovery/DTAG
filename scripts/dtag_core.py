@@ -1040,6 +1040,8 @@ def llm_craft_survey_question(
     item_text: str,
     responses: List[str],
     model: str,
+    *,
+    source_incomplete: bool = False,
 ) -> str:
     """Phrase one survey item as a single natural, neutral question for a respondent.
 
@@ -1054,8 +1056,17 @@ def llm_craft_survey_question(
         "required": ["question"],
         "additionalProperties": False,
     }
+    completion_guidance = (
+        "The supplied source may be an abbreviated or truncated survey item, NOT its complete original wording.\n"
+        "Write ONE complete, stand-alone question using only the meaning supported by the excerpt "
+        "and its response options. Use the options to resolve the question format.\n"
+        "Do not invent a missing premise, policy position, population, timeframe, scale anchor, "
+        "or any other substantive detail. Do not imply your wording is verbatim from the source.\n"
+        "If the excerpt and options are too ambiguous to form a faithful question, return an empty question string.\n"
+    ) if source_incomplete else ""
     prompt = (
         "Rewrite the survey item below as ONE clear question addressed to a respondent ('you').\n"
+        f"{completion_guidance}"
         "Requirements:\n"
         "1) Keep the item's exact meaning and topic; the question must be answerable with the listed options.\n"
         "2) Neutral wording: do not suggest, favour or frame toward any answer; no leading or loaded language.\n"
