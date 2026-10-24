@@ -94,7 +94,7 @@ Digital Twin Anchored Generation (DTAG) constructs a survey-grounded \emph{predi
 
 \end{abstract}
 \begin{IEEEkeywords}
-Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
+Predictive phenotypes, large science models, conditional response modeling, digital twins, survey methodology, opinion dynamics, adaptive questioning, generative simulation.
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -115,8 +115,8 @@ DeGroot \cite{degroot1974}, Friedkin--Johnsen \cite{friedkin1990}, and bounded-c
 
 Bail \emph{et al.} \cite{bail2018} randomized incentives to follow Twitter bots providing cross-cutting political content. Republicans assigned a liberal bot later reported more conservative views; the corresponding Democratic estimate was not significant. These observations motivate examining how heterogeneity interacts with structured questioning. Campaign-contact experiments found small general-election mean effects \cite{kalla2018}, whereas some structured conversations produced more persistent reported changes \cite{broockman2016}. These studies motivate examining heterogeneity in responses to structured sequences and distinguishing immediate response effects from persistent attitude change.
 
-\subsection{Theory of mind and generative simulation}
-Theory of mind infers unobserved mental states from behavior \cite{premack1978,dennett1987}; inverse planning formalizes this inference \cite{baker2009}. DTAG makes one component of this problem operational: predicting distributions of \emph{unasked attitudes} from observed answers. Synthetic LLM personas \cite{argyle2023,park2023} may reproduce profiles without calibrated individual conditionals; DTAG exposes states, probabilities, and response provenance.
+\subsection{Generative simulation and conditional response prediction}
+Generative agents and profile-conditioned language-model respondents can produce survey-like behavior \cite{argyle2023,park2023}. DTAG instead grounds generated answers in empirically estimated dependencies among survey variables. Its conditional distributions describe the range and likelihood of unasked responses given observed answers, while explicit anchors and state updates make the refinement process inspectable and reproducible.
 
 \section{Large Science Models and the Predictive Phenotype}
 \subsection{Conditional dependency model}
@@ -244,7 +244,7 @@ The trajectories show model-generated phenotype refinement under each selection 
 \label{fig:native-trajectories}
 \end{figure*}
 
-\section{DTAG: A Conditional Theory-of-Mind Interface}
+\section{DTAG: Conditional Response Generation and Adaptive Querying}
 \subsection{Architecture and generative semantics}
 A semantic interface maps question $q$ to survey variables $M(q)$. The LSM predicts responses, the answer anchors the state, and an LLM verbalizes it. For draw mode,
 \begin{align}
