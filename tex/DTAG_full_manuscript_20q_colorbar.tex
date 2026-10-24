@@ -246,13 +246,13 @@ The trajectories show model-generated phenotype refinement under each selection 
 
 \section{DTAG: Conditional Response Generation and Adaptive Querying}
 \subsection{Architecture and generative semantics}
-A semantic interface maps question $q$ to survey variables $M(q)$. The LSM predicts responses, the answer anchors the state, and an LLM verbalizes it. For draw mode,
+A semantic interface maps question $q$ to survey variables $M(q)$. The LSM predicts responses, the answer anchors the state, and an LLM verbalizes it. For a selected survey item, the response is sampled from the conditional LSM distribution:
 \begin{align}
 A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\qquad v_t\in M(q_t),\label{eq:draw}\\
 s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
 \calB_{t+1}&=\calB_\Ph(s_{t+1}).\label{eq:posterior}
 \end{align}
-In \emph{draw mode}, an answer is sampled, not chosen by the optimizer; \emph{pinned} anchors remain fixed. The system also supports modal answering, validated/multi-item mapping, and finite-memory \emph{eviction} of old anchors, none used in the reported native runs. The LSM thus supplies the conditional response mechanism with which to evaluate and compare questioning policies.
+The sampled response is added to the anchored state and the predictions for unasked items are updated; initial persona anchors remain fixed. The optimizer selects questions using expected displacement but does not select the respondent's answers.
 
 Figure~\ref{fig:arch_adaptive} combines the architecture and native experiment.
 
@@ -268,7 +268,7 @@ The expected realized displacement equals the selection score:
 \begin{equation*}
 \EE[I_\Ph(s_{t+1})-I_\Ph(s_t)\mid s_t,v_t]=\mu_{v_t}(s_t).
 \end{equation*}
-This identity specifies the local optimization objective; the attainable movement over 20 questions, variation across initial states, and retention after sets are frozen are empirical properties of the fitted conditional system. Adaptive policies optimize $\mu_v(s)$ under conditional sampling, whereas modal-response objectives use the most probable answer. A modal sequence is not a sampled respondent population.
+This identity specifies the local optimization objective; the attainable movement over 20 questions, variation across initial states, and retention after sets are frozen are empirical properties of the fitted conditional system. The reported policies evaluate this objective under sampled conditional responses.
 
 The predictive change at unasked item $j$ after observing $(v,a)$ is
 \begin{equation}
@@ -362,15 +362,40 @@ Separately fitted conditional models need not satisfy this equality \cite{hecker
 \label{sec:native}
 
 \subsection{Adaptive questioning from pinned persona states}
-We initialized six synthetic respondents from the pinned GSS 2024 states in Table~\ref{tab:personas}. Each repetition draws a new response trajectory conditioned on the same initial anchors; these are independent synthetic response realizations, rather than repeated observations of one fully specified person. We queried survey items directly without executing the LLM mapping or verbalization layer. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. Answers were drawn from LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
+We initialized six synthetic respondents from the pinned GSS 2024 states in Table~\ref{tab:personas}. Each repetition draws a new response trajectory conditioned on the same initial anchors; these are independent synthetic response realizations, rather than repeated observations of one fully specified person. We queried survey items directly without executing the LLM mapping or verbalization layer. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. For every policy, the eligible item pool excluded \emph{all 27 variables used to define the left and right reference poles} (Table~\ref{tab:poles}); no pole-defining item was asked in any experimental trajectory. Answers to selected non-pole items were sampled from the LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ sampled answers.
 
 
 
 
-Across all six initial states, the right- and left-seeking policies yielded displacement in their respective directions. The random policy provides a selection baseline; the neutral policy tests whether low expected geometric displacement can be maintained as the observed state grows. The results characterize reachable movement of the predictive index under the learned response mechanism.
+Across all six initial states, the right- and left-seeking policies yielded displacement in their respective directions. Because the reference-pole items were excluded, these displacements arise from changes in the inferred phenotype when non-pole responses are observed, rather than from directly querying the items defining the index. The random policy provides a selection baseline; the neutral policy tests whether low expected geometric displacement can be maintained as the observed state grows.
+
+\begin{table}[!t]
+\centering
+\caption{\textbf{Question selection in the native GSS 2024 experiment.} Distinct-item counts by policy are not additive because selected questions overlap. None of the 27 reference-pole variables was eligible for selection.}
+\label{tab:question-coverage}
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Selection policy} & \textbf{Distinct} & \textbf{Selections} & \textbf{Pole overlap}\\
+\midrule
+Right-seeking & 100 & 4,800 & 0\\
+Left-seeking & 75 & 4,800 & 0\\
+Neutral & 43 & 4,800 & 0\\
+\midrule
+Three-policy union & 161 & 14,400 & 0\\
+All four policies & 228 & 19,200 & 0\\
+\bottomrule
+\end{tabular}
+\endgroup
+\par\smallskip
+{\footnotesize\raggedright The random policy contributed 4,800 selections; 67 of the 228 distinct items occurred only under random selection.\par}
+\end{table}
 
 \subsection{Question selection as observed paths}
-Each observed question was assigned a shared categorical index without reordering runs or constructing modal paths. Of 228 items across all policies, 161 appeared in the 18 displayed right/left/neutral heatmaps (six personas by three policies; 40 runs of 20 questions). The global index permutation approximately minimizes
+Question identities and policy coverage are summarized in Table~\ref{tab:question-coverage}. Each observed item was assigned a shared categorical index without reordering runs. The 18 displayed right/left/neutral heatmaps contain 161 distinct items across six personas and 40 repetitions per policy. The global index permutation approximately minimizes
 \begin{equation}
 \mathcal C(\pi)=\sum_{p,u,t}\sum_{r<r'}
 \big|\pi(v_{purt})-\pi(v_{pur't})\big|,
