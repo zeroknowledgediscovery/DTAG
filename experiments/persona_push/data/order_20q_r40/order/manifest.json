@@ -1,0 +1,22 @@
+{
+  "model": "gss/gss_2024",
+  "model_path": "/home/ishanu/.cache/dtag/models/gss/gss_2024",
+  "map_sha256": "c63a32ccd194f4a94cb4d45b8363ef6cba9c428515b9a3e13783cc6112a9e13b",
+  "poles_sha256": "5f6f12c62dbb410696a34f5e264978b82ca012253c10ca5c26677f0edd76e283",
+  "persona_sha256": "3f4dcafbfef6a1f3ebc81fa78a3f7213431e687a84b54c278755534d52be67ec",
+  "set_file_sha256": "eece2b5662ba9399bb5b518a77f42393f0aad170724e674426c951ee40396a7d",
+  "git_commit": "7462d2981ee0c0c84b9f2088ac2e43f94c32aea4",
+  "fixed_sets": 18,
+  "orders_per_set": 4,
+  "repetitions": 40,
+  "questions_per_run": 20,
+  "seed": 20261021,
+  "bootstrap": 2000,
+  "workers": 10,
+  "runs": 2880,
+  "quick": false,
+  "answer_sampling": "native sequential conditionals, matched uniform draws by question ID",
+  "CIs": "pointwise percentile paired-run bootstrap; comparisons versus original",
+  "interpretation": "synthetic-model order dependence; not causal persuasion in human respondents"
+}
+
