@@ -4,6 +4,27 @@ Date: 2026-10-24. Branch: `experiment/prolific-human-study`.
 
 **Status: BLOCKED for a verified, complete-question instrument.** This is a source inventory and missing-data report, **not** a substitute for full questionnaire text. No wording has been reconstructed or inferred.
 
+## Implementation update: LLM completion is now permitted (2026-10-24)
+
+The study now **keeps the original incomplete text unchanged** in the draft instrument. Its new
+`source_text_incomplete: true` flag marks the 24 affected adaptive items and the truncated
+`confinan` baseline item. `human_study.instrument` generates the same flag whenever the
+draft instrument is regenerated. The LLM is explicitly instructed to make a complete, neutral,
+standalone question using only available text and native response labels; it must not invent
+substantive details not supported by that context. Reverse semantic mapping must identify
+the intended survey variable exactly. The unmodified source, generated question and provenance
+are retained in the immutable study archive.
+
+**Generated completion is not verified original GSS wording.** Any scientifically relevant
+missing anchors, numeric response labels and semantic ambiguities still require review. The
+application is not yet approved for actual participant recruitment; the draft stays
+`reviewed: false`. A known incomplete source is never shown as fallback when the model or
+semantic validation fails: the question remains pending and can be retried.
+
+The "blocked" status in the original audit below refers specifically to reconstructing
+**verified verbatim GSS 2024** original text, not to generating experimental questions with
+a clearly labeled LLM completion.
+
 ## Source files actually checked
 
 - `human_study/config/study.example.yaml`: 13 baseline, 28 adaptive, 3 outcomes; generated with `reviewed: false`.
