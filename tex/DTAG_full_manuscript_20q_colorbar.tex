@@ -90,32 +90,33 @@
 
 \maketitle
 \begin{abstract}
-Digital Twin Anchored Generation (DTAG) couples a language interface with Large Science Models (LSMs) of survey-response dependencies. Conditional predictions for unasked items define a \emph{predictive phenotype}, refined by successive answers; geometric adaptive querying selects questions by expected movement of a pole-relative index. We distinguish such inference from \emph{phenotypic construction}, in which interaction changes future reports or beliefs. Native GSS 2024 simulations with six pinned personas yielded 960 adaptive 20-question trajectories and 2,880 fixed-item order replays. Right- and left-derived question sets retained their directional shifts under original, reversed, and shuffled fixed-order replays, while neutral-derived sets remained near zero; no mean ordering effect was detected. These native-model experiments do not establish human persuasion or validate language mapping. A prospective randomized study will test whether adaptive questions move the estimated ideology in the predicted direction when answered by real respondents.
+Digital Twin Anchored Generation (DTAG) constructs a survey-grounded \emph{predictive phenotype} from Large Science Models (LSMs) of high-dimensional response dependencies. Each observed answer refines predictions for unasked items, while an adaptive policy selects questions by their expected displacement of a pole-relative geometric index. Native GSS 2024 experiments with six pinned personas produce 960 adaptive 20-question trajectories and 2,880 fixed-set order replays. Direction-seeking selection yields reproducible displacement toward either reference pole; sets frozen after adaptive selection retain this movement under reversed and shuffled interrogation, without a detected systematic mean order effect. These results characterize how learned conditional structure can be navigated through selective questioning. We formulate a prospective randomized human study to test the transfer of these predictions to real responses and to examine whether progressive questioning also influences answers beyond selective phenotype refinement.
+
 \end{abstract}
 \begin{IEEEkeywords}
 Computational theory of mind, opinion dynamics, large science models, digital twins, survey methodology, social influence, polarization, latent geometry, adaptive questioning.
 \end{IEEEkeywords}
 
 \section{Introduction}
-Belief systems comprise dependencies among economic, religious, institutional, and political attitudes, not only individual responses. Classical studies of issue constraint \cite{converse1964,zaller1992} and later work on partisan sorting and alignment \cite{baldassarri2008,dellaposta2015} motivate this high-dimensional view. We ask whether sequential questioning reveals or helps construct such a system.
+Opinions about social, political, religious, and economic questions form a coupled system: knowing a respondent's answers to a few items changes the expected answers to many others. This structure raises a quantitative question. Can questions be selected to refine a respondent's inferred position in a predictable direction, and how much of the resulting movement follows from measurement selection rather than changes in the respondent?
 
-DTAG links natural-language queries to an LSM of empirical conditional survey responses. Each answer anchors a predictive phenotype, updates predictions for unasked questions, and moves a pole-relative geometric index. Adaptive queries select items by expected displacement, making sequential behavior measurable rather than merely plausible prose.
+We introduce Digital Twin Anchored Generation (DTAG), coupling a language-based questioning interface to a Large Science Model (LSM) of empirical conditional survey responses. Observed answers anchor a \emph{predictive phenotype}: a distribution over responses not yet observed. An LSM-derived geometry relates this predictive state to reference configurations, and an adaptive policy selects successive questions by their expected geometric displacement.
 
-Synthetic ideological movement is not persuasion. We formalize \emph{passive refinement} of fixed beliefs versus \emph{reflexive construction} through interaction, then specify human tests of whether learned conditional geometry predicts more than inference.
+Here we develop the framework and evaluate direction-seeking questioning in native GSS 2024 simulations. Fixed-question-set replays separate the effect of selecting particular items from the effect of continuously reoptimizing their sequence. A prospective human experiment then tests whether this conditional geometry predicts directional movement from actual answers. Progressive elicitation may additionally affect the considerations or beliefs available to respondents, a possibility examined through measurements beyond the selected questions.
 
 \section{Prior Work and the Scientific Gap}
 \subsection{Belief systems, cognitive organization, and survey response}
 Converse \cite{converse1964} identified weak issue constraint outside politically sophisticated groups; Zaller \cite{zaller1992} modeled reports as samples from accessible considerations. Later studies separate partisan sorting from issue alignment \cite{baldassarri2008} and show how homophily and influence couple otherwise weak affinities \cite{dellaposta2015}. These motivate measuring conditional attitude organization rather than assuming a single axis.
 
-Consistency pressures \cite{festinger1957}, survey wording and order \cite{schwarz1999}, and motivated evaluation \cite{taber2006} can change reports. Temporary salience, scale artifacts, reconstruction, and lasting revision require separate tests of persistence and generalization.
+Work on cognitive consistency \cite{festinger1957}, survey wording and order \cite{schwarz1999}, and motivated evaluation \cite{taber2006} shows that elicitation can shape which considerations become salient and how attitudes are expressed. These findings motivate distinguishing the refinement of an inferred phenotype from possible effects of questioning on later reports.
 
 \subsection{Quantitative influence and experimental evidence}
 DeGroot \cite{degroot1974}, Friedkin--Johnsen \cite{friedkin1990}, and bounded-confidence \cite{hegselmann2002} models specify social transitions but typically use low-dimensional individual states. DTAG instead models high-dimensional conditional structure without yet identifying a causal human transition operator.
 
-Bail \emph{et al.} \cite{bail2018} randomized incentives to follow Twitter bots providing cross-cutting political content. Republicans assigned a liberal bot later reported more conservative views; the corresponding Democratic estimate was not significant. This asymmetry motivates, but does not validate, DTAG. Campaign-contact experiments found small general-election mean effects \cite{kalla2018}, whereas some structured conversations produced more persistent reported changes \cite{broockman2016}. Prediction must address heterogeneity and persistence.
+Bail \emph{et al.} \cite{bail2018} randomized incentives to follow Twitter bots providing cross-cutting political content. Republicans assigned a liberal bot later reported more conservative views; the corresponding Democratic estimate was not significant. This asymmetry motivates, but does not validate, DTAG. Campaign-contact experiments found small general-election mean effects \cite{kalla2018}, whereas some structured conversations produced more persistent reported changes \cite{broockman2016}. These studies motivate examining heterogeneity in responses to structured sequences and distinguishing immediate response effects from persistent attitude change.
 
 \subsection{Theory of mind and generative simulation}
-Theory of mind infers unobserved mental states from behavior \cite{premack1978,dennett1987}; inverse planning formalizes this inference \cite{baker2009}. DTAG tests a narrower, falsifiable task: predict distributions of \emph{unasked attitudes} from observed answers. Synthetic LLM personas \cite{argyle2023,park2023} may reproduce profiles without calibrated individual conditionals; DTAG exposes states, probabilities, and response provenance.
+Theory of mind infers unobserved mental states from behavior \cite{premack1978,dennett1987}; inverse planning formalizes this inference \cite{baker2009}. DTAG makes one component of this problem operational: predicting distributions of \emph{unasked attitudes} from observed answers. Synthetic LLM personas \cite{argyle2023,park2023} may reproduce profiles without calibrated individual conditionals; DTAG exposes states, probabilities, and response provenance.
 
 \section{Large Science Models and the Predictive Phenotype}
 \subsection{Conditional dependency model}
@@ -147,9 +148,9 @@ Conditional predictions induce a distance between complete or partial states $x,
 \right)}.
 \label{eq:metric}
 \end{equation}
-Here $\JS$ is Jensen--Shannon divergence and the native code evaluates \emph{qdistance}. Predictively indistinguishable states may be at zero distance: this is generally a pseudometric of \emph{predictive consequence}, not a postulated Euclidean manifold of minds.
+Here $\JS$ is Jensen--Shannon divergence as implemented by the native predictive-distance routine. Predictively indistinguishable states may be at zero distance: this is generally a pseudometric of \emph{predictive consequence}, not a postulated Euclidean manifold of minds.
 
-With 80\% responses masked \cite{dahal2026}, mean LSM-distance distortion declined about 54.9\% (GSS) and 60.9\% (Eurobarometer). These are geometric reconstruction gains, not exact-label accuracy or causal influence.
+With 80\% responses masked \cite{dahal2026}, mean LSM-distance distortion declined about 54.9\% (GSS) and 60.9\% (Eurobarometer). These results quantify the fidelity with which incomplete observations recover the model's predictive geometry.
 
 For GSS models with registered left and right reference states $s_L,s_R$, DTAG reports
 \begin{equation}
@@ -236,7 +237,7 @@ large markers and horizontal whiskers show 95\% bootstrap uncertainty.
 (c) Six aligned trajectories from \DTAGReps{} repetitions per persona and policy;
 shading denotes pointwise 95\% bootstrap intervals. Right = dark red,
 left = dark blue, neutral = dashed gray, random = black.
-These are native conditional-model trajectories, not observed human persuasion.}
+The trajectories show model-generated phenotype refinement under each selection policy.}
 \label{fig:arch_adaptive}
 \label{fig:arch}
 \label{fig:persona-endpoints}
@@ -251,7 +252,7 @@ A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\qquad v_t\in M(q_t),\label{eq:draw}\\
 s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
 \calB_{t+1}&=\calB_\Ph(s_{t+1}).\label{eq:posterior}
 \end{align}
-In \emph{draw mode}, an answer is sampled, not chosen by the optimizer; \emph{pinned} anchors remain fixed. The system also supports modal answering, validated/multi-item mapping, and finite-memory \emph{eviction} of old anchors, none used in the reported native runs. The fixed LSM conditions responses; it does not identify persuasion.
+In \emph{draw mode}, an answer is sampled, not chosen by the optimizer; \emph{pinned} anchors remain fixed. The system also supports modal answering, validated/multi-item mapping, and finite-memory \emph{eviction} of old anchors, none used in the reported native runs. The LSM thus supplies the conditional response mechanism with which to evaluate and compare questioning policies.
 
 Figure~\ref{fig:arch_adaptive} combines the architecture and native experiment.
 
@@ -263,7 +264,11 @@ For every candidate item $v$ and response $a$, define
 \sigma_v^2(s)&=\sum_a p_\Ph(a\mid s,v)(\Delta_v(a;s)-\mu_v(s))^2.
 \label{eq:var}
 \end{align}
-Adaptive policies optimize $\mu_v(s)$ under conditional sampling; modal-response objectives instead use the most probable answer. A modal sequence is not a sampled respondent population. These displacements are model-relative, not proven human interventions.
+The expected realized displacement equals the selection score:
+\begin{equation*}
+\EE[I_\Ph(s_{t+1})-I_\Ph(s_t)\mid s_t,v_t]=\mu_{v_t}(s_t).
+\end{equation*}
+This identity specifies the local optimization objective; the attainable movement over 20 questions, variation across initial states, and retention after sets are frozen are empirical properties of the fitted conditional system. Adaptive policies optimize $\mu_v(s)$ under conditional sampling, whereas modal-response objectives use the most probable answer. A modal sequence is not a sampled respondent population.
 
 The predictive change at unasked item $j$ after observing $(v,a)$ is
 \begin{equation}
@@ -271,10 +276,10 @@ R_j(s;v,a)=\JS\!\bigl(p_\Ph(\cdot\mid s,j),
 p_\Ph(\cdot\mid s\cup\{v=a\},j)\bigr).
 \label{eq:ripple}
 \end{equation}
-A weighted score $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}}w_jR_j(s;v,a)$, with prespecified $w_j\geq0$, quantifies predictive redistribution, not causal propagation.
+A weighted score $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}}w_jR_j(s;v,a)$, with prespecified $w_j\geq0$, quantifies how one answer redistributes predictions across the remaining variables.
 
 \subsection{Difference from RAG and language-model personas}
-RAG provides grounding text \cite{lewis2020}; profile-prompted LLM personas seek plausible or distributionally faithful responses \cite{argyle2023,park2023}. DTAG instead exposes a native conditional model whose predictions for unasked responses can be calibrated as anchors accumulate. It complements, rather than replaces, text retrieval.
+RAG provides grounding text \cite{lewis2020}; profile-prompted LLM personas seek plausible or distributionally faithful responses \cite{argyle2023,park2023}. DTAG instead exposes a native conditional model whose predictions for unasked responses can be calibrated as anchors accumulate. It complements text retrieval through an explicit probabilistic response mechanism. The public implementation, including the DTAG web workbench and native LSM inference engine, is available at \url{https://github.com/zeroknowledgediscovery/DTAG/tree/main/webapp}.
 
 \section{The Interpretation of Sequential Questions}
 \subsection{Phenotypic refinement: observing a fixed system}
@@ -284,7 +289,7 @@ Under passive refinement, respondents possess fixed phenotypes $X^\star$ and ans
 H(Y\mid s)-\EE_{A_v\mid s}[H(Y\mid s,v=A_v)].
 \label{eq:ig}
 \end{equation}
-For a compatible joint law this is nonnegative conditional mutual information, distinct from geometric displacement $\mu_v$ in (\ref{eq:mu}). Refinement can be tested by revealing held-out archival answers.
+For a compatible joint law this is nonnegative conditional mutual information, distinct from geometric displacement $\mu_v$ in (\ref{eq:mu}). Held-out response prediction as the observed answer set grows provides a direct assessment of phenotype refinement; fixed archival response records offer one possible external evaluation.
 
 \begin{table*}[!t]
 \centering
@@ -335,34 +340,34 @@ These are fixed-set replays, not the fully adaptive runs in Fig.~\ref{fig:arch_a
 \label{fig:order-effects}
 \end{figure*}
 \subsection{Phenotypic construction: querying a reflexive system}
-Under construction, response $A_t$ to query $q$ may alter latent state $Z_t$:
+Questioning may also affect subsequent reports or attitudes. To represent this possibility, let $Z_t$ denote a respondent's latent state and define the response--transition operator
 \begin{equation}
 K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
 \label{eq:kernel}
 \end{equation}
-Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; otherwise transitions depend on prior beliefs, framing, trust, or history. Cross-sectional LSM conditionals cannot identify $T_q$, even with perfect observational fit.
+Here $O_q$ generates the response from the current state, and $T_q$ describes any change following the question and answer. Passive observation corresponds to $T_q(z'\mid z,a)=\delta_z(z')$; nontrivial transitions may reflect altered accessibility, interpretation, or belief. The LSM describes conditional reports, while a human transition operator requires experimental identification.
 
-Clarification, temporary salience, and lasting revision call for independent outcomes, delayed measurement, and no-query controls. We test whether statistical geometry predicts responsiveness as well as reconstruction.
+A common held-out battery following randomized questioning can test whether earlier question selection affects later reports beyond selective revelation. Delayed measurement can distinguish transient response-context effects from more persistent changes, potentially including persuasion.
 
-\subsection{Why question-order effects are not automatically persuasion}
-A coherent static joint model implies
+\subsection{Question order and conditional compatibility}
+For fixed realized answers, the terminal partial state and its computed $I_\Ph$ do not depend on the order in which answers were entered. The \emph{distribution} of sequentially generated answers may nevertheless be order-dependent when fitted conditionals are incompatible. A coherent static joint distribution satisfies
 \begin{equation}
 P(a\mid s,v)P(b\mid s,v=a,w)
 =P(b\mid s,w)P(a\mid s,w=b,v).
 \label{eq:compat}
 \end{equation}
-With a coherent joint law, terminal predictions after both answers are order-invariant, though intermediate states differ. Incompatible local conditionals can create order artifacts (\ref{eq:compat}) \cite{heckerman2000}; genuine human operators $K_A,K_B$ may fail to commute. Simulation alone cannot distinguish them.
+Separately fitted conditional models need not satisfy this equality \cite{heckerman2000}. In human respondents, question-dependent $K_q$ operators introduce a further possible source of order effects. Fixed-set native replay evaluates the model's order sensitivity while holding the selected questions constant.
 
 \section{Native GSS 2024 Computational Experiments}
 \label{sec:native}
 
 \subsection{Adaptive questioning of fixed synthetic personas}
-We used six fixed synthetic GSS 2024 states (Table~\ref{tab:personas}), querying survey items directly without running LLM question mapping or verbalization. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. Answers were drawn from LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
+We initialized six synthetic respondents from the pinned GSS 2024 states in Table~\ref{tab:personas}. Each repetition draws a new response trajectory conditioned on the same initial anchors; these are independent synthetic response realizations, rather than repeated observations of one fully specified person. We queried survey items directly without executing the LLM mapping or verbalization layer. The native optimizer maximized expected rightward drift, minimized it for leftward drift, minimized absolute drift (neutral), or sampled eligible items randomly. Answers were drawn from LSM conditionals. At $T=20$ and 40 repetitions per persona/policy, $6\times4\times40=960$ trajectories contain $19{,}200$ draws.
 
 
 
 
-Right- and left-seeking policies moved the index in their expected directions across all six personas; neutral minimized \emph{geometric drift}, not psychological sensitivity.
+Across all six initial states, the right- and left-seeking policies yielded displacement in their respective directions. The random policy provides a selection baseline; the neutral policy tests whether low expected geometric displacement can be maintained as the observed state grows. The results characterize reachable movement of the predictive index under the learned response mechanism.
 
 \subsection{Question selection as observed paths}
 Each observed question was assigned a shared categorical index without reordering runs or constructing modal paths. Of 228 items across all policies, 161 appeared in the 18 displayed right/left/neutral heatmaps (six personas by three policies; 40 runs of 20 questions). The global index permutation approximately minimizes
@@ -380,27 +385,27 @@ For each of six personas and three source policies (right, left, neutral), we fr
 
 Figure~\ref{fig:order-effects} shows baseline-relative displacement for the reordered fixed sets. Directional movement persists: averaged across the six persona means, right-derived sets yield $+0.0381$ (original) and $+0.0377$ (reversed), while left-derived sets yield $-0.0399$ and $-0.0410$. For both original and reversed replays, all six persona-specific pointwise 95\% bootstrap intervals exclude zero in the intended direction; both shuffles give the same directional pattern, and neutral-derived drift remains negligible.
 
-All 54 pointwise bootstrap intervals for \emph{paired mean between-order contrasts} include zero. Thus we find robust effects of the \emph{selected question sets}, not evidence that permutation systematically changes the mean endpoint. These fixed-set replays are distinct from the continuously reoptimized trajectories of Fig.~\ref{fig:arch_adaptive} and do not establish human belief change.
+All 54 pointwise bootstrap intervals for \emph{paired mean between-order contrasts} include zero; no systematic mean endpoint difference was detected among the tested permutations. The selected question sets therefore retain directional effects without continued reoptimization. In conjunction with the adaptive results in Fig.~\ref{fig:arch_adaptive}, these replays distinguish question-set effects from sequential reselection and tested order effects.
 
 \paragraph{Cross-environment limitation.}
 Historical ten-question local and CI runs yielded different initial indices despite matching persona, semantic-map, and pole-file hashes. Model binaries were not hashed in both manifests, so absolute cross-environment comparison requires runtime/model parity checks. Within-study results remain consistent.
 
 
 \section{Testable Hypotheses and Prospective Validation}
-\textbf{H1 (predictive refinement).} The LSM's conditional response distributions should predict unasked answers from an initial set $s_0$, with improving held-out predictive scores as actual answers accumulate. Prior LSM reconstruction results motivate this assumption; prospective calibration is a supporting check, not the principal DTAG intervention test.
+\textbf{H1 (adaptive phenotype refinement).} From a specified initial state $s_0$, directional optimization of $\mu_v(s)$ should yield repeatable, policy-specific displacement of the pole-relative index $I_\Ph(s)$ across independently sampled response sequences. The native trajectories and fixed-set replays evaluate this prediction and identify contributions from question selection and order.
 
-\textbf{H2 (directional adaptive querying).} After the same initial question sequence establishes $I_\Ph(s_0)$, successive questions selected by the one-step objective $\mu_v(s)$ should produce rightward or leftward shifts in $I_\Ph$ computed from respondents' \emph{actual} answers, relative to neutral and random questioning. The direction of displacement, not a change in latent belief, is the primary falsifiable prediction.
+\textbf{H2 (transfer to human responses).} With the same initialization protocol, questions chosen by the LSM-based policy should produce directional displacement of $I_\Ph$ computed from human answers, relative to neutral and random selection. This is a direct out-of-model test of whether learned conditional geometry supports predictive adaptive questioning.
 
-\paragraph{Future validation on Prolific.}
-We propose a randomized study, not yet conducted, with a common baseline questionnaire and four question-selection arms: rightward, leftward, neutral, and random. The main comparisons test whether baseline-to-endpoint index displacement is positive under rightward selection and negative under leftward selection, beyond the control arms, using preregistered questions, policies, and confidence intervals. Predictive probabilities will be recorded before each answer to assess calibration; independent unasked items and an optional delayed follow-up may explore whether changes extend beyond the fitted index. Sample size will follow pilot-based power analysis. Prolific permits recontact \cite{prolific2026}; human-subjects oversight and safeguards against individually targeted political influence are required. This is a test of model-guided \emph{estimation}, not an intervention designed to persuade voters. Order-specific human effects are secondary future questions, not required arms of this initial study.
+\paragraph{Prospective Prolific experiment.}
+Respondents will complete a common baseline battery before randomization to right-seeking, left-seeking, neutral, or random question selection. The arms will have a matched-length adaptive phase, and the preregistered primary outcome will be $I_\Ph(s_T)-I_\Ph(s_0)$, using respondents' actual answers. Prespecified directional contrasts between arms will test H2; question-level predictive scores will assess calibration. A common held-out battery, administered after the adaptive phase, will assess whether question history also affects responses not selected by the policy. Such differences would indicate an effect on subsequent reporting beyond selective refinement, while optional delayed measurement would assess persistence. Pilot data will determine study power, with balanced protocols, informed consent, and debriefing. Prolific supports recontact \cite{prolific2026}.
 
 \section{Discussion and Limitations}
-DTAG models \emph{what a respondent might report}, not yet \emph{what an interaction makes them believe}. Associations can reflect common causes, sorting, survey design, or history. Incompatible LSM conditionals or semantic mappings may create synthetic order effects unrelated to human reflexivity.
+The native experiments characterize selective refinement within the geometry of an empirically fitted survey-response system. Each answer constrains the remaining predictive phenotype; the pole-relative index tracks the implied position of that changing conditional state. The directed trajectories and fixed-set replays show that adaptive optimization and the selected item sets yield reproducible geometric displacement. Effect magnitudes depend on pole construction, the candidate item pool, initial anchors, and model calibration. The index describes predictive position relative to reference configurations, not a self-reported ideology score.
 
-Under passive observation of a coherent joint law, the posterior mean of a fixed trait $g(X)$ is a martingale. DTAG's nonlinear index $I_\Ph(s)$ is generally not that posterior mean and may drift without persuasion. Limitations also include pole and wave dependence, missingness calibration, wording, demand, response modes, and eviction of old anchors. Human experiments need measurement invariance and delayed outcomes.
+In human questioning, progressive elicitation may additionally reorganize accessible considerations or alter subsequent judgments. These effects might be transient, or they might persist as attitude change or persuasion. A common post-battery and delayed measurement can separate selective refinement from history-dependent reporting and investigate persistence. Model incompatibility may also create synthetic ordering effects, and the native experiments do not estimate a human belief-transition operator. These questions motivate the proposed external validation and continued sensitivity assessment of the reference poles and conditional model.
 
 \section{Conclusion}
-DTAG converts learned conditional survey dependencies into an operational question-selection policy that systematically shifts estimated ideology in native simulations. The shift persists when selected question sets are replayed in different orders. The central prospective test is whether the policy predicts the direction of estimated-ideology movement from actual human answers, without equating such movement with persuasion.
+DTAG turns learned conditional survey geometry into an operational strategy for selecting questions that refine a predictive phenotype in a chosen direction. Native 20-question experiments demonstrate directional trajectories across six synthetic personas; fixed-set replays retain substantial movement under alternative orders and without continued optimization. The proposed human study will evaluate the transfer of this directional prediction to real answers and explore whether progressive questioning has further effects on subsequent reports, including the possibility of persistent attitude change.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}
