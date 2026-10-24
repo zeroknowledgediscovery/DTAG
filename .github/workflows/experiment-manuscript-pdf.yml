@@ -1,0 +1,41 @@
+name: Build DTAG experiment manuscript PDF
+
+on:
+  push:
+    branches: [experiment-integrated-10q]
+    paths:
+      - 'tex/DTAG_full_manuscript_20q_colorbar.tex'
+      - 'tex/references.bib'
+      - 'tex/Figures/**'
+      - '.github/workflows/experiment-manuscript-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile DTAG experiment manuscript
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: DTAG_full_manuscript_20q_colorbar.tex
+          working_directory: tex
+          compiler: latexmk
+          args: -pdf -interaction=nonstopmode -halt-on-error -file-line-error
+      - name: Upload revised PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: dtag-experiment-manuscript-pdf
+          path: tex/DTAG_full_manuscript_20q_colorbar.pdf
+      - name: Commit compiled PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f tex/DTAG_full_manuscript_20q_colorbar.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "Regenerate DTAG experiment manuscript PDF [skip ci]"
+            git push origin HEAD:experiment-integrated-10q
+          fi
