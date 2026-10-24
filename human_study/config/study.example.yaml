@@ -14,6 +14,7 @@ excluded_ids: []
 ethics_disallowed_ids: []
 items:
 - item_id: confinan
+  source_text_incomplete: true
   original_wording: As far as the people running this institution are concerned, would
     you say you have a great deal of confidence, only some confidence, or hardly any
     confidence at all in them? Banks and financial inst
@@ -239,6 +240,7 @@ items:
   required: false
   version: draft-1
 - item_id: nataid
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Foreign aid
   choices:
@@ -252,6 +254,7 @@ items:
   required: false
   version: draft-1
 - item_id: natchld
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Assistance for childcare
   choices:
@@ -265,6 +268,7 @@ items:
   required: false
   version: draft-1
 - item_id: natcity
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Solving the problems of big cities
   choices:
@@ -278,6 +282,7 @@ items:
   required: false
   version: draft-1
 - item_id: natcrime
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Halting the rising crime rate
   choices:
@@ -291,6 +296,7 @@ items:
   required: false
   version: draft-1
 - item_id: natcrimy
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Law enforcement
   choices:
@@ -304,6 +310,7 @@ items:
   required: false
   version: draft-1
 - item_id: natdrug
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Dealing with drug addiction
   choices:
@@ -317,6 +324,7 @@ items:
   required: false
   version: draft-1
 - item_id: nateduc
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Improving the nation's education system
   choices:
@@ -330,6 +338,7 @@ items:
   required: false
   version: draft-1
 - item_id: natenrgy
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Developing alternative energy sources
   choices:
@@ -343,6 +352,7 @@ items:
   required: false
   version: draft-1
 - item_id: natenviy
+  source_text_incomplete: true
   original_wording: Improving and protecting the environment
   choices:
   - native_value: too much
@@ -355,6 +365,7 @@ items:
   required: false
   version: draft-1
 - item_id: natheal
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Improving and protecting the nation's health
   choices:
@@ -368,6 +379,7 @@ items:
   required: false
   version: draft-1
 - item_id: natrace
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Improving the conditions of Black people
   choices:
@@ -381,6 +393,7 @@ items:
   required: false
   version: draft-1
 - item_id: natroad
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Highways and bridges
   choices:
@@ -394,6 +407,7 @@ items:
   required: false
   version: draft-1
 - item_id: natsci
+  source_text_incomplete: true
   original_wording: (... are we spending too much, too little, or about the right
     amount on) Supporting scientific research
   choices:
@@ -407,6 +421,7 @@ items:
   required: false
   version: draft-1
 - item_id: natspac
+  source_text_incomplete: true
   original_wording: We are faced with many problems in this country, none of which
     can be solved easily or inexpensively. (... are we spending too much, too little,
     or about the right amount on) Space exploration program
@@ -421,6 +436,7 @@ items:
   required: false
   version: draft-1
 - item_id: eqwlth
+  source_text_incomplete: true
   original_wording: Some people think that the government in Washington ought to reduce
     the income differences between the rich and the poor, perhaps by raising the taxes
     of wealthy families or by giving income assistance to the poor. Others think that
@@ -444,6 +460,7 @@ items:
   required: false
   version: draft-1
 - item_id: helppoor
+  source_text_incomplete: true
   original_wording: Next, here are issues that some people tell us are important.
     Some people think that the government in Washington should do everything possible
     to improve the standard of living of all poor Americans, they are at Point 1 on
@@ -463,6 +480,7 @@ items:
   required: false
   version: draft-1
 - item_id: helpsick
+  source_text_incomplete: true
   original_wording: In general, some people think that it is the responsibility of
     the government in Washington to see to it that people have help in paying for
     doctors and hospital bills. Others think that these matters are not the responsibility
@@ -482,6 +500,7 @@ items:
   required: false
   version: draft-1
 - item_id: helpnot
+  source_text_incomplete: true
   original_wording: Some people think that the government in Washington is trying
     to do too many things that should be left to individuals and private businesses.
     Others disagree and think that the government should do even more to solve our
@@ -501,6 +520,7 @@ items:
   required: false
   version: draft-1
 - item_id: letin1a
+  source_text_incomplete: true
   original_wording: Do you think the number of immigrants to America nowadays should
     be
   choices:
@@ -549,6 +569,7 @@ items:
   required: false
   version: draft-1
 - item_id: fehire
+  source_text_incomplete: true
   original_wording: Now I'm going to read several statements. As I read each one,
     please tell me whether you strongly agree, agree, neither agree nor disagree,
     Because of past discrimination, employers should make special efforts to hire
@@ -568,6 +589,7 @@ items:
   required: false
   version: draft-1
 - item_id: fejobaff
+  source_text_incomplete: true
   original_wording: Some people say that because of past discrimination, women should
     be given preference in hiring and promotion. Others say that such preference in
     hiring and promotion of women is wrong because it discriminates against men. What
@@ -585,6 +607,7 @@ items:
   required: false
   version: draft-1
 - item_id: fefam
+  source_text_incomplete: true
   original_wording: "(Please read the following statements and indicate whether you\
     \ strongly agree, agree, disagree, or strongly disagree with each statement\u2026\
     ) It is much better for everyone involved if the man is the achiever outside the\
@@ -630,6 +653,7 @@ items:
   required: false
   version: draft-1
 - item_id: workhard
+  source_text_incomplete: true
   original_wording: to work hard
   choices:
   - native_value: 4th important
@@ -646,6 +670,7 @@ items:
   required: false
   version: draft-1
 - item_id: helpoth
+  source_text_incomplete: true
   original_wording: to help others
   choices:
   - native_value: 4th important
