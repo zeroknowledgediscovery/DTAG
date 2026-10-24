@@ -13,6 +13,13 @@ COMMIT="$(git rev-parse HEAD)"
 IMAGE="$REGION-docker.pkg.dev/$GCP_PROJECT/dtag-study/pilot:$COMMIT"
 [[ -z "$(git status --porcelain)" ]] || { printf '%s\n' 'Commit/review source changes before building.' >&2; exit 1; }
 test -f "$DTAG_REVIEWED_CONFIG"
+PYTHONPATH="$ROOT/human_study/backend:$ROOT/scripts:$ROOT" python - "$DTAG_REVIEWED_CONFIG" <<'PY'
+import sys
+from human_study.study_config import StudyConfig
+c = StudyConfig.load(sys.argv[1])
+if not c.reviewed or not 12 <= len(c.bank('baseline')) <= 15:
+    raise SystemExit('Deployment requires an explicitly reviewed 12–15-item baseline instrument')
+PY
 run() { if [[ "$EXECUTE" == 1 ]]; then "$@"; else printf '%q ' "$@"; printf '\n'; fi; }
 # Archive only tracked source: no local responses, caches, .env files or Git credentials.
 CONTEXT="$(mktemp -d)"

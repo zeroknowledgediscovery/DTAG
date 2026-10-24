@@ -11,7 +11,7 @@ from pathlib import Path
 from . import ROOT
 from .study_config import digest
 
-MISSING = re.compile(r"^(?:i?a?p|iap|dk|na|n/a|d/k|don't know|dont know|no answer|not applicable|not available|refused|skipped|not on web|not on ballot)(?:$|\b)", re.I)
+MISSING = re.compile(r"^(?:i?a?p|iap|dk|na|n/a|d/k|don't know|dont know|do not know|no answer|not applicable|not available|refus(?:ed|al)|skipped|not on web|not on ballot)(?:$|\b)", re.I)
 
 
 def file_hash(path):

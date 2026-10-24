@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import os
 import secrets
+import re
 from contextlib import asynccontextmanager
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -42,6 +43,8 @@ def configured_service():
             raise RuntimeError("staging/production requires a reviewed 12–15-item baseline instrument")
         if not os.environ.get("DTAG_GCS_BUCKET") or len(os.environ.get("DTAG_COOKIE_SECRET", "")) < 32:
             raise RuntimeError("durable storage and a stable cookie secret are required")
+        if not re.fullmatch(r"[a-f0-9]{40}", os.environ.get("DTAG_CODE_COMMIT", "")):
+            raise RuntimeError("exact source commit provenance is required outside local mode")
         if backend == "openai" and not os.environ.get("OPENAI_API_KEY"):
             raise RuntimeError("OpenAI credential is required for the selected language provider")
         if mode == "production" and backend != "openai":

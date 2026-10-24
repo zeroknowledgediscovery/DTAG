@@ -25,7 +25,8 @@ def build(adapter, steps=20):
     # A deliberately limited draft bank. Investigators must review ALL text and options.
     candidates = [v for v in sorted(ctx.idx_map) if v not in reserved and v.startswith("nat")
                   and askable(v, ctx.var_map.get(v, ""), ctx.feat)]
-    candidates += [v for v in "eqwlth helppoor helpsick helpnot letin1a".split() if v not in reserved]
+    candidates += [v for v in "eqwlth helppoor helpsick helpnot letin1a getahead goodlife fehire fejobaff fefam happy health workhard helpoth".split()
+                   if v not in reserved and v in ctx.var_map and askable(v, ctx.var_map[v], ctx.feat)]
     items = []
     for phase, variables in [("baseline", BASELINE), ("outcome", OUTCOMES), ("intervention", candidates)]:
         for v in variables:
