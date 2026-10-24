@@ -9,7 +9,7 @@ consent_text: This internal pilot asks categorical survey questions. Participati
   is not a payment code.
 intervention_steps: 20
 llm_model: gpt-4.1-mini-2025-04-14
-prompt_version: dtag-core-survey-question-v1
+prompt_version: dtag-human-survey-question-v2-excerpt
 excluded_ids: []
 ethics_disallowed_ids: []
 items:
