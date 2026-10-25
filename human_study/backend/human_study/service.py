@@ -219,7 +219,7 @@ class StudyService:
                     "source_text_incomplete": False, "fallback": False}}
             if (item is None or item.source_text_incomplete or self.config.question_mode == "llm_required") and (
                 rendered.get("question_provenance", {}).get("fallback", True) or
-                rendered.get("displayed_wording", "").strip() == item.original_wording.strip()
+                rendered.get("displayed_wording", "").strip() == question["original_wording"].strip()
             ):
                 raise ValueError("LLM did not complete an incomplete source question")
         except Exception as exc:
@@ -276,7 +276,8 @@ class StudyService:
                     continue
             question, reason = self._prepare_question(snap)
             if question is None:
-                s.update(phase="outcome" if self.config.bank("outcome") else "ready_to_complete",
+                s.update(phase="attention" if self.config.attention_checks else
+                               "outcome" if self.config.bank("outcome") else "ready_to_complete",
                          phase_index=0, no_candidate_reason=reason)
                 writes = {}
                 self._export(s, writes, "no-candidate", {"kind": "no_candidate", "reason": reason, "timestamp": now()})
