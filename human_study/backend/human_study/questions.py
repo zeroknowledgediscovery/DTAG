@@ -237,7 +237,7 @@ class QuestionLLM:
             "short, neutral question. Keep the EXACT requested token unchanged, "
             "make clear that the participant should include that word in their "
             "written answer, and do not add any other instructions. "
-            f"VERIFIED TOKEN: {check.expected_token}\\n"
+            f"VERIFIED TOKEN: {check.expected_token}\n"
             f"SOURCE INSTRUCTION: {check.instruction}"
         )
         try:
@@ -256,7 +256,7 @@ class QuestionLLM:
             ) from exc
         if (not question.endswith("?") or len(question) < 18
                 or question == check.instruction.strip()
-                or not re.search(r"\\b" + re.escape(check.expected_token) + r"\\b",
+                or not re.search(r"\b" + re.escape(check.expected_token) + r"\b",
                                  question, re.I)):
             raise QuestionGenerationError("attention question failed instruction integrity")
         return {"displayed_wording": question,
