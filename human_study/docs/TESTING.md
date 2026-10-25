@@ -34,9 +34,11 @@ It checks:
 - V2 compatibility, API boundary checks, storage/outbox
   fault-injection tests and the React/TypeScript production build.
 
-These are **tests**, not the answer to whether the real GSS model will find 20
-eligible items after multi-mapping, nor whether real OpenAI will consistently
-choose the intended native categories.
+These are **tests**, not evidence that the real GSS optimizer always produces
+a positive/negative directional choice on a 20-step trajectory, nor that real
+OpenAI consistently maps written responses into the intended native categories.
+The adaptive candidate universe is dynamic and unrestricted by a YAML
+intervention-variable bank.
 
 For focused developer iterations:
 
@@ -47,9 +49,11 @@ python3 -m pytest -q -rs \
   human_study/tests/test_v3_multi_observations.py
 ```
 
-The new test files must pass before the feature can be considered verified;
-they have been committed, but tests have not been run in this assistant's
-environment against the full repository and native artifact.
+**Verified local result (2026-10-25):** the user ran the complete
+`scripts/check_v3.sh` suite successfully: **27 V3/parity tests, 36
+persistence/API/cloud-adapter tests, and a passing frontend build**.
+The test fixture is still not evidence of live OpenAI semantic accuracy.
+The user also ran the full-native geometry parity audit successfully.
 
 ## B. Fault injection and persistence
 
@@ -82,12 +86,17 @@ export PYTHONPATH="$PWD/human_study/backend:$PWD/scripts:$PWD"
 python3 -m pytest -q -rs human_study/tests/test_human_engine.py
 ```
 
-The five previously skipped native tests must be run where that model is
-available. Additional coverage is needed for V3 multi-item adapter semantics:
-native category support, complete baseline index, 20-step scored candidate
-availability, exclusion of incidentally observed variables, and deterministic
-policy replay under the pinned native model version. This can be performed
-offline without contacting real participants or paying OpenAI.
+The user's installed GSS 2024 artifact has already passed the separate
+numerical parity audit:
+```bash
+python3 human_study/scripts/audit_webapp_native_parity.py
+```
+It verified the actual requested/corrected 2024 pole geometry, 228 dynamic
+candidate variables in the empty state, and matching native ideology and
+up/down `draw` selections for empty, 2-coordinate and 4-coordinate states.
+Run the wider native integration suite, and extend the audit to multiple
+20-step trajectories before recruitment. The historical native tests may
+require installed bindings and downloaded artifacts.
 
 ## D. Optional live-language-model synthetic probe
 
