@@ -190,3 +190,51 @@ def test_native_mode_requires_no_YAML_adaptive_items(instrument):
     assert config.bank("intervention") == []
     assert config.candidate_mode == "native_webapp"
     assert config.push_response_mode == "draw"
+
+
+def test_native_pole_audit_compares_canonical_request_and_resolved_wave(monkeypatch):
+    """Regression for false mismatch when DTAG remaps canonical GSS poles to 2024."""
+    import importlib.util
+    from pathlib import Path
+    from types import SimpleNamespace
+    import numpy as np
+    import dtag_session
+    from human_study import ROOT
+    from dtag_engine import POLAR_VECTOR_SETS
+
+    path = ROOT / "human_study/scripts/audit_webapp_native_parity.py"
+    spec = importlib.util.spec_from_file_location("audit_webapp_native_parity", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+
+    canonical = (ROOT / POLAR_VECTOR_SETS["gss_default"]["path"]).resolve()
+    wave = (ROOT / "assets/polar_vectors/gss/gss_2024_polar_vectors.csv").resolve()
+    geometry = SimpleNamespace(
+        enabled=True, disable_reason="",
+        requested_path=str(canonical), path=str(wave),
+        left_map={"test": "left"}, right_map={"test": "right"},
+        sL=np.array([1., 0.]), sR=np.array([0., 1.]), dLR=1.2,
+    )
+    adapter = SimpleNamespace(world=SimpleNamespace(ctx=object(), g=geometry))
+    calls = []
+    def shared_builder(ctx, polar_path):
+        calls.append(polar_path)
+        return geometry
+
+    monkeypatch.setattr(dtag_session, "build_polar_geometry", shared_builder)
+    requested, resolved = module.verify_webapp_poles(adapter)
+    assert requested == canonical
+    assert resolved == wave
+    assert calls == [str(canonical)]
+
+    # Supplying only the resolved path, as the previous broken audit assumed,
+    # is NOT equivalent to using the webapp's registered polar configuration.
+    geometry.requested_path = str(wave)
+    with pytest.raises(AssertionError, match="requested pole set mismatch"):
+        module.verify_webapp_poles(adapter)
+
+    # Even a correct requested file is not sufficient if effective poles differ.
+    geometry.requested_path = str(canonical)
+    geometry.path = str(canonical)
+    with pytest.raises(AssertionError, match="resolved pole set mismatch"):
+        module.verify_webapp_poles(adapter)
