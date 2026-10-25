@@ -22,7 +22,7 @@ if not c.reviewed:
     raise SystemExit('Deployment requires an explicitly reviewed instrument')
 if c.response_mode == 'click' and not 12 <= len(c.bank('baseline')) <= 15:
     raise SystemExit('Legacy study requires a 12–15-item baseline')
-if c.response_mode == 'free_text_llm' and not 1 <= len(c.bank('baseline')) <= 40:
+if c.response_mode in ('free_text_llm', 'free_text_multi') and not 1 <= len(c.bank('baseline')) <= 40:
     raise SystemExit('V2 needs 1–40 initial questions')
 PY
 run() { if [[ "$EXECUTE" == 1 ]]; then "$@"; else printf '%q ' "$@"; printf '\n'; fi; }
