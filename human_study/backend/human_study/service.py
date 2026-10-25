@@ -124,8 +124,13 @@ class StudyService:
         observations = []
         for q in sorted((v for k, v in snap.records.items() if k.startswith("questions/")), key=lambda q: q["ordinal"]):
             if q["status"] == "answered" and q["phase"] in ("baseline", "intervention"):
-                observations.append(Observation(q["question_id"], q["target_variable"], q["response_value"],
-                                                q["phase"], q.get("missing_reason")))
+                if self.config.response_mode == "free_text_multi":
+                    for assignment in q.get("accepted_assignments", []):
+                        observations.append(Observation(q["question_id"], assignment["variable"],
+                                                        assignment["native_value"], q["phase"]))
+                else:
+                    observations.append(Observation(q["question_id"], q["target_variable"], q["response_value"],
+                                                    q["phase"], q.get("missing_reason")))
         data["observations"] = tuple(observations)
         for key in ("asked_ids", "excluded_ids", "reserved_outcome_ids"):
             data[key] = tuple(data[key])
@@ -141,8 +146,12 @@ class StudyService:
         records = {**snap.records, **writes}
         qs = sorted((q for k, q in records.items() if k.startswith("questions/") and q["phase"] == "baseline"),
                     key=lambda q: q["ordinal"])
-        obs = [Observation(q["question_id"], q["target_variable"], q["response_value"], "baseline", q.get("missing_reason")) for q in qs]
-        state = initialize_human_state(self.config.model_key, obs, self.config, self.adapter, s["session_id"])
+        if self.config.response_mode == "free_text_multi":
+            from .multi_observations import initial_state
+            state = initial_state(self.config, self.adapter, s["session_id"], qs)
+        else:
+            obs = [Observation(q["question_id"], q["target_variable"], q["response_value"], "baseline", q.get("missing_reason")) for q in qs]
+            state = initialize_human_state(self.config.model_key, obs, self.config, self.adapter, s["session_id"])
         seed = secrets.randbits(128)
         # The randomization result, seed and scheme are persisted atomically with baseline acceptance.
         import numpy as np
@@ -288,7 +297,29 @@ class StudyService:
                 raise Conflict("question is not awaiting an answer")
             item = self.config.item(q["target_variable"])
             raw_answer, interpretation = None, None
-            if self.config.response_mode == "free_text_llm":
+            accepted_assignments = []
+            if self.config.response_mode == "free_text_multi":
+                if request.get("answer_value") is not None or request.get("missing_reason") is not None:
+                    raise ValueError("V3 requires written responses, not preselected categories")
+                raw_answer = request.get("text_answer")
+                if not isinstance(raw_answer, str) or not raw_answer.strip():
+                    raise ValueError("Please write your response before continuing.")
+                from .multi_observations import (
+                    permitted_items, prior_baseline_assignments, resolve, apply,
+                )
+                candidates = permitted_items(self.config, self.adapter)
+                existing = (self._human_state(snap).observed_state
+                            if q["phase"] == "intervention"
+                            else prior_baseline_assignments(snap))
+                proposed = self.llm.interpret_multi(
+                    q["displayed_wording"], raw_answer, list(candidates.values()))
+                interpretation = resolve(proposed, raw_answer, candidates, existing,
+                                         self.adapter, self.config.minimum_mapping_confidence)
+                accepted_assignments = interpretation["accepted"]
+                native = next((row["native_value"] for row in accepted_assignments
+                               if row["variable"] == q["target_variable"]), None)
+                missing = "prefer_not_to_answer" if interpretation["status"] == "missing" else None
+            elif self.config.response_mode == "free_text_llm":
                 if request.get("answer_value") is not None or request.get("missing_reason") is not None:
                     raise ValueError("V2 requires a written response, not a preselected category")
                 raw_answer = request.get("text_answer")
@@ -301,14 +332,21 @@ class StudyService:
                     raise ValueError("This version requires a category selection")
                 native, missing = request["answer_value"], request["missing_reason"]
             obs = Observation(q["question_id"], q["target_variable"], native, q["phase"], missing)
-            validate_observation(obs, item, self.adapter)
+            if self.config.response_mode != "free_text_multi":
+                validate_observation(obs, item, self.adapter)
             result = {"question_id": q["question_id"], "accepted": True}
             if q["phase"] == "intervention":
-                new_state, scientific_result = apply_observed_answer(self._human_state(snap), q, obs.native_value,
-                         self.adapter, self.config, missing_reason=obs.missing_reason)
+                if self.config.response_mode == "free_text_multi":
+                    new_state, scientific_result = apply(
+                        self._human_state(snap), q, accepted_assignments, self.adapter)
+                else:
+                    new_state, scientific_result = apply_observed_answer(
+                        self._human_state(snap), q, obs.native_value,
+                        self.adapter, self.config, missing_reason=obs.missing_reason)
                 s["state"] = self._compact(new_state)
                 q["index_result"] = scientific_result
             q.update(status="answered", response_value=obs.native_value, missing_reason=obs.missing_reason,
+                     accepted_assignments=accepted_assignments if self.config.response_mode == "free_text_multi" else None,
                      raw_text_response=raw_answer, response_interpretation=interpretation,
                      response_timestamp=now(), response_elapsed_seconds=max(0, (datetime.now(timezone.utc) -
                          datetime.fromisoformat(q["presented_at"])).total_seconds()))
