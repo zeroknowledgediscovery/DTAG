@@ -47,6 +47,10 @@ class StudyConfig(StrictModel):
     consent_version: str = "pilot-draft-1"
     consent_text: str = "This internal pilot asks categorical survey questions. Participation is voluntary. You may stop at any time. Answers are stored for research. This receipt is not a payment code."
     intervention_steps: int = Field(default=20, ge=1, le=40)
+    # V2: generated questions; free-text answers classified to native categories.
+    question_mode: Literal["legacy", "llm_required"] = "legacy"
+    response_mode: Literal["click", "free_text_llm"] = "click"
+    minimum_mapping_confidence: float = Field(default=0.80, ge=0.5, le=1.0)
     llm_model: str = "gpt-4.1-mini-2025-04-14"
     prompt_version: str = "dtag-human-survey-question-v2-excerpt"
     excluded_ids: tuple[str, ...] = ()
@@ -58,9 +62,18 @@ class StudyConfig(StrictModel):
         ids = [i.item_id for i in self.items]
         if len(ids) != len(set(ids)):
             raise ValueError("baseline/intervention/outcome/control item sets must be disjoint")
-        for phase in ("baseline", "intervention", "outcome"):
+        for phase in ("baseline", "intervention"):
             if not self.bank(phase):
                 raise ValueError(f"missing {phase} bank")
+        if self.response_mode == "click" and not self.bank("outcome"):
+            raise ValueError("legacy study requires outcome questions")
+        if self.response_mode == "free_text_llm":
+            if self.question_mode != "llm_required":
+                raise ValueError("free-text V2 requires LLM-generated questions")
+            if not 1 <= len(self.bank("baseline")) <= 40:
+                raise ValueError("V2 requires 1–40 initial questions")
+            if len(self.bank("intervention")) < self.intervention_steps:
+                raise ValueError("V2 intervention bank is smaller than planned sequence")
         for item in self.items:
             vals = [c.native_value for c in item.choices]
             if len(vals) != len(set(vals)):
