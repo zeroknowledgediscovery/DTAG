@@ -18,6 +18,7 @@ from .security import Sessions, Throttle
 from .service import StudyService, ExportPending, GenerationPending
 from .storage import Conflict, IntegrityError, MemoryArchive, MemoryRepository
 from .study_config import digest
+from .questions import AnswerInterpretationUnavailable
 
 
 def study_manifest(config, provenance):
@@ -58,8 +59,14 @@ def configured_service():
         if os.environ.get(name, expected) != expected:
             raise RuntimeError(f"{name} differs from the immutable instrument")
     if mode != "local":
-        if not config.reviewed or not 12 <= len(config.bank("baseline")) <= 15:
-            raise RuntimeError("staging/production requires a reviewed 12–15-item baseline instrument")
+        if not config.reviewed or (
+            config.response_mode == "click" and not 12 <= len(config.bank("baseline")) <= 15
+        ) or (
+            config.response_mode == "free_text_llm" and not 1 <= len(config.bank("baseline")) <= 40
+        ):
+            raise RuntimeError("staging/production requires a reviewed instrument with valid initial question count")
+        if config.response_mode == "free_text_llm" and backend != "openai":
+            raise RuntimeError("V2 requires live OpenAI for question and answer interpretation")
         if not os.environ.get("DTAG_GCS_BUCKET") or len(os.environ.get("DTAG_COOKIE_SECRET", "")) < 32:
             raise RuntimeError("durable storage and a stable cookie secret are required")
         if not re.fullmatch(r"[a-f0-9]{40}", os.environ.get("DTAG_CODE_COMMIT", "")):
@@ -187,6 +194,11 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
     @app.exception_handler(GenerationPending)
     async def generating(_, exc):
         return JSONResponse({"detail": str(exc), "status": "preparing_question"}, status_code=503, headers={"Retry-After": "2"})
+
+    @app.exception_handler(AnswerInterpretationUnavailable)
+    async def interpretation_unavailable(_, exc):
+        return JSONResponse({"detail": str(exc), "status": "answer_interpretation_pending"},
+                            status_code=503, headers={"Retry-After": "2"})
 
     @app.exception_handler(IntegrityError)
     async def integrity(_, exc):
