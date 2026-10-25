@@ -411,3 +411,82 @@ def test_v3_attention_accepts_generated_imperative_and_retries_invalid_first_att
     assert rendered["displayed_wording"].endswith(".")
     assert rendered["question_provenance"]["generation_attempts"] == 2
     assert rendered["question_provenance"]["fallback"] is False
+
+
+@pytest.mark.parametrize("phase", ["baseline", "attention"])
+def test_v3_archive_outage_cannot_be_reported_as_next_question_pending(
+    instrument, adapter, phase
+):
+    """GCS failures must propagate even after a Firestore answer commit.
+
+    Tests both the normal written-answer path and the standalone V3 attention
+    path, including replaying a committed idempotency key during an outage.
+    """
+    from human_study.service import ExportPending
+    from human_study.study_config import AttentionCheck
+
+    config, llm, service = make_v3(instrument, adapter)
+    if phase == "attention":
+        check = AttentionCheck(
+            check_id="attention_persistence",
+            instruction="For this attention check, include the word cobalt in your reply.",
+            expected_token="cobalt",
+        )
+        config = config.model_copy(update={
+            "study_id": "v3-attention-persistence",
+            "attention_checks": (check,),
+        })
+        service = StudyService(config, adapter, llm, MemoryRepository(), MemoryArchive())
+
+    initial = service.start()
+    view = service.consent(initial["session_id"], True, initial["session_version"])
+    sid = view["session_id"]
+    if phase == "attention":
+        for _ in range(7):
+            view = service.answer(sid, request(view, "yes, and also no"))["current"]
+        assert view["phase"] == "attention"
+    else:
+        assert view["phase"] == "baseline"
+
+    expected_completed = view["progress"]["completed"] + 1
+    req = request(view, "cobalt" if phase == "attention" else "yes, and also no")
+    real_put = service.archive.put
+
+    def failed_put(*args):
+        raise OSError("injected GCS outage")
+
+    service.archive.put = failed_put
+    try:
+        with pytest.raises(ExportPending):
+            service.answer(sid, req)
+        snap = service.repo.read(sid)
+        assert snap.session["next_step"] == expected_completed
+        assert snap.session["pending_exports"]
+        assert snap.session["current_question_id"] is None
+        assert snap.records["requests/" + __import__(
+            "human_study.study_config", fromlist=["digest"]
+        ).digest(req["idempotency_key"])]["result"]["accepted"] is True
+
+        with pytest.raises(ExportPending):
+            service.current(sid)
+        with pytest.raises(ExportPending):
+            service.answer(sid, req)  # idempotent repeat cannot falsely ACK
+        after_retry = service.repo.read(sid)
+        assert after_retry.session["next_step"] == expected_completed
+        assert sum(
+            q["status"] == "answered"
+            for k, q in after_retry.records.items()
+            if k.startswith("questions/")
+        ) == expected_completed
+    finally:
+        service.archive.put = real_put
+
+    recovered = service.answer(sid, req)
+    assert recovered["accepted"]["accepted"] is True
+    assert recovered["preparing_next"] is False
+    assert recovered["current"]["progress"]["completed"] == expected_completed
+    assert not service.repo.read(sid).session["pending_exports"]
+    if phase == "attention":
+        assert recovered["current"]["phase"] == "ready_to_complete"
+    else:
+        assert recovered["current"]["question"]["question_id"] != req["question_id"]
