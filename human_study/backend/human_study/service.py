@@ -229,7 +229,19 @@ class StudyService:
                 raise ValueError("LLM did not complete an incomplete source question")
         except Exception as exc:
             if item is None or item.source_text_incomplete or self.config.question_mode == "llm_required":
-                # Never show source/fallback in V2. Persist a short generation
+                # Log only bounded error codes; never log model output or participant text.
+                import logging
+                failure_codes = [
+                    str(a.get("error") or a.get("rejected") or "unknown")[:64]
+                    for a in getattr(exc, "attempts", [])
+                    if isinstance(a, dict)
+                ][:3]
+                logging.getLogger(__name__).warning(
+                    "Question generation failed: study=%s phase=%s variable=%s error=%s codes=%s",
+                    self.config.study_id, question["phase"], question["target_variable"],
+                    type(exc).__name__, ",".join(failure_codes),
+                )
+                # Never show source/fallback in V2/V3. Persist a short generation
                 # retry lease so the participant can resume after an LLM outage.
                 for _ in range(10):
                     snap = self._load(sid)
@@ -239,7 +251,8 @@ class StudyService:
                         return
                     q = {**q, "generation_lease_until": time.time() + 10,
                          "generation_failure_count": q.get("generation_failure_count", 0) + 1,
-                         "last_generation_error": type(exc).__name__}
+                         "last_generation_error": type(exc).__name__,
+                         "last_generation_failure_codes": failure_codes}
                     if self._write(snap, {key: q}):
                         raise GenerationPending("a complete question could not be prepared; retry shortly") from exc
                 raise Conflict("question generation is busy; retry")
