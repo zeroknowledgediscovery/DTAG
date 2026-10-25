@@ -184,6 +184,7 @@ def test_repeated_native_assignment_updates_state_like_DTAGSession(instrument, a
         "question_id": "revised", "target_variable": "item_05",
         "selection": {
             "candidate_mode": "native_webapp", "expected_delta": 0.01,
+            "state_keep": 500,
         },
         "conditional_distribution": {"yes": .6, "no": .4},
     }
@@ -193,3 +194,18 @@ def test_repeated_native_assignment_updates_state_like_DTAGSession(instrument, a
     assert result["observed_conditional_index_delta"] == pytest.approx(
         result["index_after"] - old_index)
     assert len(updated.observations) == 1
+
+
+def test_webapp_state_keep_evicts_oldest_and_revisions_refresh_recency():
+    from human_study.multi_observations import ordered_state
+    from human_study.state import Observation
+    history = [
+        Observation("a", "item_00", "yes", "baseline"),
+        Observation("b", "item_01", "yes", "baseline"),
+        Observation("c", "item_00", "no", "intervention"),
+        Observation("d", "item_02", "yes", "intervention"),
+    ]
+    assert ordered_state(history, 2) == {"item_00": "no", "item_02": "yes"}
+    assert ordered_state(history, 3) == {
+        "item_01": "yes", "item_00": "no", "item_02": "yes"
+    }
