@@ -207,8 +207,11 @@ Before deploying to Prolific, investigator approval is required for:
   failure is a study quality annotation, not automatically a compensation or
   rejection decision.
 
-Prolific linkage, payments, automated completion codes and recruitment remain
-**separate unimplemented work**, not implied by the study's internal receipt.
+Prolific linkage (PID/STUDY_ID/SESSION_ID), one session per PID, and
+attention-dependent completion codes with an archived reward record are now
+implemented (see the README "Prolific deployment" section and
+`config/study.prolific.example.yaml`). Paying, approving or rejecting
+submissions remains a manual investigator step on Prolific.
 
 ## 6. Operational packaging and release process
 

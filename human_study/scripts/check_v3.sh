@@ -15,7 +15,8 @@ python3 -m pytest -q -rs \
   human_study/tests/test_v3_schedule_and_simulation.py \
   human_study/tests/test_v3_trajectory_analysis.py \
   human_study/tests/test_webapp_parity.py \
-  human_study/tests/test_native_webapp_service.py
+  human_study/tests/test_native_webapp_service.py \
+  human_study/tests/test_prolific_study.py
 
 echo "[2/3] Existing answer, persistence, and cloud adapter regression"
 python3 -m pytest -q -rs \

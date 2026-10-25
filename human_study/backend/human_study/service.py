@@ -7,6 +7,7 @@ All expensive/native/LLM/GCS operations happen outside transactions.
 from __future__ import annotations
 
 import copy
+import re
 import secrets
 import time
 import uuid
@@ -30,11 +31,56 @@ class GenerationPending(RuntimeError):
     pass
 
 
+def verbatim_attention(check):
+    return {"displayed_wording": check.instruction, "question_provenance": {
+        "provider": "verbatim-attention", "check_id": check.check_id, "kind": check.kind,
+        "item_version": check.version, "fallback": False}}
+
+
+def _normalized(text):
+    return " ".join(re.findall(r"\w+", text.casefold()))
+
+
+def response_quality(question, records, settings):
+    """Review flags for one written answer; never used for scoring or the LSM.
+
+    fast: answered within settings.fast_seconds of being presented.
+    short: fewer than settings.short_words words (substantive answers only).
+    duplicate_of: an earlier substantive answer whose normalized text is at
+    least settings.duplicate_similarity similar (copy/paste or canned replies).
+    """
+    from difflib import SequenceMatcher
+    text = _normalized(question.get("raw_text_response") or "")
+    words = len(text.split())
+    substantive = question["phase"] != "attention"
+    duplicate = None
+    if substantive and text:
+        earlier = sorted((r for k, r in records.items() if k.startswith("questions/")
+                          and r.get("status") == "answered" and r["phase"] != "attention"
+                          and r["question_id"] != question["question_id"]
+                          and r.get("raw_text_response")), key=lambda r: r["ordinal"])
+        for r in earlier:
+            if SequenceMatcher(None, text, _normalized(r["raw_text_response"])).ratio() >= settings.duplicate_similarity:
+                duplicate = r["question_id"]
+                break
+    elapsed = question.get("response_elapsed_seconds") or 0.0
+    return {"characters": len(question.get("raw_text_response") or ""), "words": words,
+            "elapsed_seconds": elapsed, "fast": elapsed < settings.fast_seconds,
+            "short": substantive and words < settings.short_words,
+            "duplicate_of": duplicate}
+
+
 class StudyService:
-    def __init__(self, config, adapter, llm, repository, archive, *, failure_hook=None):
+    def __init__(self, config, adapter, llm, repository, archive, *, failure_hook=None,
+                 prolific_required=None, sid_key=None):
         self.config, self.adapter, self.llm = config, adapter, llm
         self.repo, self.archive = repository, archive
         self.hook = failure_hook or (lambda point: None)
+        # Whether a PROLIFIC_PID is mandatory; app.py relaxes this in local mode.
+        self.prolific_required = (config.prolific is not None and config.prolific.required
+                                  if prolific_required is None else prolific_required)
+        # Secret for deriving one session per Prolific participant (cookie secret in deployments).
+        self.sid_key = (sid_key or "local-unkeyed").encode()
         self.adapter.validate_config(config)
 
     def _load(self, sid):
@@ -84,16 +130,47 @@ class StudyService:
             session["phase"] = "attention"
             session["phase_index"] = cursor
 
-    def start(self, sid=None):
+    def prolific_sid(self, pid):
+        """One session per Prolific participant: a returning PID resumes, never re-enrolls."""
+        import hmac
+        message = f"{self.config.study_id}\x00{pid}".encode()
+        return hmac.new(self.sid_key, message, "sha256").hexdigest()[:32]
+
+    def start(self, sid=None, prolific=None):
+        prolific = {k: v for k, v in (prolific or {}).items() if v} or None
+        pid = prolific.get("prolific_pid") if prolific else None
         if sid:
-            return self.current(sid)
-        sid = uuid.uuid4().hex
+            try:
+                existing = self._load(sid).session.get("prolific") or {}
+            except KeyError:
+                existing, sid = {}, None
+            # A different PID in the link (shared browser) gets that participant's own session.
+            if sid and (pid is None or existing.get("prolific_pid") == pid):
+                return self.current(sid)
+        if self.prolific_required and not pid:
+            raise ValueError("Please open this study using the link provided on Prolific.")
+        if pid and self.config.prolific is not None:
+            sid = self.prolific_sid(pid)
+            try:
+                self.repo.read(sid)
+                return self.current(sid)
+            except KeyError:
+                pass
+        else:
+            sid = uuid.uuid4().hex
         session = {"session_id": sid, "phase": "consent", "status": "active", "revision": 0,
                    "created_at": now(), "updated_at": now(), "config_hash": self.config.config_hash,
                    "provenance_hash": digest(self.adapter.provenance), "policy": None, "state": None,
                    "phase_index": 0, "next_step": 0, "pending_exports": [], "current_question_id": None,
-                   "assignment_rng_state": None, "selection_rng_state": None, "receipt": None}
-        if not self.repo.cas(sid, None, session, {}):
+                   "assignment_rng_state": None, "selection_rng_state": None, "receipt": None,
+                   "prolific": prolific}
+        writes = {}
+        if prolific:
+            self._export(session, writes, "enrollment", {"kind": "enrollment", "timestamp": session["created_at"],
+                                                         "prolific": prolific})
+        if not self.repo.cas(sid, None, session, writes):
+            if pid:
+                return self.current(sid)  # concurrent first request for the same PID
             raise Conflict("unable to enroll session")
         return self.current(sid)
 
@@ -246,8 +323,9 @@ class StudyService:
         item = None if question["phase"] == "attention" else self._item_for(question["target_variable"], question["phase"])
         try:
             if question["phase"] == "attention":
-                rendered = self.llm.generate_attention(
-                    self.config.attention_checks[question["step"]])
+                check = self.config.attention_checks[question["step"]]
+                rendered = (verbatim_attention(check) if check.render == "verbatim"
+                            else self.llm.generate_attention(check))
             # Adaptive items always use the LLM. Any nonadaptive item known to
             # contain a source fragment must also be completed, not displayed raw.
             elif self.config.question_mode == "llm_required" or item.phase == "intervention" or item.source_text_incomplete:
@@ -256,7 +334,8 @@ class StudyService:
                 rendered = {"displayed_wording": item.original_wording, "question_provenance": {
                     "provider": "canonical-common-instrument", "item_version": item.version,
                     "source_text_incomplete": False, "fallback": False}}
-            if (item is None or item.source_text_incomplete or self.config.question_mode == "llm_required") and (
+            verbatim = rendered.get("question_provenance", {}).get("provider") == "verbatim-attention"
+            if (item is None or item.source_text_incomplete or self.config.question_mode == "llm_required") and not verbatim and (
                 rendered.get("question_provenance", {}).get("fallback", True) or
                 rendered.get("displayed_wording", "").strip() == question["original_wording"].strip()
             ):
@@ -383,26 +462,26 @@ class StudyService:
 
     def _answer_attention(self, snap, question, request, request_key, fingerprint):
         """Record a V3 attention response; never use it for model conditioning."""
-        import re
         if request.get("answer_value") is not None or request.get("missing_reason") is not None:
             raise ValueError("attention check requires a written response")
         raw = request.get("text_answer")
         if not isinstance(raw, str) or not raw.strip():
             raise ValueError("Please write your response before continuing.")
         check = self.config.attention_checks[question["step"]]
-        passed = bool(re.search(r"\b" + re.escape(check.expected_token) + r"\b",
-                                raw, flags=re.IGNORECASE))
+        passed = check.passes(raw)
         q = {**question, "status": "answered", "raw_text_response": raw,
              "response_value": None, "missing_reason": None,
              "response_interpretation": {
-                 "status": "attention_check", "method": "exact_token_v3",
-                 "attention_passed": passed, "check_id": check.check_id,
+                 "status": "attention_check",
+                 "method": "exact_token_v3" if check.kind == "instructed_token" else "accepted_answer_v1",
+                 "kind": check.kind, "attention_passed": passed, "check_id": check.check_id,
              },
              "attention_passed": passed, "accepted_assignments": [],
              "response_timestamp": now(), "response_elapsed_seconds": max(
                  0, (datetime.now(timezone.utc) -
                      datetime.fromisoformat(question["presented_at"])).total_seconds()),
              }
+        q["response_quality"] = response_quality(q, snap.records, self.config.quality)
         session = snap.session
         session["current_question_id"] = None
         session["next_step"] += 1
@@ -537,6 +616,8 @@ class StudyService:
                      raw_text_response=raw_answer, response_interpretation=interpretation,
                      response_timestamp=now(), response_elapsed_seconds=max(0, (datetime.now(timezone.utc) -
                          datetime.fromisoformat(q["presented_at"])).total_seconds()))
+            if raw_answer is not None:
+                q["response_quality"] = response_quality(q, snap.records, self.config.quality)
             result["accepted_at"] = q["response_timestamp"]
             s["current_question_id"] = None
             s["phase_index"] += 1
@@ -582,16 +663,57 @@ class StudyService:
             references = [v["object_name"] for k, v in snap.records.items() if k.startswith("exports/")]
             if any(q["status"] != "answered" for q in questions):
                 raise IntegrityError("unanswered question at finalization")
+            reward = self._reward(s, questions)
+            s["completion_code"] = reward["completion_code"]
             writes = {}
             payload = {"kind": "session_final", "timestamp": s["completed_at"], "receipt": s["receipt"],
                        "policy": s["policy"], "consent_version": s["consent_version"],
                        "baseline_index": s["state"]["baseline_index"], "final_index": s["state"]["current_index"],
-                       "no_candidate_reason": s.get("no_candidate_reason"),
+                       "no_candidate_reason": s.get("no_candidate_reason"), "prolific": s.get("prolific"),
+                       "reward": reward,
                        "questions": questions, "source_objects": references, "study_configuration": self.config.model_dump(mode="json")}
-            self._export(s, writes, "final", payload, f"studies/{self.config.study_id}/sessions/{sid}/final.json")
+            base = f"studies/{self.config.study_id}"
+            self._export(s, writes, "reward", {"kind": "reward", **reward}, f"{base}/sessions/{sid}/reward.json")
+            pid = (s.get("prolific") or {}).get("prolific_pid")
+            if pid:
+                # Researcher lookup by Prolific participant, alongside the per-session record.
+                self._export(s, writes, "reward-by-participant", {"kind": "reward", **reward},
+                             f"{base}/rewards/{pid}.json")
+            self._export(s, writes, "final", payload, f"{base}/sessions/{sid}/final.json")
             if self._write(snap, writes):
                 continue
         raise Conflict("completion busy; retry")
+
+    def _reward(self, session, questions):
+        """Completion code and the evidence behind it, archived before it is shown."""
+        attention = [q for q in questions if q["phase"] == "attention"]
+        failed = [q["target_variable"] for q in attention if not q.get("attention_passed")]
+        flags = [q.get("response_quality") or {} for q in questions]
+        substantive = [f for q, f in zip(questions, flags) if q["phase"] != "attention"]
+        times = sorted(f["elapsed_seconds"] for f in flags if "elapsed_seconds" in f)
+        settings = self.config.prolific
+        if settings is None:
+            code, category = None, "no_prolific_configuration"
+        elif settings.review_code and len(failed) >= settings.attention_fail_threshold:
+            code, category = settings.review_code, "attention_review"
+        else:
+            code, category = settings.completion_code, "complete"
+        return {
+            "timestamp": session["completed_at"], "receipt": session["receipt"],
+            "prolific": session.get("prolific"), "completion_code": code, "code_category": category,
+            "reward": settings.reward if settings else None,
+            "attention": {"total": len(attention), "passed": len(attention) - len(failed),
+                          "failed": len(failed), "failed_check_ids": failed,
+                          "fail_threshold": settings.attention_fail_threshold if settings else None},
+            "quality": {"substantive_answers": len(substantive),
+                        "fast_answers": sum(bool(f.get("fast")) for f in flags),
+                        "short_answers": sum(bool(f.get("short")) for f in substantive),
+                        "duplicate_answers": sum(f.get("duplicate_of") is not None for f in substantive),
+                        "median_elapsed_seconds": times[len(times) // 2] if times else None,
+                        "settings": self.config.quality.model_dump(mode="json")},
+            "policy": session["policy"], "consent_version": session["consent_version"],
+            "created_at": session["created_at"],
+        }
 
     def public(self, snap):
         s = snap.session
@@ -604,7 +726,11 @@ class StudyService:
                         "required": q["required"], "response_mode": self.config.response_mode}
         total = (len(self.config.bank("baseline")) + self.config.intervention_steps +
                  len(self.config.bank("outcome")) + len(self.config.attention_checks))
+        code = s.get("completion_code") if phase == "complete" else None
         return {"session_id": s["session_id"], "phase": phase, "session_version": s["revision"],
                 "question": public_q, "progress": {"completed": s["next_step"], "total": total},
                 "consent": self.config.consent_text if phase == "consent" else None,
-                "receipt": s["receipt"] if phase == "complete" else None}
+                "receipt": s["receipt"] if phase == "complete" else None,
+                "completion_code": code,
+                "completion_url": (f"{self.config.prolific.completion_url}?cc={code}"
+                                   if code and self.config.prolific else None)}

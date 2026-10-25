@@ -1,0 +1,163 @@
+# Prolific human study: 6 baseline + 20 adaptive + 5 interleaved attention checks.
+#
+# DRAFT (reviewed: false). Before deployment, copy this file to a secure path,
+# replace both CHANGEME completion codes with the codes configured on the
+# Prolific study page, review consent/wording/reward, set reviewed: true, and
+# pass it as DTAG_REVIEWED_CONFIG to deploy/deploy.sh. Staging/production refuse
+# to start with CHANGEME codes or reviewed: false.
+#
+# Baseline ideology: six GSS 2024 ideology-pole items (assets/polar_vectors),
+# spanning guns, drugs, abortion, welfare, environment and defense. The webapp
+# never offers pole items as push candidates, so adaptive questions cannot
+# re-ask them. Wording below completes the GSS 2024 map excerpt with the
+# standard GSS question stem; every question is still LLM-rendered and
+# semantically re-mapped before it is shown.
+#
+# Arms: right / left / neutral / random, uniformly randomized per participant
+# after the baseline (service.py, scheme unstratified-uniform-four-arm-v1).
+schema_version: '1'
+study_id: prolific-v3-pole-baseline-draft
+model_key: gss/gss_2024
+model_release: v0.2.1
+reviewed: false
+consent_version: prolific-v3-draft-1
+consent_text: >-
+  This research study asks for your views on social and political topics.
+  Questions are written by an AI system, one at a time; please answer each in
+  your own words (a sentence or two is enough). Your written answers are sent
+  to an AI service to interpret them and are stored for research together with
+  your Prolific ID. Do not include names, contact details or other identifying
+  information. The study contains a few attention checks; please read every
+  question carefully. It takes about 20-25 minutes. Participation is voluntary
+  and you may stop at any time by closing this page. When you finish you will
+  receive a Prolific completion code.
+initial_steps: 6
+intervention_steps: 20
+question_mode: llm_required
+response_mode: free_text_multi
+candidate_mode: native_webapp
+push_response_mode: draw
+max_response_assignments: 50
+minimum_mapping_confidence: 0.8
+llm_model: gpt-4.1-mini
+prompt_version: dtag-human-v3-evidence-multi-assignments
+excluded_ids: []
+ethics_disallowed_ids: []
+prolific:
+  required: true
+  completion_url: https://app.prolific.com/submissions/complete
+  completion_code: CHANGEME01
+  # Shown instead when >= attention_fail_threshold checks fail; set this code's
+  # action in Prolific to manual review. Remove to give everyone completion_code.
+  review_code: CHANGEME02
+  attention_fail_threshold: 2
+  reward: GBP 0.00 (set to the Prolific reward)
+quality:
+  fast_seconds: 4.0
+  short_words: 3
+  duplicate_similarity: 0.9
+attention_checks:
+- check_id: attention_token_cobalt
+  kind: instructed_token
+  instruction: For this attention check, write a short reply containing the exact word cobalt.
+  expected_token: cobalt
+  after_substantive: 3
+  version: prolific-draft-1
+- check_id: attention_factual_sky
+  kind: factual
+  render: verbatim
+  instruction: "Attention check: what colour is the sky on a clear, sunny day? Please answer in one word."
+  accepted_answers: [blue]
+  after_substantive: 8
+  version: prolific-draft-1
+- check_id: attention_token_amber
+  kind: instructed_token
+  instruction: For this attention check, write a short reply containing the exact word amber.
+  expected_token: amber
+  after_substantive: 13
+  version: prolific-draft-1
+- check_id: attention_factual_week
+  kind: factual
+  render: verbatim
+  instruction: "Attention check: how many days are there in one week? Please write the number."
+  accepted_answers: ['7', seven]
+  after_substantive: 18
+  version: prolific-draft-1
+- check_id: attention_token_cedar
+  kind: instructed_token
+  instruction: For this attention check, write a short reply containing the exact word cedar.
+  expected_token: cedar
+  after_substantive: 24
+  version: prolific-draft-1
+items:
+- item_id: gunlaw
+  original_wording: Would you favor or oppose a law which would require a person to obtain
+    a police permit before he or she could buy a gun?
+  choices:
+  - native_value: oppose
+    display_label: oppose
+  - native_value: favor
+    display_label: favor
+  phase: baseline
+  required: false
+  version: prolific-draft-1
+- item_id: grass
+  original_wording: Do you think the use of marijuana should be made legal or not?
+  choices:
+  - native_value: should not be legal
+    display_label: should not be legal
+  - native_value: should be legal
+    display_label: should be legal
+  phase: baseline
+  required: false
+  version: prolific-draft-1
+- item_id: abany
+  original_wording: Please tell me whether or not you think it should be possible for a
+    pregnant woman to obtain a legal abortion if the woman wants it for any reason?
+  choices:
+  - native_value: 'no'
+    display_label: 'no'
+  - native_value: 'yes'
+    display_label: 'yes'
+  phase: baseline
+  required: false
+  version: prolific-draft-1
+- item_id: natfare
+  original_wording: Are we spending too much, too little, or about the right amount on
+    welfare?
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: baseline
+  required: false
+  version: prolific-draft-1
+- item_id: natenvir
+  original_wording: Are we spending too much, too little, or about the right amount on
+    improving and protecting the environment?
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: baseline
+  required: false
+  version: prolific-draft-1
+- item_id: natarms
+  original_wording: Are we spending too much, too little, or about the right amount on
+    the military, armaments, and defense?
+  choices:
+  - native_value: too little
+    display_label: too little
+  - native_value: about right
+    display_label: about right
+  - native_value: too much
+    display_label: too much
+  phase: baseline
+  required: false
+  version: prolific-draft-1

@@ -51,6 +51,54 @@ Both are unreviewed examples and must **not** be mistaken for the proposed
 [full 6+20+5 protocol](docs/PRODUCTION_READINESS.md). The full-study adaptive
 questions remain dynamically selected across the installed native model.
 
+### Prolific deployment ([config/study.prolific.example.yaml](config/study.prolific.example.yaml))
+
+The Prolific configuration is **6 baseline + 20 adaptive + 5 interleaved
+attention checks** (31 screens), using the same native-webapp selection as above.
+
+- **Baseline ideology.** No persona: six GSS 2024 ideology-pole items
+  (`gunlaw`, `grass`, `abany`, `natfare`, `natenvir`, `natarms`) estimate the
+  starting index. Against the real native model, all-R answers give index
+  +0.23, all-L −0.25, empty state −0.04. The webapp never offers pole items as
+  push candidates, so adaptive questions do not re-ask them.
+- **Direction.** After the baseline, each participant is uniformly randomized
+  to `right` / `left` / `neutral` / `random` (persisted with its RNG state and
+  archived as `events/assignment.json`). Right/left/neutral follow the webapp
+  and `dtag_persona_push_study.py` definitions (neutral = smallest |expected Δ|).
+- **Attention checks.** `kind: instructed_token` ("include the word cobalt",
+  LLM-worded) and `kind: factual` (obvious-answer question shown verbatim,
+  passes if the reply contains any `accepted_answers` as a whole word). They
+  never touch the LSM state.
+- **Answer-quality flags** (recorded, never scored): `fast` (answered within
+  `quality.fast_seconds`), `short` (< `quality.short_words` words), and
+  `duplicate_of` (≥ `quality.duplicate_similarity` similar to an earlier answer).
+  Unintelligible text is already refused by the mapper and must be rewritten.
+- **Prolific linkage.** Set the Prolific study URL to
+  `https://<service>/study?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}`.
+  Outside local mode a PID is required. Each PID gets one session
+  (HMAC of study ID + PID, keyed by `DTAG_COOKIE_SECRET`), so a participant who
+  loses cookies resumes rather than restarts.
+- **Completion codes.** Create two codes on Prolific: `completion_code`
+  (approve) and `review_code` (manual review). Participants with ≥
+  `attention_fail_threshold` (default 2) failed checks get `review_code`;
+  everyone else gets `completion_code`. Omit `review_code` to give everyone the
+  same code. The finish page shows the code and a "Return to Prolific" button.
+  Staging/production and `deploy.sh` refuse the `CHANGEME` placeholders.
+
+GCS objects per completed participant (bucket `DTAG_GCS_BUCKET`):
+
+| Object | Content |
+| --- | --- |
+| `studies/<study>/sessions/<sid>/events/enrollment.json` | Prolific PID, STUDY_ID, SESSION_ID |
+| `…/sessions/<sid>/{baseline,questions,attention}/<qid>.json` | every presented question and answer, with attention result and `response_quality` |
+| `…/sessions/<sid>/events/assignment.json` | randomized direction, RNG state, baseline index |
+| `…/sessions/<sid>/reward.json` and `studies/<study>/rewards/<PID>.json` | completion code issued, code category, reward, attention and quality summary |
+| `…/sessions/<sid>/final.json` | everything above plus the full question list and study configuration |
+
+`python -m human_study.export` adds PID, completion code, category, attention
+failures and quality counts to `participants.csv`, and per-answer
+`attention_passed` / `response_quality` to `answers.csv`.
+
 ### Verify without typing participant answers
 
 From repository root, with the Python environment activated:

@@ -40,11 +40,69 @@ class Item(StrictModel):
 
 class AttentionCheck(StrictModel):
     check_id: str = Field(pattern=r"^attention_[A-Za-z0-9_]+$", max_length=80)
-    instruction: str = Field(min_length=20, max_length=500)
-    expected_token: str = Field(pattern=r"^[A-Za-z]{3,20}$")
+    # instructed_token: "include the exact word X" (LLM-rendered by default).
+    # factual: an obvious-answer question shown verbatim; passes when the reply
+    # contains any accepted answer as a whole word or phrase.
+    kind: Literal["instructed_token", "factual"] = "instructed_token"
+    instruction: str = Field(min_length=10, max_length=500)
+    expected_token: str | None = Field(default=None, pattern=r"^[A-Za-z]{3,20}$")
+    accepted_answers: tuple[str, ...] = Field(default=(), max_length=20)
+    # llm: model writes participant-facing wording; verbatim: show instruction as is.
+    render: Literal["llm", "verbatim"] = "llm"
     # Show after this many substantive answers. None = after all substantive answers.
     after_substantive: int | None = Field(default=None, ge=0, le=100)
     version: str = "1"
+
+    @model_validator(mode="after")
+    def scoring_rule(self):
+        if self.kind == "instructed_token":
+            if not self.expected_token:
+                raise ValueError("instructed_token attention checks require expected_token")
+            if self.render == "verbatim" and not self.passes(self.instruction):
+                raise ValueError("verbatim instructed_token checks must show the expected token")
+        if self.kind == "factual":
+            if not self.accepted_answers or self.expected_token:
+                raise ValueError("factual attention checks use accepted_answers, not expected_token")
+            if self.render != "verbatim":
+                raise ValueError("factual attention checks are displayed verbatim")
+            if any(not 1 <= len(a.strip()) <= 60 for a in self.accepted_answers):
+                raise ValueError("accepted answers must be 1-60 characters")
+        return self
+
+    def passes(self, text: str) -> bool:
+        import re
+        answers = (self.expected_token,) if self.kind == "instructed_token" else self.accepted_answers
+        return any(re.search(r"(?<!\w)" + re.escape(a.strip()) + r"(?!\w)", text, flags=re.IGNORECASE)
+                   for a in answers)
+
+
+class ProlificSettings(StrictModel):
+    """Prolific linkage and completion codes. Codes are configured in Prolific."""
+    # Reject sessions opened without PROLIFIC_PID (outside local mode).
+    required: bool = True
+    completion_url: str = Field(default="https://app.prolific.com/submissions/complete",
+                                pattern=r"^https://[^\s?#]+$")
+    # Shown to participants who fail fewer than attention_fail_threshold checks.
+    completion_code: str = Field(pattern=r"^[A-Za-z0-9]{4,32}$")
+    # Shown when failures >= threshold; configure as "manual review" in Prolific.
+    # None: everyone receives completion_code (failures are still archived).
+    review_code: str | None = Field(default=None, pattern=r"^[A-Za-z0-9]{4,32}$")
+    attention_fail_threshold: int = Field(default=2, ge=1, le=100)
+    # Recorded with each reward record, e.g. "GBP 2.50"; informational only.
+    reward: str | None = Field(default=None, max_length=60)
+
+    @model_validator(mode="after")
+    def distinct_codes(self):
+        if self.review_code is not None and self.review_code == self.completion_code:
+            raise ValueError("review_code must differ from completion_code")
+        return self
+
+
+class QualitySettings(StrictModel):
+    """Per-answer review flags. Recorded only; they never change the code shown."""
+    fast_seconds: float = Field(default=4.0, ge=0, le=600)
+    short_words: int = Field(default=3, ge=0, le=100)
+    duplicate_similarity: float = Field(default=0.9, ge=0.5, le=1.0)
 
 
 class StudyConfig(StrictModel):
@@ -68,6 +126,8 @@ class StudyConfig(StrictModel):
     push_response_mode: Literal["max", "draw"] = "max"
     # Non-geometric, investigator-designed attention checks (V3).
     attention_checks: tuple[AttentionCheck, ...] = ()
+    prolific: ProlificSettings | None = None
+    quality: QualitySettings = QualitySettings()
     minimum_mapping_confidence: float = Field(default=0.80, ge=0.5, le=1.0)
     llm_model: str = "gpt-4.1-mini-2025-04-14"
     prompt_version: str = "dtag-human-survey-question-v2-excerpt"

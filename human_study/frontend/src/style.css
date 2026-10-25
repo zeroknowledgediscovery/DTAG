@@ -12,6 +12,7 @@ fieldset { border: 0; margin: 0; padding: 0; }
 .choice:has(input:checked) { border-color: #17686b; background: #eff9f7; }
 input { accent-color: #17686b; min-width: 20px; min-height: 20px; }
 button { background: #17686b; color: white; border: 1px solid transparent; border-radius: 7px; min-height: 48px; padding: 12px 20px; font: inherit; font-weight: 650; cursor: pointer; }
+a.button { display: inline-flex; align-items: center; background: #17686b; color: white; border-radius: 7px; min-height: 48px; padding: 12px 20px; font-weight: 650; text-decoration: none; }
 button:disabled { opacity: .5; cursor: wait; }
 .secondary { background: white; color: #31585c; border-color: #cbd8d8; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }

@@ -7,9 +7,22 @@ const isWrittenMode = (q: Question | null | undefined) =>
   q?.response_mode === 'free_text_llm' || q?.response_mode === 'free_text_multi';
 
 type View = { session_id: string; phase: string; session_version: number; question: Question | null;
-  consent: string | null; receipt: string | null; progress: { completed: number; total: number } };
+  consent: string | null; receipt: string | null; progress: { completed: number; total: number };
+  completion_code?: string | null; completion_url?: string | null };
 type Pending = { question_id: string; answer_value: string | null; text_answer: string | null; missing_reason: string | null;
   idempotency_key: string; expected_session_version: number };
+
+// Prolific appends these to the study URL; they link the session to the participant.
+function prolificParams() {
+  const query = new URLSearchParams(window.location.search);
+  const fields: Record<string, string> = {};
+  for (const [param, field] of [['PROLIFIC_PID', 'prolific_pid'], ['STUDY_ID', 'prolific_study_id'],
+    ['SESSION_ID', 'prolific_session_id']]) {
+    const value = query.get(param);
+    if (value && /^[A-Za-z0-9]{1,64}$/.test(value)) fields[field] = value;
+  }
+  return fields;
+}
 
 async function api(route: string, data?: unknown) {
   const response = await fetch('/api/human/' + route, { credentials: 'same-origin',
@@ -57,7 +70,7 @@ function App() {
     catch (e) { setError(e instanceof Error ? e.message : 'Unable to save. Please retry.'); }
     finally { setBusy(false); }
   }
-  useEffect(() => { void perform(() => api('start', {})); }, []);
+  useEffect(() => { void perform(() => api('start', prolificParams())); }, []);
   useEffect(() => { heading.current?.focus(); }, [view?.question?.question_id, view?.phase]);
 
   // An answer may be securely committed while the NEXT LLM question is
@@ -152,14 +165,19 @@ function App() {
     </section>}
     {view?.phase === 'ready_to_complete' && <section><h2 ref={heading} tabIndex={-1}>Your questions are finished</h2>
       <p>Finish to save your study receipt.</p><button disabled={busy} onClick={() => void perform(() => api('complete', {}))}>Finish study</button></section>}
-    {view?.phase === 'complete' && <section><h2 ref={heading} tabIndex={-1}>Thank you. Your session is complete.</h2>
+    {view?.phase === 'complete' && (view.completion_code ? <section>
+      <h2 ref={heading} tabIndex={-1}>Thank you. Your session is complete.</h2>
+      <p>Your Prolific completion code:</p><p className="receipt" data-testid="completion-code">{view.completion_code}</p>
+      {view.completion_url && <div className="actions"><a className="button" href={view.completion_url}>Return to Prolific</a></div>}
+      <p className="muted">If the button does not work, copy the code above into Prolific. Session: {view.session_id}</p></section>
+    : <section><h2 ref={heading} tabIndex={-1}>Thank you. Your session is complete.</h2>
       <p>Your internal study receipt:</p><p className="receipt" data-testid="receipt">{view.receipt}</p>
-      <p className="muted">Session: {view.session_id}</p><p>This is an internal receipt, not a payment or Prolific completion code. You may close this page.</p></section>}
+      <p className="muted">Session: {view.session_id}</p><p>This is an internal receipt, not a payment or Prolific completion code. You may close this page.</p></section>)}
     {view?.phase === 'declined' && <section><h2 ref={heading} tabIndex={-1}>You have not enrolled in the study.</h2><p>You may close this page.</p></section>}
     {busy && <p role="status" className="status">Saving and preparing your next step…</p>}
     {error && <aside role="alert"><p>{error}</p><button className="secondary" disabled={busy} onClick={() => {
       if (pending.current) void answer(pending.current.answer_value, pending.current.missing_reason);
-      else void perform(() => view ? api('current') : api('start', {}));
+      else void perform(() => view ? api('current') : api('start', prolificParams()));
     }}>Retry</button><button className="secondary" disabled={busy} onClick={() => void perform(() => api('current'))}>Refresh saved state</button></aside>}
     {!view && !busy && !error && <p>Preparing the study…</p>}
     <footer>You can stop at any time. Keep this browser’s cookies to resume an interrupted session.</footer>

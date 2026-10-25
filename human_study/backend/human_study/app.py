@@ -73,6 +73,10 @@ def configured_service():
             raise RuntimeError("exact source commit provenance is required outside local mode")
         if backend == "openai" and not os.environ.get("OPENAI_API_KEY"):
             raise RuntimeError("OpenAI credential is required for the selected language provider")
+        if config.prolific is not None and any(
+                (code or "").upper().startswith("CHANGEME")
+                for code in (config.prolific.completion_code, config.prolific.review_code)):
+            raise RuntimeError("replace the placeholder Prolific completion codes before deployment")
         if mode == "production" and backend != "openai":
             raise RuntimeError("production requires the live question provider")
         from .storage_firestore import FirestoreRepository
@@ -82,7 +86,10 @@ def configured_service():
     else:
         repo, archive = MemoryRepository(), MemoryArchive()
     adapter = NativeAdapter(config)
-    return StudyService(config, adapter, QuestionLLM(adapter, config, backend), repo, archive)
+    return StudyService(config, adapter, QuestionLLM(adapter, config, backend), repo, archive,
+                        # Local development may open the study without a Prolific link.
+                        prolific_required=None if mode != "local" else False,
+                        sid_key=os.environ.get("DTAG_COOKIE_SECRET"))
 
 
 def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=None):
@@ -232,7 +239,7 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
         existing = sessions.sid(request)
         if existing is None and not enrollment.allow(request.client.host if request.client else "unknown"):
             raise HTTPException(429, "please wait before opening another session")
-        result = svc().start(existing)
+        result = svc().start(existing, body.model_dump())
         response = JSONResponse(result)
         sessions.set_cookie(response, result["session_id"])
         return response
@@ -258,7 +265,9 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
         view = svc().public(svc()._load(sid(request)))
         if view["phase"] != "complete":
             raise HTTPException(409, "study is not complete")
-        return {"study_session_id": view["session_id"], "receipt": view["receipt"], "type": "internal_nonpayment_receipt"}
+        return {"study_session_id": view["session_id"], "receipt": view["receipt"],
+                "completion_code": view["completion_code"], "completion_url": view["completion_url"],
+                "type": "prolific_completion" if view["completion_code"] else "internal_nonpayment_receipt"}
 
     dist = Path(frontend_dist or ROOT / "human_study/frontend/dist")
     if (dist / "assets").is_dir():

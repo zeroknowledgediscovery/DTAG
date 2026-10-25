@@ -8,10 +8,12 @@ from pathlib import Path
 from .study_config import digest
 
 FIELDS = {
-    "participants": ["session_id", "policy", "receipt", "completed_at", "baseline_index", "final_index", "source_object"],
+    "participants": ["session_id", "policy", "receipt", "completed_at", "baseline_index", "final_index",
+                     "prolific_pid", "prolific_study_id", "prolific_session_id", "completion_code", "code_category",
+                     "attention_failed", "fast_answers", "short_answers", "duplicate_answers", "source_object"],
     "baseline": ["session_id", "question_id", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "timestamp", "source_object"],
     "questions": ["session_id", "question_id", "phase", "step", "variable", "original_wording", "displayed_wording", "choices", "presented_at", "source_object"],
-    "answers": ["session_id", "question_id", "phase", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "response_elapsed_seconds", "timestamp", "source_object"],
+    "answers": ["session_id", "question_id", "phase", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "response_elapsed_seconds", "timestamp", "attention_passed", "response_quality", "source_object"],
     "trajectories": ["session_id", "question_id", "policy", "index_before", "index_after", "predicted_model_delta", "observed_conditional_index_delta", "conditional_distribution", "source_object"],
     "outcomes": ["session_id", "question_id", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "timestamp", "source_object"]}
 
@@ -25,8 +27,15 @@ def export_records(finals, out):
         if final["content_sha256"] != digest({k: v for k, v in final.items() if k != "content_sha256"}):
             raise ValueError("archive content hash mismatch")
         sid = final["session_id"]
+        reward = final.get("reward") or {}
+        prolific = final.get("prolific") or {}
         tables["participants"].append({"session_id": sid, "policy": final["policy"], "receipt": final["receipt"],
-            "completed_at": final["timestamp"], "baseline_index": final["baseline_index"], "final_index": final["final_index"], "source_object": name})
+            "completed_at": final["timestamp"], "baseline_index": final["baseline_index"], "final_index": final["final_index"],
+            **{k: prolific.get(k) for k in ("prolific_pid", "prolific_study_id", "prolific_session_id")},
+            "completion_code": reward.get("completion_code"), "code_category": reward.get("code_category"),
+            "attention_failed": (reward.get("attention") or {}).get("failed"),
+            **{k: (reward.get("quality") or {}).get(k) for k in ("fast_answers", "short_answers", "duplicate_answers")},
+            "source_object": name})
         provenance.append({"session_id": sid, "config_hash": final["config_hash"], "provenance": final["provenance"], "source_object": name})
         for q in final["questions"]:
             # Individual answer objects are authoritative source references for each row.
@@ -38,7 +47,9 @@ def export_records(finals, out):
                  "response_interpretation": json.dumps(q.get("response_interpretation"), ensure_ascii=False, sort_keys=True)
                      if q.get("response_interpretation") is not None else "",
                  "missing_reason": q.get("missing_reason"),
-                 "response_elapsed_seconds": q["response_elapsed_seconds"], "timestamp": q["response_timestamp"]}
+                 "response_elapsed_seconds": q["response_elapsed_seconds"], "timestamp": q["response_timestamp"],
+                 "attention_passed": q.get("attention_passed"),
+                 "response_quality": json.dumps(q["response_quality"], sort_keys=True) if q.get("response_quality") else ""}
             tables["answers"].append(a)
             tables["questions"].append({**common, "phase": q["phase"], "step": q["step"],
                 "original_wording": q["original_wording"], "displayed_wording": q["displayed_wording"],

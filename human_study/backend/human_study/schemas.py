@@ -6,9 +6,15 @@ class Input(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
 
 
+PROLIFIC_ID = r"^[A-Za-z0-9]{1,64}$"
+
+
 class Start(Input):
-    # Reserved fields are deliberately not accepted yet. PID is never authentication.
-    pass
+    # Prolific URL parameters (PROLIFIC_PID, STUDY_ID, SESSION_ID). Linkage only;
+    # a PID is never treated as a credential for anything beyond resuming its session.
+    prolific_pid: str | None = Field(default=None, pattern=PROLIFIC_ID)
+    prolific_study_id: str | None = Field(default=None, pattern=PROLIFIC_ID)
+    prolific_session_id: str | None = Field(default=None, pattern=PROLIFIC_ID)
 
 
 class Consent(Input):

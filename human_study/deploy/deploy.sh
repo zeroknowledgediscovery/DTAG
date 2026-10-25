@@ -24,6 +24,9 @@ if c.response_mode == 'click' and not 12 <= len(c.bank('baseline')) <= 15:
     raise SystemExit('Legacy study requires a 12–15-item baseline')
 if c.response_mode in ('free_text_llm', 'free_text_multi') and not 1 <= len(c.bank('baseline')) <= 40:
     raise SystemExit('V2 needs 1–40 initial questions')
+if c.prolific and any((x or '').upper().startswith('CHANGEME')
+                      for x in (c.prolific.completion_code, c.prolific.review_code)):
+    raise SystemExit('Replace the placeholder Prolific completion codes')
 PY
 run() { if [[ "$EXECUTE" == 1 ]]; then "$@"; else printf '%q ' "$@"; printf '\n'; fi; }
 # Archive only tracked source: no local responses, caches, .env files or Git credentials.
