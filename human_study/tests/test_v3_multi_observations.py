@@ -1,0 +1,192 @@
+"""V3 human answers can contain multiple independently validated GSS observations."""
+import json
+import re
+
+import pytest
+from fastapi.testclient import TestClient
+
+from human_study.app import create_app
+from human_study.multi_observations import (
+    initial_state, apply, permitted_items, resolve,
+)
+from human_study.questions import AnswerNeedsClarification, QuestionLLM
+from human_study.service import StudyService
+from human_study.storage import MemoryArchive, MemoryRepository
+from human_study.study_config import StudyConfig
+
+
+class MultiFixtureLLM:
+    def __init__(self):
+        self.generation_calls = []
+        self.mapping_calls = []
+        self.ambiguous = False
+
+    def generate(self, item):
+        self.generation_calls.append(item.item_id)
+        return {"displayed_wording": f"For topic {item.item_id}, what is your view?",
+                "question_provenance": {"provider": "fixture-llm", "fallback": False,
+                                        "mapper_hit": True, "input_item_id": item.item_id}}
+
+    def interpret_multi(self, question, words, allowed_items):
+        self.mapping_calls.append((question, words))
+        if self.ambiguous:
+            return {"status": "ambiguous", "proposed": [], "rationale": "unclear",
+                    "provider": "fixture", "mapping_method": "explicit_evidence_only_v3"}
+        target = re.search(r"topic (item_\d+)", question).group(1)
+        proposed = [{"variable": target, "native_value": "yes", "confidence": .97,
+                     "evidence": "yes"}]
+        if target == "item_00":
+            proposed.append({"variable": "item_13", "native_value": "yes",
+                             "confidence": .96, "evidence": "yes"})
+        if target == "item_01":
+            proposed.append({"variable": "item_13", "native_value": "no",
+                             "confidence": .94, "evidence": "no"})
+        return {"status": "mapped", "proposed": proposed, "rationale": "explicit",
+                "provider": "fixture", "mapping_method": "explicit_evidence_only_v3"}
+
+
+def make_v3(instrument, adapter):
+    items = (*instrument.bank("baseline")[:4], *instrument.bank("intervention")[:8])
+    config = StudyConfig(
+        study_id="v3-fixture", question_mode="llm_required",
+        response_mode="free_text_multi", initial_steps=4,
+        intervention_steps=3, max_response_assignments=5, items=items,
+    )
+    llm = MultiFixtureLLM()
+    service = StudyService(config, adapter, llm, MemoryRepository(), MemoryArchive())
+    return config, llm, service
+
+
+def request(view, raw, idempotency_key=None):
+    return {
+        "question_id": view["question"]["question_id"],
+        "answer_value": None,
+        "text_answer": raw,
+        "missing_reason": None,
+        "idempotency_key": idempotency_key or view["question"]["question_id"],
+        "expected_session_version": view["session_version"],
+    }
+
+
+def test_v3_four_initial_three_adaptive_with_five_baseline_coordinates(instrument, adapter):
+    config, llm, service = make_v3(instrument, adapter)
+    start = service.start()
+    view = service.consent(start["session_id"], True, start["session_version"])
+    sid = view["session_id"]
+    for i in range(4):
+        raw = "yes, and also no" if i == 1 else "yes, with additional reasons"
+        view = service.answer(sid, request(view, raw))["current"]
+    assert view["phase"] == "intervention"
+    snap = service.repo.read(sid)
+    baseline = dict(snap.session["state"]["initial_observed_state"])
+    assert len(baseline) == 5   # four initial QUESTIONS, five mapped VARIABLES
+    assert baseline == {"item_00": "yes", "item_13": "yes", "item_01": "yes",
+                        "item_02": "yes", "item_03": "yes"}
+    assert snap.session["state"]["baseline_index"] == adapter.index(baseline)
+    assert view["question"]["response_mode"] == "free_text_multi"
+    asked_adaptive = []
+    for i in range(3):
+        var = next(v["target_variable"] for k, v in service.repo.read(sid).records.items()
+                   if k.startswith("questions/") and v["question_id"] == view["question"]["question_id"])
+        assert var != "item_13"  # already learned from initial free text
+        asked_adaptive.append(var)
+        view = service.answer(sid, request(view, "yes, a clear opinion"))["current"]
+    assert view["phase"] == "ready_to_complete"
+    assert len(set(asked_adaptive)) == 3
+    assert len(llm.generation_calls) == 7
+    assert len(llm.mapping_calls) == 7
+    final_view = service.complete(sid)
+    final_name = f"studies/{config.study_id}/sessions/{sid}/final.json"
+    final = json.loads(service.archive.objects[final_name])
+    assert final_view["phase"] == "complete" and len(final["questions"]) == 7
+    qs = sorted(final["questions"], key=lambda q: q["ordinal"])
+    assert len(qs[0]["accepted_assignments"]) == 2
+    assert any(c["variable"] == "item_13" and c["prior_native_value"] == "yes"
+               for c in qs[1]["response_interpretation"]["conflicts"])
+    assert qs[1]["response_interpretation"]["accepted"] == qs[1]["accepted_assignments"]
+    assert all(q["raw_text_response"] and q["question_provenance"]["fallback"] is False
+               for q in qs)
+    assert all(q["response_interpretation"]["mapping_method"] == "explicit_evidence_only_v3"
+               for q in qs)
+    observed = baseline.copy()
+    before = final["baseline_index"]
+    for q in qs[4:]:
+        result = q["index_result"]
+        assert result["index_before"] == pytest.approx(before)
+        for a in q["accepted_assignments"]:
+            observed[a["variable"]] = a["native_value"]
+        before = adapter.index(observed)
+        assert result["index_after"] == pytest.approx(before)
+        assert result["predicted_delta_scope"] == "selected_target_only"
+        assert result["observed_delta_scope"] == "all_new_explicit_assignments"
+    assert before == pytest.approx(final["final_index"])
+
+
+def test_v3_rejects_unjustified_assignments_and_preserves_prior_conflicts(instrument, adapter):
+    config, llm, service = make_v3(instrument, adapter)
+    allowed = permitted_items(config, adapter)
+    prior = {"item_13": "yes"}
+    response = {
+        "status": "mapped", "provider": "fixture", "rationale": "test", "proposed": [
+            {"variable": "item_14", "native_value": "no", "confidence": .99, "evidence": "no"},
+            {"variable": "item_13", "native_value": "no", "confidence": .99, "evidence": "no"},
+            {"variable": "item_15", "native_value": "yes", "confidence": .99, "evidence": "not a real quote"},
+            {"variable": "item_16", "native_value": "yes", "confidence": .10, "evidence": "yes"},
+            {"variable": "item_17", "native_value": "unrecognized", "confidence": .99, "evidence": "yes"},
+            {"variable": "item_99", "native_value": "yes", "confidence": .99, "evidence": "yes"},
+        ],
+    }
+    resolved = resolve(response, "no, although yes", allowed, prior, adapter, .8)
+    assert [a["variable"] for a in resolved["accepted"]] == ["item_14"]
+    assert resolved["conflicts"][0]["variable"] == "item_13"
+    assert prior == {"item_13": "yes"}
+    assert {a["reason"] for a in resolved["rejected"]} == {
+        "evidence_not_quoted_from_response", "below_confidence_threshold",
+        "category_not_in_approved_item", "unreviewed_or_reserved_variable",
+    }
+
+
+def test_v3_empty_ambiguous_response_does_not_advance(instrument, adapter):
+    _, llm, service = make_v3(instrument, adapter)
+    app = create_app(service, cookie_secret="v3-test-secret-0123456789abcdef")
+    with TestClient(app) as client:
+        headers = {"Origin": "http://testserver"}
+        start = client.post("/api/human/start", headers=headers, json={}).json()
+        view = client.post("/api/human/consent", headers=headers, json={
+            "accepted": True, "expected_session_version": start["session_version"]
+        }).json()
+        req = request(view, "unclear narrative")
+        llm.ambiguous = True
+        res = client.post("/api/human/answer", headers=headers, json=req)
+        assert res.status_code == 422
+        assert "clarify" in res.json()["detail"].lower()
+        assert service.repo.read(view["session_id"]).session["next_step"] == 0
+        llm.ambiguous = False
+        res = client.post("/api/human/answer", headers=headers, json={**req, "text_answer": "yes"})
+        assert res.status_code == 200
+        assert res.json()["current"]["progress"]["completed"] == 1
+
+
+def test_v3_llm_multi_response_schema(instrument, adapter):
+    from types import SimpleNamespace
+    config, _, _ = make_v3(instrument, adapter)
+    llm = QuestionLLM(adapter, config)
+    class Responses:
+        def create(self, **kwargs):
+            schema = kwargs["text"]["format"]["schema"]
+            assert schema["properties"]["assignments"]["maxItems"] == 5
+            assert "item_13" in kwargs["input"]
+            return SimpleNamespace(output_text=json.dumps({
+                "status": "mapped", "assignments": [
+                    {"variable": "item_00", "native_value": "yes",
+                     "confidence": .99, "evidence": "yes"},
+                    {"variable": "item_13", "native_value": "no",
+                     "confidence": .97, "evidence": "no"},
+                ],
+                "rationale": "two explicitly stated beliefs",
+            }))
+    llm.client = SimpleNamespace(responses=Responses())
+    result = llm.interpret_multi("Do you think it is fair?", "yes and no", 
+                                  list(permitted_items(config, adapter).values()))
+    assert len(result["proposed"]) == 2
+    assert result["mapping_method"] == "explicit_evidence_only_v3"
