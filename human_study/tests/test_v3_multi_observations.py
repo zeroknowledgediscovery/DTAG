@@ -256,3 +256,32 @@ def test_attention_check_is_llm_worded_and_excluded_from_ideology(
     assert len(llm.generation_calls) == 8
     from human_study.multi_observations import replay
     assert len(replay(config, adapter, final)) == 4
+
+
+def test_v3_llm_attention_generation_preserves_required_token(instrument, adapter):
+    from types import SimpleNamespace
+    from human_study.questions import QuestionGenerationError
+    from human_study.study_config import AttentionCheck
+
+    config, _, _ = make_v3(instrument, adapter)
+    check = AttentionCheck(
+        check_id="attention_reading",
+        instruction="For the reading test, include the exact word cobalt in your reply.",
+        expected_token="cobalt",
+    )
+    llm = QuestionLLM(adapter, config)
+    class Responses:
+        text = "To show you read this, could you include the word cobalt in your answer?"
+        def create(self, **kwargs):
+            return SimpleNamespace(output_text=json.dumps({"question": self.text}))
+    client = Responses()
+    llm.client = SimpleNamespace(responses=client)
+    generated = llm.generate_attention(check)
+    assert "cobalt" in generated["displayed_wording"]
+    assert generated["question_provenance"]["fallback"] is False
+    client.text = "Have you read the question?"
+    with pytest.raises(QuestionGenerationError, match="integrity"):
+        llm.generate_attention(check)
+    client.text = check.instruction
+    with pytest.raises(QuestionGenerationError, match="integrity"):
+        llm.generate_attention(check)
