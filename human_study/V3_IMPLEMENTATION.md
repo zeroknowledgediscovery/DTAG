@@ -57,10 +57,12 @@ participant's response, category, and confidence. The server separately checks:
 3. Confidence meets the configured cutoff (currently 0.80).
 4. The evidence is a verbatim span of the actual written response.
 5. The same variable is not assigned twice in one reply.
-6. There is no silent overwrite of an earlier native observation.
-   Consistent repeats become `confirmations`; incompatible repeats
-   become `conflicts` with prior and proposed values, neither of which
-   alters the state. Invalid/unsupported mappings become `rejected`.
+6. Consistent repeats become `confirmations`; incompatible repeats
+   are retained in `conflicts` with prior and proposed values. In native
+   webapp mode the latest independently validated observation **revises**
+   the state, as in DTAGSession._answer_with_variables; legacy instrument
+   mode retains its original no-overwrite behavior. Invalid mappings
+   become `rejected`.
 
 Only validated, **new** observations are added to the state. The immutable
 response record stores `accepted_assignments` and the interpretation's
