@@ -144,13 +144,22 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
                     length = int(request.headers.get("content-length", "0"))
                 except ValueError:
                     return JSONResponse({"detail": "invalid request length"}, status_code=400)
-                if length > 4096:
+                # UTF-8 free text can exceed 4 KiB even at 2,000 characters.
+                # Allow a bounded larger body ONLY for V2 written submissions;
+                # preserve all legacy request-size constraints.
+                is_v2_answer = (
+                    request.url.path == "/api/human/answer"
+                    and app.state.service is not None
+                    and app.state.service.config.response_mode == "free_text_llm"
+                )
+                max_body = 16384 if is_v2_answer else 4096
+                if length > max_body:
                     return JSONResponse({"detail": "request too large"}, status_code=413)
                 # Cap chunked bodies too; don't trust Content-Length alone.
                 body = bytearray()
                 async for chunk in request.stream():
                     body.extend(chunk)
-                    if len(body) > 4096:
+                    if len(body) > max_body:
                         return JSONResponse({"detail": "request too large"}, status_code=413)
                 request._body = bytes(body)
             sid = sessions.sid(request)
