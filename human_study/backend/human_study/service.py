@@ -187,20 +187,20 @@ class StudyService:
         try:
             # Adaptive items always use the LLM. Any nonadaptive item known to
             # contain a source fragment must also be completed, not displayed raw.
-            if item.phase == "intervention" or item.source_text_incomplete:
+            if self.config.question_mode == "llm_required" or item.phase == "intervention" or item.source_text_incomplete:
                 rendered = self.llm.generate(item)
             else:
                 rendered = {"displayed_wording": item.original_wording, "question_provenance": {
                     "provider": "canonical-common-instrument", "item_version": item.version,
                     "source_text_incomplete": False, "fallback": False}}
-            if item.source_text_incomplete and (
+            if (item.source_text_incomplete or self.config.question_mode == "llm_required") and (
                 rendered.get("question_provenance", {}).get("fallback", True) or
                 rendered.get("displayed_wording", "").strip() == item.original_wording.strip()
             ):
                 raise ValueError("LLM did not complete an incomplete source question")
         except Exception as exc:
-            if item.source_text_incomplete:
-                # Never expose the truncated source. Persist a short generation
+            if item.source_text_incomplete or self.config.question_mode == "llm_required":
+                # Never show source/fallback in V2. Persist a short generation
                 # retry lease so the participant can resume after an LLM outage.
                 for _ in range(10):
                     snap = self._load(sid)
@@ -252,7 +252,8 @@ class StudyService:
                     continue
             question, reason = self._prepare_question(snap)
             if question is None:
-                s.update(phase="outcome", phase_index=0, no_candidate_reason=reason)
+                s.update(phase="outcome" if self.config.bank("outcome") else "ready_to_complete",
+                         phase_index=0, no_candidate_reason=reason)
                 writes = {}
                 self._export(s, writes, "no-candidate", {"kind": "no_candidate", "reason": reason, "timestamp": now()})
                 self._write(snap, writes)
@@ -265,7 +266,8 @@ class StudyService:
         raise Conflict("session busy; retry")
 
     def answer(self, sid, request):
-        fingerprint = digest({k: request[k] for k in ("question_id", "answer_value", "missing_reason")})
+        fingerprint = digest({k: request.get(k) for k in
+                              ("question_id", "answer_value", "text_answer", "missing_reason")})
         request_key = "requests/" + digest(request["idempotency_key"])
         for _ in range(10):
             snap = self._load(sid)
@@ -285,7 +287,20 @@ class StudyService:
             if q["status"] != "presented":
                 raise Conflict("question is not awaiting an answer")
             item = self.config.item(q["target_variable"])
-            obs = Observation(q["question_id"], q["target_variable"], request["answer_value"], q["phase"], request["missing_reason"])
+            raw_answer, interpretation = None, None
+            if self.config.response_mode == "free_text_llm":
+                if request.get("answer_value") is not None or request.get("missing_reason") is not None:
+                    raise ValueError("V2 requires a written response, not a preselected category")
+                raw_answer = request.get("text_answer")
+                if not isinstance(raw_answer, str) or not raw_answer.strip():
+                    raise ValueError("Please write your response before continuing.")
+                native, missing, interpretation = self.llm.interpret(
+                    item, q["displayed_wording"], raw_answer)
+            else:
+                if request.get("text_answer") is not None:
+                    raise ValueError("This version requires a category selection")
+                native, missing = request["answer_value"], request["missing_reason"]
+            obs = Observation(q["question_id"], q["target_variable"], native, q["phase"], missing)
             validate_observation(obs, item, self.adapter)
             result = {"question_id": q["question_id"], "accepted": True}
             if q["phase"] == "intervention":
@@ -294,6 +309,7 @@ class StudyService:
                 s["state"] = self._compact(new_state)
                 q["index_result"] = scientific_result
             q.update(status="answered", response_value=obs.native_value, missing_reason=obs.missing_reason,
+                     raw_text_response=raw_answer, response_interpretation=interpretation,
                      response_timestamp=now(), response_elapsed_seconds=max(0, (datetime.now(timezone.utc) -
                          datetime.fromisoformat(q["presented_at"])).total_seconds()))
             result["accepted_at"] = q["response_timestamp"]
@@ -308,7 +324,8 @@ class StudyService:
             if q["phase"] == "baseline" and s["phase_index"] == len(self.config.bank("baseline")):
                 self._baseline_completed(snap, writes)
             elif q["phase"] == "intervention" and s["phase_index"] == self.config.intervention_steps:
-                s.update(phase="outcome", phase_index=0)
+                s.update(phase="outcome" if self.config.bank("outcome") else "ready_to_complete",
+                         phase_index=0)
             elif q["phase"] == "outcome" and s["phase_index"] == len(self.config.bank("outcome")):
                 s.update(phase="ready_to_complete", phase_index=0)
             self.hook("before_answer_transaction")
@@ -355,7 +372,7 @@ class StudyService:
         if q and q["status"] == "presented" and not s["pending_exports"]:
             public_q = {"question_id": q["question_id"], "text": q["displayed_wording"],
                         "choices": [{"value": c["native_value"], "label": c["display_label"]} for c in q["choices"]],
-                        "required": q["required"]}
+                        "required": q["required"], "response_mode": self.config.response_mode}
         total = len(self.config.bank("baseline")) + self.config.intervention_steps + len(self.config.bank("outcome"))
         return {"session_id": s["session_id"], "phase": phase, "session_version": s["revision"],
                 "question": public_q, "progress": {"completed": s["next_step"], "total": total},
