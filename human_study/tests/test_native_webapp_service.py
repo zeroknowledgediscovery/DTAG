@@ -146,3 +146,50 @@ def test_service_selects_native_dynamic_variables_and_maps_multiple_answers(inst
     trace = replay(config, native, final)
     assert len(trace) == 4
     assert trace[-1] == pytest.approx(final["final_index"])
+
+
+def test_repeated_native_assignment_updates_state_like_DTAGSession(instrument, adapter):
+    from human_study.multi_observations import resolve, apply
+    from human_study.state import HumanDTAGState
+    config = StudyConfig(
+        study_id="native-webapp-revision-fixture",
+        question_mode="llm_required", response_mode="free_text_multi",
+        candidate_mode="native_webapp", push_response_mode="draw",
+        initial_steps=4, intervention_steps=3,
+        items=instrument.bank("baseline")[:4],
+    )
+    native = NativeFixtureAdapter(adapter)
+    original = {"item_00": "yes"}
+    old_index = native.index(original)
+    state = HumanDTAGState(
+        "s", config.model_key, config.config_hash, native.provenance,
+        original, original, (), ("item_00",), (), (), old_index, old_index,
+    )
+    proposal = {
+        "status": "mapped", "proposed": [
+            {"variable": "item_00", "native_value": "no",
+             "confidence": .99, "evidence": "no"},
+        ],
+        "provider": "fixture", "rationale": "explicit changed opinion",
+    }
+    mapped_items = native.webapp_mapping_items(["item_00"], config)
+    resolved = resolve(
+        proposal, "I now say no", mapped_items, original, native, .8,
+        allow_revision=True,
+    )
+    assert len(resolved["conflicts"]) == 1
+    assert resolved["conflicts"][0]["prior_native_value"] == "yes"
+    assert resolved["accepted"][0]["revises_prior"] is True
+    q = {
+        "question_id": "revised", "target_variable": "item_05",
+        "selection": {
+            "candidate_mode": "native_webapp", "expected_delta": 0.01,
+        },
+        "conditional_distribution": {"yes": .6, "no": .4},
+    }
+    updated, result = apply(state, q, resolved["accepted"], native)
+    assert updated.observed_state["item_00"] == "no"
+    assert result["index_after"] == pytest.approx(native.index({"item_00": "no"}))
+    assert result["observed_conditional_index_delta"] == pytest.approx(
+        result["index_after"] - old_index)
+    assert len(updated.observations) == 1
