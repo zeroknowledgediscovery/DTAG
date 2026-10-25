@@ -17,7 +17,7 @@ import sys
 
 
 NUMERIC_LABEL = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
-RANK_LABEL = re.compile(r"\b(?:[1-5](?:st|nd|rd|th)|most|least) important\b", re.I)
+RANK_LABEL = re.compile(r"\b(?:[1-5](?:st|nd|rd|th)|second|third|fourth|least) (?:most )?important\b", re.I)
 UNJOINED_STEM = re.compile(r"\?\)\s*\S+")
 SOURCE_FRAGMENT = re.compile(r"^\s*\((?:i am going|as far as|\.{2,})", re.I)
 TRUNCATION_END = re.compile(
@@ -56,6 +56,8 @@ def audit(final):
             flag("FAIL", "UNJOINED_OR_TRUNCATED_SOURCE_VISIBLE")
         if incomplete and shown == raw.strip():
             flag("FAIL", "INCOMPLETE_SOURCE_SHOWN_VERBATIM")
+        if var == "confinan" and not re.search(r"\bbanks?\b|\bfinancial institutions?\b", shown, re.I):
+            flag("FAIL", "INSTITUTION_MISSING_FROM_CONFIDENCE_QUESTION")
         if provenance.get("fallback") and incomplete:
             flag("FAIL", "INCOMPLETE_SOURCE_FALLBACK")
         elif provenance.get("fallback"):
