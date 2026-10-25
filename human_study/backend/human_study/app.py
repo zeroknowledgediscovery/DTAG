@@ -62,10 +62,10 @@ def configured_service():
         if not config.reviewed or (
             config.response_mode == "click" and not 12 <= len(config.bank("baseline")) <= 15
         ) or (
-            config.response_mode == "free_text_llm" and not 1 <= len(config.bank("baseline")) <= 40
+            config.response_mode in ("free_text_llm", "free_text_multi") and not 1 <= len(config.bank("baseline")) <= 40
         ):
             raise RuntimeError("staging/production requires a reviewed instrument with valid initial question count")
-        if config.response_mode == "free_text_llm" and backend != "openai":
+        if config.response_mode in ("free_text_llm", "free_text_multi") and backend != "openai":
             raise RuntimeError("V2 requires live OpenAI for question and answer interpretation")
         if not os.environ.get("DTAG_GCS_BUCKET") or len(os.environ.get("DTAG_COOKIE_SECRET", "")) < 32:
             raise RuntimeError("durable storage and a stable cookie secret are required")
@@ -150,7 +150,7 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
                 is_v2_answer = (
                     request.url.path == "/api/human/answer"
                     and app.state.service is not None
-                    and app.state.service.config.response_mode == "free_text_llm"
+                    and app.state.service.config.response_mode in ("free_text_llm", "free_text_multi")
                 )
                 max_body = 16384 if is_v2_answer else 4096
                 if length > max_body:
