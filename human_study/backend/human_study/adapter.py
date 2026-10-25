@@ -91,8 +91,7 @@ class NativeAdapter:
     def dynamic_item(self, variable):
         """Materialize one selected native variable only when needed."""
         from types import SimpleNamespace
-        from .study_config import Choice
-        ctx = self.world.ctx
+         ctx = self.world.ctx
         if variable not in ctx.var_map or variable not in ctx.idx_map:
             raise ValueError("native item has no semantic-map question")
         values = list(self.support(variable))
@@ -101,7 +100,7 @@ class NativeAdapter:
         return SimpleNamespace(
             item_id=variable, original_wording=str(ctx.var_map[variable]),
             source_text_incomplete=True,
-            choices=tuple(Choice(native_value=str(v), display_label=str(v))
+            choices=tuple(SimpleNamespace(native_value=str(v), display_label=str(v))
                           for v in values),
             phase="intervention", required=True,
             version="native-map-runtime",
@@ -115,9 +114,8 @@ class NativeAdapter:
         """
         protected = (set(config.excluded_ids) | set(config.ethics_disallowed_ids)
                      | {x.item_id for x in config.bank("outcome")})
-        baseline = {x.item_id: x for x in config.bank("baseline")}
         return {
-            v: baseline[v] if v in baseline else self.dynamic_item(v)
+            v: self.dynamic_item(v)
             for v in dict.fromkeys(mapped_variables)
             if (v not in protected and v in self.world.ctx.idx_map
                 and v in self.world.ctx.var_map and self.support(v))
