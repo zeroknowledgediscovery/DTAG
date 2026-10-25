@@ -24,12 +24,9 @@ def check_close(name, actual, expected):
         raise AssertionError(f"{name}: {actual!r} != {expected!r}")
 
 
-def audit(config, adapter):
+def verify_webapp_poles(adapter):
+    """Compare requested configuration and independently rebuilt effective poles."""
     from dtag_engine import POLAR_VECTOR_SETS
-    from optimizer.session_push import askable_items, suggest
-
-    if config.candidate_mode != "native_webapp" or config.push_response_mode != "draw":
-        raise ValueError("requires native_webapp + draw, not instrument-limited mode")
     # The webapp asks for the registered canonical GSS poles, but the shared
     # build_polar_geometry function transparently substitutes the corrected
     # wave-specific file for GSS 2024. Compare both the REQUESTED file and
@@ -63,6 +60,15 @@ def audit(config, adapter):
     check_close("native pole distance", actual.dLR, reference.dLR)
     print(f"PASS requested GSS poles: {webapp_poles}")
     print(f"PASS resolved GSS poles: {resolved_webapp}")
+    return webapp_poles, resolved_webapp
+
+
+def audit(config, adapter):
+    from optimizer.session_push import askable_items, suggest
+
+    if config.candidate_mode != "native_webapp" or config.push_response_mode != "draw":
+        raise ValueError("requires native_webapp + draw, not instrument-limited mode")
+    verify_webapp_poles(adapter)
 
     observed = {}
     configurations = [dict(observed)]
