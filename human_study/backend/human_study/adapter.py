@@ -22,9 +22,12 @@ class NativeAdapter:
     def __init__(self, config):
         from optimizer.dtag_bridge import World, canonical_map, ensure_model
         from optimizer.one_step_geometry import strict_native_index
+        from dtag_engine import POLAR_VECTOR_SETS
         self.lock = threading.RLock()
         model_path = ensure_model(config.model_key, os.environ.get("DTAG_MODEL_ROOT"))
-        poles = ROOT / "assets/polar_vectors/gss/gss_2024_polar_vectors.csv"
+        # The webapp's registered gss_default is the scientific reference;
+        # the year-specific experimental pole file is NOT interchangeable.
+        poles = ROOT / POLAR_VECTOR_SETS["gss_default"]["path"]
         self.world = World(str(model_path), str(canonical_map(config.model_key)), str(poles),
                            os.environ.get("DTAG_ASSETS_DIR", str(Path.home() / ".cache/dtag/assets")))
         self._index = strict_native_index
