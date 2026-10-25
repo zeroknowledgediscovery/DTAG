@@ -53,9 +53,11 @@ def choose_next_item(state, policy, exclusions, rng_state, config, adapter):
         chosen = choices[pos]
         rows = [r for r in result.rows if r["variable"] == chosen["variable"]]
         from .response_mapping import shared_session_config
+        state_keep = shared_session_config(config.llm_model).state_keep
         return {
             "status": "selected", "variable": chosen["variable"], "policy": policy,
-            "state_keep": shared_session_config(config.llm_model).state_keep,
+            "state_keep": state_keep,
+            "predicted_exact_if_single_target": len(state.observed_state) + 1 <= state_keep,
             "expected_delta": chosen["expected_delta"],
             "delta_modal": chosen["delta_modal"],
             "predicted_delta": chosen[objective],
