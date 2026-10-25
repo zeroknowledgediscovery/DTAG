@@ -32,7 +32,7 @@ def permitted_items(config, adapter):
     }
 
 
-def prior_baseline_assignments(snap):
+def prior_baseline_assignments(snap, *, allow_revision=False):
     """Reconstitute accepted observations before the baseline state is created."""
     result = {}
     for question in sorted(
@@ -43,13 +43,14 @@ def prior_baseline_assignments(snap):
     ):
         for assignment in question.get("accepted_assignments", []):
             var = assignment["variable"]
-            if var in result and result[var] != assignment["native_value"]:
+            if (var in result and result[var] != assignment["native_value"]
+                    and not allow_revision):
                 raise ValueError("baseline archive contains conflicting accepted assignments")
             result[var] = assignment["native_value"]
     return result
 
 
-def resolve(response, words, items, existing, adapter, threshold):
+def resolve(response, words, items, existing, adapter, threshold, *, allow_revision=False):
     """Validate proposed assignments against raw evidence, support and prior state.
 
     Each accepted variable is unique; conflicting proposals cannot overwrite
@@ -106,8 +107,16 @@ def resolve(response, words, items, existing, adapter, threshold):
             else:
                 conflicts.append({
                     **record, "prior_native_value": existing[variable],
-                    "reason": "contradicts_prior_observation_not_overwritten",
+                    "reason": ("revised_observation_recorded"
+                               if allow_revision else "contradicts_prior_observation_not_overwritten"),
                 })
+                if allow_revision:
+                    # DTAGSession._answer_with_variables updates known coordinates
+                    # in place; retain all original evidence and the old value.
+                    accepted.append({
+                        **record, "prior_native_value": existing[variable],
+                        "revises_prior": True,
+                    })
             continue
         accepted.append(record)
     if not accepted and not confirmations and not conflicts:
@@ -134,7 +143,7 @@ def initial_state(config, adapter, sid, questions):
     for q in questions:
         for assignment in q.get("accepted_assignments", []):
             v, value = assignment["variable"], assignment["native_value"]
-            if v in state:
+            if v in state and config.candidate_mode != "native_webapp":
                 raise ValueError("baseline assignment duplicates prior observation")
             state[v] = value
             observations.append(Observation(q["question_id"], v, value, "baseline"))
@@ -160,7 +169,8 @@ def apply(state, question, assignments, adapter):
         asked.append(target)
     for row in assignments:
         v, value = row["variable"], row["native_value"]
-        if v in state.observed_state or v in updates:
+        if v in updates or (v in state.observed_state and
+                            question["selection"].get("candidate_mode") != "native_webapp"):
             raise ValueError("cannot overwrite an observed native assignment")
         if v in state.reserved_outcome_ids or v in state.excluded_ids:
             raise ValueError("cannot condition on a reserved or excluded survey item")
