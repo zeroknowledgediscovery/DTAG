@@ -60,7 +60,7 @@ class StudyConfig(StrictModel):
     # V2: generated questions; free-text answers classified to native categories.
     question_mode: Literal["legacy", "llm_required"] = "legacy"
     response_mode: Literal["click", "free_text_llm", "free_text_multi"] = "click"
-    max_response_assignments: int = Field(default=5, ge=1, le=12)
+    max_response_assignments: int = Field(default=5, ge=1, le=200)
     # Native mode delegates the candidate universe/geometry to the exact webapp
     # optimizer/session_push.py path. Instrument mode preserves historic pilots.
     candidate_mode: Literal["instrument", "native_webapp"] = "instrument"
