@@ -14,14 +14,25 @@ from types import SimpleNamespace
 
 def shared_session_config(llm_model):
     from dtag_session import SessionConfig
-    # Defaults (k/prefilter/min_map_score/semantic_* etc.) come directly
-    # from the webapp DTAGSession configuration, never copied locally.
-    return SessionConfig(
-        openai_model=llm_model,
-        resp_mode="draw",
-        semantic_resp_mode="draw",
-        semantic_fallback="update_state",
-    )
+    from dtag_config import load_config
+    from . import ROOT
+
+    # Match DTAGEngine.session_config: instantiate SessionConfig and overlay
+    # the actual webapp's configs/dtag_config.yaml defaults.run, NOT the
+    # dataclass fallback defaults. E.g. webapp maps k=50/prefilter=200.
+    # No survey/candidate defaults are duplicated in the human study.
+    run = (load_config(ROOT / "configs/dtag_config.yaml")
+           .get("defaults", {}).get("run", {}))
+    cfg = SessionConfig()
+    for name, value in run.items():
+        if hasattr(cfg, name):
+            setattr(cfg, name, value)
+    cfg.openai_model = llm_model
+    cfg.resp_mode = "draw"
+    cfg.semantic_resp_mode = "draw"
+    cfg.semantic_fallback = "update_state"
+    cfg.validate()
+    return cfg
 
 
 def map_human_response(world, client, llm_model, displayed_question, written_answer):
