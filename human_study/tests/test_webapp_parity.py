@@ -219,7 +219,12 @@ def test_native_pole_audit_compares_canonical_request_and_resolved_wave(monkeypa
     calls = []
     def shared_builder(ctx, polar_path):
         calls.append(polar_path)
-        return geometry
+        # Independent result from the webapp resolver: don't return the very
+        # same object under test or divergent effective paths go unnoticed.
+        return SimpleNamespace(**{
+            **vars(geometry), "path": str(wave),
+            "requested_path": str(canonical),
+        })
 
     monkeypatch.setattr(dtag_session, "build_polar_geometry", shared_builder)
     requested, resolved = module.verify_webapp_poles(adapter)
