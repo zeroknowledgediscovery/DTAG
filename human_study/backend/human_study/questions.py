@@ -57,6 +57,14 @@ class QuestionGenerationError(RuntimeError):
         self.attempts = attempts or []
 
 
+class AnswerNeedsClarification(ValueError):
+    """Written answer cannot be mapped safely; participant should clarify."""
+
+
+class AnswerInterpretationUnavailable(RuntimeError):
+    """The LLM could not classify an answer; safe to retry unchanged."""
+
+
 class QuestionLLM:
     def __init__(self, adapter, config, backend="mock"):
         self.adapter, self.config, self.backend = adapter, config, backend
@@ -91,8 +99,9 @@ class QuestionLLM:
                 ).strip()
                 # Shared helper silently returns its input on provider failure.
                 # Never claim that fallback wording came from the live LLM.
-                if incomplete and (text == source.strip() or
-                                   not text.endswith("?") or len(text) < 15):
+                if (incomplete or self.config.question_mode == "llm_required") and (
+                    text == source.strip() or not text.endswith("?") or len(text) < 15
+                ):
                     attempts.append({"text": text, "mapper_hit": False,
                                      "rejected": "incomplete_or_unrewritten_source"})
                     continue
@@ -125,13 +134,88 @@ class QuestionLLM:
                     )
             except Exception as e:
                 attempts.append({"error": type(e).__name__})
-        if incomplete:
+        if incomplete or self.config.question_mode == "llm_required":
             raise QuestionGenerationError(
                 "unable to generate a complete, validated question from the source excerpt",
                 attempts=attempts,
             )
         return self.record(item.original_wording, item, attempts, True,
                            "mapping ambiguous or provider unavailable")
+
+
+    def interpret(self, item, displayed_question, free_text):
+        """Map a written opinion to an explicitly permitted native category.
+
+        Never infer a synthetic answer, use a lexical fallback, or put the
+        participant's prose directly into the native LSM. Ambiguous responses
+        are rejected and the participant can clarify without advancing.
+        """
+        import json
+        if self.config.response_mode != "free_text_llm":
+            raise ValueError("free-text interpretation is not enabled")
+        words = free_text.strip()
+        if not words or len(words) > 2000:
+            raise ValueError("Please write a response (at most 2000 characters).")
+        choices = [c.native_value for c in item.choices]
+        schema = {
+            "type": "object",
+            "properties": {
+                "status": {"type": "string", "enum": ["mapped", "ambiguous", "missing"]},
+                "native_value": {"type": "string", "enum": choices + [""]},
+                "confidence": {"type": "number"},
+                "reason": {"type": "string"},
+            },
+            "required": ["status", "native_value", "confidence", "reason"],
+            "additionalProperties": False,
+        }
+        prompt = (
+            "Classify the respondent's answer to ONE survey question. "
+            "The categories are permitted native encodings, not answers to generate. "
+            "Use only the participant's stated opinion; do not infer beliefs from context, "
+            "demographics, or the distribution of model responses. "
+            "Choose 'mapped' ONLY when a category is directly supported and unambiguous. "
+            "Choose 'missing' if the respondent explicitly declines or says they cannot answer. "
+            "Otherwise choose 'ambiguous' and an empty native_value. "
+            "For 'mapped', choose exactly one category string; for other statuses use an empty string. "
+            "Return a calibrated confidence in [0,1].\\n\\n"
+            f"QUESTION:\\n{displayed_question}\\n\\n"
+            "ALLOWED CATEGORIES:\\n" + "\\n".join(f"- {v}" for v in choices) +
+            f"\\n\\nRESPONDENT'S WORDS:\\n{words}"
+        )
+        try:
+            resp = self.client.responses.create(
+                model=self.config.llm_model, input=prompt,
+                text={"format": {"type": "json_schema", "name": "human_answer_interpretation_v2",
+                                 "schema": schema, "strict": True}},
+            )
+            from dtag_core import _get_output_text
+            outcome = json.loads(_get_output_text(resp))
+        except Exception as exc:
+            raise AnswerInterpretationUnavailable("answer interpretation unavailable; retry") from exc
+        status = outcome.get("status")
+        val = outcome.get("native_value")
+        confidence = outcome.get("confidence")
+        if not isinstance(confidence, (int, float)) or not 0 <= confidence <= 1:
+            raise AnswerInterpretationUnavailable("invalid classifier confidence")
+        if status == "missing" and val == "":
+            if item.required:
+                raise AnswerNeedsClarification("This item needs an opinion in your own words.")
+            return None, "prefer_not_to_answer", {
+                "provider": "openai", "model": self.config.llm_model,
+                "status": "missing", "confidence": confidence,
+                "reason": outcome.get("reason", ""),
+            }
+        if (status != "mapped" or val not in choices or
+                confidence < self.config.minimum_mapping_confidence):
+            raise AnswerNeedsClarification(
+                "We could not confidently interpret that response. Please clarify "
+                "your view in your own words before continuing."
+            )
+        return val, None, {
+            "provider": "openai", "model": self.config.llm_model,
+            "status": "mapped", "confidence": confidence,
+            "reason": outcome.get("reason", ""),
+        }
 
     def record(self, text, item, attempts, fallback, reason, *, validation_method="direct_reverse_mapping", source_reference=None):
         return {"displayed_wording": text, "question_provenance": {
