@@ -223,6 +223,7 @@ def apply(state, question, assignments, adapter):
         "accepted_variables": list(updates),
         "evicted_variables": evicted,
         "state_keep": sel.get("state_keep"),
+        "predicted_exact_if_single_target": sel.get("predicted_exact_if_single_target"),
         "conditional_distribution": question["conditional_distribution"],
     }
     next_state = replace(
