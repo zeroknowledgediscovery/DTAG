@@ -191,6 +191,11 @@ class StudyService:
                       "scheme": "unstratified-uniform-four-arm-v1", "baseline_index": state.baseline_index,
                       "initial_observed_state": dict(state.initial_observed_state)})
 
+    def _item_for(self, variable, phase):
+        if phase == "intervention" and self.config.candidate_mode == "native_webapp":
+            return self.adapter.dynamic_item(variable)
+        return self.config.item(variable)
+
     def _prepare_question(self, snap):
         s = snap.session
         phase = s["phase"]
@@ -212,7 +217,7 @@ class StudyService:
             selection = choose_next_item(state, s["policy"], set(), s["selection_rng_state"], self.config, self.adapter)
             if selection["status"] == "no_candidate":
                 return None, selection["reason"]
-            item = self.config.item(selection["variable"])
+            item = self._item_for(selection["variable"], "intervention")
             dist = {r["answer"]: r["conditional_probability"] for r in selection["per_answer"]}
         else:
             item = self.config.bank(phase)[s["phase_index"]]
@@ -235,7 +240,7 @@ class StudyService:
                 "created_at": now()}, None
 
     def _render_claimed(self, sid, question):
-        item = None if question["phase"] == "attention" else self.config.item(question["target_variable"])
+        item = None if question["phase"] == "attention" else self._item_for(question["target_variable"], question["phase"])
         try:
             if question["phase"] == "attention":
                 rendered = self.llm.generate_attention(
@@ -320,14 +325,16 @@ class StudyService:
                     continue
             question, reason = self._prepare_question(snap)
             if question is None:
-                if self.config.response_mode == "free_text_multi":
+                if (self.config.response_mode == "free_text_multi"
+                        and self.config.candidate_mode == "instrument"):
                     raise Conflict(
-                        "V3 adaptive pool exhausted before configured question count; "
-                        "increase approved intervention candidate pool"
+                        "The legacy instrument-limited adaptive bank is exhausted. "
+                        "Use the native_webapp candidate mode for dynamically selected questions."
                     )
-                s.update(phase="attention" if self.config.attention_checks else
-                               "outcome" if self.config.bank("outcome") else "ready_to_complete",
-                         phase_index=0, no_candidate_reason=reason)
+                s.update(
+                    phase="outcome" if self.config.bank("outcome") else "ready_to_complete",
+                    phase_index=0, no_candidate_reason=reason,
+                )
                 writes = {}
                 self._export(s, writes, "no-candidate", {"kind": "no_candidate", "reason": reason, "timestamp": now()})
                 self._write(snap, writes)
@@ -425,7 +432,7 @@ class StudyService:
                 raise Conflict("question is not awaiting an answer")
             if q["phase"] == "attention":
                 return self._answer_attention(snap, q, request, request_key, fingerprint)
-            item = self.config.item(q["target_variable"])
+            item = self._item_for(q["target_variable"], q["phase"])
             raw_answer, interpretation = None, None
             accepted_assignments = []
             if self.config.response_mode == "free_text_multi":
@@ -437,7 +444,11 @@ class StudyService:
                 from .multi_observations import (
                     permitted_items, prior_baseline_assignments, resolve, apply,
                 )
-                candidates = permitted_items(self.config, self.adapter)
+                candidates = (self.adapter.webapp_mapping_items(
+                    q["displayed_wording"], raw_answer, q["target_variable"],
+                    self.config)
+                    if self.config.candidate_mode == "native_webapp"
+                    else permitted_items(self.config, self.adapter))
                 existing = (self._human_state(snap).observed_state
                             if q["phase"] == "intervention"
                             else prior_baseline_assignments(snap))
@@ -529,6 +540,7 @@ class StudyService:
             payload = {"kind": "session_final", "timestamp": s["completed_at"], "receipt": s["receipt"],
                        "policy": s["policy"], "consent_version": s["consent_version"],
                        "baseline_index": s["state"]["baseline_index"], "final_index": s["state"]["current_index"],
+                       "no_candidate_reason": s.get("no_candidate_reason"),
                        "questions": questions, "source_objects": references, "study_configuration": self.config.model_dump(mode="json")}
             self._export(s, writes, "final", payload, f"studies/{self.config.study_id}/sessions/{sid}/final.json")
             if self._write(snap, writes):
