@@ -276,11 +276,11 @@ class QuestionLLM:
             "Output status='mapped' for one or more clear assignments, 'missing' for "
             "explicit refusal or not-knowing, otherwise 'ambiguous'; non-mapped statuses "
             "must have an empty assignments list. Return no more than MAX assignments. "
-            f"MAX={self.config.max_response_assignments}\\n\\n"
-            f"DISPLAYED QUESTION:\\n{displayed_question}\\n\\n"
-            "ALLOWED GSS VARIABLE :: SOURCE DESCRIPTION :: EXACT NATIVE CATEGORIES:\\n"
-            + "\\n".join(candidate_lines)
-            + f"\\n\\nRESPONDENT'S WORDS:\\n{words}"
+            f"MAX={self.config.max_response_assignments}\n\n"
+            f"DISPLAYED QUESTION:\n{displayed_question}\n\n"
+            "ALLOWED GSS VARIABLE :: SOURCE DESCRIPTION :: EXACT NATIVE CATEGORIES:\n"
+            + "\n".join(candidate_lines)
+            + f"\n\nRESPONDENT'S WORDS:\n{words}"
         )
         try:
             response = self.client.responses.create(
