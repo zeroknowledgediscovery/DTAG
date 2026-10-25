@@ -132,8 +132,13 @@ def test_written_response_uses_DTAGSession_map_question_unchanged(
     assert shared_cfg.resp_mode == "draw"
     from dtag_config import load_config
     from human_study import ROOT
-    assert shared_cfg.semantic_resp_mode == load_config(
-        ROOT / "configs/dtag_config.yaml")["defaults"]["run"]["semantic_resp_mode"]
+    run_defaults = load_config(ROOT / "configs/dtag_config.yaml")["defaults"]["run"]
+    assert shared_cfg.k == run_defaults["k"]
+    assert shared_cfg.prefilter == run_defaults["prefilter"]
+    assert shared_cfg.min_map_score == run_defaults["min_map_score"]
+    assert shared_cfg.semantic_k == run_defaults["semantic_k"]
+    assert shared_cfg.semantic_prefilter == run_defaults["semantic_prefilter"]
+    assert shared_cfg.semantic_resp_mode == run_defaults["semantic_resp_mode"]
     assert shared_cfg.semantic_fallback == "update_state"
     from types import SimpleNamespace
     original = DTAGSession.map_question(
