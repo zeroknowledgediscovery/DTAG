@@ -48,6 +48,7 @@ def make_v2(instrument, adapter):
         study_id="v2-fixture",
         response_mode="free_text_llm",
         question_mode="llm_required",
+        initial_steps=4,
         intervention_steps=3,
         items=items,
     )
