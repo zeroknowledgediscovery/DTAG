@@ -490,3 +490,54 @@ def test_v3_archive_outage_cannot_be_reported_as_next_question_pending(
         assert recovered["current"]["phase"] == "ready_to_complete"
     else:
         assert recovered["current"]["question"]["question_id"] != req["question_id"]
+
+
+def test_v3_concurrent_next_question_export_does_not_invalidate_archived_answer(
+    instrument, adapter, monkeypatch
+):
+    """Deterministically reproduce a double-click during next-question export.
+
+    A GenerationPending from another renderer plus a pending *presentation*
+    export must not be mistaken for a failed export of the answer that was
+    already committed. The pending next question is not exposed.
+    """
+    from human_study.service import ExportPending, GenerationPending
+
+    _, _, service = make_v3(instrument, adapter)
+    start = service.start()
+    view = service.consent(start["session_id"], True, start["session_version"])
+    sid = view["session_id"]
+    accepted = service.answer(sid, request(view, "yes, and also no"))
+    result = accepted["accepted"]
+    next_question_id = accepted["current"]["question"]["question_id"]
+    answer_export_key = f"exports/{result['question_id']}-answer"
+    next_export_key = f"exports/{next_question_id}-presented"
+
+    snap = service.repo.read(sid)
+    assert snap.records[answer_export_key]["status"] == "committed"
+    assert snap.records[next_export_key]["status"] == "committed"
+    # Model the point where a second worker has claimed the next question
+    # and queued its presentation export, after our answer was archived.
+    snap.session["pending_exports"].append(next_export_key)
+    next_export = {**snap.records[next_export_key], "status": "pending"}
+    assert service.repo.cas(sid, snap.session["revision"], snap.session,
+                            {next_export_key: next_export})
+
+    def another_worker_generating(_):
+        raise GenerationPending("next question currently being generated")
+
+    monkeypatch.setattr(service, "current", another_worker_generating)
+    recovered = service._acknowledge_committed_answer(sid, result)
+    assert recovered["accepted"] == result
+    assert recovered["preparing_next"] is True
+    assert recovered["current"]["progress"]["completed"] == 1
+    assert recovered["current"]["question"] is None
+
+    # By contrast, a still-pending export of THIS answer is never ACKed.
+    snap = service.repo.read(sid)
+    snap.session["pending_exports"].append(answer_export_key)
+    answer_export = {**snap.records[answer_export_key], "status": "pending"}
+    assert service.repo.cas(sid, snap.session["revision"], snap.session,
+                            {answer_export_key: answer_export})
+    with pytest.raises(ExportPending):
+        service._acknowledge_committed_answer(sid, result)
