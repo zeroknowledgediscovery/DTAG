@@ -1,5 +1,5 @@
 schema_version: '1'
-study_id: pilot-v3-native-native-interleaved
+study_id: pilot-v3-native-interleaved
 model_key: gss/gss_2024
 model_release: v0.2.1
 reviewed: false
