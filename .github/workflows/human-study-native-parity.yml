@@ -1,0 +1,53 @@
+name: Human study native webapp parity
+
+on:
+  push:
+    branches:
+      - experiment/prolific-human-study
+    paths:
+      - "human_study/**"
+      - "optimizer/**"
+      - "scripts/dtag_session.py"
+      - "scripts/dtag_core.py"
+      - "scripts/dtag_engine.py"
+      - "configs/dtag_config.yaml"
+      - ".github/workflows/human-study-native-parity.yml"
+  workflow_dispatch:
+
+jobs:
+  webapp-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install shared DTAG and V3 dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r human_study/requirements.txt pytest httpx matplotlib
+      - name: Compile native-webapp integration sources
+        run: |
+          python -m py_compile human_study/backend/human_study/*.py
+          python -m py_compile human_study/tests/test_webapp_parity.py
+          python -m py_compile human_study/backend/human_study/response_mapping.py
+      - name: Native webapp draw and update_state parity
+        env:
+          PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
+        run: |
+          python -m pytest -q -rs             human_study/tests/test_webapp_parity.py             human_study/tests/test_v3_schedule_and_simulation.py             human_study/tests/test_v3_multi_observations.py             human_study/tests/test_v3_trajectory_analysis.py
+      - name: Validate V3 native study configs (no candidate bank)
+        env:
+          PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
+        run: |
+          python - <<'PY'
+          from human_study.study_config import StudyConfig
+          for path in ("human_study/config/study.v3.example.yaml", "human_study/config/study.v3.interleaved.example.yaml"):
+              c = StudyConfig.load(path)
+              assert c.candidate_mode == "native_webapp", path
+              assert c.push_response_mode == "draw", path
+              assert c.response_mode == "free_text_multi", path
+              assert not c.bank("intervention"), path
+              print(path, c.study_id, "native dynamic selection, draw, no YAML candidate bank")
+          PY
