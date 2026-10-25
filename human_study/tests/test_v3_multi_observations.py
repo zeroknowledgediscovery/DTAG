@@ -27,6 +27,19 @@ class MultiFixtureLLM:
                 "question_provenance": {"provider": "fixture-llm", "fallback": False,
                                         "mapper_hit": True, "input_item_id": item.item_id}}
 
+    def generate_attention(self, check):
+        self.generation_calls.append(check.check_id)
+        return {
+            "displayed_wording": (
+                f"For this attention check, please include the word "
+                f"{check.expected_token} in your answer?"
+            ),
+            "question_provenance": {
+                "provider": "fixture-llm", "fallback": False,
+                "validation_method": "exact_attention_token_preserved_v3",
+            },
+        }
+
     def interpret_multi(self, question, words, allowed_items):
         self.mapping_calls.append((question, words))
         if self.ambiguous:
@@ -120,6 +133,10 @@ def test_v3_four_initial_three_adaptive_with_five_baseline_coordinates(instrumen
         assert result["predicted_delta_scope"] == "selected_target_only"
         assert result["observed_delta_scope"] == "all_new_explicit_assignments"
     assert before == pytest.approx(final["final_index"])
+    from human_study.multi_observations import replay
+    trace = replay(config, adapter, final)
+    assert len(trace) == 4
+    assert trace[-1] == pytest.approx(final["final_index"])
 
 
 def test_v3_rejects_unjustified_assignments_and_preserves_prior_conflicts(instrument, adapter):
@@ -190,3 +207,52 @@ def test_v3_llm_multi_response_schema(instrument, adapter):
                                   list(permitted_items(config, adapter).values()))
     assert len(result["proposed"]) == 2
     assert result["mapping_method"] == "explicit_evidence_only_v3"
+
+
+@pytest.mark.parametrize("written,expected_passed", [
+    ("I followed the instruction: cobalt.", True),
+    ("I did not include the requested word.", False),
+])
+def test_attention_check_is_llm_worded_and_excluded_from_ideology(
+    instrument, adapter, written, expected_passed
+):
+    from human_study.study_config import AttentionCheck
+
+    config, llm, _ = make_v3(instrument, adapter)
+    check = AttentionCheck(
+        check_id="attention_reading",
+        instruction="For this reading check, include the exact word cobalt in your reply.",
+        expected_token="cobalt",
+    )
+    config = config.model_copy(update={"study_id": "v3-fixture-with-attention",
+                                      "attention_checks": (check,)})
+    service = StudyService(config, adapter, llm, MemoryRepository(), MemoryArchive())
+    initial = service.start()
+    view = service.consent(initial["session_id"], True, initial["session_version"])
+    sid = view["session_id"]
+    assert view["progress"]["total"] == 8
+    for _ in range(7):
+        view = service.answer(sid, request(view, "yes, and also no"))["current"]
+    assert view["phase"] == "attention"
+    assert view["progress"]["completed"] == 7
+    assert "cobalt" in view["question"]["text"]
+    before_state = service.repo.read(sid).session["state"].copy()
+    accepted = service.answer(sid, request(view, written))
+    assert accepted["current"]["phase"] == "ready_to_complete"
+    assert accepted["current"]["progress"]["completed"] == 8
+    after_state = service.repo.read(sid).session["state"]
+    assert after_state == before_state  # attention must not condition native model
+
+    final_view = service.complete(sid)
+    name = f"studies/{config.study_id}/sessions/{sid}/final.json"
+    final = json.loads(service.archive.objects[name])
+    attention = final["questions"][-1]
+    assert final_view["phase"] == "complete"
+    assert attention["phase"] == "attention"
+    assert attention["attention_passed"] is expected_passed
+    assert attention["accepted_assignments"] == []
+    assert "index_result" not in attention
+    assert attention["question_provenance"]["fallback"] is False
+    assert len(llm.generation_calls) == 8
+    from human_study.multi_observations import replay
+    assert len(replay(config, adapter, final)) == 4
