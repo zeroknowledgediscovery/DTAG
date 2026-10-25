@@ -38,7 +38,9 @@ class NativeAdapter:
         identity = [(str(p.relative_to(model_path)), file_hash(p)) for p in files]
         self.provenance = {"model_key": config.model_key, "model_release": config.model_release,
                            "model_content_sha256": digest(identity), "map_sha256": file_hash(self.world.map_path),
-                           "poles_sha256": file_hash(poles), "pole_configuration": self.world.poles_summary(),
+                           "poles_requested_sha256": file_hash(poles),
+                           "poles_sha256": file_hash(self.world.g.path),
+                           "pole_configuration": self.world.poles_summary(),
                            "core_question_prompt_sha256": file_hash(ROOT / "scripts/dtag_core.py"),
                            "native_binary_sha256": file_hash(__import__("dtag_lsm").__file__),
                            "code_commit": os.environ.get("DTAG_CODE_COMMIT") or
