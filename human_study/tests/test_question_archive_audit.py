@@ -85,3 +85,39 @@ def test_printed_report_omits_private_answers_and_ids(tmp_path, capsys):
     assert "SECRET_SESSION_DO_NOT_PRINT" not in report
     assert "SECRET_POLICY_DO_NOT_PRINT" not in report
     assert audit_mod.main([str(path), "--fail-on-issues"]) == 2
+
+
+def test_confinan_missing_institution_is_fail_not_merely_source_review():
+    item, q = _make_record(
+        "confinan", "baseline",
+        "As far as the people running these institutions are concerned? Banks and financial inst",
+        "How much confidence do you have in the people running this institution: a great deal, only some, or hardly any?",
+        ["a great deal", "only some", "hardly any"], incomplete=True,
+        provider="openai", mapper_hit=True, fallback=False,
+    )
+    q["ordinal"] = 0
+    rows = audit_mod.audit({"questions": [q], "study_configuration": {"items": [item]}})
+    assert "INSTITUTION_MISSING_FROM_CONFIDENCE_QUESTION" in {
+        issue["reason"] for issue in rows[0]["issues"] if issue["severity"] == "FAIL"
+    }
+    q["displayed_wording"] = (
+        "How much confidence do you have in the people running banks and "
+        "financial institutions: a great deal, only some, or hardly any?"
+    )
+    repaired = audit_mod.audit({"questions": [q], "study_configuration": {"items": [item]}})
+    assert not any(issue["severity"] == "FAIL" for issue in repaired[0]["issues"])
+
+
+def test_getahead_most_important_is_not_forced_ranking():
+    item, q = _make_record(
+        "getahead", "intervention",
+        "Which matters most for getting ahead, hard work or luck?",
+        "Do you think hard work, luck, or both equally help people get ahead in life?",
+        ["hard work, luck equally important", "luck most important", "hard work most important"],
+        provider="openai", mapper_hit=True, fallback=False,
+    )
+    q["ordinal"] = 0
+    rows = audit_mod.audit({"questions": [q], "study_configuration": {"items": [item]}})
+    assert "RANKING_REQUIRES_COMPLETE_COMPARATIVE_TASK" not in {
+        issue["reason"] for issue in rows[0]["issues"]
+    }
