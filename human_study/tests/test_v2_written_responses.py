@@ -139,3 +139,79 @@ def test_v2_configuration_rejects_unbacked_short_bank(instrument):
             response_mode="free_text_llm", intervention_steps=10,
             items=(*instrument.bank("baseline")[:4], *instrument.bank("intervention")[:3]),
         )
+
+
+def test_real_questionllm_interpret_maps_only_supported_category(instrument, adapter):
+    """Test the production LLM response contract with a fake Responses client."""
+    from types import SimpleNamespace
+    from human_study.questions import QuestionLLM, AnswerInterpretationUnavailable
+
+    item = instrument.bank("baseline")[0]
+    config = StudyConfig(
+        study_id="test-interpret", question_mode="llm_required",
+        response_mode="free_text_llm", intervention_steps=1,
+        items=(*instrument.bank("baseline")[:4], instrument.bank("intervention")[0]),
+    )
+    llm = QuestionLLM(adapter, config)
+
+    class Responses:
+        output = {"status": "mapped", "native_value": "yes",
+                  "confidence": 0.97, "reason": "clear affirmative"}
+        def create(self, **kwargs):
+            assert kwargs["model"] == config.llm_model
+            assert kwargs["text"]["format"]["strict"]
+            assert "yes" in kwargs["text"]["format"]["schema"]["properties"]["native_value"]["enum"]
+            return SimpleNamespace(output_text=json.dumps(self.output))
+
+    response_client = Responses()
+    llm.client = SimpleNamespace(responses=response_client)
+    value, missing, meta = llm.interpret(item, "Do you support this?", "Yes, strongly.")
+    assert value == "yes" and missing is None
+    assert meta["status"] == "mapped" and meta["confidence"] == 0.97
+
+    response_client.output = {"status": "mapped", "native_value": "no",
+                              "confidence": 0.3, "reason": "weak evidence"}
+    with pytest.raises(AnswerNeedsClarification):
+        llm.interpret(item, "Do you support this?", "Maybe")
+
+    response_client.output = {"status": "ambiguous", "native_value": "",
+                              "confidence": 0.99, "reason": "mixed opinion"}
+    with pytest.raises(AnswerNeedsClarification):
+        llm.interpret(item, "Do you support this?", "I can see both sides")
+
+    response_client.output = {"status": "mapped", "native_value": "not-a-category",
+                              "confidence": 1, "reason": "out of support"}
+    with pytest.raises(AnswerNeedsClarification):
+        llm.interpret(item, "Do you support this?", "Answer outside categories")
+
+    def fail(**kwargs):
+        raise RuntimeError("provider unavailable")
+    response_client.create = fail
+    with pytest.raises(AnswerInterpretationUnavailable):
+        llm.interpret(item, "Do you support this?", "Yes, strongly.")
+
+
+def test_real_questionllm_v2_never_falls_back_to_canonical_source(
+    instrument, adapter, monkeypatch
+):
+    import dtag_core as core
+    import optimizer.dtag_bridge as bridge
+    from human_study.questions import QuestionLLM, QuestionGenerationError
+
+    item = instrument.bank("baseline")[0]
+    config = StudyConfig(
+        study_id="test-no-fallback", question_mode="llm_required",
+        response_mode="free_text_llm", intervention_steps=1,
+        items=(*instrument.bank("baseline")[:4], instrument.bank("intervention")[0]),
+    )
+    llm = QuestionLLM(adapter, config)
+    monkeypatch.setattr(core, "llm_craft_survey_question",
+                        lambda client, question, *args, **kwargs: question)
+    monkeypatch.setattr(bridge, "map_question", lambda *a, **kw: {"variables": [item.item_id]})
+    with pytest.raises(QuestionGenerationError):
+        llm.generate(item)
+    monkeypatch.setattr(core, "llm_craft_survey_question",
+                        lambda *a, **kw: "Here is an entirely different question?")
+    monkeypatch.setattr(bridge, "map_question", lambda *a, **kw: {"variables": ["wrong"]})
+    with pytest.raises(QuestionGenerationError):
+        llm.generate(item)
