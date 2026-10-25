@@ -74,6 +74,14 @@ requests a clarification without moving to the next question.
 Explicit declining/missing replies may advance without a new coordinate;
 no answer is manufactured from the native model.
 
+The native-webapp state update also uses the webapp's configured
+`state_keep` limit (currently 500), including OrderedDict recency refresh
+when a variable is revised and oldest-first eviction. The immutable record
+retains all accepted human observations, while the conditioned native state
+follows the original bounded state semantics. The archived ideology result
+includes evicted variables and flags when a target-only prediction is not
+exact at the size limit.
+
 The four baseline questions can therefore yield *more than four*
 observed phenotype coordinates. Adaptive selection is recomputed after each state update through the
 original webapp's native askability and geometry functions. The native-webapp
