@@ -189,3 +189,42 @@ def apply(state, question, assignments, adapter):
         asked_ids=tuple(asked), current_index=after, version=state.version + 1,
     )
     return next_state, index_result
+
+
+def replay(config, adapter, final):
+    """Recompute V3 LSM trajectory solely from archived accepted observations.
+
+    The original LLM outputs are NEVER rerun or reconstructed from prose.
+    All multi-item observations are replayed as one atomic update per question.
+    """
+    from .policy import choose_next_item
+
+    questions = sorted(final["questions"], key=lambda q: q["ordinal"])
+    baseline = [q for q in questions if q["phase"] == "baseline"]
+    adaptive = [q for q in questions if q["phase"] == "intervention"]
+    if len(baseline) != len(config.bank("baseline")):
+        raise ValueError("baseline question count differs from the configured instrument")
+    if len(adaptive) != config.intervention_steps:
+        raise ValueError("adaptive question count differs from the configured instrument")
+    state = initial_state(config, adapter, final.get("session_id", "archive"), baseline)
+    if not math.isclose(state.baseline_index, final["baseline_index"], abs_tol=1e-9):
+        raise ValueError("V3 baseline ideology differs from the archive")
+    trace = [state.baseline_index]
+    for q in adaptive:
+        recorded = q["selection"]
+        predicted = choose_next_item(
+            state, recorded["policy"], set(), recorded["rng_state_before"],
+            config, adapter,
+        )
+        if predicted.get("variable") != q["target_variable"]:
+            raise ValueError("V3 adaptive replay diverges from archived policy")
+        state, result = apply(state, q, q.get("accepted_assignments") or [], adapter)
+        if not math.isclose(
+            result["index_after"], q["index_result"]["index_after"],
+            abs_tol=1e-9,
+        ):
+            raise ValueError("V3 recomputed trajectory diverges from archive")
+        trace.append(state.current_index)
+    if not math.isclose(state.current_index, final["final_index"], abs_tol=1e-9):
+        raise ValueError("V3 final ideology differs from archive")
+    return trace
