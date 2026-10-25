@@ -130,7 +130,10 @@ def test_written_response_uses_DTAGSession_map_question_unchanged(
     client = Client()
     shared_cfg = shared_session_config("test-model")
     assert shared_cfg.resp_mode == "draw"
-    assert shared_cfg.semantic_resp_mode == "draw"
+    from dtag_config import load_config
+    from human_study import ROOT
+    assert shared_cfg.semantic_resp_mode == load_config(
+        ROOT / "configs/dtag_config.yaml")["defaults"]["run"]["semantic_resp_mode"]
     assert shared_cfg.semantic_fallback == "update_state"
     from types import SimpleNamespace
     original = DTAGSession.map_question(
