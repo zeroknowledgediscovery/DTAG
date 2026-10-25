@@ -419,5 +419,7 @@ class QuestionLLM:
                                else "source_or_rephrasing"),
             "validation_method": validation_method,
             "source_reference": source_reference,
-            "attempts": attempts, "mapper_hit": bool(attempts and attempts[-1].get("mapper_hit")),
+            "attempts": attempts,
+            "mapper_hit": (None if validation_method == "shared_webapp_realistic_craft_no_forced_target_mapping"
+                           else bool(attempts and attempts[-1].get("mapper_hit"))),
             "cache_hit": False, "fallback": fallback, "fallback_reason": reason}}
