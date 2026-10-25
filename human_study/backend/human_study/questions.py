@@ -119,6 +119,15 @@ class QuestionLLM:
                                            source_reference=NATENVIY_BALLOT_URL)
                     continue
 
+                if self.config.candidate_mode == "native_webapp":
+                    # In the actual webapp's "realistic" push mode, crafting
+                    # does not force the generated question to map back onto
+                    # exactly the target variable. The participant's recorded
+                    # response is mapped later through DTAGSession.map_question.
+                    return self.record(
+                        text, item, attempts, False, None,
+                        validation_method="shared_webapp_realistic_craft_no_forced_target_mapping",
+                    )
                 mapping = map_question(
                     self.adapter.world, self.client, text, self.config.llm_model,
                     {**RUN_DEFAULTS, "k": 1},
@@ -288,6 +297,21 @@ class QuestionLLM:
             "unable to generate a valid instructed-response attention question",
             attempts=failures,
         )
+
+    def map_human_response(self, displayed_question, free_text):
+        """Use the exact webapp mapping path and its semantic update_state bridge."""
+        if self.config.candidate_mode != "native_webapp":
+            raise ValueError("shared webapp mapping requires native_webapp mode")
+        from .response_mapping import map_human_response
+        try:
+            return map_human_response(
+                self.adapter.world, self.client, self.config.llm_model,
+                displayed_question, free_text,
+            )
+        except Exception as exc:
+            raise AnswerInterpretationUnavailable(
+                "DTAG webapp mapping unavailable; retry the same written answer"
+            ) from exc
 
     def interpret_multi(self, displayed_question, free_text, allowed_items):
         """Read explicit claims in one written answer into zero or more survey observations.
