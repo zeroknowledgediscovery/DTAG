@@ -91,7 +91,9 @@ function App() {
 
   return <main aria-busy={busy}>
     <header><span className="eyebrow">RESEARCH PARTICIPATION</span><h1>One question at a time</h1>
-      <p>Choose the answer that best reflects your view. There are no right or wrong answers.</p></header>
+      <p>{isWrittenMode(view?.question)
+        ? "Please write your answer in your own words. There are no right or wrong opinions."
+        : "Choose the answer that best reflects your view. There are no right or wrong answers."}</p></header>
     {view && !['consent', 'complete', 'declined'].includes(view.phase) && <section aria-label="Study progress" className="progress">
       <p>{labels[view.phase] || 'Finishing'} · {view.progress.completed} of {view.progress.total} questions saved</p>
       <progress value={view.progress.completed} max={view.progress.total} aria-label="Questions saved"/>
