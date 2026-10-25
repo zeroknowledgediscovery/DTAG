@@ -142,6 +142,76 @@ def test_incomplete_source_llm_completion_is_validated_and_never_falls_back(inst
         llm.generate(item)
 
 
+def test_2024_natenviy_verified_alternate_form_uses_llm_without_false_mapper_hit(
+    instrument, adapter, monkeypatch
+):
+    from human_study.study_config import Choice
+    from human_study.questions import (
+        NATENVIY_BALLOT_REFERENCE, NATENVIY_BALLOT_URL,
+        QuestionGenerationError, verified_natenviy_reference,
+        validates_natenviy_form,
+    )
+    import dtag_core as core
+    import optimizer.dtag_bridge as bridge
+
+    item = instrument.bank("intervention")[0].model_copy(update={
+        "item_id": "natenviy",
+        "original_wording": "Improving and protecting the environment",
+        "source_text_incomplete": True,
+        "choices": tuple(Choice(native_value=x, display_label=x) for x in
+                         ("too much", "too little", "about right")),
+    })
+    assert verified_natenviy_reference(item)
+    assert not verified_natenviy_reference(item.model_copy(update={
+        "original_wording": "Different source wording",
+    }))
+    assert not verified_natenviy_reference(item.model_copy(update={
+        "choices": (Choice(native_value="yes", display_label="yes"),),
+    }))
+
+    seen = []
+    valid_question = (
+        "Do you think we are spending too much, too little, "
+        "or about the right amount on the environment?"
+    )
+    def generate(client, source, options, model, **kwargs):
+        seen.append((source, options, kwargs))
+        return valid_question
+
+    monkeypatch.setattr(core, "llm_craft_survey_question", generate)
+    # A global reverse mapper is not form-aware; it can return NATENVIR for
+    # a correct NATENVIY question. The audited source supplies the validation.
+    monkeypatch.setattr(bridge, "map_question", lambda *a, **kw:
+                        (_ for _ in ()).throw(AssertionError("must not reverse-map an alternate form")))
+    generated = QuestionLLM(adapter, instrument).generate(item)
+    assert seen == [(NATENVIY_BALLOT_REFERENCE, ["too much", "too little", "about right"],
+                     {"source_incomplete": True})]
+    prov = generated["question_provenance"]
+    assert generated["displayed_wording"] == valid_question
+    assert prov["source_reference"] == NATENVIY_BALLOT_URL
+    assert prov["validation_method"] == "verified_2024_form_specific_reference_v1"
+    assert prov["wording_status"] == "llm_rephrasing_of_verified_2024_ballot"
+    assert prov["attempts"][-1]["verified_source_match"] is True
+    assert prov["mapper_hit"] is False and prov["fallback"] is False
+
+    wrong_form = (
+        "Are we spending too much, too little, or about the right amount "
+        "on improving and protecting the environment?"
+    )
+    assert not validates_natenviy_form(wrong_form)
+    assert not validates_natenviy_form("How important is the environment?")
+    monkeypatch.setattr(core, "llm_craft_survey_question", lambda *a, **kw: wrong_form)
+    with pytest.raises(QuestionGenerationError):
+        QuestionLLM(adapter, instrument).generate(item)
+
+    # The common helper silently falls back to its input on provider outage;
+    # it must not be mislabeled as generated content, even if verified.
+    monkeypatch.setattr(core, "llm_craft_survey_question",
+                        lambda client, source, *a, **kw: source)
+    with pytest.raises(QuestionGenerationError):
+        QuestionLLM(adapter, instrument).generate(item)
+
+
 def test_study_excerpt_flags_preserve_source_and_native_categories():
     from pathlib import Path
     from human_study.study_config import StudyConfig
