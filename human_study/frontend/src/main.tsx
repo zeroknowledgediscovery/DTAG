@@ -60,6 +60,19 @@ function App() {
   useEffect(() => { void perform(() => api('start', {})); }, []);
   useEffect(() => { heading.current?.focus(); }, [view?.question?.question_id, view?.phase]);
 
+  // An answer may be securely committed while the NEXT LLM question is
+  // preparing. Never present a stale answer field as though saving failed.
+  // A bounded 10-second poll resumes the same signed session automatically.
+  const nextQuestionPending = !!view && !view.question &&
+    ['baseline', 'intervention', 'attention', 'outcome'].includes(view.phase);
+  useEffect(() => {
+    if (!nextQuestionPending || busy) return;
+    const timer = window.setTimeout(() => {
+      void perform(() => api('current'));
+    }, 10000);
+    return () => window.clearTimeout(timer);
+  }, [nextQuestionPending, view?.progress?.completed, busy, error]);
+
   async function answer(value: string | null, reason: string | null = null) {
     if (!view?.question) return;
     const freeText = isWrittenMode(view.question);
@@ -131,6 +144,12 @@ function App() {
             onClick={() => void answer(null, 'prefer_not_to_answer')}>Prefer not to answer</button>}
       </div>
     </form>}
+    {nextQuestionPending && <section aria-live="polite" className="preparing-next">
+      <h2>Answer saved. Preparing your next question.</h2>
+      <p>Question generation may take another attempt. Your previous answer is already saved; there is no need to resubmit it.</p>
+      <button className="secondary" type="button" disabled={busy}
+        onClick={() => void perform(() => api('current'))}>Check for next question</button>
+    </section>}
     {view?.phase === 'ready_to_complete' && <section><h2 ref={heading} tabIndex={-1}>Your questions are finished</h2>
       <p>Finish to save your study receipt.</p><button disabled={busy} onClick={() => void perform(() => api('complete', {}))}>Finish study</button></section>}
     {view?.phase === 'complete' && <section><h2 ref={heading} tabIndex={-1}>Thank you. Your session is complete.</h2>
