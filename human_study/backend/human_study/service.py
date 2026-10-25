@@ -444,11 +444,20 @@ class StudyService:
                 from .multi_observations import (
                     permitted_items, prior_baseline_assignments, resolve, apply,
                 )
-                candidates = (self.adapter.webapp_mapping_items(
-                    q["displayed_wording"], raw_answer, q["target_variable"],
-                    self.config)
-                    if self.config.candidate_mode == "native_webapp"
-                    else permitted_items(self.config, self.adapter))
+                mapping_provenance = None
+                if self.config.candidate_mode == "native_webapp":
+                    mapping_provenance = self.llm.map_human_response(
+                        q["displayed_wording"], raw_answer)
+                    candidates = self.adapter.webapp_mapping_items(
+                        mapping_provenance["variables"], self.config)
+                    if not candidates:
+                        from .questions import AnswerNeedsClarification
+                        raise AnswerNeedsClarification(
+                            "No native survey variables could be mapped from this response. "
+                            "Please clarify your view in your own words."
+                        )
+                else:
+                    candidates = permitted_items(self.config, self.adapter)
                 existing = (self._human_state(snap).observed_state
                             if q["phase"] == "intervention"
                             else prior_baseline_assignments(snap))
@@ -456,6 +465,8 @@ class StudyService:
                     q["displayed_wording"], raw_answer, list(candidates.values()))
                 interpretation = resolve(proposed, raw_answer, candidates, existing,
                                          self.adapter, self.config.minimum_mapping_confidence)
+                if mapping_provenance is not None:
+                    interpretation["variable_mapping"] = mapping_provenance
                 accepted_assignments = interpretation["accepted"]
                 native = next((row["native_value"] for row in accepted_assignments
                                if row["variable"] == q["target_variable"]), None)
