@@ -60,6 +60,30 @@ class StudyService:
         writes[f"events/{eid}"] = {"event_id": eid, "kind": payload.get("kind"), "timestamp": payload.get("timestamp"),
                                    "gcs_object_name": name, "content_sha256": payload["content_sha256"]}
 
+    def _route_attention_if_due(self, session):
+        """Enter a V3 check at an answer boundary, preserving next scientific step.
+
+        The cursor and resume target are persisted atomically with the preceding
+        answer. 'next_step' counts displayed questions; attention_completed
+        removes check responses to recover the substantive-answer boundary.
+        """
+        if self.config.response_mode != "free_text_multi":
+            return
+        if session["phase"] in ("consent", "declined", "complete", "attention"):
+            return
+        cursor = session.get("attention_cursor", 0)
+        if cursor >= len(self.config.attention_checks):
+            return
+        count = session["next_step"] - session.get("attention_completed", 0)
+        due = self.config.attention_position(self.config.attention_checks[cursor])
+        if due < count:
+            raise IntegrityError("attention schedule was skipped")
+        if due == count:
+            session["resume_phase"] = session["phase"]
+            session["resume_phase_index"] = session["phase_index"]
+            session["phase"] = "attention"
+            session["phase_index"] = cursor
+
     def start(self, sid=None):
         if sid:
             return self.current(sid)
@@ -111,6 +135,8 @@ class StudyService:
             raise Conflict("session changed; refresh and retry")
         s.update(phase="baseline" if accepted else "declined", consent_version=self.config.consent_version,
                  consent_timestamp=now(), consent_accepted=accepted)
+        if accepted:
+            self._route_attention_if_due(s)
         writes = {}
         self._export(s, writes, "consent", {"kind": "consent", "timestamp": s["consent_timestamp"],
                      "accepted": accepted, "consent_version": self.config.consent_version,
@@ -346,13 +372,21 @@ class StudyService:
              }
         session = snap.session
         session["current_question_id"] = None
-        session["phase_index"] += 1
         session["next_step"] += 1
-        if session["phase_index"] == len(self.config.attention_checks):
-            session.update(
-                phase="outcome" if self.config.bank("outcome") else "ready_to_complete",
-                phase_index=0,
-            )
+        cursor = session.get("attention_cursor", 0)
+        if cursor != question["step"]:
+            raise IntegrityError("attention check cursor diverged from archived order")
+        session["attention_cursor"] = cursor + 1
+        session["attention_completed"] = session.get("attention_completed", 0) + 1
+        substantive = session["next_step"] - session["attention_completed"]
+        if (session["attention_cursor"] < len(self.config.attention_checks)
+                and self.config.attention_position(
+                    self.config.attention_checks[session["attention_cursor"]]
+                ) == substantive):
+            session["phase_index"] = session["attention_cursor"]
+        else:
+            session["phase"] = session.pop("resume_phase", "ready_to_complete")
+            session["phase_index"] = session.pop("resume_phase_index", 0)
         result = {"question_id": q["question_id"], "accepted": True,
                   "accepted_at": q["response_timestamp"]}
         writes = {f"questions/{q['question_id']}": q,
@@ -459,12 +493,12 @@ class StudyService:
                 self._baseline_completed(snap, writes)
             elif q["phase"] == "intervention" and s["phase_index"] == self.config.intervention_steps:
                 s.update(
-                    phase="attention" if self.config.attention_checks else
-                          "outcome" if self.config.bank("outcome") else "ready_to_complete",
+                    phase="outcome" if self.config.bank("outcome") else "ready_to_complete",
                     phase_index=0,
                 )
             elif q["phase"] == "outcome" and s["phase_index"] == len(self.config.bank("outcome")):
                 s.update(phase="ready_to_complete", phase_index=0)
+            self._route_attention_if_due(s)
             self.hook("before_answer_transaction")
             if self._write(snap, writes):
                 self.hook("after_answer_transaction")
