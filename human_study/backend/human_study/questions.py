@@ -217,6 +217,101 @@ class QuestionLLM:
             "reason": outcome.get("reason", ""),
         }
 
+
+    def interpret_multi(self, displayed_question, free_text, allowed_items):
+        """Read explicit claims in one written answer into zero or more survey observations.
+
+        Candidate variables are supplied by the reviewed instrument, not invented
+        from the respondent's prose. The service independently verifies every
+        assignment and resolves conflicts against the committed participant state.
+        """
+        import json
+        if self.config.response_mode != "free_text_multi":
+            raise ValueError("multi-variable interpretation is not enabled")
+        words = free_text.strip()
+        if not words or len(words) > 2000:
+            raise ValueError("Please write a response (at most 2000 characters).")
+        if not allowed_items:
+            raise ValueError("no reviewed mapping candidates")
+        candidate_lines = []
+        for item in allowed_items:
+            values = " | ".join(c.native_value for c in item.choices)
+            candidate_lines.append(f"{item.item_id} :: {item.original_wording} :: {values}")
+        schema = {
+            "type": "object",
+            "properties": {
+                "status": {"type": "string", "enum": ["mapped", "ambiguous", "missing"]},
+                "assignments": {
+                    "type": "array", "minItems": 0,
+                    "maxItems": self.config.max_response_assignments,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "variable": {"type": "string"},
+                            "native_value": {"type": "string"},
+                            "confidence": {"type": "number"},
+                            "evidence": {"type": "string"},
+                        },
+                        "required": ["variable", "native_value", "confidence", "evidence"],
+                        "additionalProperties": False,
+                    },
+                },
+                "rationale": {"type": "string"},
+            },
+            "required": ["status", "assignments", "rationale"],
+            "additionalProperties": False,
+        }
+        prompt = (
+            "Map this person's ACTUAL WRITTEN RESPONSE to zero or more native GSS "
+            "survey categories. This is research measurement, not synthetic persona generation. "
+            "One response may state opinions about MULTIPLE survey variables. "
+            "The displayed question identifies the primary intended topic, but do not "
+            "invent an answer for it if the person did not actually state one. "
+            "Make assignments ONLY for clearly expressed views with an unambiguous "
+            "native answer from the candidate list. Do not assign categories based on "
+            "correlation, ideology, demographics, stereotyping, likelihood, or model predictions. "
+            "Do not use weak implications as observations. For each assignment, include "
+            "as evidence an EXACT, CONTIGUOUS substring copied from the respondent's text "
+            "(not the question). Confidence is in [0,1]. "
+            "Output status='mapped' for one or more clear assignments, 'missing' for "
+            "explicit refusal or not-knowing, otherwise 'ambiguous'; non-mapped statuses "
+            "must have an empty assignments list. Return no more than MAX assignments. "
+            f"MAX={self.config.max_response_assignments}\\n\\n"
+            f"DISPLAYED QUESTION:\\n{displayed_question}\\n\\n"
+            "ALLOWED GSS VARIABLE :: SOURCE DESCRIPTION :: EXACT NATIVE CATEGORIES:\\n"
+            + "\\n".join(candidate_lines)
+            + f"\\n\\nRESPONDENT'S WORDS:\\n{words}"
+        )
+        try:
+            response = self.client.responses.create(
+                model=self.config.llm_model, input=prompt,
+                text={"format": {"type": "json_schema",
+                                 "name": "human_multi_assignments_v3",
+                                 "schema": schema, "strict": True}},
+            )
+            from dtag_core import _get_output_text
+            obj = json.loads(_get_output_text(response))
+        except Exception as exc:
+            raise AnswerInterpretationUnavailable(
+                "multi-item answer interpretation unavailable; retry"
+            ) from exc
+        if not isinstance(obj, dict) or obj.get("status") not in (
+            "mapped", "ambiguous", "missing"
+        ) or not isinstance(obj.get("assignments"), list):
+            raise AnswerInterpretationUnavailable("invalid multi-item classifier result")
+        if len(obj["assignments"]) > self.config.max_response_assignments:
+            raise AnswerInterpretationUnavailable("classifier exceeded assignment limit")
+        if obj["status"] != "mapped" and obj["assignments"]:
+            raise AnswerInterpretationUnavailable("inconsistent classifier result")
+        return {
+            "status": obj["status"],
+            "proposed": obj["assignments"],
+            "rationale": str(obj.get("rationale", ""))[:1000],
+            "provider": "openai",
+            "model": self.config.llm_model,
+            "mapping_method": "explicit_evidence_only_v3",
+        }
+
     def record(self, text, item, attempts, fallback, reason, *, validation_method="direct_reverse_mapping", source_reference=None):
         return {"displayed_wording": text, "question_provenance": {
             "provider": self.backend, "llm_id": self.config.llm_model,
