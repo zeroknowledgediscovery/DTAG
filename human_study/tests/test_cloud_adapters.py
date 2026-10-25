@@ -50,6 +50,42 @@ def test_gcs_probe_requires_private_uniform_bucket():
         archive.probe()
 
 
+def test_firestore_bigint_roundtrip_uses_nonreserved_field_names():
+    # Regression for live Cloud Run: the 13th baseline answer persists PCG64
+    # 128-bit RNG states, which must not use Firestore's reserved __.*__ names.
+    import re
+    from human_study.storage_firestore import BIGINT_FIELD, encode, decode
+    from human_study.policy import initial_rng
+
+    rng = initial_rng(2**127 + 19)
+    data = {
+        "assignment_rng_state": rng,
+        "selection_rng_state": initial_rng(2**127 + 31),
+        "nested": [{"large_negative": -(2**100), "large_positive": 2**127 + 1}],
+        "signed64_max": 2**63 - 1,
+        "signed64_min": -(2**63),
+        "not_an_int": True,
+    }
+    encoded = encode(data)
+
+    def check(node):
+        if isinstance(node, dict):
+            assert not any(re.fullmatch(r"__.*__", k) for k in node)
+            for v in node.values():
+                check(v)
+        elif isinstance(node, list):
+            for v in node:
+                check(v)
+
+    check(encoded)
+    assert BIGINT_FIELD == "dtag_bigint_decimal"
+    assert decode(encoded) == data
+    assert decode({"__dtag_bigint__": str(2**127)}) == 2**127
+    assert encode(2**63 - 1) == 2**63 - 1
+    assert encode(2**63) == {BIGINT_FIELD: str(2**63)}
+    assert encode(True) is True
+
+
 def test_firestore_cas_serialization_and_transaction_retry(monkeypatch):
     import human_study.storage_firestore as module
     from human_study.policy import initial_rng
