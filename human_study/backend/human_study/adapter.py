@@ -25,9 +25,12 @@ class NativeAdapter:
         from dtag_engine import POLAR_VECTOR_SETS
         self.lock = threading.RLock()
         model_path = ensure_model(config.model_key, os.environ.get("DTAG_MODEL_ROOT"))
-        # The webapp's registered gss_default is the scientific reference;
-        # the year-specific experimental pole file is NOT interchangeable.
-        poles = ROOT / POLAR_VECTOR_SETS["gss_default"]["path"]
+        # V3 native-webapp mode uses the webapp's exact registered pole set.
+        # Historical instrument-limited pilot runs retain their original
+        # year-specific reference, so archived V1/V2/V3 can still be replayed.
+        poles = (ROOT / POLAR_VECTOR_SETS["gss_default"]["path"]
+                 if config.candidate_mode == "native_webapp"
+                 else ROOT / "assets/polar_vectors/gss/gss_2024_polar_vectors.csv")
         self.world = World(str(model_path), str(canonical_map(config.model_key)), str(poles),
                            os.environ.get("DTAG_ASSETS_DIR", str(Path.home() / ".cache/dtag/assets")))
         self._index = strict_native_index
