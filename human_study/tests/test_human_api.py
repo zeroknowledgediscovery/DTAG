@@ -83,6 +83,35 @@ def test_cloud_run_https_origin_with_internal_http_scope(monkeypatch, instrument
     assert "Secure" in ok.headers["set-cookie"]
 
 
+def test_configured_public_origin_survives_proxy_host_rewriting(monkeypatch, instrument, adapter):
+    monkeypatch.setenv("DTAG_ENV", "staging")
+    public = "https://dtag-human-pilot-75214764470.us-east1.run.app"
+    monkeypatch.setenv("DTAG_PUBLIC_ORIGIN", public)
+    service = StudyService(instrument, adapter, FixtureLLM(), MemoryRepository(), MemoryArchive())
+    app = create_app(service, cookie_secret="test-secret-stable-not-for-deployment" * 2)
+    # The externally visible Host may be replaced by an internal proxy host,
+    # while the browser Origin is still the true service URL.
+    c = TestClient(app, base_url="http://internal-proxy:8080")
+    route = "/api/human/start"
+    assert c.post(route, json={}, headers={"Origin": "https://attacker.example"}).status_code == 403
+    assert c.post(route, json={}, headers={"Origin": "http://internal-proxy:8080"}).status_code == 403
+    assert c.post(route, json={}, headers={"Origin": "https://internal-proxy:8080"}).status_code == 403
+    valid = c.post(route, json={}, headers={"Origin": public})
+    assert valid.status_code == 200
+    assert valid.json()["phase"] == "consent"
+    assert "Secure" in valid.headers["set-cookie"]
+
+
+def test_public_origin_must_be_exact_https(monkeypatch, instrument, adapter):
+    monkeypatch.setenv("DTAG_ENV", "staging")
+    svc = StudyService(instrument, adapter, FixtureLLM(), MemoryRepository(), MemoryArchive())
+    for origin in ("http://study.example", "https://study.example/study",
+                   "https://study.example/", "https://user@study.example"):
+        monkeypatch.setenv("DTAG_PUBLIC_ORIGIN", origin)
+        with pytest.raises(RuntimeError, match="DTAG_PUBLIC_ORIGIN"):
+            create_app(svc, cookie_secret="test-secret-stable-not-for-deployment" * 2)
+
+
 def test_unavailable_llm_never_exposes_incomplete_baseline_source(instrument, adapter):
     # A baseline source fragment is generated via LLM, never shown verbatim.
     first = instrument.items[0].model_copy(update={
