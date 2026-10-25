@@ -97,7 +97,7 @@ class NativeAdapter:
     def dynamic_item(self, variable):
         """Materialize one selected native variable only when needed."""
         from types import SimpleNamespace
-         ctx = self.world.ctx
+        ctx = self.world.ctx
         if variable not in ctx.var_map or variable not in ctx.idx_map:
             raise ValueError("native item has no semantic-map question")
         values = list(self.support(variable))
