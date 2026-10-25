@@ -350,12 +350,24 @@ class StudyService:
         raise Conflict("session busy; retry")
 
     def _acknowledge_committed_answer(self, sid, result):
-        """An accepted answer must not be reported as failed during NEXT-question generation."""
+        """ACK saved answers only when the NEXT question is still generating.
+
+        ExportPending must propagate: an accepted Firestore transaction does
+        not authorize exposing the next step until the research archive is
+        durably committed. In particular, a failed GCS create or reconciliation
+        hook must not be misreported as harmless question generation.
+        """
         try:
             next_view = self.current(sid)
             return {"accepted": result, "current": next_view, "preparing_next": False}
-        except (GenerationPending, ExportPending):
+        except GenerationPending:
             snap = self._load(sid)
+            # Do not present a stale or unarchived question if another request
+            # created a pending export while we were handling generation.
+            if snap.session["pending_exports"]:
+                raise ExportPending(
+                    "answer/state saved; research archive synchronization pending; retry"
+                )
             return {"accepted": result, "current": self.public(snap), "preparing_next": True}
 
     def _answer_attention(self, snap, question, request, request_key, fingerprint):
