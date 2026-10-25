@@ -285,3 +285,82 @@ def test_v3_llm_attention_generation_preserves_required_token(instrument, adapte
     client.text = check.instruction
     with pytest.raises(QuestionGenerationError, match="integrity"):
         llm.generate_attention(check)
+
+
+def test_v3_committed_last_adaptive_answer_is_acknowledged_during_attention_generation_failure(
+    instrument, adapter
+):
+    """Simulate the 6/8 -> childcare -> 7/8 pending attention failure seen live.
+
+    The 7th written response MUST be committed once, ACKed by HTTP, and never
+    mistaken for an unsaved answer when the subsequent LLM generation fails.
+    """
+    import time
+    from human_study.questions import QuestionGenerationError
+    from human_study.study_config import AttentionCheck
+
+    config, _, _ = make_v3(instrument, adapter)
+    check = AttentionCheck(
+        check_id="attention_reading",
+        instruction="For this reading check, include the exact word cobalt in your reply.",
+        expected_token="cobalt",
+    )
+    config = config.model_copy(update={
+        "study_id": "v3-pending-next-question",
+        "attention_checks": (check,),
+    })
+
+    class FailFirstAttention(MultiFixtureLLM):
+        def __init__(self):
+            super().__init__()
+            self.failures = 0
+
+        def generate_attention(self, check):
+            if self.failures == 0:
+                self.failures += 1
+                raise QuestionGenerationError("simulated temporary invalid attention wording")
+            return super().generate_attention(check)
+
+    llm = FailFirstAttention()
+    repo = MemoryRepository()
+    service = StudyService(config, adapter, llm, repo, MemoryArchive())
+    initial = service.start()
+    view = service.consent(initial["session_id"], True, initial["session_version"])
+    sid = view["session_id"]
+    for _ in range(6):
+        view = service.answer(sid, request(view, "yes, and also no"))["current"]
+    assert view["progress"]["completed"] == 6
+    assert view["phase"] == "intervention"
+    childcare_request = request(view, "yes, with reasons for this final adaptive response")
+    saved = service.answer(sid, childcare_request)
+    assert saved["accepted"]["accepted"] is True
+    assert saved["preparing_next"] is True
+    assert saved["current"]["progress"]["completed"] == 7
+    assert saved["current"]["phase"] == "attention"
+    assert saved["current"]["question"] is None
+    assert llm.failures == 1
+
+    # Repeating the same idempotent POST must NOT write a second observation
+    # or return 503 merely because the next question still needs generation.
+    repeated = service.answer(sid, childcare_request)
+    assert repeated["accepted"]["question_id"] == saved["accepted"]["question_id"]
+    assert repeated["current"]["progress"]["completed"] == 7
+    snap = repo.read(sid)
+    assert len([q for key, q in snap.records.items()
+                if key.startswith("questions/") and q.get("status") == "answered"]) == 7
+
+    # Simulate elapsed retry lease. The same study session must recover.
+    generating = [(key, q) for key, q in snap.records.items()
+                  if key.startswith("questions/") and q.get("status") == "generating"]
+    assert len(generating) == 1
+    key, q = generating[0]
+    q["generation_lease_until"] = time.time() - 1
+    assert repo.cas(sid, snap.session["revision"], snap.session, {key: q})
+    view = service.current(sid)
+    assert view["phase"] == "attention"
+    assert view["question"]["text"].endswith("?")
+    assert "cobalt" in view["question"]["text"]
+    completed_attention = service.answer(sid, request(view, "cobalt"))
+    assert completed_attention["current"]["phase"] == "ready_to_complete"
+    final = service.complete(sid)
+    assert final["phase"] == "complete"
