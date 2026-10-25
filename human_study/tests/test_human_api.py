@@ -112,6 +112,40 @@ def test_public_origin_must_be_exact_https(monkeypatch, instrument, adapter):
             create_app(svc, cookie_secret="test-secret-stable-not-for-deployment" * 2)
 
 
+def test_immutable_manifest_survives_deploy_revisions_and_restart(monkeypatch, instrument, adapter):
+    # Regression for Cloud Run startup failure: same instrument, different
+    # code provenance must never target the same immutable GCS object.
+    from copy import copy
+    from human_study.app import study_manifest
+    monkeypatch.setenv("DTAG_ENV", "staging")
+    monkeypatch.delenv("DTAG_PUBLIC_ORIGIN", raising=False)
+
+    class DurableRepo(MemoryRepository):
+        durable = True
+
+    class DurableArchive(MemoryArchive):
+        durable = True
+
+    shared = DurableArchive()
+    for sha in ("a" * 40, "a" * 40, "b" * 40):
+        inst_adapter = copy(adapter)
+        inst_adapter.provenance = {"model_content_sha256": "unchanged-native-model",
+                                   "code_commit": sha}
+        key, payload = study_manifest(instrument, inst_adapter.provenance)
+        assert key.startswith(f"studies/{instrument.study_id}/manifests/{instrument.config_hash}-")
+        service = StudyService(instrument, inst_adapter, FixtureLLM(), DurableRepo(), shared)
+        app = create_app(service, cookie_secret="test-secret-stable-not-for-deployment" * 2)
+        with TestClient(app) as client:
+            assert client.get("/api/human/health").json() == {"status": "ok"}
+        assert shared.objects[key]  # The payload was stored immutably.
+    # Duplicate starts are idempotent, while distinct code commits remain
+    # separate objects with their original content preserved.
+    assert len(shared.objects) == 2
+    contents = sorted(__import__("json").loads(x)["provenance"]["code_commit"]
+                      for x in shared.objects.values())
+    assert contents == ["a" * 40, "b" * 40]
+
+
 def test_unavailable_llm_never_exposes_incomplete_baseline_source(instrument, adapter):
     # A baseline source fragment is generated via LLM, never shown verbatim.
     first = instrument.items[0].model_copy(update={
