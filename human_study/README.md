@@ -1,4 +1,95 @@
-# Human-response DTAG pilot
+# DTAG human-response study
+
+Current work: **V3 native-webapp-aligned written-response study**, developed on
+`experiment/prolific-human-study`. Earlier M01/M02 click-response work remains
+in this folder and is retained for historical reproducibility. The standalone
+participant webapp does not replace the DTAG simulator/research webapp.
+
+**Latest verified local status (2026-10-25):** 27 V3/interleaving/parity tests,
+36 persistence/API/cloud-regression tests, and TypeScript/Vite build passed.
+A separate real native GSS 2024 audit matched the original DTAG webapp's
+candidate discovery, pole-resolved ideology, and `draw`-based up/down picks
+at empty, 2-coordinate and 4-coordinate states. This is **internal research
+software**, not yet a validated Prolific or production protocol.
+
+## Start here
+
+| Document | Purpose |
+| --- | --- |
+| [Architecture and scientific invariants](docs/ARCHITECTURE.md) | Native LSM selection, multi-variable human observations, provenance, Firestore/GCS, and attention scheduling |
+| [Automated testing and staging validation](docs/TESTING.md) | One-command regression, native-model audit, simulated and live LLM test boundaries |
+| [Final-study plan and production readiness](docs/PRODUCTION_READINESS.md) | Required changes for ~6 baseline + 20 adaptive + 5 attention questions, science review, and remaining acceptance gates |
+| [V3 implementation details](V3_IMPLEMENTATION.md) | Schema, question generation, evidence-backed mapping and historical development notes |
+
+### What V3 actually does
+
+1. Present reviewed baseline questions; accept freely written human answers.
+2. Map each recorded response to **multiple native GSS variables** through
+   shared `DTAGSession.map_question()` and original `update_state` semantic
+   fallback. A separate evidence-checked interpreter extracts native response
+   values from the actual human prose. Synthetic native `draw` responses
+   are **not** used as participant observations.
+3. Build the baseline native LSM state from accepted mappings. Adaptively
+   discover and score questions using **the original webapp functions**:
+   `optimizer.session_push.askable_items()` and
+   `optimizer.one_step_geometry.native_one_step()`.
+   The directional objective uses `push_response_mode: draw` (expected
+   ideological displacement). No YAML intervention-variable whitelist exists
+   in the native V3 examples.
+4. After each substantive response, update all accepted native assignments
+   jointly, archive the complete interpretation/provenance, recompute ideology,
+   and select the next question. Native-mode revisions and
+   `state_keep` eviction preserve webapp state semantics.
+5. Interleave investigator-authored attention check *specifications*
+   (LLM-rendered, non-LSM) using `after_substantive` positions. Their pass
+   or fail never updates the native state.
+
+The shipped **short internal examples** are
+[4 baseline + 3 adaptive + 1 final attention](config/study.v3.example.yaml)
+and [4 baseline + 3 adaptive + 2 interleaved attention](config/study.v3.interleaved.example.yaml).
+Both are unreviewed examples and must **not** be mistaken for the proposed
+[full 6+20+5 protocol](docs/PRODUCTION_READINESS.md). The full-study adaptive
+questions remain dynamically selected across the installed native model.
+
+### Verify without typing participant answers
+
+From repository root, with the Python environment activated:
+
+```bash
+export PYTHONPATH="$PWD/human_study/backend:$PWD/scripts:$PWD"
+bash human_study/scripts/check_v3.sh
+python3 human_study/scripts/audit_webapp_native_parity.py
+```
+
+The first command is entirely offline: synthetic respondent/LLM/native
+fixtures, idempotency and fault injection, 31-screen simulated session,
+webapp parity unit tests, and frontend build. The second uses the **real
+installed native GSS LSM model** to compare optimizer choices numerically
+with the original webapp. Neither makes OpenAI calls or recruits humans.
+See [TESTING.md](docs/TESTING.md) for interpretation and limitations.
+
+Node 22.12+ is recommended for local frontend builds, matching the major
+version of the Docker build. The previous Node 20.17 build completed despite
+a Vite compatibility warning.
+
+### Deployment boundary
+
+Deploy only a new externally approved/versioned V3 instrument, with a distinct
+study ID, code/model/pole hashes and reviewed consent. Check
+`human_study/deploy/deploy.sh` in dry-run mode before `--execute`.
+A successful offline test is **not** evidence that live OpenAI mappings,
+Cloud Run/GCS/Firestore concurrency, ethics, or Prolific linkage have been
+validated. See [production readiness](docs/PRODUCTION_READINESS.md).
+
+---
+
+## Historical M01/M02 participant pilot documentation
+
+The material below describes the **earlier instrument-limited click-category
+pilot**. Its 13+20+4 fixed bank, one-item answers, instrument generation, and
+other requirements are **not the current V3 native-webapp design**.
+It is retained so archived pilot runs remain interpretable.
+
 
 Separate participant application for milestones M01/M02. The existing `webapp/`, simulator and public researcher API are unchanged. The normal study path reuses the real native GSS LSM, pole geometry, opinion-item classifier and DTAG's live LLM question generation and semantic validation. It accepts actual human category choices, never synthetic respondent answers.
 
