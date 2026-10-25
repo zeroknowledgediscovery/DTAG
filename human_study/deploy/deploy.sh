@@ -18,8 +18,12 @@ PYTHONPATH="$ROOT/human_study/backend:$ROOT/scripts:$ROOT" python - "$DTAG_REVIE
 import sys
 from human_study.study_config import StudyConfig
 c = StudyConfig.load(sys.argv[1])
-if not c.reviewed or not 12 <= len(c.bank('baseline')) <= 15:
-    raise SystemExit('Deployment requires an explicitly reviewed 12–15-item baseline instrument')
+if not c.reviewed:
+    raise SystemExit('Deployment requires an explicitly reviewed instrument')
+if c.response_mode == 'click' and not 12 <= len(c.bank('baseline')) <= 15:
+    raise SystemExit('Legacy study requires a 12–15-item baseline')
+if c.response_mode == 'free_text_llm' and not 1 <= len(c.bank('baseline')) <= 40:
+    raise SystemExit('V2 needs 1–40 initial questions')
 PY
 run() { if [[ "$EXECUTE" == 1 ]]; then "$@"; else printf '%q ' "$@"; printf '\n'; fi; }
 # Archive only tracked source: no local responses, caches, .env files or Git credentials.
