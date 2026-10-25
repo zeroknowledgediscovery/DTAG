@@ -3,7 +3,7 @@
 Implementation branch: `experiment/prolific-human-study`. Status:
 **committed for internal testing, not yet deployed/verified live.**
 The V2 `pilot-v2` and V1 `pilot-001` study IDs and completed GCS archives are
-unchanged; this is an explicitly different `pilot-v3` configuration.
+unchanged; the native-webapp-aligned configuration uses distinct `pilot-v3-native` IDs.
 
 ## Experiment shape and constraints
 
@@ -18,7 +18,7 @@ unchanged; this is an explicitly different `pilot-v3` configuration.
 - `question_mode: llm_required`, `response_mode: free_text_multi`.
   There are no clickable native categories and **no question-text fallback**.
   Provider/semantic validation failure leaves the question pending.
-- `max_response_assignments: 5` and
+- `max_response_assignments: 50` (the webapp's configured `max_assign`) and
   `minimum_mapping_confidence: 0.8` are tunable. Assignment count can be
   zero for an explicitly nonresponsive/declining written reply.
 
@@ -28,19 +28,32 @@ V3 presents the exact generated question and the participant's own words
 to an LLM. Unlike V2, the model can propose **up to K independent GSS
 variable/value assignments**, not just the selected question's variable.
 
-The candidate universe is the **approved study instrument**, not arbitrary
-GSS variables. Candidate intervention items must also pass the native
-adapter's eligibility rules, and outcomes, ethically disallowed and excluded
-variables are not available for incidental conditioning. Expanding this
-universe requires a larger reviewed instrument with valid native choices.
+The current V3-native example has **no adaptive intervention variable bank**.
+At each adaptive step, the native optimizer discovers every askable,
+unanswered opinion variable from the installed GSS model using the exact
+webapp function `optimizer.session_push.askable_items`, and obtains one-step
+geometry from `optimizer.one_step_geometry.native_one_step`. With
+`push_response_mode: draw`, right/left rank by the original webapp's
+`expected_delta`, never the modal-response displacement.
+
+For each recorded written answer, `DTAGSession.map_question` is called
+on the generated question and participant's own words using the same
+`configs/dtag_config.yaml` k/prefilter settings as the webapp. If it does
+not find relevant variables, the native webapp semantic fallback invokes the
+same embedding prefilter and semantic bridge under `update_state`.
+The returned native variable IDs are passed unchanged to an evidence-checked
+human **category** interpreter. Native conditional `draw` values are
+**not** substituted for what participants wrote, since the original webapp
+simulates answers rather than observing real humans. Experimental ethical
+exclusions and separately reserved outcomes still apply.
 
 The classification prompt prohibits inferring answers from correlations,
 social stereotypes or population-level conditional predictions.
 Every candidate mapping must include the exact source quote from the
 participant's response, category, and confidence. The server separately checks:
 
-1. The variable belongs to the approved, not-reserved mapping universe.
-2. The category is a legitimate configured and native LSM category.
+1. The variable was selected by the original DTAG mapper and is not ethically excluded or reserved for outcome measurement.
+2. The category is in the full native LSM response support for that variable.
 3. Confidence meets the configured cutoff (currently 0.80).
 4. The evidence is a verbatim span of the actual written response.
 5. The same variable is not assigned twice in one reply.
@@ -60,10 +73,12 @@ Explicit declining/missing replies may advance without a new coordinate;
 no answer is manufactured from the native model.
 
 The four baseline questions can therefore yield *more than four*
-observed phenotype coordinates. Adaptive selection excludes coordinates
-already observed in incidental assignments, as well as already asked or
-reserved items. Adaptive exhaustion does **not** silently terminate the
-three-question sequence.
+observed phenotype coordinates. Adaptive selection is recomputed after each state update through the
+original webapp's native askability and geometry functions. The native-webapp
+mode excludes assigned coordinates, pole items (as the webapp does by default),
+and explicit study reservations; it does not use a YAML whitelist. The webapp's
+right/left direction may legitimately stop early when no positive/negative
+candidate remains. The resulting stop reason is persisted.
 
 ## Geometry and replay
 
@@ -134,7 +149,7 @@ python3 -m pytest -q \
 
 For a Cloud Run **internal test only**, create a separate, investigator-reviewed
 copy of `study.v3.example.yaml`, setting `reviewed: true` only after reviewing
-the approved measurement pool. Keep the distinct `pilot-v3` study ID.
+the baseline questions, reserved outcomes and attention instructions. Keep the distinct `pilot-v3-native` study ID.
 Set `DTAG_REVIEWED_CONFIG` to this copy and the prior GCP environment variables;
 use `bash human_study/deploy/deploy.sh` for a dry run. After reviewing
 deployment and source of truth, use `--execute`. The existing service is
