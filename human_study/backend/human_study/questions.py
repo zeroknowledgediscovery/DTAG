@@ -219,13 +219,15 @@ class QuestionLLM:
 
 
     def generate_attention(self, check):
-        """Generate an unambiguous instructed-response attention check by LLM.
+        """LLM-write an instructed-response check, never substitute source text.
 
-        The exact investigator-approved token must appear in the generated
-        question; interpretation is deterministic and not part of the LSM.
+        A question does not have to end in '?' to be a valid instructed-response
+        check. Validate that the token and an explicit written-answer directive
+        survive, and retry malformed outputs before returning a pending error.
         """
         import json
         import re
+
         schema = {
             "type": "object",
             "properties": {"question": {"type": "string"}},
@@ -233,39 +235,59 @@ class QuestionLLM:
             "additionalProperties": False,
         }
         prompt = (
-            "Rewrite this internal-study attention-check instruction as a single, "
-            "short, neutral question. Keep the EXACT requested token unchanged, "
-            "make clear that the participant should include that word in their "
-            "written answer, and do not add any other instructions. "
-            f"VERIFIED TOKEN: {check.expected_token}\n"
-            f"SOURCE INSTRUCTION: {check.instruction}"
+            "Write one SHORT and CLEAR respondent-facing reading/attention check "
+            "based on the investigator instruction below. "
+            "The response must ask the participant to TYPE or INCLUDE the EXACT "
+            "required token in their written answer. "
+            "It may be a polite question ending in '?' or a direct imperative "
+            "ending in '.'. Do not paraphrase, change or omit the token. "
+            "Do not answer the question yourself. "
+            "Use neutral wording without unrelated questions.\n\n"
+            f"REQUIRED TOKEN: {check.expected_token}\n"
+            f"INVESTIGATOR INSTRUCTION: {check.instruction}"
         )
-        try:
-            response = self.client.responses.create(
-                model=self.config.llm_model, input=prompt,
-                text={"format": {"type": "json_schema",
-                                 "name": "human_attention_question_v3",
-                                 "schema": schema, "strict": True}},
-            )
-            from dtag_core import _get_output_text
-            output = json.loads(_get_output_text(response))
-            question = str(output.get("question", "")).strip()
-        except Exception as exc:
-            raise QuestionGenerationError(
-                "unable to generate the required attention question"
-            ) from exc
-        if (not question.endswith("?") or len(question) < 18
-                or question == check.instruction.strip()
-                or not re.search(r"\b" + re.escape(check.expected_token) + r"\b",
-                                 question, re.I)):
-            raise QuestionGenerationError("attention question failed instruction integrity")
-        return {"displayed_wording": question,
-                "question_provenance": {
-                    "provider": self.backend, "llm_id": self.config.llm_model,
-                    "prompt_version": self.config.prompt_version,
-                    "input_item_id": check.check_id, "fallback": False,
-                    "validation_method": "exact_attention_token_preserved_v3",
-                }}
+        token_pattern = re.compile(
+            r"\b" + re.escape(check.expected_token) + r"\b", re.IGNORECASE
+        )
+        action_pattern = re.compile(
+            r"\b(?:include|write|type|enter|use|reply|respond|provide|insert|"
+            r"contain|put)\b", re.IGNORECASE,
+        )
+        failures = []
+        for attempt in range(3):
+            try:
+                response = self.client.responses.create(
+                    model=self.config.llm_model, input=prompt,
+                    text={"format": {
+                        "type": "json_schema", "name": "human_attention_question_v3",
+                        "schema": schema, "strict": True,
+                    }},
+                )
+                from dtag_core import _get_output_text
+                obj = json.loads(_get_output_text(response))
+                question = str(obj.get("question", "")).strip()
+                if (
+                    18 <= len(question) <= 500
+                    and question != check.instruction.strip()
+                    and token_pattern.search(question)
+                    and action_pattern.search(question)
+                ):
+                    return {"displayed_wording": question,
+                            "question_provenance": {
+                                "provider": self.backend,
+                                "llm_id": self.config.llm_model,
+                                "prompt_version": self.config.prompt_version,
+                                "input_item_id": check.check_id,
+                                "fallback": False, "generation_attempts": attempt + 1,
+                                "validation_method": "attention_token_and_instruction_preserved_v3",
+                            }}
+                failures.append({"attempt": attempt + 1, "error": "invalid_generated_instruction"})
+            except Exception as exc:
+                failures.append({"attempt": attempt + 1, "error": type(exc).__name__})
+        raise QuestionGenerationError(
+            "unable to generate a valid instructed-response attention question",
+            attempts=failures,
+        )
 
     def interpret_multi(self, displayed_question, free_text, allowed_items):
         """Read explicit claims in one written answer into zero or more survey observations.
