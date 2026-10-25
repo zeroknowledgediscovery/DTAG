@@ -1,6 +1,7 @@
 import copy
 import json
 import threading
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 import pytest
@@ -116,8 +117,22 @@ def test_concurrent_double_click_and_conflicts(instrument, adapter):
     svc = make_service(instrument, adapter)
     view = consent(svc)
     sid, req = view["session_id"], request(view)
+
+    def same_request_with_pending_retry(_):
+        # The answer may already be durably committed while another thread
+        # prepares the next question. GenerationPending is an intentional,
+        # retryable state; resubmit the exact same idempotency key.
+        deadline = time.monotonic() + 10
+        while True:
+            try:
+                return svc.answer(sid, req)
+            except GenerationPending:
+                if time.monotonic() >= deadline:
+                    raise
+                time.sleep(0.02)
+
     with ThreadPoolExecutor(max_workers=4) as pool:
-        outcomes = list(pool.map(lambda _: svc.answer(sid, req), range(4)))
+        outcomes = list(pool.map(same_request_with_pending_retry, range(4)))
     assert len({json.dumps(o["accepted"], sort_keys=True) for o in outcomes}) == 1
     snap = svc.repo.read(sid)
     assert snap.session["next_step"] == 1
