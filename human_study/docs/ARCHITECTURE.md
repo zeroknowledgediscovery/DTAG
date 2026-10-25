@@ -36,7 +36,8 @@ and makes no claims about GSS distributions, actual humans or persuasion.
 - V1: click-category / original multi-phase pilot; records retained.
 - V2: LLM-only questions, one written answer -> at most one native observation.
 - V3: LLM-only questions, one written answer -> zero or more **validated**
-  native assignments; optionally scripted attention checks.
+  native assignments; optionally scripted attention checks. The aligned V3
+  example uses `candidate_mode: native_webapp` and `push_response_mode: draw`.
 - The short V3 example is `config/study.v3.example.yaml` (4 initial + 3
   adaptive + 1 terminal check). The *new* isolated interleaved example is
   `config/study.v3.interleaved.example.yaml` (4+3, checks after substantive
@@ -81,15 +82,19 @@ generation or GCS synchronization delays; inconsistent records remain errors.
 2. A V3 classifier proposes at most `max_response_assignments` items,
    providing native variable, native category, confidence and a literal
    evidence span from the human's prose.
-3. Server validation rejects unapproved, ethically excluded, held-out,
+3. Server validation rejects variables outside the shared DTAG mapping output, ethically excluded, held-out,
    unsupported, low-confidence or unquoted assignments. A text span check
    is an audit safeguard, **not** an independent semantic correctness proof.
 4. Identical native repeats are *confirmations*; contradictory repeats are
    *conflicts*. Neither overwrites a previously observed category.
-5. The adaptive candidate pool excludes all asked items, incidental observed
-   coordinates, excluded and held-out items. If exhausted before completing
-   the configured adaptive count, V3 fails visibly rather than fabricating a
-   question or ending the experiment early.
+5. In `native_webapp` mode, adaptive candidates come directly from
+   `optimizer.session_push.askable_items` and are scored with
+   `optimizer.one_step_geometry.native_one_step` at each new native
+   respondent state. There is no instrument/YAML intervention whitelist.
+   Native `draw` uses the expected change objective; the webapp can stop
+   a right/left push when no correctly directed item remains.
+   Explicit study exclusions and reserved outcome coordinates remain separate
+   from algorithmic candidate selection.
 6. After an adaptive response, all accepted assignments are applied
    atomically before a *single* native index computation.
 7. `observed_conditional_index_delta` refers to the **joint observed**
