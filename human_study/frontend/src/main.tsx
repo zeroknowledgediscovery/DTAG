@@ -13,8 +13,20 @@ async function api(route: string, data?: unknown) {
     method: data === undefined ? 'GET' : 'POST',
     headers: data === undefined ? {} : { 'Content-Type': 'application/json' },
     body: data === undefined ? undefined : JSON.stringify(data) });
-  const body = await response.json();
-  if (!response.ok) throw new Error(typeof body.detail === 'string' ? body.detail : 'Please refresh and try again.');
+  // A Cloud Run 500 may be plain text ("Internal Server Error"), not JSON.
+  // Preserve the last question and retry token instead of exposing a JSON
+  // parser failure that obscures the actual HTTP status.
+  const raw = await response.text();
+  let body: any;
+  try {
+    body = JSON.parse(raw);
+  } catch {
+    throw new Error(response.ok
+      ? 'Invalid response from the study server. Refresh saved state.'
+      : `Study server error (HTTP ${response.status}). Refresh saved state; the answer may already be saved.`);
+  }
+  if (!response.ok) throw new Error(typeof body.detail === 'string'
+    ? body.detail : `Study server error (HTTP ${response.status}). Refresh saved state.`);
   return body;
 }
 
