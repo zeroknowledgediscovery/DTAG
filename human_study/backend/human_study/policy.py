@@ -52,8 +52,10 @@ def choose_next_item(state, policy, exclusions, rng_state, config, adapter):
         pos = int(np.random.Generator(bit).integers(len(choices))) if policy == "random" else 0
         chosen = choices[pos]
         rows = [r for r in result.rows if r["variable"] == chosen["variable"]]
+        from .response_mapping import shared_session_config
         return {
             "status": "selected", "variable": chosen["variable"], "policy": policy,
+            "state_keep": shared_session_config(config.llm_model).state_keep,
             "expected_delta": chosen["expected_delta"],
             "delta_modal": chosen["delta_modal"],
             "predicted_delta": chosen[objective],
