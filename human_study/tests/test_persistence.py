@@ -144,6 +144,21 @@ def test_concurrent_double_click_and_conflicts(instrument, adapter):
         svc.answer(sid, {**request(outcomes[0]["current"]), "expected_session_version": 0})
 
 
+def test_legacy_answer_waits_for_next_question_generation(instrument, adapter, monkeypatch):
+    """V1/V2 retain GenerationPending as a retry signal, unlike V3's ACK."""
+    svc = make_service(instrument, adapter)
+    view = consent(svc)
+    sid = view["session_id"]
+    saved = svc.answer(sid, request(view))["accepted"]
+
+    def slow_next(_):
+        raise GenerationPending("simulated concurrent question preparation")
+
+    monkeypatch.setattr(svc, "current", slow_next)
+    with pytest.raises(GenerationPending):
+        svc._acknowledge_committed_answer(sid, saved)
+
+
 def test_restart_and_current_preserve_exact_generated_wording(instrument, adapter):
     svc = make_service(instrument, adapter)
     view = consent(svc)
