@@ -36,7 +36,7 @@ jobs:
         env:
           PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
         run: |
-          python -m pytest -q -rs             human_study/tests/test_webapp_parity.py             human_study/tests/test_v3_schedule_and_simulation.py             human_study/tests/test_v3_multi_observations.py             human_study/tests/test_v3_trajectory_analysis.py
+          python -m pytest -q -rs             human_study/tests/test_webapp_parity.py             human_study/tests/test_native_webapp_service.py             human_study/tests/test_v3_schedule_and_simulation.py             human_study/tests/test_v3_multi_observations.py             human_study/tests/test_v3_trajectory_analysis.py
       - name: Validate V3 native study configs (no candidate bank)
         env:
           PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
