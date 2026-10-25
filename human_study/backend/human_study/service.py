@@ -223,7 +223,7 @@ class StudyService:
             item = self.config.bank(phase)[s["phase_index"]]
             if self.config.response_mode == "free_text_multi" and not s["state"]:
                 from .multi_observations import prior_baseline_assignments
-                observed = prior_baseline_assignments(snap)
+                observed = prior_baseline_assignments(snap, allow_revision=self.config.candidate_mode == "native_webapp")
             else:
                 observed = s["state"]["observed_state"] if s["state"] else {
                     q["target_variable"]: q["response_value"] for k, q in snap.records.items()
@@ -463,11 +463,14 @@ class StudyService:
                     candidates = permitted_items(self.config, self.adapter)
                 existing = (self._human_state(snap).observed_state
                             if q["phase"] == "intervention"
-                            else prior_baseline_assignments(snap))
+                            else prior_baseline_assignments(snap, allow_revision=self.config.candidate_mode == "native_webapp"))
                 proposed = self.llm.interpret_multi(
                     q["displayed_wording"], raw_answer, list(candidates.values()))
-                interpretation = resolve(proposed, raw_answer, candidates, existing,
-                                         self.adapter, self.config.minimum_mapping_confidence)
+                interpretation = resolve(
+                    proposed, raw_answer, candidates, existing,
+                    self.adapter, self.config.minimum_mapping_confidence,
+                    allow_revision=self.config.candidate_mode == "native_webapp",
+                )
                 if mapping_provenance is not None:
                     interpretation["variable_mapping"] = mapping_provenance
                 accepted_assignments = interpretation["accepted"]
