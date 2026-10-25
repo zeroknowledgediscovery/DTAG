@@ -68,6 +68,7 @@ The full [config/study.example.yaml](config/study.example.yaml) was generated an
 | `DTAG_LLM_BACKEND` | `openai` or `mock`; production requires openai |
 | `DTAG_GCS_BUCKET` | required private research bucket outside local mode |
 | `DTAG_FIRESTORE_DATABASE` | `(default)` unless explicitly configured |
+| `DTAG_PUBLIC_ORIGIN` | Exact browser-visible HTTPS service origin (e.g. result of `gcloud run services describe ... --format=value(status.url)`); required by deployment script and pinned to the deployed revision for CSRF validation behind reverse proxies |
 | `DTAG_COOKIE_SECRET` | stable random secret, ≥32 characters; Secret Manager |
 | `OPENAI_API_KEY` | required for openai; Secret Manager |
 | `DTAG_LOCAL_FIXTURE` | `1` only for local/mock UI fixture |
@@ -80,6 +81,8 @@ After explicit authorization for an isolated billing-enabled GCP project:
 export GCP_PROJECT='<isolated-project-id>'
 export DTAG_GCS_BUCKET='<globally-unique-private-bucket>'
 export GCP_REGION=us-east1  # suggestion, configurable
+# Existing Cloud Run service: pin the browser-visible HTTPS origin explicitly.
+export DTAG_PUBLIC_ORIGIN="$(gcloud run services describe dtag-human-pilot --project "$GCP_PROJECT" --region "$GCP_REGION" --format='value(status.url)')"
 export DTAG_REVIEWED_CONFIG='/secure/path/reviewed.yaml'
 bash human_study/deploy/provision.sh  # prints commands; does not provision
 # After reviewing costs/IAM and explicit authorization:
