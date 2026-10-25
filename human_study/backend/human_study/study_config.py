@@ -42,6 +42,8 @@ class AttentionCheck(StrictModel):
     check_id: str = Field(pattern=r"^attention_[A-Za-z0-9_]+$", max_length=80)
     instruction: str = Field(min_length=20, max_length=500)
     expected_token: str = Field(pattern=r"^[A-Za-z]{3,20}$")
+    # Show after this many substantive answers. None = after all substantive answers.
+    after_substantive: int | None = Field(default=None, ge=0, le=100)
     version: str = "1"
 
 
@@ -76,6 +78,14 @@ class StudyConfig(StrictModel):
             raise ValueError("attention checks must have unique non-model identifiers")
         if self.attention_checks and self.response_mode != "free_text_multi":
             raise ValueError("attention checks require V3 free_text_multi mode")
+        last_position = -1
+        for check in self.attention_checks:
+            position = self.attention_position(check)
+            if not 0 <= position <= len(self.bank("baseline")) + self.intervention_steps:
+                raise ValueError("attention placement outside substantive-question sequence")
+            if position < last_position:
+                raise ValueError("attention checks must be sorted by after_substantive")
+            last_position = position
         if self.initial_steps is not None and self.initial_steps > sum(
             i.phase == "baseline" for i in self.items
         ):
@@ -99,6 +109,10 @@ class StudyConfig(StrictModel):
             if len(vals) != len(set(vals)):
                 raise ValueError(f"duplicate choices: {item.item_id}")
         return self
+
+    def attention_position(self, check: AttentionCheck) -> int:
+        return (len(self.bank("baseline")) + self.intervention_steps
+                if check.after_substantive is None else check.after_substantive)
 
     def bank(self, phase: str) -> list[Item]:
         items = [i for i in self.items if i.phase == phase]
