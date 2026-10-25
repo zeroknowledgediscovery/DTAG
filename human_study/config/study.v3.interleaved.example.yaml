@@ -18,7 +18,7 @@ question_mode: llm_required
 response_mode: free_text_multi
 candidate_mode: native_webapp
 push_response_mode: draw
-max_response_assignments: 5
+max_response_assignments: 50
 minimum_mapping_confidence: 0.8
 llm_model: gpt-4.1-mini-2025-04-14
 prompt_version: dtag-human-v3-evidence-multi-assignments
