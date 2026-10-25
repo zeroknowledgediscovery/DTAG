@@ -56,6 +56,34 @@ The source `codebook_page` numbers below are **metadata reported by the reposito
 - Baseline `confinan` ends in “financial inst” in the 2024 map and needs the complete institution name (2024 codebook page available in the row).
 - The other baseline items and all three outcome items have not been independently checked against the original 2024 questionnaire. The 2024 source map should not be mistaken for a verbatim instrument merely because individual text fields look complete.
 
+## Verified 2024 NATENVIY correction (internal pilot)
+
+The official NORC **GSS 2024 Ballot 3 English** questionnaire, PDF page 45
+(zero-indexed page 44), explicitly asks whether respondents think the country
+is spending too much, too little, or about the right amount on **the environment**
+for `NATENVIY`. This is the **alternate wording form**, distinct from
+`NATENVIR`, which asks about *improving and protecting the environment*.
+Source: https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot3_English.pdf
+
+Our original instrument map supplies `NATENVIY` only as “Improving and protecting
+the environment,” without the required spending stem. This is **not** the
+form-specific respondent-facing wording. As an interim fail-closed pilot
+measure, `human_study.questions` supplies the verified 2024 reference for
+LLM rewriting *only* when the source fragment and native choices match the
+known defective entry. Form-specific checks verify the spending scale and
+disallow `NATENVIR` wording. The cross-variable reverse mapper is not used
+for this form, because it cannot reliably disambiguate near-duplicate
+experimental forms. The generated-question record distinguishes
+`validation_method=verified_2024_form_specific_reference_v1` from
+`mapper_hit`, and retains the source citation.
+
+**Before participant recruitment**, incorporate this verified source and
+its form-specific provenance directly in the immutable reviewed instrument
+and audit the other truncated items against the 2024 ballots. In particular,
+`workhard` and `helpoth` are forced ranking tasks and cannot be faithfully
+administered as independent importance-rating questions. This pilot fix
+does not validate those items or all other incomplete stems.
+
 ## Missing authoritative source
 
 To finish the exact-wording repair, obtain **the official GSS 2024 questionnaire/instrument**, including the respondent-facing text, introductions/stems, and answer scales, or the complete official `GSS_2024_Codebook.pdf` **if** its labels actually contain the untruncated original questions.
