@@ -177,10 +177,10 @@ class QuestionLLM:
             "Choose 'missing' if the respondent explicitly declines or says they cannot answer. "
             "Otherwise choose 'ambiguous' and an empty native_value. "
             "For 'mapped', choose exactly one category string; for other statuses use an empty string. "
-            "Return a calibrated confidence in [0,1].\\n\\n"
-            f"QUESTION:\\n{displayed_question}\\n\\n"
-            "ALLOWED CATEGORIES:\\n" + "\\n".join(f"- {v}" for v in choices) +
-            f"\\n\\nRESPONDENT'S WORDS:\\n{words}"
+            "Return a calibrated confidence in [0,1].\n\n"
+            f"QUESTION:\n{displayed_question}\n\n"
+            "ALLOWED CATEGORIES:\n" + "\n".join(f"- {v}" for v in choices) +
+            f"\n\nRESPONDENT'S WORDS:\n{words}"
         )
         try:
             resp = self.client.responses.create(
