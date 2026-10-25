@@ -17,8 +17,13 @@ def choose_next_item(state, policy, exclusions, rng_state, config, adapter):
     if config.candidate_mode == "native_webapp":
         # Exactly the web app's askable_items + native_one_step, including
         # the objective selected by its resp_mode (max/modal or draw/mean).
+        # Match webapp askable_items: an item is excluded when its native
+        # variable is present in the state, not merely because its wording was
+        # asked and the participant's prose did not assign that coordinate.
+        # Explicit exclusion and held-out-outcome rules are study constraints.
+        webapp_skip = set(state.excluded_ids) | set(state.reserved_outcome_ids) | set(exclusions)
         candidates = adapter.webapp_candidates(
-            dict(state.observed_state), config, exclusions=skip
+            dict(state.observed_state), config, exclusions=webapp_skip
         )
         eligible = sorted(candidates)
         if not eligible:
