@@ -30,7 +30,7 @@ def export_records(finals, out):
         provenance.append({"session_id": sid, "config_hash": final["config_hash"], "provenance": final["provenance"], "source_object": name})
         for q in final["questions"]:
             # Individual answer objects are authoritative source references for each row.
-            folder = {"baseline": "baseline", "intervention": "questions", "outcome": "outcomes"}[q["phase"]]
+            folder = {"baseline": "baseline", "intervention": "questions", "outcome": "outcomes", "attention": "attention"}[q["phase"]]
             source = name.rsplit("/", 1)[0] + f"/{folder}/{q['question_id']}.json"
             common = {"session_id": sid, "question_id": q["question_id"], "variable": q["target_variable"], "source_object": source}
             a = {**common, "phase": q["phase"], "answer": q["response_value"],
