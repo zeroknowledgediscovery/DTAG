@@ -61,6 +61,11 @@ class StudyConfig(StrictModel):
     question_mode: Literal["legacy", "llm_required"] = "legacy"
     response_mode: Literal["click", "free_text_llm", "free_text_multi"] = "click"
     max_response_assignments: int = Field(default=5, ge=1, le=12)
+    # Native mode delegates the candidate universe/geometry to the exact webapp
+    # optimizer/session_push.py path. Instrument mode preserves historic pilots.
+    candidate_mode: Literal["instrument", "native_webapp"] = "instrument"
+    # Webapp resp_mode=max ranks modal shifts; draw ranks expected shifts.
+    push_response_mode: Literal["max", "draw"] = "max"
     # Non-geometric, investigator-designed attention checks (V3).
     attention_checks: tuple[AttentionCheck, ...] = ()
     minimum_mapping_confidence: float = Field(default=0.80, ge=0.5, le=1.0)
@@ -93,8 +98,10 @@ class StudyConfig(StrictModel):
         if len(ids) != len(set(ids)):
             raise ValueError("baseline/intervention/outcome/control item sets must be disjoint")
         for phase in ("baseline", "intervention"):
-            if not self.bank(phase):
+            if not self.bank(phase) and (phase != "intervention" or self.candidate_mode != "native_webapp"):
                 raise ValueError(f"missing {phase} bank")
+        if self.candidate_mode == "native_webapp" and self.response_mode != "free_text_multi":
+            raise ValueError("native_webapp selection requires V3 free-text multi mapping")
         if self.response_mode == "click" and not self.bank("outcome"):
             raise ValueError("legacy study requires outcome questions")
         if self.response_mode in ("free_text_llm", "free_text_multi"):
@@ -102,8 +109,9 @@ class StudyConfig(StrictModel):
                 raise ValueError("free-text V2 requires LLM-generated questions")
             if not 1 <= len(self.bank("baseline")) <= 40:
                 raise ValueError("V2 requires 1–40 initial questions")
-            if len(self.bank("intervention")) < self.intervention_steps:
-                raise ValueError("V2 intervention bank is smaller than planned sequence")
+            if (self.candidate_mode == "instrument" and
+                    len(self.bank("intervention")) < self.intervention_steps):
+                raise ValueError("instrument-limited intervention bank is smaller than planned sequence")
         for item in self.items:
             vals = [c.native_value for c in item.choices]
             if len(vals) != len(set(vals)):
