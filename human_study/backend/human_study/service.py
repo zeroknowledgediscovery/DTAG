@@ -233,7 +233,10 @@ class StudyService:
         qid = digest([s["session_id"], phase, s["phase_index"], item.item_id])[:32]
         return {"question_id": qid, "target_variable": item.item_id, "phase": phase,
                 "step": s["phase_index"], "ordinal": s["next_step"], "status": "generating",
-                "original_wording": item.original_wording, "choices": [c.model_dump() for c in item.choices],
+                "original_wording": item.original_wording, "choices": [
+                     c.model_dump() if hasattr(c, "model_dump")
+                     else {"native_value": c.native_value, "display_label": c.display_label}
+                     for c in item.choices],
                 "required": item.required, "item_version": item.version, "selection": selection,
                 "conditional_distribution": dist, "policy": s["policy"],
                 "generation_token": uuid.uuid4().hex, "generation_lease_until": time.time() + 150,
