@@ -364,3 +364,39 @@ def test_v3_committed_last_adaptive_answer_is_acknowledged_during_attention_gene
     assert completed_attention["current"]["phase"] == "ready_to_complete"
     final = service.complete(sid)
     assert final["phase"] == "complete"
+
+
+def test_v3_attention_accepts_generated_imperative_and_retries_invalid_first_attempt(
+    instrument, adapter
+):
+    """The model must generate the instruction; punctuation alone is not failure."""
+    from types import SimpleNamespace
+    from human_study.study_config import AttentionCheck
+    check = AttentionCheck(
+        check_id="attention_retry_test",
+        instruction="Please write the word cobalt as part of your response to this attention check.",
+        expected_token="cobalt",
+    )
+    config, _, _ = make_v3(instrument, adapter)
+    llm = QuestionLLM(adapter, config)
+
+    class Responses:
+        def __init__(self):
+            self.calls = 0
+
+        def create(self, **kwargs):
+            self.calls += 1
+            wording = (
+                "What color word do you see above?"
+                if self.calls == 1 else
+                "Please include the word cobalt in your written answer."
+            )
+            return SimpleNamespace(output_text=json.dumps({"question": wording}))
+
+    responses = Responses()
+    llm.client = SimpleNamespace(responses=responses)
+    rendered = llm.generate_attention(check)
+    assert responses.calls == 2
+    assert rendered["displayed_wording"].endswith(".")
+    assert rendered["question_provenance"]["generation_attempts"] == 2
+    assert rendered["question_provenance"]["fallback"] is False
