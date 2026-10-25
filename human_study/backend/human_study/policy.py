@@ -12,7 +12,8 @@ def initial_rng(seed):
 def choose_next_item(state, policy, exclusions, rng_state, config, adapter):
     if policy not in POLICIES:
         raise ValueError("unknown policy")
-    skip = set(state.asked_ids) | set(state.reserved_outcome_ids) | set(state.excluded_ids) | set(exclusions)
+    skip = (set(state.asked_ids) | set(state.observed_state) |
+            set(state.reserved_outcome_ids) | set(state.excluded_ids) | set(exclusions))
     eligible = sorted(set(adapter.eligible(config)) - skip)
     candidates = {v: [c.native_value for c in config.item(v).choices] for v in eligible}
     if not eligible:
