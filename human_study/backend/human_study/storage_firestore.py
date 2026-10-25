@@ -6,10 +6,17 @@ from google.cloud import firestore
 from .storage import Snapshot, Conflict
 
 
+# Firestore reserves field names matching __.*__, even in nested maps.
+# Use an ordinary field name for the decimal representation of 128-bit PCG64
+# integers. Keep decoding the legacy form for previously serialized snapshots.
+BIGINT_FIELD = "dtag_bigint_decimal"
+LEGACY_BIGINT_FIELD = "__dtag_bigint__"
+
+
 def encode(value):
     # PCG64 uses unsigned 128-bit integers; Firestore integers are signed 64-bit.
     if isinstance(value, int) and not isinstance(value, bool) and not -(2**63) <= value < 2**63:
-        return {"__dtag_bigint__": str(value)}
+        return {BIGINT_FIELD: str(value)}
     if isinstance(value, dict):
         return {k: encode(v) for k, v in value.items()}
     if isinstance(value, (tuple, list)):
@@ -19,8 +26,10 @@ def encode(value):
 
 def decode(value):
     if isinstance(value, dict):
-        if set(value) == {"__dtag_bigint__"}:
-            return int(value["__dtag_bigint__"])
+        if len(value) == 1 and BIGINT_FIELD in value:
+            return int(value[BIGINT_FIELD])
+        if len(value) == 1 and LEGACY_BIGINT_FIELD in value:
+            return int(value[LEGACY_BIGINT_FIELD])
         return {k: decode(v) for k, v in value.items()}
     if isinstance(value, list):
         return [decode(v) for v in value]
