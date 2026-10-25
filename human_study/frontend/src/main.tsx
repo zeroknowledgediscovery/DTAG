@@ -85,7 +85,7 @@ function App() {
       }
     });
   }
-  const labels: Record<string, string> = { baseline: 'Starting questions', intervention: 'Study questions', outcome: 'Final questions' };
+  const labels: Record<string, string> = { baseline: 'Starting questions', intervention: 'Study questions', outcome: 'Final questions', attention: 'Attention check' };
 
   return <main aria-busy={busy}>
     <header><span className="eyebrow">RESEARCH PARTICIPATION</span><h1>One question at a time</h1>
