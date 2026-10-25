@@ -366,7 +366,7 @@ class StudyService:
             if previous:
                 if previous["fingerprint"] != fingerprint:
                     raise Conflict("idempotency key was already used for a different answer")
-                return {"accepted": previous["result"], "current": self.current(sid)}
+                return self._acknowledge_committed_answer(sid, previous["result"])
             if s["pending_exports"]:
                 self.reconcile(sid)
                 continue
