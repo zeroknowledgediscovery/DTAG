@@ -423,7 +423,7 @@ def test_v3_archive_outage_cannot_be_reported_as_next_question_pending(
     path, including replaying a committed idempotency key during an outage.
     """
     from human_study.service import ExportPending
-    from human_study.study_config import AttentionCheck
+    from human_study.study_config import AttentionCheck, digest
 
     config, llm, service = make_v3(instrument, adapter)
     if phase == "attention":
@@ -463,9 +463,9 @@ def test_v3_archive_outage_cannot_be_reported_as_next_question_pending(
         assert snap.session["next_step"] == expected_completed
         assert snap.session["pending_exports"]
         assert snap.session["current_question_id"] is None
-        assert snap.records["requests/" + __import__(
-            "human_study.study_config", fromlist=["digest"]
-        ).digest(req["idempotency_key"])]["result"]["accepted"] is True
+        assert snap.records["requests/" + digest(
+            req["idempotency_key"]
+        )]["result"]["accepted"] is True
 
         with pytest.raises(ExportPending):
             service.current(sid)
