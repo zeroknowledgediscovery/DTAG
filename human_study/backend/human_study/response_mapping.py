@@ -29,8 +29,9 @@ def shared_session_config(llm_model):
             setattr(cfg, name, value)
     cfg.openai_model = llm_model
     cfg.resp_mode = "draw"
-    cfg.semantic_resp_mode = "draw"
     cfg.semantic_fallback = "update_state"
+    # Keep semantic_resp_mode from the webapp's actual run configuration;
+    # it is a separate parameter from resp_mode (currently 'max').
     cfg.validate()
     return cfg
 
