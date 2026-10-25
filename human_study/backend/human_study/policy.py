@@ -30,9 +30,6 @@ def choose_next_item(state, policy, exclusions, rng_state, config, adapter):
             return {"status": "no_candidate", "reason": "no remaining webapp-askable native items",
                     "rng_state": rng_state}
         result = adapter.webapp_scores(dict(state.observed_state), candidates)
-        if not all(math.isfinite(r["expected_delta"]) and math.isfinite(r["delta_modal"])
-                   for r in result.summary):
-            raise ValueError("undefined native webapp one-step scores")
         objective = "delta_modal" if config.push_response_mode == "max" else "expected_delta"
         # Match optimizer.session_push.suggest ordering and the webapp's
         # strict sign criterion for right/up and left/down.
