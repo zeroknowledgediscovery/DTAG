@@ -473,6 +473,12 @@ class StudyService:
                 )
                 if mapping_provenance is not None:
                     interpretation["variable_mapping"] = mapping_provenance
+                    # Same sequential variable order as DTAGSession's
+                    # _answer_with_variables, which determines LRU recency.
+                    ranking = {v: i for i, v in enumerate(
+                        mapping_provenance["variables"])}
+                    interpretation["accepted"].sort(
+                        key=lambda x: ranking[x["variable"]])
                 accepted_assignments = interpretation["accepted"]
                 native = next((row["native_value"] for row in accepted_assignments
                                if row["variable"] == q["target_variable"]), None)
