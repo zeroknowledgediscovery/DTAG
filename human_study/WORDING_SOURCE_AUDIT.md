@@ -84,6 +84,64 @@ and audit the other truncated items against the 2024 ballots. In particular,
 administered as independent importance-rating questions. This pilot fix
 does not validate those items or all other incomplete stems.
 
+## Completed-pilot question inspection (2026-10-24)
+
+A complete 36-question session confirms end-to-end operational flow, **not**
+respondent-facing wording fidelity. A preliminary static source review found:
+
+- **Nine baseline institution items** (`conbus`, `coneduc`, `conpress`,
+  `conmedic`, `contv`, `conjudge`, `consci`, `conlegis`, `conarmy`)
+  are **not** flagged `source_text_incomplete`, although their map-sourced text
+  embeds the common institutional-confidence question in parentheses and
+  appends the institution name after the question mark. The production code
+  passes them through unchanged as `canonical-common-instrument`.
+  The 2024 Ballot 3 questionnaire indeed encodes the institution as a separate
+  name under the shared question; this formatting must be converted to one
+  standalone question in a respondent-facing web survey.
+- `workhard` and `helpoth` use **relative child-value ranking** options.
+  A generated isolated importance question is not equivalent to the source
+  forced-ranking task.
+- `eqwlth`, `helppoor`, `helpsick`, `helpnot` include plain numeric
+  `display_label` values that are not self-describing.
+- Other flagged excerpts may be presented only when LLM-generation validation
+  succeeds. A successful reverse lexical/LLM match is not proof of response-
+  scale fidelity, original wording, or questionnaire-form identity.
+
+To inspect **the exact questions displayed in a completed session** (without
+printing participant answers, identifiers, treatment arm or outcome indices):
+
+```bash
+gcloud storage ls --recursive gs://pkcsaas-01-dtag-study-data/studies/pilot-001/sessions/ | grep '/final.json
+To finish the exact-wording repair, obtain **the official GSS 2024 questionnaire/instrument**, including the respondent-facing text, introductions/stems, and answer scales, or the complete official `GSS_2024_Codebook.pdf` **if** its labels actually contain the untruncated original questions.
+
+The canonical local codebook path already expected by DTAG is `data/gss/codebooks/GSS_2024_Codebook.pdf`. Its contents are absent from tracked repository data. Raw source documents should remain outside Git unless redistribution is permitted.
+
+For each corrected item, the next change must:
+1. Verify the complete *2024* question against authoritative source, with page/section provenance.
+2. Update `human_study/config/study.example.yaml` or a verified source-of-truth override used by its builder, preserving the same `item_id` and native `native_value` categories.
+3. Preserve evidence that the item wording covers the intended response categories; ensure scale labels are understandable without inventing category values.
+4. Test LLM question generation and reverse-mapping using the actual revised text, and ensure a fallback never presents truncated metadata to participants.
+5. Keep `reviewed: false` until investigator/instrument approval; test with synthetic traffic only beforehand.
+
+**Do not fabricate a GSS 2024 full question by expanding a 255-character fragment, combining snippets across items, or silently using an earlier-wave version.**
+
+# Choose one exact object path returned above:
+gcloud storage cat "$FINAL" | python3 human_study/scripts/audit_completed_questions.py - --show-original
+```
+
+The audit screens for raw fragments, numeric labels, ranking scales, provider
+fallbacks and missing source verification. It reports all displayed wording and
+choices for investigator examination. An issue-free *heuristic* report does
+**not** imply validation against the source questionnaires.
+
+**Do not overwrite historical final.json objects or silently alter the deployed
+reviewed.yaml.** Correct the next instrument version and verify all its
+questions/response scales before recruiting Prolific participants.
+
+2024 official source: https://gss.norc.org/get-documentation/questionnaires.html
+(2024 Cross-Section Ballot C / Ballot 3 English, institutional confidence
+questions around questionnaire page 93).
+
 ## Missing authoritative source
 
 To finish the exact-wording repair, obtain **the official GSS 2024 questionnaire/instrument**, including the respondent-facing text, introductions/stems, and answer scales, or the complete official `GSS_2024_Codebook.pdf` **if** its labels actually contain the untruncated original questions.
