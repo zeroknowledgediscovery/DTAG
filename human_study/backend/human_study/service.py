@@ -299,7 +299,7 @@ class StudyService:
         if not isinstance(raw, str) or not raw.strip():
             raise ValueError("Please write your response before continuing.")
         check = self.config.attention_checks[question["step"]]
-        passed = bool(re.search(r"\\b" + re.escape(check.expected_token) + r"\\b",
+        passed = bool(re.search(r"\b" + re.escape(check.expected_token) + r"\b",
                                 raw, flags=re.IGNORECASE))
         q = {**question, "status": "answered", "raw_text_response": raw,
              "response_value": None, "missing_reason": None,
