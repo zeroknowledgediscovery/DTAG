@@ -2,7 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
-type Question = { question_id: string; text: string; choices: { value: string; label: string }[]; required: boolean; response_mode?: "click" | "free_text_llm" };
+type Question = { question_id: string; text: string; choices: { value: string; label: string }[]; required: boolean; response_mode?: "click" | "free_text_llm" | "free_text_multi" };
+const isWrittenMode = (q: Question | null | undefined) =>
+  q?.response_mode === 'free_text_llm' || q?.response_mode === 'free_text_multi';
+
 type View = { session_id: string; phase: string; session_version: number; question: Question | null;
   consent: string | null; receipt: string | null; progress: { completed: number; total: number } };
 type Pending = { question_id: string; answer_value: string | null; text_answer: string | null; missing_reason: string | null;
@@ -59,7 +62,7 @@ function App() {
 
   async function answer(value: string | null, reason: string | null = null) {
     if (!view?.question) return;
-    const freeText = view.question.response_mode === 'free_text_llm';
+    const freeText = isWrittenMode(view.question);
     pending.current ??= { question_id: view.question.question_id,
       answer_value: freeText ? null : value,
       text_answer: freeText ? written.trim() : null, missing_reason: reason,
@@ -98,9 +101,9 @@ function App() {
       <div className="actions"><button disabled={busy || !consent} onClick={() => void perform(() => api('consent', { accepted: true, expected_session_version: view.session_version }))}>Begin study</button>
         <button className="secondary" disabled={busy} onClick={() => void perform(() => api('consent', { accepted: false, expected_session_version: view.session_version }))}>Do not participate</button></div>
     </section>}
-    {view?.question && <form onSubmit={e => { e.preventDefault(); void answer(view.question?.response_mode === 'free_text_llm' ? null : selected); }}>
+    {view?.question && <form onSubmit={e => { e.preventDefault(); void answer(isWrittenMode(view.question) ? null : selected); }}>
       <h2 tabIndex={-1} ref={heading} id="question-title">{view.question.text}</h2>
-      {view.question.response_mode === 'free_text_llm' ? <>
+      {isWrittenMode(view.question) ? <>
         <label className="written-label" htmlFor="written-answer">Your answer, in your own words</label>
         <textarea id="written-answer" value={written} maxLength={2000} rows={5}
           aria-describedby="written-help" placeholder="Write what you think and why…"
@@ -117,9 +120,9 @@ function App() {
       </>}
       <div className="actions">
         <button disabled={busy || pending.current !== null ||
-          (view.question.response_mode === 'free_text_llm' ? !written.trim() : !selected)}
+          (isWrittenMode(view.question) ? !written.trim() : !selected)}
           type="submit">Save and continue</button>
-        {view.question.response_mode !== 'free_text_llm' && !view.question.required &&
+        {!isWrittenMode(view.question) && !view.question.required &&
           <button className="secondary" type="button" disabled={busy || pending.current !== null}
             onClick={() => void answer(null, 'prefer_not_to_answer')}>Prefer not to answer</button>}
       </div>
