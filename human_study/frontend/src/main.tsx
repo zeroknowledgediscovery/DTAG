@@ -79,6 +79,8 @@ function App() {
         if (err instanceof Error && (
           err.message.includes('could not confidently interpret') ||
           err.message.includes('needs an opinion') ||
+          err.message.includes('Please clarify') ||
+          err.message.includes('No valid survey-category interpretation') ||
           err.message.includes('Please write')
         )) pending.current = null;
         throw err;
