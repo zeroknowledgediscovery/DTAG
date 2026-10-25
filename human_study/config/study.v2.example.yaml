@@ -12,6 +12,7 @@ consent_text: >-
   Do not include names, contact information, or other identifying details.
   Participation is voluntary. You may stop at any time.
   This internal receipt is not a payment or Prolific code.
+initial_steps: 4
 intervention_steps: 3
 question_mode: llm_required
 response_mode: free_text_llm
