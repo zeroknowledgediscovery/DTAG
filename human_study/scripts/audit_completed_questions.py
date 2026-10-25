@@ -5,7 +5,7 @@ Runs offline after data have been downloaded or streamed from private GCS.
 Does NOT print participant answers, session identifiers, ideology scores or policy.
 This is a screening report, NOT a substitute for instrument/source review.
 Usage:
-  gcloud storage cat gs://BUCKET/studies/pilot-001/sessions/SESSION/final.json \\
+  gcloud storage cat gs://BUCKET/studies/pilot-001/sessions/SESSION/final.json \
     | python3 human_study/scripts/audit_completed_questions.py -
 """
 from __future__ import annotations
@@ -16,12 +16,12 @@ import re
 import sys
 
 
-NUMERIC_LABEL = re.compile(r"^[+-]?\\d+(?:\\.\\d+)?$")
-RANK_LABEL = re.compile(r"\\b(?:[1-5](?:st|nd|rd|th)|most|least) important\\b", re.I)
-UNJOINED_STEM = re.compile(r"\\?\\)\\s*\\S+")
-SOURCE_FRAGMENT = re.compile(r"^\\s*\\((?:i am going|as far as|\\.{2,})", re.I)
+NUMERIC_LABEL = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
+RANK_LABEL = re.compile(r"\b(?:[1-5](?:st|nd|rd|th)|most|least) important\b", re.I)
+UNJOINED_STEM = re.compile(r"\?\)\s*\S+")
+SOURCE_FRAGMENT = re.compile(r"^\s*\((?:i am going|as far as|\.{2,})", re.I)
 TRUNCATION_END = re.compile(
-    r"(?:\\b(?:the government should|other people t|others think that|still others|the woman takes care of the|financial inst)\\s*$|\\.{3}\\s*$)",
+    r"(?:\b(?:the government should|other people t|others think that|still others|the woman takes care of the|financial inst)\s*$|\.{3}\s*$)",
     re.I,
 )
 RANKING_ITEMS = {"workhard", "helpoth"}
@@ -117,14 +117,14 @@ def main(argv=None):
     }
     if args.json:
         json.dump({"summary": counts, "questions": rows}, sys.stdout, ensure_ascii=False, indent=2)
-        sys.stdout.write("\\n")
+        sys.stdout.write("\n")
     else:
         print(f"Question audit: {counts['questions']} presented; "
               f"{counts['flagged']} flagged; {counts['fail']} FAIL; {counts['review']} REVIEW")
         print("Flags screen wording and scales only; check all questions against official 2024 ballot.")
         for r in rows:
             issues = ", ".join(f"{i['severity']}:{i['reason']}" for i in r["issues"]) or "none"
-            print(f"\\n{r['number']:02d} [{r['phase']}] {r['variable']} :: {issues}")
+            print(f"\n{r['number']:02d} [{r['phase']}] {r['variable']} :: {issues}")
             print(f"  SHOWN: {r['displayed_wording']}")
             print(f"  CHOICES: {' | '.join(r['answer_labels'])}")
             print(f"  PROVENANCE: {r['provider']}; fallback={r['fallback']}; "
