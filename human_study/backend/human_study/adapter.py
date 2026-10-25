@@ -62,6 +62,72 @@ class NativeAdapter:
                       and all(c.native_value in self.support(i.item_id) and not MISSING.search(c.native_value)
                               for c in i.choices))
 
+    def webapp_candidates(self, state, config, exclusions=()):
+        """Exactly the webapp's opinion-item universe, not the YAML instrument.
+
+        Reuse optimizer.session_push.askable_items with a minimal session facade;
+        do not copy its filtering rules into human_study.
+        """
+        from types import SimpleNamespace
+        from optimizer.session_push import askable_items
+        session = SimpleNamespace(
+            ctx=self.world.ctx, polar=self.world.g, state=dict(state)
+        )
+        skip = (set(exclusions) | set(config.excluded_ids) |
+                set(config.ethics_disallowed_ids) |
+                {i.item_id for i in config.bank("outcome")} |
+                {i.item_id for i in config.bank("baseline")})
+        vars_ = askable_items(session, include_pole_items=False)
+        return {v: list(self.support(v)) for v in vars_
+                if v not in skip}
+
+    def webapp_scores(self, state, candidates):
+        """Use same native_one_step implementation as webapp push suggestions."""
+        from optimizer.one_step_geometry import native_one_step
+        with self.lock:
+            return native_one_step(self.world, dict(state), only=candidates)
+
+    def dynamic_item(self, variable):
+        """Materialize one selected native variable only when needed."""
+        from types import SimpleNamespace
+        from .study_config import Choice
+        ctx = self.world.ctx
+        if variable not in ctx.var_map or variable not in ctx.idx_map:
+            raise ValueError("native item has no semantic-map question")
+        values = list(self.support(variable))
+        if not values:
+            raise ValueError("native item has no supported categories")
+        return SimpleNamespace(
+            item_id=variable, original_wording=str(ctx.var_map[variable]),
+            source_text_incomplete=True,
+            choices=tuple(Choice(native_value=str(v), display_label=str(v))
+                          for v in values),
+            phase="intervention", required=True,
+            version="native-map-runtime",
+        )
+
+    def webapp_mapping_items(self, displayed_question, answer, target, config):
+        """Webapp lexical prefilter over full native map, plus question target.
+
+        The shared mapper supplies candidate *identifiers*, never answers;
+        evidence-backed free-text LLM mapping then validates native categories.
+        No predeclared YAML intervention whitelist is used.
+        """
+        from optimizer.dtag_bridge import RUN_DEFAULTS
+        import dtag_core as core
+        allowed = set(self.webapp_candidates({}, config)) | {
+            x.item_id for x in config.bank("baseline")}
+        phrase = displayed_question + "\\n" + answer
+        found = core.lexical_prefilter(
+            self.world.ctx.var_map, phrase,
+            top_n=int(RUN_DEFAULTS["prefilter"]),
+            min_score=float(RUN_DEFAULTS["min_map_score"]),
+        )
+        vars_ = list(dict.fromkeys([target] + [v for v, _ in found]))
+        return {v: (config.item(v) if v in {i.item_id for i in config.bank("baseline")}
+                    else self.dynamic_item(v))
+                for v in vars_ if v in allowed}
+
     def index(self, state):
         with self.lock:
             return self._index(self.world, state)
