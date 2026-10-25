@@ -21,7 +21,7 @@ and the root [README](../README.md).
  QuestionLLM (questions.py) -- OpenAI (no fallback in V2/V3)
      |
  MultiObservation validator (multi_observations.py)
-     | strict native categories; explicit evidence; contradictions never overwrite
+     | strict native categories; explicit evidence; contradictions audited; native-webapp mode updates state
  NativeAdapter (adapter.py) -> pinned GSS 2024 LSM
      |
  DTAG policy (policy.py) -> next eligible unasked variable
@@ -85,8 +85,11 @@ generation or GCS synchronization delays; inconsistent records remain errors.
 3. Server validation rejects variables outside the shared DTAG mapping output, ethically excluded, held-out,
    unsupported, low-confidence or unquoted assignments. A text span check
    is an audit safeguard, **not** an independent semantic correctness proof.
-4. Identical native repeats are *confirmations*; contradictory repeats are
-   *conflicts*. Neither overwrites a previously observed category.
+4. Identical native repeats are *confirmations*. Contradictory native
+   human statements remain recorded as *conflicts*. In `native_webapp`
+   mode a later valid answer updates the coordinate (the original webapp's
+   state-update semantics), while historical instrument mode preserves
+   the old value. Every prior statement remains auditable.
 5. In `native_webapp` mode, adaptive candidates come directly from
    `optimizer.session_push.askable_items` and are scored with
    `optimizer.one_step_geometry.native_one_step` at each new native
