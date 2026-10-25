@@ -17,6 +17,25 @@ from .schemas import Answer, Consent, Start
 from .security import Sessions, Throttle
 from .service import StudyService, ExportPending, GenerationPending
 from .storage import Conflict, IntegrityError, MemoryArchive, MemoryRepository
+from .study_config import digest
+
+
+def study_manifest(config, provenance):
+    """Create immutable manifest keyed by its full canonical content.
+
+    The instrument hash alone is insufficient: source/model provenance changes
+    between deployments even when the questionnaire is unchanged. Content
+    addressing preserves each revision without overwriting historical records.
+    """
+    payload = {
+        "schema_version": "1",
+        "study_configuration": config.model_dump(mode="json"),
+        "provenance": provenance,
+    }
+    key = (f"studies/{config.study_id}/manifests/"
+           f"{config.config_hash}-{digest(payload)}.json")
+    return key, payload
+
 
 
 def configured_service():
@@ -88,10 +107,10 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
             raise RuntimeError("nonlocal deployments must use Firestore and GCS")
         svc.repo.probe()
         svc.archive.probe()
-        # A versioned, create-only manifest anchors every archive to exact instrument/model provenance.
-        svc.archive.put(f"studies/{svc.config.study_id}/manifests/{svc.config.config_hash}.json", {
-            "schema_version": "1", "study_configuration": svc.config.model_dump(mode="json"),
-            "provenance": svc.adapter.provenance})
+        # Content-addressed, create-only manifest: no collision between
+        # revisions with identical survey config but different code/model provenance.
+        manifest_name, manifest = study_manifest(svc.config, svc.adapter.provenance)
+        svc.archive.put(manifest_name, manifest)
         yield
 
     app = FastAPI(title="Study", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
