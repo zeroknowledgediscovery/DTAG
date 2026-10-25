@@ -38,6 +38,13 @@ class Item(StrictModel):
     version: str = "1"
 
 
+class AttentionCheck(StrictModel):
+    check_id: str = Field(pattern=r"^attention_[A-Za-z0-9_]+$", max_length=80)
+    instruction: str = Field(min_length=20, max_length=500)
+    expected_token: str = Field(pattern=r"^[A-Za-z]{3,20}$")
+    version: str = "1"
+
+
 class StudyConfig(StrictModel):
     schema_version: str = "1"
     study_id: str = Field(pattern=r"^[a-zA-Z0-9_-]+$", max_length=60)
@@ -52,6 +59,8 @@ class StudyConfig(StrictModel):
     question_mode: Literal["legacy", "llm_required"] = "legacy"
     response_mode: Literal["click", "free_text_llm", "free_text_multi"] = "click"
     max_response_assignments: int = Field(default=5, ge=1, le=12)
+    # Non-geometric, investigator-designed attention checks (V3).
+    attention_checks: tuple[AttentionCheck, ...] = ()
     minimum_mapping_confidence: float = Field(default=0.80, ge=0.5, le=1.0)
     llm_model: str = "gpt-4.1-mini-2025-04-14"
     prompt_version: str = "dtag-human-survey-question-v2-excerpt"
@@ -62,6 +71,11 @@ class StudyConfig(StrictModel):
     @model_validator(mode="after")
     def unique_instrument(self):
         ids = [i.item_id for i in self.items]
+        control_ids = [c.check_id for c in self.attention_checks]
+        if len(control_ids) != len(set(control_ids)) or set(control_ids) & set(ids):
+            raise ValueError("attention checks must have unique non-model identifiers")
+        if self.attention_checks and self.response_mode != "free_text_multi":
+            raise ValueError("attention checks require V3 free_text_multi mode")
         if self.initial_steps is not None and self.initial_steps > sum(
             i.phase == "baseline" for i in self.items
         ):
