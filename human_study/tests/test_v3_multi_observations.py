@@ -279,12 +279,23 @@ def test_v3_llm_attention_generation_preserves_required_token(instrument, adapte
     generated = llm.generate_attention(check)
     assert "cobalt" in generated["displayed_wording"]
     assert generated["question_provenance"]["fallback"] is False
+    # The generator retries invalid wording three times and then raises a
+    # bounded, actionable error; the old "integrity" message was removed.
     client.text = "Have you read the question?"
-    with pytest.raises(QuestionGenerationError, match="integrity"):
+    with pytest.raises(QuestionGenerationError, match="valid instructed-response") as exc:
         llm.generate_attention(check)
+    assert exc.value.attempts == [
+        {"attempt": n, "error": "invalid_generated_instruction"} for n in (1, 2, 3)
+    ]
+
+    # Returning the source instruction verbatim is also rejected: questions
+    # must be LLM-written, never fall back to unmodified investigator wording.
     client.text = check.instruction
-    with pytest.raises(QuestionGenerationError, match="integrity"):
+    with pytest.raises(QuestionGenerationError, match="valid instructed-response") as exc:
         llm.generate_attention(check)
+    assert len(exc.value.attempts) == 3
+    assert all(a["error"] == "invalid_generated_instruction"
+               for a in exc.value.attempts)
 
 
 def test_v3_committed_last_adaptive_answer_is_acknowledged_during_attention_generation_failure(
