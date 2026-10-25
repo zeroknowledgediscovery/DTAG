@@ -215,3 +215,23 @@ def test_real_questionllm_v2_never_falls_back_to_canonical_source(
     monkeypatch.setattr(bridge, "map_question", lambda *a, **kw: {"variables": ["wrong"]})
     with pytest.raises(QuestionGenerationError):
         llm.generate(item)
+
+
+def test_v2_export_preserves_raw_answers_and_interpretations(instrument, adapter, tmp_path):
+    import csv
+    from human_study.export import export_records
+
+    config, llm, svc = make_v2(instrument, adapter)
+    start = svc.start()
+    view = svc.consent(start["session_id"], True, start["session_version"])
+    for i in range(7):
+        view = svc.answer(view["session_id"], text_request(view, f"My written view number {i}."))["current"]
+    completed = svc.complete(view["session_id"])
+    name = f"studies/{config.study_id}/sessions/{completed['session_id']}/final.json"
+    export_records([(name, json.loads(svc.archive.objects[name]))], tmp_path / "exported")
+    with (tmp_path / "exported/answers.csv").open(newline="") as file:
+        rows = list(csv.DictReader(file))
+    assert len(rows) == 7
+    assert rows[0]["raw_text_response"] == "My written view number 0."
+    assert json.loads(rows[0]["response_interpretation"])["status"] == "mapped"
+    assert rows[0]["answer"] == "yes"
