@@ -132,6 +132,23 @@ def resolve(response, words, items, existing, adapter, threshold, *, allow_revis
     }
 
 
+def ordered_state(observations, limit):
+    """Rebuild webapp OrderedDict LRU semantics from immutable human evidence."""
+    from collections import OrderedDict
+    if limit < 1:
+        raise ValueError("webapp state_keep must be positive")
+    state = OrderedDict()
+    for observation in observations:
+        if observation.native_value is None:
+            continue
+        if observation.variable in state:
+            state.move_to_end(observation.variable)
+        state[observation.variable] = observation.native_value
+        while len(state) > limit:
+            state.popitem(last=False)
+    return dict(state)
+
+
 def initial_state(config, adapter, sid, questions):
     """Construct baseline from all explicit assignments in 4 initial responses."""
     baseline = config.bank("baseline")
@@ -149,6 +166,10 @@ def initial_state(config, adapter, sid, questions):
             observations.append(Observation(q["question_id"], v, value, "baseline"))
             if v not in asked:
                 asked.append(v)
+    if config.candidate_mode == "native_webapp":
+        from .response_mapping import shared_session_config
+        state = ordered_state(
+            observations, shared_session_config(config.llm_model).state_keep)
     index = adapter.index(state)
     return HumanDTAGState(
         sid, config.model_key, config.config_hash, adapter.provenance,
@@ -180,9 +201,18 @@ def apply(state, question, assignments, adapter):
         observations.append(Observation(question["question_id"], v, value, "intervention"))
         if v not in asked:
             asked.append(v)
-    after_state = {**state.observed_state, **updates}
-    after = adapter.index(after_state)
     sel = question["selection"]
+    if sel.get("candidate_mode") == "native_webapp":
+        # Same move-to-end and oldest-first eviction as DTAGSession's
+        # OrderedDict state, replayed from all immutable accepted observations.
+        after_state = ordered_state(
+            state.observations + tuple(observations),
+            int(sel["state_keep"]),
+        )
+    else:
+        after_state = {**state.observed_state, **updates}
+    evicted = sorted((set(state.observed_state) | set(updates)) - set(after_state))
+    after = adapter.index(after_state)
     index_result = {
         "index_before": state.current_index,
         "index_after": after,
@@ -191,6 +221,8 @@ def apply(state, question, assignments, adapter):
         "predicted_delta_scope": "selected_target_only",
         "observed_delta_scope": "all_new_explicit_assignments",
         "accepted_variables": list(updates),
+        "evicted_variables": evicted,
+        "state_keep": sel.get("state_keep"),
         "conditional_distribution": question["conditional_distribution"],
     }
     next_state = replace(
