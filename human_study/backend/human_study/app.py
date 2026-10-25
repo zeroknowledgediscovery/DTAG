@@ -66,6 +66,15 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
     if mode != "local" and (not secret or len(secret) < 32 or not secure):
         raise RuntimeError("secure cookies and stable >=32-character secret are required")
     sessions = Sessions(secret or secrets.token_urlsafe(48), secure)
+    public_origin = os.environ.get("DTAG_PUBLIC_ORIGIN", "").strip()
+    if public_origin:
+        # Trust only an investigator-configured public HTTPS origin, never
+        # request-supplied X-Forwarded-Host / X-Forwarded-Proto values.
+        parsed = urlsplit(public_origin)
+        if (parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password
+                or parsed.path not in ("", "/") or parsed.query or parsed.fragment
+                or public_origin != f"https://{parsed.netloc}"):
+            raise RuntimeError("DTAG_PUBLIC_ORIGIN must be one exact HTTPS origin (no path or trailing slash)")
     throttle = Throttle()
     enrollment = Throttle(limit=10, maximum=5000)
 
@@ -95,12 +104,12 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
             # Origin is required on browser writes; CLI clients should explicitly supply it.
             if request.method == "POST":
                 origin = request.headers.get("origin", "")
-                # Cloud Run terminates TLS upstream, so the internal ASGI scope
-                # can say "http" while the browser's Origin is HTTPS. Require
-                # the public HTTPS origin in staging/production without trusting
-                # user-supplied X-Forwarded-Proto (or weakening CSRF checks).
+                # Cloud Run may forward an internal Host and HTTP ASGI scheme,
+                # neither of which is the browser-visible public origin. Bind
+                # the CSRF check to the exact configured HTTPS origin instead.
+                # Without configuration, retain the existing local/HTTPS check.
                 scheme = "https" if mode != "local" else request.url.scheme
-                expected = f"{scheme}://{request.url.netloc}"
+                expected = public_origin or f"{scheme}://{request.url.netloc}"
                 if origin != expected:
                     return JSONResponse({"detail": "same-origin request required"}, status_code=403)
                 if "application/json" not in request.headers.get("content-type", ""):
