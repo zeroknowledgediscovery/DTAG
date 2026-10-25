@@ -77,8 +77,7 @@ class NativeAdapter:
         )
         skip = (set(exclusions) | set(config.excluded_ids) |
                 set(config.ethics_disallowed_ids) |
-                {i.item_id for i in config.bank("outcome")} |
-                {i.item_id for i in config.bank("baseline")})
+                {i.item_id for i in config.bank("outcome")})
         vars_ = askable_items(session, include_pole_items=False)
         return {v: list(self.support(v)) for v in vars_
                 if v not in skip}
