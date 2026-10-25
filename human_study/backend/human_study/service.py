@@ -190,9 +190,14 @@ class StudyService:
             dist = {r["answer"]: r["conditional_probability"] for r in selection["per_answer"]}
         else:
             item = self.config.bank(phase)[s["phase_index"]]
-            observed = s["state"]["observed_state"] if s["state"] else {
-                q["target_variable"]: q["response_value"] for k, q in snap.records.items()
-                if k.startswith("questions/") and q["phase"] == "baseline" and q["status"] == "answered" and q["response_value"] is not None}
+            if self.config.response_mode == "free_text_multi" and not s["state"]:
+                from .multi_observations import prior_baseline_assignments
+                observed = prior_baseline_assignments(snap)
+            else:
+                observed = s["state"]["observed_state"] if s["state"] else {
+                    q["target_variable"]: q["response_value"] for k, q in snap.records.items()
+                    if k.startswith("questions/") and q["phase"] == "baseline"
+                    and q["status"] == "answered" and q["response_value"] is not None}
             dist = self.adapter.distributions(observed, [item.item_id]).get(item.item_id, {})
         qid = digest([s["session_id"], phase, s["phase_index"], item.item_id])[:32]
         return {"question_id": qid, "target_variable": item.item_id, "phase": phase,
@@ -276,6 +281,11 @@ class StudyService:
                     continue
             question, reason = self._prepare_question(snap)
             if question is None:
+                if self.config.response_mode == "free_text_multi":
+                    raise Conflict(
+                        "V3 adaptive pool exhausted before configured question count; "
+                        "increase approved intervention candidate pool"
+                    )
                 s.update(phase="attention" if self.config.attention_checks else
                                "outcome" if self.config.bank("outcome") else "ready_to_complete",
                          phase_index=0, no_candidate_reason=reason)
