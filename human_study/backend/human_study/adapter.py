@@ -49,8 +49,10 @@ class NativeAdapter:
             for c in item.choices:
                 if c.native_value not in self.support(item.item_id) or MISSING.search(c.native_value):
                     raise ValueError(f"invalid/missing native category: {item.item_id}={c.native_value}")
-        if len(self.eligible(config)) < config.intervention_steps:
-            raise ValueError("insufficient eligible items for configured intervention length")
+        if config.candidate_mode == "instrument" and len(self.eligible(config)) < config.intervention_steps:
+            raise ValueError("insufficient instrument-limited eligible items")
+        if config.candidate_mode == "native_webapp" and not self.webapp_candidates({}, config):
+            raise ValueError("no webapp-askable native variables")
 
     def eligible(self, config):
         from optimize_question_sets import askable
@@ -106,27 +108,21 @@ class NativeAdapter:
             version="native-map-runtime",
         )
 
-    def webapp_mapping_items(self, displayed_question, answer, target, config):
-        """Webapp lexical prefilter over full native map, plus question target.
+    def webapp_mapping_items(self, mapped_variables, config):
+        """Construct native-supported items for the shared DTAG mapper's IDs.
 
-        The shared mapper supplies candidate *identifiers*, never answers;
-        evidence-backed free-text LLM mapping then validates native categories.
-        No predeclared YAML intervention whitelist is used.
+        IDs MUST originate from DTAGSession.map_question() or its original
+        embedding semantic bridge, never from a duplicate prefilter here.
         """
-        from optimizer.dtag_bridge import RUN_DEFAULTS
-        import dtag_core as core
-        allowed = set(self.webapp_candidates({}, config)) | {
-            x.item_id for x in config.bank("baseline")}
-        phrase = displayed_question + "\\n" + answer
-        found = core.lexical_prefilter(
-            self.world.ctx.var_map, phrase,
-            top_n=int(RUN_DEFAULTS["prefilter"]),
-            min_score=float(RUN_DEFAULTS["min_map_score"]),
-        )
-        vars_ = list(dict.fromkeys([target] + [v for v, _ in found]))
-        return {v: (config.item(v) if v in {i.item_id for i in config.bank("baseline")}
-                    else self.dynamic_item(v))
-                for v in vars_ if v in allowed}
+        protected = (set(config.excluded_ids) | set(config.ethics_disallowed_ids)
+                     | {x.item_id for x in config.bank("outcome")})
+        baseline = {x.item_id: x for x in config.bank("baseline")}
+        return {
+            v: baseline[v] if v in baseline else self.dynamic_item(v)
+            for v in dict.fromkeys(mapped_variables)
+            if (v not in protected and v in self.world.ctx.idx_map
+                and v in self.world.ctx.var_map and self.support(v))
+        }
 
     def index(self, state):
         with self.lock:
