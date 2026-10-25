@@ -41,11 +41,11 @@ def validates_natenviy_form(question):
     q = question.casefold()
     return (
         q.endswith("?")
-        and re.search(r"\\benvironment\\b", q) is not None
-        and re.search(r"\\b(?:spend\\w*|spent|expenditure|expenditures)\\b", q) is not None
+        and re.search(r"\benvironment\b", q) is not None
+        and re.search(r"\b(?:spend\w*|spent|expenditure|expenditures)\b", q) is not None
         and all(phrase in q for phrase in ("too much", "too little"))
-        and re.search(r"\\b(?:right|appropriate)\\b", q) is not None
-        and re.search(r"\\b(?:improv\\w*|protect\\w*)\\b", q) is None
+        and re.search(r"\b(?:right|appropriate)\b", q) is not None
+        and re.search(r"\b(?:improv\w*|protect\w*)\b", q) is None
     )
 
 
