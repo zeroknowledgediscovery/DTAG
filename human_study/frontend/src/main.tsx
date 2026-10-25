@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
 
-type Question = { question_id: string; text: string; choices: { value: string; label: string }[]; required: boolean };
+type Question = { question_id: string; text: string; choices: { value: string; label: string }[]; required: boolean; response_mode?: "click" | "free_text_llm" };
 type View = { session_id: string; phase: string; session_version: number; question: Question | null;
   consent: string | null; receipt: string | null; progress: { completed: number; total: number } };
-type Pending = { question_id: string; answer_value: string | null; missing_reason: string | null;
+type Pending = { question_id: string; answer_value: string | null; text_answer: string | null; missing_reason: string | null;
   idempotency_key: string; expected_session_version: number };
 
 async function api(route: string, data?: unknown) {
@@ -33,6 +33,7 @@ async function api(route: string, data?: unknown) {
 function App() {
   const [view, setView] = useState<View | null>(null);
   const [selected, setSelected] = useState('');
+  const [written, setWritten] = useState('');
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -40,7 +41,9 @@ function App() {
   const heading = useRef<HTMLHeadingElement>(null);
 
   const accept = (next: View) => {
+    const sameQuestion = view?.question?.question_id === next.question?.question_id;
     setView(next); setSelected('');
+    if (!sameQuestion) setWritten('');
     // Refresh/restart may have reconciled the prior answer. Never reapply it to a new item.
     if (pending.current?.question_id !== next.question?.question_id) pending.current = null;
   };
@@ -56,13 +59,27 @@ function App() {
 
   async function answer(value: string | null, reason: string | null = null) {
     if (!view?.question) return;
-    pending.current ??= { question_id: view.question.question_id, answer_value: value, missing_reason: reason,
+    const freeText = view.question.response_mode === 'free_text_llm';
+    pending.current ??= { question_id: view.question.question_id,
+      answer_value: freeText ? null : value,
+      text_answer: freeText ? written.trim() : null, missing_reason: reason,
       idempotency_key: crypto.randomUUID(), expected_session_version: view.session_version };
     const record = pending.current;
     await perform(async () => {
-      const result = await api('answer', record);
-      pending.current = null;
-      return result.current;
+      try {
+        const result = await api('answer', record);
+        pending.current = null;
+        return result.current;
+      } catch (err) {
+        // Ambiguous prose was not accepted or saved. Allow participant to
+        // revise it rather than locking the text box behind a retry token.
+        if (err instanceof Error && (
+          err.message.includes('could not confidently interpret') ||
+          err.message.includes('needs an opinion') ||
+          err.message.includes('Please write')
+        )) pending.current = null;
+        throw err;
+      }
     });
   }
   const labels: Record<string, string> = { baseline: 'Starting questions', intervention: 'Study questions', outcome: 'Final questions' };
@@ -81,17 +98,31 @@ function App() {
       <div className="actions"><button disabled={busy || !consent} onClick={() => void perform(() => api('consent', { accepted: true, expected_session_version: view.session_version }))}>Begin study</button>
         <button className="secondary" disabled={busy} onClick={() => void perform(() => api('consent', { accepted: false, expected_session_version: view.session_version }))}>Do not participate</button></div>
     </section>}
-    {view?.question && <form onSubmit={e => { e.preventDefault(); void answer(selected); }}>
+    {view?.question && <form onSubmit={e => { e.preventDefault(); void answer(view.question?.response_mode === 'free_text_llm' ? null : selected); }}>
       <h2 tabIndex={-1} ref={heading} id="question-title">{view.question.text}</h2>
-      <fieldset disabled={busy || pending.current !== null} aria-labelledby="question-title"><legend className="sr-only">Choose one answer</legend>
-        {view.question.choices.map(choice => <label className="choice" key={choice.value}>
-          <input type="radio" name="answer" value={choice.value} checked={selected === choice.value}
-            onChange={() => setSelected(choice.value)} required={view.question?.required}/><span>{choice.label}</span>
-        </label>)}
-      </fieldset>
-      <div className="actions"><button disabled={busy || !selected || pending.current !== null} type="submit">Save and continue</button>
-        {!view.question.required && <button className="secondary" type="button" disabled={busy || pending.current !== null}
-          onClick={() => void answer(null, 'prefer_not_to_answer')}>Prefer not to answer</button>}</div>
+      {view.question.response_mode === 'free_text_llm' ? <>
+        <label className="written-label" htmlFor="written-answer">Your answer, in your own words</label>
+        <textarea id="written-answer" value={written} maxLength={2000} rows={5}
+          aria-describedby="written-help" placeholder="Write what you think and why…"
+          disabled={busy || pending.current !== null} required
+          onChange={e => setWritten(e.target.value)}/>
+        <p id="written-help" className="muted">Please avoid names or identifying details. Write a clear opinion so the study can interpret it accurately.</p>
+      </> : <>
+        <fieldset disabled={busy || pending.current !== null} aria-labelledby="question-title"><legend className="sr-only">Choose one answer</legend>
+          {view.question.choices.map(choice => <label className="choice" key={choice.value}>
+            <input type="radio" name="answer" value={choice.value} checked={selected === choice.value}
+              onChange={() => setSelected(choice.value)} required={view.question?.required}/><span>{choice.label}</span>
+          </label>)}
+        </fieldset>
+      </>}
+      <div className="actions">
+        <button disabled={busy || pending.current !== null ||
+          (view.question.response_mode === 'free_text_llm' ? !written.trim() : !selected)}
+          type="submit">Save and continue</button>
+        {view.question.response_mode !== 'free_text_llm' && !view.question.required &&
+          <button className="secondary" type="button" disabled={busy || pending.current !== null}
+            onClick={() => void answer(null, 'prefer_not_to_answer')}>Prefer not to answer</button>}
+      </div>
     </form>}
     {view?.phase === 'ready_to_complete' && <section><h2 ref={heading} tabIndex={-1}>Your questions are finished</h2>
       <p>Finish to save your study receipt.</p><button disabled={busy} onClick={() => void perform(() => api('complete', {}))}>Finish study</button></section>}
