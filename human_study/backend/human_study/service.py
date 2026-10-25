@@ -350,25 +350,36 @@ class StudyService:
         raise Conflict("session busy; retry")
 
     def _acknowledge_committed_answer(self, sid, result):
-        """ACK saved answers only when the NEXT question is still generating.
+        """Keep answer durability distinct from concurrent next-question exports.
 
-        ExportPending must propagate: an accepted Firestore transaction does
-        not authorize exposing the next step until the research archive is
-        durably committed. In particular, a failed GCS create or reconciliation
-        hook must not be misreported as harmless question generation.
+        In V1/V2, preserve the original GenerationPending retry contract.
+        V3 may ACK an archived answer while its next question is generating,
+        even if another worker is exporting that new question. An export
+        failure for the answer itself must never be hidden.
         """
         try:
             next_view = self.current(sid)
             return {"accepted": result, "current": next_view, "preparing_next": False}
         except GenerationPending:
+            if self.config.response_mode != "free_text_multi":
+                raise
             snap = self._load(sid)
-            # Do not present a stale or unarchived question if another request
-            # created a pending export while we were handling generation.
-            if snap.session["pending_exports"]:
+            answer_export_key = f"exports/{result['question_id']}-answer"
+            answer_export = snap.records.get(answer_export_key)
+            if answer_export is None:
+                raise IntegrityError("committed answer has no research archive record")
+            if (answer_export.get("status") != "committed"
+                    or answer_export_key in snap.session["pending_exports"]):
                 raise ExportPending(
                     "answer/state saved; research archive synchronization pending; retry"
                 )
-            return {"accepted": result, "current": self.public(snap), "preparing_next": True}
+            # Other pending exports may belong to a concurrent worker
+            # presenting the NEXT question, not to this accepted answer.
+            # public() withholds its wording until those exports commit.
+            view = self.public(snap)
+            return {"accepted": result, "current": view,
+                    "preparing_next": view["question"] is None
+                    and view["phase"] not in ("ready_to_complete", "complete", "declined")}
 
     def _answer_attention(self, snap, question, request, request_key, fingerprint):
         """Record a V3 attention response; never use it for model conditioning."""
