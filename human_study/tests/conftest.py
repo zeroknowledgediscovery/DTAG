@@ -11,6 +11,15 @@ sys.path.insert(0, str(ROOT))
 from human_study.study_config import StudyConfig
 
 
+@pytest.fixture(autouse=True)
+def isolate_deployment_origin(monkeypatch):
+    """Tests should not inherit the live Cloud Run URL from a deploy shell.
+
+    Origin-specific tests explicitly set DTAG_PUBLIC_ORIGIN themselves.
+    """
+    monkeypatch.delenv("DTAG_PUBLIC_ORIGIN", raising=False)
+
+
 class FixtureAdapter:
     """Explicit scientific test fixture, never used as a production model."""
     provenance = {"model_content_sha256": "fixture-only", "code_commit": "test"}
