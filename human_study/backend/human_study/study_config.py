@@ -46,6 +46,7 @@ class StudyConfig(StrictModel):
     reviewed: bool = False
     consent_version: str = "pilot-draft-1"
     consent_text: str = "This internal pilot asks categorical survey questions. Participation is voluntary. You may stop at any time. Answers are stored for research. This receipt is not a payment code."
+    initial_steps: int | None = Field(default=None, ge=1, le=40)
     intervention_steps: int = Field(default=20, ge=1, le=40)
     # V2: generated questions; free-text answers classified to native categories.
     question_mode: Literal["legacy", "llm_required"] = "legacy"
@@ -60,6 +61,10 @@ class StudyConfig(StrictModel):
     @model_validator(mode="after")
     def unique_instrument(self):
         ids = [i.item_id for i in self.items]
+        if self.initial_steps is not None and self.initial_steps > sum(
+            i.phase == "baseline" for i in self.items
+        ):
+            raise ValueError("initial_steps exceeds the initial question bank")
         if len(ids) != len(set(ids)):
             raise ValueError("baseline/intervention/outcome/control item sets must be disjoint")
         for phase in ("baseline", "intervention"):
@@ -81,7 +86,8 @@ class StudyConfig(StrictModel):
         return self
 
     def bank(self, phase: str) -> list[Item]:
-        return [i for i in self.items if i.phase == phase]
+        items = [i for i in self.items if i.phase == phase]
+        return items[:self.initial_steps] if phase == "baseline" and self.initial_steps is not None else items
 
     def item(self, item_id: str) -> Item:
         found = next((i for i in self.items if i.item_id == item_id), None)
