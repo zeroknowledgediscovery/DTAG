@@ -19,6 +19,8 @@ class Consent(Input):
 class Answer(Input):
     question_id: str = Field(pattern=r"^[a-f0-9]{32}$")
     answer_value: str | None = Field(default=None, max_length=200)
+    # V2: preserve respondent's own words, never pass them as a native state.
+    text_answer: str | None = Field(default=None, max_length=2000)
     missing_reason: Literal["skip", "prefer_not_to_answer"] | None = None
     idempotency_key: str = Field(min_length=8, max_length=100, pattern=r"^[A-Za-z0-9_-]+$")
     expected_session_version: int = Field(ge=0)
