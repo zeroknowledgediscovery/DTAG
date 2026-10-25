@@ -300,6 +300,15 @@ class StudyService:
                 self._render_claimed(sid, question)
         raise Conflict("session busy; retry")
 
+    def _acknowledge_committed_answer(self, sid, result):
+        """An accepted answer must not be reported as failed during NEXT-question generation."""
+        try:
+            next_view = self.current(sid)
+            return {"accepted": result, "current": next_view, "preparing_next": False}
+        except (GenerationPending, ExportPending):
+            snap = self._load(sid)
+            return {"accepted": result, "current": self.public(snap), "preparing_next": True}
+
     def _answer_attention(self, snap, question, request, request_key, fingerprint):
         """Record a V3 attention response; never use it for model conditioning."""
         import re
@@ -343,7 +352,7 @@ class StudyService:
         self.hook("before_answer_transaction")
         if self._write(snap, writes):
             self.hook("after_answer_transaction")
-            return {"accepted": result, "current": self.current(session["session_id"])}
+            return self._acknowledge_committed_answer(session["session_id"], result)
         raise Conflict("concurrent attention-check response; retry")
 
     def answer(self, sid, request):
@@ -446,7 +455,7 @@ class StudyService:
             self.hook("before_answer_transaction")
             if self._write(snap, writes):
                 self.hook("after_answer_transaction")
-                return {"accepted": result, "current": self.current(sid)}
+                return self._acknowledge_committed_answer(sid, result)
         raise Conflict("concurrent submission; refresh and retry")
 
     def complete(self, sid):
