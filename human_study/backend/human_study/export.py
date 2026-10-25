@@ -9,11 +9,11 @@ from .study_config import digest
 
 FIELDS = {
     "participants": ["session_id", "policy", "receipt", "completed_at", "baseline_index", "final_index", "source_object"],
-    "baseline": ["session_id", "question_id", "variable", "answer", "missing_reason", "timestamp", "source_object"],
+    "baseline": ["session_id", "question_id", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "timestamp", "source_object"],
     "questions": ["session_id", "question_id", "phase", "step", "variable", "original_wording", "displayed_wording", "choices", "presented_at", "source_object"],
-    "answers": ["session_id", "question_id", "phase", "variable", "answer", "missing_reason", "response_elapsed_seconds", "timestamp", "source_object"],
+    "answers": ["session_id", "question_id", "phase", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "response_elapsed_seconds", "timestamp", "source_object"],
     "trajectories": ["session_id", "question_id", "policy", "index_before", "index_after", "predicted_model_delta", "observed_conditional_index_delta", "conditional_distribution", "source_object"],
-    "outcomes": ["session_id", "question_id", "variable", "answer", "missing_reason", "timestamp", "source_object"]}
+    "outcomes": ["session_id", "question_id", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "timestamp", "source_object"]}
 
 
 def export_records(finals, out):
@@ -33,7 +33,11 @@ def export_records(finals, out):
             folder = {"baseline": "baseline", "intervention": "questions", "outcome": "outcomes"}[q["phase"]]
             source = name.rsplit("/", 1)[0] + f"/{folder}/{q['question_id']}.json"
             common = {"session_id": sid, "question_id": q["question_id"], "variable": q["target_variable"], "source_object": source}
-            a = {**common, "phase": q["phase"], "answer": q["response_value"], "missing_reason": q.get("missing_reason"),
+            a = {**common, "phase": q["phase"], "answer": q["response_value"],
+                 "raw_text_response": q.get("raw_text_response"),
+                 "response_interpretation": json.dumps(q.get("response_interpretation"), ensure_ascii=False, sort_keys=True)
+                     if q.get("response_interpretation") is not None else "",
+                 "missing_reason": q.get("missing_reason"),
                  "response_elapsed_seconds": q["response_elapsed_seconds"], "timestamp": q["response_timestamp"]}
             tables["answers"].append(a)
             tables["questions"].append({**common, "phase": q["phase"], "step": q["step"],
