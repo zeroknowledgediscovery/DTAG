@@ -22,6 +22,11 @@ llm_model: gpt-4.1-mini-2025-04-14
 prompt_version: dtag-human-v3-evidence-multi-assignments
 excluded_ids: []
 ethics_disallowed_ids: []
+attention_checks:
+- check_id: attention_follow_instruction
+  instruction: For this attention check, write a short reply containing the exact word cobalt.
+  expected_token: cobalt
+  version: v3-internal-1
 items:
 - item_id: trust
   original_wording: Generally speaking, would you say that most people can be trusted
