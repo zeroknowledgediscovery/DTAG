@@ -30,10 +30,39 @@ def audit(config, adapter):
 
     if config.candidate_mode != "native_webapp" or config.push_response_mode != "draw":
         raise ValueError("requires native_webapp + draw, not instrument-limited mode")
-    expected_poles = Path(adapter.world.g.path).resolve()
-    webapp_poles = Path(__file__).resolve().parents[2] / POLAR_VECTOR_SETS["gss_default"]["path"]
-    if expected_poles != webapp_poles.resolve():
-        raise AssertionError("webapp and human study use different ideology pole files")
+    # The webapp asks for the registered canonical GSS poles, but the shared
+    # build_polar_geometry function transparently substitutes the corrected
+    # wave-specific file for GSS 2024. Compare both the REQUESTED file and
+    # the actual RESOLVED geometry, not requested versus effective paths.
+    from dtag_session import build_polar_geometry
+    import numpy as np
+
+    webapp_poles = (Path(__file__).resolve().parents[2] /
+                    POLAR_VECTOR_SETS["gss_default"]["path"]).resolve()
+    actual = adapter.world.g
+    requested = Path(actual.requested_path).resolve()
+    if requested != webapp_poles:
+        raise AssertionError(
+            f"webapp requested pole set mismatch: human={requested}, "
+            f"registered={webapp_poles}"
+        )
+    reference = build_polar_geometry(adapter.world.ctx, str(webapp_poles))
+    if not reference.enabled:
+        raise AssertionError(f"webapp pole geometry unavailable: {reference.disable_reason}")
+    resolved_human = Path(actual.path).resolve()
+    resolved_webapp = Path(reference.path).resolve()
+    if resolved_human != resolved_webapp:
+        raise AssertionError(
+            f"webapp resolved pole set mismatch: human={resolved_human}, "
+            f"webapp={resolved_webapp}"
+        )
+    if (actual.left_map != reference.left_map or actual.right_map != reference.right_map
+            or not np.array_equal(actual.sL, reference.sL)
+            or not np.array_equal(actual.sR, reference.sR)):
+        raise AssertionError("resolved human/webapp pole assignments or vectors differ")
+    check_close("native pole distance", actual.dLR, reference.dLR)
+    print(f"PASS requested GSS poles: {webapp_poles}")
+    print(f"PASS resolved GSS poles: {resolved_webapp}")
 
     observed = {}
     configurations = [dict(observed)]
