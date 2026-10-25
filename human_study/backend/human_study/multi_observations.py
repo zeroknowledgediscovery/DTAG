@@ -218,6 +218,11 @@ def replay(config, adapter, final):
         )
         if predicted.get("variable") != q["target_variable"]:
             raise ValueError("V3 adaptive replay diverges from archived policy")
+        if not math.isclose(
+            float(predicted["expected_delta"]), float(recorded["expected_delta"]),
+            rel_tol=1e-8, abs_tol=1e-9,
+        ):
+            raise ValueError("V3 policy prediction diverges from archive")
         state, result = apply(state, q, q.get("accepted_assignments") or [], adapter)
         if not math.isclose(
             result["index_after"], q["index_result"]["index_after"],
