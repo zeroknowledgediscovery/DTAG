@@ -344,12 +344,25 @@ class StudyService:
                 rendered = {"displayed_wording": item.original_wording, "question_provenance": {
                     "provider": "canonical-common-instrument", "item_version": item.version,
                     "source_text_incomplete": False, "fallback": False}}
-            verbatim = rendered.get("question_provenance", {}).get("provider") == "verbatim-attention"
-            if (item is None or item.source_text_incomplete or self.config.question_mode == "llm_required") and not verbatim and (
-                rendered.get("question_provenance", {}).get("fallback", True) or
+            provenance = rendered.get("question_provenance", {})
+            verbatim = provenance.get("provider") == "verbatim-attention"
+            # Only the question generator may grant this: it validates a
+            # complete GSS source and records the exact provenance, rather
+            # than silently displaying the old truncated semantic-map label.
+            complete_source = (
+                provenance.get("provider") == "source-validated"
+                and provenance.get("source_standalone_verified") is True
+                and provenance.get("validation_method") in {
+                    "verified_2024_natenviy_source_fallback_v1",
+                    "source_grounded_standalone_fallback_v1",
+                    "native_map_validated_standalone_fallback_v1",
+                }
+            )
+            if (item is None or item.source_text_incomplete or self.config.question_mode == "llm_required") and not (verbatim or complete_source) and (
+                provenance.get("fallback", True) or
                 rendered.get("displayed_wording", "").strip() == question["original_wording"].strip()
             ):
-                raise ValueError("LLM did not complete an incomplete source question")
+                raise ValueError("Neither generated nor source-validated complete question available")
         except Exception as exc:
             if item is None or item.source_text_incomplete or self.config.question_mode == "llm_required":
                 # Log only bounded error codes; never log model output or participant text.
