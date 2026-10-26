@@ -4,7 +4,7 @@
 approval, automated payment rule, or justification for rejecting any person.
 **Instrument:** GSS 2024 native DTAG V3, approximately 20–25 minutes
 (6 baseline + 20 adaptive + 5 interleaved attention checks).
-**Policy version:** \`prolific-rejection-eligibility-v1\`.
+**Policy version:** `prolific-rejection-eligibility-v1`.
 
 ## Prolific's requirements
 
@@ -29,7 +29,7 @@ is a reason to request return (and delete data as applicable), not reject.
 
 ## Five standard, non-adaptive, compliant IMCs
 
-All five are \`kind: instructed_token\` with \`render: verbatim\`. They are
+All five are `kind: instructed_token` with `render: verbatim`. They are
 presented **within the current question** in the normal-sized response UI. No
 LLM reformulation, memory, historical knowledge, or speed requirement is used.
 
@@ -56,9 +56,9 @@ request screenshots or evidence of valid wording.
 ## Stricter DTAG eligibility rule
 
 The study deliberately uses a more conservative threshold than Prolific's
-two-failure minimum. In \`rejection_eligibility.py\`:
+two-failure minimum. In `rejection_eligibility.py`:
 
-| Objective evidence | \`eligible_for_rejection\` | Rationale |
+| Objective evidence | `eligible_for_rejection` | Rationale |
 | --- | --- | --- |
 | 0–1 failed valid IMCs | **false** | Insufficient under the study rule |
 | 2 failed valid IMCs only | **false** | Additional independently verified low effort required |
@@ -67,8 +67,8 @@ two-failure minimum. In \`rejection_eligibility.py\`:
 | ≥3 failed valid IMCs | **true** | Meets the stricter preregistered attention rule |
 
 The repeated-filler rule accepts only **exact, unambiguous keyboard-mash
-strings** from a small, versioned allowlist (e.g., \`asdf\`, \`asdfghjkl\`,
-\`qwerty\`), never ordinary responses such as “yes”, “no”, “I don't know”, or
+strings** from a small, versioned allowlist (e.g., `asdf`, `asdfghjkl`,
+`qwerty`), never ordinary responses such as “yes”, “no”, “I don't know”, or
 consistent ideological views. This deliberately misses some real low-effort
 cases to avoid false accusations. An LLM confidence score, speed, word count,
 generic duplicates, or an arbitrary combination of quality scores are **not**
@@ -82,8 +82,8 @@ uncertain, approve/pay the completed submission. Rejection, when justified,
 must be initiated explicitly through Prolific by an authorized researcher.
 
 A two-check case with high but nonconclusive quality-risk indicators has
-\`two_failures_need_independent_evidence=true\` and
-\`eligible_for_rejection=false\`. It can be examined or scientifically
+`two_failures_need_independent_evidence=true` and
+`eligible_for_rejection=false`. It can be examined or scientifically
 excluded according to a separately prespecified plan; it must not be rejected
 on this flag alone.
 
@@ -91,27 +91,27 @@ on this flag alone.
 
 After a participant reaches the completion boundary:
 
-- \`reward.json\` and \`final.json\` record
-  \`rejection_eligibility.eligible_for_rejection\`, \`basis\`,
-  \`valid_imc_failures\`, \`failed_check_ids\`, limited objective
-  \`low_effort_evidence\` with question IDs, the decision rule version,
-  \`review_required_before_prolific_rejection=true\`, and
-  \`prolific_rejection_executed=false\`.
+- `reward.json` and `final.json` record
+  `rejection_eligibility.eligible_for_rejection`, `basis`,
+  `valid_imc_failures`, `failed_check_ids`, limited objective
+  `low_effort_evidence` with question IDs, the decision rule version,
+  `review_required_before_prolific_rejection=true`, and
+  `prolific_rejection_executed=false`.
 - Verbatim displayed questions, attention-check answers and substantive answers
-  remain in the private \`final.json\` archive for restricted investigator
+  remain in the private `final.json` archive for restricted investigator
   examination; they are not exposed to the participant-side public API.
-- Investigator-only \`participants.csv\` exports
-  \`eligible_for_rejection\`, \`rejection_eligibility_basis\`,
-  \`two_failures_need_independent_evidence\`, and the independent
-  \`quality_review_score\`.
-- If \`eligible_for_rejection\` is true, the configured \`review_code\` is
+- Investigator-only `participants.csv` exports
+  `eligible_for_rejection`, `rejection_eligibility_basis`,
+  `two_failures_need_independent_evidence`, and the independent
+  `quality_review_score`.
+- If `eligible_for_rejection` is true, the configured `review_code` is
   issued. Register this as a Prolific **Failed attention checks** completion
   path, ensuring submissions are available for **manual review** rather than
-  automatically rejected. The standard \`completion_code\` is issued
-  otherwise. A separate \`no_consent_code\` requests a return. No code is
+  automatically rejected. The standard `completion_code` is issued
+  otherwise. A separate `no_consent_code` requests a return. No code is
   unique to a participant.
 
-**Important:** The software's \`reward\` string only describes the advertised
+**Important:** The software's `reward` string only describes the advertised
 study reward. Prolific administers and governs payment; no internal flag can
 partially reduce it. Align any recruitment study's Prolific completion paths
 and codes before invitations are sent.
@@ -120,14 +120,14 @@ and codes before invitations are sent.
 
 Run:
 
-\`\`\`bash
+```bash
 bash human_study/scripts/check_v3.sh
-\`\`\`
+```
 
 The Prolific portion and eligibility unit tests are also part of the
-\`human-study-native-parity\` GitHub Actions workflow. Check the CI result
+`human-study-native-parity` GitHub Actions workflow. Check the CI result
 **for the final commit**, run an end-to-end Cloud Run session with all five IMCs,
-confirm GCS \`final.json\` fields, and test the three Prolific completion paths
+confirm GCS `final.json` fields, and test the three Prolific completion paths
 before paid recruitment. Freeze the policy and instrument version before
 enrollment, or use a fresh study ID for later amendments.
 
