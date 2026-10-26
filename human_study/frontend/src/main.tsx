@@ -8,8 +8,7 @@ const isWrittenMode = (q: Question | null | undefined) =>
 
 type View = { session_id: string; phase: string; session_version: number; question: Question | null;
   consent: string | null; receipt: string | null; progress: { completed: number; total: number };
-  completion_code?: string | null; completion_url?: string | null;
-  test_restart_allowed?: boolean };
+  completion_code?: string | null; completion_url?: string | null };
 type Pending = { question_id: string; answer_value: string | null; text_answer: string | null; missing_reason: string | null;
   idempotency_key: string; expected_session_version: number };
 
@@ -54,7 +53,6 @@ function App() {
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
-  const [testRestartAllowed, setTestRestartAllowed] = useState(false);
   const pending = useRef<Pending | null>(null);
   const heading = useRef<HTMLHeadingElement>(null);
 
@@ -72,31 +70,17 @@ function App() {
     catch (e) { setError(e instanceof Error ? e.message : 'Unable to save. Please retry.'); }
     finally { setBusy(false); }
   }
-  useEffect(() => { void perform(() => api('start', prolificParams())); }, []);
-  // Unlike /start, this endpoint remains available even when a cookie belongs
-  // to a prior deployment whose instrument/code hash is no longer resumable.
-  useEffect(() => {
-    void api('test-session-options')
-      .then(options => setTestRestartAllowed(options.test_restart_allowed === true))
-      .catch(() => setTestRestartAllowed(false));
-  }, []);
-  const allowFreshSession = (view?.test_restart_allowed ?? testRestartAllowed) &&
-    !prolificParams().prolific_pid;
-
-  async function startNewTestSession() {
-    if (busy || !allowFreshSession) return;
-    if (!window.confirm(
-      'Start a new test session from question 1? Your previous answers will remain archived, but this browser will switch to a new session.'
-    )) return;
+  // Never auto-resume on browser refresh. Give the participant the choice.
+  // Start-new uses the same flow in local, staging and production; when the
+  // link contains Prolific identifiers they are retained on the new attempt.
+  async function begin(fresh: boolean) {
     await perform(async () => {
-      // Only discard local draft and retry tokens AFTER the server has
-      // created the new session and sent a replacement signed cookie.
-      const fresh = await api('restart', {});
+      const next = await api(fresh ? 'restart' : 'start', prolificParams());
       pending.current = null;
       setSelected('');
       setWritten('');
       setConsent(false);
-      return fresh;
+      return next;
     });
   }
   useEffect(() => { heading.current?.focus(); }, [view?.question?.question_id, view?.phase]);
@@ -152,11 +136,14 @@ function App() {
       <p>{labels[view.phase] || 'Finishing'} · {view.progress.completed} of {view.progress.total} questions saved</p>
       <progress value={view.progress.completed} max={view.progress.total} aria-label="Questions saved"/>
     </section>}
-    {allowFreshSession && <section className="test-session-controls" aria-label="Test session controls">
-      <span>Internal testing</span>
-      <button type="button" className="secondary" disabled={busy}
-        onClick={() => void startNewTestSession()}>Start new test session</button>
-      <p className="muted">Starts from question 1. Your existing test data will remain saved.</p>
+    {!view && <section className="session-choice" aria-label="Session choice">
+      <h2>Continue your study</h2>
+      <p>Resume your saved progress, or start from the beginning with a new session.</p>
+      <div className="actions">
+        <button type="button" disabled={busy} onClick={() => void begin(false)}>Resume saved session</button>
+        <button type="button" className="secondary" disabled={busy} onClick={() => void begin(true)}>Start new session</button>
+      </div>
+      <p className="muted">Starting new leaves previous answers archived.</p>
     </section>}
     {view?.phase === 'consent' && <section>
       <h2 tabIndex={-1} ref={heading}>Before you begin</h2><p className="consent">{view.consent}</p>
@@ -220,10 +207,7 @@ function App() {
       if (pending.current) void answer(pending.current.answer_value, pending.current.missing_reason);
       else void perform(() => view ? api('current') : api('start', prolificParams()));
     }}>Retry</button><button className="secondary" disabled={busy} onClick={() => void perform(() => api('current'))}>Refresh saved state</button></aside>}
-    {!view && !busy && !error && <p>Preparing the study…</p>}
-    <footer>You can stop at any time. Refresh this page to resume the saved session.
-      {allowFreshSession && ' To begin again with a fresh test session, use Start new test session above.'}
-    </footer>
+    <footer>You can stop at any time. Refresh this page to choose whether to resume your saved session or start a new one.</footer>
   </main>;
 }
 
