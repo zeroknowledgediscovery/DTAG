@@ -10,6 +10,7 @@ on:
       - "human_study/scripts/compile_gss2024_wording.py"
       - "human_study/backend/human_study/compiled_wording.py"
       - "human_study/backend/human_study/grounded_generation.py"
+      - "human_study/data/gss_2024_reviewed_wording.json"
       - "human_study/backend/human_study/wording_contracts.py"
       - ".github/workflows/audit-gss2024-full-native.yml"
 
@@ -61,7 +62,7 @@ jobs:
           PY
       - name: Compile and validate source-contract-backed wording, review all 811 slots
         run: |
-          python human_study/scripts/compile_gss2024_wording.py             "$RUNNER_TEMP/gss2024_full_wording_audit.json"             --out human_study/data/gss_2024_compiled_wording.json
+          python human_study/scripts/compile_gss2024_wording.py             "$RUNNER_TEMP/gss2024_full_wording_audit.json"             --reviewed-json human_study/data/gss_2024_reviewed_wording.json             --out human_study/data/gss_2024_compiled_wording.json
           python - <<'PY'
           import json
           data=json.load(open('human_study/data/gss_2024_compiled_wording.json'))
