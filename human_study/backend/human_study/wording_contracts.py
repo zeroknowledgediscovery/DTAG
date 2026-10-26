@@ -391,6 +391,161 @@ for name, (statement, subject_pattern) in _GENDER_AGREEMENT.items():
     )
 
 
+
+# STANDALONE 2024 RACE, HIRING AND PUBLIC-SURVEILLANCE ITEMS.
+# The source map is especially abbreviated for RACERANK2/3, RACECEN2/3,
+# AFFRMACT, DISCAFFW, FEJOBAFF, and CCTV. A respondent does not see the
+# immediately preceding NORC ballot screen in an adaptive DTAG session.
+# Rebuild the ENTIRE question rather than offering "these races", "these
+# options", "this law", or an unexplained "it".
+RACE_OPTIONS = (
+    "White; Black or African American; American Indian or Alaska Native; "
+    "Asian (including Asian Indian, Chinese, Filipino, Japanese, Korean, "
+    "Vietnamese, or other Asian); Native Hawaiian or other Pacific Islander; "
+    "Hispanic or Latino; or another race"
+)
+for rank in (1, 2, 3):
+    if rank == 1:
+        stem = "Which racial identity do you identify with most strongly?"
+        ordinal = r"\b(?:most strongly|most closely|first|primary)\b"
+    elif rank == 2:
+        stem = ("If you identify with more than one racial identity, which "
+                "one do you identify with second most strongly?")
+        ordinal = r"\b(?:second|2nd)\b"
+    else:
+        stem = ("If you identify with three or more racial identities, "
+                "which one do you identify with third most strongly?")
+        ordinal = r"\b(?:third|3rd)\b"
+    CONTRACTS[f"racerank{rank}"] = WordingContract(
+        stem + " Options include: " + RACE_OPTIONS + "?",
+        (r"\b(?:race|racial)\b", ordinal,
+         r"\bwhite\b", r"\bblack\b", r"\basian\b",
+         r"\b(?:indian|native)\b"),
+    )
+    desc = (
+        "Which race or races do you consider yourself to be? You may "
+        "identify with more than one. "
+        if rank == 1 else
+        "If you identify with two or more races, which additional race "
+        "would you name second? " if rank == 2 else
+        "If you identify with three or more races, which additional race "
+        "would you name third? "
+    )
+    CONTRACTS[f"racecen{rank}"] = WordingContract(
+        desc + "Options include: " + RACE_OPTIONS + "?",
+        (r"\b(?:race|racial)\b", r"\bwhite\b", r"\bblack\b",
+         r"\basian\b", r"\b(?:indian|native)\b",
+         r"\b(?:more than one|second|third|additional)\b"),
+    )
+
+# Forced-choice race-based housing discrimination law: complete BOTH laws
+# (2024 codebook RACOPEN / RACOPENV / RACOPENNV).
+for variable in ("racopen", "racopenv", "racopennv"):
+    CONTRACTS[variable] = WordingContract(
+        "Imagine two proposed laws about selling a house. One law allows "
+        "a homeowner to refuse to sell to a buyer because of the buyer's "
+        "race. The other law prohibits a homeowner from refusing to sell "
+        "because of the buyer's race. Which law would you favor?",
+        (r"\b(?:homeowner|home owner)\b", r"\brace\b",
+         r"\b(?:refus\w*|discriminat\w*)\b",
+         r"\b(?:allow\w*|permi\w*)\b",
+         r"\b(?:prohibit\w*|prevent\w*|forbid\w*|not allow)\b",
+         r"\b(?:which law|favor)\b"),
+    )
+
+CONTRACTS["cctv"] = WordingContract(
+    "Do you think the United States government should have the right to "
+    "keep people under video surveillance in public areas? Would you say "
+    "it definitely should, probably should, probably should not, or "
+    "definitely should not have that right?",
+    (r"\b(?:government|state)\b", r"\b(?:video surveillance|cctv)\b",
+     r"\bpublic\b", r"\b(?:right|allowed|authority)\b",
+     r"\b(?:definitely should|probably should)\b",
+     r"\b(?:should not|shouldn't)\b"),
+)
+
+CONTRACTS["affrmact"] = WordingContract(
+    "Do you favor or oppose giving Black people preference in hiring and "
+    "promotion to address past racial discrimination?",
+    (r"\bblack\b", r"\b(?:hiring|hire\w*)\b",
+     r"\b(?:preferen\w*|priority)\b",
+     r"\b(?:favor|support|oppose)\b"),
+)
+
+CONTRACTS["fejobaff"] = WordingContract(
+    "Some people say that because of past discrimination, women should be "
+    "given preference in hiring and promotion. Others say that giving women "
+    "that preference is wrong because it discriminates against men. "
+    "Are you for or against preferential hiring and promotion of women?",
+    (r"\bwomen\b", r"\bmen\b", r"\b(?:hiring|hire\w*)\b",
+     r"\bpreferen\w*\b", r"\b(?:for or against|favor|oppose)\b"),
+)
+
+CONTRACTS["fehire"] = WordingContract(
+    "Because of past discrimination against women, should employers make "
+    "special efforts to hire and promote qualified women? Do you strongly "
+    "agree, agree, neither agree nor disagree, disagree, or strongly disagree?",
+    (r"\bwomen\b", r"\b(?:hire|hiring)\b", r"\bpromot\w*\b",
+     r"\b(?:qualified|special efforts)\b",
+     r"\b(?:agree|disagree)\b"),
+)
+
+# Hiring disadvantage *chance* is different from a preference policy.
+_HIRING_CHANCES = {
+    "discaff": ("a White person", "an equally or less qualified Black person",
+                r"\bwhite\b", r"\bblack\b"),
+    "discaffm": ("a man", "an equally or less qualified woman",
+                 r"\bman\b", r"\bwoman\b"),
+    "discaffw": ("a woman", "an equally or less qualified man",
+                 r"\bwoman\b", r"\bman\b"),
+    "discaffwv": ("a woman", "an equally or less qualified man",
+                  r"\bwoman\b", r"\bman\b"),
+    "discaffwnv": ("a woman", "an equally or less qualified man",
+                   r"\bwoman\b", r"\bman\b"),
+}
+for variable, (affected, beneficiary, grp1, grp2) in _HIRING_CHANCES.items():
+    CONTRACTS[variable] = WordingContract(
+        f"How likely do you think it is nowadays that {affected} will not "
+        f"get a job or promotion while {beneficiary} gets one instead? "
+        "Would you say very likely, somewhat likely, somewhat unlikely, "
+        "or very unlikely?",
+        (grp1, grp2, r"\b(?:job|hiring|hire)\b", r"\bqualif\w*\b",
+         r"\b(?:likel\w*|chance)\b", r"\b(?:promotion|promot\w*)\b"),
+    )
+
+# The native map contains fragmentary citizenship labels; distinguish
+# *personal status* from *the importance of citizenship* and *preferences*.
+CONTRACTS["amcit"] = WordingContract(
+    "How important do you think having American citizenship is for being "
+    "truly American: very important, fairly important, not very important, "
+    "or not important at all?",
+    (r"\b(?:american|united states)\b", r"\bcitizenship\b",
+     r"\bimportant\b"),
+)
+CONTRACTS["amcitizn"] = WordingContract(
+    "To what extent do you agree or disagree with the statement: "
+    "'I would rather be a citizen of the United States than a citizen "
+    "of any other country'?",
+    (r"\b(?:citizen|citizenship)\b", r"\b(?:united states|america)\b",
+     r"\b(?:rather|prefer)\b", r"\b(?:agree|disagree)\b"),
+)
+for variable in ("citizen", "uscitzn"):
+    CONTRACTS[variable] = WordingContract(
+        "Are you currently a citizen of the United States?",
+        (r"\bcitizen\b", r"\b(?:united states|america)\b"),
+    )
+
+# The violence vignettes inherit the action under discussion in the original
+# sequence; make each askable item complete.
+for variable in ("polattak", "polattaky"):
+    CONTRACTS[variable] = WordingContract(
+        "Would you approve of a police officer physically striking a "
+        "citizen who was attacking that officer with their fists?",
+        (r"\bpolice\b", r"\b(?:strik\w*|hit|physically)\b",
+         r"\battack\w*\b", r"\bfists?\b"),
+    )
+
+
 def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
