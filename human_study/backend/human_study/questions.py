@@ -79,6 +79,62 @@ class QuestionLLM:
         else:
             raise ValueError("unknown LLM backend")
 
+    @staticmethod
+    def _complete_source_fallback(item, contract, anchored, source, attempts):
+        """Show only a validated, self-contained source when LLM rewriting fails.
+
+        This deliberately keeps incomplete map fragments from being presented.
+        For audited contracts the participant sees the full restored GSS
+        question; for other native items an unchanged source must independently
+        pass conservative standalone checks. This is a *visible* provenance
+        choice, not an unlogged LLM success.
+        """
+        if anchored:
+            valid = validates_natenviy_form(source) and validates_standalone(source)
+            method, reference = "verified_2024_natenviy_source_fallback_v1", NATENVIY_BALLOT_URL
+        elif contract:
+            valid = validates_standalone(source) and validates_wording(item.item_id, source)
+            method, reference = "source_grounded_standalone_fallback_v1", contract.source_reference
+        else:
+            # Dynamic native items carry source_text_incomplete=True even when
+            # the GSS map holds a complete standalone question. Reject obvious
+            # dependent stems, placeholders and dangling referents before
+            # admitting the canonical wording as a last resort.
+            valid = bool(
+                len(source.strip()) >= 30
+                and re.match(r"^(?:do|does|did|would|should|could|will|is|are|"
+                             r"what|how|why|where|when|which|have|has|in your|"
+                             r"on a scale|to what extent)\\b", source.strip(), re.I)
+                and not re.search(
+                    r"\\b(?:this|such|that)\\s+(?:person|book|woman|man)\\b",
+                    source, re.I,
+                )
+                and validates_standalone(source)
+            )
+            method, reference = "native_map_validated_standalone_fallback_v1", None
+        if not valid:
+            return None
+        return {
+            "displayed_wording": source.strip(),
+            "question_provenance": {
+                "provider": "source-validated",
+                "llm_id": None,
+                "prompt_version": getattr(item, "version", None),
+                "input_item_id": item.item_id,
+                "source_text_incomplete": item.source_text_incomplete,
+                "wording_status": "complete_source_used_after_failed_llm_rewrite",
+                "validation_method": method,
+                "source_reference": reference,
+                "source_standalone_verified": True,
+                "fallback": True,
+                "fallback_reason": "no_valid_llm_rephrasing_after_two_attempts",
+                "generation_attempts": len(attempts),
+                "attempts": attempts,
+                "mapper_hit": None,
+                "cache_hit": False,
+            },
+        }
+
     def generate(self, item):
         import dtag_core as core
         from optimizer.dtag_bridge import map_question, RUN_DEFAULTS
@@ -157,6 +213,11 @@ class QuestionLLM:
                     )
             except Exception as e:
                 attempts.append({"error": type(e).__name__})
+        fallback = self._complete_source_fallback(
+            item, contract, anchored, source, attempts,
+        )
+        if fallback is not None:
+            return fallback
         if incomplete or self.config.question_mode == "llm_required":
             raise QuestionGenerationError(
                 "unable to generate a complete, validated question from the source excerpt",
