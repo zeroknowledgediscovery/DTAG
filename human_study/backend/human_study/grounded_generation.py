@@ -122,7 +122,7 @@ def has_unresolved_choice_reference(text, source, choices):
         preceding = text[:pronoun.start()]
         if not re.search(
             r"\b(?:clergyman|woman|man|individual|citizen|person|"
-            r"applicant|worker|adult|speaker|employee|religious leader)\b",
+            r"applicant|worker|adult|speaker|employee|communist|religious leader)\b",
             preceding, re.I,
         ):
             return True
