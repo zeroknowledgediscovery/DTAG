@@ -235,11 +235,13 @@ def test_restart_requires_origin_empty_body_and_rate_limit(instrument, adapter):
         assert post(c, "restart", {"force": True}).status_code == 422
         assert c.get("/api/human/current").json()["session_id"] == original
         restarted = []
-        for n in range(10):
+        # One enrollment already occurred through /start; the default
+        # ten-per-minute quota therefore leaves room for nine restarts.
+        for n in range(9):
             response = post(c, "restart", {})
             assert response.status_code == 200, (n, response.text)
             restarted.append(response.json()["session_id"])
-        assert len(set(restarted)) == 10
+        assert len(set(restarted)) == 9
         blocked = post(c, "restart", {})
         assert blocked.status_code == 429
         assert c.get("/api/human/current").json()["session_id"] == restarted[-1]
@@ -284,13 +286,14 @@ def test_restart_never_available_in_production_even_without_pid(monkeypatch, ins
     web = TestClient(create_app(
         service, cookie_secret="test-secret-stable-not-for-deployment" * 2
     ))
-    with web:
-        view = web.post("/api/human/start", json={}, headers={
-            "Origin": "https://testserver"
-        })
-        assert view.status_code == 200, view.text
-        assert view.json()["test_restart_allowed"] is False
-        assert web.get("/api/human/test-session-options").json()["test_restart_allowed"] is False
-        assert web.post("/api/human/restart", json={}, headers={
-            "Origin": "https://testserver"
-        }).status_code == 403
+    # No lifespan: nonlocal lifespan correctly requires durable storage,
+    # whereas this isolated API authorization test uses memory fixtures.
+    view = web.post("/api/human/start", json={}, headers={
+        "Origin": "https://testserver"
+    })
+    assert view.status_code == 200, view.text
+    assert view.json()["test_restart_allowed"] is False
+    assert web.get("/api/human/test-session-options").json()["test_restart_allowed"] is False
+    assert web.post("/api/human/restart", json={}, headers={
+        "Origin": "https://testserver"
+    }).status_code == 403
