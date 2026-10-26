@@ -234,6 +234,27 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
             raise HTTPException(503, "not ready")
         return {"status": "ready"}
 
+    def test_restart_permitted(request: Request) -> bool:
+        study = svc()
+        if mode not in ("local", "staging") or study.prolific_required:
+            return False
+        prior_sid = sessions.sid(request)
+        if prior_sid:
+            try:
+                old = study.repo.read(prior_sid)
+            except KeyError:
+                old = None
+            if old and (old.session.get("prolific") or {}).get("prolific_pid"):
+                return False
+        return True
+
+    @app.get("/api/human/test-session-options")
+    def test_session_options(request: Request):
+        # Unlike /start, this works even with an expired model/code revision.
+        # Otherwise an old cookie and a changed deployment would hide the
+        # recovery button before it is possible to show a current() response.
+        return {"test_restart_allowed": test_restart_permitted(request)}
+
     @app.post("/api/human/start")
     def start(body: Start, request: Request):
         existing = sessions.sid(request)
@@ -252,22 +273,13 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
         is lost. The restart route cannot be enabled in production and may
         not fork a session linked to a Prolific participant ID.
         """
-        study = svc()
-        if mode not in ("local", "staging") or study.prolific_required:
-            raise HTTPException(403, "starting a new session is only available in test mode")
-        prior_sid = sessions.sid(request)
-        if prior_sid:
-            try:
-                old = study.repo.read(prior_sid)
-            except KeyError:
-                old = None
-            if old and (old.session.get("prolific") or {}).get("prolific_pid"):
-                raise HTTPException(403, "Prolific-linked sessions cannot be restarted")
+        if not test_restart_permitted(request):
+            raise HTTPException(403, "starting a new session is only available for unlinked test sessions")
         # Check new enrollments even if a valid old cookie was provided.
         # The ordinary /start resume path does not incur this new-session quota.
         if not enrollment.allow(request.client.host if request.client else "unknown"):
             raise HTTPException(429, "please wait before opening another test session")
-        result = study.start(None, None)
+        result = svc().start(None, None)
         response = JSONResponse(result)
         sessions.set_cookie(response, result["session_id"])
         return response
