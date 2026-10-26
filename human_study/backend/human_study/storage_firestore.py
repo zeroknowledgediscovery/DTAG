@@ -1,6 +1,8 @@
 """Firestore Native mode; all side effects are outside retryable transactions."""
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+
 from google.cloud import firestore
 
 from .storage import Snapshot, Conflict
@@ -47,14 +49,33 @@ class FirestoreRepository:
     def ref(self, sid):
         return self.root.collection("sessions").document(sid)
 
+    @staticmethod
+    def _read_collection(ref, collection):
+        """Read one independent record collection over the existing gRPC client."""
+        return {
+            f"{collection}/{doc.id}": decode(doc.to_dict())
+            for doc in ref.collection(collection).stream()
+        }
+
     def read(self, sid):
         ref = self.ref(sid)
-        # Stable optimistic snapshot: any writer updates revision in the same transaction.
+        # A writer commits both its revision and all record writes atomically.
+        # Keep BOTH revision reads and the retry loop: overlapping independent
+        # collection streams must never result in a torn scientific snapshot.
+        # Firestore's gRPC client can be shared by threads. This changes only
+        # transport overlap, not ordering, query scope, or stored values.
         for _ in range(8):
             before = ref.get()
             if not before.exists:
                 raise KeyError(sid)
-            records = {f"{c}/{d.id}": decode(d.to_dict()) for c in self.COLLECTIONS for d in ref.collection(c).stream()}
+            with ThreadPoolExecutor(max_workers=len(self.COLLECTIONS)) as pool:
+                batches = list(pool.map(
+                    lambda collection: self._read_collection(ref, collection),
+                    self.COLLECTIONS,
+                ))
+            records = {}
+            for batch in batches:
+                records.update(batch)
             after = ref.get()
             if before.to_dict()["revision"] == after.to_dict()["revision"]:
                 return Snapshot(decode(after.to_dict()), records)
