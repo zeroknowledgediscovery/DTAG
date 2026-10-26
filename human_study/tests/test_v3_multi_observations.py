@@ -599,3 +599,57 @@ def test_unverified_source_fallback_rejected_by_render_gate(instrument, adapter)
     start = service.start()
     with pytest.raises(GenerationPending, match="complete question"):
         service.consent(start["session_id"], True, start["session_version"])
+
+
+
+def test_full_session_recovers_verified_question_after_saved_answers(instrument, adapter):
+    """A bad rewrite after several stored answers must not dead-end the study."""
+    config, _, service = make_v3(instrument, adapter)
+
+    class LaterFallbackLLM(MultiFixtureLLM):
+        def generate(self, item):
+            self.generation_calls.append(item.item_id)
+            if len(self.generation_calls) == 6:
+                source = (
+                    f"Do you think the issue described by topic {item.item_id} "
+                    "should be discussed publicly?"
+                )
+                question = QuestionLLM._complete_source_fallback(
+                    item, None, False, source,
+                    [{"rejected": "incomplete_standalone_question"}] * 2,
+                )
+                assert question is not None
+                return question
+            return {
+                "displayed_wording": f"For topic {item.item_id}, what is your view?",
+                "question_provenance": {
+                    "provider": "fixture-llm", "fallback": False,
+                    "mapper_hit": True, "input_item_id": item.item_id,
+                },
+            }
+
+    service.llm = LaterFallbackLLM()
+    first = service.start()
+    sid = first["session_id"]
+    view = service.consent(sid, True, first["session_version"])
+    seen_fallback = False
+    for n in range(7):
+        assert view["question"] is not None
+        if "should be discussed publicly" in view["question"]["text"]:
+            assert n == 5
+            snap = service.repo.read(sid)
+            record = snap.records[f"questions/{view['question']['question_id']}"]
+            assert record["question_provenance"]["provider"] == "source-validated"
+            assert record["question_provenance"]["source_standalone_verified"]
+            seen_fallback = True
+        view = service.answer(sid, request(view, "yes, and also no"))["current"]
+    assert seen_fallback
+    assert view["phase"] == "ready_to_complete"
+    final = service.complete(sid)
+    assert final["phase"] == "complete"
+    archive = service.repo.read(sid)
+    answered = [
+        q for name, q in archive.records.items()
+        if name.startswith("questions/") and q["status"] == "answered"
+    ]
+    assert len(answered) == 7
