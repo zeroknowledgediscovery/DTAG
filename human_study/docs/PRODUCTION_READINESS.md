@@ -204,7 +204,7 @@ Before deploying to Prolific, investigator approval is required for:
   2024 map contains conditional/grid fragments such as `colmslm` (a
   referenced person is absent when asked independently), incomplete spending
   and abortion stems, and an unfinished `eqwlth` question. Source-grounded
-  generation contracts now protect 131 map items. The whole-map audit
+  generation contracts now protect 133 map items. The whole-map audit
   (`scripts/audit_gss_wording_map.py --check`) covers 813 variables and
   reports 12 outstanding context-suspect items requiring classification;
   see [wording-audit findings](GSS_2024_WORDING_AUDIT.md). Before recruitment,
