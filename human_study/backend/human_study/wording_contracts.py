@@ -320,7 +320,7 @@ _RACDIF_CAUSES = {
     "racdif2": ("an inborn difference in ability to learn",
                 r"\b(?:innate|inborn|in-born|genetic\w*)\b.{0,100}\b(?:learn\w*|abilit\w*)\b"),
     "racdif3": ("unequal opportunities for education",
-                r"\b(?:educat\w*|school\w*)\b.{0,140}\b(?:opportunit\w*|access|chance|equal)\b"),
+                r"\b(?:unequal opportunit\w*.{0,60}educat\w*|educat\w*.{0,140}(?:opportunit\w*|access|chance|equal))\b"),
     "racdif4": ("differences in motivation or willpower",
                 r"\b(?:motivat\w*|willpower|will power)\b"),
     "racdif5": ("differences in upbringing", r"\bupbring\w*\b"),
