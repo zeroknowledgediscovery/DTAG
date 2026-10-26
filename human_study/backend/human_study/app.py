@@ -75,7 +75,7 @@ def configured_service():
             raise RuntimeError("OpenAI credential is required for the selected language provider")
         if config.prolific is not None and any(
                 (code or "").upper().startswith("CHANGEME")
-                for code in (config.prolific.completion_code, config.prolific.review_code)):
+                for code in (config.prolific.completion_code, config.prolific.review_code, config.prolific.no_consent_code)):
             raise RuntimeError("replace the placeholder Prolific completion codes before deployment")
         if mode == "production" and backend != "openai":
             raise RuntimeError("production requires the live question provider")
