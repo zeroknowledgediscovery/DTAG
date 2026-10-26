@@ -22,6 +22,9 @@ python3 -m pytest -q -rs \
   human_study/tests/test_quality_review.py \
   human_study/tests/test_rejection_eligibility.py
 
+echo "[wording audit] GSS 2024 map and source-grounded contracts"
+python3 human_study/scripts/audit_gss_wording_map.py --check
+
 echo "[2/3] Existing answer, persistence, and cloud adapter regression"
 python3 -m pytest -q -rs \
   human_study/tests/test_v2_written_responses.py \
