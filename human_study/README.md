@@ -78,12 +78,26 @@ attention checks** (31 screens), using the same native-webapp selection as above
   Outside local mode a PID is required. Each PID gets one session
   (HMAC of study ID + PID, keyed by `DTAG_COOKIE_SECRET`), so a participant who
   loses cookies resumes rather than restarts.
-- **Completion codes.** Create two codes on Prolific: `completion_code`
-  (approve) and `review_code` (manual review). Participants with ≥
-  `attention_fail_threshold` (default 2) failed checks get `review_code`;
-  everyone else gets `completion_code`. Omit `review_code` to give everyone the
-  same code. The finish page shows the code and a "Return to Prolific" button.
-  Staging/production and `deploy.sh` refuse the `CHANGEME` placeholders.
+- **Three Prolific completion paths.** Create a distinct fixed, opaque code
+  for `completion_code` (approve/pay the advertised full study reward),
+  `review_code` (manual review, **not** automatic rejection or a reduced
+  payment), and `no_consent_code` (Prolific's **No consent → Request a return**
+  path, without a study reward). These codes are shared across participants,
+  not generated per person. Participants with ≥ `attention_fail_threshold`
+  (default 2) failed checks receive the review code; this is a *flag* and
+  any compensation decision must follow Prolific's policy. The consent-decline
+  page provides a separate return URL. Staging/production and `deploy.sh`
+  refuse the `CHANGEME` placeholders.
+- **Payment restriction.** A review code does **not** change payment on its
+  own. Prolific does not permit performance-based partial-pay deductions.
+  Manual review is required before any permitted action; genuine completed
+  submissions should generally receive the full advertised payment. Technical
+  interruption/partial participation is handled under Prolific's documented
+  return and partial-payment process rather than this quality flag.
+- **Internal GCP testing.** `config/study.prolific.gcptest.yaml` contains
+  separate opaque test codes and a versioned test study ID. Those codes are
+  **not** usable as Prolific completion paths unless created/configured there.
+  Never recruit with the GCP testing configuration.
 
 GCS objects per completed participant (bucket `DTAG_GCS_BUCKET`):
 
