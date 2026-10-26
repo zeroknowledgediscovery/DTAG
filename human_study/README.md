@@ -76,8 +76,16 @@ attention checks** (31 screens), using the same native-webapp selection as above
   grounded wording contracts reconstructs missing subjects and question
   stems for `colmslm` and related civil-liberties, abortion, suicide, spending,
   institutional-confidence, policing, gender-role, and inequality item families. LLM-
-  generated text must retain the relevant subject and meaning, or generation
-  fails closed instead of displaying an orphaned “this person” question.
+  generated text must retain the relevant subject and meaning. If both
+  LLM rewriting attempts fail, the service now presents the **complete,
+  source-validated GSS question** (with explicit archived provenance)
+  instead of entering an indefinite retry loop. Uncontracted canonical
+  questions are used only if they pass conservative standalone-text checks;
+  clearly incomplete fragments are still rejected. This recovers from LLM
+  outages and overly restrictive semantic rewrites without presenting an
+  orphaned “this person” question. New regression tests exercise the actual
+  StudyService presentation/retry path. The recovered text is **not** described
+  as an LLM-generated question.
   All five `racdif*x` wording-experiment variants are retained in the
   Prolific candidate pool, with their complete historical-comparison
   introduction and specific causal explanations reconstructed from NORC's
