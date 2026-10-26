@@ -256,8 +256,8 @@ def replay(config, adapter, final):
     for q in adaptive:
         recorded = q["selection"]
         predicted = choose_next_item(
-            state, recorded["policy"], set(), recorded["rng_state_before"],
-            config, adapter,
+            state, recorded["policy"], set(recorded.get("generation_skipped_ids", ())),
+            recorded["rng_state_before"], config, adapter,
         )
         if predicted.get("variable") != q["target_variable"]:
             raise ValueError("V3 adaptive replay diverges from archived policy")
