@@ -774,7 +774,7 @@ class StudyService:
                 else settings.no_consent_code if phase == "declined" and settings
                 else None)
         return {"session_id": s["session_id"], "phase": phase, "session_version": s["revision"],
-                                "question": public_q, "progress": {"completed": s["next_step"], "total": total},
+                "question": public_q, "progress": {"completed": s["next_step"], "total": total},
                 "consent": self.config.consent_text if phase == "consent" else None,
                 "receipt": s["receipt"] if phase == "complete" else None,
                 # For declined consent this is a *return-request* completion path,
