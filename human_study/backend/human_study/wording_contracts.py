@@ -302,6 +302,12 @@ def validates_standalone(text: str) -> bool:
         return False
     if re.search(r"^if (?:she|he|they|this person)\b", question, re.I):
         return False
+    if re.search(
+        r"^(?:would you (?:favor|support|oppose) (?:remov\w*|bann\w*)|"
+        r"do you favor removing) (?:this|the) book\b",
+        question, re.I,
+    ):
+        return False
     return True
 
 
