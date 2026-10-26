@@ -55,6 +55,7 @@ jobs:
             human_study/tests/test_quality_review.py \
             human_study/tests/test_rejection_eligibility.py \
             human_study/tests/test_v3_question_referents.py \
+            human_study/tests/test_grounded_question_generation.py \
             human_study/tests/test_standalone_candidate_audit.py \
             human_study/tests/test_full_native_gss_audit.py \
             human_study/tests/test_prolific_study.py \
