@@ -98,6 +98,30 @@ Run the wider native integration suite, and extend the audit to multiple
 20-step trajectories before recruitment. The historical native tests may
 require installed bindings and downloaded artifacts.
 
+### GSS 2024 standalone-wording source audit
+
+The 2024 map includes dependent question fragments (e.g. `colmslm` without
+the referenced Muslim clergyman). Before paid deployment, use the offline map
+audit to check contractual sources and unresolved wording-experiment exclusions:
+
+```bash
+python3 human_study/scripts/audit_gss_wording_map.py --check
+```
+
+For the actual *empty-state askable opinion pool*, with the real native model
+installed, additionally run:
+
+```bash
+python3 human_study/scripts/audit_gss_wording_map.py --native-candidates --check
+```
+
+Both audits are read-only. The first is in CI and the offline V3 verification
+script. The second uses the native model and is not run by CI because the model
+artifacts are not guaranteed present; it should be run before recruiting.
+Neither replaces investigator review of representative generated questions,
+especially after multi-item conditional state updates. See
+[GSS 2024 wording-audit report](GSS_2024_WORDING_AUDIT.md).
+
 ## D. Optional live-language-model synthetic probe
 
 Do **not** expose synthetic responses to a real Prolific cohort.
