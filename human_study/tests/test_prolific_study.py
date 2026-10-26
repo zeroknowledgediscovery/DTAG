@@ -92,7 +92,7 @@ def test_full_session_passing_checks_gets_completion_code_and_reward_record(inst
     assert reward["attention"] == {"total": 3, "passed": 3, "failed": 0, "failed_check_ids": [],
                                    "policy_eligible_total": 3, "policy_eligible_failed": 0,
                                    "policy_eligible_failed_ids": [], "non_eligible_failed_ids": [],
-                                   "fail_threshold": 2}
+                                   "fail_threshold": 3}
     assert reward["reward"] == "GBP 3.00"
     final = json.loads(archive.objects[f"{base}/sessions/{sid}/final.json"])
     assert final["reward"] == {k: v for k, v in reward.items() if k in final["reward"]}
@@ -318,6 +318,9 @@ def test_export_includes_prolific_linkage_code_and_quality(instrument, adapter, 
     assert int(row["quality_review_score"]) >= 60
     assert row["policy_eligible_attention_failed"] == "3"
     assert "many_near_duplicate_answers" in row["quality_review_signals"]
+    assert row["eligible_for_rejection"] == "True"
+    assert row["rejection_eligibility_basis"] == "at_least_three_valid_imc_failures"
+    assert row["two_failures_need_independent_evidence"] == "False"
     with (tmp_path / "export/answers.csv").open() as f:
         rows = list(csv.DictReader(f))
     assert [r["attention_passed"] for r in rows if r["phase"] == "attention"] == ["False", "False", "False"]
