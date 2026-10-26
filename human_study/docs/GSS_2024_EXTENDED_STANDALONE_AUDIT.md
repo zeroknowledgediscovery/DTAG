@@ -1,5 +1,12 @@
 # DTAG human study — expanded 2024 GSS standalone-question audit
 
+**Historical snapshot:** The counts below describe the earlier static scan,
+before the 21 confirmed source wording repairs. They must not be interpreted
+as current unresolved defects. For the real 811-variable inventory, updated
+contracts, remaining source-review work and current status, see
+[GSS_2024_FULL_NATIVE_AUDIT_STATUS.md](GSS_2024_FULL_NATIVE_AUDIT_STATUS.md).
+
+
 **Date:** 2026-10-26  
 **Branch:** experiment/prolific-human-study  
 **Scope:** Read-only audit of canonical \`maps/gss/gss_2024_map.csv\`,
