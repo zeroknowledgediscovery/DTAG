@@ -597,6 +597,84 @@ CONTRACTS["chngdocs"] = WordingContract(
 )
 
 
+# RINCOM16: 2024 GSS R2 codebook, pp. 93-94, Showcard A20.
+# The live participant test revealed "the following ranges" with NO ranges.
+# These are the 26 non-reserved survey categories and MUST be presented.
+INCOME16_RANGES = (
+    "Under $1,000", "$1,000 to $2,999", "$3,000 to $3,999",
+    "$4,000 to $4,999", "$5,000 to $5,999", "$6,000 to $6,999",
+    "$7,000 to $7,999", "$8,000 to $9,999",
+    "$10,000 to $12,499", "$12,500 to $14,999",
+    "$15,000 to $17,499", "$17,500 to $19,999",
+    "$20,000 to $22,499", "$22,500 to $24,999",
+    "$25,000 to $29,999", "$30,000 to $34,999",
+    "$35,000 to $39,999", "$40,000 to $49,999",
+    "$50,000 to $59,999", "$60,000 to $74,999",
+    "$75,000 to $89,999", "$90,000 to $109,999",
+    "$110,000 to $129,999", "$130,000 to $149,999",
+    "$150,000 to $169,999", "$170,000 or over",
+)
+_INCOME16_PATTERNS = tuple(
+    re.escape(label).replace(r"\ ", r"\s+")
+    for label in INCOME16_RANGES
+)
+CONTRACTS["rincom16"] = WordingContract(
+    "Thinking about your earnings from work during the last year, before "
+    "taxes or other deductions, which of the following income ranges best "
+    "describes your total earnings? Available ranges: "
+    + "; ".join(INCOME16_RANGES) + "?",
+    (r"\bearnings?\b", r"\b(?:work|occupation|job)\b",
+     r"\b(?:last year|previous year)\b", r"\bbefore taxes\b",
+     *_INCOME16_PATTERNS),
+)
+
+# The source treats 2nd and 3rd race as follow-up mentions, not assertions
+# that every participant has three race identities. Display explicit
+# applicability and a truthful route for those to whom it does not apply.
+for prefix in ("racecen", "racerank"):
+    for ordinal, threshold in ((2, "two"), (3, "three")):
+        variable = f"{prefix}{ordinal}"
+        original = CONTRACTS[variable]
+        CONTRACTS[variable] = WordingContract(
+            "Only if you identify with at least " + threshold +
+            " racial identities: " + original.source.rstrip("?") +
+            " If you identify with fewer than " + threshold +
+            ", please answer 'not applicable'?",
+            original.required_patterns +
+            (r"\b(?:only if|if you identify with at least)\b",
+             r"\bat least\b.{0,30}\b" + threshold + r"\b",
+             r"\bnot applicable\b"),
+            original.source_reference,
+        )
+
+# At runtime do not expose a mismatched 16-choice generic list if the
+# native LSM holds recoded 13-category RACECEN values for the 2024 wave.
+_NATIVE_RACE_IDS = {
+    "racecen1", "racecen2", "racecen3",
+    "racerank1", "racerank2", "racerank3",
+}
+
+
+def context_for_native_item(variable: str, answer_labels) -> WordingContract | None:
+    """Use the native source-map answer alphabet, not guessed survey options."""
+    base = CONTRACTS.get(variable.casefold())
+    if base is None or variable.casefold() not in _NATIVE_RACE_IDS:
+        return base
+    values = list(dict.fromkeys(str(v).strip() for v in answer_labels if str(v).strip()))
+    if not values:
+        return base
+    labels = "; ".join(values)
+    text = base.source.replace(RACE_OPTIONS, labels)
+    # Replace fixed catalogue checks with checks of the *actual* model
+    # alphabet; race identity, order, applicability checks are unchanged.
+    patterns = tuple(p for p in base.required_patterns
+                     if p not in RACE_REQUIRED_LABELS) + tuple(
+        re.escape(v).replace(r"\ ", r"\s+")
+        for v in values
+    )
+    return WordingContract(text, patterns, base.source_reference)
+
+
 def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
