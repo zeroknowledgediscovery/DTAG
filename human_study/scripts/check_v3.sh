@@ -14,6 +14,7 @@ python3 -m pytest -q -rs \
   human_study/tests/test_v3_multi_observations.py \
   human_study/tests/test_v3_question_referents.py \
   human_study/tests/test_grounded_question_generation.py \
+  human_study/tests/test_compiled_wording.py \
   human_study/tests/test_standalone_candidate_audit.py \
   human_study/tests/test_full_native_gss_audit.py \
   human_study/tests/test_question_archive_audit.py \
