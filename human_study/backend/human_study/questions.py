@@ -431,6 +431,8 @@ class QuestionLLM:
             "validation_method": validation_method,
             "source_reference": source_reference,
             "attempts": attempts,
-            "mapper_hit": (None if validation_method == "shared_webapp_realistic_craft_no_forced_target_mapping"
-                           else bool(attempts and attempts[-1].get("mapper_hit"))),
+            "mapper_hit": (None if validation_method in (
+                "shared_webapp_realistic_craft_no_forced_target_mapping",
+                "gss_2024_referent_scale_contract_v1",
+            ) else bool(attempts and attempts[-1].get("mapper_hit"))),
             "cache_hit": False, "fallback": fallback, "fallback_reason": reason}}
