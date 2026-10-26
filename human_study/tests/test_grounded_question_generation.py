@@ -178,3 +178,17 @@ def test_builder_rejects_static_228_candidate_subset():
             "all_native_variables_enumerated": True,
             "semantic_map_matched": 228,
         }, "variables": []})
+
+
+
+def test_official_2024_r2_catalog_is_packaged_with_production_code():
+    from human_study.grounded_generation import CATALOG, catalog
+    assert CATALOG.is_file(), "deploy must contain reproducible local codebook evidence"
+    records = catalog()
+    assert len(records) == 781
+    for name in ("rincom16", "acpttg", "obey", "racecen3"):
+        assert name in records and records[name]["excerpt"].startswith("Variable:")
+        assert records[name]["pdf_pages"]
+    assert "not applicable" in records["racecen3"]["excerpt"].lower() or (
+        "third" in records["racecen3"]["excerpt"].lower()
+    )
