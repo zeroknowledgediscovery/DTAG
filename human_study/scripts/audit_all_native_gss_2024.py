@@ -137,7 +137,14 @@ def audit_all(native_features, semantic_map, *, codebook=None):
         contract = CONTRACTS.get(variable.casefold())
         book = codebook.get(variable.casefold())
         book_text = "\n".join(book.get("blocks", [])) if book else ""
-        book_head = book_text[:5000]
+        # Strip the frequency/reserved-code table. Nearly every GSS item
+        # contains a statistical "NOT APPLICABLE" row, which is not evidence
+        # of a questionnaire skip instruction for that question.
+        book_stem = "\n".join(
+            re.split(r"(?m)^\s*(?:PCT Excl\.|LABEL VALUE|RESERVED CODES:)",
+                     block, maxsplit=1)[0]
+            for block in book.get("blocks", [])
+        ) if book else ""
         flags = []
         if not row:
             flags.append("model_variable_missing_semantic_map")
@@ -154,7 +161,7 @@ def audit_all(native_features, semantic_map, *, codebook=None):
             flags.append("native_support_contains_reserved_or_not_applicable_values")
         if RANGE_QUESTION.search(raw):
             flags.append("source_references_external_choices")
-        if DEPENDENT_BATTERY.search(raw + " " + book_head):
+        if DEPENDENT_BATTERY.search(raw + " " + book_stem):
             flags.append("dependent_stem_or_routing_requires_review")
         if codebook and not book:
             flags.append("not_found_in_supplied_codebook")
@@ -181,7 +188,8 @@ def audit_all(native_features, semantic_map, *, codebook=None):
             "source_contract_reference": contract.source_reference if contract else None,
             "codebook_entry_found": bool(book),
             "codebook_pdf_pages": book.get("pages", []) if book else [],
-            "codebook_entry_text": book_head or None,
+            "codebook_entry_text": book_text or None,
+            "codebook_label_and_notes": book_stem or None,
             "flags": sorted(set(flags)),
             "manual_checks_required": [
                 "verify_complete_standalone_question_and_referents",
