@@ -82,6 +82,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", help="optional JSON report path")
     parser.add_argument("--check", action="store_true", help="fail on violated source audit invariants")
+    parser.add_argument("--native-candidates", action="store_true",
+                        help="optional real-model audit of empty-state askable opinion candidates")
     args = parser.parse_args()
     rows = list(inspect())
     issues = validate(rows)
@@ -95,6 +97,24 @@ def main():
     print("Remaining flagged map entries require investigator classification, "
           "including non-opinion/demographic and conditional items.")
     print("Uncontracted example IDs:", [r["variable"] for r in residual[:30]])
+    if args.native_candidates:
+        # Uses the real native GSS model and the exact webapp filter. The
+        # result is *only* for the empty state: longer trajectories may expose
+        # other candidates as the observed state evolves.
+        from human_study.adapter import NativeAdapter
+        config = StudyConfig.load(CONFIGS[1])
+        adapter = NativeAdapter(config)
+        askable = set(adapter.webapp_candidates({}, config))
+        flagged_askable = sorted(
+            r["variable"] for r in residual if r["variable"] in askable
+        )
+        print("Real model empty-state askable opinion items:", len(askable))
+        print("Source-flagged, uncontracted items still askable:", flagged_askable)
+        if flagged_askable:
+            issues.append(
+                "Review source-flagged eligible items before human recruitment: "
+                + ", ".join(flagged_askable)
+            )
     for issue in issues:
         print("FAIL:", issue)
     if args.out:
