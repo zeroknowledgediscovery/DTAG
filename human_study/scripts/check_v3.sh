@@ -14,6 +14,7 @@ python3 -m pytest -q -rs \
   human_study/tests/test_v3_multi_observations.py \
   human_study/tests/test_v3_question_referents.py \
   human_study/tests/test_standalone_candidate_audit.py \
+  human_study/tests/test_full_native_gss_audit.py \
   human_study/tests/test_question_archive_audit.py \
   human_study/tests/test_v3_schedule_and_simulation.py \
   human_study/tests/test_v3_trajectory_analysis.py \
