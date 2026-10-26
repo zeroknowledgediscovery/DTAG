@@ -15,16 +15,18 @@ def choose_next_item(state, policy, exclusions, rng_state, config, adapter):
     skip = (set(state.asked_ids) | set(state.observed_state) |
             set(state.reserved_outcome_ids) | set(state.excluded_ids) | set(exclusions))
     if config.candidate_mode == "native_webapp":
-        # Exactly the web app's askable_items + native_one_step, including
-        # the objective selected by its resp_mode (max/modal or draw/mean).
-        # Match webapp askable_items: an item is excluded when its native
-        # variable is present in the state, not merely because its wording was
-        # asked and the participant's prose did not assign that coordinate.
-        # Explicit exclusion and held-out-outcome rules are study constraints.
-        webapp_skip = set(state.excluded_ids) | set(state.reserved_outcome_ids) | set(exclusions)
+        # Keep the original webapp's opinion filter and exact native scoring.
+        # Human subjects must not be asked the same question repeatedly:
+        # unlike the model's bounded observed_state, asked_ids is permanent
+        # for the duration of this session, even if mapping omitted the target
+        # or the target was evicted from the model state.
+        from .question_identity import already_covered_ids
         candidates = adapter.webapp_candidates(
-            dict(state.observed_state), config, exclusions=webapp_skip
+            dict(state.observed_state), config, exclusions=skip
         )
+        duplicates = already_covered_ids(candidates, state.asked_ids)
+        candidates = {v: answers for v, answers in candidates.items()
+                      if v not in duplicates}
         eligible = sorted(candidates)
         if not eligible:
             return {"status": "no_candidate", "reason": "no remaining webapp-askable native items",
