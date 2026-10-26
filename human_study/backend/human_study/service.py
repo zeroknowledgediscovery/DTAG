@@ -14,6 +14,7 @@ import uuid
 from datetime import datetime, timezone
 
 from .policy import POLICIES, choose_next_item, initial_rng
+from .quality_review import summarize_quality
 from .state import HumanDTAGState, Observation, apply_observed_answer, initialize_human_state, validate_observation
 from .storage import Conflict, IntegrityError
 from .study_config import digest
@@ -699,10 +700,11 @@ class StudyService:
         flags = [q.get("response_quality") or {} for q in questions]
         substantive = [f for q, f in zip(questions, flags) if q["phase"] != "attention"]
         times = sorted(f["elapsed_seconds"] for f in flags if "elapsed_seconds" in f)
+        review = summarize_quality(questions, self.config.attention_checks, self.config.quality)
         settings = self.config.prolific
         if settings is None:
             code, category = None, "no_prolific_configuration"
-        elif settings.review_code and len(failed) >= settings.attention_fail_threshold:
+        elif settings.review_code and review["eligible_imc_failed"] >= settings.attention_fail_threshold:
             code, category = settings.review_code, "attention_review"
         else:
             code, category = settings.completion_code, "complete"
@@ -712,12 +714,17 @@ class StudyService:
             "reward": settings.reward if settings else None,
             "attention": {"total": len(attention), "passed": len(attention) - len(failed),
                           "failed": len(failed), "failed_check_ids": failed,
+                          "policy_eligible_total": review["eligible_imc_total"],
+                          "policy_eligible_failed": review["eligible_imc_failed"],
+                          "policy_eligible_failed_ids": review["eligible_imc_failed_ids"],
+                          "non_eligible_failed_ids": review["other_check_failed_ids"],
                           "fail_threshold": settings.attention_fail_threshold if settings else None},
             "quality": {"substantive_answers": len(substantive),
                         "fast_answers": sum(bool(f.get("fast")) for f in flags),
                         "short_answers": sum(bool(f.get("short")) for f in substantive),
                         "duplicate_answers": sum(f.get("duplicate_of") is not None for f in substantive),
                         "median_elapsed_seconds": times[len(times) // 2] if times else None,
+                        "review": review,
                         "settings": self.config.quality.model_dump(mode="json")},
             "policy": session["policy"], "consent_version": session["consent_version"],
             "created_at": session["created_at"],
