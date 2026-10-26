@@ -46,6 +46,11 @@ jobs:
             human_study/tests/test_rejection_eligibility.py \
             human_study/tests/test_v3_question_referents.py \
             human_study/tests/test_prolific_study.py
+      - name: Audit GSS 2024 source wording and unresolved references
+        env:
+          PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
+        run: |
+          python human_study/scripts/audit_gss_wording_map.py --check
       - name: Validate V3 native study configs (no candidate bank)
         env:
           PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
