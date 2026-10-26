@@ -131,7 +131,8 @@ class QuestionLLM:
             "question_provenance": {
                 "provider": "source-validated",
                 "llm_id": None,
-                "prompt_version": getattr(item, "version", None),
+                "prompt_version": None,
+                "item_version": getattr(item, "version", None),
                 "input_item_id": item.item_id,
                 "source_text_incomplete": item.source_text_incomplete,
                 "wording_status": "complete_source_used_after_failed_llm_rewrite",
