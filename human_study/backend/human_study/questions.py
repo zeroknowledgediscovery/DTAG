@@ -208,10 +208,6 @@ class QuestionLLM:
                     attempts.append({"text": text, "rejected": "incomplete_standalone_question"})
                     retry_feedback = ["Remove orphaned references or placeholders; provide complete premise and question."]
                     continue
-                if contract is not None and not validates_wording(item.item_id, text, contract_override=contract):
-                    attempts.append({"text": text, "rejected": "required_referent_or_scale_missing"})
-                    retry_feedback = ["Restore all essential source-contract referents and response-scale anchors."]
-                    continue
                 missing_options = validate_complete_choices(text, source, item.choices)
                 if missing_options:
                     attempts.append({"rejected": "response_alternatives_not_displayed",
@@ -221,6 +217,10 @@ class QuestionLLM:
                         "scale, but omitted these native alternatives: " +
                         "; ".join(missing_options) + ". Include them all in the displayed question."
                     ]
+                    continue
+                if contract is not None and not validates_wording(item.item_id, text, contract_override=contract):
+                    attempts.append({"text": text, "rejected": "required_referent_or_scale_missing"})
+                    retry_feedback = ["Restore all essential source-contract referents and response-scale anchors."]
                     continue
                 if has_unresolved_choice_reference(text, source, item.choices):
                     attempts.append({"rejected": "unresolved_choice_or_person_reference"})
