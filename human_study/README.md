@@ -69,10 +69,25 @@ attention checks** (31 screens), using the same native-webapp selection as above
   LLM-worded) and `kind: factual` (obvious-answer question shown verbatim,
   passes if the reply contains any `accepted_answers` as a whole word). They
   never touch the LSM state.
-- **Answer-quality flags** (recorded, never scored): `fast` (answered within
-  `quality.fast_seconds`), `short` (< `quality.short_words` words), and
-  `duplicate_of` (≥ `quality.duplicate_similarity` similar to an earlier answer).
-  Unintelligible text is already refused by the mapper and must be rewritten.
+- **Answer-quality flags** (stored for each response): `fast` (server-measured
+  elapsed time under `quality.fast_seconds`), `short` (fewer than
+  `quality.short_words` words), and `duplicate_of` (normalized text at least
+  `quality.duplicate_similarity` similar to an earlier substantive answer).
+  The V3 mapper may request clarification when it cannot interpret the text.
+- **Automatic scientific quality review** (`pilot-review-priority-v1`, computed
+  on completion and archived in `reward.quality.review`): a 0–100 **review
+  priority score**, not an authenticity probability, from 65×duplicate-answer
+  fraction + 25×short-answer fraction + 10×fast-answer fraction. Fractions
+  use answered substantive questions only (baseline, intervention, outcome).
+  `score >= 35` suggests investigator review; `score >= 60` is high priority.
+  Valid instructional-response failures also raise review priority. These
+  thresholds are **unvalidated pilot heuristics**; backend latency is included
+  in the fast metric, and legitimate short/repeated opinions are possible.
+  Crucially, the quality score **never changes the Prolific completion code,
+  payout or rejection decision**. Participant-level scores, priority, and signal
+  labels are also available in the investigator-only `participants.csv` export.
+  The system does not currently retain rejected pre-submission mapper attempts,
+  nor does it reliably detect all types of nonsensical or AI-generated text.
 - **Prolific linkage.** Set the Prolific study URL to
   `https://<service>/study?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}`.
   Outside local mode a PID is required. Each PID gets one session
@@ -86,7 +101,8 @@ attention checks** (31 screens), using the same native-webapp selection as above
   payment), and `no_consent_code` (Prolific's **No consent → Request a return**
   path, without a study reward). These codes are shared across participants,
   not generated per person. Participants with ≥ `attention_fail_threshold`
-  (default 2) failed checks receive the review code; this is a *flag* and
+  (default 2) failed **eligible instructional-response** checks receive the review code;
+  ordinary factual checks remain non-punitive diagnostics. This is a *flag* and
   any compensation decision must follow Prolific's policy. The consent-decline
   page provides a separate return URL. Staging/production and `deploy.sh`
   refuse the `CHANGEME` placeholders.
