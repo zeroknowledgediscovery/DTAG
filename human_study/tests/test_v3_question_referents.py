@@ -205,3 +205,82 @@ def test_colmslm_generator_accepts_complete_referent(monkeypatch):
     record = fake_llm().generate(item)
     assert record["displayed_wording"] == complete
     assert record["question_provenance"]["source_reference"].endswith("GSS%202024%20Codebook%20R2.pdf")
+
+
+
+@pytest.mark.parametrize("number,cause", [
+    (1, "racial discrimination"),
+    (2, "inborn difference in ability"),
+    (3, "unequal opportunities for education"),
+    (4, "motivation or willpower"),
+    (5, "upbringing"),
+])
+def test_all_five_racdif_historical_variants_are_standalone(number, cause):
+    original = context_for(f"racdif{number}")
+    variant = context_for(f"racdif{number}x")
+    assert original is not None and variant is not None
+    assert cause in variant.source
+    assert "50 years" in variant.source
+    assert "historical comparison" in variant.source
+    assert variant.source.endswith(original.source)
+    assert validates_standalone(variant.source)
+    assert validates_wording(f"racdif{number}x", variant.source)
+    assert "GSS2024_Ballot1_English.pdf" in variant.source_reference
+    # Without the historical comparison intro the experimental form is lost.
+    assert not validates_wording(f"racdif{number}x", original.source)
+    # A historical intro with an unspecified cause is equally incomplete.
+    truncated = (
+        "The GSS has studied racial inequality for almost 50 years. "
+        "For historical comparison, do you think Black people have worse "
+        "jobs than White people because most?"
+    )
+    assert not validates_wording(f"racdif{number}x", truncated)
+
+
+def test_racdif_x_uses_complete_source_for_generation(monkeypatch):
+    import dtag_core
+
+    generated = (
+        "Research has asked similar questions for almost 50 years. "
+        "For historical comparison, do you think that racial discrimination "
+        "mainly explains differences in jobs and income between Black "
+        "people and White people?"
+    )
+    source_inputs = []
+
+    def generate(_client, source, _choices, _model, **kwargs):
+        source_inputs.append(source)
+        assert kwargs == {"source_incomplete": True}
+        if len(source_inputs) == 1:
+            return (
+                "Do you think differences in jobs and income between Black "
+                "people and White people are due to discrimination?"
+            )
+        return generated
+
+    monkeypatch.setattr(dtag_core, "llm_craft_survey_question", generate)
+    item = fake_item("racdif1x")
+    record = fake_llm().generate(item)
+    assert record["displayed_wording"] == generated
+    assert len(source_inputs) == 2
+    assert all("racial discrimination" in x for x in source_inputs)
+    assert record["question_provenance"]["attempts"][0]["rejected"] == (
+        "required_referent_or_scale_missing"
+    )
+    assert record["question_provenance"]["validation_method"] == (
+        "gss_2024_referent_scale_contract_v1"
+    )
+    assert "GSS2024_Ballot1_English.pdf" in record["question_provenance"]["source_reference"]
+
+
+def test_full_prolific_configs_retain_all_five_variants():
+    from pathlib import Path
+    from human_study.study_config import StudyConfig
+
+    root = Path(__file__).resolve().parents[2]
+    for suffix in ("study.prolific.example.yaml", "study.prolific.gcptest.yaml"):
+        config = StudyConfig.load(root / "human_study/config" / suffix)
+        for i in range(1, 6):
+            assert f"racdif{i}x" not in config.excluded_ids
+        assert config.excluded_ids == ()
+        assert config.candidate_mode == "native_webapp"
