@@ -1,10 +1,10 @@
 {
   "schema_version": "1",
   "native_variable_count": 811,
-  "precompiled_count": 153,
-  "source_contract_compiled": 153,
+  "precompiled_count": 155,
+  "source_contract_compiled": 155,
   "human_reviewed_compiled": 0,
-  "live_llm_fallback_count": 658,
+  "live_llm_fallback_count": 656,
   "qualifications": [
     {
       "variable": "year",
@@ -6326,28 +6326,24 @@
     },
     {
       "variable": "spkcomy",
-      "status": "needs_source_review",
+      "status": "source_contract",
       "source_contract_present": true,
       "codebook_entry_found": true,
       "review_flags": [
         "map_unresolved_reference_risk"
       ],
-      "validation_failures": [
-        "unresolved_reference_or_hidden_card"
-      ]
+      "validation_failures": []
     },
     {
       "variable": "colcomy",
-      "status": "needs_source_review",
+      "status": "source_contract",
       "source_contract_present": true,
       "codebook_entry_found": true,
       "review_flags": [
         "map_source_markup",
         "map_unresolved_reference_risk"
       ],
-      "validation_failures": [
-        "unresolved_reference_or_hidden_card"
-      ]
+      "validation_failures": []
     },
     {
       "variable": "libcomy",

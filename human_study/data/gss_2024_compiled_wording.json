@@ -3,7 +3,7 @@
   "model_key": "gss/gss_2024",
   "model_release": "v0.2.1",
   "total_native_variables": 811,
-  "catalog_revision_sha256": "bc6ad6385d2e101cb2a2a84883ea3893ab5ee32f57f43ea71671a111966e0af3",
+  "catalog_revision_sha256": "47f91514e8de9302de8c75f2ccf256b441307968ed4a73d232b2772546a16730",
   "entries": {
     "abany": {
       "variable": "abany",
@@ -232,6 +232,16 @@
       "native_answers_sha256": "a4f403d9f1df179f43e32de2816c3f66062975c2050d50ebaecc5ea3441186a3",
       "display_labels_sha256": "a4f403d9f1df179f43e32de2816c3f66062975c2050d50ebaecc5ea3441186a3",
       "question": "Consider a man who admits he is a Communist, currently teaching at a college. Should this person be fired from that teaching position?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "colcomy": {
+      "variable": "colcomy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "00eee130d76fa48f58fd87a1fcd699e2038abd1213533291a812424bec0c5331",
+      "native_answers_sha256": "a4f403d9f1df179f43e32de2816c3f66062975c2050d50ebaecc5ea3441186a3",
+      "display_labels_sha256": "a4f403d9f1df179f43e32de2816c3f66062975c2050d50ebaecc5ea3441186a3",
+      "question": "Consider a self-identified Communist, currently teaching at a college. Should this person be fired from that teaching position?",
       "certification": "source_contract",
       "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
     },
@@ -1342,6 +1352,16 @@
       "native_answers_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
       "display_labels_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
       "question": "Consider a man who admits he is a Communist. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "spkcomy": {
+      "variable": "spkcomy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "0e8594fa2cc0a3c7d1d66f5a403750fa8463db0a9cc075948e168f934c71a458",
+      "native_answers_sha256": "abf0d6dc79ca09488b5c8cc848c2deaaf3fbe38db7464301040c561675e9c786",
+      "display_labels_sha256": "abf0d6dc79ca09488b5c8cc848c2deaaf3fbe38db7464301040c561675e9c786",
+      "question": "Consider a self-identified Communist. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
       "certification": "source_contract",
       "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
     },
