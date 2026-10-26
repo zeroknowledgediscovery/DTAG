@@ -34,3 +34,9 @@ h2:focus { outline: none; }
 textarea { width: 100%; resize: vertical; min-height: 135px; font: inherit; padding: 15px; line-height: 1.6; border: 1px solid #cbd8d8; border-radius: 8px; color: #1c3039; background: #fff; }
 textarea:disabled { opacity: .7; background: #f1f5f5; }
 textarea:focus-visible { outline: 3px solid #d7a345; outline-offset: 3px; }
+
+/* Only visible in local/staging internal test sessions. */
+.test-session-controls { margin: -12px 0 24px; padding: 14px 16px; border: 1px solid #d5e2e1; border-radius: 9px; background: #f7faf9; }
+.test-session-controls > span { display: block; margin-bottom: 8px; font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: #4b7373; }
+.test-session-controls > button { min-height: 42px; padding: 8px 14px; }
+.test-session-controls > p { margin: 8px 0 0; line-height: 1.5; }
