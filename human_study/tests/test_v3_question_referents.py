@@ -494,3 +494,89 @@ def test_surveillance_source_names_actor_action_location_and_right():
                  "definitely should", "probably should", "should not"):
         assert term in source.lower()
     assert not validates_wording("cctv", "Should video surveillance be allowed?")
+
+
+
+def test_acpttg_is_source_complete_and_preserves_three_position_scale():
+    source = context_for("acpttg").source
+    assert "American society" in source
+    assert "accepting people whose sex differs" in source
+    assert "assigned at birth" in source
+    assert validates_standalone(source)
+    assert validates_wording("acpttg", source)
+    assert "GSS2024_Ballot1_English.pdf" in context_for("acpttg").source_reference
+
+    # The actual participant-reported question, and similar grammatical
+    # questions, MUST fail validation when the target population is absent.
+    for incomplete in (
+        "Do you think accepting people is done too far, not far enough, or about far enough?",
+        "Do you think American society has gone too far, about far enough, "
+        "or not far enough in accepting people?",
+        "Has American society gone too far in accepting those people?",
+        "Do you think American society has gone too far or not far enough "
+        "in accepting transgender people?",
+    ):
+        assert not validates_wording("acpttg", incomplete), incomplete
+
+    # An equivalently complete rewording can still pass.
+    assert validates_wording(
+        "acpttg",
+        "Has American society gone too far, about far enough, or not far enough "
+        "in accepting transgender people?",
+    )
+
+
+def test_acpttg_repairs_reported_item_28_after_bad_llm_rewrites(monkeypatch):
+    import dtag_core
+
+    inputs = []
+    reported = (
+        "Do you think accepting people is done too far, "
+        "not far enough, or about far enough?"
+    )
+
+    def flawed_rewrite(_client, source, _choices, _model, **kwargs):
+        inputs.append(source)
+        return reported
+
+    monkeypatch.setattr(dtag_core, "llm_craft_survey_question", flawed_rewrite)
+    item = SimpleNamespace(
+        item_id="acpttg",
+        original_wording="accepting people",
+        source_text_incomplete=True,
+        choices=tuple(
+            SimpleNamespace(native_value=v, display_label=v)
+            for v in ("too far", "about far enough", "not far enough")
+        ),
+    )
+    record = fake_llm().generate(item)
+    assert len(inputs) == 2
+    assert inputs == [context_for("acpttg").source] * 2
+    assert record["displayed_wording"] == context_for("acpttg").source
+    assert record["displayed_wording"] != reported
+    assert record["question_provenance"]["provider"] == "source-validated"
+    assert record["question_provenance"]["source_standalone_verified"] is True
+    assert record["question_provenance"]["source_reference"].endswith(
+        "GSS2024_Ballot1_English.pdf"
+    )
+    assert all(
+        x["rejected"] == "required_referent_or_scale_missing"
+        for x in record["question_provenance"]["attempts"]
+    )
+
+
+def test_chngdocs_document_rights_requires_birth_context():
+    source = context_for("chngdocs").source
+    assert validates_standalone(source)
+    assert validates_wording("chngdocs", source)
+    assert "driver's license" in source
+    assert "assigned at birth" in source
+    assert "GSS2024_Ballot1_English.pdf" in context_for("chngdocs").source_reference
+    assert not validates_wording(
+        "chngdocs", "Should the law allow changing official documents?"
+    )
+    assert not validates_wording(
+        "chngdocs",
+        "Should the law allow people to change the sex listed on official "
+        "documents like a driver's license?",
+    )
