@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      PYTHONPATH: \${{ github.workspace }}/human_study/backend:\${{ github.workspace }}/human_study/scripts:\${{ github.workspace }}/scripts:\${{ github.workspace }}
+      PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/human_study/scripts:${{ github.workspace }}/scripts:${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -43,7 +43,7 @@ jobs:
         with:
           name: gss2024-811-native-variable-audit
           path: |
-            \${{ runner.temp }}/gss2024_full_wording_audit.csv
-            \${{ runner.temp }}/gss2024_full_wording_audit.json
+            ${{ runner.temp }}/gss2024_full_wording_audit.csv
+            ${{ runner.temp }}/gss2024_full_wording_audit.json
           if-no-files-found: warn
           retention-days: 30
