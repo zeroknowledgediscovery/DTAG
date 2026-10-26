@@ -62,14 +62,19 @@ release-2 codebook identified the following families:
 | Police-force vignettes (`polabuse*`, `polmurdr`) | Conditional fragments omit whether police may strike a person | Restore action and specific vignette |
 | Racial inequality (`racdif1-5`) | Grid fragments omit comparative reference group or causal attribution | Restore comparisons and the specified causal explanation |
 | Gender-role attitudes (`fechld`, `fepresch`, `fefam`) | Shared agree/disagree stems and a truncated FEFAM label | Restore explicit statement and four-level agreement scale |
-| Racial-inequality wording experiment (`racdif1x-5x`) | Codebook/map labels terminate in an unfinished cause | **Excluded by ID** from current full Prolific draft/test configurations pending the actual questionnaire wording |
+| Racial-inequality wording experiment (`racdif1x-5x`) | Codebook/map labels truncate the cause; the historical-comparison introduction differs | **All five fully reconstructed and retained** in the native adaptive candidate set, with separate historical-intro contracts and the same five causes as the original items |
 
-The `racdif*x` exclusion is an explicit scientific instrument change:
-questions from those five variables cannot be selected as DTAG adaptive
-candidates under the current study configs. There is **no alteration** to
-the shared optimizer or native LSM state geometry. If these variables are
-eventually restored, verify their experimental form independently and
-release under a new study ID/config hash.
+**No context-dependent question is excluded because of incomplete wording.**
+NORC's 2024 R2 codebook describes `racdif1x`–`racdif5x` as an
+alternate *historical-comparison introductory frame* (the five causal
+attributions are unchanged). We verified the full causes and the X/Y
+introduction logic in the [2024 Ballot 1 English questionnaire](https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf),
+and restored all five items. Each standalone X question preserves its
+comparative framing and explicitly names its causal explanation. As
+`racdif5` was introduced in 2024, the standalone wording correctly
+describes the **series** as historically asked, not RACDIF5 itself.
+Native variable IDs, category codes, candidate selection, and optimizer
+remain unchanged.
 
 Some other GSS map rows have interviewer skip instructions, grid context,
 conditional demographics or form-specific fillers. A source excerpt can be
@@ -88,12 +93,13 @@ python3 human_study/scripts/audit_gss_wording_map.py --check \
 
 This reads **all rows in the canonical GSS 2024 semantic map**, identifies
 labels with known context/truncation cues, checks registered wording
-contracts against their own mandatory patterns and verifies that the five
-unverifiable `racdif*x` items remain excluded. The report enumerates
+contracts against their own mandatory patterns and verifies that all five
+`racdif*x` variants have complete contracts and are **not excluded**.
+The report enumerates
 residual flagged rows for subsequent investigator classification.
 
 The first offline scan of the 2024 canonical map found **813 entries**,
-**99 potentially context-dependent** source labels, **102 validated source
+**99 potentially context-dependent** source labels, **107 validated source
 contracts**, and **13 flagged labels without a contract**. The residual
 variable IDs were `sphrs1`, `granborn`, `socrel`, `socommun`,
 `socfrend`, `socbar`, `rank`, `dofirst`, `sexsex`, `uscitzn`,
@@ -123,7 +129,7 @@ families. CI runs these tests plus the map scanner, alongside existing V3
 native parity and Prolific integration tests.
 
 The revised GCP test instrument is versioned separately as
-`prolific-v3-gcp-wording-audit-v1`. Earlier browser sessions, including
+`prolific-v3-gcp-full-wording-v1`. Earlier browser sessions, including
 the observed `colmslm` question, are **not** retroactively corrected.
 Redeploy the revised instrument, confirm the deployed code SHA, and run a
 fresh full-length browser session before Prolific recruitment.
