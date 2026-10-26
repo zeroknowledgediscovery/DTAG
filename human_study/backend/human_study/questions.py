@@ -102,9 +102,21 @@ class QuestionLLM:
             # admitting the canonical wording as a last resort.
             valid = bool(
                 len(source.strip()) >= 30
-                and re.match(r"^(?:do|does|did|would|should|could|will|is|are|"
-                             r"what|how|why|where|when|which|have|has|in your|"
-                             r"on a scale|to what extent)\b", source.strip(), re.I)
+                # A complete source may start with a scenario: "Some people
+                # think ... Others ... Which ...?" Requiring an interrogative
+                # at character 0 silently rejects valid NORC question stems.
+                and re.search(
+                    r"\b(?:do you|does|did|would you|should|could|will|"
+                    r"what|how|why|where|when|which|is it|are you|"
+                    r"to what extent|can a|can you)\b",
+                    source, re.I,
+                )
+                and not re.match(
+                    r"^(?:if (?:she|he|they)|such|this person|"
+                    r"what about|how about|and |or |improving |supporting |"
+                    r"the way|its )",
+                    source.strip(), re.I,
+                )
                 and not re.search(
                     r"\b(?:this|such|that)\s+(?:person|book|woman|man)\b",
                     source, re.I,
