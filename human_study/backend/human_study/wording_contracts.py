@@ -554,6 +554,49 @@ for variable in ("polattak", "polattaky"):
     )
 
 
+# GSS 2024 ACPTTG and CHNGDOCS (Ballot 1, pp. 261-262; codebook R2,
+# p. 517). The native semantic map reduces ACPTTG to "accepting people"
+# and CHNGDOCS to a short label without the subject of the change. The
+# complete GSS question defines *who* and what the government would allow.
+# Never infer the omitted referent from the response options or ideology.
+_2024_BALLOT_1 = (
+    "https://gss.norc.org/content/dam/gss/get-documentation/pdf/"
+    "quex/GSS2024_Ballot1_English.pdf"
+)
+CONTRACTS["acpttg"] = WordingContract(
+    source=(
+        "Do you think American society has gone too far, about far enough, "
+        "or not far enough in accepting people whose sex differs from the "
+        "one they were assigned at birth?"
+    ),
+    required_patterns=(
+        r"\b(?:american society|society in (?:the )?(?:united states|america))\b",
+        r"\baccept\w*\b",
+        r"\b(?:transgender\b|(?:sex|gender).{0,110}assigned at birth)\b",
+        r"\btoo far\b",
+        r"\b(?:about far enough|about right|roughly enough)\b",
+        r"\bnot far enough\b",
+    ),
+    source_reference=_2024_BALLOT_1,
+)
+CONTRACTS["chngdocs"] = WordingContract(
+    source=(
+        "Do you think the law should allow people to change the sex listed "
+        "on official documents, such as a driver's license, to reflect a "
+        "sex different from the one they were assigned at birth?"
+    ),
+    required_patterns=(
+        r"\b(?:law|legally|government)\b",
+        r"\b(?:allow|permit)\b",
+        r"\bchang\w*\b",
+        r"\b(?:sex|gender)\b",
+        r"\b(?:official documents?|driver'?s licen[sc]e)\b",
+        r"\bassigned at birth\b",
+    ),
+    source_reference=_2024_BALLOT_1,
+)
+
+
 def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
