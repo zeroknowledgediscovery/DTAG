@@ -104,7 +104,7 @@ The report enumerates
 residual flagged rows for subsequent investigator classification.
 
 The first offline scan of the 2024 canonical map found **813 entries**,
-**99 potentially context-dependent** source labels, **131 validated source
+**99 potentially context-dependent** source labels, **133 validated source
 contracts**, and **12 flagged labels without a contract**. The residual
 variable IDs were `sphrs1`, `granborn`, `socrel`, `socommun`,
 `socfrend`, `socbar`, `rank`, `dofirst`, `sexsex`,
@@ -125,6 +125,23 @@ certify all state-dependent candidate universes across 20 adaptive questions.
 A complete instrument qualification additionally needs an audit across
 multiple actual native states and representative live OpenAI-generated
 questions.
+
+### October 2026 respondent test: ACPTTG incomplete referent
+
+A 31-item completed synthetic session displayed “accepting people” without
+specifying which people. Its native variable, `ACPTTG`, has only the
+abbreviation `accepting people` in `maps/gss/gss_2024_map.csv`; the
+original 2024 GSS Ballot 1 specifies “people whose sex differs from the
+one they were assigned at birth” and a three-part scale: *too far*,
+*about far enough*, *not far enough*. A source-grounded contract now
+requires both the full referent and all three scale positions.
+`CHNGDOCS`, the adjacent GSS question on official documents, also has
+a source-grounded standalone contract to prevent a similar omission.
+Both are included in the mandatory `--check` wording audit and
+generation regression tests. Native IDs, responses, LSM, and adaptive
+scoring are unchanged.
+
+Source: [GSS 2024 Ballot 1 English, pp. 261–262](https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf).
 
 ## Validation and deployment
 
