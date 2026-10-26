@@ -104,9 +104,9 @@ class QuestionLLM:
                 len(source.strip()) >= 30
                 and re.match(r"^(?:do|does|did|would|should|could|will|is|are|"
                              r"what|how|why|where|when|which|have|has|in your|"
-                             r"on a scale|to what extent)\\b", source.strip(), re.I)
+                             r"on a scale|to what extent)\b", source.strip(), re.I)
                 and not re.search(
-                    r"\\b(?:this|such|that)\\s+(?:person|book|woman|man)\\b",
+                    r"\b(?:this|such|that)\s+(?:person|book|woman|man)\b",
                     source, re.I,
                 )
                 and validates_standalone(source)
