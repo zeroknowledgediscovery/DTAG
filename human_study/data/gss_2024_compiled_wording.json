@@ -1,0 +1,1539 @@
+{
+  "schema_version": "1",
+  "model_key": "gss/gss_2024",
+  "model_release": "v0.2.1",
+  "total_native_variables": 811,
+  "catalog_revision_sha256": "bc6ad6385d2e101cb2a2a84883ea3893ab5ee32f57f43ea71671a111966e0af3",
+  "entries": {
+    "abany": {
+      "variable": "abany",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "35f2ad50fe548d1c811951b7ff7de04612f8300095c9e9c7d487c60ce5509c17",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if she wants an abortion for any reason?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abanyg": {
+      "variable": "abanyg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "35f2ad50fe548d1c811951b7ff7de04612f8300095c9e9c7d487c60ce5509c17",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if she wants an abortion for any reason?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abdefect": {
+      "variable": "abdefect",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "ced18ee3317a32361c19bcced461283c247d618bf32859e54e3fa7284d1328c8",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if there is a strong chance of a serious defect in the baby?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abdefectg": {
+      "variable": "abdefectg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "ced18ee3317a32361c19bcced461283c247d618bf32859e54e3fa7284d1328c8",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if there is a strong chance of a serious defect in the baby?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abhlth": {
+      "variable": "abhlth",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b0ea93706f48fd3749b52d503f5aff5e8bcea72db1843bedd4121f40c643ff26",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if her own health is seriously endangered by the pregnancy?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abhlthg": {
+      "variable": "abhlthg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b0ea93706f48fd3749b52d503f5aff5e8bcea72db1843bedd4121f40c643ff26",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if her own health is seriously endangered by the pregnancy?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abnomore": {
+      "variable": "abnomore",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "3d6ba5dc70bff6e520b5d79af670407c3e25685817c08e25607ec9feac1531a5",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if she is married and does not want any more children?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abnomoreg": {
+      "variable": "abnomoreg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "3d6ba5dc70bff6e520b5d79af670407c3e25685817c08e25607ec9feac1531a5",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if she is married and does not want any more children?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abpoor": {
+      "variable": "abpoor",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "178f9f1b5805ee50a154efdbae901db3087338b12636cae0a08d9bd4d7caf966",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if her family has a very low income and cannot afford another child?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abpoorg": {
+      "variable": "abpoorg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "178f9f1b5805ee50a154efdbae901db3087338b12636cae0a08d9bd4d7caf966",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if her family has a very low income and cannot afford another child?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abrape": {
+      "variable": "abrape",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "27421c1960313c03e52a1905d5115244feba101e29fa3a0d217957acd26c3dc5",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if she became pregnant as a result of rape?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "abrapeg": {
+      "variable": "abrapeg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "27421c1960313c03e52a1905d5115244feba101e29fa3a0d217957acd26c3dc5",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if she became pregnant as a result of rape?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "absingle": {
+      "variable": "absingle",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "dd5b87efb3331e997d40b3d98e3a2100fe753e23cc39062c72da19ad866cacc2",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if she is unmarried and does not want to marry the man?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "absingleg": {
+      "variable": "absingleg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "dd5b87efb3331e997d40b3d98e3a2100fe753e23cc39062c72da19ad866cacc2",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a pregnant woman should be legally allowed to obtain an abortion if she is unmarried and does not want to marry the man?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "acpttg": {
+      "variable": "acpttg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "d1e96c8bd8c56d926f5b010a5798bf8dcf72f2e1e4be5e34c0a730ceec8fa869",
+      "native_answers_sha256": "aba5265af7f2ea8792861ed86f75fe8b4205c813de0a12dd1f4b9e9d3b4b1eee",
+      "display_labels_sha256": "aba5265af7f2ea8792861ed86f75fe8b4205c813de0a12dd1f4b9e9d3b4b1eee",
+      "question": "Do you think American society has gone too far, about far enough, or not far enough in accepting people whose sex differs from the one they were assigned at birth?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf"
+    },
+    "affrmact": {
+      "variable": "affrmact",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "6cf3361321213bedea484494c374b0cc2852e9f1ef9f2676972e424b62720e9a",
+      "native_answers_sha256": "c1cb561c33176a64bbe60d1cdbc514aebe3ff10fd30aa62ad17cedaf2aa85068",
+      "display_labels_sha256": "c1cb561c33176a64bbe60d1cdbc514aebe3ff10fd30aa62ad17cedaf2aa85068",
+      "question": "Do you favor or oppose giving Black people preference in hiring and promotion to address past racial discrimination?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "amcit": {
+      "variable": "amcit",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f224e16b8b8d5e2fd9d4756e6d6cda202a28b9268a81acf320d3d3b1208f3701",
+      "native_answers_sha256": "7ff97c0a697e02fd0506798a73d8d192ad1f2f676f6022ee7f14092e5e8b715d",
+      "display_labels_sha256": "7ff97c0a697e02fd0506798a73d8d192ad1f2f676f6022ee7f14092e5e8b715d",
+      "question": "How important do you think having American citizenship is for being truly American: very important, fairly important, not very important, or not important at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "amcitizn": {
+      "variable": "amcitizn",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "67495c7d99ac2d57dedc38be3f9abf364537743c8d0196b72bf5a4e11ea128aa",
+      "native_answers_sha256": "4363e23e1cde5bac120ac1a03e4a09b108a5b81981e6127fcfcba5f32cbc0b18",
+      "display_labels_sha256": "4363e23e1cde5bac120ac1a03e4a09b108a5b81981e6127fcfcba5f32cbc0b18",
+      "question": "To what extent do you agree or disagree with the statement: 'I would rather be a citizen of the United States than a citizen of any other country'?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "cctv": {
+      "variable": "cctv",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "9fcc848ba69e5c30f73b2e8a3ee911b11aa8bea30dddfe3afd184cca6d34d1e8",
+      "native_answers_sha256": "7b300ecb5b2b2fb743534f18791174c739448835ec6c5fccfb1f6f392e80b284",
+      "display_labels_sha256": "7b300ecb5b2b2fb743534f18791174c739448835ec6c5fccfb1f6f392e80b284",
+      "question": "Do you think the United States government should have the right to keep people under video surveillance in public areas? Would you say it definitely should, probably should, probably should not, or definitely should not have that right?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "chngdocs": {
+      "variable": "chngdocs",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "3db558d6510f568e0eeb17a7f6bf9335b7ef2cb608d1673058401e316c9d68e1",
+      "native_answers_sha256": "0f25accfbe79801ec43d8e0aefa8c88186777c6b7052e46a17e8d57d7b6efd9f",
+      "display_labels_sha256": "0f25accfbe79801ec43d8e0aefa8c88186777c6b7052e46a17e8d57d7b6efd9f",
+      "question": "Do you think the law should allow people to change the sex listed on official documents, such as a driver's license, to reflect a sex different from the one they were assigned at birth?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf"
+    },
+    "citizen": {
+      "variable": "citizen",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "ce0564896b5dd941defce403eb05a300c982f3f5d70e8f350eeaaa306e20a0bf",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Are you currently a citizen of the United States?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "colath": {
+      "variable": "colath",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "5b56826772dc6c8867fb82b7f381f8056ff97e3ccffcee8839fa937460a73b5e",
+      "native_answers_sha256": "42cd36c62c43fc099a4aa6c99aedb3a8dfc3647f96bae884fbc99effafd3ab34",
+      "display_labels_sha256": "42cd36c62c43fc099a4aa6c99aedb3a8dfc3647f96bae884fbc99effafd3ab34",
+      "question": "Consider a person opposed to all churches and religion. Should this person be allowed to teach in a college or university?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "colcom": {
+      "variable": "colcom",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "09e5d588de1aa66b22ec8b46eb338985a2af788d9930b7049d80543efec37001",
+      "native_answers_sha256": "a4f403d9f1df179f43e32de2816c3f66062975c2050d50ebaecc5ea3441186a3",
+      "display_labels_sha256": "a4f403d9f1df179f43e32de2816c3f66062975c2050d50ebaecc5ea3441186a3",
+      "question": "Consider a man who admits he is a Communist, currently teaching at a college. Should this person be fired from that teaching position?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "colmslm": {
+      "variable": "colmslm",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "cf8371c129b3bd17e49bdca31c9681b6123bc5f101c1959c014a31a33cb1be10",
+      "native_answers_sha256": "42cd36c62c43fc099a4aa6c99aedb3a8dfc3647f96bae884fbc99effafd3ab34",
+      "display_labels_sha256": "42cd36c62c43fc099a4aa6c99aedb3a8dfc3647f96bae884fbc99effafd3ab34",
+      "question": "Consider a Muslim clergyman who preaches hatred of the United States. Should this person be allowed to teach in a college or university?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "colrac": {
+      "variable": "colrac",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "c16fcde9964779bab57b127145208292f0d1c925e7f8f7d26350ffaad735c3ee",
+      "native_answers_sha256": "42cd36c62c43fc099a4aa6c99aedb3a8dfc3647f96bae884fbc99effafd3ab34",
+      "display_labels_sha256": "42cd36c62c43fc099a4aa6c99aedb3a8dfc3647f96bae884fbc99effafd3ab34",
+      "question": "Consider a person who believes Black people are genetically inferior. Should this person be allowed to teach in a college or university?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "conarmy": {
+      "variable": "conarmy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "d6125a912bc324aae1061ae0042556f5528ba65dfcdb0889c3a90fdee053fe25",
+      "native_answers_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "display_labels_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "question": "How much confidence do you have in the people running the military: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "conbus": {
+      "variable": "conbus",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "fc5aad2ee6fb02830cf4b753328506b554d925d402c812516554d8f58c38a0f7",
+      "native_answers_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "display_labels_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "question": "How much confidence do you have in the people running major companies: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "conclerg": {
+      "variable": "conclerg",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "df5836f36feb023f68eaa515b09186fd6edd333c0ce0aaa9d28d12cbb140a376",
+      "native_answers_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "display_labels_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "question": "How much confidence do you have in the people running organized religion: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "coneduc": {
+      "variable": "coneduc",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f852eb0411bae1a35b502503220c7a55c439b19b300bd98e2159022460269092",
+      "native_answers_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "display_labels_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "question": "How much confidence do you have in the people running education: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "confed": {
+      "variable": "confed",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f789c9baffda51fe72ab2610e2574313f745b49555886afa5cf286b0bf48610e",
+      "native_answers_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "display_labels_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "question": "How much confidence do you have in the people who run the executive branch of the federal government: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "confinan": {
+      "variable": "confinan",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "bf0524c1e6c0871768fbaa383292aa473df761efde52e03a51526abf81717e8d",
+      "native_answers_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "display_labels_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "question": "How much confidence do you have in the people who run banks and financial institutions: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "conjudge": {
+      "variable": "conjudge",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "3c56018463f1b5e5616149ec8ab88b17949136d297fc1ad8647dd9d9ef067d8c",
+      "native_answers_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "display_labels_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "question": "How much confidence do you have in the people running the United States Supreme Court: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "conlabor": {
+      "variable": "conlabor",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "01aafb594e6a764dfc717f1f69f1ded9d9c783415d39f652d4bbb32cc930efdb",
+      "native_answers_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "display_labels_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "question": "How much confidence do you have in the people running organized labor: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "conlegis": {
+      "variable": "conlegis",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f12cb93a7ed43a63f2ee52204951451b21d218fb1d21e48d36517a02b82d11ff",
+      "native_answers_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "display_labels_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "question": "How much confidence do you have in the people running the United States Congress: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "conmedic": {
+      "variable": "conmedic",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "216e5c2583b5d73b86515c1adad9dd09a163d24f592493abfd6f88cf15cb28b3",
+      "native_answers_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "display_labels_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "question": "How much confidence do you have in the people running medicine: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "conpress": {
+      "variable": "conpress",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e46698471ba7986d9c7fca7739dc8653b5b6ae88923dfd1b19f709ecdabcae2d",
+      "native_answers_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "display_labels_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "question": "How much confidence do you have in the people running the press: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "consci": {
+      "variable": "consci",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "a079ff45a33f50dda0a61e1af7cea2c97fa354de1a91b1a4eb0628ca070ac72e",
+      "native_answers_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "display_labels_sha256": "7fc1ce91798f95e34f3ae099c579348c25fff2c157e96584cf5f6b98cef88ee6",
+      "question": "How much confidence do you have in the people running the scientific community: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "contv": {
+      "variable": "contv",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b012d2d85e075b7e7cefb70b050497611159d9a2b9243b4b91a22f8a41536f1e",
+      "native_answers_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "display_labels_sha256": "997d2d2b4a341bf78cf8b4c7e7818e8f4252240e67306180290a6bcf1ff6a79e",
+      "question": "How much confidence do you have in the people running television: a great deal, only some, or hardly any at all?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "discaff": {
+      "variable": "discaff",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "bb8f8f1c462eb7d563b1eb595f76457013ba24baeceab18c51267dcf0f4f78f7",
+      "native_answers_sha256": "fcb579b1f2d5809111aa372f0aca6964397c1989b6c27f3aaa4ee6af449359dd",
+      "display_labels_sha256": "fcb579b1f2d5809111aa372f0aca6964397c1989b6c27f3aaa4ee6af449359dd",
+      "question": "How likely do you think it is nowadays that a White person will not get a job or promotion while an equally or less qualified Black person gets one instead? Would you say very likely, somewhat likely, somewhat unlikely, or very unlikely?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "discaffm": {
+      "variable": "discaffm",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "285aaeba9da258c2ae51fc7e829fa061d297f6086d2359a7060d880e31e2abc6",
+      "native_answers_sha256": "f1cf7353ce39fa21a99cec36adc90e50806e3a8b84735c95ab376a81834cf280",
+      "display_labels_sha256": "f1cf7353ce39fa21a99cec36adc90e50806e3a8b84735c95ab376a81834cf280",
+      "question": "How likely do you think it is nowadays that a man will not get a job or promotion while an equally or less qualified woman gets one instead? Would you say very likely, somewhat likely, somewhat unlikely, or very unlikely?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "discaffw": {
+      "variable": "discaffw",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "1f4858017c5452006918e070539ba932a9ece6dfe80228938abd83e0ebda9cb2",
+      "native_answers_sha256": "75ce27d85ceebd83c15bcc6340748d4e6c2f857e8eb5169bf1ddcad654741021",
+      "display_labels_sha256": "75ce27d85ceebd83c15bcc6340748d4e6c2f857e8eb5169bf1ddcad654741021",
+      "question": "How likely do you think it is nowadays that a woman will not get a job or promotion while an equally or less qualified man gets one instead? Would you say very likely, somewhat likely, somewhat unlikely, or very unlikely?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "discaffwnv": {
+      "variable": "discaffwnv",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "161de6aea8b3164e64070b34f12f6991a349731be99d70660420a1bde58269fb",
+      "native_answers_sha256": "75ce27d85ceebd83c15bcc6340748d4e6c2f857e8eb5169bf1ddcad654741021",
+      "display_labels_sha256": "75ce27d85ceebd83c15bcc6340748d4e6c2f857e8eb5169bf1ddcad654741021",
+      "question": "How likely do you think it is nowadays that a woman will not get a job or promotion while an equally or less qualified man gets one instead? Would you say very likely, somewhat likely, somewhat unlikely, or very unlikely?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "discaffwv": {
+      "variable": "discaffwv",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "161de6aea8b3164e64070b34f12f6991a349731be99d70660420a1bde58269fb",
+      "native_answers_sha256": "8db01078b287086351bea08718a39c8f496c58c3b45d08d0d5f7fec7b940e044",
+      "display_labels_sha256": "8db01078b287086351bea08718a39c8f496c58c3b45d08d0d5f7fec7b940e044",
+      "question": "How likely do you think it is nowadays that a woman will not get a job or promotion while an equally or less qualified man gets one instead? Would you say very likely, somewhat likely, somewhat unlikely, or very unlikely?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "eqwlth": {
+      "variable": "eqwlth",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "3138b715b1949744ecd3b189806108e677bd953f522fb285e67f8cdedb1742b0",
+      "native_answers_sha256": "c571154f57cffe5dc09adfd68abc7d7b2c81bc63ed0ce506bfdfa3658dce1a0c",
+      "display_labels_sha256": "c571154f57cffe5dc09adfd68abc7d7b2c81bc63ed0ce506bfdfa3658dce1a0c",
+      "question": "Some people think the government in Washington should reduce income differences between rich and poor people, for instance by taxation or income assistance. Others think the government should not concern itself with reducing those differences. Where do you stand on a seven-point scale from 1 (government should reduce income differences) to 7 (government should not concern itself with reducing differences)?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "fechld": {
+      "variable": "fechld",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "6b26a9085cff7545e08a14e2ef87965f64e4beebc92d3d260c88daa3fb130c53",
+      "native_answers_sha256": "52ba7190c7b31ba1bee872cbea853f8581e84961abd6566924ab63fdccdef1c8",
+      "display_labels_sha256": "52ba7190c7b31ba1bee872cbea853f8581e84961abd6566924ab63fdccdef1c8",
+      "question": "To what extent do you agree or disagree with the statement that a working mother can establish as warm and secure a relationship with her children as a mother who does not work: strongly agree, agree, disagree, or strongly disagree?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "fefam": {
+      "variable": "fefam",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "4e1371e7e1de1201025ee6f7def8e9945307b12f0b47944e7c6b9a742760efd4",
+      "native_answers_sha256": "52ba7190c7b31ba1bee872cbea853f8581e84961abd6566924ab63fdccdef1c8",
+      "display_labels_sha256": "52ba7190c7b31ba1bee872cbea853f8581e84961abd6566924ab63fdccdef1c8",
+      "question": "To what extent do you agree or disagree with the statement that it is better for everyone if the man achieves outside the home and the woman takes care of the home and family: strongly agree, agree, disagree, or strongly disagree?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "fehire": {
+      "variable": "fehire",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e1dec7fcae5bc7b27d7c00d15de8ab61637f6528099bde608c8ff59a61b93042",
+      "native_answers_sha256": "4363e23e1cde5bac120ac1a03e4a09b108a5b81981e6127fcfcba5f32cbc0b18",
+      "display_labels_sha256": "4363e23e1cde5bac120ac1a03e4a09b108a5b81981e6127fcfcba5f32cbc0b18",
+      "question": "Because of past discrimination against women, should employers make special efforts to hire and promote qualified women? Do you strongly agree, agree, neither agree nor disagree, disagree, or strongly disagree?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "fejobaff": {
+      "variable": "fejobaff",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "67955186c18ee81b2fdb7ebc13839b8daa533b256c84916767c573e73481c072",
+      "native_answers_sha256": "26ffa629b874a33664e673dd8186be1b29a60f36823989b63f7dbbe251bb710e",
+      "display_labels_sha256": "26ffa629b874a33664e673dd8186be1b29a60f36823989b63f7dbbe251bb710e",
+      "question": "Some people say that because of past discrimination, women should be given preference in hiring and promotion. Others say that giving women that preference is wrong because it discriminates against men. Are you for or against preferential hiring and promotion of women?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "fepresch": {
+      "variable": "fepresch",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "5e5d309b652f2ccc0260b3fd8c31e0aefe71ab26ba40a87b8af2a95832365567",
+      "native_answers_sha256": "4c188b7ca20d79a40417485c42251a6f9b057bef9754a432994950d7ad003848",
+      "display_labels_sha256": "4c188b7ca20d79a40417485c42251a6f9b057bef9754a432994950d7ad003848",
+      "question": "To what extent do you agree or disagree with the statement that a preschool child is likely to suffer if the child's mother works: strongly agree, agree, disagree, or strongly disagree?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "helpoth": {
+      "variable": "helpoth",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b030ca2e9e99450c759a4c10710eda337899c65834a9af74317579987e972cf0",
+      "native_answers_sha256": "4ef32c7af29dbb584cde8da997469a548e22dacd023d18f799da5cfaef87db52",
+      "display_labels_sha256": "4ef32c7af29dbb584cde8da997469a548e22dacd023d18f799da5cfaef87db52",
+      "question": "Thinking about what qualities are most important for children to learn to prepare them for life, please rank the following five qualities relative to each other: to obey; to be well-liked or popular; to think for oneself; to work hard; to help others when they need help. What rank would you give 'to help others when they need help' among those five: most important, second, third, fourth, or least important?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "letin1": {
+      "variable": "letin1",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "6bf907f3048843cb6d30b3ff87a4fb7794b737ed3318d3ff05838388f5cea5a2",
+      "native_answers_sha256": "ac7a72cb2a9ab72101b5b99b836778c0ac897d1695c06ea520d21b913fc870a1",
+      "display_labels_sha256": "ac7a72cb2a9ab72101b5b99b836778c0ac897d1695c06ea520d21b913fc870a1",
+      "question": "Do you think the number of immigrants coming to America nowadays should be increased a lot, increased a little, remain the same as it is, reduced a little, or reduced a lot?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "letin1a": {
+      "variable": "letin1a",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "6862f9573bd014954032c420c481c9d06dcdeec1cb21c0d33256eddf2d24603b",
+      "native_answers_sha256": "4ad51bdc939aec0e40ffa0391b15837df2c2d71778ee2e0deed363fed77c9de5",
+      "display_labels_sha256": "4ad51bdc939aec0e40ffa0391b15837df2c2d71778ee2e0deed363fed77c9de5",
+      "question": "Do you think the number of immigrants coming to America nowadays should be increased a lot, increased a little, remain the same as it is, reduced a little, or reduced a lot?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "libath": {
+      "variable": "libath",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "cb1861529add21e45354caabdf19a45b762fe70a7ba5fefa9db7e00b158d04a8",
+      "native_answers_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "display_labels_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "question": "Consider a person opposed to all churches and religion, who has written a book in the public library. If people in your community proposed removing this book from the public library, would you favor removing it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "libathy": {
+      "variable": "libathy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "1f2bc0e7323f2f35d23734a66b1ee731c51a2b4495573b6ae84b81be49a71de1",
+      "native_answers_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "display_labels_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "question": "Consider a person opposed to all churches and religion, who has written a book in the public library. If people in your community proposed removing this book from the public library, would you favor removing it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "libcom": {
+      "variable": "libcom",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b036558dd4b09bb8142b0f2628628417e8719778376af22bd63bc0087805dacf",
+      "native_answers_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "display_labels_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "question": "Consider a man who admits he is a Communist, who has written a book in the public library. If people in your community proposed removing this book from the public library, would you favor removing it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "libcomy": {
+      "variable": "libcomy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "bbd577c2c44c13d1614884dbce7dbf49d473e5e4a905704bfcb578afde3d3da9",
+      "native_answers_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "display_labels_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "question": "Consider a self-identified Communist, who has written a book in the public library. If people in your community proposed removing this book from the public library, would you favor removing it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "libmslm": {
+      "variable": "libmslm",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e92d8bd3dc0b84559922dec2c767b959f100901fecfeb17765fb5b6ea1da90fc",
+      "native_answers_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "display_labels_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "question": "Consider a Muslim clergyman who preaches hatred of the United States, who has written a book in the public library. If people in your community proposed removing this book from the public library, would you favor removing it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "libmslmy": {
+      "variable": "libmslmy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "643b68b21d7dd54890337f523f8245f41686bdab870c29efc5438da4c5cfd9f2",
+      "native_answers_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "display_labels_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "question": "Consider an Islamic religious leader who preaches hatred of the United States, who has written a book in the public library. If people in your community proposed removing this book from the public library, would you favor removing it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "librac": {
+      "variable": "librac",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e685c9f21fb2f4780f94c49962a4662c417e7c5925d52a22090bdff6b2c1f460",
+      "native_answers_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "display_labels_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "question": "Consider a person who believes Black people are genetically inferior, who has written a book in the public library. If people in your community proposed removing this book from the public library, would you favor removing it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "libracy": {
+      "variable": "libracy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e90f525137b27c9612b579750903bc4e29965009aa6d728334054c6c66ab7146",
+      "native_answers_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "display_labels_sha256": "c9843d63444731bebc7c810fc487c45d35d701e63daa8dd9573ffc965ae032c9",
+      "question": "Consider a person who believes Black people are genetically inferior, who has written a book in the public library. If people in your community proposed removing this book from the public library, would you favor removing it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "marasian": {
+      "variable": "marasian",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "60423605ff6afc2bc9bfc1e64ff2bfaa1d244d8f8a543df6ae4152bc4e4fcb09",
+      "native_answers_sha256": "7c7fce9dc323cb7260b521b2aa3a03484e2a48f50705164f3babcbd42e128acc",
+      "display_labels_sha256": "7c7fce9dc323cb7260b521b2aa3a03484e2a48f50705164f3babcbd42e128acc",
+      "question": "How much would you favor or oppose a close relative marrying an Asian American person? Would you strongly favor, favor, neither favor nor oppose, oppose, or strongly oppose it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "marblk": {
+      "variable": "marblk",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "9ba72e968152a59c72d8c04222dcc2424a5240c0fb2b588c3488a417b440ca38",
+      "native_answers_sha256": "22f704ce6fc0bc3e46570f7930bbb367dbe1b03665f55228241941bec11ef478",
+      "display_labels_sha256": "22f704ce6fc0bc3e46570f7930bbb367dbe1b03665f55228241941bec11ef478",
+      "question": "How much would you favor or oppose a close relative marrying a Black person? Would you strongly favor, favor, neither favor nor oppose, oppose, or strongly oppose it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "marhisp": {
+      "variable": "marhisp",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f1bbf595ea7869b494f02e49e6c304e49146ea3fc305d9a19aff1045ccdb9f3a",
+      "native_answers_sha256": "7c7fce9dc323cb7260b521b2aa3a03484e2a48f50705164f3babcbd42e128acc",
+      "display_labels_sha256": "7c7fce9dc323cb7260b521b2aa3a03484e2a48f50705164f3babcbd42e128acc",
+      "question": "How much would you favor or oppose a close relative marrying a Hispanic or Latino person? Would you strongly favor, favor, neither favor nor oppose, oppose, or strongly oppose it?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "nataid": {
+      "variable": "nataid",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "9b7757d1587df458aa03ea96bff4f514eef31ee574442153dd443e887f876100",
+      "native_answers_sha256": "805d01743b76940151b85070644974f84c38342640c582b4ac33c887291a9378",
+      "display_labels_sha256": "805d01743b76940151b85070644974f84c38342640c582b4ac33c887291a9378",
+      "question": "Do you think we are spending too much, too little, or about the right amount on foreign aid?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "nataidy": {
+      "variable": "nataidy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "499efc237fe2ceb5b7a1caa55bc07c3dbbdc6892c75ce97008082156196b2473",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on assistance to other countries?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natarms": {
+      "variable": "natarms",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "8f5d1c1ee72513a131f5e7421e3bc427a172580fe59f29e13751dfec24782fcf",
+      "native_answers_sha256": "805d01743b76940151b85070644974f84c38342640c582b4ac33c887291a9378",
+      "display_labels_sha256": "805d01743b76940151b85070644974f84c38342640c582b4ac33c887291a9378",
+      "question": "Do you think we are spending too much, too little, or about the right amount on the military, armaments, and defense?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natarmsy": {
+      "variable": "natarmsy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "079d46e5baf01298ff43c7dd09d42cfebf0632afe03cf27922428c2815d5e428",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on national defense?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natchld": {
+      "variable": "natchld",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "5de2e3fcaa30deffd2fb99be448278437729ea504351c315b2cb0cdf33e98f5a",
+      "native_answers_sha256": "f05172987fde686170f5b6898464c06263b4804b6e4f39cd03738e61e1df702b",
+      "display_labels_sha256": "f05172987fde686170f5b6898464c06263b4804b6e4f39cd03738e61e1df702b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on assistance for childcare?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natcity": {
+      "variable": "natcity",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "a55fe1aaf82c10314ab43a6b1a8e6ac3b0210f5185b2038ce87c83c38953158d",
+      "native_answers_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "display_labels_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on problems of big cities?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natcityy": {
+      "variable": "natcityy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e6c6ab3b730176fffad020bfd9011539cdda12140b7311f5c895616e18fa1d92",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on assistance to big cities?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natcrime": {
+      "variable": "natcrime",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "2a17eaf30c6f8261b64d29224385f75bc0953eedcbe1a14433370a2bc125b014",
+      "native_answers_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "display_labels_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on halting the rising crime rate?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natcrimy": {
+      "variable": "natcrimy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "1729a74ab2ecf84566f7a66a0dce9cef52289774abc37218a35a3fbd95a8c5f6",
+      "native_answers_sha256": "0b7aa35211b6bb47a6ef00c3edf03b69ca82f7a194e37ae2fca63450e44d1434",
+      "display_labels_sha256": "0b7aa35211b6bb47a6ef00c3edf03b69ca82f7a194e37ae2fca63450e44d1434",
+      "question": "Do you think we are spending too much, too little, or about the right amount on law enforcement?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natdrug": {
+      "variable": "natdrug",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "503c3e9a4a31f6c5ac44eb0333133857074df2ee850432c5a40c402f3f58e438",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on drug addiction?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natdrugy": {
+      "variable": "natdrugy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "2f56d235417828dad0abae9419c2f958774e935ada4235a183ada8048e311bd7",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on drug rehabilitation?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "nateduc": {
+      "variable": "nateduc",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "840ee9d4e62c5f48e3a66e19bbc80dc4188d2d5ef2367084c9efcce9060990e1",
+      "native_answers_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "display_labels_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on improving the education system?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "nateducy": {
+      "variable": "nateducy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "a4c43e56bbb3ce3f280dfec091ada4de123558af79b0a9381a7b67dcdea8f0e3",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on education?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natenrgy": {
+      "variable": "natenrgy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "eabcaaa2ae440ac232eab3705946ec927a9881b0efcf2c8e774eb33d310063ef",
+      "native_answers_sha256": "f05172987fde686170f5b6898464c06263b4804b6e4f39cd03738e61e1df702b",
+      "display_labels_sha256": "f05172987fde686170f5b6898464c06263b4804b6e4f39cd03738e61e1df702b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on alternative energy sources?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natenvir": {
+      "variable": "natenvir",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "2b4c48a4bbc2e64d7f9947d357dc77d0f2ed0b4d9711081e727bbc765fafc386",
+      "native_answers_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "display_labels_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on improving and protecting the environment?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natfare": {
+      "variable": "natfare",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "0557c908e1f8bf62c75527cb46fda5b3082fec938d13daa1d179440b030ad920",
+      "native_answers_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "display_labels_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on welfare?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natfarey": {
+      "variable": "natfarey",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "a3a16070c1bee545fd5de21de31357ed51edb78af510e2a6aefa6485c5834e27",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on assistance to the poor?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natheal": {
+      "variable": "natheal",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f30384f34e7b2e7a52f93d8cba8a6fb4b066332a09922c8668654b76251d2957",
+      "native_answers_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "display_labels_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on improving the nation's health?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "nathealy": {
+      "variable": "nathealy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "2081ad56804bdfe4cf2c0c8f68b34627e1814287e94ee528e2c2d8ec3916a251",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on health?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natrace": {
+      "variable": "natrace",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "ef10a81f16b527105e06a0a26faa888483ffe995bac712f82386a64e44bb8009",
+      "native_answers_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "display_labels_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on conditions of Black people?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natracey": {
+      "variable": "natracey",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "de6cd3dd734f0e30422e08868cc7fe739358cb34f4e99851e20c1dd1edf23a51",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on assistance to Black people?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natroad": {
+      "variable": "natroad",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "4c619ef77ebc3a84dbe620383adb3d10aae2d180dc63ab334c237adbe4ac3bea",
+      "native_answers_sha256": "c219754ba592c70697bae6cbc1893793b31e01caafeebd82ace43438329979ba",
+      "display_labels_sha256": "c219754ba592c70697bae6cbc1893793b31e01caafeebd82ace43438329979ba",
+      "question": "Do you think we are spending too much, too little, or about the right amount on highways and bridges?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natsci": {
+      "variable": "natsci",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "608a9420ddb401c4cb7df1cdcaca54e67af3dd9259b8c3252d28ca986604daea",
+      "native_answers_sha256": "0b7aa35211b6bb47a6ef00c3edf03b69ca82f7a194e37ae2fca63450e44d1434",
+      "display_labels_sha256": "0b7aa35211b6bb47a6ef00c3edf03b69ca82f7a194e37ae2fca63450e44d1434",
+      "question": "Do you think we are spending too much, too little, or about the right amount on supporting scientific research?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natsoc": {
+      "variable": "natsoc",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "ec350729244c9e09fd340ac4576383c82a3339919683a6fc0e4739eda4b168db",
+      "native_answers_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "display_labels_sha256": "fc5196c14aa91d8611dd495fb30a542e6d3ce46a92f88881ca6d0684b287c08b",
+      "question": "Do you think we are spending too much, too little, or about the right amount on Social Security?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natspac": {
+      "variable": "natspac",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "9ee392c66bd2ae8855402fa29a12a4ffddd5bf3d63ef5b36ba27efda345a270d",
+      "native_answers_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "display_labels_sha256": "5282b0bae01f3c64bb79daec7b583a62103a4916cbc902b2a5ff1f366e529f24",
+      "question": "Do you think we are spending too much, too little, or about the right amount on the space program?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "natspacy": {
+      "variable": "natspacy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "3b6824b0fcc86a11f04d8a32f5b538b1a5d4fbd4e91e4220e96d8403a88bf7a0",
+      "native_answers_sha256": "0b7aa35211b6bb47a6ef00c3edf03b69ca82f7a194e37ae2fca63450e44d1434",
+      "display_labels_sha256": "0b7aa35211b6bb47a6ef00c3edf03b69ca82f7a194e37ae2fca63450e44d1434",
+      "question": "Do you think we are spending too much, too little, or about the right amount on space exploration?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "obey": {
+      "variable": "obey",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e04e04f57efef0ecde53e976fb153b6f3702b147775e58a6767cc370465e8675",
+      "native_answers_sha256": "181921f6de9539f771721d979ce92e8db0b3a338bf236da54b89d498a9cb3a64",
+      "display_labels_sha256": "181921f6de9539f771721d979ce92e8db0b3a338bf236da54b89d498a9cb3a64",
+      "question": "Thinking about what qualities are most important for children to learn to prepare them for life, please rank the following five qualities relative to each other: to obey; to be well-liked or popular; to think for oneself; to work hard; to help others when they need help. What rank would you give 'to obey' among those five: most important, second, third, fourth, or least important?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "polabuse": {
+      "variable": "polabuse",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b72ecea7a5220f8bd518c5c14b5c40ee817e06766a84ed8be4ea24754aaec5e2",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Would you approve of a police officer physically striking a citizen if a citizen said vulgar and obscene things to the officer?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "polabusey": {
+      "variable": "polabusey",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "cd081819904ee86081a8f758b2ae55f035dbe56a6c32e41cac39958786dab766",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Would you approve of a police officer physically striking a citizen if a citizen said vulgar and obscene things to the officer?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "polattak": {
+      "variable": "polattak",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "81513856b368bc30e84e57a4f9a35a87ee9eee14ce72dd1cc81096991c878010",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Would you approve of a police officer physically striking a citizen who was attacking that officer with their fists?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "polattaky": {
+      "variable": "polattaky",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "501570f53cf13684da0a92364cc8194ef042e4693b6778501cbd16a77fac28da",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Would you approve of a police officer physically striking a citizen who was attacking that officer with their fists?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "polescap": {
+      "variable": "polescap",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "6fd3f9983829fff6d05a994957b906688bf0252e84a7c0b734e55f4c654cdcad",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Would you approve or disapprove of a police officer striking an adult male citizen who was attempting to escape from police custody?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "polmurdr": {
+      "variable": "polmurdr",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "21c2e213efbad4e4810367287b0f39c87faa87a57bc5bdda0db0720340a57753",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Would you approve of a police officer physically striking a citizen if the citizen was being questioned as a murder suspect?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "popular": {
+      "variable": "popular",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "052da7861ab4bf9314c73332e2e6b4e5b86f7851020bff00e3fd70a6cab43fc8",
+      "native_answers_sha256": "4bf3245a63a90729fcd799073c7cade21609a39016fb41fb741f447f5b00c578",
+      "display_labels_sha256": "4bf3245a63a90729fcd799073c7cade21609a39016fb41fb741f447f5b00c578",
+      "question": "Thinking about what qualities are most important for children to learn to prepare them for life, please rank the following five qualities relative to each other: to obey; to be well-liked or popular; to think for oneself; to work hard; to help others when they need help. What rank would you give 'to be well-liked or popular' among those five: most important, second, third, fourth, or least important?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "pornlaw": {
+      "variable": "pornlaw",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b304620b36f1abe997e0ba9e3c3de85e613bc5ba5feecc1f2935c401144cc12a",
+      "native_answers_sha256": "2bd4e7dce7165deba4fea5c804e568a81e2a67de1382e4a10a67dfd365847bf8",
+      "display_labels_sha256": "2bd4e7dce7165deba4fea5c804e568a81e2a67de1382e4a10a67dfd365847bf8",
+      "question": "Which of these three positions about pornography laws comes closest to your own? There should be laws against the distribution of pornography whatever the age; there should be laws against the distribution of pornography to persons under 18; or there should be no laws forbidding the distribution of pornography?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "proudart": {
+      "variable": "proudart",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "6a99bb6b4a6801e60ce75b768447671d0bb33266d95d12058391dd8ae9ec2f62",
+      "native_answers_sha256": "5653c4bf9b9578fe98490e493cb999bf1573fd1909808d6d75f1b71b971ea1fa",
+      "display_labels_sha256": "5653c4bf9b9578fe98490e493cb999bf1573fd1909808d6d75f1b71b971ea1fa",
+      "question": "How proud are you of America for its achievements in the arts and literature?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "prouddem": {
+      "variable": "prouddem",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "d18bb6e8c1c7678d876bac8c34b28357c0bd61520bfc0442e57e298b6e006818",
+      "native_answers_sha256": "5653c4bf9b9578fe98490e493cb999bf1573fd1909808d6d75f1b71b971ea1fa",
+      "display_labels_sha256": "5653c4bf9b9578fe98490e493cb999bf1573fd1909808d6d75f1b71b971ea1fa",
+      "question": "How proud are you of America for the way democracy works?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "proudeco": {
+      "variable": "proudeco",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "90d8ff292a4b231396f74d22518d04cf08fdaacdf526412b8ae9001118893b88",
+      "native_answers_sha256": "5653c4bf9b9578fe98490e493cb999bf1573fd1909808d6d75f1b71b971ea1fa",
+      "display_labels_sha256": "5653c4bf9b9578fe98490e493cb999bf1573fd1909808d6d75f1b71b971ea1fa",
+      "question": "How proud are you of America for its economic achievements?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "proudhis": {
+      "variable": "proudhis",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "2bc052c773a1c49ee4540c6a2c18874b14e19c84ba0a7274552b4cda6113c327",
+      "native_answers_sha256": "094355287075dd95cc5fa5f162f3b088b7d6865eef7515d09a254418f1cb141f",
+      "display_labels_sha256": "094355287075dd95cc5fa5f162f3b088b7d6865eef7515d09a254418f1cb141f",
+      "question": "How proud are you of America's history?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "proudpol": {
+      "variable": "proudpol",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "0310c4956e615a40ca96b7b970bc062217b8e9964b3800fcfe05c782b010024b",
+      "native_answers_sha256": "a81f5da0832eb7d228c19c3363ea214e5851791af5fdb0a880ac2e8db5406d41",
+      "display_labels_sha256": "a81f5da0832eb7d228c19c3363ea214e5851791af5fdb0a880ac2e8db5406d41",
+      "question": "How proud are you of America for its political influence in the world?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "proudspt": {
+      "variable": "proudspt",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "a28bdf2c6a1fd7df3132671efdb0b7ef54a947a9e55726eb3b7add2c4af9d13b",
+      "native_answers_sha256": "75fc65f3903fd7f03c2c8aa01bdfb793a965f354172c6549f356a1586491b1e0",
+      "display_labels_sha256": "75fc65f3903fd7f03c2c8aa01bdfb793a965f354172c6549f356a1586491b1e0",
+      "question": "How proud are you of America for its achievements in sports?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racdif1": {
+      "variable": "racdif1",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "4ace7d8696730bf8f5b18f88a100ead5f21afc15b443fe35aa8404ba98f6a7d2",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to racial discrimination?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racdif1x": {
+      "variable": "racdif1x",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "13b9197b71eabf6aa8373f80cee8e9f3fb37c24f2fa2f4fec2a50e54bd01741a",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "The GSS has asked questions about racial inequality for almost 50 years. For historical comparison, we ask the following question. On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to racial discrimination?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf"
+    },
+    "racdif2": {
+      "variable": "racdif2",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "5475554cd22c42d1e7a8fba79cfd2d4e2ae36386d7fcb25d123850561e96c45e",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to an inborn difference in ability to learn?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racdif2x": {
+      "variable": "racdif2x",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f524af17a2033f045e2187d3718e2d7c13f33c182823e2a2c87bae4eba1f9740",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "The GSS has asked questions about racial inequality for almost 50 years. For historical comparison, we ask the following question. On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to an inborn difference in ability to learn?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf"
+    },
+    "racdif3": {
+      "variable": "racdif3",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b829776a1cf4d9c480713275e4dad7e8f9e801415868f7d8aedd28d39a8dc7c3",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to unequal opportunities for education?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racdif3x": {
+      "variable": "racdif3x",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f524af17a2033f045e2187d3718e2d7c13f33c182823e2a2c87bae4eba1f9740",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "The GSS has asked questions about racial inequality for almost 50 years. For historical comparison, we ask the following question. On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to unequal opportunities for education?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf"
+    },
+    "racdif4": {
+      "variable": "racdif4",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "76b64726f80f45d845c4b5e372bf1ecd01a1c9b1218496263b0ef6e0dc8e1d2b",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to differences in motivation or willpower?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racdif4x": {
+      "variable": "racdif4x",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f524af17a2033f045e2187d3718e2d7c13f33c182823e2a2c87bae4eba1f9740",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "The GSS has asked questions about racial inequality for almost 50 years. For historical comparison, we ask the following question. On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to differences in motivation or willpower?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf"
+    },
+    "racdif5": {
+      "variable": "racdif5",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f9e6757aa6cc7fa1a7b01a8969c30114b5e909a80e10d57f69d44eccb9a02863",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to differences in upbringing?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racdif5x": {
+      "variable": "racdif5x",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "8a1eb3fbc502041792998b6e9fdb2821193a95d282399c02ab89741558bcd8ca",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "The GSS has asked questions about racial inequality for almost 50 years. For historical comparison, we ask the following question. On average Black people have worse jobs, income and housing than White people. Do you think those differences are mainly due to differences in upbringing?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot1_English.pdf"
+    },
+    "racecen1": {
+      "variable": "racecen1",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "da0ddbd80a48a701a9826b3820398f77b291dc85953579d7f83dc3c9caf0c4dc",
+      "native_answers_sha256": "5da77726a6789f7ba6e28e19ec397c8b38899e207875385faa51fab1536ea621",
+      "display_labels_sha256": "5da77726a6789f7ba6e28e19ec397c8b38899e207875385faa51fab1536ea621",
+      "question": "Which race or races do you consider yourself to be? You may identify with more than one. Options include: other pacific islander; black or african american; japanese; white; chinese; some other race; hispanic; korean; filipino; asian indian; american indian or alaska native; other asian; vietnamese?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racecen2": {
+      "variable": "racecen2",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "48611b4cb813efd2cf8c6e8bae152591e37855287988ae0a11de907b25069f10",
+      "native_answers_sha256": "3b5bda690549004715a8782fbc7f9eb3803d6d57b5b25d84bad9bd963fd24fe5",
+      "display_labels_sha256": "3b5bda690549004715a8782fbc7f9eb3803d6d57b5b25d84bad9bd963fd24fe5",
+      "question": "Only if you identify with at least two racial identities: If you identify with two or more races, which additional race would you name second? Options include: other asian; filipino; american indian or alaska native; some other race; white; black or african american; asian indian; hispanic; chinese; vietnamese; korean; other pacific islander; japanese If you identify with fewer than two, please answer 'not applicable'?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racecen3": {
+      "variable": "racecen3",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "454b593a265111bb87c3e8b14f3a2578d804f09725135849dbb4388407aaf902",
+      "native_answers_sha256": "0b136b3e55c43f20ba140f2d5a2894635df7360e1c47622714c2c492fcfb388a",
+      "display_labels_sha256": "0b136b3e55c43f20ba140f2d5a2894635df7360e1c47622714c2c492fcfb388a",
+      "question": "Only if you identify with at least three racial identities: If you identify with three or more races, which additional race would you name third? Options include: american indian or alaska native; asian indian; other asian; chinese; white; black or african american; other pacific islander If you identify with fewer than three, please answer 'not applicable'?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racerank1": {
+      "variable": "racerank1",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "beb21288548217b37deada7b309ed62e02912dc0125f7102c32c266e123ae687",
+      "native_answers_sha256": "63642e3e420e6f22a21ed165c8d3f2d196fcbf9c9e44f08fdbd21dccf5cc61db",
+      "display_labels_sha256": "63642e3e420e6f22a21ed165c8d3f2d196fcbf9c9e44f08fdbd21dccf5cc61db",
+      "question": "Which racial identity do you identify with most strongly? Options include: guamanian or chamorro; samoan; japanese; black or african-american; filipino; white; chinese; some other race; hispanic; korean; asian indian; american indian or alaska native; other asian; vietnamese; native hawaiian; other pacific islander?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racerank2": {
+      "variable": "racerank2",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "a2cbae1501faddba35813cd6f5c89bf3620f690140468b775577e7497a18bfc1",
+      "native_answers_sha256": "bce5952b849f0f0ad80fb63f7141887bcd9d3ed15896823bf9cd49f91f5244ba",
+      "display_labels_sha256": "bce5952b849f0f0ad80fb63f7141887bcd9d3ed15896823bf9cd49f91f5244ba",
+      "question": "Only if you identify with at least two racial identities: If you identify with more than one racial identity, which one do you identify with second most strongly? Options include: other asian; american indian or alaska native; filipino; black or african-american; some other race; white; asian indian; hispanic; chinese; vietnamese; korean; samoan; japanese; native hawaiian; guamanian or chamorro If you identify with fewer than two, please answer 'not applicable'?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racerank3": {
+      "variable": "racerank3",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "1ca44546d30946470d7782e2344b72cfcb58789c7fac4b62a63291690322550c",
+      "native_answers_sha256": "afdc074ec8f9c31566c73ebea86ee3ad7c789d9639fe9d2110fc1bc367183164",
+      "display_labels_sha256": "afdc074ec8f9c31566c73ebea86ee3ad7c789d9639fe9d2110fc1bc367183164",
+      "question": "Only if you identify with at least three racial identities: If you identify with three or more racial identities, which one do you identify with third most strongly? Options include: american indian or alaska native; asian indian; other asian; chinese; white; black or african-american; native hawaiian If you identify with fewer than three, please answer 'not applicable'?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racopen": {
+      "variable": "racopen",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "978f49de2971780533799faf03a3b631be66a7881a925d67bfe623d36626ab23",
+      "native_answers_sha256": "7a031be465d69c2532d96d9a35b892d09e909c4abe4bae771192dde90e075125",
+      "display_labels_sha256": "7a031be465d69c2532d96d9a35b892d09e909c4abe4bae771192dde90e075125",
+      "question": "Imagine two proposed laws about selling a house. One law allows a homeowner to refuse to sell to a buyer because of the buyer's race. The other law prohibits a homeowner from refusing to sell because of the buyer's race. Which law would you favor?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racopennv": {
+      "variable": "racopennv",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "978f49de2971780533799faf03a3b631be66a7881a925d67bfe623d36626ab23",
+      "native_answers_sha256": "7a031be465d69c2532d96d9a35b892d09e909c4abe4bae771192dde90e075125",
+      "display_labels_sha256": "7a031be465d69c2532d96d9a35b892d09e909c4abe4bae771192dde90e075125",
+      "question": "Imagine two proposed laws about selling a house. One law allows a homeowner to refuse to sell to a buyer because of the buyer's race. The other law prohibits a homeowner from refusing to sell because of the buyer's race. Which law would you favor?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "racopenv": {
+      "variable": "racopenv",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "0d42bc86d3aff23862764eba4977377c9c9aa3d2ebcb6ba035976ce0ae618ecf",
+      "native_answers_sha256": "f1324a459670bc11db1603c826de61be0018a8b0561d4192438096162bf03e6a",
+      "display_labels_sha256": "f1324a459670bc11db1603c826de61be0018a8b0561d4192438096162bf03e6a",
+      "question": "Imagine two proposed laws about selling a house. One law allows a homeowner to refuse to sell to a buyer because of the buyer's race. The other law prohibits a homeowner from refusing to sell because of the buyer's race. Which law would you favor?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "ratechall124": {
+      "variable": "ratechall124",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "fb365c6fa0ee3eaa2230031de6ed8f68ecd62f2f8a67fe8c72f3b3eb56f513ee",
+      "native_answers_sha256": "2bb2a894b5a379d23c43571fe5b404ae66f7349ae73b7e30026174a722dbadc8",
+      "display_labels_sha256": "2bb2a894b5a379d23c43571fe5b404ae66f7349ae73b7e30026174a722dbadc8",
+      "question": "How would you rate Donald Trump on a 0 to 100 feeling thermometer? Ratings from 0 to below 50 mean unfavorable feelings, 50 means neither favorable nor unfavorable, and ratings above 50 to 100 mean favorable feelings. What number from 0 to 100 would you give Donald Trump?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot3_English.pdf"
+    },
+    "ratechall224": {
+      "variable": "ratechall224",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "7b47ffffb2a825858a8276b2d9d8394629a17e10fefc67664ab35c86876bc757",
+      "native_answers_sha256": "f1b799dcb55e4de2b9836860c9784376aa2c3624852195721b3c05ec5b5f89eb",
+      "display_labels_sha256": "f1b799dcb55e4de2b9836860c9784376aa2c3624852195721b3c05ec5b5f89eb",
+      "question": "How would you rate Kamala Harris on a 0 to 100 feeling thermometer? Ratings from 0 to below 50 mean unfavorable feelings, 50 means neither favorable nor unfavorable, and ratings above 50 to 100 mean favorable feelings. What number from 0 to 100 would you give Kamala Harris?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot3_English.pdf"
+    },
+    "ratechall324": {
+      "variable": "ratechall324",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "20ecd25ba8193a7001bbc07d102d8b5beafc7129b5ba6e6ba54c452c43320474",
+      "native_answers_sha256": "14f702a1505f5648b37fb4b094069d2d67c8fecb92bdbb36386074d070ff59ed",
+      "display_labels_sha256": "14f702a1505f5648b37fb4b094069d2d67c8fecb92bdbb36386074d070ff59ed",
+      "question": "How would you rate Nikki Haley on a 0 to 100 feeling thermometer? Ratings from 0 to below 50 mean unfavorable feelings, 50 means neither favorable nor unfavorable, and ratings above 50 to 100 mean favorable feelings. What number from 0 to 100 would you give Nikki Haley?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot3_English.pdf"
+    },
+    "ratedemp": {
+      "variable": "ratedemp",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "63abb0e5b7611ba760706aa0e738194343e3be3ed80e09c9578364fa8345a035",
+      "native_answers_sha256": "6adf6ddfb3ce74147d1aad94e391f869ba02f74b5ab98d46d5fea9e891097403",
+      "display_labels_sha256": "6adf6ddfb3ce74147d1aad94e391f869ba02f74b5ab98d46d5fea9e891097403",
+      "question": "How would you rate the Democratic Party on a 0 to 100 feeling thermometer? Ratings from 0 to below 50 mean unfavorable feelings, 50 means neither favorable nor unfavorable, and ratings above 50 to 100 mean favorable feelings. What number from 0 to 100 would you give the Democratic Party?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot3_English.pdf"
+    },
+    "rateincumb24": {
+      "variable": "rateincumb24",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "f30bbceabe7bd32efb5c5ce02a25891ce0b1fc3bed2711ac494b4689e016490b",
+      "native_answers_sha256": "b2779420736e111b4745028afaae499f1ddad53518ce42f250d54f21c5722493",
+      "display_labels_sha256": "b2779420736e111b4745028afaae499f1ddad53518ce42f250d54f21c5722493",
+      "question": "How would you rate Joe Biden on a 0 to 100 feeling thermometer? Ratings from 0 to below 50 mean unfavorable feelings, 50 means neither favorable nor unfavorable, and ratings above 50 to 100 mean favorable feelings. What number from 0 to 100 would you give Joe Biden?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot3_English.pdf"
+    },
+    "ratemaga": {
+      "variable": "ratemaga",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "87c481aee0a3d0b84af921ee12bbad20c8a61e1dddb174d7e7654879614889f8",
+      "native_answers_sha256": "a97403f700f12056139824eae25b05be991393901d72b337b8c958e3e856a853",
+      "display_labels_sha256": "a97403f700f12056139824eae25b05be991393901d72b337b8c958e3e856a853",
+      "question": "How would you rate MAGA Republicans on a 0 to 100 feeling thermometer? Ratings from 0 to below 50 mean unfavorable feelings, 50 means neither favorable nor unfavorable, and ratings above 50 to 100 mean favorable feelings. What number from 0 to 100 would you give MAGA Republicans?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot3_English.pdf"
+    },
+    "raterepp": {
+      "variable": "raterepp",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "24f42baa4e13e0352bcd2cc670c4c0fe3264cc8bf12ec2545cf31f2104a2e478",
+      "native_answers_sha256": "4b56cc3095c4eede07000b4549ccc72c2550c8941da337d3095bea158f6b00ec",
+      "display_labels_sha256": "4b56cc3095c4eede07000b4549ccc72c2550c8941da337d3095bea158f6b00ec",
+      "question": "How would you rate the Republican Party on a 0 to 100 feeling thermometer? Ratings from 0 to below 50 mean unfavorable feelings, 50 means neither favorable nor unfavorable, and ratings above 50 to 100 mean favorable feelings. What number from 0 to 100 would you give the Republican Party?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/quex/GSS2024_Ballot3_English.pdf"
+    },
+    "rincom16": {
+      "variable": "rincom16",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "3676b1f1ea829e532cf70cf381497056531d958ec9cba1f37c3c5788965072a1",
+      "native_answers_sha256": "38294404d059d92b68c669fa70b27ee2773c38840eeee6de1000e75ed2126ad4",
+      "display_labels_sha256": "38294404d059d92b68c669fa70b27ee2773c38840eeee6de1000e75ed2126ad4",
+      "question": "Thinking about your earnings from work during the last year, before taxes or other deductions, which of the following income ranges best describes your total earnings? Available ranges: Under $1,000; $1,000 to $2,999; $3,000 to $3,999; $4,000 to $4,999; $5,000 to $5,999; $6,000 to $6,999; $7,000 to $7,999; $8,000 to $9,999; $10,000 to $12,499; $12,500 to $14,999; $15,000 to $17,499; $17,500 to $19,999; $20,000 to $22,499; $22,500 to $24,999; $25,000 to $29,999; $30,000 to $34,999; $35,000 to $39,999; $40,000 to $49,999; $50,000 to $59,999; $60,000 to $74,999; $75,000 to $89,999; $90,000 to $109,999; $110,000 to $129,999; $130,000 to $149,999; $150,000 to $169,999; $170,000 or over?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "spkath": {
+      "variable": "spkath",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "cd9c445f6d67ae84dae85a0d9d950e44defd5cea744e7f4069cd2d08bb851d79",
+      "native_answers_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "display_labels_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "question": "Consider a person opposed to all churches and religion. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "spkathy": {
+      "variable": "spkathy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "5f3b4763d6665c07da67ecf1400261dc2b0cef7c4d7fa61fe615e64bb23258cd",
+      "native_answers_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "display_labels_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "question": "Consider a person opposed to all churches and religion. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "spkcom": {
+      "variable": "spkcom",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "08017e6654ea830f8b5d01bfe8bb082c96e0680433e63f7ae180db2efd5d01d2",
+      "native_answers_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "display_labels_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "question": "Consider a man who admits he is a Communist. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "spkmslm": {
+      "variable": "spkmslm",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "485000adc720c5a73088856b45e07e6d7d60dbe05a4113cfc0c3fe7f20e3f18a",
+      "native_answers_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "display_labels_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "question": "Consider a Muslim clergyman who preaches hatred of the United States. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "spkmslmy": {
+      "variable": "spkmslmy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "d0a5b221a630b331a742bdd7f9b62f88e885c230c0575a93f276317ae331cd94",
+      "native_answers_sha256": "abf0d6dc79ca09488b5c8cc848c2deaaf3fbe38db7464301040c561675e9c786",
+      "display_labels_sha256": "abf0d6dc79ca09488b5c8cc848c2deaaf3fbe38db7464301040c561675e9c786",
+      "question": "Consider an Islamic religious leader who preaches hatred of the United States. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "spkrac": {
+      "variable": "spkrac",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "67f936d002dab6d4343e8ed9cd0e0fa2af45709d4ac9eda8afa06bb6a8a205a7",
+      "native_answers_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "display_labels_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "question": "Consider a person who believes Black people are genetically inferior. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "spkracy": {
+      "variable": "spkracy",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "b69af56d9929a7a351af75a7581654c98acb168ee4371619053ce302f2c83e80",
+      "native_answers_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "display_labels_sha256": "4b2d7d68c9d2b187ff35a256fe97fcec64e34c6356e23bb7f1bcc2d66262df46",
+      "question": "Consider a person who believes Black people are genetically inferior. If this person wanted to give a speech in the community expressing those views, should the speech be allowed?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "suicide1": {
+      "variable": "suicide1",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "2c650e440aeb2f59c22848d13d7fda7adc56b3be40ad61b0677559205203d4c0",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a person has the right to end their own life if the person has an incurable disease?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "suicide1g": {
+      "variable": "suicide1g",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "2c650e440aeb2f59c22848d13d7fda7adc56b3be40ad61b0677559205203d4c0",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a person has the right to end their own life if the person has an incurable disease?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "suicide2": {
+      "variable": "suicide2",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "05317f2b80d43bfa45d3445c2fd09104645dba538288b44601103b9bd05a5df0",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a person has the right to end their own life if the person has gone bankrupt?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "suicide2g": {
+      "variable": "suicide2g",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "05317f2b80d43bfa45d3445c2fd09104645dba538288b44601103b9bd05a5df0",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a person has the right to end their own life if the person has gone bankrupt?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "suicide4": {
+      "variable": "suicide4",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e5181abfa6ebadecd3512972ce61b6685348cd52595b69b07d37513e25f30391",
+      "native_answers_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "display_labels_sha256": "5e31c5409a71aa87327068b3e5fffda18377aa7bed9b3c26360621410b5906fc",
+      "question": "Do you think a person has the right to end their own life if the person is tired of living and ready to die?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "suicide4g": {
+      "variable": "suicide4g",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "e5181abfa6ebadecd3512972ce61b6685348cd52595b69b07d37513e25f30391",
+      "native_answers_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "display_labels_sha256": "a5203e023f404502e94ecdc6546427edfcacf6d1dbc44827ae5348f682c0d933",
+      "question": "Do you think a person has the right to end their own life if the person is tired of living and ready to die?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "thnkself": {
+      "variable": "thnkself",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "6b9d6ec97bb55adf7b2aa346614f26d3b32646a10aae86ff3f2c627776e77f48",
+      "native_answers_sha256": "d9fdd3c927f46b3baa3abaf395dda938b003e2ae524ea91b82feac881411ae96",
+      "display_labels_sha256": "d9fdd3c927f46b3baa3abaf395dda938b003e2ae524ea91b82feac881411ae96",
+      "question": "Thinking about what qualities are most important for children to learn to prepare them for life, please rank the following five qualities relative to each other: to obey; to be well-liked or popular; to think for oneself; to work hard; to help others when they need help. What rank would you give 'to think for oneself' among those five: most important, second, third, fourth, or least important?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "uscitzn": {
+      "variable": "uscitzn",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "2e7d890f0a3541a51ce4d0c628a51bcd6c766d2a01c3259daeb94169c55f5f30",
+      "native_answers_sha256": "f5d880a31de7141c25651a5bc7f7986968d9ff44b2cbd051a5dd0e06011e2ff1",
+      "display_labels_sha256": "f5d880a31de7141c25651a5bc7f7986968d9ff44b2cbd051a5dd0e06011e2ff1",
+      "question": "Are you currently a citizen of the United States?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "wlthblks": {
+      "variable": "wlthblks",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "62842f0cb389be7c3686cc8aa936c77015e2b8800969a15c6b7143f2b884bdaf",
+      "native_answers_sha256": "7428f36a4b2a6bccf01f24bf48caa5904b5d0619491fc867da20ef9747339f15",
+      "display_labels_sha256": "7428f36a4b2a6bccf01f24bf48caa5904b5d0619491fc867da20ef9747339f15",
+      "question": "Rate Black people in general on a seven-point scale: 1 means almost all Black people are rich; 7 means almost all are poor. Where would you place them?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "wlthhsps": {
+      "variable": "wlthhsps",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "71dd3913e2e491a9bb912af947be30defaf98b41cbc07ef5a4cedc6e5236bf0e",
+      "native_answers_sha256": "2e8b08157520b40521d069b7239a5146328f4d088fe850e1797b57caf462927c",
+      "display_labels_sha256": "2e8b08157520b40521d069b7239a5146328f4d088fe850e1797b57caf462927c",
+      "question": "Rate Hispanic Americans in general on a seven-point scale: 1 means almost all Hispanic Americans are rich; 7 means almost all are poor. Where would you place them?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "wlthwhts": {
+      "variable": "wlthwhts",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "62842f0cb389be7c3686cc8aa936c77015e2b8800969a15c6b7143f2b884bdaf",
+      "native_answers_sha256": "fda3b0a52ec54251b4bb2550d8740362f15e105c28ad5cbed76891191004e79a",
+      "display_labels_sha256": "fda3b0a52ec54251b4bb2550d8740362f15e105c28ad5cbed76891191004e79a",
+      "question": "Rate White people in general on a seven-point scale: 1 means almost all White people are rich; 7 means almost all are poor. Where would you place them?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "workblks": {
+      "variable": "workblks",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "62842f0cb389be7c3686cc8aa936c77015e2b8800969a15c6b7143f2b884bdaf",
+      "native_answers_sha256": "72be15d3e5e95613fd8a00dc0426225973e3120739461920a6032918a3684f4e",
+      "display_labels_sha256": "72be15d3e5e95613fd8a00dc0426225973e3120739461920a6032918a3684f4e",
+      "question": "Rate Black people in general on a seven-point scale: 1 means almost all Black people are hard-working; 7 means almost all are lazy. Where would you place them?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "workhard": {
+      "variable": "workhard",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "13b3c3da2f113541df14342c52ab78de9f9b127f1ee7f2d2ae57d289dd2065dd",
+      "native_answers_sha256": "495ea0a6d62ab73f7d32be5116624cf92f003331aedb79ab5b797a80c58749a5",
+      "display_labels_sha256": "495ea0a6d62ab73f7d32be5116624cf92f003331aedb79ab5b797a80c58749a5",
+      "question": "Thinking about what qualities are most important for children to learn to prepare them for life, please rank the following five qualities relative to each other: to obey; to be well-liked or popular; to think for oneself; to work hard; to help others when they need help. What rank would you give 'to work hard' among those five: most important, second, third, fourth, or least important?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "workhsps": {
+      "variable": "workhsps",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "ad4abc1c5bd827223fe54908970858d9b81e48a0ab1ecdecf72ebf531af92c12",
+      "native_answers_sha256": "05b2adffde9ec7714ad982803ff23fe7f4e8df26617924802659b986f4ffabb9",
+      "display_labels_sha256": "05b2adffde9ec7714ad982803ff23fe7f4e8df26617924802659b986f4ffabb9",
+      "question": "Rate Hispanic Americans in general on a seven-point scale: 1 means almost all Hispanic Americans are hard-working; 7 means almost all are lazy. Where would you place them?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    },
+    "workwhts": {
+      "variable": "workwhts",
+      "model_release": "v0.2.1",
+      "source_map_sha256": "62842f0cb389be7c3686cc8aa936c77015e2b8800969a15c6b7143f2b884bdaf",
+      "native_answers_sha256": "37cf31260870d03640598d88b21eb002dafb4628ef256ce5430332c76e89b4b3",
+      "display_labels_sha256": "37cf31260870d03640598d88b21eb002dafb4628ef256ce5430332c76e89b4b3",
+      "question": "Rate White people in general on a seven-point scale: 1 means almost all White people are hard-working; 7 means almost all are lazy. Where would you place them?",
+      "certification": "source_contract",
+      "source_reference": "https://gss.norc.org/content/dam/gss/get-documentation/pdf/codebook/GSS%202024%20Codebook%20R2.pdf"
+    }
+  }
+}
