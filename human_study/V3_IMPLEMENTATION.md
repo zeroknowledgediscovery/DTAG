@@ -16,7 +16,14 @@ unchanged; the native-webapp-aligned configuration uses distinct `pilot-v3-nativ
   adaptive + 1 attention. Baseline and trajectory have **seven** substantive
   answers and one check.
 - `question_mode: llm_required`, `response_mode: free_text_multi`.
-  There are no clickable native categories and **no question-text fallback**.
+  There are no clickable native categories. **Current 2026-10 V3
+  robustness amendment:** after failed LLM rewrites, the service may present
+  a complete, source-validated GSS question with explicit provider, method,
+  reference and attempted-rewrite provenance. Unvalidated fragments remain
+  prohibited; see [the GSS wording audit](docs/GSS_2024_WORDING_AUDIT.md).
+  The earlier rule of absolutely no source-text fallback was too strict for
+  a long live participant study and could leave sessions stuck despite
+  an available verified question.
   Provider/semantic validation failure leaves the question pending.
 - `max_response_assignments: 50` (the webapp's configured `max_assign`) and
   `minimum_mapping_confidence: 0.8` are tunable. Assignment count can be
