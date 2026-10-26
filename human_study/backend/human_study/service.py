@@ -308,7 +308,12 @@ class StudyService:
             }, None
         if phase == "intervention":
             state = self._human_state(snap)
-            selection = choose_next_item(state, s["policy"], set(), s["selection_rng_state"], self.config, self.adapter)
+            generation_skips = set(s.get("generation_skipped_ids", ()))
+            selection = choose_next_item(state, s["policy"], generation_skips, s["selection_rng_state"], self.config, self.adapter)
+            if selection["status"] == "selected":
+                # Replay must know which previously attempted questions could
+                # not be rendered; this never changes the LSM conditioning.
+                selection["generation_skipped_ids"] = sorted(generation_skips)
             if selection["status"] == "no_candidate":
                 return None, selection["reason"]
             item = self._item_for(selection["variable"], "intervention")
@@ -335,6 +340,40 @@ class StudyService:
                 "conditional_distribution": dist, "policy": s["policy"],
                 "generation_token": uuid.uuid4().hex, "generation_lease_until": time.time() + 150,
                 "created_at": now()}, None
+
+    def _retire_invalid_adaptive_question(self, sid, question, failure_codes):
+        """Retire one candidate for this session, without advancing the study.
+
+        The abandoned item was NEVER displayed, answered or used to update
+        the native state. It is archived as an audited generation failure,
+        and the same policy/geometry selects the next eligible item.
+        """
+        for _ in range(10):
+            snap = self._load(sid)
+            key = f"questions/{question['question_id']}"
+            q = snap.records.get(key)
+            if (not q or q.get("generation_token") != question["generation_token"]
+                    or q["status"] != "generating"):
+                return
+            failed = set(snap.session.get("generation_skipped_ids", ()))
+            failed.add(q["target_variable"])
+            snap.session["generation_skipped_ids"] = sorted(failed)
+            snap.session["current_question_id"] = None
+            record = {**q, "status": "generation_abandoned",
+                      "generation_failure_count": q.get("generation_failure_count", 0) + 1,
+                      "last_generation_error": "QuestionGenerationError",
+                      "last_generation_failure_codes": failure_codes}
+            writes = {key: record}
+            self._export(
+                snap.session, writes, q["question_id"] + "-generation-abandoned",
+                {"kind": "question_generation_abandoned", "timestamp": now(),
+                 "phase": q["phase"], "target_variable": q["target_variable"],
+                 "question_id": q["question_id"], "failure_codes": failure_codes,
+                 "selection": q.get("selection")},
+            )
+            if self._write(snap, writes):
+                return
+        raise Conflict("generation-failure journaling busy; retry")
 
     def _render_claimed(self, sid, question):
         item = None if question["phase"] == "attention" else self._item_for(question["target_variable"], question["phase"])
@@ -384,8 +423,17 @@ class StudyService:
                     self.config.study_id, question["phase"], question["target_variable"],
                     type(exc).__name__, ",".join(failure_codes),
                 )
-                # Never show source/fallback in V2/V3. Persist a short generation
-                # retry lease so the participant can resume after an LLM outage.
+                from .questions import QuestionGenerationError
+                if (isinstance(exc, QuestionGenerationError)
+                        and question["phase"] == "intervention"
+                        and self.config.candidate_mode == "native_webapp"):
+                    # A syntactically unrepairable fragment is *not* a reason
+                    # to interrupt the participant. Journal it and ask the
+                    # next ranked eligible GSS item at this same step.
+                    self._retire_invalid_adaptive_question(sid, question, failure_codes)
+                    return
+                # Baseline items cannot be swapped without changing the
+                # instrument. Persist a lease for automatic internal retry.
                 for _ in range(10):
                     snap = self._load(sid)
                     key = f"questions/{question['question_id']}"
@@ -689,10 +737,12 @@ class StudyService:
                 continue
             s["receipt"] = secrets.token_hex(6).upper()
             s["completed_at"] = now()
-            questions = sorted((q for k, q in snap.records.items() if k.startswith("questions/")), key=lambda q: q["ordinal"])
+            all_questions = sorted((q for k, q in snap.records.items() if k.startswith("questions/")), key=lambda q: q["ordinal"])
             references = [v["object_name"] for k, v in snap.records.items() if k.startswith("exports/")]
-            if any(q["status"] != "answered" for q in questions):
+            if any(q["status"] not in ("answered", "generation_abandoned") for q in all_questions):
                 raise IntegrityError("unanswered question at finalization")
+            questions = [q for q in all_questions if q["status"] == "answered"]
+            abandoned = [q for q in all_questions if q["status"] == "generation_abandoned"]
             reward = self._reward(s, questions)
             s["completion_code"] = reward["completion_code"]
             writes = {}
@@ -701,7 +751,8 @@ class StudyService:
                        "baseline_index": s["state"]["baseline_index"], "final_index": s["state"]["current_index"],
                        "no_candidate_reason": s.get("no_candidate_reason"), "prolific": s.get("prolific"),
                        "reward": reward,
-                       "questions": questions, "source_objects": references, "study_configuration": self.config.model_dump(mode="json")}
+                       "questions": questions, "generation_abandoned_questions": abandoned,
+                       "source_objects": references, "study_configuration": self.config.model_dump(mode="json")}
             base = f"studies/{self.config.study_id}"
             self._export(s, writes, "reward", {"kind": "reward", **reward}, f"{base}/sessions/{sid}/reward.json")
             pid = (s.get("prolific") or {}).get("prolific_pid")
