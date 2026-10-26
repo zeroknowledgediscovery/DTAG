@@ -274,6 +274,37 @@ for name, (condition, condition_pattern) in _POLICE_SCENARIOS.items():
     )
 
 
+
+def validates_standalone(text: str) -> bool:
+    """Last-resort generic guard for visible orphan references and source markup.
+
+    The source-specific contracts above provide the important *semantic* checks.
+    This lightweight extra check catches outright broken unanchored subjects,
+    placeholders, and copied codebook ellipses even for future map variables.
+    """
+    question = text.strip()
+    if not question or not question.endswith("?"):
+        return False
+    if re.search(r"\{\s*#|(?:\.{3,}|…)|\[[A-Z_ ]{4,}\]", question):
+        return False
+    # Only inspect the START: a later "such a person" is legitimate if
+    # explicitly introduced in an earlier sentence of the same question.
+    if re.search(
+        r"^(?:do you (?:think|believe) (?:that )?|should |would |could |"
+        r"if |suppose )(?:such|this|that) (?:a )?person\b",
+        question, re.I,
+    ):
+        return False
+    if re.search(
+        r"^(?:should|would|could|do you think|suppose) "
+        r"(?:he|she|they|it|the book|this book)\b", question, re.I,
+    ):
+        return False
+    if re.search(r"^if (?:she|he|they|this person)\b", question, re.I):
+        return False
+    return True
+
+
 def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
