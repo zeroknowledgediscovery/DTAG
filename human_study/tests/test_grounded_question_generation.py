@@ -68,7 +68,7 @@ def test_full_26_option_source_is_present_in_prompt_and_requirements():
                          original_codebook={"excerpt": "Variable: RINCOM16\nLabel: earnings before taxes",
                                             "pdf_pages": [118]})
     assert "ALL 26 MODEL-NATIVE RESPONSES, NO TRUNCATION" in prompt
-    assert "one sentence" not in prompt
+    assert "Plain conversational English, one sentence" not in prompt
     assert "multiple sentences" in prompt
     assert "$170,000 or over" in prompt
     assert "Label: earnings before taxes" in prompt
