@@ -121,3 +121,30 @@ def test_getahead_most_important_is_not_forced_ranking():
     assert "RANKING_REQUIRES_COMPLETE_COMPARATIVE_TASK" not in {
         issue["reason"] for issue in rows[0]["issues"]
     }
+
+
+def test_audit_flags_missing_group_and_missing_country_in_archived_questions():
+    h_item, h_question = _make_record(
+        "proudhis", "intervention", "how proud its history",
+        "How proud are you of its history?",
+        ["very proud", "somewhat proud", "not very proud", "not proud at all"],
+        provider="openai", fallback=False,
+    )
+    w_item, w_question = _make_record(
+        "workhsps", "intervention",
+        "(Do people in this group tend to be hardworking or lazy?) Hispanic Americans?",
+        "Using a scale from 1 to 7, where 1 means almost all people in the group "
+        "are hard-working and 7 means almost all are lazy, how would you rate this group?",
+        ["hard-working", "2", "3", "4", "5", "6", "lazy"],
+        provider="openai", fallback=False,
+    )
+    h_question["ordinal"], w_question["ordinal"] = 0, 1
+    rows = audit_mod.audit({
+        "study_configuration": {"items": [h_item, w_item]},
+        "questions": [h_question, w_question],
+    })
+    for row in rows:
+        assert any(issue == {
+            "severity": "FAIL",
+            "reason": "GSS2024_REQUIRED_REFERENT_OR_SCALE_MISSING",
+        } for issue in row["issues"])
