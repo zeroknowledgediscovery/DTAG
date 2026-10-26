@@ -608,3 +608,46 @@ def test_ranked_race_mentions_are_conditional_and_not_applicable(variable):
     assert "Guamanian or Chamorro" not in actual.source
     assert "not applicable" in actual.source
     assert validates_wording(variable, actual.source, contract_override=actual)
+
+
+
+# Full-model source audit identified the following original shared-card items.
+# Every variable stays eligible; no original native answer code is changed.
+@pytest.mark.parametrize("variable", [
+    "obey", "popular", "thnkself", "workhard", "helpoth",
+    "polescap", "confinan", "confed", "letin1", "letin1a",
+    "pornlaw", "marblk", "marasian", "marhisp",
+    "rateincumb24", "ratechall124", "ratechall224", "ratechall324",
+    "ratedemp", "raterepp", "ratemaga",
+])
+def test_full_native_audit_repairs_verified_shared_context(variable):
+    source = context_for(variable).source
+    assert validates_standalone(source), variable
+    assert validates_wording(variable, source), variable
+    assert "..." not in source and "{" not in source
+    assert not validates_wording(variable, "Which of the following options is best?")
+
+
+@pytest.mark.parametrize("variable", ["obey", "popular", "thnkself", "workhard", "helpoth"])
+def test_rank_question_preserves_relative_five_attribute_task(variable):
+    source = context_for(variable).source
+    for phrase in ("to obey", "well-liked", "think for oneself", "work hard", "help others",
+                   "most important", "least important"):
+        assert phrase in source
+    assert not validates_wording(
+        variable, "How important is it for a child to obey?"
+    ), "Independent importance ratings must not replace relative rankings"
+
+
+@pytest.mark.parametrize("variable", [
+    "rateincumb24", "ratechall124", "ratechall224", "ratechall324",
+    "ratedemp", "raterepp", "ratemaga",
+])
+def test_thermometers_are_not_recast_as_approval_items(variable):
+    source = context_for(variable).source
+    assert "0 to 100" in source
+    assert "50 means neither favorable nor unfavorable" in source
+    assert validates_wording(variable, source)
+    assert not validates_wording(
+        variable, "Do you strongly approve, approve, disapprove, or strongly disapprove?"
+    )
