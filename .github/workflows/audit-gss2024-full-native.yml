@@ -64,6 +64,10 @@ jobs:
           git add human_study/data/gss_2024_r2_source_context.json
           if ! git diff --cached --quiet; then
             git commit -m "data(human-study): pin GSS 2024 R2 source-label context to 811-variable model"
+            # This branch may have advanced while the official codebook was
+            # being parsed. Rebase the data-only commit, never force-push.
+            git fetch origin experiment/prolific-human-study
+            git rebase FETCH_HEAD
             git push origin HEAD:experiment/prolific-human-study
           fi
       - name: Upload complete per-variable audit inventory
