@@ -182,3 +182,18 @@ def test_source_changed_since_review_is_rejected():
             "source_map_sha256": "different",
             "native_answers_sha256": cw.fingerprint(["yes", "no"]),
         }})
+
+
+
+def test_cloud_run_image_includes_offline_compiled_wording_and_source_context():
+    from pathlib import Path
+    from human_study.grounded_generation import CATALOG as SOURCE_CONTEXT
+    root = Path(__file__).resolve().parents[2]
+    dockerfile = (root / "human_study" / "Dockerfile").read_text()
+    assert "COPY human_study/data ./human_study/data" in dockerfile
+    assert cw.CATALOG_PATH.is_file()
+    assert SOURCE_CONTEXT.is_file()
+    snapshot = cw.catalog()
+    assert snapshot["total_native_variables"] == 811
+    assert snapshot["catalog_revision_sha256"] == cw.fingerprint(snapshot["entries"])
+    assert len(snapshot["entries"]) >= 100
