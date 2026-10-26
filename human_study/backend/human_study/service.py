@@ -409,6 +409,24 @@ class StudyService:
                 rendered.get("displayed_wording", "").strip() == question["original_wording"].strip()
             ):
                 raise ValueError("Neither generated nor source-validated complete question available")
+            if question["phase"] == "intervention" and self.config.candidate_mode == "native_webapp":
+                # A different target can still produce the SAME respondent-
+                # facing wording if an uncontracted LLM paraphrase drifts.
+                # Check the actual historical display, not only variable IDs.
+                from .questions import QuestionGenerationError
+                candidate_text = _normalized(rendered["displayed_wording"])
+                snap = self._load(sid)
+                if candidate_text and any(
+                    old.get("status") == "answered"
+                    and old.get("phase") != "attention"
+                    and _normalized(old.get("displayed_wording", "")) == candidate_text
+                    for key, old in snap.records.items()
+                    if key.startswith("questions/")
+                ):
+                    raise QuestionGenerationError(
+                        "generated wording repeats an earlier displayed question",
+                        attempts=[{"rejected": "identical_question_text_already_answered"}],
+                    )
         except Exception as exc:
             if item is None or item.source_text_incomplete or self.config.question_mode == "llm_required":
                 # Log only bounded error codes; never log model output or participant text.
