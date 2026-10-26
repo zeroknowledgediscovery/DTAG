@@ -9,6 +9,7 @@ on:
       - "human_study/scripts/build_gss2024_source_catalog.py"
       - "human_study/scripts/compile_gss2024_wording.py"
       - "human_study/backend/human_study/compiled_wording.py"
+      - "human_study/backend/human_study/grounded_generation.py"
       - "human_study/backend/human_study/wording_contracts.py"
       - ".github/workflows/audit-gss2024-full-native.yml"
 
@@ -71,6 +72,19 @@ jobs:
           assert len(report['qualifications']) == 811
           print('Compiled source-backed question count:',report['precompiled_count'])
           print('Remaining LLM fallback coordinates:',report['live_llm_fallback_count'])
+          # A catalog entry is valid only if the actual native source map,
+          # answer value order and participant-facing labels match at runtime.
+          from types import SimpleNamespace
+          from human_study.compiled_wording import lookup
+          from compile_gss2024_wording import make_item
+          audit=json.load(open(__import__('os').environ['RUNNER_TEMP'] +
+                               '/gss2024_full_wording_audit.json'))
+          config=SimpleNamespace(model_key='gss/gss_2024',
+                                 model_release='v0.2.1',candidate_mode='native_webapp')
+          hits={row['variable'] for row in audit['variables']
+                if lookup(make_item(row),config) is not None}
+          assert hits == set(data['entries']), sorted(set(data['entries']) - hits)
+          print('Exact native-runtime lookup coverage:', len(hits), '/ 811')
           PY
       - name: Commit versioned GSS source context and compiled wording catalog
         if: github.ref == 'refs/heads/experiment/prolific-human-study'
