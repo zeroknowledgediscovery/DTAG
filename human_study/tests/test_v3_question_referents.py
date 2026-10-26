@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from human_study.wording_contracts import CONTRACTS, context_for, validates_wording
+from human_study.wording_contracts import CONTRACTS, context_for, validates_wording, validates_standalone
 from human_study.questions import QuestionGenerationError, QuestionLLM
 
 
@@ -103,3 +103,105 @@ def test_generate_fails_closed_when_history_referent_lost(monkeypatch):
     assert len(exc.value.attempts) == 2
     assert all(a["rejected"] == "required_referent_or_scale_missing"
                for a in exc.value.attempts)
+
+
+
+def test_colmslm_requires_the_specific_referent_and_action():
+    contract = context_for("colmslm")
+    assert contract is not None
+    assert "Muslim clergyman" in contract.source
+    assert "hatred of the United States" in contract.source
+    assert "college or university" in contract.source
+    assert validates_wording("colmslm", contract.source)
+    for flawed in [
+        "Do you think this person should be allowed to teach in a college or university?",
+        "Should such a person be allowed to teach in a college or university?",
+        "Should a Muslim clergyman be allowed to teach in a college?",
+        "Should a person who hates the United States be allowed to teach in college?",
+        "Should a Muslim clergyman who preaches hatred of the US be allowed to give a speech?",
+    ]:
+        assert not validates_wording("colmslm", flawed), flawed
+
+
+@pytest.mark.parametrize("variable,required", [
+    ("colath", "churches"), ("libath", "religion"),
+    ("colrac", "Black people"), ("librac", "genetically inferior"),
+    ("colcom", "Communist"), ("libcomy", "Communist"),
+    ("libmslm", "Muslim clergyman"), ("libmslmy", "Islamic religious leader"),
+    ("abnomore", "abortion"), ("abrape", "abortion"),
+    ("abanyg", "abortion"), ("suicide2g", "right"),
+    ("eqwlth", "income"), ("natfare", "welfare"),
+    ("natfarey", "assistance to the poor"),
+    ("conjudge", "Supreme Court"), ("polabuse", "police officer"),
+])
+def test_contextual_survey_families_have_named_referents(variable, required):
+    contract = context_for(variable)
+    assert contract is not None, variable
+    assert required.casefold() in contract.source.casefold()
+    assert validates_wording(variable, contract.source), variable
+
+
+def test_generic_standalone_rejects_orphan_subjects_and_codebook_markup():
+    bad = [
+        "Do you think this person should be allowed to teach in a university?",
+        "Should such a person be allowed to teach?",
+        "Should he be fired?",
+        "If she becomes pregnant as a result of rape?",
+        "Would you favor removing this book?",
+        "What do you think about {#secl_name}?",
+        "Do you think this is acceptable ...?",
+    ]
+    assert all(not validates_standalone(q) for q in bad)
+    good = [
+        "Consider a Muslim clergyman who preaches hatred of the United States. "
+        "Do you think such a person should be allowed to teach in a university?",
+        "Would you allow a person who has opposed religion to speak in your community?",
+    ]
+    assert all(validates_standalone(q) for q in good)
+
+
+def test_colmslm_generator_retries_and_fails_closed_for_missing_person(monkeypatch):
+    import dtag_core
+
+    source_inputs = []
+    def generate(_client, source, _choices, _model, **kwargs):
+        source_inputs.append(source)
+        return "Do you think this person should be allowed to teach in a college or university?"
+
+    monkeypatch.setattr(dtag_core, "llm_craft_survey_question", generate)
+    item = SimpleNamespace(
+        item_id="colmslm",
+        original_wording="Should such a person be allowed to teach in a college or university, or not?",
+        source_text_incomplete=False,
+        choices=tuple(SimpleNamespace(native_value=x, display_label=x)
+                      for x in ("yes, allowed to teach", "not allowed")),
+    )
+    with pytest.raises(QuestionGenerationError) as exc:
+        fake_llm().generate(item)
+    assert len(source_inputs) == 2
+    assert all("Muslim clergyman" in prompt for prompt in source_inputs)
+    assert all(a["rejected"] == "incomplete_standalone_question"
+               for a in exc.value.attempts)
+
+
+def test_colmslm_generator_accepts_complete_referent(monkeypatch):
+    import dtag_core
+
+    complete = (
+        "Imagine a Muslim clergyman who preaches hatred of the United States. "
+        "Do you think such a person should be allowed to teach in a college or university?"
+    )
+    monkeypatch.setattr(
+        dtag_core, "llm_craft_survey_question",
+        lambda *_args, **_kwargs: complete,
+    )
+    item = SimpleNamespace(
+        item_id="colmslm",
+        original_wording="Should such a person be allowed to teach in a college or university, or not?",
+        source_text_incomplete=False,
+        choices=tuple(SimpleNamespace(native_value=x, display_label=x)
+                      for x in ("yes, allowed to teach", "not allowed")),
+    )
+    record = fake_llm().generate(item)
+    assert record["displayed_wording"] == complete
+    assert record["question_provenance"]["source_reference"].endswith("GSS%202024%20Codebook%20R2.pdf")
