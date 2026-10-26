@@ -41,10 +41,9 @@ max_response_assignments: 50
 minimum_mapping_confidence: 0.8
 llm_model: gpt-4.1-mini
 prompt_version: dtag-human-v3-evidence-multi-assignments
-# Unresolved 2024 codebook label fragments: their response scenarios cannot
-# be reconstructed reliably from the semantic map alone. Exclude pending a
-# documented ballot-level review; preserve native optimizer implementation.
-excluded_ids: [racdif1x, racdif2x, racdif3x, racdif4x, racdif5x]
+# All eligible native opinion items remain available. Incomplete GSS battery
+# labels are made standalone using source-grounded wording contracts.
+excluded_ids: []
 ethics_disallowed_ids: []
 prolific:
   required: true
