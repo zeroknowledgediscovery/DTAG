@@ -7,7 +7,6 @@ All expensive/native/LLM/GCS operations happen outside transactions.
 from __future__ import annotations
 
 import copy
-import os
 import re
 import secrets
 import time
@@ -139,9 +138,16 @@ class StudyService:
         message = f"{self.config.study_id}\x00{pid}".encode()
         return hmac.new(self.sid_key, message, "sha256").hexdigest()[:32]
 
-    def start(self, sid=None, prolific=None):
+    def start(self, sid=None, prolific=None, *, fresh=False):
+        """Resume normally; an explicit fresh start creates a distinct session.
+
+        Both staging and production use the same semantics. A new attempt
+        retains Prolific linkage but does not overwrite previous archives.
+        """
         prolific = {k: v for k, v in (prolific or {}).items() if v} or None
         pid = prolific.get("prolific_pid") if prolific else None
+        if fresh:
+            sid = None
         if sid:
             try:
                 existing = self._load(sid).session.get("prolific") or {}
@@ -152,7 +158,7 @@ class StudyService:
                 return self.current(sid)
         if self.prolific_required and not pid:
             raise ValueError("Please open this study using the link provided on Prolific.")
-        if pid and self.config.prolific is not None:
+        if pid and self.config.prolific is not None and not fresh:
             sid = self.prolific_sid(pid)
             try:
                 self.repo.read(sid)
@@ -768,15 +774,7 @@ class StudyService:
                 else settings.no_consent_code if phase == "declined" and settings
                 else None)
         return {"session_id": s["session_id"], "phase": phase, "session_version": s["revision"],
-                # This is *test-only* capability information, not a permission
-                # token. The /restart route independently enforces the same
-                # staging/local and non-Prolific restrictions server-side.
-                "test_restart_allowed": (
-                    os.environ.get("DTAG_ENV", "local") in ("local", "staging")
-                    and not self.prolific_required
-                    and not (s.get("prolific") or {}).get("prolific_pid")
-                ),
-                "question": public_q, "progress": {"completed": s["next_step"], "total": total},
+                                "question": public_q, "progress": {"completed": s["next_step"], "total": total},
                 "consent": self.config.consent_text if phase == "consent" else None,
                 "receipt": s["receipt"] if phase == "complete" else None,
                 # For declined consent this is a *return-request* completion path,
