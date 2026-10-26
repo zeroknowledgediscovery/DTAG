@@ -311,6 +311,32 @@ def validates_standalone(text: str) -> bool:
     return True
 
 
+
+# 2024 RACDIF classical causal-attribution battery (pp. 201–203).
+# Separate from the *X wording-experiment* items whose canonical label is
+# truncated; those X variables are excluded in the full Prolific YAMLs.
+_RACDIF_CAUSES = {
+    "racdif1": ("racial discrimination", r"\bdiscriminat\w*\b"),
+    "racdif2": ("an inborn difference in ability to learn",
+                r"\b(?:innate|inborn|in-born|genetic\w*)\b.{0,100}\b(?:learn\w*|abilit\w*)\b"),
+    "racdif3": ("unequal opportunities for education",
+                r"\b(?:educat\w*|school\w*)\b.{0,140}\b(?:opportunit\w*|access|chance|equal)\b"),
+    "racdif4": ("differences in motivation or willpower",
+                r"\b(?:motivat\w*|willpower|will power)\b"),
+    "racdif5": ("differences in upbringing", r"\bupbring\w*\b"),
+}
+for name, (cause, cause_pattern) in _RACDIF_CAUSES.items():
+    CONTRACTS[name] = WordingContract(
+        "On average Black people have worse jobs, income and housing than "
+        "White people. Do you think those differences are mainly due to "
+        f"{cause}?",
+        (r"\bblack\b.{0,110}\b(?:white)\b",
+         r"\b(?:jobs?|income|housing)\b",
+         r"\b(?:differen\w*|inequal\w*|gap\w*)\b",
+         cause_pattern),
+    )
+
+
 def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
