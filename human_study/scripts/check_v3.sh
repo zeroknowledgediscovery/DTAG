@@ -13,6 +13,7 @@ echo "[1/3] V3 short, interleaved, 6+20+5 sessions and webapp parity"
 python3 -m pytest -q -rs \
   human_study/tests/test_v3_multi_observations.py \
   human_study/tests/test_v3_question_referents.py \
+  human_study/tests/test_standalone_candidate_audit.py \
   human_study/tests/test_question_archive_audit.py \
   human_study/tests/test_v3_schedule_and_simulation.py \
   human_study/tests/test_v3_trajectory_analysis.py \
@@ -24,6 +25,9 @@ python3 -m pytest -q -rs \
 
 echo "[wording audit] GSS 2024 map and source-grounded contracts"
 python3 human_study/scripts/audit_gss_wording_map.py --check
+
+echo "[wider audit] Static native opinion-screening labels (read-only)"
+python3 human_study/scripts/audit_standalone_candidates.py --compact
 
 echo "[2/3] Existing answer, persistence, and cloud adapter regression"
 python3 -m pytest -q -rs \
