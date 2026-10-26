@@ -57,6 +57,11 @@ jobs:
             human_study/tests/test_v3_question_referents.py \
             human_study/tests/test_prolific_study.py \
             human_study/tests/test_firestore_parallel_read.py
+      - name: Compare Firestore serial vs parallel simulated RPC latency
+        env:
+          PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
+        run: |
+          python -m pytest -q -s human_study/tests/test_firestore_parallel_read.py::test_simulated_latency_parallel_vs_original_serial
       - name: Audit GSS 2024 source wording and unresolved references
         env:
           PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
