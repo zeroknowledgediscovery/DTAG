@@ -62,7 +62,8 @@ def validate(rows):
     lookup = {r["variable"]: r for r in rows}
     issues = []
     for item in ("colmslm", "colath", "colrac", "colcom", "libmslm",
-                 "libcom", "abnomore", "abrape", "suicide1", "eqwlth"):
+                 "libcom", "abnomore", "abrape", "suicide1", "eqwlth",
+                 "fechld", "fepresch", "fefam"):
         row = lookup.get(item)
         if not row or not row["contracted"] or not row["contract_source_valid"]:
             issues.append(f"required standalone source contract missing: {item}")
