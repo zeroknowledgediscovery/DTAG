@@ -16,11 +16,11 @@
 # Arms: right / left / neutral / random, uniformly randomized per participant
 # after the baseline (service.py, scheme unstratified-uniform-four-arm-v1).
 schema_version: '1'
-study_id: prolific-v3-pole-baseline-draft
+study_id: prolific-v3-context-draft
 model_key: gss/gss_2024
 model_release: v0.2.1
 reviewed: false
-consent_version: prolific-v3-imc-draft-2
+consent_version: prolific-v3-context-draft-1
 consent_text: >-
   This research study asks for your views on social and political topics.
   Questions are written by an AI system, one at a time; please answer each in
@@ -41,7 +41,10 @@ max_response_assignments: 50
 minimum_mapping_confidence: 0.8
 llm_model: gpt-4.1-mini
 prompt_version: dtag-human-v3-evidence-multi-assignments
-excluded_ids: []
+# Unresolved 2024 codebook label fragments: their response scenarios cannot
+# be reconstructed reliably from the semantic map alone. Exclude pending a
+# documented ballot-level review; preserve native optimizer implementation.
+excluded_ids: [racdif1x, racdif2x, racdif3x, racdif4x, racdif5x]
 ethics_disallowed_ids: []
 prolific:
   required: true
