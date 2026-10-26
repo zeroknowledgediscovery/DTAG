@@ -230,6 +230,50 @@ for name, topic in _NAT_TOPICS.items():
     )
 
 
+
+# GSS INSTITUTIONAL CONFIDENCE GRID (2024 R2, pp. 157–165).
+# The original shared stem asks about confidence in people RUNNING institutions.
+_CONFIDENCE_TARGETS = {
+    "conbus": ("major companies", r"\b(?:major companies|business(?:es)?|corporat\w*)\b"),
+    "conclerg": ("organized religion", r"\b(?:organized religion|religious institution\w*|church\w*|clergy)\b"),
+    "coneduc": ("education", r"\b(?:education|schools?|educational institution\w*)\b"),
+    "conlabor": ("organized labor", r"\b(?:organized labor|trade union\w*|labor union\w*)\b"),
+    "conpress": ("the press", r"\b(?:press|news media|journalis\w*)\b"),
+    "conmedic": ("medicine", r"\b(?:medicine|medical (?:profession|institution\w*)|healthcare)\b"),
+    "contv": ("television", r"\b(?:television|tv)\b"),
+    "conjudge": ("the United States Supreme Court", r"\b(?:supreme court)\b"),
+    "consci": ("the scientific community", r"\b(?:scientific community|scientists?|science)\b"),
+    "conlegis": ("the United States Congress", r"\b(?:congress|legislat\w*)\b"),
+    "conarmy": ("the military", r"\b(?:military|armed forces|army)\b"),
+}
+for name, (institution, target_pattern) in _CONFIDENCE_TARGETS.items():
+    CONTRACTS[name] = WordingContract(
+        f"How much confidence do you have in the people running {institution}: "
+        "a great deal, only some, or hardly any at all?",
+        (r"\bconfiden\w*\b", target_pattern,
+         r"\b(?:great deal|a lot)\b", r"\b(?:hardly any|very little)\b"),
+    )
+
+
+# Police-force vignettes (2024 R2, policing battery). A conditional fragment
+# alone cannot be answered as a moral/political opinion.
+_POLICE_SCENARIOS = {
+    "polabuse": ("a citizen said vulgar and obscene things to the officer",
+                 r"\b(?:vulgar|obscene|swear\w*|insult\w*)\b"),
+    "polabusey": ("a citizen said vulgar and obscene things to the officer",
+                  r"\b(?:vulgar|obscene|swear\w*|insult\w*)\b"),
+    "polmurdr": ("the citizen was being questioned as a murder suspect",
+                 r"\b(?:murder|homicide)\b.{0,100}\b(?:suspect|question\w*)\b"),
+}
+for name, (condition, condition_pattern) in _POLICE_SCENARIOS.items():
+    CONTRACTS[name] = WordingContract(
+        f"Would you approve of a police officer physically striking a citizen "
+        f"if {condition}?",
+        (r"\b(?:police|policeman|officer)\b", r"\b(?:strik\w*|hitt\w*|hit|physically)\b",
+         condition_pattern),
+    )
+
+
 def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
