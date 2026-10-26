@@ -58,6 +58,7 @@ jobs:
             human_study/tests/test_standalone_candidate_audit.py \
             human_study/tests/test_full_native_gss_audit.py \
             human_study/tests/test_prolific_study.py \
+            human_study/tests/test_human_api.py \
             human_study/tests/test_firestore_parallel_read.py
       - name: Compare Firestore serial vs parallel simulated RPC latency
         env:
