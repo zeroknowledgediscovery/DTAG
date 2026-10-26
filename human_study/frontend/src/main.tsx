@@ -8,7 +8,8 @@ const isWrittenMode = (q: Question | null | undefined) =>
 
 type View = { session_id: string; phase: string; session_version: number; question: Question | null;
   consent: string | null; receipt: string | null; progress: { completed: number; total: number };
-  completion_code?: string | null; completion_url?: string | null };
+  completion_code?: string | null; completion_url?: string | null;
+  test_restart_allowed?: boolean };
 type Pending = { question_id: string; answer_value: string | null; text_answer: string | null; missing_reason: string | null;
   idempotency_key: string; expected_session_version: number };
 
@@ -71,6 +72,23 @@ function App() {
     finally { setBusy(false); }
   }
   useEffect(() => { void perform(() => api('start', prolificParams())); }, []);
+
+  async function startNewTestSession() {
+    if (busy || !view?.test_restart_allowed) return;
+    if (!window.confirm(
+      'Start a new test session from question 1? Your previous answers will remain archived, but this browser will switch to a new session.'
+    )) return;
+    await perform(async () => {
+      // Only discard local draft and retry tokens AFTER the server has
+      // created the new session and sent a replacement signed cookie.
+      const fresh = await api('restart', {});
+      pending.current = null;
+      setSelected('');
+      setWritten('');
+      setConsent(false);
+      return fresh;
+    });
+  }
   useEffect(() => { heading.current?.focus(); }, [view?.question?.question_id, view?.phase]);
 
   // An answer may be securely committed while the NEXT LLM question is
@@ -123,6 +141,12 @@ function App() {
     {view && !['consent', 'complete', 'declined'].includes(view.phase) && <section aria-label="Study progress" className="progress">
       <p>{labels[view.phase] || 'Finishing'} · {view.progress.completed} of {view.progress.total} questions saved</p>
       <progress value={view.progress.completed} max={view.progress.total} aria-label="Questions saved"/>
+    </section>}
+    {view?.test_restart_allowed && <section className="test-session-controls" aria-label="Test session controls">
+      <span>Internal testing</span>
+      <button type="button" className="secondary" disabled={busy}
+        onClick={() => void startNewTestSession()}>Start new test session</button>
+      <p className="muted">Starts from question 1. Your existing test data will remain saved.</p>
     </section>}
     {view?.phase === 'consent' && <section>
       <h2 tabIndex={-1} ref={heading}>Before you begin</h2><p className="consent">{view.consent}</p>
@@ -187,7 +211,9 @@ function App() {
       else void perform(() => view ? api('current') : api('start', prolificParams()));
     }}>Retry</button><button className="secondary" disabled={busy} onClick={() => void perform(() => api('current'))}>Refresh saved state</button></aside>}
     {!view && !busy && !error && <p>Preparing the study…</p>}
-    <footer>You can stop at any time. Keep this browser’s cookies to resume an interrupted session.</footer>
+    <footer>You can stop at any time. Refresh this page to resume the saved session.
+      {view?.test_restart_allowed && ' To begin again with a fresh test session, use Start new test session above.'}
+    </footer>
   </main>;
 }
 
