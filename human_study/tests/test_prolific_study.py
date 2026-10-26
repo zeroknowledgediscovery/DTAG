@@ -33,6 +33,9 @@ def prolific_config(instrument, adapter, *, review_code="REVIEW42", threshold=2)
         {"check_id": "attention_sky", "kind": "factual", "render": "verbatim",
          "instruction": "Attention check: what colour is a clear daytime sky?",
          "accepted_answers": ["blue"], "after_substantive": 5},
+        {"check_id": "attention_cedar", "kind": "instructed_token",
+         "instruction": "For this attention check include the word cedar in your answer.",
+         "expected_token": "cedar", "after_substantive": 6},
     ]
     return StudyConfig.model_validate(base)
 
@@ -72,7 +75,7 @@ def test_full_session_passing_checks_gets_completion_code_and_reward_record(inst
     config = prolific_config(instrument, adapter)
     archive = MemoryArchive()
     svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
-    answers = {"attention": lambda i: "blue" if i > 4 else "ok: cobalt"}
+    answers = {"attention": lambda i: "ok cobalt blue cedar"}
     sid, done, shown = run(svc, lambda phase, i: answers.get(phase, substantive)(i))
     assert done["phase"] == "complete"
     assert done["completion_code"] == "C0MPLETE1"
@@ -85,7 +88,9 @@ def test_full_session_passing_checks_gets_completion_code_and_reward_record(inst
     assert reward == json.loads(archive.objects[f"{base}/rewards/{PID}.json"])
     assert reward["completion_code"] == "C0MPLETE1" and reward["code_category"] == "complete"
     assert reward["prolific"] == {"prolific_pid": PID, "prolific_study_id": "S1", "prolific_session_id": "X1"}
-    assert reward["attention"] == {"total": 2, "passed": 2, "failed": 0, "failed_check_ids": [],
+    assert reward["attention"] == {"total": 3, "passed": 3, "failed": 0, "failed_check_ids": [],
+                                   "policy_eligible_total": 2, "policy_eligible_failed": 0,
+                                   "policy_eligible_failed_ids": [], "non_eligible_failed_ids": [],
                                    "fail_threshold": 2}
     assert reward["reward"] == "GBP 3.00"
     final = json.loads(archive.objects[f"{base}/sessions/{sid}/final.json"])
@@ -96,6 +101,8 @@ def test_full_session_passing_checks_gets_completion_code_and_reward_record(inst
     # Distinct written answers are not flagged as copies.
     assert reward["quality"]["duplicate_answers"] == 0
     assert reward["quality"]["substantive_answers"] == 7
+    assert reward["quality"]["review"]["score"] < 35
+    assert reward["quality"]["review"]["priority"] == "routine"
 
 
 def test_failed_checks_at_threshold_get_review_code(instrument, adapter):
@@ -106,11 +113,34 @@ def test_failed_checks_at_threshold_get_review_code(instrument, adapter):
     assert done["completion_code"] == "REVIEW42"
     reward = json.loads(archive.objects[f"studies/{config.study_id}/sessions/{sid}/reward.json"])
     assert reward["code_category"] == "attention_review"
-    assert reward["attention"]["failed_check_ids"] == ["attention_token", "attention_sky"]
+    assert reward["attention"]["failed_check_ids"] == ["attention_token", "attention_sky", "attention_cedar"]
+    assert reward["attention"]["policy_eligible_failed_ids"] == ["attention_token", "attention_cedar"]
+    assert reward["quality"]["review"]["priority"] == "high"
+    assert reward["quality"]["review"]["human_review_recommended"]
+    assert reward["quality"]["review"]["score"] >= 60
+    assert not reward["quality"]["review"]["may_determine_payment_or_rejection"]
     # Identical one-word substantive answers are flagged for review, never scored.
     assert reward["quality"]["duplicate_answers"] == 6
     assert reward["quality"]["short_answers"] == 7
-    assert reward["quality"]["fast_answers"] == 9
+    assert reward["quality"]["fast_answers"] == 10
+
+
+def test_failed_factual_check_plus_one_imc_does_not_trigger_review_code(instrument, adapter):
+    config = prolific_config(instrument, adapter)
+    archive = MemoryArchive()
+    svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
+    # First instructed response fails; factual check fails; second instructed
+    # response passes. Only one Prolific-policy eligible check was failed.
+    sid, done, _ = run(
+        svc, lambda phase, i: (
+            "cedar" if i == 10 else "not the specified word"
+        ) if phase == "attention" else substantive(i)
+    )
+    reward = json.loads(archive.objects[f"studies/{config.study_id}/sessions/{sid}/reward.json"])
+    assert reward["attention"]["failed"] == 2
+    assert reward["attention"]["policy_eligible_failed"] == 1
+    assert done["completion_code"] == "C0MPLETE1"
+    assert reward["quality"]["review"]["human_review_recommended"]
 
 
 def test_without_review_code_failures_are_recorded_but_code_is_shared(instrument, adapter):
@@ -263,9 +293,13 @@ def test_export_includes_prolific_linkage_code_and_quality(instrument, adapter, 
     assert row["prolific_pid"] == PID and row["completion_code"] == "REVIEW42"
     assert row["code_category"] == "attention_review" and row["attention_failed"] == "2"
     assert row["duplicate_answers"] == "6"
+    assert row["quality_review_priority"] == "high"
+    assert int(row["quality_review_score"]) >= 60
+    assert row["policy_eligible_attention_failed"] == "2"
+    assert "many_near_duplicate_answers" in row["quality_review_signals"]
     with (tmp_path / "export/answers.csv").open() as f:
         rows = list(csv.DictReader(f))
-    assert [r["attention_passed"] for r in rows if r["phase"] == "attention"] == ["False", "False"]
+    assert [r["attention_passed"] for r in rows if r["phase"] == "attention"] == ["False", "False", "False"]
     assert all(json.loads(r["response_quality"])["fast"] for r in rows)
 
 
@@ -276,7 +310,7 @@ def test_gcp_test_config_runs_without_prolific_ids_and_issues_codes(instrument, 
     base = prolific_config(instrument, adapter).model_dump(mode="json")
     base["prolific"]["required"] = False
     config = StudyConfig.model_validate(base)
-    for attention, code in (("cobalt blue", "C0MPLETE1"), ("no idea", "REVIEW42")):
+    for attention, code in (("cobalt cedar blue", "C0MPLETE1"), ("no idea", "REVIEW42")):
         archive = MemoryArchive()
         # prolific_required=None is the staging/production setting: the config decides.
         svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
