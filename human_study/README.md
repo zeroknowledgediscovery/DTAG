@@ -77,7 +77,9 @@ attention checks** (31 screens), using the same native-webapp selection as above
   `https://<service>/study?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}`.
   Outside local mode a PID is required. Each PID gets one session
   (HMAC of study ID + PID, keyed by `DTAG_COOKIE_SECRET`), so a participant who
-  loses cookies resumes rather than restarts.
+  loses cookies resumes rather than restarts. Raw Prolific identifiers are
+  written to the immutable GCS research archive **only after consent**.
+  Declined sessions discard the PID from their operational session record.
 - **Three Prolific completion paths.** Create a distinct fixed, opaque code
   for `completion_code` (approve/pay the advertised full study reward),
   `review_code` (manual review, **not** automatic rejection or a reduced
