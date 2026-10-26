@@ -109,7 +109,10 @@ OpenAI question/answer interpreter and real native adapter. Measure:
   attempts and timeouts by item and by phase.
 - Claimed variables, confidence, literal evidence, native category validity,
   rejected mappings, repeated answers and contradictions.
-- Whether generated attention prompts preserve their scoring instruction.
+- For the **Prolific** instrument, verify that all five attention prompts are
+  verbatim, conspicuous IMCs (cobalt/violet/amber/marble/cedar) and that the
+  exact response-word instruction is shown in the current question. Generic V3
+  experimental configs may still test LLM-written attention prompts.
 - Whether a simulated 6+20+5 run completes with sufficient eligible items.
 - Stability across repeats, paraphrases and varied response lengths,
   including ambiguous answers, refusals, negation and sarcastic wording.
@@ -128,7 +131,16 @@ pinned OpenAI version. Verify:
   silently resumed into V3, and different V3 revisions use distinct IDs.
 - Eight-screen short pilot and 31-screen full-length sample complete.
 - Attention can appear mid-baseline and mid-intervention, preserves resume
-  index, retains no native categories, and logs a pass/fail.
+  index, retains no native categories, and logs a pass/fail. For the Prolific
+  instrument, validate the 3/8/13/18/24 IMC schedule and the exact five tokens.
+- Test the three Prolific completion paths against the live study setup; a
+  flagged `eligible_for_rejection` case routes to investigator review rather
+  than executing a rejection or deducting pay. Verify 0/1/2/3 IMC failures,
+  two failures plus many meaningful duplicates (not eligible), and two
+  failures plus prolonged clear keyboard-mash gibberish (eligible pending
+  evidence review). Confirm archived `rejection_eligibility` in `reward.json`
+  and `final.json`, and CSV export. See
+  [Prolific quality policy](PROLIFIC_QUALITY_POLICY.md).
 - Every substantive screen is LLM-generated (no raw-text fallback).
 - Every accepted human answer contains the original prose and all
   accepted/rejected/conflicting model mapping decisions.
