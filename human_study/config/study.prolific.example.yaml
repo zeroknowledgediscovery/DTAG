@@ -1,7 +1,7 @@
 # Prolific human study: 6 baseline + 20 adaptive + 5 interleaved attention checks.
 #
 # DRAFT (reviewed: false). Before deployment, copy this file to a secure path,
-# replace both CHANGEME completion codes with the codes configured on the
+# replace all three CHANGEME completion codes with the codes configured on the
 # Prolific study page, review consent/wording/reward, set reviewed: true, and
 # pass it as DTAG_REVIEWED_CONFIG to deploy/deploy.sh. Staging/production refuse
 # to start with CHANGEME codes or reviewed: false.
@@ -50,6 +50,8 @@ prolific:
   # Shown instead when >= attention_fail_threshold checks fail; set this code's
   # action in Prolific to manual review. Remove to give everyone completion_code.
   review_code: CHANGEME02
+  # In Prolific configure the No consent completion path as 'Request a return'.
+  no_consent_code: CHANGEME03
   attention_fail_threshold: 2
   reward: GBP 0.00 (set to the Prolific reward)
 quality:
