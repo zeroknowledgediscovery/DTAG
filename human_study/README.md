@@ -51,6 +51,23 @@ Both are unreviewed examples and must **not** be mistaken for the proposed
 [full 6+20+5 protocol](docs/PRODUCTION_READINESS.md). The full-study adaptive
 questions remain dynamically selected across the installed native model.
 
+### Session choice on every browser load
+
+On opening or refreshing `/study`, the participant sees **Resume saved session**
+or **Start new session**. Resume uses the existing signed-cookie session and
+keeps its saved answers; with no prior session, Resume begins a new one.
+Start new deliberately creates a different session ID, returns to consent and
+question 1, and replaces the browser cookie. Previous sessions and GCS/Firestore
+records are preserved, not deleted. The UI and endpoint work the **same in
+local, staging, and production**. A Prolific link retains its participant
+identifiers in the new attempt. Because a deliberate restart can produce
+multiple scientific sessions linked to one Prolific PID, research exports
+should distinguish attempts and deduplicate participants before analysis;
+a restart does not create additional payable Prolific submissions.
+
+A new session can also recover from an obsolete cookie after a code/instrument
+update, without wiping browser data or the study bucket.
+
 ### Prolific deployment ([config/study.prolific.example.yaml](config/study.prolific.example.yaml))
 
 The Prolific configuration is **6 baseline + 20 adaptive + 5 interleaved
