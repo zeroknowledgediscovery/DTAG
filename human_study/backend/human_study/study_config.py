@@ -84,13 +84,15 @@ class ProlificSettings(StrictModel):
                                 pattern=r"^https://[^\s?#]+$")
     # Shown to participants who fail fewer than attention_fail_threshold checks.
     completion_code: str = Field(pattern=r"^[A-Za-z0-9]{4,32}$")
-    # Shown when failures >= threshold; configure as "manual review" in Prolific.
-    # None: everyone receives completion_code (failures are still archived).
+    # Shown only when rejection eligibility is flagged under the conservative
+    # 3-valid-IMC or 2-valid-IMCs-plus-independent-objective-low-effort rule.
+    # Configure as a Prolific Failed attention checks path for MANUAL review.
+    # None: everyone receives completion_code (evidence is still archived).
     review_code: str | None = Field(default=None, pattern=r"^[A-Za-z0-9]{4,32}$")
     # Prolific "No consent" path: configure it to REQUEST A RETURN, never approval.
     # Optional for legacy study configs; required for the new Prolific instrument.
     no_consent_code: str | None = Field(default=None, pattern=r"^[A-Za-z0-9]{4,32}$")
-    attention_fail_threshold: int = Field(default=2, ge=1, le=100)
+    attention_fail_threshold: int = Field(default=3, ge=2, le=100)
     # Recorded with each reward record, e.g. "GBP 2.50"; informational only.
     reward: str | None = Field(default=None, max_length=60)
 
