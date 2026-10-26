@@ -6,8 +6,16 @@ on:
     branches: [experiment/prolific-human-study]
     paths:
       - "human_study/scripts/audit_all_native_gss_2024.py"
+      - "human_study/scripts/build_gss2024_source_catalog.py"
       - "human_study/backend/human_study/wording_contracts.py"
       - ".github/workflows/audit-gss2024-full-native.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: full-gss2024-source-catalog
+  cancel-in-progress: false
 
 jobs:
   audit-811:
@@ -38,6 +46,26 @@ jobs:
           python human_study/scripts/audit_all_native_gss_2024.py \
             --codebook "$RUNNER_TEMP/gss2024_codebook_r2.pdf" \
             --out "$RUNNER_TEMP/gss2024_full_wording_audit"
+      - name: Build release-pinned offline GSS source prompt catalog
+        run: |
+          python human_study/scripts/build_gss2024_source_catalog.py \
+            "$RUNNER_TEMP/gss2024_full_wording_audit.json"
+          python - <<'PY'
+          import json
+          d=json.load(open("human_study/data/gss_2024_r2_source_context.json"))
+          assert len(d["variables"]) >= 750
+          print("Source labels packaged:",len(d["variables"]))
+          PY
+      - name: Commit source-context snapshot for deterministic production prompts
+        if: github.ref == 'refs/heads/experiment/prolific-human-study'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add human_study/data/gss_2024_r2_source_context.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data(human-study): pin GSS 2024 R2 source-label context to 811-variable model"
+            git push origin HEAD:experiment/prolific-human-study
+          fi
       - name: Upload complete per-variable audit inventory
         if: always()
         uses: actions/upload-artifact@v4
