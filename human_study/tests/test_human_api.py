@@ -184,3 +184,113 @@ def test_fail_closed_nonlocal_fixture_and_missing_secrets(monkeypatch, mode):
     monkeypatch.setenv("DTAG_LLM_BACKEND", "mock")
     with pytest.raises(RuntimeError, match="restricted"):
         configured_service()
+
+
+
+def test_new_test_session_preserves_previous_progress_and_signed_resume(instrument, adapter):
+    c, svc = client(instrument, adapter)
+    with c:
+        first = post(c, "start", {}).json()
+        view = post(c, "consent", {
+            "accepted": True,
+            "expected_session_version": first["session_version"],
+        }).json()
+        answer = post(c, "answer", {
+            "question_id": view["question"]["question_id"],
+            "answer_value": view["question"]["choices"][0]["value"],
+            "idempotency_key": "first-answered-before-restart",
+            "expected_session_version": view["session_version"],
+        })
+        assert answer.status_code == 200, answer.text
+        previous = post(c, "start", {}).json()
+        assert previous["session_id"] == first["session_id"]
+        assert previous["progress"]["completed"] == 1
+        assert previous["test_restart_allowed"] is True
+        assert c.get("/api/human/test-session-options").json() == {
+            "test_restart_allowed": True
+        }
+        prior_archive = dict(svc.archive.objects)
+        cookie_before = c.cookies.get("dtag-human-local")
+
+        fresh_response = post(c, "restart", {})
+        assert fresh_response.status_code == 200, fresh_response.text
+        fresh = fresh_response.json()
+        assert fresh["session_id"] != first["session_id"]
+        assert fresh["phase"] == "consent"
+        assert fresh["progress"]["completed"] == 0
+        assert fresh["test_restart_allowed"] is True
+        assert c.cookies.get("dtag-human-local") != cookie_before
+        assert svc.repo.read(first["session_id"]).session["next_step"] == 1
+        assert prior_archive.items() <= svc.archive.objects.items()
+        assert c.get("/api/human/current").json()["session_id"] == fresh["session_id"]
+        assert post(c, "start", {}).json()["session_id"] == fresh["session_id"]
+
+
+def test_restart_requires_origin_empty_body_and_rate_limit(instrument, adapter):
+    c, svc = client(instrument, adapter)
+    with c:
+        original = post(c, "start", {}).json()["session_id"]
+        assert c.post("/api/human/restart", json={}).status_code == 403
+        assert post(c, "restart", {"prolific_pid": "testpid"}).status_code == 422
+        assert post(c, "restart", {"force": True}).status_code == 422
+        assert c.get("/api/human/current").json()["session_id"] == original
+        restarted = []
+        for n in range(10):
+            response = post(c, "restart", {})
+            assert response.status_code == 200, (n, response.text)
+            restarted.append(response.json()["session_id"])
+        assert len(set(restarted)) == 10
+        blocked = post(c, "restart", {})
+        assert blocked.status_code == 429
+        assert c.get("/api/human/current").json()["session_id"] == restarted[-1]
+
+
+def test_stale_code_cookie_offers_new_test_session_without_losing_old_data(instrument, adapter):
+    repo = MemoryRepository()
+    archive = MemoryArchive()
+    secret = "test-secret-stable-not-for-deployment" * 2
+    old = StudyService(instrument, adapter, FixtureLLM(), repo, archive)
+    first_client = TestClient(create_app(old, cookie_secret=secret))
+    with first_client:
+        first = post(first_client, "start", {}).json()
+        old_sid = first["session_id"]
+        cookie = first_client.cookies.get("dtag-human-local")
+        assert cookie
+
+    # New deployment uses a changed instrument hash, so regular /start
+    # must refuse to resume a now-incompatible session.
+    new_config = instrument.model_copy(update={"consent_version": "new-revision-test"})
+    new = StudyService(new_config, adapter, FixtureLLM(), repo, archive)
+    second_client = TestClient(create_app(new, cookie_secret=secret))
+    second_client.cookies.set("dtag-human-local", cookie)
+    with second_client:
+        assert post(second_client, "start", {}).status_code == 409
+        assert second_client.get("/api/human/test-session-options").json() == {
+            "test_restart_allowed": True
+        }
+        result = post(second_client, "restart", {})
+        assert result.status_code == 200, result.text
+        fresh = result.json()
+        assert fresh["session_id"] != old_sid
+        assert fresh["phase"] == "consent"
+        assert post(second_client, "start", {}).json()["session_id"] == fresh["session_id"]
+    assert repo.read(old_sid).session["config_hash"] == instrument.config_hash
+
+
+@pytest.mark.parametrize("mode", ["production"])
+def test_restart_never_available_in_production_even_without_pid(monkeypatch, instrument, adapter, mode):
+    monkeypatch.setenv("DTAG_ENV", mode)
+    service = StudyService(instrument, adapter, FixtureLLM(), MemoryRepository(), MemoryArchive())
+    web = TestClient(create_app(
+        service, cookie_secret="test-secret-stable-not-for-deployment" * 2
+    ))
+    with web:
+        view = web.post("/api/human/start", json={}, headers={
+            "Origin": "https://testserver"
+        })
+        assert view.status_code == 200, view.text
+        assert view.json()["test_restart_allowed"] is False
+        assert web.get("/api/human/test-session-options").json()["test_restart_allowed"] is False
+        assert web.post("/api/human/restart", json={}, headers={
+            "Origin": "https://testserver"
+        }).status_code == 403
