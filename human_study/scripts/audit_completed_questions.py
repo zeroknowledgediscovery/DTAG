@@ -14,6 +14,11 @@ import argparse
 import json
 import re
 import sys
+from pathlib import Path
+
+# This investigator CLI also runs without the application PYTHONPATH.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
+from human_study.wording_contracts import context_for, validates_wording
 
 
 NUMERIC_LABEL = re.compile(r"^[+-]?\d+(?:\.\d+)?$")
@@ -54,6 +59,8 @@ def audit(final):
             flag("FAIL", "MISSING_DISPLAY_TEXT")
         if looks_like_source:
             flag("FAIL", "UNJOINED_OR_TRUNCATED_SOURCE_VISIBLE")
+        if context_for(var) is not None and not validates_wording(var, shown):
+            flag("FAIL", "GSS2024_REQUIRED_REFERENT_OR_SCALE_MISSING")
         if incomplete and shown == raw.strip():
             flag("FAIL", "INCOMPLETE_SOURCE_SHOWN_VERBATIM")
         if var == "confinan" and not re.search(r"\bbanks?\b|\bfinancial institutions?\b", shown, re.I):
