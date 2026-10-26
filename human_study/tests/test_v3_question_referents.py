@@ -284,3 +284,23 @@ def test_full_prolific_configs_retain_all_five_variants():
             assert f"racdif{i}x" not in config.excluded_ids
         assert config.excluded_ids == ()
         assert config.candidate_mode == "native_webapp"
+
+
+
+def test_restored_variants_pass_unmodified_webapp_askable_filter():
+    """Ensure the original optimizer still regards the 5 variants as candidates."""
+    import csv
+    from pathlib import Path
+
+    from optimize_question_sets import askable
+
+    root = Path(__file__).resolve().parents[2]
+    with (root / "maps/gss/gss_2024_map.csv").open(newline="", encoding="utf-8") as fp:
+        rows = {r["variable"]: r for r in csv.DictReader(fp)}
+    for i in range(1, 6):
+        name = f"racdif{i}x"
+        row = rows[name]
+        label = row["question_text_filled"] or row["question_text"]
+        assert askable(name, label, set()), (
+            f"Native webapp would suppress reconstructed item: {name}"
+        )
