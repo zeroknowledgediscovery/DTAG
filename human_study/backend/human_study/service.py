@@ -7,6 +7,7 @@ All expensive/native/LLM/GCS operations happen outside transactions.
 from __future__ import annotations
 
 import copy
+import os
 import re
 import secrets
 import time
@@ -767,6 +768,14 @@ class StudyService:
                 else settings.no_consent_code if phase == "declined" and settings
                 else None)
         return {"session_id": s["session_id"], "phase": phase, "session_version": s["revision"],
+                # This is *test-only* capability information, not a permission
+                # token. The /restart route independently enforces the same
+                # staging/local and non-Prolific restrictions server-side.
+                "test_restart_allowed": (
+                    os.environ.get("DTAG_ENV", "local") in ("local", "staging")
+                    and not self.prolific_required
+                    and not (s.get("prolific") or {}).get("prolific_pid")
+                ),
                 "question": public_q, "progress": {"completed": s["next_step"], "total": total},
                 "consent": self.config.consent_text if phase == "consent" else None,
                 "receipt": s["receipt"] if phase == "complete" else None,
