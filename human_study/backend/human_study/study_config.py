@@ -87,14 +87,20 @@ class ProlificSettings(StrictModel):
     # Shown when failures >= threshold; configure as "manual review" in Prolific.
     # None: everyone receives completion_code (failures are still archived).
     review_code: str | None = Field(default=None, pattern=r"^[A-Za-z0-9]{4,32}$")
+    # Prolific "No consent" path: configure it to REQUEST A RETURN, never approval.
+    # Optional for legacy study configs; required for the new Prolific instrument.
+    no_consent_code: str | None = Field(default=None, pattern=r"^[A-Za-z0-9]{4,32}$")
     attention_fail_threshold: int = Field(default=2, ge=1, le=100)
     # Recorded with each reward record, e.g. "GBP 2.50"; informational only.
     reward: str | None = Field(default=None, max_length=60)
 
     @model_validator(mode="after")
     def distinct_codes(self):
-        if self.review_code is not None and self.review_code == self.completion_code:
-            raise ValueError("review_code must differ from completion_code")
+        codes = [code for code in (
+            self.completion_code, self.review_code, self.no_consent_code
+        ) if code is not None]
+        if len(codes) != len(set(codes)):
+            raise ValueError("completion_code, review_code and no_consent_code must be distinct")
         return self
 
 
