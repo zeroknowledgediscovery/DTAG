@@ -229,3 +229,28 @@ def test_export_includes_prolific_linkage_code_and_quality(instrument, adapter, 
         rows = list(csv.DictReader(f))
     assert [r["attention_passed"] for r in rows if r["phase"] == "attention"] == ["False", "False"]
     assert all(json.loads(r["response_quality"])["fast"] for r in rows)
+
+
+def test_gcp_test_config_runs_without_prolific_ids_and_issues_codes(instrument, adapter):
+    test = StudyConfig.load(ROOT / "human_study/config/study.prolific.gcptest.yaml")
+    assert test.prolific.required is False and test.study_id != "prolific-v3-pole-baseline-draft"
+    config, _, _ = make_v3(instrument, adapter)
+    base = prolific_config(instrument, adapter).model_dump(mode="json")
+    base["prolific"]["required"] = False
+    config = StudyConfig.model_validate(base)
+    for attention, code in (("cobalt blue", "C0MPLETE1"), ("no idea", "REVIEW42")):
+        archive = MemoryArchive()
+        # prolific_required=None is the staging/production setting: the config decides.
+        svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
+        first = svc.start()
+        sid = first["session_id"]
+        view = svc.consent(sid, True, first["session_version"])
+        i = 0
+        while view["question"] is not None:
+            i += 1
+            text = attention if view["phase"] == "attention" else substantive(i)
+            view = svc.answer(sid, request(view, text))["current"]
+        assert svc.complete(sid)["completion_code"] == code
+        reward = json.loads(archive.objects[f"studies/{config.study_id}/sessions/{sid}/reward.json"])
+        assert reward["completion_code"] == code and reward["prolific"] is None
+        assert f"studies/{config.study_id}/sessions/{sid}/final.json" in archive.objects
