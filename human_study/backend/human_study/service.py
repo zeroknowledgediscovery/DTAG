@@ -341,7 +341,7 @@ class StudyService:
                 "generation_token": uuid.uuid4().hex, "generation_lease_until": time.time() + 150,
                 "created_at": now()}, None
 
-    def _retire_invalid_adaptive_question(self, sid, question, failure_codes):
+    def _retire_invalid_adaptive_question(self, sid, question, failure_codes, error_name):
         """Retire one candidate for this session, without advancing the study.
 
         The abandoned item was NEVER displayed, answered or used to update
@@ -361,7 +361,7 @@ class StudyService:
             snap.session["current_question_id"] = None
             record = {**q, "status": "generation_abandoned",
                       "generation_failure_count": q.get("generation_failure_count", 0) + 1,
-                      "last_generation_error": "QuestionGenerationError",
+                      "last_generation_error": error_name,
                       "last_generation_failure_codes": failure_codes}
             writes = {key: record}
             self._export(
@@ -442,13 +442,20 @@ class StudyService:
                     type(exc).__name__, ",".join(failure_codes),
                 )
                 from .questions import QuestionGenerationError
-                if (isinstance(exc, QuestionGenerationError)
+                invalid_source = (
+                    isinstance(exc, QuestionGenerationError) or
+                    (isinstance(exc, ValueError) and str(exc) ==
+                     "Neither generated nor source-validated complete question available")
+                )
+                if (invalid_source
                         and question["phase"] == "intervention"
                         and self.config.candidate_mode == "native_webapp"):
                     # A syntactically unrepairable fragment is *not* a reason
                     # to interrupt the participant. Journal it and ask the
                     # next ranked eligible GSS item at this same step.
-                    self._retire_invalid_adaptive_question(sid, question, failure_codes)
+                    self._retire_invalid_adaptive_question(
+                        sid, question, failure_codes, type(exc).__name__
+                    )
                     return
                 # Baseline items cannot be swapped without changing the
                 # instrument. Persist a lease for automatic internal retry.
