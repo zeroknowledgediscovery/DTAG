@@ -337,6 +337,35 @@ for name, (cause, cause_pattern) in _RACDIF_CAUSES.items():
     )
 
 
+
+# Gender-role agreement grid (2024 R2 pp. 138–139); restore the common
+# response stem, and complete FEFAM's truncated "takes care of the..." label
+# from the historically documented wording "home and family".
+_GENDER_AGREEMENT = {
+    "fechld": (
+        "a working mother can establish as warm and secure a relationship "
+        "with her children as a mother who does not work",
+        r"\bworking mother\b.{0,160}\b(?:warm|secure)\b",
+    ),
+    "fepresch": (
+        "a preschool child is likely to suffer if the child's mother works",
+        r"\bpreschool\b.{0,130}\bsuffer\b",
+    ),
+    "fefam": (
+        "it is better for everyone if the man achieves outside the home "
+        "and the woman takes care of the home and family",
+        r"\bman\b.{0,120}\b(?:achiev\w*|work\w*)\b.{0,120}\bwoman\b.{0,130}\bhome\b",
+    ),
+}
+for name, (statement, subject_pattern) in _GENDER_AGREEMENT.items():
+    CONTRACTS[name] = WordingContract(
+        f"To what extent do you agree or disagree with the statement that "
+        f"{statement}: strongly agree, agree, disagree, or strongly disagree?",
+        (subject_pattern, r"\bstrongly agree\b",
+         r"\bstrongly disagree\b"),
+    )
+
+
 def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
