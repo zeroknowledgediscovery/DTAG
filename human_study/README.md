@@ -65,10 +65,13 @@ attention checks** (31 screens), using the same native-webapp selection as above
   to `right` / `left` / `neutral` / `random` (persisted with its RNG state and
   archived as `events/assignment.json`). Right/left/neutral follow the webapp
   and `dtag_persona_push_study.py` definitions (neutral = smallest |expected Δ|).
-- **Attention checks.** `kind: instructed_token` ("include the word cobalt",
-  LLM-worded) and `kind: factual` (obvious-answer question shown verbatim,
-  passes if the reply contains any `accepted_answers` as a whole word). They
-  never touch the LSM state.
+- **Attention checks.** Five fixed, visible, Prolific-style instructed-response
+  checks at substantive positions 3/8/13/18/24 (words: cobalt, violet, amber,
+  marble, cedar). All use `kind: instructed_token` and `render: verbatim`.
+  The participant sees the explicit instruction alongside the answer box; no
+  prior knowledge, memory, timing constraint or LLM rewrite is involved.
+  They never touch the LSM state. See
+  [Prolific quality/rejection policy](docs/PROLIFIC_QUALITY_POLICY.md).
 - **Answer-quality flags** (stored for each response): `fast` (server-measured
   elapsed time under `quality.fast_seconds`), `short` (fewer than
   `quality.short_words` words), and `duplicate_of` (normalized text at least
@@ -95,17 +98,24 @@ attention checks** (31 screens), using the same native-webapp selection as above
   loses cookies resumes rather than restarts. Raw Prolific identifiers are
   written to the immutable GCS research archive **only after consent**.
   Declined sessions discard the PID from their operational session record.
-- **Three Prolific completion paths.** Create a distinct fixed, opaque code
-  for `completion_code` (approve/pay the advertised full study reward),
-  `review_code` (manual review, **not** automatic rejection or a reduced
-  payment), and `no_consent_code` (Prolific's **No consent → Request a return**
-  path, without a study reward). These codes are shared across participants,
-  not generated per person. Participants with ≥ `attention_fail_threshold`
-  (default 2) failed **eligible instructional-response** checks receive the review code;
-  ordinary factual checks remain non-punitive diagnostics. This is a *flag* and
-  any compensation decision must follow Prolific's policy. The consent-decline
-  page provides a separate return URL. Staging/production and `deploy.sh`
-  refuse the `CHANGEME` placeholders.
+- **Conservative rejection eligibility (not auto-rejection).** Automatic
+  `eligible_for_rejection` is **true only for ≥3 failed valid IMCs**, or
+  ≥2 failed valid IMCs plus independently observed, repeated, obvious
+  keyboard-mash gibberish across most questions. Short answers, semantic
+  agreement, repeated meaningful opinions, speed, and the quality score
+  **cannot** independently establish eligibility. Exactly two IMC failures
+  with a high score yield a separate `two_failures_need_independent_evidence`
+  flag, not rejection eligibility. Versioned evidence and failed check IDs
+  are archived in `reward.rejection_eligibility` and exported to
+  `participants.csv`. An investigator must verify evidence before any
+  Prolific action. See [the complete criteria](docs/PROLIFIC_QUALITY_POLICY.md).
+- **Three Prolific completion paths.** `completion_code` for ordinary
+  completed submissions; `review_code` for *rejection-eligible* cases routed
+  to a Prolific **Failed attention checks** path for manual consideration;
+  `no_consent_code` to request a return without a study reward. Codes are
+  fixed per study, not unique per participant. No code change itself executes
+  a rejection or modifies compensation. Stage/production and `deploy.sh`
+  reject `CHANGEME` placeholders.
 - **Payment restriction.** A review code does **not** change payment on its
   own. Prolific does not permit performance-based partial-pay deductions.
   Manual review is required before any permitted action; genuine completed
