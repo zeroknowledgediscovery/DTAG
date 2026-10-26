@@ -463,9 +463,11 @@ def test_race_question_rejects_missing_options_and_uses_full_source(monkeypatch)
     text = rendered["displayed_wording"]
     assert rendered["question_provenance"]["fallback"] is True
     assert "second" in text and "White" in text
-    assert "Black or African American" in text
-    assert "Filipino" in text and "Hispanic" in text
-    assert "Guamanian or Chamorro" in text
+    assert "Black" in text
+    assert "not applicable" in text
+    # The 2024 recoded model may not contain every historical 16-option
+    # race category: do not invent categories missing from native support.
+    assert "Guamanian or Chamorro" not in text
     assert "{" not in text
 
 
@@ -561,3 +563,48 @@ def test_chngdocs_document_rights_requires_birth_context():
         "Should the law allow people to change the sex listed on official "
         "documents like a driver's license?",
     )
+
+
+
+def test_live_item23_earnings_ranges_cannot_be_omitted(monkeypatch):
+    import dtag_core
+    from human_study.wording_contracts import INCOME16_RANGES
+
+    incomplete = ("In which of the following earnings ranges did your "
+                  "income fall last year?")
+    monkeypatch.setattr(
+        dtag_core, "llm_craft_survey_question",
+        lambda *_args, **_kwargs: incomplete,
+    )
+    item = SimpleNamespace(
+        item_id="rincom16", original_wording="Which of these groups did your earnings fall into?",
+        source_text_incomplete=True,
+        choices=tuple(
+            SimpleNamespace(native_value=r, display_label=r)
+            for r in INCOME16_RANGES
+        ),
+    )
+    record = fake_llm().generate(item)
+    assert record["question_provenance"]["provider"] == "source-validated"
+    assert record["question_provenance"]["fallback"] is True
+    for label in INCOME16_RANGES:
+        assert label in record["displayed_wording"]
+    assert len(INCOME16_RANGES) == 26
+    assert not validates_wording("rincom16", incomplete)
+
+
+@pytest.mark.parametrize("variable", ["racecen2", "racecen3", "racerank2", "racerank3"])
+def test_ranked_race_mentions_are_conditional_and_not_applicable(variable):
+    from human_study.wording_contracts import context_for_native_item
+    source = context_for(variable).source
+    assert "not applicable" in source
+    assert "at least" in source
+    assert validates_wording(variable, source)
+    shortened = source.replace("If you identify with fewer than ", "For ")
+    shortened = shortened.replace(", please answer 'not applicable'", "")
+    assert not validates_wording(variable, shortened)
+    actual = context_for_native_item(variable, ("White", "Black", "Other Pacific Islander"))
+    assert "Other Pacific Islander" in actual.source
+    assert "Guamanian or Chamorro" not in actual.source
+    assert "not applicable" in actual.source
+    assert validates_wording(variable, actual.source, contract_override=actual)
