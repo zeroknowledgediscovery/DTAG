@@ -47,8 +47,7 @@ CIVIL_LIBERTIES_VARIANTS = (
 _GROUPS = {
     "race-identity": RACE_IDENTITY,
     "racial-inequality-causes": RACIAL_CAUSES,
-    "hiring-preference": HIRING_PREFERENCE,
-    "hiring-discrimination": HIRING_DISCRIMINATION,
+    "employment-hiring": HIRING_PREFERENCE | HIRING_DISCRIMINATION,
     "citizenship": CITIZENSHIP,
     "home-sale-discrimination": RACIAL_HOME_SALES,
     "public-video-surveillance": SOCIAL_SURVEILLANCE,
