@@ -33,7 +33,7 @@ def test_multiple_signals_increase_review_priority():
         + [q(short=True, fast=True)] * 3
     )
     result = summarize_quality(questions, CHECKS, None)
-    assert result["score"] == 81  # 65×.7 + 25×1.0 + 10×1.0 = 80.5 -> 81
+    assert result["score"] == 80  # Python round(80.5) uses ties-to-even
     assert result["priority"] == "high"
     assert "many_near_duplicate_answers" in result["signals"]
     assert "many_short_answers" in result["signals"]
