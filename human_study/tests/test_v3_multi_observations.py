@@ -653,3 +653,89 @@ def test_full_session_recovers_verified_question_after_saved_answers(instrument,
         if name.startswith("questions/") and q["status"] == "answered"
     ]
     assert len(answered) == 7
+
+
+
+def test_unrenderable_native_candidate_is_replaced_without_user_error(instrument, adapter):
+    """A permanent invalid source at 30/31 is retried internally via another item.
+
+    No response or state change is manufactured for the rejected item;
+    the entire failed candidate and its reason are archived.
+    """
+    from types import SimpleNamespace
+    from human_study.policy import initial_rng
+    from human_study.questions import QuestionGenerationError
+    from human_study.state import HumanDTAGState
+
+    config, _, _ = make_v3(instrument, adapter)
+    config = config.model_copy(update={"candidate_mode": "native_webapp"})
+
+    class OneUnrenderableLLM(MultiFixtureLLM):
+        def generate(self, item):
+            if item.item_id == "item_14":
+                raise QuestionGenerationError(
+                    "source cannot be completed",
+                    attempts=[{"rejected": "required_referent_or_scale_missing"},
+                              {"error": "RuntimeError"}],
+                )
+            return super().generate(item)
+
+    def webapp_candidates(observed, _cfg, exclusions):
+        return {v: ["yes", "no"] for v in ("item_14", "item_15")
+                if v not in exclusions and v not in observed}
+
+    def webapp_scores(observed, candidates):
+        assert not observed
+        summary = [
+            {"variable": v, "expected_delta": 0.3 if v == "item_14" else 0.2,
+             "delta_modal": 0.3 if v == "item_14" else 0.2}
+            for v in candidates
+        ]
+        rows = [
+            {"variable": v, "answer": label, "conditional_probability": 0.5}
+            for v in candidates for label in ("yes", "no")
+        ]
+        return SimpleNamespace(summary=summary, rows=rows)
+
+    adapter.webapp_candidates = webapp_candidates
+    adapter.webapp_scores = webapp_scores
+    adapter.dynamic_item = lambda v: config.item(v)
+    service = StudyService(
+        config, adapter, OneUnrenderableLLM(), MemoryRepository(), MemoryArchive()
+    )
+    first = service.start()
+    sid = first["session_id"]
+    state = HumanDTAGState(
+        sid, config.model_key, config.config_hash, adapter.provenance,
+        {}, {}, (), (), (), (), 0.0, 0.0,
+    )
+    snap = service.repo.read(sid)
+    snap.session.update(
+        phase="intervention", policy="right", phase_index=0,
+        state=service._compact(state), selection_rng_state=initial_rng(42),
+    )
+    assert service._write(snap, {})
+    # This would previously give an HTTP 503 and a manual "Retry" button.
+    view = service.current(sid)
+    assert view["question"] is not None
+    recorded = service.repo.read(sid)
+    assert recorded.session["generation_skipped_ids"] == ["item_14"]
+    retired = [
+        q for name, q in recorded.records.items()
+        if name.startswith("questions/") and q["status"] == "generation_abandoned"
+    ]
+    assert len(retired) == 1
+    assert retired[0]["target_variable"] == "item_14"
+    assert retired[0]["last_generation_failure_codes"] == [
+        "required_referent_or_scale_missing", "RuntimeError"
+    ]
+    offered = next(
+        q for name, q in recorded.records.items()
+        if name.startswith("questions/") and q["status"] == "presented"
+    )
+    assert offered["target_variable"] == "item_15"
+    assert offered["selection"]["generation_skipped_ids"] == ["item_14"]
+    assert recorded.session["next_step"] == 0
+    assert recorded.session["state"]["observed_state"] == {}
+    assert any(name.endswith("-generation-abandoned")
+               for name in recorded.records if name.startswith("exports/"))
