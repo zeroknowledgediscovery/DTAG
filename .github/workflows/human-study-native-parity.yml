@@ -43,6 +43,7 @@ jobs:
         run: |
           python -m pytest -q -rs \
             human_study/tests/test_quality_review.py \
+            human_study/tests/test_rejection_eligibility.py \
             human_study/tests/test_prolific_study.py
       - name: Validate V3 native study configs (no candidate bank)
         env:
