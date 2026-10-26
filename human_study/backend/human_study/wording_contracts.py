@@ -47,7 +47,7 @@ CONTRACTS: dict[str, WordingContract] = {
 }
 # Prefer the simplest standalone construction for the observed defect.
 CONTRACTS["proudhis"] = WordingContract(
-    source="How proud are you of America's history?",
+    source="How proud are you of America in each of the following? Its history.",
     required_patterns=(PROUD, AMERICA, r"\bhistor(?:y|ical)\b"),
 )
 
@@ -74,9 +74,9 @@ for kind, (low, high, scale_rule) in _SCALE.items():
         variable = kind + suffix
         CONTRACTS[variable] = WordingContract(
             source=(
-                f"On a scale from 1 to 7, where 1 means almost all {group} are "
-                f"{low} and 7 means almost all are {high}, how would you rate "
-                f"{group} in general?"
+                f"Rate {group} in general on a seven-point scale: "
+                f"1 means almost all {group} are {low}; "
+                f"7 means almost all are {high}."
             ),
             required_patterns=(group_rule, scale_rule),
         )
