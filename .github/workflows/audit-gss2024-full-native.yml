@@ -7,6 +7,8 @@ on:
     paths:
       - "human_study/scripts/audit_all_native_gss_2024.py"
       - "human_study/scripts/build_gss2024_source_catalog.py"
+      - "human_study/scripts/compile_gss2024_wording.py"
+      - "human_study/backend/human_study/compiled_wording.py"
       - "human_study/backend/human_study/wording_contracts.py"
       - ".github/workflows/audit-gss2024-full-native.yml"
 
@@ -56,14 +58,28 @@ jobs:
           assert len(d["variables"]) >= 750
           print("Source labels packaged:",len(d["variables"]))
           PY
-      - name: Commit source-context snapshot for deterministic production prompts
+      - name: Compile and validate source-contract-backed wording, review all 811 slots
+        run: |
+          python human_study/scripts/compile_gss2024_wording.py             "$RUNNER_TEMP/gss2024_full_wording_audit.json"             --out human_study/data/gss_2024_compiled_wording.json
+          python - <<'PY'
+          import json
+          data=json.load(open('human_study/data/gss_2024_compiled_wording.json'))
+          report=json.load(open('human_study/data/gss_2024_compiled_wording.coverage.json'))
+          assert report['native_variable_count'] == 811
+          assert report['precompiled_count'] >= 50
+          assert report['precompiled_count'] == len(data['entries'])
+          assert len(report['qualifications']) == 811
+          print('Compiled source-backed question count:',report['precompiled_count'])
+          print('Remaining LLM fallback coordinates:',report['live_llm_fallback_count'])
+          PY
+      - name: Commit versioned GSS source context and compiled wording catalog
         if: github.ref == 'refs/heads/experiment/prolific-human-study'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add human_study/data/gss_2024_r2_source_context.json
+          git add human_study/data/gss_2024_r2_source_context.json human_study/data/gss_2024_compiled_wording.json human_study/data/gss_2024_compiled_wording.coverage.json
           if ! git diff --cached --quiet; then
-            git commit -m "data(human-study): pin GSS 2024 R2 source-label context to 811-variable model"
+            git commit -m "data(human-study): pin source-backed compiled wording and full 811-variable coverage report"
             # This branch may have advanced while the official codebook was
             # being parsed. Rebase the data-only commit, never force-push.
             git fetch origin experiment/prolific-human-study
@@ -78,5 +94,6 @@ jobs:
           path: |
             ${{ runner.temp }}/gss2024_full_wording_audit.csv
             ${{ runner.temp }}/gss2024_full_wording_audit.json
+            human_study/data/gss_2024_compiled_wording.coverage.json
           if-no-files-found: warn
           retention-days: 30
