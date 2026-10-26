@@ -203,6 +203,7 @@ def test_declining_consent_routes_to_separate_unpaid_return_path(instrument, ada
     archive = MemoryArchive()
     svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
     initial = svc.start(prolific={"prolific_pid": PID})
+    assert not archive.objects  # identifiers do not enter immutable GCS before consent
     declined = svc.consent(initial["session_id"], False, initial["session_version"])
     assert declined["phase"] == "declined"
     assert declined["completion_code"] == "N0C0NSENT7"
@@ -210,7 +211,9 @@ def test_declining_consent_routes_to_separate_unpaid_return_path(instrument, ada
     assert declined["receipt"] is None
     assert svc.current(initial["session_id"])["completion_code"] == "N0C0NSENT7"
     assert not any(name.endswith("/reward.json") or name.endswith("/final.json")
+                   or name.endswith("/events/enrollment.json")
                    for name in archive.objects)
+    assert svc.repo.read(initial["session_id"]).session["prolific"] is None
 
 
 def test_prolific_completion_codes_are_distinct(instrument, adapter):
