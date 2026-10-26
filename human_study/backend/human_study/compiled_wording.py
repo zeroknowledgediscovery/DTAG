@@ -64,7 +64,8 @@ def catalog():
             or raw.get("model_key") != MODEL_KEY
             or raw.get("model_release") != MODEL_RELEASE
             or raw.get("total_native_variables") != 811
-            or not isinstance(raw.get("entries"), dict)):
+            or not isinstance(raw.get("entries"), dict)
+            or raw.get("catalog_revision_sha256") != fingerprint(raw.get("entries", {}))):
         # Wrong release or stale/malformed catalog MUST NOT be accepted.
         raise ValueError("compiled GSS wording catalog incompatible with model")
     return raw
