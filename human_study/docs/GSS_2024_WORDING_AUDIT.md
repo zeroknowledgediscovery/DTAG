@@ -61,6 +61,7 @@ release-2 codebook identified the following families:
 | Institutional confidence (`con*`) | Stem about the *people running* each institution is only contextual | Restore named institution and confidence scale |
 | Police-force vignettes (`polabuse*`, `polmurdr`) | Conditional fragments omit whether police may strike a person | Restore action and specific vignette |
 | Racial inequality (`racdif1-5`) | Grid fragments omit comparative reference group or causal attribution | Restore comparisons and the specified causal explanation |
+| Gender-role attitudes (`fechld`, `fepresch`, `fefam`) | Shared agree/disagree stems and a truncated FEFAM label | Restore explicit statement and four-level agreement scale |
 | Racial-inequality wording experiment (`racdif1x-5x`) | Codebook/map labels terminate in an unfinished cause | **Excluded by ID** from current full Prolific draft/test configurations pending the actual questionnaire wording |
 
 The `racdif*x` exclusion is an explicit scientific instrument change:
@@ -91,12 +92,28 @@ contracts against their own mandatory patterns and verifies that the five
 unverifiable `racdif*x` items remain excluded. The report enumerates
 residual flagged rows for subsequent investigator classification.
 
+The first offline scan of the 2024 canonical map found **813 entries**,
+**99 potentially context-dependent** source labels, **102 validated source
+contracts**, and **13 flagged labels without a contract**. The residual
+variable IDs were `sphrs1`, `granborn`, `socrel`, `socommun`,
+`socfrend`, `socbar`, `rank`, `dofirst`, `sexsex`, `uscitzn`,
+`spanself`, `whatslf2`, and `devtype`.
+
 Do **not** interpret the residual flag count as the number of defective
 *askable* questions: the raw map contains metadata, demographics, and other
-variables outside DTAG's dynamically selected opinion set. A complete
-instrument qualification additionally needs an audit against the actual
-`optimizer.session_push.askable_items()` native eligibility pool and
-representative live OpenAI-generated questions.
+variables outside DTAG's dynamically selected opinion set. To cross-check
+the *actual empty-state native opinion candidate pool*, run:
+
+```bash
+python3 human_study/scripts/audit_gss_wording_map.py --native-candidates --check
+```
+
+This optional command requires the installed GSS native model and may download
+its model artifacts. The check must pass before paid enrollment. It does not
+certify all state-dependent candidate universes across 20 adaptive questions.
+A complete instrument qualification additionally needs an audit across
+multiple actual native states and representative live OpenAI-generated
+questions.
 
 ## Validation and deployment
 
