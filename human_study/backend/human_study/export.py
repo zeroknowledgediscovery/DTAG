@@ -12,7 +12,9 @@ FIELDS = {
                      "prolific_pid", "prolific_study_id", "prolific_session_id", "completion_code", "code_category",
                      "attention_failed", "policy_eligible_attention_failed", "fast_answers",
                      "short_answers", "duplicate_answers", "quality_review_score",
-                     "quality_review_priority", "quality_review_signals", "source_object"],
+                     "quality_review_priority", "quality_review_signals",
+                     "eligible_for_rejection", "rejection_eligibility_basis",
+                     "two_failures_need_independent_evidence", "source_object"],
     "baseline": ["session_id", "question_id", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "timestamp", "source_object"],
     "questions": ["session_id", "question_id", "phase", "step", "variable", "original_wording", "displayed_wording", "choices", "presented_at", "source_object"],
     "answers": ["session_id", "question_id", "phase", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "response_elapsed_seconds", "timestamp", "attention_passed", "response_quality", "source_object"],
@@ -42,6 +44,13 @@ def export_records(finals, out):
             "quality_review_priority": ((reward.get("quality") or {}).get("review") or {}).get("priority"),
             "quality_review_signals": ";".join(
                 ((reward.get("quality") or {}).get("review") or {}).get("signals") or []),
+            "eligible_for_rejection": (reward.get("rejection_eligibility") or {}).get(
+                "eligible_for_rejection"),
+            "rejection_eligibility_basis": (reward.get("rejection_eligibility") or {}).get(
+                "basis"),
+            "two_failures_need_independent_evidence": (
+                reward.get("rejection_eligibility") or {}).get(
+                    "two_failures_need_independent_evidence"),
             "source_object": name})
         provenance.append({"session_id": sid, "config_hash": final["config_hash"], "provenance": final["provenance"], "source_object": name})
         for q in final["questions"]:
