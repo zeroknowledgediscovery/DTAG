@@ -10,6 +10,10 @@ import re
 from .wording_contracts import (
     context_for_native_item, validates_wording, validates_standalone
 )
+from .grounded_generation import (
+    craft_question, validate_complete_choices, has_unresolved_choice_reference,
+    source_entry, source_digest,
+)
 
 
 # Verified against the NORC 2024 English ballot, Ballot 3, PDF page 45
@@ -162,29 +166,68 @@ class QuestionLLM:
         source = (NATENVIY_BALLOT_REFERENCE if anchored else
                   contract.source if contract else item.original_wording)
         attempts = []
+        native_answers = [c.display_label for c in item.choices]
+        mapped_label = item.original_wording
+        # Tests and historic mock backends continue through the legacy shared
+        # helper; actual OpenAI human-study sessions use the grounded prompt.
+        # This has NO effect on optimizer ranking, model geometry, or selection.
+        grounded = self.backend == "openai" and hasattr(self.client, "responses")
+        retry_feedback = []
         for _ in range(2):
             try:
-                kwargs = {"source_incomplete": True} if incomplete else {}
-                text = core.llm_craft_survey_question(
-                    self.client,
-                    source,
-                    [c.display_label for c in item.choices],
-                    self.config.llm_model,
-                    **kwargs,
-                ).strip()
-                # Shared helper silently returns its input on provider failure.
-                # Never claim that fallback wording came from the live LLM.
+                if grounded:
+                    result = craft_question(
+                        self.client, self.config.llm_model, item.item_id,
+                        mapped_label, source, native_answers,
+                        contract_reference=(contract.source_reference if contract else
+                                            NATENVIY_BALLOT_URL if anchored else None),
+                        feedback=retry_feedback,
+                    )
+                    if result["missing_context"]:
+                        note = result["missing_details"][:200] or "essential original context unavailable"
+                        attempts.append({"rejected": "original_context_unavailable",
+                                         "details": note})
+                        retry_feedback = [note]
+                        continue
+                    text = result["question"].strip()
+                else:
+                    kwargs = {"source_incomplete": True} if incomplete else {}
+                    text = core.llm_craft_survey_question(
+                        self.client, source, native_answers,
+                        self.config.llm_model, **kwargs,
+                    ).strip()
+                # Shared helper silently returns input on provider failure.
                 if (incomplete or self.config.question_mode == "llm_required") and (
                     text == source.strip() or not text.endswith("?") or len(text) < 15
                 ):
                     attempts.append({"text": text, "mapper_hit": False,
                                      "rejected": "incomplete_or_unrewritten_source"})
+                    retry_feedback = ["Produce a new, complete standalone question; do not return the source fragment."]
                     continue
                 if not validates_standalone(text):
                     attempts.append({"text": text, "rejected": "incomplete_standalone_question"})
+                    retry_feedback = ["Remove orphaned references or placeholders; provide complete premise and question."]
                     continue
                 if contract is not None and not validates_wording(item.item_id, text, contract_override=contract):
                     attempts.append({"text": text, "rejected": "required_referent_or_scale_missing"})
+                    retry_feedback = ["Restore all essential source-contract referents and response-scale anchors."]
+                    continue
+                missing_options = validate_complete_choices(text, source, item.choices)
+                if missing_options:
+                    attempts.append({"rejected": "response_alternatives_not_displayed",
+                                     "missing_options": missing_options[:30]})
+                    retry_feedback = [
+                        "Your question invokes a list/card or has a many-category response "
+                        "scale, but omitted these native alternatives: " +
+                        "; ".join(missing_options) + ". Include them all in the displayed question."
+                    ]
+                    continue
+                if has_unresolved_choice_reference(text, source, item.choices):
+                    attempts.append({"rejected": "unresolved_choice_or_person_reference"})
+                    retry_feedback = [
+                        "Do not say 'following', 'these', 'such a person', or "
+                        "'the previous question' without making the actual referent/options visible."
+                    ]
                     continue
                 if anchored:
                     # NATENVIY and NATENVIR are separate questionnaire forms.
@@ -208,6 +251,8 @@ class QuestionLLM:
                     return self.record(
                         text, item, attempts, False, None,
                         validation_method=(
+                            "gss_2024_grounded_source_and_contract_v2" if grounded and contract else
+                            "gss_2024_grounded_source_uncontracted_v2" if grounded else
                             "gss_2024_referent_scale_contract_v1" if contract else
                             "shared_webapp_realistic_craft_no_forced_target_mapping"
                         ),
@@ -509,9 +554,13 @@ class QuestionLLM:
                                else "source_or_rephrasing"),
             "validation_method": validation_method,
             "source_reference": source_reference,
+            "r2_source_context_sha256": source_digest(item.item_id),
+            "r2_source_context_available": bool(source_entry(item.item_id)),
             "attempts": attempts,
             "mapper_hit": (None if validation_method in (
                 "shared_webapp_realistic_craft_no_forced_target_mapping",
                 "gss_2024_referent_scale_contract_v1",
+                "gss_2024_grounded_source_and_contract_v2",
+                "gss_2024_grounded_source_uncontracted_v2",
             ) else bool(attempts and attempts[-1].get("mapper_hit"))),
             "cache_hit": False, "fallback": fallback, "fallback_reason": reason}}
