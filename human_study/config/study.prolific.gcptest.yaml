@@ -2,14 +2,15 @@
 #
 # Identical to study.prolific.example.yaml except: its own study_id (test data
 # stays separate from real participants), no Prolific ID required, and fixed
-# test codes. Answer the attention checks correctly to finish with TESTPASS01;
-# fail two or more to finish with TESTREVIEW01. Never use for recruitment.
+# opaque test codes. Two or more failed attention checks route to manual review.
+# Declined consent uses a separate Prolific request-return path.
+# Never use these codes for recruitment unless matching paths are configured in Prolific.
 schema_version: '1'
-study_id: prolific-v3-gcp-test
+study_id: prolific-v3-gcp-3paths-v1
 model_key: gss/gss_2024
 model_release: v0.2.1
 reviewed: true  # TEST ONLY: lets staging start; not an approved instrument
-consent_version: prolific-v3-gcp-test-1
+consent_version: prolific-v3-gcp-3paths-1
 consent_text: >-
   This research study asks for your views on social and political topics.
   Questions are written by an AI system, one at a time; please answer each in
@@ -35,10 +36,12 @@ ethics_disallowed_ids: []
 prolific:
   required: false  # open the plain Cloud Run URL; no PROLIFIC_PID needed
   completion_url: https://app.prolific.com/submissions/complete
-  completion_code: TESTPASS01
+  completion_code: SS8S8H33L9
   # Shown instead when >= attention_fail_threshold checks fail; set this code's
   # action in Prolific to manual review. Remove to give everyone completion_code.
-  review_code: TESTREVIEW01
+  review_code: NM2HPRMUJK
+  # Prolific 'No consent' path must be configured with 'Request a return'.
+  no_consent_code: 8AT9344HER
   attention_fail_threshold: 2
   reward: test run, no payment
 quality:
