@@ -7,6 +7,8 @@ from __future__ import annotations
 
 import re
 
+from .wording_contracts import context_for, validates_wording
+
 
 # Verified against the NORC 2024 English ballot, Ballot 3, PDF page 45
 # (zero-indexed 44). NATENVIY is the alternative wording: "The environment",
@@ -85,7 +87,9 @@ class QuestionLLM:
         # borrows NATENVIR's alternate wording. Use the verified 2024 form as
         # the LLM input, retaining the actual model/map label as provenance.
         anchored = verified_natenviy_reference(item)
-        source = NATENVIY_BALLOT_REFERENCE if anchored else item.original_wording
+        contract = context_for(item.item_id)
+        source = (NATENVIY_BALLOT_REFERENCE if anchored else
+                  contract.source if contract else item.original_wording)
         attempts = []
         for _ in range(2):
             try:
@@ -104,6 +108,9 @@ class QuestionLLM:
                 ):
                     attempts.append({"text": text, "mapper_hit": False,
                                      "rejected": "incomplete_or_unrewritten_source"})
+                    continue
+                if contract is not None and not validates_wording(item.item_id, text):
+                    attempts.append({"text": text, "rejected": "required_referent_or_scale_missing"})
                     continue
                 if anchored:
                     # NATENVIY and NATENVIR are separate questionnaire forms.
@@ -126,7 +133,11 @@ class QuestionLLM:
                     # response is mapped later through DTAGSession.map_question.
                     return self.record(
                         text, item, attempts, False, None,
-                        validation_method="shared_webapp_realistic_craft_no_forced_target_mapping",
+                        validation_method=(
+                            "gss_2024_referent_scale_contract_v1" if contract else
+                            "shared_webapp_realistic_craft_no_forced_target_mapping"
+                        ),
+                        source_reference=contract.source_reference if contract else None,
                     )
                 mapping = map_question(
                     self.adapter.world, self.client, text, self.config.llm_model,
