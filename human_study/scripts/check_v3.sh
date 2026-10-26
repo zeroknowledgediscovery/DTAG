@@ -30,7 +30,8 @@ python3 -m pytest -q -rs \
   human_study/tests/test_v2_written_responses.py \
   human_study/tests/test_human_api.py \
   human_study/tests/test_persistence.py \
-  human_study/tests/test_cloud_adapters.py
+  human_study/tests/test_cloud_adapters.py \
+  human_study/tests/test_firestore_parallel_read.py
 
 echo "[3/3] Frontend type-check and production bundle"
 (cd human_study/frontend && npm run build)
