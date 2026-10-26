@@ -12,7 +12,7 @@ from dataclasses import dataclass
 
 GSS_2024_SOURCE = (
     "https://gss.norc.org/content/dam/gss/get-documentation/pdf/"
-    "codebook/GSS%202024%20Codebook.pdf"
+    "codebook/GSS%202024%20Codebook%20R2.pdf"
 )
 
 AMERICA = r"\b(?:america(?:'s)?|american|united states|u\.?\s?s\.?)\b"
