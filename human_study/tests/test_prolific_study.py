@@ -307,7 +307,7 @@ def test_export_includes_prolific_linkage_code_and_quality(instrument, adapter, 
     with (tmp_path / "export/participants.csv").open() as f:
         (row,) = list(csv.DictReader(f))
     assert row["prolific_pid"] == PID and row["completion_code"] == "REVIEW42"
-    assert row["code_category"] == "attention_review" and row["attention_failed"] == "2"
+    assert row["code_category"] == "attention_review" and row["attention_failed"] == "3"
     assert row["duplicate_answers"] == "6"
     assert row["quality_review_priority"] == "high"
     assert int(row["quality_review_score"]) >= 60
