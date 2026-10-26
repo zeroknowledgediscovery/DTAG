@@ -148,7 +148,7 @@ attention checks** (31 screens), using the same native-webapp selection as above
   2024 ballot. No item is removed for incomplete source wording.
   The whole-map wording scanner
   examined **813 native semantic-map rows**, flagged **99** potentially
-  context-dependent labels, added **131** source contracts, and identified
+  context-dependent labels, added **133** source contracts, and identified
   **12** remaining flagged,
   uncontracted entries, mostly conditional/demographic/social questions
   requiring classification. This is not exhaustive scientific certification
