@@ -55,7 +55,8 @@ jobs:
             human_study/tests/test_quality_review.py \
             human_study/tests/test_rejection_eligibility.py \
             human_study/tests/test_v3_question_referents.py \
-            human_study/tests/test_prolific_study.py
+            human_study/tests/test_prolific_study.py \
+            human_study/tests/test_firestore_parallel_read.py
       - name: Audit GSS 2024 source wording and unresolved references
         env:
           PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
