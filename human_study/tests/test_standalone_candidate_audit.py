@@ -18,8 +18,8 @@ def test_full_map_static_audit_catches_proven_old_false_negatives():
                  "polescap", "confinan", "confed", "letin1", "letin1a",
                  "pornlaw", "rateincumb24", "marblk"):
         r = result[name]
-        assert r["priority"] == "P0_verified_incomplete", name
-        assert not r["contracted"], name
+        assert r["priority"] == "contracted_or_anchored", name
+        assert r["contracted"], name
         assert r["static_or_native_candidate"], name
 
     assert result["acpttg"]["contracted"]
