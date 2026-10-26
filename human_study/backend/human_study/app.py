@@ -13,7 +13,7 @@ from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import ROOT
-from .schemas import Answer, Consent, Restart, Start
+from .schemas import Answer, Consent, Start
 from .security import Sessions, Throttle
 from .service import StudyService, ExportPending, GenerationPending
 from .storage import Conflict, IntegrityError, MemoryArchive, MemoryRepository
@@ -234,27 +234,6 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
             raise HTTPException(503, "not ready")
         return {"status": "ready"}
 
-    def test_restart_permitted(request: Request) -> bool:
-        study = svc()
-        if mode not in ("local", "staging") or study.prolific_required:
-            return False
-        prior_sid = sessions.sid(request)
-        if prior_sid:
-            try:
-                old = study.repo.read(prior_sid)
-            except KeyError:
-                old = None
-            if old and (old.session.get("prolific") or {}).get("prolific_pid"):
-                return False
-        return True
-
-    @app.get("/api/human/test-session-options")
-    def test_session_options(request: Request):
-        # Unlike /start, this works even with an expired model/code revision.
-        # Otherwise an old cookie and a changed deployment would hide the
-        # recovery button before it is possible to show a current() response.
-        return {"test_restart_allowed": test_restart_permitted(request)}
-
     @app.post("/api/human/start")
     def start(body: Start, request: Request):
         existing = sessions.sid(request)
@@ -266,20 +245,15 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
         return response
 
     @app.post("/api/human/restart")
-    def restart_test_session(body: Restart, request: Request):
-        """Switch the cookie to a NEW internal test session; never erase old data.
+    def restart(body: Start, request: Request):
+        """Explicitly begin at question 1 in every deployment environment.
 
-        Paid Prolific sessions retain one session per PID, even if the cookie
-        is lost. The restart route cannot be enabled in production and may
-        not fork a session linked to a Prolific participant ID.
+        Replaces the signed cookie, not the underlying records. Existing
+        answers and exports are retained under the prior session ID.
         """
-        if not test_restart_permitted(request):
-            raise HTTPException(403, "starting a new session is only available for unlinked test sessions")
-        # Check new enrollments even if a valid old cookie was provided.
-        # The ordinary /start resume path does not incur this new-session quota.
         if not enrollment.allow(request.client.host if request.client else "unknown"):
-            raise HTTPException(429, "please wait before opening another test session")
-        result = svc().start(None, None)
+            raise HTTPException(429, "please wait before opening another session")
+        result = svc().start(None, body.model_dump(), fresh=True)
         response = JSONResponse(result)
         sessions.set_cookie(response, result["session_id"])
         return response
