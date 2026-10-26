@@ -25,6 +25,9 @@ COPY assets/polar_vectors ./assets/polar_vectors
 COPY native/lsm_runtime ./native/lsm_runtime
 COPY optimizer ./optimizer
 COPY human_study/backend ./human_study/backend
+# Offline, source-verified questions and codebook context must be in the
+# actual image; otherwise Cloud Run silently loses the fast catalog path.
+COPY human_study/data ./human_study/data
 COPY human_study/requirements.txt ./human_study/requirements.txt
 COPY human_study/config ./human_study/config
 COPY --from=frontend /ui/dist ./human_study/frontend/dist
