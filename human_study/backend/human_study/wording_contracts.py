@@ -686,6 +686,123 @@ def context_for_native_item(variable: str, answer_labels) -> WordingContract | N
     return WordingContract(text, patterns, base.source_reference)
 
 
+# ---- Full 2024 GSS response context for the previously verified P0 defects ----
+# These items came from a single shared survey screen/card. Each source
+# includes the full respondent task and response alternatives, without
+# removing any native ID or changing its native response code.
+_CHILD_QUALITIES = {
+    "obey": ("to obey", r"\bobey\b"),
+    "popular": ("to be well-liked or popular", r"\b(?:popular|well.liked)\b"),
+    "thnkself": ("to think for oneself", r"\bthink\b.{0,25}\boneself\b"),
+    "workhard": ("to work hard", r"\bwork hard\b"),
+    "helpoth": ("to help others when they need help", r"\bhelp others\b"),
+}
+_CHILD_CARD = "; ".join(v[0] for v in _CHILD_QUALITIES.values())
+for variable, (quality, check) in _CHILD_QUALITIES.items():
+    CONTRACTS[variable] = WordingContract(
+        "Thinking about what qualities are most important for children "
+        "to learn to prepare them for life, please rank the following "
+        "five qualities relative to each other: " + _CHILD_CARD +
+        ". What rank would you give '" + quality +
+        "' among those five: most important, second, third, fourth, "
+        "or least important?",
+        (r"\bchild(?:ren)?\b", check, r"\brank\b",
+         r"\bmost important\b", r"\bleast important\b",
+         *tuple(x[1] for x in _CHILD_QUALITIES.values())),
+    )
+
+CONTRACTS["polescap"] = WordingContract(
+    "Would you approve or disapprove of a police officer striking an "
+    "adult male citizen who was attempting to escape from police custody?",
+    (r"\bpolice\b", r"\b(?:strik\w*|hitt\w*|hit)\b",
+     r"\b(?:citizen|person)\b", r"\bescap\w*\b",
+     r"\bcustody\b"),
+)
+
+for variable, institution in (
+    ("confinan", "banks and financial institutions"),
+    ("confed", "the executive branch of the federal government"),
+):
+    CONTRACTS[variable] = WordingContract(
+        "How much confidence do you have in the people who run " +
+        institution + ": a great deal, only some, or hardly any at all?",
+        (r"\bconfidence\b", re.escape(institution),
+         r"\ba great deal\b", r"\bonly some\b", r"\bhardly any\b"),
+    )
+
+_IMMIGRATION_CHOICES = (
+    "increased a lot; increased a little; remain the same as it is; "
+    "reduced a little; reduced a lot"
+)
+for variable in ("letin1", "letin1a"):
+    CONTRACTS[variable] = WordingContract(
+        "Do you think the number of immigrants coming to America nowadays "
+        "should be increased a lot, increased a little, remain the same "
+        "as it is, reduced a little, or reduced a lot?",
+        (r"\bimmigran\w*\b", r"\b(?:america|united states)\b",
+         r"\bincreased a lot\b", r"\bincreased a little\b",
+         r"\bremain the same\b", r"\breduced a little\b",
+         r"\breduced a lot\b"),
+    )
+
+_PORNOGRAPHY_LAW_CHOICES = (
+    "There should be laws against the distribution of pornography "
+    "whatever the age; there should be laws against the distribution "
+    "of pornography to persons under 18; or there should be no laws "
+    "forbidding the distribution of pornography"
+)
+CONTRACTS["pornlaw"] = WordingContract(
+    "Which of these three positions about pornography laws comes closest "
+    "to your own? " + _PORNOGRAPHY_LAW_CHOICES + "?",
+    (r"\bpornography\b",
+     r"\b(?:whatever the age|all ages|regardless of age)\b",
+     r"\bunder (?:age )?18\b",
+     r"\bno laws forbidding\b"),
+)
+
+for variable, population in (
+    ("marblk", "a Black person"),
+    ("marasian", "an Asian American person"),
+    ("marhisp", "a Hispanic or Latino person"),
+):
+    CONTRACTS[variable] = WordingContract(
+        f"How much would you favor or oppose a close relative marrying "
+        f"{population}? Would you strongly favor, favor, neither favor "
+        "nor oppose, oppose, or strongly oppose it?",
+        (r"\bclose relative\b", re.escape(population),
+         r"\bstrongly favor\b", r"\bneither favor nor oppose\b",
+         r"\bstrongly oppose\b"),
+    )
+
+# GSS 2024 Ballot 3 ANES feeling thermometers: zero to 100, 50 neutral.
+# These are *numeric* ratings, not five-category approval responses.
+_GSS_THERMOMETER_BALLOT = (
+    "https://gss.norc.org/content/dam/gss/get-documentation/pdf/"
+    "quex/GSS2024_Ballot3_English.pdf"
+)
+_GSS_THERMOMETERS = {
+    "rateincumb24": "Joe Biden",
+    "ratechall124": "Donald Trump",
+    "ratechall224": "Kamala Harris",
+    "ratechall324": "Nikki Haley",
+    "ratedemp": "the Democratic Party",
+    "raterepp": "the Republican Party",
+    "ratemaga": "MAGA Republicans",
+}
+for variable, subject in _GSS_THERMOMETERS.items():
+    CONTRACTS[variable] = WordingContract(
+        f"How would you rate {subject} on a 0 to 100 feeling thermometer? "
+        "Ratings from 0 to below 50 mean unfavorable feelings, "
+        "50 means neither favorable nor unfavorable, and ratings "
+        "above 50 to 100 mean favorable feelings. "
+        f"What number from 0 to 100 would you give {subject}?",
+        (re.escape(subject), r"\b0\b.{0,15}\b100\b",
+         r"\b50\b", r"\b(?:unfavorable|negative)\b",
+         r"\bfavorable\b"),
+        _GSS_THERMOMETER_BALLOT,
+    )
+
+
 def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
