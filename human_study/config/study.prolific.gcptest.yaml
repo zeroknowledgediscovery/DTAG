@@ -6,11 +6,11 @@
 # Declined consent uses a separate Prolific request-return path.
 # Never use these codes for recruitment unless matching paths are configured in Prolific.
 schema_version: '1'
-study_id: prolific-v3-gcp-3paths-v1
+study_id: prolific-v3-gcp-quality-v1
 model_key: gss/gss_2024
 model_release: v0.2.1
 reviewed: true  # TEST ONLY: lets staging start; not an approved instrument
-consent_version: prolific-v3-gcp-3paths-1
+consent_version: prolific-v3-gcp-quality-1
 consent_text: >-
   This research study asks for your views on social and political topics.
   Questions are written by an AI system, one at a time; please answer each in
