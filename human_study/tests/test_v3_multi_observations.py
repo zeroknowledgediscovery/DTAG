@@ -541,3 +541,61 @@ def test_v3_concurrent_next_question_export_does_not_invalidate_archived_answer(
                             {answer_export_key: answer_export})
     with pytest.raises(ExportPending):
         service._acknowledge_committed_answer(sid, result)
+
+
+
+def test_verified_source_recovery_is_presented_not_generation_pending(instrument, adapter):
+    """Regression for the reported browser stall after an already-saved answer."""
+    config, llm, service = make_v3(instrument, adapter)
+
+    class ResilientFixtureLLM(MultiFixtureLLM):
+        def generate(self, item):
+            if item.item_id != "item_00":
+                return super().generate(item)
+            canonical = "Do you believe local community leaders should be permitted to discuss social policy?"
+            rendered = QuestionLLM._complete_source_fallback(
+                item, None, False, canonical,
+                [{"rejected": "required_referent_or_scale_missing"},
+                 {"error": "RuntimeError"}],
+            )
+            assert rendered is not None
+            return rendered
+
+    service.llm = ResilientFixtureLLM()
+    start = service.start()
+    view = service.consent(start["session_id"], True, start["session_version"])
+    assert view["phase"] == "baseline"
+    assert view["question"]["text"] == (
+        "Do you believe local community leaders should be permitted to discuss social policy?"
+    )
+    saved = service.repo.read(start["session_id"])
+    presented = next(
+        q for k, q in saved.records.items()
+        if k.startswith("questions/") and q["status"] == "presented"
+    )
+    assert presented["question_provenance"]["source_standalone_verified"] is True
+    assert presented["question_provenance"]["fallback"] is True
+    assert presented["question_provenance"]["provider"] == "source-validated"
+
+
+def test_unverified_source_fallback_rejected_by_render_gate(instrument, adapter):
+    """No arbitrary model or fixture can claim safe fallback via a flag alone."""
+    config, llm, service = make_v3(instrument, adapter)
+
+    class UnverifiedFixtureLLM(MultiFixtureLLM):
+        def generate(self, item):
+            return {
+                "displayed_wording": "Should such a person be allowed to teach?",
+                "question_provenance": {
+                    "provider": "source-validated",
+                    "source_standalone_verified": True,
+                    "validation_method": "unknown_or_unverified",
+                    "fallback": True,
+                },
+            }
+
+    service.llm = UnverifiedFixtureLLM()
+    from human_study.service import GenerationPending
+    start = service.start()
+    with pytest.raises(GenerationPending, match="complete question"):
+        service.consent(start["session_id"], True, start["session_version"])
