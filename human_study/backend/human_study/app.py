@@ -13,7 +13,7 @@ from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import ROOT
-from .schemas import Answer, Consent, Start
+from .schemas import Answer, Consent, Restart, Start
 from .security import Sessions, Throttle
 from .service import StudyService, ExportPending, GenerationPending
 from .storage import Conflict, IntegrityError, MemoryArchive, MemoryRepository
@@ -240,6 +240,34 @@ def create_app(service=None, *, cookie_secret=None, secure=None, frontend_dist=N
         if existing is None and not enrollment.allow(request.client.host if request.client else "unknown"):
             raise HTTPException(429, "please wait before opening another session")
         result = svc().start(existing, body.model_dump())
+        response = JSONResponse(result)
+        sessions.set_cookie(response, result["session_id"])
+        return response
+
+    @app.post("/api/human/restart")
+    def restart_test_session(body: Restart, request: Request):
+        """Switch the cookie to a NEW internal test session; never erase old data.
+
+        Paid Prolific sessions retain one session per PID, even if the cookie
+        is lost. The restart route cannot be enabled in production and may
+        not fork a session linked to a Prolific participant ID.
+        """
+        study = svc()
+        if mode not in ("local", "staging") or study.prolific_required:
+            raise HTTPException(403, "starting a new session is only available in test mode")
+        prior_sid = sessions.sid(request)
+        if prior_sid:
+            try:
+                old = study.repo.read(prior_sid)
+            except KeyError:
+                old = None
+            if old and (old.session.get("prolific") or {}).get("prolific_pid"):
+                raise HTTPException(403, "Prolific-linked sessions cannot be restarted")
+        # Check new enrollments even if a valid old cookie was provided.
+        # The ordinary /start resume path does not incur this new-session quota.
+        if not enrollment.allow(request.client.host if request.client else "unknown"):
+            raise HTTPException(429, "please wait before opening another test session")
+        result = study.start(None, None)
         response = JSONResponse(result)
         sessions.set_cookie(response, result["session_id"])
         return response
