@@ -6,6 +6,7 @@ on:
     branches: [experiment/prolific-human-study]
     paths:
       - "human_study/scripts/audit_all_native_gss_2024.py"
+      - "human_study/backend/human_study/wording_contracts.py"
       - ".github/workflows/audit-gss2024-full-native.yml"
 
 jobs:
