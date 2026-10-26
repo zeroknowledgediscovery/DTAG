@@ -68,6 +68,45 @@ a restart does not create additional payable Prolific submissions.
 A new session can also recover from an obsolete cookie after a code/instrument
 update, without wiping browser data or the study bucket.
 
+### Adaptive repetition and question-generation reliability (2026-10-26)
+
+The human participant selector now permanently excludes **all previously asked
+native target IDs**, not only the subset still in the bounded LSM state.
+Source-documented alternative questionnaire forms and repeated batteries
+(e.g. hiring/employment, race identification, racial inequality causes,
+citizenship, and GSS historical wording variants) are grouped **within each
+session**, so the participant is not asked a near-equivalent question several
+times. This does not alter native item IDs, the opinion-item universe, or the
+LSM's one-step scoring; different sessions can select different forms.
+An additional server-side check prevents *identical displayed wording* even
+when the LLM chooses the same phrasing for different source IDs.
+
+The 2024 NORC GSS questionnaire/codebook was consulted to restore **all 16
+race-ranking category labels**, complete home-sale discrimination alternatives,
+hiring and promotional-preference scenarios, citizenship wording, and the
+government/public-area surveillance question. Context is enforced through
+source-grounded LLM contracts, with a complete source fallback when needed.
+
+Transient `preparing_question` HTTP responses now trigger automatic browser
+polling **without showing a generation error or requiring manual clicking**.
+If an adaptive item's source cannot be validated after the bounded LLM
+rewrites, the server logs and archives that candidate's failed generation,
+selects the next eligible candidate at the same study step, and leaves the
+LSM state and submitted answers unchanged. Failures on fixed baseline items
+still retry without substituting a different research measure. When replaying
+an adaptive session, the immutable generation-skip IDs are included in the
+recorded selection so the trajectory is scientifically reproducible.
+Unrecoverable external outages can still interrupt the study; none of these
+changes constitutes a guarantee of 100% API availability.
+
+To inspect a previous completed `final.json` (including the precise failure
+class and validation codes persisted when question generation was retried):
+
+```bash
+export PYTHONPATH="$PWD/human_study/backend:$PWD/scripts:$PWD"
+python3 human_study/scripts/audit_completed_session.py /path/to/final.json
+```
+
 ### Prolific deployment ([config/study.prolific.example.yaml](config/study.prolific.example.yaml))
 
 The Prolific configuration is **6 baseline + 20 adaptive + 5 interleaved
