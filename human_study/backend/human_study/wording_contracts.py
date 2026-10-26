@@ -667,11 +667,22 @@ def context_for_native_item(variable: str, answer_labels) -> WordingContract | N
     text = base.source.replace(RACE_OPTIONS, labels)
     # Replace fixed catalogue checks with checks of the *actual* model
     # alphabet; race identity, order, applicability checks are unchanged.
-    patterns = tuple(p for p in base.required_patterns
-                     if p not in RACE_REQUIRED_LABELS) + tuple(
+    ordinal = int(variable[-1])
+    checks = [r"\b(?:race|racial)\b"]
+    if variable.startswith("racerank"):
+        checks.append({
+            1: r"\b(?:most strongly|most closely|first|primary)\b",
+            2: r"\b(?:second|2nd)\b",
+            3: r"\b(?:third|3rd)\b",
+        }[ordinal])
+    elif ordinal > 1:
+        checks.append(r"\b(?:second|third|additional)\b")
+    if ordinal > 1:
+        checks.extend((r"\bat least\b", r"\bnot applicable\b"))
+    patterns = (*checks, *(
         re.escape(v).replace(r"\ ", r"\s+")
         for v in values
-    )
+    ))
     return WordingContract(text, patterns, base.source_reference)
 
 
