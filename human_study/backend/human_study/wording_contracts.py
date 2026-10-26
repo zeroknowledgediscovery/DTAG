@@ -312,9 +312,11 @@ def validates_standalone(text: str) -> bool:
 
 
 
-# 2024 RACDIF classical causal-attribution battery (pp. 201–203).
-# Separate from the *X wording-experiment* items whose canonical label is
-# truncated; those X variables are excluded in the full Prolific YAMLs.
+# 2024 RACDIF causal-attribution battery and its experimental -X form.
+# The NORC 2024 R2 codebook identifies the -X version as differing in its
+# extended historical-comparison introduction, NOT the causal explanations.
+# The 2024 English ballot provides the full causal questions, whereas the
+# 2024 R2 codebook labels for -X items truncate those explanatory endings.
 _RACDIF_CAUSES = {
     "racdif1": ("racial discrimination", r"\bdiscriminat\w*\b"),
     "racdif2": ("an inborn difference in ability to learn",
@@ -336,6 +338,29 @@ for name, (cause, cause_pattern) in _RACDIF_CAUSES.items():
          cause_pattern),
     )
 
+# The alternative -X wording explicitly includes a historical-comparison
+# introduction. For a standalone question say the *series* has been asked
+# for almost 50 years: RACDIF5 itself was first added in 2024.
+# Keep the same causal concept and YES/NO response coding as the base item.
+RACDIF_2024_BALLOT_SOURCE = (
+    "https://gss.norc.org/content/dam/gss/get-documentation/pdf/"
+    "quex/GSS2024_Ballot1_English.pdf"
+)
+for name in _RACDIF_CAUSES:
+    base = CONTRACTS[name]
+    CONTRACTS[name + "x"] = WordingContract(
+        source=(
+            "The GSS has asked questions about racial inequality for almost "
+            "50 years. For historical comparison, we ask the following "
+            "question. " + base.source
+        ),
+        required_patterns=(
+            *base.required_patterns,
+            r"\\b(?:50|fifty)\\b.{0,30}\\byears?\\b",
+            r"\\bhistorical\\b.{0,45}\\bcomparison\\b",
+        ),
+        source_reference=RACDIF_2024_BALLOT_SOURCE,
+    )
 
 
 # Gender-role agreement grid (2024 R2 pp. 138–139); restore the common
