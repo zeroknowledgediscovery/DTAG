@@ -7,7 +7,9 @@ from __future__ import annotations
 
 import re
 
-from .wording_contracts import context_for, validates_wording, validates_standalone
+from .wording_contracts import (
+    context_for_native_item, validates_wording, validates_standalone
+)
 
 
 # Verified against the NORC 2024 English ballot, Ballot 3, PDF page 45
@@ -93,7 +95,7 @@ class QuestionLLM:
             valid = validates_natenviy_form(source) and validates_standalone(source)
             method, reference = "verified_2024_natenviy_source_fallback_v1", NATENVIY_BALLOT_URL
         elif contract:
-            valid = validates_standalone(source) and validates_wording(item.item_id, source)
+            valid = validates_standalone(source) and validates_wording(item.item_id, source, contract_override=contract)
             method, reference = "source_grounded_standalone_fallback_v1", contract.source_reference
         else:
             # Dynamic native items carry source_text_incomplete=True even when
@@ -156,7 +158,7 @@ class QuestionLLM:
         # borrows NATENVIR's alternate wording. Use the verified 2024 form as
         # the LLM input, retaining the actual model/map label as provenance.
         anchored = verified_natenviy_reference(item)
-        contract = context_for(item.item_id)
+        contract = context_for_native_item(item.item_id, [c.display_label for c in item.choices])
         source = (NATENVIY_BALLOT_REFERENCE if anchored else
                   contract.source if contract else item.original_wording)
         attempts = []
@@ -181,7 +183,7 @@ class QuestionLLM:
                 if not validates_standalone(text):
                     attempts.append({"text": text, "rejected": "incomplete_standalone_question"})
                     continue
-                if contract is not None and not validates_wording(item.item_id, text):
+                if contract is not None and not validates_wording(item.item_id, text, contract_override=contract):
                     attempts.append({"text": text, "rejected": "required_referent_or_scale_missing"})
                     continue
                 if anchored:
