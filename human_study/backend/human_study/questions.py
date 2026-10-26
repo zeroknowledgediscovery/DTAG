@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import re
 
-from .wording_contracts import context_for, validates_wording
+from .wording_contracts import context_for, validates_wording, validates_standalone
 
 
 # Verified against the NORC 2024 English ballot, Ballot 3, PDF page 45
@@ -108,6 +108,9 @@ class QuestionLLM:
                 ):
                     attempts.append({"text": text, "mapper_hit": False,
                                      "rejected": "incomplete_or_unrewritten_source"})
+                    continue
+                if not validates_standalone(text):
+                    attempts.append({"text": text, "rejected": "incomplete_standalone_question"})
                     continue
                 if contract is not None and not validates_wording(item.item_id, text):
                     attempts.append({"text": text, "rejected": "required_referent_or_scale_missing"})
