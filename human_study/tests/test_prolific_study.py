@@ -25,6 +25,7 @@ def prolific_config(instrument, adapter, *, review_code="REVIEW42", threshold=2)
     base = config.model_dump(mode="json")
     base.update(study_id="prolific-fixture", prolific={
         "completion_code": "C0MPLETE1", "review_code": review_code,
+        "no_consent_code": "N0C0NSENT7",
         "attention_fail_threshold": threshold, "reward": "GBP 3.00"})
     base["attention_checks"] = [
         {"check_id": "attention_token", "instruction": "Include the exact word cobalt in your reply.",
@@ -194,6 +195,40 @@ def test_prolific_example_config_is_6_plus_20_plus_5_with_pole_baseline():
     pole_ids = {line.split(",")[0] for line in poles[1:]}
     assert {i.item_id for i in config.bank("baseline")} <= pole_ids
     assert config.prolific.completion_code.startswith("CHANGEME")
+    assert config.prolific.no_consent_code.startswith("CHANGEME")
+
+
+def test_declining_consent_routes_to_separate_unpaid_return_path(instrument, adapter):
+    config = prolific_config(instrument, adapter)
+    archive = MemoryArchive()
+    svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
+    initial = svc.start(prolific={"prolific_pid": PID})
+    declined = svc.consent(initial["session_id"], False, initial["session_version"])
+    assert declined["phase"] == "declined"
+    assert declined["completion_code"] == "N0C0NSENT7"
+    assert declined["completion_url"] == ("https://app.prolific.com/submissions/complete?cc=N0C0NSENT7")
+    assert declined["receipt"] is None
+    assert svc.current(initial["session_id"])["completion_code"] == "N0C0NSENT7"
+    assert not any(name.endswith("/reward.json") or name.endswith("/final.json")
+                   for name in archive.objects)
+
+
+def test_prolific_completion_codes_are_distinct(instrument, adapter):
+    config = prolific_config(instrument, adapter).model_dump(mode="json")
+    for field in ("review_code", "no_consent_code"):
+        invalid = json.loads(json.dumps(config))
+        invalid["prolific"][field] = invalid["prolific"]["completion_code"]
+        with pytest.raises(ValueError, match="must be distinct"):
+            StudyConfig.model_validate(invalid)
+
+
+def test_gcp_test_uses_three_opaque_codes(instrument, adapter):
+    test = StudyConfig.load(ROOT / "human_study/config/study.prolific.gcptest.yaml")
+    assert test.prolific.required is False
+    codes = [test.prolific.completion_code, test.prolific.review_code,
+             test.prolific.no_consent_code]
+    assert len(set(codes)) == 3
+    assert all(len(code) >= 8 and not code.startswith("TEST") for code in codes)
 
 
 def test_placeholder_codes_refused_outside_local(monkeypatch):
