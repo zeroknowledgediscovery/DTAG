@@ -379,3 +379,27 @@ def test_all_source_contracts_admit_resilient_fallback_without_llm():
         assert candidate["question_provenance"]["source_standalone_verified"], variable
         assert validates_wording(variable, candidate["displayed_wording"]), variable
         assert validates_standalone(candidate["displayed_wording"]), variable
+
+
+
+def test_multi_sentence_valid_norc_stem_recovers_when_llm_fails():
+    llm = fake_llm()
+    source = (
+        "Some people think the government should support equal opportunities. "
+        "Others think it should play a smaller role. "
+        "Which of these two views comes closer to your opinion?"
+    )
+    item = SimpleNamespace(
+        item_id="noncontracted_scenario",
+        original_wording=source,
+        source_text_incomplete=True,
+        choices=(SimpleNamespace(native_value="one", display_label="one"),),
+    )
+    result = llm._complete_source_fallback(
+        item, None, False, source, [{"error": "RuntimeError"}]
+    )
+    assert result is not None
+    assert result["displayed_wording"] == source
+    assert result["question_provenance"]["validation_method"] == (
+        "native_map_validated_standalone_fallback_v1"
+    )
