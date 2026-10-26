@@ -15,6 +15,7 @@ from datetime import datetime, timezone
 
 from .policy import POLICIES, choose_next_item, initial_rng
 from .quality_review import summarize_quality
+from .rejection_eligibility import assess_rejection_eligibility
 from .state import HumanDTAGState, Observation, apply_observed_answer, initialize_human_state, validate_observation
 from .storage import Conflict, IntegrityError
 from .study_config import digest
@@ -702,16 +703,23 @@ class StudyService:
         times = sorted(f["elapsed_seconds"] for f in flags if "elapsed_seconds" in f)
         review = summarize_quality(questions, self.config.attention_checks, self.config.quality)
         settings = self.config.prolific
+        eligibility = assess_rejection_eligibility(
+            questions, review,
+            attention_threshold=settings.attention_fail_threshold if settings else 3,
+        )
         if settings is None:
             code, category = None, "no_prolific_configuration"
-        elif settings.review_code and review["eligible_imc_failed"] >= settings.attention_fail_threshold:
-            code, category = settings.review_code, "attention_review"
+        elif settings.review_code and eligibility["eligible_for_rejection"]:
+            # Prolific "Failed attention checks" path is review-only. We NEVER
+            # call the Prolific API to reject or withhold participant payment.
+            code, category = settings.review_code, "rejection_eligible_review"
         else:
             code, category = settings.completion_code, "complete"
         return {
             "timestamp": session["completed_at"], "receipt": session["receipt"],
             "prolific": session.get("prolific"), "completion_code": code, "code_category": category,
             "reward": settings.reward if settings else None,
+            "rejection_eligibility": eligibility,
             "attention": {"total": len(attention), "passed": len(attention) - len(failed),
                           "failed": len(failed), "failed_check_ids": failed,
                           "policy_eligible_total": review["eligible_imc_total"],
