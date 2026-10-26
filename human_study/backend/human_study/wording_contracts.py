@@ -679,13 +679,13 @@ def context_for(variable: str) -> WordingContract | None:
     return CONTRACTS.get(variable.lower())
 
 
-def validates_wording(variable: str, generated: str) -> bool:
+def validates_wording(variable: str, generated: str, contract_override=None) -> bool:
     """Require explicit referent and preserved construct/scale in output.
 
     This narrowly targeted deterministic guard is not a substitute for a
     full instrument-level audit of every other native GSS question.
     """
-    contract = context_for(variable)
+    contract = contract_override or context_for(variable)
     return (contract is None or (
         bool(generated.strip())
         and all(re.search(pattern, generated, re.IGNORECASE | re.DOTALL)
