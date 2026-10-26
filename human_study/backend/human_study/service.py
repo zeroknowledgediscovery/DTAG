@@ -726,11 +726,15 @@ class StudyService:
                         "required": q["required"], "response_mode": self.config.response_mode}
         total = (len(self.config.bank("baseline")) + self.config.intervention_steps +
                  len(self.config.bank("outcome")) + len(self.config.attention_checks))
-        code = s.get("completion_code") if phase == "complete" else None
+        settings = self.config.prolific
+        code = (s.get("completion_code") if phase == "complete"
+                else settings.no_consent_code if phase == "declined" and settings
+                else None)
         return {"session_id": s["session_id"], "phase": phase, "session_version": s["revision"],
                 "question": public_q, "progress": {"completed": s["next_step"], "total": total},
                 "consent": self.config.consent_text if phase == "consent" else None,
                 "receipt": s["receipt"] if phase == "complete" else None,
+                # For declined consent this is a *return-request* completion path,
+                # not a paid study completion. Prolific must be configured accordingly.
                 "completion_code": code,
-                "completion_url": (f"{self.config.prolific.completion_url}?cc={code}"
-                                   if code and self.config.prolific else None)}
+                "completion_url": (f"{settings.completion_url}?cc={code}" if code and settings else None)}
