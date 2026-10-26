@@ -404,6 +404,13 @@ RACE_OPTIONS = (
     "Other Asian; Native Hawaiian; Guamanian or Chamorro; Samoan; "
     "Other Pacific Islander; Some other race; Hispanic"
 )
+# Every native choice must be visible; including only common categories
+# while referring to "these options" is not an acceptable standalone item.
+RACE_REQUIRED_LABELS = tuple(
+    re.escape(label.strip()).replace(r"\ ", r"\s+")
+    for label in RACE_OPTIONS.split(";")
+)
+
 for rank in (1, 2, 3):
     if rank == 1:
         stem = "Which racial identity do you identify with most strongly?"
@@ -420,9 +427,7 @@ for rank in (1, 2, 3):
         stem + " Options include: " + RACE_OPTIONS + "?",
         (r"\b(?:race|racial)\b", ordinal,
          r"\bwhite\b", r"\bblack\b", r"\basian\b",
-         r"\b(?:indian|native)\b", r"\bhispanic\b",
-         r"\b(?:guamanian|chamorro)\b", r"\bsamoan\b",
-         r"\bfilipino\b", r"\bkorean\b"),
+         r"\b(?:indian|native)\b", *RACE_REQUIRED_LABELS),
     )
     desc = (
         "Which race or races do you consider yourself to be? You may "
@@ -436,9 +441,9 @@ for rank in (1, 2, 3):
     CONTRACTS[f"racecen{rank}"] = WordingContract(
         desc + "Options include: " + RACE_OPTIONS + "?",
         (r"\b(?:race|racial)\b", r"\bwhite\b", r"\bblack\b",
-         r"\basian\b", r"\b(?:indian|native)\b", r"\bhispanic\b",
-         r"\b(?:guamanian|chamorro)\b", r"\bsamoan\b",
-         r"\b(?:more than one|second|third|additional)\b"),
+         r"\basian\b", r"\b(?:indian|native)\b",
+         r"\b(?:more than one|second|third|additional)\b",
+         *RACE_REQUIRED_LABELS),
     )
 
 # Forced-choice race-based housing discrimination law: complete BOTH laws
