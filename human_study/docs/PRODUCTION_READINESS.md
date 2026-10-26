@@ -200,6 +200,18 @@ Before deploying to Prolific, investigator approval is required for:
 - Baseline wording/categorization quality, age eligibility, informed consent,
   attention-check scoring/review, meaningful compensation, participant rights,
   and privacy/retention/deletion requirements.
+- **Context-free wording gate for every participant-facing question.** The GSS
+  2024 map contains conditional/grid fragments such as `colmslm` (a
+  referenced person is absent when asked independently), incomplete spending
+  and abortion stems, and an unfinished `eqwlth` question. Source-grounded
+  generation contracts now protect 102 map items. The whole-map audit
+  (`scripts/audit_gss_wording_map.py --check`) covers 813 variables and
+  reports 13 outstanding context-suspect items requiring classification;
+  see [wording-audit findings](GSS_2024_WORDING_AUDIT.md). Before recruitment,
+  run `--native-candidates --check` against the actual GSS native model and
+  review live LLM-generated questions from multiple adaptive trajectories.
+  The unresolved experimental `racdif1x-5x` labels are explicitly excluded
+  from the current Prolific candidate universe.
 - Independent annotation of a representative sample of written-answer to
   native-category mappings; measure false positive conditioning errors and
   their effect on directional index movement.
