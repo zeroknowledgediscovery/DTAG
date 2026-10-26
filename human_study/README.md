@@ -75,13 +75,14 @@ attention checks** (31 screens), using the same native-webapp selection as above
 - **Standalone question validation (GSS 2024).** An audited set of source-
   grounded wording contracts reconstructs missing subjects and question
   stems for `colmslm` and related civil-liberties, abortion, suicide, spending,
-  institutional-confidence, policing, and inequality item families. LLM-
+  institutional-confidence, policing, gender-role, and inequality item families. LLM-
   generated text must retain the relevant subject and meaning, or generation
   fails closed instead of displaying an orphaned “this person” question.
   Five unverified `racdif*x` wording-experiment variants are explicitly
   excluded in Prolific YAML configurations. The whole-map wording scanner
   examined **813 native semantic-map rows**, flagged **99** potentially
-  context-dependent labels, and identified **16** remaining flagged,
+  context-dependent labels, added **102** source contracts, and identified
+  **13** remaining flagged,
   uncontracted entries, mostly conditional/demographic/social questions
   requiring classification. This is not exhaustive scientific certification
   of all dynamically askable questions; run the native-candidate and live-
