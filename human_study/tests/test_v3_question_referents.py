@@ -91,20 +91,23 @@ def test_generate_retries_missing_group_and_preserves_original_map_source(monkey
     )
 
 
-def test_generate_fails_closed_when_history_referent_lost(monkeypatch):
+def test_generate_recovers_complete_source_when_history_referent_lost(monkeypatch):
     import dtag_core
 
     monkeypatch.setattr(
         dtag_core, "llm_craft_survey_question",
         lambda *_args, **_kwargs: "How proud are you of its history?",
     )
-    with pytest.raises(QuestionGenerationError) as exc:
-        fake_llm().generate(fake_item("proudhis"))
-    assert len(exc.value.attempts) == 2
+    record = fake_llm().generate(fake_item("proudhis"))
+    assert record["displayed_wording"] == "How proud are you of America's history?"
+    provenance = record["question_provenance"]
+    assert provenance["provider"] == "source-validated"
+    assert provenance["fallback"] is True
+    assert provenance["source_standalone_verified"]
+    assert provenance["validation_method"] == "source_grounded_standalone_fallback_v1"
+    assert len(provenance["attempts"]) == 2
     assert all(a["rejected"] == "required_referent_or_scale_missing"
-               for a in exc.value.attempts)
-
-
+               for a in provenance["attempts"])
 
 def test_colmslm_requires_the_specific_referent_and_action():
     contract = context_for("colmslm")
@@ -160,7 +163,7 @@ def test_generic_standalone_rejects_orphan_subjects_and_codebook_markup():
     assert all(validates_standalone(q) for q in good)
 
 
-def test_colmslm_generator_retries_and_fails_closed_for_missing_person(monkeypatch):
+def test_colmslm_generator_recovers_full_person_context_after_bad_rewrites(monkeypatch):
     import dtag_core
 
     source_inputs = []
@@ -172,17 +175,20 @@ def test_colmslm_generator_retries_and_fails_closed_for_missing_person(monkeypat
     item = SimpleNamespace(
         item_id="colmslm",
         original_wording="Should such a person be allowed to teach in a college or university, or not?",
-        source_text_incomplete=False,
+        source_text_incomplete=True,
         choices=tuple(SimpleNamespace(native_value=x, display_label=x)
                       for x in ("yes, allowed to teach", "not allowed")),
     )
-    with pytest.raises(QuestionGenerationError) as exc:
-        fake_llm().generate(item)
+    result = fake_llm().generate(item)
     assert len(source_inputs) == 2
     assert all("Muslim clergyman" in prompt for prompt in source_inputs)
+    assert "Muslim clergyman" in result["displayed_wording"]
+    assert "hatred of the United States" in result["displayed_wording"]
+    assert "college or university" in result["displayed_wording"]
+    assert result["question_provenance"]["fallback"]
+    assert result["question_provenance"]["source_standalone_verified"]
     assert all(a["rejected"] == "incomplete_standalone_question"
-               for a in exc.value.attempts)
-
+               for a in result["question_provenance"]["attempts"])
 
 def test_colmslm_generator_accepts_complete_referent(monkeypatch):
     import dtag_core
@@ -304,3 +310,72 @@ def test_restored_variants_pass_unmodified_webapp_askable_filter():
         assert askable(name, label, set()), (
             f"Native webapp would suppress reconstructed item: {name}"
         )
+
+
+
+def test_native_complete_map_question_can_recover_from_llm_outage(monkeypatch):
+    import dtag_core
+
+    def fail(*args, **kwargs):
+        raise RuntimeError("simulated OpenAI upstream failure")
+
+    monkeypatch.setattr(dtag_core, "llm_craft_survey_question", fail)
+    item = SimpleNamespace(
+        item_id="synthetic_uncontracted_survey_item",
+        original_wording="Do you think people should be allowed to discuss these political ideas in public?",
+        source_text_incomplete=True,
+        choices=tuple(SimpleNamespace(native_value=x, display_label=x) for x in ("yes", "no")),
+    )
+    result = fake_llm().generate(item)
+    assert result["displayed_wording"] == item.original_wording
+    assert result["question_provenance"]["provider"] == "source-validated"
+    assert result["question_provenance"]["validation_method"] == (
+        "native_map_validated_standalone_fallback_v1"
+    )
+    assert [a["error"] for a in result["question_provenance"]["attempts"]] == [
+        "RuntimeError", "RuntimeError"
+    ]
+
+
+@pytest.mark.parametrize("fragment", [
+    "Should such a person be allowed to teach in a college or university?",
+    "Do you think this person should be allowed to teach in a college or university?",
+    "(In general...) Do you agree with this?",
+    "Improving and protecting the environment",
+    "If she does not want to have another child?",
+])
+def test_unverified_fragments_still_fail_closed(monkeypatch, fragment):
+    import dtag_core
+
+    monkeypatch.setattr(
+        dtag_core, "llm_craft_survey_question",
+        lambda *_args, **_kwargs: "Do you think this person should be allowed to teach?",
+    )
+    item = SimpleNamespace(
+        item_id="uncontracted_fragment",
+        original_wording=fragment,
+        source_text_incomplete=True,
+        choices=tuple(SimpleNamespace(native_value=x, display_label=x) for x in ("yes", "no")),
+    )
+    with pytest.raises(QuestionGenerationError):
+        fake_llm().generate(item)
+
+
+def test_all_source_contracts_admit_resilient_fallback_without_llm():
+    """Catch bad canonical strings before an active participant discovers one."""
+    llm = fake_llm()
+    for variable, contract in CONTRACTS.items():
+        item = SimpleNamespace(
+            item_id=variable,
+            original_wording="unreliable abbreviated semantic-map label",
+            source_text_incomplete=True,
+            choices=(SimpleNamespace(native_value="yes", display_label="yes"),),
+        )
+        candidate = llm._complete_source_fallback(item, contract, False, contract.source, [
+            {"rejected": "required_referent_or_scale_missing"},
+            {"error": "RuntimeError"},
+        ])
+        assert candidate is not None, variable
+        assert candidate["question_provenance"]["source_standalone_verified"], variable
+        assert validates_wording(variable, candidate["displayed_wording"]), variable
+        assert validates_standalone(candidate["displayed_wording"]), variable
