@@ -47,7 +47,9 @@ async function api(route: string, data?: unknown) {
   }
   // Generation and retry leases are internal transient states, not
   // participant-facing errors. Only unexpected failures are displayed.
-  if (response.status === 503 && body?.status === 'preparing_question') {
+  if ((response.status === 503 && body?.status === 'preparing_question') ||
+      (response.status === 409 && typeof body?.detail === 'string' &&
+        /^(?:question (?:generation|rendering) is busy|session busy); retry$/i.test(body.detail))) {
     throw new QuestionStillPreparing();
   }
   if (!response.ok) throw new Error(typeof body.detail === 'string'
