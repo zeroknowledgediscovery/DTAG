@@ -89,7 +89,7 @@ class FakeParent:
 
     def document(self, name):
         assert name in ("s", "test-study")
-        return self._ref
+        return self if name == "test-study" else self._ref
 
     def collection(self, _name):
         return self
