@@ -55,6 +55,7 @@ jobs:
             human_study/tests/test_quality_review.py \
             human_study/tests/test_rejection_eligibility.py \
             human_study/tests/test_v3_question_referents.py \
+            human_study/tests/test_standalone_candidate_audit.py \
             human_study/tests/test_prolific_study.py \
             human_study/tests/test_firestore_parallel_read.py
       - name: Compare Firestore serial vs parallel simulated RPC latency
@@ -67,6 +68,11 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
         run: |
           python human_study/scripts/audit_gss_wording_map.py --check
+      - name: Broader GSS source incompleteness inventory
+        env:
+          PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/human_study/scripts:${{ github.workspace }}/scripts:${{ github.workspace }}
+        run: |
+          python human_study/scripts/audit_standalone_candidates.py --compact
       - name: Validate V3 native study configs (no candidate bank)
         env:
           PYTHONPATH: ${{ github.workspace }}/human_study/backend:${{ github.workspace }}/scripts:${{ github.workspace }}
