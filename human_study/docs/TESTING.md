@@ -165,7 +165,16 @@ pinned OpenAI version. Verify:
   evidence review). Confirm archived `rejection_eligibility` in `reward.json`
   and `final.json`, and CSV export. See
   [Prolific quality policy](PROLIFIC_QUALITY_POLICY.md).
-- Every substantive screen is LLM-generated (no raw-text fallback).
+- Every substantive screen must be a *complete, defensibly grounded*
+  respondent-facing question. The primary path generates and validates LLM
+  wording; if that fails twice, an existing audited standalone GSS source
+  can be displayed with `provider=source-validated`, an explicit
+  `validation_method` and recorded failed LLM attempts. For uncontracted
+  items, a conservative structural check is required before an original
+  map prompt can be displayed; abbreviated/dependent map fragments must
+  continue to fail closed. This is an explicit source-grounded exception
+  to the original LLM-only presentation rule and must be reflected in
+  participant consent before paid recruitment.
 - Every accepted human answer contains the original prose and all
   accepted/rejected/conflicting model mapping decisions.
 - No double writes after browser refresh, duplicate POST, Cloud Run restart,
