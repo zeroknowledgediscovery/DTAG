@@ -133,7 +133,7 @@ def test_failed_factual_check_plus_one_imc_does_not_trigger_review_code(instrume
     # response passes. Only one Prolific-policy eligible check was failed.
     sid, done, _ = run(
         svc, lambda phase, i: (
-            "cedar" if i == 10 else "not the specified word"
+            "cedar" if i == 9 else "not the specified word"
         ) if phase == "attention" else substantive(i)
     )
     reward = json.loads(archive.objects[f"studies/{config.study_id}/sessions/{sid}/reward.json"])
