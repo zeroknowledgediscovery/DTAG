@@ -406,44 +406,25 @@ def test_multi_sentence_valid_norc_stem_recovers_when_llm_fails():
 
 
 
-def test_repeated_native_questions_are_suppressed_even_if_unobserved_or_evicted():
-    from human_study.policy import choose_next_item, initial_rng
-    from human_study.question_identity import question_family
+def test_only_actual_duplicates_not_distinct_gss_constructs_are_suppressed():
+    from human_study.question_identity import already_covered_ids, question_family
 
-    seen = ("discaffw", "racerank1", "racdif5x", "amcit", "cctv")
-    # No observed coordinates: simulate answers that did NOT map to the
-    # selected target (or coordinates evicted from bounded model state).
+    asked = ("discaffw", "racdif5x", "amcit", "racerank1",
+             "spkrac", "racopen", "cctv")
     candidates = [
-        "discaffm", "fehire", "affrmact", "racerank2", "racecen3",
-        "racdif1", "racdif5", "amcitizn", "uscitzn", "cctv", "natsci",
+        "discaffw", "discaffm", "fehire",
+        "racdif1", "racdif5", "amcitizn", "uscitzn",
+        "racerank2", "racecen3", "spkracy", "racopenv", "cctv",
     ]
-
-    class FakeAdapter:
-        def webapp_candidates(self, state, config, exclusions):
-            assert not state
-            return {v: ["yes", "no"] for v in candidates if v not in exclusions}
-
-        def webapp_scores(self, state, choices):
-            assert list(choices) == ["natsci"], list(choices)
-            return SimpleNamespace(
-                summary=[{"variable": "natsci", "expected_delta": 0.2,
-                          "delta_modal": 0.1}],
-                rows=[{"variable": "natsci", "answer": "yes",
-                       "conditional_probability": 0.5}],
-            )
-
-    state = SimpleNamespace(
-        asked_ids=seen, observed_state={},
-        reserved_outcome_ids=(), excluded_ids=(),
-    )
-    cfg = SimpleNamespace(candidate_mode="native_webapp",
-                          push_response_mode="draw", llm_model="gpt-4.1-mini")
-    pick = choose_next_item(state, "right", set(), initial_rng(19), cfg, FakeAdapter())
-    assert pick["variable"] == "natsci"
-    assert pick["eligible_ids"] == ["natsci"]
-    assert question_family("racdif5x") == question_family("racdif1")
-    assert question_family("discaffw") == question_family("fehire")
-    assert question_family("racopen") != question_family("spkrac")
+    blocked = already_covered_ids(candidates, asked)
+    assert blocked == {"discaffw", "spkracy", "racopenv", "cctv"}
+    for distinct in ("racdif1", "racdif5", "discaffm", "fehire",
+                     "amcitizn", "uscitzn", "racerank2", "racecen3"):
+        assert distinct not in blocked
+    assert question_family("racdif5x") != question_family("racdif1")
+    assert question_family("discaffw") != question_family("fehire")
+    assert question_family("racerank1") != question_family("racerank2")
+    assert question_family("racopen") == question_family("racopenv")
 
 
 @pytest.mark.parametrize("variable", [
