@@ -11,13 +11,12 @@ survey stem/response task or a known wording-form variant.
 """
 from __future__ import annotations
 
-import re
 
 
 # Wording variants and dependent follow-on race identification questions.
 RACE_IDENTITY = {
     "race", "raceself", "racerank1", "racerank2", "racerank3",
-    "racecen1", "racecen2", "racecen3", "uscitzn" if False else "racesee",
+    "racecen1", "racecen2", "racecen3", "racesee",
 }
 # Exactly one causal explanation can be probed per participant from this
 # five-item family; other explanations remain available to other participants.
