@@ -14,6 +14,7 @@ from .grounded_generation import (
     craft_question, validate_complete_choices, has_unresolved_choice_reference,
     source_entry, source_digest,
 )
+from .compiled_wording import lookup as lookup_compiled_wording
 
 
 # Verified against the NORC 2024 English ballot, Ballot 3, PDF page 45
@@ -155,6 +156,12 @@ class QuestionLLM:
         }
 
     def generate(self, item):
+        # Wording is a *post-selection* operation. Reusing a source-validated
+        # question does not restrict native eligibility or change how free
+        # responses map to multiple survey variables.
+        compiled = lookup_compiled_wording(item, self.config)
+        if compiled is not None:
+            return compiled
         import dtag_core as core
         from optimizer.dtag_bridge import map_question, RUN_DEFAULTS
         incomplete = item.source_text_incomplete
