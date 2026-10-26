@@ -1,4 +1,4 @@
-"""Prolific linkage, completion codes, reward records, factual checks and quality flags.
+"""Prolific linkage, completion paths, valid IMCs, and quality/rejection screening.
 
 Synthetic fixture model and scripted LLM only: no OpenAI, GCP or Prolific traffic.
 """
@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PID = "5f1e2d3c4b5a69788796a5b4"
 
 
-def prolific_config(instrument, adapter, *, review_code="REVIEW42", threshold=2):
+def prolific_config(instrument, adapter, *, review_code="REVIEW42", threshold=3):
     config, _, _ = make_v3(instrument, adapter)
     base = config.model_dump(mode="json")
     base.update(study_id="prolific-fixture", prolific={
@@ -28,13 +28,14 @@ def prolific_config(instrument, adapter, *, review_code="REVIEW42", threshold=2)
         "no_consent_code": "N0C0NSENT7",
         "attention_fail_threshold": threshold, "reward": "GBP 3.00"})
     base["attention_checks"] = [
-        {"check_id": "attention_token", "instruction": "Include the exact word cobalt in your reply.",
+        {"check_id": "attention_token", "kind": "instructed_token", "render": "verbatim",
+         "instruction": "Attention check: Please include the exact word cobalt in your answer.",
          "expected_token": "cobalt", "after_substantive": 2},
-        {"check_id": "attention_sky", "kind": "factual", "render": "verbatim",
-         "instruction": "Attention check: what colour is a clear daytime sky?",
-         "accepted_answers": ["blue"], "after_substantive": 5},
-        {"check_id": "attention_cedar", "kind": "instructed_token",
-         "instruction": "For this attention check include the word cedar in your answer.",
+        {"check_id": "attention_violet", "kind": "instructed_token", "render": "verbatim",
+         "instruction": "Attention check: Please include the exact word violet in your answer.",
+         "expected_token": "violet", "after_substantive": 5},
+        {"check_id": "attention_cedar", "kind": "instructed_token", "render": "verbatim",
+         "instruction": "Attention check: Please include the exact word cedar in your answer.",
          "expected_token": "cedar", "after_substantive": 6},
     ]
     return StudyConfig.model_validate(base)
@@ -75,13 +76,13 @@ def test_full_session_passing_checks_gets_completion_code_and_reward_record(inst
     config = prolific_config(instrument, adapter)
     archive = MemoryArchive()
     svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
-    answers = {"attention": lambda i: "ok cobalt blue cedar"}
+    answers = {"attention": lambda i: "ok cobalt violet cedar"}
     sid, done, shown = run(svc, lambda phase, i: answers.get(phase, substantive)(i))
     assert done["phase"] == "complete"
     assert done["completion_code"] == "C0MPLETE1"
     assert done["completion_url"] == "https://app.prolific.com/submissions/complete?cc=C0MPLETE1"
-    # The factual check is displayed exactly as configured, not LLM-rewritten.
-    assert ("attention", "Attention check: what colour is a clear daytime sky?") in shown
+    # Prolific IMCs are shown verbatim, never rephrased by an LLM.
+    assert ("attention", "Attention check: Please include the exact word violet in your answer.") in shown
 
     base = f"studies/{config.study_id}"
     reward = json.loads(archive.objects[f"{base}/sessions/{sid}/reward.json"])
@@ -89,7 +90,7 @@ def test_full_session_passing_checks_gets_completion_code_and_reward_record(inst
     assert reward["completion_code"] == "C0MPLETE1" and reward["code_category"] == "complete"
     assert reward["prolific"] == {"prolific_pid": PID, "prolific_study_id": "S1", "prolific_session_id": "X1"}
     assert reward["attention"] == {"total": 3, "passed": 3, "failed": 0, "failed_check_ids": [],
-                                   "policy_eligible_total": 2, "policy_eligible_failed": 0,
+                                   "policy_eligible_total": 3, "policy_eligible_failed": 0,
                                    "policy_eligible_failed_ids": [], "non_eligible_failed_ids": [],
                                    "fail_threshold": 2}
     assert reward["reward"] == "GBP 3.00"
@@ -112,9 +113,12 @@ def test_failed_checks_at_threshold_get_review_code(instrument, adapter):
     sid, done, _ = run(svc, lambda phase, i: "asdf" if phase == "attention" else "yes")
     assert done["completion_code"] == "REVIEW42"
     reward = json.loads(archive.objects[f"studies/{config.study_id}/sessions/{sid}/reward.json"])
-    assert reward["code_category"] == "attention_review"
-    assert reward["attention"]["failed_check_ids"] == ["attention_token", "attention_sky", "attention_cedar"]
-    assert reward["attention"]["policy_eligible_failed_ids"] == ["attention_token", "attention_cedar"]
+    assert reward["code_category"] == "rejection_eligible_review"
+    assert reward["attention"]["failed_check_ids"] == ["attention_token", "attention_violet", "attention_cedar"]
+    assert reward["attention"]["policy_eligible_failed_ids"] == ["attention_token", "attention_violet", "attention_cedar"]
+    assert reward["rejection_eligibility"]["eligible_for_rejection"] is True
+    assert reward["rejection_eligibility"]["basis"] == "at_least_three_valid_imc_failures"
+    assert reward["rejection_eligibility"]["prolific_rejection_executed"] is False
     assert reward["quality"]["review"]["priority"] == "high"
     assert reward["quality"]["review"]["human_review_recommended"]
     assert reward["quality"]["review"]["score"] >= 60
@@ -130,7 +134,7 @@ def test_quality_score_does_not_reduce_reward_or_change_completion_code(instrume
     archive = MemoryArchive()
     svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
     sid, done, _ = run(
-        svc, lambda phase, i: "cobalt blue cedar" if phase == "attention" else "yes"
+        svc, lambda phase, i: "cobalt violet cedar" if phase == "attention" else "yes"
     )
     reward = json.loads(archive.objects[f"studies/{config.study_id}/sessions/{sid}/reward.json"])
     assert reward["quality"]["review"]["score"] >= 60
@@ -141,22 +145,23 @@ def test_quality_score_does_not_reduce_reward_or_change_completion_code(instrume
     assert reward["reward"] == "GBP 3.00"
 
 
-def test_failed_factual_check_plus_one_imc_does_not_trigger_review_code(instrument, adapter):
+def test_two_imc_failures_and_high_quality_risk_alone_do_not_allow_rejection(instrument, adapter):
     config = prolific_config(instrument, adapter)
     archive = MemoryArchive()
     svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
-    # First instructed response fails; factual check fails; second instructed
-    # response passes. Only one Prolific-policy eligible check was failed.
+    # Fail cobalt + violet, pass cedar; identical "yes" on all questions
+    # produces a high internal score but is NOT objectively proved low effort.
     sid, done, _ = run(
-        svc, lambda phase, i: (
-            "cedar" if i == 9 else "not the specified word"
-        ) if phase == "attention" else substantive(i)
+        svc, lambda phase, i: ("cedar" if i == 9 else "no matching token")
+        if phase == "attention" else "yes"
     )
     reward = json.loads(archive.objects[f"studies/{config.study_id}/sessions/{sid}/reward.json"])
     assert reward["attention"]["failed"] == 2
-    assert reward["attention"]["policy_eligible_failed"] == 1
+    assert reward["attention"]["policy_eligible_failed"] == 2
+    assert reward["quality"]["review"]["score"] >= 60
+    assert reward["rejection_eligibility"]["eligible_for_rejection"] is False
+    assert reward["rejection_eligibility"]["two_failures_need_independent_evidence"]
     assert done["completion_code"] == "C0MPLETE1"
-    assert reward["quality"]["review"]["human_review_recommended"]
 
 
 def test_without_review_code_failures_are_recorded_but_code_is_shared(instrument, adapter):
@@ -206,7 +211,7 @@ def test_api_links_prolific_parameters_and_returns_completion_code(instrument, a
     i = 0
     while view["question"] is not None:
         i += 1
-        text = ("cobalt blue" if view["phase"] == "attention" else substantive(i))
+        text = ("cobalt violet cedar" if view["phase"] == "attention" else substantive(i))
         view = client.post("/api/human/answer", json=request(view, text), headers=headers).json()["current"]
     done = client.post("/api/human/complete", json={}, headers=headers).json()
     assert done["completion_code"] == "C0MPLETE1"
@@ -307,11 +312,11 @@ def test_export_includes_prolific_linkage_code_and_quality(instrument, adapter, 
     with (tmp_path / "export/participants.csv").open() as f:
         (row,) = list(csv.DictReader(f))
     assert row["prolific_pid"] == PID and row["completion_code"] == "REVIEW42"
-    assert row["code_category"] == "attention_review" and row["attention_failed"] == "3"
+    assert row["code_category"] == "rejection_eligible_review" and row["attention_failed"] == "3"
     assert row["duplicate_answers"] == "6"
     assert row["quality_review_priority"] == "high"
     assert int(row["quality_review_score"]) >= 60
-    assert row["policy_eligible_attention_failed"] == "2"
+    assert row["policy_eligible_attention_failed"] == "3"
     assert "many_near_duplicate_answers" in row["quality_review_signals"]
     with (tmp_path / "export/answers.csv").open() as f:
         rows = list(csv.DictReader(f))
@@ -326,7 +331,7 @@ def test_gcp_test_config_runs_without_prolific_ids_and_issues_codes(instrument, 
     base = prolific_config(instrument, adapter).model_dump(mode="json")
     base["prolific"]["required"] = False
     config = StudyConfig.model_validate(base)
-    for attention, code in (("cobalt cedar blue", "C0MPLETE1"), ("no idea", "REVIEW42")):
+    for attention, code in (("cobalt cedar violet", "C0MPLETE1"), ("no idea", "REVIEW42")):
         archive = MemoryArchive()
         # prolific_required=None is the staging/production setting: the config decides.
         svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
