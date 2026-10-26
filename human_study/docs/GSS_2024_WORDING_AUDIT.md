@@ -104,10 +104,10 @@ The report enumerates
 residual flagged rows for subsequent investigator classification.
 
 The first offline scan of the 2024 canonical map found **813 entries**,
-**99 potentially context-dependent** source labels, **107 validated source
+**99 potentially context-dependent** source labels, **131 validated source
 contracts**, and **12 flagged labels without a contract**. The residual
 variable IDs were `sphrs1`, `granborn`, `socrel`, `socommun`,
-`socfrend`, `socbar`, `rank`, `dofirst`, `sexsex`, `uscitzn`,
+`socfrend`, `socbar`, `rank`, `dofirst`, `sexsex`,
 `spanself`, `whatslf2`, and `devtype`.
 
 Do **not** interpret the residual flag count as the number of defective
