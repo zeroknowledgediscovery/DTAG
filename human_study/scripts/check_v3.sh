@@ -12,6 +12,7 @@ unset DTAG_STUDY_CONFIG DTAG_REVIEWED_CONFIG DTAG_PUBLIC_ORIGIN || true
 echo "[1/3] V3 short, interleaved, 6+20+5 sessions and webapp parity"
 python3 -m pytest -q -rs \
   human_study/tests/test_v3_multi_observations.py \
+  human_study/tests/test_v3_question_referents.py \
   human_study/tests/test_v3_schedule_and_simulation.py \
   human_study/tests/test_v3_trajectory_analysis.py \
   human_study/tests/test_webapp_parity.py \
