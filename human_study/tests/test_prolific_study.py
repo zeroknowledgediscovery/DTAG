@@ -189,6 +189,36 @@ def test_returning_pid_resumes_its_session_and_pid_is_required(instrument, adapt
     assert svc.start(first["session_id"])["session_id"] == first["session_id"]
 
 
+def test_prolific_restart_keeps_pid_linkage_and_previous_data(instrument, adapter):
+    config = prolific_config(instrument, adapter)
+    archive = MemoryArchive()
+    svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
+    headers = {"Origin": "http://testserver"}
+    web = TestClient(create_app(svc, cookie_secret="test-secret-stable-not-for-deployment" * 2))
+    with web:
+        first = web.post("/api/human/start", json={
+            "prolific_pid": PID, "prolific_study_id": "S1", "prolific_session_id": "X1"
+        }, headers=headers).json()
+        started = web.post("/api/human/consent", json={
+            "accepted": True, "expected_session_version": first["session_version"]
+        }, headers=headers).json()
+        answered = web.post("/api/human/answer", json=request(started, substantive(1)), headers=headers)
+        assert answered.status_code == 200, answered.text
+        restart = web.post("/api/human/restart", json={
+            "prolific_pid": PID, "prolific_study_id": "S1", "prolific_session_id": "X1"
+        }, headers=headers)
+        assert restart.status_code == 200, restart.text
+        fresh = restart.json()
+        assert fresh["session_id"] != first["session_id"]
+        assert fresh["phase"] == "consent" and fresh["progress"]["completed"] == 0
+        assert svc.repo.read(first["session_id"]).session["next_step"] == 1
+        assert svc.repo.read(fresh["session_id"]).session["prolific"]["prolific_pid"] == PID
+        assert web.post("/api/human/start", json={"prolific_pid": PID},
+                        headers=headers).json()["session_id"] == fresh["session_id"]
+        # An explicit restart is new, not the deterministic PID resume key.
+        assert fresh["session_id"] != svc.prolific_sid(PID)
+
+
 def test_pid_session_id_depends_on_secret(instrument, adapter):
     config = prolific_config(instrument, adapter)
     a = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), MemoryArchive(), sid_key="a" * 40)
