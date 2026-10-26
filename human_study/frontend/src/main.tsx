@@ -173,7 +173,14 @@ function App() {
     : <section><h2 ref={heading} tabIndex={-1}>Thank you. Your session is complete.</h2>
       <p>Your internal study receipt:</p><p className="receipt" data-testid="receipt">{view.receipt}</p>
       <p className="muted">Session: {view.session_id}</p><p>This is an internal receipt, not a payment or Prolific completion code. You may close this page.</p></section>)}
-    {view?.phase === 'declined' && <section><h2 ref={heading} tabIndex={-1}>You have not enrolled in the study.</h2><p>You may close this page.</p></section>}
+    {view?.phase === 'declined' && <section>
+      <h2 ref={heading} tabIndex={-1}>You did not consent to participate.</h2>
+      <p>No study questions will be presented. Please return to Prolific and return your submission. The study reward is not paid for a no-consent return.</p>
+      {view.completion_url ? <>
+        <div className="actions"><a className="button" href={view.completion_url}>Return to Prolific (no consent)</a></div>
+        <p className="muted">No-consent return code: <span data-testid="no-consent-code">{view.completion_code}</span>. This is not a paid-completion code.</p>
+      </> : <p>You may close this page.</p>}
+    </section>}
     {busy && <p role="status" className="status">Saving and preparing your next step…</p>}
     {error && <aside role="alert"><p>{error}</p><button className="secondary" disabled={busy} onClick={() => {
       if (pending.current) void answer(pending.current.answer_value, pending.current.missing_reason);
