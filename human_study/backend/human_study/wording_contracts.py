@@ -400,9 +400,9 @@ for name, (statement, subject_pattern) in _GENDER_AGREEMENT.items():
 # options", "this law", or an unexplained "it".
 RACE_OPTIONS = (
     "White; Black or African American; American Indian or Alaska Native; "
-    "Asian (including Asian Indian, Chinese, Filipino, Japanese, Korean, "
-    "Vietnamese, or other Asian); Native Hawaiian or other Pacific Islander; "
-    "Hispanic or Latino; or another race"
+    "Asian Indian; Chinese; Filipino; Japanese; Korean; Vietnamese; "
+    "Other Asian; Native Hawaiian; Guamanian or Chamorro; Samoan; "
+    "Other Pacific Islander; Some other race; Hispanic"
 )
 for rank in (1, 2, 3):
     if rank == 1:
@@ -420,7 +420,9 @@ for rank in (1, 2, 3):
         stem + " Options include: " + RACE_OPTIONS + "?",
         (r"\b(?:race|racial)\b", ordinal,
          r"\bwhite\b", r"\bblack\b", r"\basian\b",
-         r"\b(?:indian|native)\b"),
+         r"\b(?:indian|native)\b", r"\bhispanic\b",
+         r"\b(?:guamanian|chamorro)\b", r"\bsamoan\b",
+         r"\bfilipino\b", r"\bkorean\b"),
     )
     desc = (
         "Which race or races do you consider yourself to be? You may "
@@ -434,7 +436,8 @@ for rank in (1, 2, 3):
     CONTRACTS[f"racecen{rank}"] = WordingContract(
         desc + "Options include: " + RACE_OPTIONS + "?",
         (r"\b(?:race|racial)\b", r"\bwhite\b", r"\bblack\b",
-         r"\basian\b", r"\b(?:indian|native)\b",
+         r"\basian\b", r"\b(?:indian|native)\b", r"\bhispanic\b",
+         r"\b(?:guamanian|chamorro)\b", r"\bsamoan\b",
          r"\b(?:more than one|second|third|additional)\b"),
     )
 
