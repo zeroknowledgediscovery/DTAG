@@ -280,20 +280,22 @@ def test_restart_has_same_behavior_in_staging_and_production(monkeypatch, instru
         service, cookie_secret="test-secret-stable-not-for-deployment" * 2
     ), base_url="https://testserver")
     headers = {"Origin": "https://testserver"}
-    with web:
-        first = web.post("/api/human/start", json={}, headers=headers)
-        assert first.status_code == 200, first.text
-        assert "Secure" in first.headers["set-cookie"]
-        assert web.cookies.get("__Host-dtag-human")
+    # No lifespan context here: this test deliberately injects a fake service
+    # and in-memory repository to exercise cookie/restart HTTP semantics. A
+    # real nonlocal app rejects in-memory storage during startup, as required.
+    first = web.post("/api/human/start", json={}, headers=headers)
+    assert first.status_code == 200, first.text
+    assert "Secure" in first.headers["set-cookie"]
+    assert web.cookies.get("__Host-dtag-human")
 
-        fresh_response = web.post("/api/human/restart", json={}, headers=headers)
-        assert fresh_response.status_code == 200, fresh_response.text
-        assert "Secure" in fresh_response.headers["set-cookie"]
-        fresh = fresh_response.json()
-        assert fresh["phase"] == "consent"
-        assert fresh["session_id"] != first.json()["session_id"]
-        assert web.get("/api/human/current").json()["session_id"] == fresh["session_id"]
-        resumed = web.post("/api/human/start", json={}, headers=headers)
-        assert resumed.status_code == 200, resumed.text
-        assert resumed.json()["session_id"] == fresh["session_id"]
-        assert len(service.repo.sessions) == 2
+    fresh_response = web.post("/api/human/restart", json={}, headers=headers)
+    assert fresh_response.status_code == 200, fresh_response.text
+    assert "Secure" in fresh_response.headers["set-cookie"]
+    fresh = fresh_response.json()
+    assert fresh["phase"] == "consent"
+    assert fresh["session_id"] != first.json()["session_id"]
+    assert web.get("/api/human/current").json()["session_id"] == fresh["session_id"]
+    resumed = web.post("/api/human/start", json={}, headers=headers)
+    assert resumed.status_code == 200, resumed.text
+    assert resumed.json()["session_id"] == fresh["session_id"]
+    assert len(service.repo.sessions) == 2
