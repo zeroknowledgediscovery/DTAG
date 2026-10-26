@@ -108,14 +108,15 @@ function App() {
 
   // An answer may be securely committed while the NEXT LLM question is
   // preparing. Never present a stale answer field as though saving failed.
-  // A bounded 10-second poll resumes the same signed session automatically.
+  // Poll only while a question is pending. Each call completes before the
+  // next is scheduled; the same saved session and question ID are preserved.
   const nextQuestionPending = !!view && !view.question &&
     ['baseline', 'intervention', 'attention', 'outcome'].includes(view.phase);
   useEffect(() => {
     if ((!nextQuestionPending && !preparing) || busy) return;
     const timer = window.setTimeout(() => {
       void perform(() => api('current'));
-    }, 2500);
+    }, 1000);
     return () => window.clearTimeout(timer);
   }, [nextQuestionPending, preparing, view?.progress?.completed, busy, error]);
 
