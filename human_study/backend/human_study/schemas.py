@@ -17,11 +17,6 @@ class Start(Input):
     prolific_session_id: str | None = Field(default=None, pattern=PROLIFIC_ID)
 
 
-class Restart(Input):
-    """Empty body: a new test session cannot supply Prolific identifiers."""
-    pass
-
-
 class Consent(Input):
     accepted: bool
     expected_session_version: int = Field(ge=0)
