@@ -356,8 +356,8 @@ for name in _RACDIF_CAUSES:
         ),
         required_patterns=(
             *base.required_patterns,
-            r"\\b(?:50|fifty)\\b.{0,30}\\byears?\\b",
-            r"\\bhistorical\\b.{0,45}\\bcomparison\\b",
+            r"\b(?:50|fifty)\b.{0,30}\byears?\b",
+            r"\bhistorical\b.{0,45}\bcomparison\b",
         ),
         source_reference=RACDIF_2024_BALLOT_SOURCE,
     )
