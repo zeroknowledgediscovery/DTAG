@@ -17,7 +17,7 @@ from human_study.wording_contracts import CONTRACTS, validates_standalone, valid
 
 ROOT = Path(__file__).resolve().parents[2]
 MAP = ROOT / "maps/gss/gss_2024_map.csv"
-UNVERIFIED_EXCLUDED = frozenset(
+RESTORED_WORDING_VARIANTS = frozenset(
     {"racdif1x", "racdif2x", "racdif3x", "racdif4x", "racdif5x"}
 )
 CONFIGS = [
@@ -49,7 +49,7 @@ def inspect():
             "variable": item,
             "source_flagged": bool(SUSPECT_SOURCE.search(original)),
             "contracted": contract is not None,
-            "unverified_excluded": item in UNVERIFIED_EXCLUDED,
+            "historical_variant_restored": item in RESTORED_WORDING_VARIANTS,
             "contract_source_valid": (
                 validates_standalone(contract.source)
                 and validates_wording(item, contract.source)
@@ -63,7 +63,7 @@ def validate(rows):
     issues = []
     for item in ("colmslm", "colath", "colrac", "colcom", "libmslm",
                  "libcom", "abnomore", "abrape", "suicide1", "eqwlth",
-                 "fechld", "fepresch", "fefam"):
+                 "fechld", "fepresch", "fefam", *sorted(RESTORED_WORDING_VARIANTS)):
         row = lookup.get(item)
         if not row or not row["contracted"] or not row["contract_source_valid"]:
             issues.append(f"required standalone source contract missing: {item}")
@@ -72,9 +72,17 @@ def validate(rows):
             issues.append(f"source contract fails its own validator: {item}")
     for config_path in CONFIGS:
         cfg = StudyConfig.load(config_path)
-        absent = sorted(UNVERIFIED_EXCLUDED - set(cfg.excluded_ids))
-        if absent:
-            issues.append(f"{config_path}: unresolved source items not excluded: {absent}")
+        blocked = sorted(RESTORED_WORDING_VARIANTS & set(cfg.excluded_ids))
+        if blocked:
+            issues.append(
+                f"{config_path}: reconstructed GSS source variables must not be excluded: {blocked}"
+            )
+        for item in RESTORED_WORDING_VARIANTS:
+            contract = CONTRACTS[item]
+            if not all(v in contract.source.lower() for v in ("50 years", "historical comparison")):
+                issues.append(f"{item}: historical wording-variant frame missing")
+            if not validates_wording(item, contract.source):
+                issues.append(f"{item}: restored question source invalid")
     return issues
 
 
@@ -88,12 +96,16 @@ def main():
     rows = list(inspect())
     issues = validate(rows)
     reported = [r for r in rows if r["source_flagged"]]
-    residual = [r for r in reported if not (r["contracted"] or r["unverified_excluded"])]
+    residual = [r for r in reported if not r["contracted"]]
     print("Native GSS 2024 map entries:", len(rows))
     print("Potentially context-dependent source labels:", len(reported))
     print("Source-grounded contracts:", sum(r["contracted"] for r in rows))
     print("Flagged without source-grounded contract:", len(residual))
-    print("Explicitly excluded unverified wording variants:", sorted(UNVERIFIED_EXCLUDED))
+    print("Restored historically framed wording variants:", sorted(RESTORED_WORDING_VARIANTS))
+    print("Full-study question exclusions:", {
+        str(p.relative_to(ROOT)): list(StudyConfig.load(p).excluded_ids)
+        for p in CONFIGS
+    })
     print("Remaining flagged map entries require investigator classification, "
           "including non-opinion/demographic and conditional items.")
     print("Uncontracted example IDs:", [r["variable"] for r in residual[:30]])
