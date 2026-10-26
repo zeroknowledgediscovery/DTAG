@@ -9,6 +9,10 @@ const isWrittenMode = (q: Question | null | undefined) =>
 type View = { session_id: string; phase: string; session_version: number; question: Question | null;
   consent: string | null; receipt: string | null; progress: { completed: number; total: number };
   completion_code?: string | null; completion_url?: string | null };
+class QuestionStillPreparing extends Error {
+  constructor() { super('Question preparation in progress'); }
+}
+
 type Pending = { question_id: string; answer_value: string | null; text_answer: string | null; missing_reason: string | null;
   idempotency_key: string; expected_session_version: number };
 
@@ -41,6 +45,11 @@ async function api(route: string, data?: unknown) {
       ? 'Invalid response from the study server. Refresh saved state.'
       : `Study server error (HTTP ${response.status}). Refresh saved state; the answer may already be saved.`);
   }
+  // Generation and retry leases are internal transient states, not
+  // participant-facing errors. Only unexpected failures are displayed.
+  if (response.status === 503 && body?.status === 'preparing_question') {
+    throw new QuestionStillPreparing();
+  }
   if (!response.ok) throw new Error(typeof body.detail === 'string'
     ? body.detail : `Study server error (HTTP ${response.status}). Refresh saved state.`);
   return body;
@@ -53,6 +62,7 @@ function App() {
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  const [preparing, setPreparing] = useState(false);
   const pending = useRef<Pending | null>(null);
   const heading = useRef<HTMLHeadingElement>(null);
 
@@ -66,8 +76,17 @@ function App() {
   async function perform(operation: () => Promise<View>) {
     if (busy) return;
     setBusy(true); setError('');
-    try { accept(await operation()); }
-    catch (e) { setError(e instanceof Error ? e.message : 'Unable to save. Please retry.'); }
+    try { accept(await operation()); setPreparing(false); }
+    catch (e) {
+      if (e instanceof QuestionStillPreparing) {
+        setPreparing(true);
+        // The backend retains the signed session and archived answer.
+        // Automatic polling will fetch the next validated question.
+      } else {
+        setPreparing(false);
+        setError(e instanceof Error ? e.message : 'Unable to save. Please retry.');
+      }
+    }
     finally { setBusy(false); }
   }
   // Never auto-resume on browser refresh. Give the participant the choice.
@@ -91,12 +110,12 @@ function App() {
   const nextQuestionPending = !!view && !view.question &&
     ['baseline', 'intervention', 'attention', 'outcome'].includes(view.phase);
   useEffect(() => {
-    if (!nextQuestionPending || busy) return;
+    if ((!nextQuestionPending && !preparing) || busy) return;
     const timer = window.setTimeout(() => {
       void perform(() => api('current'));
-    }, 10000);
+    }, 2500);
     return () => window.clearTimeout(timer);
-  }, [nextQuestionPending, view?.progress?.completed, busy, error]);
+  }, [nextQuestionPending, preparing, view?.progress?.completed, busy, error]);
 
   async function answer(value: string | null, reason: string | null = null) {
     if (!view?.question) return;
@@ -145,14 +164,14 @@ function App() {
       </div>
       <p className="muted">Starting new leaves previous answers archived.</p>
     </section>}
-    {view?.phase === 'consent' && <section>
+    {view?.phase === 'consent' && !preparing && <section>
       <h2 tabIndex={-1} ref={heading}>Before you begin</h2><p className="consent">{view.consent}</p>
       <label className="ack"><input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)}/>
         I have read the instructions and agree to participate.</label>
       <div className="actions"><button disabled={busy || !consent} onClick={() => void perform(() => api('consent', { accepted: true, expected_session_version: view.session_version }))}>Begin study</button>
         <button className="secondary" disabled={busy} onClick={() => void perform(() => api('consent', { accepted: false, expected_session_version: view.session_version }))}>Do not participate</button></div>
     </section>}
-    {view?.question && <form onSubmit={e => { e.preventDefault(); void answer(isWrittenMode(view.question) ? null : selected); }}>
+    {view?.question && !preparing && <form onSubmit={e => { e.preventDefault(); void answer(isWrittenMode(view.question) ? null : selected); }}>
       <h2 tabIndex={-1} ref={heading} id="question-title">{view.question.text}</h2>
       {isWrittenMode(view.question) ? <>
         <label className="written-label" htmlFor="written-answer">Your answer, in your own words</label>
@@ -178,11 +197,10 @@ function App() {
             onClick={() => void answer(null, 'prefer_not_to_answer')}>Prefer not to answer</button>}
       </div>
     </form>}
-    {nextQuestionPending && <section aria-live="polite" className="preparing-next">
-      <h2>Answer saved. Preparing your next question.</h2>
-      <p>Question generation may take another attempt. Your previous answer is already saved; there is no need to resubmit it.</p>
-      <button className="secondary" type="button" disabled={busy}
-        onClick={() => void perform(() => api('current'))}>Check for next question</button>
+    {(nextQuestionPending || preparing) && <section aria-live="polite" className="preparing-next">
+      <h2>Preparing your next question</h2>
+      <p>The study is checking the wording. Any previously submitted answer is saved.
+        The next question will appear automatically.</p>
     </section>}
     {view?.phase === 'ready_to_complete' && <section><h2 ref={heading} tabIndex={-1}>Your questions are finished</h2>
       <p>Finish to save your study receipt.</p><button disabled={busy} onClick={() => void perform(() => api('complete', {}))}>Finish study</button></section>}
