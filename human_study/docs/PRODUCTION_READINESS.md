@@ -203,15 +203,28 @@ Before deploying to Prolific, investigator approval is required for:
 - Independent annotation of a representative sample of written-answer to
   native-category mappings; measure false positive conditioning errors and
   their effect on directional index movement.
-- Human review for attention-check failures and conflicting responses. A
-  failure is a study quality annotation, not automatically a compensation or
-  rejection decision.
+- Five visible, verbatim instructed-response checks (not factual trivia), using
+  the validated full-study schedule at substantive positions 3/8/13/18/24.
+  The conservative `eligible_for_rejection` flag is based on ≥3 valid IMC
+  failures, or ≥2 failures plus independent, sustained, objectively obvious
+  keyboard-mash gibberish. The 0–100 quality-risk score never suffices.
+  Eligibility is **not** an executed rejection or payment determination.
+  Preserve exact failed-check text, answers, objective evidence and rule
+  version in private archives; verify each case before any Prolific action.
+  See [Prolific quality policy](PROLIFIC_QUALITY_POLICY.md).
+- A pilot audit of question accessibility and clarity, completion times and
+  unexpected IMC failures. Do not deploy a paid study until the investigator
+  approves the frozen IMC instrument, eligibility rules and compensation paths.
 
-Prolific linkage (PID/STUDY_ID/SESSION_ID), one session per PID, and
-attention-dependent completion codes with an archived reward record are now
-implemented (see the README "Prolific deployment" section and
-`config/study.prolific.example.yaml`). Paying, approving or rejecting
-submissions remains a manual investigator step on Prolific.
+Prolific linkage (PID/STUDY_ID/SESSION_ID), one session per PID,
+completion/eligibility records, and three completion paths are implemented
+(see the README "Prolific deployment" section,
+`config/study.prolific.example.yaml` and
+[the preregistration-ready quality protocol](PROLIFIC_QUALITY_POLICY.md)).
+The participant-facing review code only *flags* a potentially rejection-
+eligible submission. Paying, approving or rejecting submissions remains an
+explicit investigator action in Prolific; a Prolific-valid reason and evidence
+must be documented.
 
 ## 6. Operational packaging and release process
 
