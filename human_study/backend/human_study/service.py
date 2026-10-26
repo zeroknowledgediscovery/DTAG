@@ -164,11 +164,9 @@ class StudyService:
                    "phase_index": 0, "next_step": 0, "pending_exports": [], "current_question_id": None,
                    "assignment_rng_state": None, "selection_rng_state": None, "receipt": None,
                    "prolific": prolific}
-        writes = {}
-        if prolific:
-            self._export(session, writes, "enrollment", {"kind": "enrollment", "timestamp": session["created_at"],
-                                                         "prolific": prolific})
-        if not self.repo.cas(sid, None, session, writes):
+        # Consent has not yet been given; keep linkage in operational state,
+        # but do not archive identifying enrollment data into research GCS.
+        if not self.repo.cas(sid, None, session, {}):
             if pid:
                 return self.current(sid)  # concurrent first request for the same PID
             raise Conflict("unable to enroll session")
@@ -212,9 +210,19 @@ class StudyService:
             raise Conflict("session changed; refresh and retry")
         s.update(phase="baseline" if accepted else "declined", consent_version=self.config.consent_version,
                  consent_timestamp=now(), consent_accepted=accepted)
-        if accepted:
-            self._route_attention_if_due(s)
         writes = {}
+        if accepted:
+            # Only consented participants have Prolific identifiers written to
+            # the immutable research archive.
+            if s.get("prolific"):
+                self._export(s, writes, "enrollment",
+                             {"kind": "enrollment", "timestamp": s["created_at"],
+                              "prolific": s["prolific"]})
+            self._route_attention_if_due(s)
+        else:
+            # Do not retain raw Prolific identifiers from a declined session.
+            # The anonymized operational session permits the return-path page.
+            s["prolific"] = None
         self._export(s, writes, "consent", {"kind": "consent", "timestamp": s["consent_timestamp"],
                      "accepted": accepted, "consent_version": self.config.consent_version,
                      "consent_text": self.config.consent_text})
