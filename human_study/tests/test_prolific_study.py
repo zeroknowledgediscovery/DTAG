@@ -125,6 +125,22 @@ def test_failed_checks_at_threshold_get_review_code(instrument, adapter):
     assert reward["quality"]["fast_answers"] == 10
 
 
+def test_quality_score_does_not_reduce_reward_or_change_completion_code(instrument, adapter):
+    config = prolific_config(instrument, adapter)
+    archive = MemoryArchive()
+    svc = StudyService(config, adapter, MultiFixtureLLM(), MemoryRepository(), archive)
+    sid, done, _ = run(
+        svc, lambda phase, i: "cobalt blue cedar" if phase == "attention" else "yes"
+    )
+    reward = json.loads(archive.objects[f"studies/{config.study_id}/sessions/{sid}/reward.json"])
+    assert reward["quality"]["review"]["score"] >= 60
+    assert reward["quality"]["review"]["human_review_recommended"]
+    assert reward["attention"]["policy_eligible_failed"] == 0
+    assert done["completion_code"] == "C0MPLETE1"
+    assert reward["code_category"] == "complete"
+    assert reward["reward"] == "GBP 3.00"
+
+
 def test_failed_factual_check_plus_one_imc_does_not_trigger_review_code(instrument, adapter):
     config = prolific_config(instrument, adapter)
     archive = MemoryArchive()
