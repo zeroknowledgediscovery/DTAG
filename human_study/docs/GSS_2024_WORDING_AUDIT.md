@@ -31,9 +31,14 @@ measurement defect, not merely a cosmetic issue.
   hatred of the United States, and college teaching.
 - `QuestionLLM.generate` verifies the required referent, topic and action
   in the generated participant-facing question. Incorrect or underspecified
-  outputs are rejected, and generation is retried. If all attempts fail, an
-  explicit `QuestionGenerationError` prevents the defective question from
-  being shown; it does not substitute a silently shortened version.
+  outputs are rejected and generation is retried. If both rewrites fail,
+  the code now uses a **complete, validated standalone source** from the
+  context contract (or the verified NATENVIY ballot wording), with an
+  explicit `source-validated` provenance record. Uncontracted items may
+  use their original map source only when conservative structural checks
+  establish that the prompt is a complete standalone question. Truly
+  incomplete source fragments still raise `QuestionGenerationError`,
+  never a silently shortened or misleading prompt.
 - A generic fail-closed check also rejects leading orphan subjects (“Do you
   think this person ...?”, “Should such a person ...?”), copied codebook
   ellipses, unresolved data-template placeholders, and similar obvious
