@@ -403,3 +403,94 @@ def test_multi_sentence_valid_norc_stem_recovers_when_llm_fails():
     assert result["question_provenance"]["validation_method"] == (
         "native_map_validated_standalone_fallback_v1"
     )
+
+
+
+def test_repeated_native_questions_are_suppressed_even_if_unobserved_or_evicted():
+    from human_study.policy import choose_next_item, initial_rng
+    from human_study.question_identity import question_family
+
+    seen = ("discaffw", "racerank1", "racdif5x", "amcit", "cctv")
+    # No observed coordinates: simulate answers that did NOT map to the
+    # selected target (or coordinates evicted from bounded model state).
+    candidates = [
+        "discaffm", "fehire", "affrmact", "racerank2", "racecen3",
+        "racdif1", "racdif5", "amcitizn", "uscitzn", "cctv", "natsci",
+    ]
+
+    class FakeAdapter:
+        def webapp_candidates(self, state, config, exclusions):
+            assert not state
+            return {v: ["yes", "no"] for v in candidates if v not in exclusions}
+
+        def webapp_scores(self, state, choices):
+            assert list(choices) == ["natsci"], list(choices)
+            return SimpleNamespace(
+                summary=[{"variable": "natsci", "expected_delta": 0.2,
+                          "delta_modal": 0.1}],
+                rows=[{"variable": "natsci", "answer": "yes",
+                       "conditional_probability": 0.5}],
+            )
+
+    state = SimpleNamespace(
+        asked_ids=seen, observed_state={},
+        reserved_outcome_ids=(), excluded_ids=(),
+    )
+    cfg = SimpleNamespace(candidate_mode="native_webapp",
+                          push_response_mode="draw", llm_model="gpt-4.1-mini")
+    pick = choose_next_item(state, "right", set(), initial_rng(19), cfg, FakeAdapter())
+    assert pick["variable"] == "natsci"
+    assert pick["eligible_ids"] == ["natsci"]
+    assert question_family("racdif5x") == question_family("racdif1")
+    assert question_family("discaffw") == question_family("fehire")
+    assert question_family("racopen") != question_family("spkrac")
+
+
+@pytest.mark.parametrize("variable", [
+    "racerank1", "racerank2", "racerank3",
+    "racecen1", "racecen2", "racecen3",
+    "racopen", "racopenv", "racopennv",
+    "affrmact", "fejobaff", "fehire", "discaffw",
+    "discaffwv", "discaffwnv", "discaffm", "discaff",
+    "amcit", "amcitizn", "citizen", "uscitzn",
+    "cctv", "polattak", "polattaky",
+])
+def test_repaired_race_hiring_citizenship_surveillance_sources_are_complete(variable):
+    contract = context_for(variable)
+    assert contract, variable
+    assert validates_standalone(contract.source), variable
+    assert validates_wording(variable, contract.source), variable
+    assert "{" not in contract.source and "…" not in contract.source
+
+
+def test_race_question_rejects_missing_options_and_uses_full_source(monkeypatch):
+    import dtag_core
+
+    monkeypatch.setattr(
+        dtag_core, "llm_craft_survey_question",
+        lambda *_args, **_kwargs:
+        "Which of these racial identities do you identify with second most strongly?",
+    )
+    item = SimpleNamespace(
+        item_id="racerank2",
+        original_wording="After {RACERANK1}, which of these races do you identify most with?",
+        source_text_incomplete=True,
+        choices=(SimpleNamespace(native_value="White", display_label="White"),
+                 SimpleNamespace(native_value="Black", display_label="Black")),
+    )
+    rendered = fake_llm().generate(item)
+    text = rendered["displayed_wording"]
+    assert rendered["question_provenance"]["fallback"] is True
+    assert "second" in text and "White" in text
+    assert "Black or African American" in text
+    assert "Filipino" in text and "Hispanic" in text
+    assert "Guamanian or Chamorro" in text
+    assert "{" not in text
+
+
+def test_surveillance_source_names_actor_action_location_and_right():
+    source = context_for("cctv").source
+    for term in ("government", "video surveillance", "public areas",
+                 "definitely should", "probably should", "should not"):
+        assert term in source.lower()
+    assert not validates_wording("cctv", "Should video surveillance be allowed?")
