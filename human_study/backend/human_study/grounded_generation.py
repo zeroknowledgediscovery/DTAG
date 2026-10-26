@@ -113,10 +113,19 @@ def has_unresolved_choice_reference(text, source, choices):
     opts = clean_answers(choices)
     if not opts:
         return True
-    # "such a person" requires a named subject; it is never saved by a
-    # simple native answer alphabet.
-    if re.search(r"\b(?:such a person|this person|the above|the previous question)\b", text, re.I):
+    # A later "such a person" is valid if a preceding sentence introduced
+    # that person. Do not reject genuine source-complete NORC vignettes.
+    if re.search(r"\b(?:the above|the previous question)\b", text, re.I):
         return True
+    pronoun = re.search(r"\b(?:such a person|this person)\b", text, re.I)
+    if pronoun:
+        preceding = text[:pronoun.start()]
+        if not re.search(
+            r"\b(?:clergyman|woman|man|individual|citizen|person|"
+            r"applicant|worker|adult|speaker|employee|religious leader)\b",
+            preceding, re.I,
+        ):
+            return True
     return bool(validate_complete_choices(text, text, choices))
 
 
