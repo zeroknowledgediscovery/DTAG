@@ -10,7 +10,9 @@ from .study_config import digest
 FIELDS = {
     "participants": ["session_id", "policy", "receipt", "completed_at", "baseline_index", "final_index",
                      "prolific_pid", "prolific_study_id", "prolific_session_id", "completion_code", "code_category",
-                     "attention_failed", "fast_answers", "short_answers", "duplicate_answers", "source_object"],
+                     "attention_failed", "policy_eligible_attention_failed", "fast_answers",
+                     "short_answers", "duplicate_answers", "quality_review_score",
+                     "quality_review_priority", "quality_review_signals", "source_object"],
     "baseline": ["session_id", "question_id", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "timestamp", "source_object"],
     "questions": ["session_id", "question_id", "phase", "step", "variable", "original_wording", "displayed_wording", "choices", "presented_at", "source_object"],
     "answers": ["session_id", "question_id", "phase", "variable", "answer", "raw_text_response", "response_interpretation", "missing_reason", "response_elapsed_seconds", "timestamp", "attention_passed", "response_quality", "source_object"],
@@ -34,7 +36,12 @@ def export_records(finals, out):
             **{k: prolific.get(k) for k in ("prolific_pid", "prolific_study_id", "prolific_session_id")},
             "completion_code": reward.get("completion_code"), "code_category": reward.get("code_category"),
             "attention_failed": (reward.get("attention") or {}).get("failed"),
+            "policy_eligible_attention_failed": (reward.get("attention") or {}).get("policy_eligible_failed"),
             **{k: (reward.get("quality") or {}).get(k) for k in ("fast_answers", "short_answers", "duplicate_answers")},
+            "quality_review_score": ((reward.get("quality") or {}).get("review") or {}).get("score"),
+            "quality_review_priority": ((reward.get("quality") or {}).get("review") or {}).get("priority"),
+            "quality_review_signals": ";".join(
+                ((reward.get("quality") or {}).get("review") or {}).get("signals") or []),
             "source_object": name})
         provenance.append({"session_id": sid, "config_hash": final["config_hash"], "provenance": final["provenance"], "source_object": name})
         for q in final["questions"]:
