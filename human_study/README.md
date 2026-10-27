@@ -150,7 +150,8 @@ export GCP_SERVICE=dtag-human-pilot
 export DTAG_REVIEWED_CONFIG=human_study/config/study.prolific.production.yaml
 export DTAG_DEPLOY_ENV=production
 export DTAG_PUBLIC_ORIGIN="$(gcloud run services describe "$GCP_SERVICE" --project "$GCP_PROJECT" --region "$GCP_REGION" --format='value(status.url)')"
-# Also export the EXISTING DTAG_GCS_BUCKET and DTAG_FIRESTORE_DATABASE values.
+# The script reuses DTAG_GCS_BUCKET from the currently deployed Cloud Run service.
+# DTAG_FIRESTORE_DATABASE defaults to (default); retain the existing override if used.
 # Check the script's dry-run output before allowing any live participants.
 bash human_study/deploy/deploy.sh
 # After review, run: bash human_study/deploy/deploy.sh --execute
