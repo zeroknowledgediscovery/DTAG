@@ -39,13 +39,13 @@ ethics_disallowed_ids: []
 prolific:
   required: true
   completion_url: https://app.prolific.com/submissions/complete
-  completion_code: CHANGEME01
+  completion_code: CTNOTZ30
   # Flagged for potential rejection only under the preregistered IMC and
   # objective-gibberish rules. Configure as Prolific's Failed attention checks
   # path with MANUAL review, not automatic rejection.
-  review_code: CHANGEME02
+  review_code: C1J2754F
   # In Prolific configure the No consent completion path as 'Request a return'.
-  no_consent_code: CHANGEME03
+  no_consent_code: CKZYKTSS
   attention_fail_threshold: 3  # >=3 valid IMCs, or >=2 with independently documented obvious gibberish
   reward: USD 8.00 for the 20-minute follow-up (confirm in Prolific)
 quality:
