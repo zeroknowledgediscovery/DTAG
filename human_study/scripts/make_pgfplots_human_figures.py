@@ -32,7 +32,7 @@ import math
 from pathlib import Path
 from statistics import mean
 
-GROUPS = ("Left", "Right (original + follow-up)", "Neutral", "Random")
+GROUPS = ("Left", "Right", "Neutral", "Random")
 LABELS = dict(zip(GROUPS, ("Left", "Right", "Neutral", "Random")))
 COLORS = {"Left": "blue", "Right": "red", "Neutral": "black!75", "Random": "green!50!black"}
 
