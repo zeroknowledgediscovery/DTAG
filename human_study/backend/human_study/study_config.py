@@ -123,6 +123,9 @@ class StudyConfig(StrictModel):
     consent_text: str = "This internal pilot asks categorical survey questions. Participation is voluntary. You may stop at any time. Answers are stored for research. This receipt is not a payment code."
     initial_steps: int | None = Field(default=None, ge=1, le=40)
     intervention_steps: int = Field(default=20, ge=1, le=40)
+    # Optional follow-up cohort: one fixed adaptive-selection policy for every
+    # enrolled participant. None preserves the original four-arm randomization.
+    fixed_arm: Literal["right", "left", "neutral", "random"] | None = None
     # V2: generated questions; free-text answers classified to native categories.
     question_mode: Literal["legacy", "llm_required"] = "legacy"
     response_mode: Literal["click", "free_text_llm", "free_text_multi"] = "click"
