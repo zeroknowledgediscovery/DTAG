@@ -24,20 +24,39 @@ case "$DTAG_DEPLOY_ENV" in
     ;;
 esac
 
-# Google Cloud documents the deterministic service URL as service-projectNumber.region.run.app.
-# A new service has no status.url until its first deployment, so discover projectNumber.
-PROJECT_NUMBER="$(gcloud projects describe "$GCP_PROJECT" --format='value(projectNumber)')"
-[[ "$PROJECT_NUMBER" =~ ^[0-9]+$ ]] || { echo "Cannot determine GCP project number" >&2; exit 1; }
-export DTAG_PUBLIC_ORIGIN="https://$GCP_SERVICE-$PROJECT_NUMBER.$GCP_REGION.run.app"
+# The application's POST CSRF checks require the exact browser-visible origin.
+# Cloud Run exposes multiple valid URL formats, and status.url can use the
+# project-specific hash rather than the project-number hostname.
+# Reuse this service's actual URL when already deployed.
+CURRENT_URL="$(gcloud run services describe "$GCP_SERVICE" --project "$GCP_PROJECT" --region "$GCP_REGION" --format='value(status.url)' 2>/dev/null || true)"
+if [[ -n "$CURRENT_URL" ]]; then
+  export DTAG_PUBLIC_ORIGIN="$CURRENT_URL"
+else
+  # On first creation use the existing pilot's canonical status.url hostname.
+  # Both Cloud Run services are in the same GCP project and region.
+  PILOT_URL="$(gcloud run services describe "$GCP_SETTINGS_SERVICE" --project "$GCP_PROJECT" --region "$GCP_REGION" --format='value(status.url)')"
+  case "$PILOT_URL" in
+    "https://$GCP_SETTINGS_SERVICE-"*)
+      export DTAG_PUBLIC_ORIGIN="https://$GCP_SERVICE-${PILOT_URL#https://$GCP_SETTINGS_SERVICE-}"
+      ;;
+    *)
+      echo "Cannot derive a first-deployment origin from existing pilot URL: $PILOT_URL" >&2
+      exit 1
+      ;;
+  esac
+fi
 
 bash "$ROOT/human_study/deploy/deploy.sh" "$@"
 
 if [[ "${1:-}" == --execute ]]; then
   ACTUAL_URL="$(gcloud run services describe "$GCP_SERVICE" --project "$GCP_PROJECT" --region "$GCP_REGION" --format='value(status.url)')"
+  [[ "$ACTUAL_URL" == https://* ]] || { echo "Cloud Run returned no HTTPS service URL" >&2; exit 1; }
   if [[ "$ACTUAL_URL" != "$DTAG_PUBLIC_ORIGIN" ]]; then
-    echo "ERROR: deployed service URL $ACTUAL_URL differs from configured origin $DTAG_PUBLIC_ORIGIN" >&2
-    echo "Resolve the origin mismatch before sending participants to this service." >&2
-    exit 1
+    # Unexpected hostname divergence: fix the live origin without rebuilding.
+    # Cloud Run creates one small configuration revision to correct CSRF checks.
+    echo "Cloud Run selected $ACTUAL_URL; correcting DTAG_PUBLIC_ORIGIN on the deployed service."
+    gcloud run services update "$GCP_SERVICE" --project "$GCP_PROJECT" --region "$GCP_REGION" \
+      --update-env-vars "DTAG_PUBLIC_ORIGIN=$ACTUAL_URL"
   fi
   printf 'Right-only DTAG URL: %s/study\n' "$ACTUAL_URL"
   if [[ "$DTAG_DEPLOY_ENV" == staging ]]; then
