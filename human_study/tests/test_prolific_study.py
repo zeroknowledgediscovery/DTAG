@@ -306,6 +306,40 @@ def test_prolific_completion_codes_are_distinct(instrument, adapter):
             StudyConfig.model_validate(invalid)
 
 
+def test_paid_prolific_configuration_matches_registered_codes_and_science():
+    """Guard the frozen paid instrument against mismatched codes and protocol drift."""
+    live = StudyConfig.load(ROOT / "human_study/config/study.prolific.production.yaml")
+    template = StudyConfig.load(ROOT / "human_study/config/study.prolific.example.yaml")
+    test = StudyConfig.load(ROOT / "human_study/config/study.prolific.gcptest.yaml")
+
+    assert live.reviewed and live.prolific.required
+    assert live.study_id == "prolific-v3-human-opinions-2026-10"
+    assert live.study_id not in (template.study_id, test.study_id)
+    assert live.prolific.completion_code == "CTNOTZ30"
+    assert live.prolific.no_consent_code == "CKZYKTSS"
+    assert live.prolific.review_code == "C1J2754F"
+    assert len({live.prolific.completion_code, live.prolific.no_consent_code,
+                live.prolific.review_code}) == 3
+    assert live.prolific.reward == "USD 8.00 for the 20-minute paid study"
+    assert "20 minutes" in live.consent_text
+    assert "test" not in live.consent_text.lower()
+    assert len(live.bank("baseline")) == 6
+    assert live.intervention_steps == 20 and len(live.attention_checks) == 5
+    assert [live.attention_position(x) for x in live.attention_checks] == [3, 8, 13, 18, 24]
+
+    # Identical model, optimizer, category support, question constructs and IMCs.
+    for field in ("model_key", "model_release", "question_mode", "response_mode",
+                  "candidate_mode", "push_response_mode", "llm_model",
+                  "prompt_version", "max_response_assignments",
+                  "minimum_mapping_confidence", "excluded_ids",
+                  "ethics_disallowed_ids", "quality", "attention_checks"):
+        assert getattr(live, field) == getattr(template, field)
+    def measure(c):
+        return [(i.item_id, i.phase, i.original_wording,
+                 [(v.native_value, v.display_label) for v in i.choices]) for i in c.items]
+    assert measure(live) == measure(template)
+
+
 def test_gcp_test_uses_three_opaque_codes(instrument, adapter):
     test = StudyConfig.load(ROOT / "human_study/config/study.prolific.gcptest.yaml")
     assert test.prolific.required is False
