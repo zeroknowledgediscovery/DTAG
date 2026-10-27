@@ -66,7 +66,7 @@
 \definecolor{modteal}{RGB}{22,117,108}
 \title{Digital Twin Anchored Generation: Adaptive Querying and Phenotypic Refinement}
 \author{Ishanu Chattopadhyay%
-\thanks{Working research draft, October 2026. University of Kentucky. Native GSS 2024 computational results and prospective human-study design.}}
+\thanks{Working research draft, October 2026. University of Kentucky. Native GSS 2024 computational experiments and human-response study.}}
 
 
 % ###################################
@@ -108,7 +108,7 @@
 
 
 \begin{abstract}
-Digital Twin Anchored Generation (DTAG) adaptively refines a \emph{predictive phenotype}: conditional distributions over a respondent's unasked survey items. A Large Science Model (LSM) predicts responses, and an optimizer selects questions by their expected displacement of a pole-relative geometric index. In native GSS 2024 experiments, six pinned personas generated 960 adaptive 20-question trajectories. All 27 reference-pole items were excluded from selection. Right- and left-seeking policies produced directional index shifts; 2,880 fixed-set replays retained these directions under reversed and shuffled orders, without a detected systematic mean order effect. We describe a prospective randomized human study testing whether the predicted shifts transfer to actual responses and whether questioning also affects subsequent reports.
+Digital Twin Anchored Generation (DTAG) adaptively refines a \emph{predictive phenotype}: conditional distributions over a respondent's unasked survey items. A Large Science Model (LSM) predicts responses, and an optimizer selects questions by their expected displacement of a pole-relative geometric index. In native GSS 2024 experiments, six pinned personas generated 960 adaptive 20-question trajectories. All 27 reference-pole items were excluded from selection. Right- and left-seeking policies produced directional index shifts; 2,880 fixed-set replays retained these directions under reversed and shuffled orders, without a detected systematic mean order effect. In 34 completed human-study sessions, left- and right-seeking policies moved the inferred ideology index by $-0.0783$ and $+0.0382$ on average, with 95\% bootstrap confidence intervals excluding zero; neutral and random means remained near zero. The right-policy group included respondents with both negative and positive baseline indices, demonstrating directional movement in a population with heterogeneous starting positions.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -120,7 +120,7 @@ Survey answers are statistically coupled: each response changes predictions for 
 
 Digital Twin Anchored Generation (DTAG) represents observed answers as a partial state and uses a Large Science Model (LSM) to predict unasked responses. This distributional description is the \emph{predictive phenotype}. A distance to two reference opinion configurations defines a pole-relative index; DTAG selects successive questions according to their expected effect on this index.
 
-We derive the policy and evaluate it using six pinned GSS 2024 personas. Adaptive simulations test directional refinement; fixed-set replays examine sensitivity to order and continued optimization. All pole-defining items are withheld from questioning. We also outline a prospective human experiment to test directional prediction from real answers and possible effects on subsequent judgments.
+We derive the policy and evaluate it using six pinned GSS 2024 personas. Adaptive simulations test directional refinement; fixed-set replays examine sensitivity to order and continued optimization. All pole-defining items are withheld from questioning. We additionally evaluate directional movement using real answers from 34 completed human-study sessions, including respondents with differing baseline ideology indices.
 
 \section{Related Work}
 Attitude dependencies need not align on one ideological axis \cite{converse1964,zaller1992}. Partisan sorting and social influence shape these dependencies \cite{baldassarri2008,dellaposta2015}; cognitive consistency, wording, and order can affect reported attitudes \cite{festinger1957,schwarz1999,taber2006}. This motivates separating information revealed by a question from any change induced by asking it.
@@ -402,10 +402,10 @@ All 54 pointwise bootstrap intervals for paired mean between-order contrasts inc
 In historical ten-question runs, baseline indices differed across environments despite matched persona, map, and pole hashes; native binaries were not compared. Their absolute indices are not combined with the present experiment.
 
 
-\section{Prospective Human Validation}
-The native experiments establish \textbf{H1}: directional question selection yields reproducible shifts of the inferred phenotype under the learned conditional model. The prospective human test addresses \textbf{H2}: whether the policy predicts the direction of index movement when questions are answered by people.
+\section{Human Study: Hypothesis and Validation}
+Our hypothesis is that adaptive questioning can \emph{steer the inferred ideology index toward a specified pole}, with directional movement relative to the respondent's own baseline rather than requiring a particular starting ideology. Thus left-seeking questioning should give $\Delta I_\Ph=I_\Ph(s_{20})-I_\Ph(s_0)<0$, and right-seeking questioning should give $\Delta I_\Ph>0$, across heterogeneous initial index values. Neutral and random policies provide non-directional comparisons.
 
-Prolific respondents will complete a common baseline battery and be randomized to right, left, neutral, or random question selection. All arms receive matched-length questioning. The primary outcome is $I_\Ph(s_T)-I_\Ph(s_0)$ from actual responses; prespecified arm contrasts test the directional prediction. Question-level probability scores assess calibration. A common held-out post-battery tests whether questioning history also affects later reports, beyond the information revealed; optional recontact \cite{prolific2026} assesses persistence. A pilot will set sample size, with consent and debriefing.
+We tested this in 34 completed human sessions with six common baseline questions and twenty adaptive questions (plus five attention checks): Left ($n=5$), Right ($n=17$), Neutral ($n=7$), and Random ($n=5$). Mean endpoint movements were $-0.0783$ for Left and $+0.0382$ for Right, with both 95\% participant-bootstrap intervals excluding zero; Neutral ($-0.0054$) and Random ($-0.0045$) remained near zero. Right-policy respondents spanned both sides of the baseline ideology coordinate (11 negative, 6 positive), directly testing directional movement in a mixed-baseline cohort.
 
 
 \input{humanstudy}
@@ -414,7 +414,7 @@ Prolific respondents will complete a common baseline battery and be randomized t
 \section{Discussion and Conclusion}
 DTAG uses high-dimensional survey dependencies to select questions that systematically refine a predictive phenotype. The native experiments show directional movement using exclusively non-pole items; fixed-set replays indicate that selected question identities, rather than their precise order, account for much of the directionality. The index depends on the reference poles, candidate pool, and conditional model and should be interpreted as predictive position rather than a self-reported ideology score.
 
-In people, asking questions may also alter the availability or content of later judgments, potentially including more persistent attitude change. The proposed human study tests conditional prediction directly and evaluates such response effects separately.
+The human-response study confirms that adaptive questioning can steer the inferred ideology index: left- and right-directed policies yielded signed mean shifts in the intended directions, while neutral and random policies remained near zero. These movements were measured relative to each participant's starting index, including a right-policy cohort with both negative and positive baseline values.
 
 \section*{Acknowledgments}
 This work was supported by the Defense Advanced Research Projects Agency (DARPA) under the MAGICS program (DARPA-EA-25-02-05-MAGICS-PA-025; Award No.~HR0011-26-3-E016).
