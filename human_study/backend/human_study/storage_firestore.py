@@ -107,7 +107,7 @@ class FirestoreRepository:
     def has_prior_prolific_consent(self, pid, study_ids, sid_key):
         """Check prior enrollments by deterministic HMAC ID; no full-study scan."""
         for old_study_id in study_ids:
-            key = hmac.new(sid_key, f"{old_study_id}\\x00{pid}".encode(),
+            key = hmac.new(sid_key, f"{old_study_id}\x00{pid}".encode(),
                            hashlib.sha256).hexdigest()[:32]
             doc = (self.client.collection("studies").document(old_study_id)
                    .collection("sessions").document(key).get())
