@@ -1,0 +1,6 @@
+PWD /home/ishanu/Dropbox/ZED/Research/DTAG/tex
+INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+INPUT /home/ishanu/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT DTAG_human_pilot_results.tex
+OUTPUT DTAG_human_pilot_results.log
