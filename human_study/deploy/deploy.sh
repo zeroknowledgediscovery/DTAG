@@ -36,9 +36,11 @@ git archive HEAD | tar -x -C "$CONTEXT"
 # This explicit file contains reviewed instrument text/options only, never participant data or secrets.
 cp "$DTAG_REVIEWED_CONFIG" "$CONTEXT/human_study/config/reviewed.yaml"
 run gcloud builds submit "$CONTEXT" --config "$ROOT/human_study/deploy/cloudbuild.yaml" --project "$GCP_PROJECT" --region "$REGION" --service-account "projects/$GCP_PROJECT/serviceAccounts/dtag-build@$GCP_PROJECT.iam.gserviceaccount.com" --substitutions "_IMAGE=$IMAGE,_COMMIT=$COMMIT"
+# Provision for ~10 simultaneous Prolific participants: up to 12 in-flight HTTP requests
+# across 6 instances, with 3 warm instances to reduce native-model cold starts.
 run gcloud run deploy "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --image "$IMAGE" \
  --service-account "dtag-study@$GCP_PROJECT.iam.gserviceaccount.com" --allow-unauthenticated \
- --cpu 2 --memory 4Gi --concurrency 2 --max-instances 2 --min-instances 0 --timeout 300 \
+ --cpu 2 --memory 4Gi --concurrency 2 --max-instances 6 --min-instances 3 --timeout 300 \
  --set-env-vars "DTAG_ENV=staging,DTAG_STUDY_CONFIG=/src/human_study/config/reviewed.yaml,DTAG_GCS_BUCKET=$DTAG_GCS_BUCKET,DTAG_LLM_BACKEND=openai,DTAG_FIRESTORE_DATABASE=${DTAG_FIRESTORE_DATABASE:-(default)},DTAG_PUBLIC_ORIGIN=$DTAG_PUBLIC_ORIGIN" \
  --set-secrets 'DTAG_COOKIE_SECRET=dtag-cookie-secret:latest,OPENAI_API_KEY=dtag-openai-api-key:latest'
 run gcloud run services describe "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format 'value(status.url)'
