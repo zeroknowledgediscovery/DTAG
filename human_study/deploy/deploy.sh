@@ -9,12 +9,17 @@ EXECUTE=0
 : "${DTAG_PUBLIC_ORIGIN:?Set the public HTTPS origin from gcloud run services describe dtag-human-pilot --format='value(status.url)'}"
 REGION="${GCP_REGION:-us-east1}"
 SERVICE="${GCP_SERVICE:-dtag-human-pilot}"
+# Default to staging to avoid accidentally recruiting against a test deployment.
+# Explicitly pass DTAG_DEPLOY_ENV=production for the paid Prolific instrument.
+DEPLOY_ENV="${DTAG_DEPLOY_ENV:-staging}"
+case "$DEPLOY_ENV" in staging|production) ;; *) echo "DTAG_DEPLOY_ENV must be staging or production" >&2; exit 1 ;; esac
 ROOT="$(git rev-parse --show-toplevel)"
 COMMIT="$(git rev-parse HEAD)"
 IMAGE="$REGION-docker.pkg.dev/$GCP_PROJECT/dtag-study/pilot:$COMMIT"
 [[ -z "$(git status --porcelain)" ]] || { printf '%s\n' 'Commit/review source changes before building.' >&2; exit 1; }
 test -f "$DTAG_REVIEWED_CONFIG"
-PYTHONPATH="$ROOT/human_study/backend:$ROOT/scripts:$ROOT" python - "$DTAG_REVIEWED_CONFIG" <<'PY'
+DTAG_DEPLOY_ENV="$DEPLOY_ENV" PYTHONPATH="$ROOT/human_study/backend:$ROOT/scripts:$ROOT" python - "$DTAG_REVIEWED_CONFIG" <<'PY'
+import os
 import sys
 from human_study.study_config import StudyConfig
 c = StudyConfig.load(sys.argv[1])
@@ -27,6 +32,9 @@ if c.response_mode in ('free_text_llm', 'free_text_multi') and not 1 <= len(c.ba
 if c.prolific and any((x or '').upper().startswith('CHANGEME')
                       for x in (c.prolific.completion_code, c.prolific.review_code, c.prolific.no_consent_code)):
     raise SystemExit('Replace the placeholder Prolific completion codes')
+if os.environ['DTAG_DEPLOY_ENV'] == 'production':
+    if not c.prolific or not c.prolific.required:
+        raise SystemExit('Production Prolific deployment requires PROLIFIC_PID linkage')
 PY
 run() { if [[ "$EXECUTE" == 1 ]]; then "$@"; else printf '%q ' "$@"; printf '\n'; fi; }
 # Archive only tracked source: no local responses, caches, .env files or Git credentials.
@@ -41,6 +49,6 @@ run gcloud builds submit "$CONTEXT" --config "$ROOT/human_study/deploy/cloudbuil
 run gcloud run deploy "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --image "$IMAGE" \
  --service-account "dtag-study@$GCP_PROJECT.iam.gserviceaccount.com" --allow-unauthenticated \
  --cpu 2 --memory 4Gi --concurrency 2 --max-instances 6 --min-instances 3 --timeout 300 \
- --set-env-vars "DTAG_ENV=staging,DTAG_STUDY_CONFIG=/src/human_study/config/reviewed.yaml,DTAG_GCS_BUCKET=$DTAG_GCS_BUCKET,DTAG_LLM_BACKEND=openai,DTAG_FIRESTORE_DATABASE=${DTAG_FIRESTORE_DATABASE:-(default)},DTAG_PUBLIC_ORIGIN=$DTAG_PUBLIC_ORIGIN" \
+ --set-env-vars "DTAG_ENV=$DEPLOY_ENV,DTAG_STUDY_CONFIG=/src/human_study/config/reviewed.yaml,DTAG_GCS_BUCKET=$DTAG_GCS_BUCKET,DTAG_LLM_BACKEND=openai,DTAG_FIRESTORE_DATABASE=${DTAG_FIRESTORE_DATABASE:-(default)},DTAG_PUBLIC_ORIGIN=$DTAG_PUBLIC_ORIGIN" \
  --set-secrets 'DTAG_COOKIE_SECRET=dtag-cookie-secret:latest,OPENAI_API_KEY=dtag-openai-api-key:latest'
 run gcloud run services describe "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format 'value(status.url)'
