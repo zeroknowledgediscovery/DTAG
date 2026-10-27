@@ -6,6 +6,8 @@ are explicitly local/test only, and can be reused across service instances in te
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
+import hmac
 from dataclasses import dataclass
 from threading import RLock
 from typing import Protocol
@@ -64,6 +66,17 @@ class MemoryRepository:
             new["revision"] = 0 if revision is None else revision + 1
             self.sessions[sid] = Snapshot(new, records)
             return True
+
+    def has_prior_prolific_consent(self, pid, study_ids, sid_key):
+        with self.lock:
+            for old_study_id in study_ids:
+                key = hmac.new(
+                    sid_key, f"{old_study_id}\x00{pid}".encode(), hashlib.sha256
+                ).hexdigest()[:32]
+                prior = self.sessions.get(key)
+                if prior and prior.session.get("consent_accepted") is True:
+                    return True
+        return False
 
     def probe(self):
         return None
