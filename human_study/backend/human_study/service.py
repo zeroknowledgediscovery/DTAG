@@ -277,12 +277,17 @@ class StudyService:
         import numpy as np
         bit = np.random.PCG64(seed)
         before = bit.state
-        policy = POLICIES[int(np.random.Generator(bit).integers(4))]
+        # Keep the historical four-arm randomized assignment unchanged unless
+        # the instrument explicitly fixes a single policy for a new cohort.
+        policy = (self.config.fixed_arm if self.config.fixed_arm is not None
+                  else POLICIES[int(np.random.Generator(bit).integers(len(POLICIES)))])
+        scheme = (f"fixed-single-arm-{policy}-v1" if self.config.fixed_arm is not None
+                  else "unstratified-uniform-four-arm-v1")
         s.update(state=self._compact(state), policy=policy, assignment_rng_state=bit.state,
                  selection_rng_state=initial_rng(secrets.randbits(128)), phase="intervention", phase_index=0)
         self._export(s, writes, "assignment", {"kind": "randomization", "timestamp": now(),
                       "policy": policy, "rng_before": before, "rng_after": bit.state,
-                      "scheme": "unstratified-uniform-four-arm-v1", "baseline_index": state.baseline_index,
+                      "scheme": scheme, "baseline_index": state.baseline_index,
                       "initial_observed_state": dict(state.initial_observed_state)})
 
     def _item_for(self, variable, phase):
