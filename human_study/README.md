@@ -17,6 +17,7 @@ software**, not yet a validated Prolific or production protocol.
 | Document | Purpose |
 | --- | --- |
 | [Architecture and scientific invariants](docs/ARCHITECTURE.md) | Native LSM selection, multi-variable human observations, provenance, Firestore/GCS, and attention scheduling |
+| [Cloud Run app URLs and deployment runbook](deploy/README.md) | Four-arm and right-only URLs, staging/production commands, origin mismatch repair, and Prolific follow-up setup |
 | [Automated testing and staging validation](docs/TESTING.md) | One-command regression, native-model audit, simulated and live LLM test boundaries |
 | [Final-study plan and production readiness](docs/PRODUCTION_READINESS.md) | Required changes for ~6 baseline + 20 adaptive + 5 attention questions, science review, and remaining acceptance gates |
 | [V3 implementation details](V3_IMPLEMENTATION.md) | Schema, question generation, evidence-backed mapping and historical development notes |
@@ -109,71 +110,27 @@ python3 human_study/scripts/audit_completed_session.py /path/to/final.json
 
 ### Separate right-only DTAG follow-up — independent Cloud Run URL
 
-The original four-arm Prolific app and instrument are **not changed** by this
-follow-up. The new service will be named **`dtag-human-right`** in the
-existing `pkcsaas-01` project. Its expected deterministic URL is
-`https://dtag-human-right-gp7m2nymma-ue.a.run.app/study` (confirmed from the
-Cloud Run status.url reported on first deployment). It shares the existing private
-bucket and Firestore database, but has **separate versioned study IDs**:
+The fixed-right follow-up runs at
+**https://dtag-human-right-gp7m2nymma-ue.a.run.app/study**
+as a separate Cloud Run service (`dtag-human-right`). The original four-arm
+app at **https://dtag-human-pilot-gp7m2nymma-ue.a.run.app/study** remains
+unchanged. Both use the existing private GCS bucket and Firestore database,
+but the `study_id` values and archived sessions are separate.
 
-- **Test only:** `prolific-v3-right-followup-staging-2026-10`
-  (`study.prolific.right_followup.staging.yaml`, `reviewed: true` only for
-  internal software testing, no Prolific PID or payment required)
-- **New paid study, NOT YET DEPLOYABLE:**
-  `prolific-v3-right-followup-2026-10`
-  (`study.prolific.right_followup.yaml`, `reviewed: false` until investigator
-  approval and three NEW completion codes from the NEW Prolific study)
+The right-only app has been **deployed in staging/test mode**. Its production
+configuration is a **non-deployable draft** until new Prolific codes, prior-study
+participant exclusions, and investigator review are complete. The deployment
+wrapper now uses the canonical URL from Cloud Run's `status.url` for the
+application's exact-origin API checks; the first deployment may need the
+one-time `DTAG_PUBLIC_ORIGIN` repair documented in the runbook.
 
-Both variants retain six baseline questions, twenty adaptive questions, and
-five interleaved attention checks, with the single fixed policy `right`
-following baseline. Assignment events record `fixed-single-arm-right-v1`.
-The existing instrument keeps `fixed_arm: null` and retains random four-arm
-allocation.
-
-To deploy the separate **test** app without affecting the original:
+For the exact deploy, redeploy, smoke-test, origin-repair and paid-study
+commands, see **[Cloud Run app URLs and deployment runbook](deploy/README.md)**.
 
 ```bash
-git switch experiment/prolific-human-study
-git pull --ff-only origin experiment/prolific-human-study
-bash human_study/scripts/check_v3.sh
-bash human_study/deploy/deploy_right_followup.sh            # dry-run
-bash human_study/deploy/deploy_right_followup.sh --execute  # create new service
+# From the repo root, after pulling the experiment branch.
+DTAG_DEPLOY_ENV=staging bash human_study/deploy/deploy_right_followup.sh --execute
 ```
-
-The wrapper automatically reuses the original app's GCS bucket, Firestore
-database and Secret Manager credentials. Staging uses zero minimum instances to
-avoid unnecessary standing costs, and the original service remains untouched.
-The wrapper obtains the project number from GCP and pins the deterministic
-right-only origin before deployment. The post-deployment URL must match.
-
-For **paid** recruitment, first create a separate Prolific study and three
-completion paths; put its new default, failed-attention-check, and no-consent
-codes into `study.prolific.right_followup.yaml`. Confirm the 20-minute consent,
-reward, exclusion criteria and ethics review; set `reviewed: true` and commit.
-Then deploy production to the *same new right-only service*:
-
-```bash
-DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy_right_followup.sh
-DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy_right_followup.sh --execute
-```
-
-In **Prolific -> Recruit participants**, use the **Exclude participants from
-previous studies** filter to exclude the original four-arm DTAG Prolific study
-(including approved, returned, rejected, timed-out or pending submissions).
-This is the primary participant exclusion. For defense in depth, the paid
-right-only configuration also checks the previous study's consented enrollment
-records in the **existing Firestore** database, indexed by the same HMAC
-`PROLIFIC_PID` mapping and same cookie secret, and refuses repeat enrollments.
-Do not clear the old Firestore records before launching this follow-up. A
-participant ID alone is not an authenticated Prolific credential; use the
-platform exclusion filter too. The new study's Prolific URL must include:
-
-```text
-https://dtag-human-right-gp7m2nymma-ue.a.run.app/study?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}
-```
-
-Do not publish the new Prolific study while the right-only service is still in
-staging or before completion codes and prior-participant exclusions are verified.
 
 ### Paid Prolific study (October 2026)
 
