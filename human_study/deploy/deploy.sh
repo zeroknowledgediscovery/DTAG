@@ -26,13 +26,38 @@ raise SystemExit("Existing Cloud Run service has no DTAG_GCS_BUCKET setting")
 ')"
 fi
 : "${DTAG_GCS_BUCKET:?Could not reuse existing Cloud Run archive bucket}"
-: "${DTAG_REVIEWED_CONFIG:?Set a path to the reviewed, native-validated YAML instrument}"
-: "${DTAG_PUBLIC_ORIGIN:?Set the public HTTPS origin from gcloud run services describe dtag-human-pilot --format='value(status.url)'}"
+# Reuse existing service's Firestore database if no override was supplied.
+if [[ -z "${DTAG_FIRESTORE_DATABASE:-}" ]]; then
+  DTAG_FIRESTORE_DATABASE="$(gcloud run services describe "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format=json | python3 -c '
+import json, sys
+service = json.load(sys.stdin)
+template = service.get("spec", {}).get("template", {})
+containers = template.get("spec", {}).get("containers", []) or template.get("containers", [])
+if not containers:
+    containers = service.get("template", {}).get("containers", [])
+for container in containers:
+    for env in container.get("env", []):
+        if env.get("name") == "DTAG_FIRESTORE_DATABASE" and env.get("value"):
+            print(env["value"])
+            sys.exit(0)
+raise SystemExit("Existing Cloud Run service has no DTAG_FIRESTORE_DATABASE setting")
+')"
+fi
 # Default to staging to avoid accidentally recruiting against a test deployment.
 # Explicitly pass DTAG_DEPLOY_ENV=production for the paid Prolific instrument.
 DEPLOY_ENV="${DTAG_DEPLOY_ENV:-staging}"
 case "$DEPLOY_ENV" in staging|production) ;; *) echo "DTAG_DEPLOY_ENV must be staging or production" >&2; exit 1 ;; esac
 ROOT="$(git rev-parse --show-toplevel)"
+# Use the frozen committed instrument for the selected deployment environment.
+if [[ -z "${DTAG_REVIEWED_CONFIG:-}" ]]; then
+  if [[ "$DEPLOY_ENV" == production ]]; then
+    DTAG_REVIEWED_CONFIG="$ROOT/human_study/config/study.prolific.production.yaml"
+  else
+    DTAG_REVIEWED_CONFIG="$ROOT/human_study/config/study.prolific.gcptest.yaml"
+  fi
+fi
+DTAG_PUBLIC_ORIGIN="${DTAG_PUBLIC_ORIGIN:-$(gcloud run services describe "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format='value(status.url)')}"
+: "${DTAG_PUBLIC_ORIGIN:?Could not read public HTTPS service URL}"
 COMMIT="$(git rev-parse HEAD)"
 IMAGE="$REGION-docker.pkg.dev/$GCP_PROJECT/dtag-study/pilot:$COMMIT"
 [[ -z "$(git status --porcelain)" ]] || { printf '%s\n' 'Commit/review source changes before building.' >&2; exit 1; }
