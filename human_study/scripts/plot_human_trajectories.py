@@ -29,7 +29,7 @@ from pathlib import Path
 BUCKET = "pkcsaas-01-dtag-study-data"
 ORIGINAL = "prolific-v3-human-opinions-2026-10"
 FOLLOWUP = "prolific-v3-right-followup-2026-10"
-GROUPS = ("Left", "Right (original + follow-up)", "Neutral", "Random")
+GROUPS = ("Left", "Right", "Neutral", "Random")
 CI_GROUP_NAMES = {"left": GROUPS[0], "right": GROUPS[1],
                   "neutral": GROUPS[2], "random": GROUPS[3]}
 ANSWER_RE = re.compile(r"questions/[a-f0-9]{32}\.json$")
@@ -115,7 +115,7 @@ def trajectory(study: str, sid: str, data: dict) -> dict | None:
                 values[20], final_index - baseline, rel_tol=1e-6, abs_tol=1e-6):
             raise ValueError(f"Final index mismatch in session {sid}")
     return {"study_id": study, "session_id": sid, "status": status,
-            "group": "Right (original + follow-up)" if arm == "right" else arm.title(),
+            "group": "Right" if arm == "right" else arm.title(),
             "baseline_index": baseline, "values": values}
 
 
