@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
+import hashlib
+import hmac
 
 from google.cloud import firestore
 
@@ -101,6 +103,17 @@ class FirestoreRepository:
             return True
 
         return commit(transaction)
+
+    def has_prior_prolific_consent(self, pid, study_ids, sid_key):
+        """Check prior enrollments by deterministic HMAC ID; no full-study scan."""
+        for old_study_id in study_ids:
+            key = hmac.new(sid_key, f"{old_study_id}\\x00{pid}".encode(),
+                           hashlib.sha256).hexdigest()[:32]
+            doc = (self.client.collection("studies").document(old_study_id)
+                   .collection("sessions").document(key).get())
+            if doc.exists and (doc.to_dict() or {}).get("consent_accepted") is True:
+                return True
+        return False
 
     def probe(self):
         # Fail on absent database or unusable ADC; no participant data returned.
