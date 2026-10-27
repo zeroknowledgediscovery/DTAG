@@ -112,8 +112,8 @@ python3 human_study/scripts/audit_completed_session.py /path/to/final.json
 The original four-arm Prolific app and instrument are **not changed** by this
 follow-up. The new service will be named **`dtag-human-right`** in the
 existing `pkcsaas-01` project. Its expected deterministic URL is
-`https://dtag-human-right-75214764470.us-east1.run.app/study` (verify the
-reported URL after the initial deployment). It shares the existing private
+`https://dtag-human-right-gp7m2nymma-ue.a.run.app/study` (confirmed from the
+Cloud Run status.url reported on first deployment). It shares the existing private
 bucket and Firestore database, but has **separate versioned study IDs**:
 
 - **Test only:** `prolific-v3-right-followup-staging-2026-10`
@@ -169,7 +169,7 @@ participant ID alone is not an authenticated Prolific credential; use the
 platform exclusion filter too. The new study's Prolific URL must include:
 
 ```text
-https://dtag-human-right-75214764470.us-east1.run.app/study?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}
+https://dtag-human-right-gp7m2nymma-ue.a.run.app/study?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}
 ```
 
 Do not publish the new Prolific study while the right-only service is still in
