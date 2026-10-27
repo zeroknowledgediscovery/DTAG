@@ -7,10 +7,12 @@ EXECUTE=0
 GCP_PROJECT="${GCP_PROJECT:-pkcsaas-01}"
 REGION="${GCP_REGION:-us-east1}"
 SERVICE="${GCP_SERVICE:-dtag-human-pilot}"
+# Separate-service deployment can reuse the storage config of an existing app.
+SETTINGS_SERVICE="${GCP_SETTINGS_SERVICE:-$SERVICE}"
 # The active Cloud Run service is the source of truth for the existing archive bucket.
 # No new bucket is created; an explicit DTAG_GCS_BUCKET still overrides discovery.
 if [[ -z "${DTAG_GCS_BUCKET:-}" ]]; then
-  DTAG_GCS_BUCKET="$(gcloud run services describe "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format=json | python3 -c '
+  DTAG_GCS_BUCKET="$(gcloud run services describe "$SETTINGS_SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format=json | python3 -c '
 import json, sys
 service = json.load(sys.stdin)
 template = service.get("spec", {}).get("template", {})
@@ -28,7 +30,7 @@ fi
 : "${DTAG_GCS_BUCKET:?Could not reuse existing Cloud Run archive bucket}"
 # Reuse existing service's Firestore database if no override was supplied.
 if [[ -z "${DTAG_FIRESTORE_DATABASE:-}" ]]; then
-  DTAG_FIRESTORE_DATABASE="$(gcloud run services describe "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format=json | python3 -c '
+  DTAG_FIRESTORE_DATABASE="$(gcloud run services describe "$SETTINGS_SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format=json | python3 -c '
 import json, sys
 service = json.load(sys.stdin)
 template = service.get("spec", {}).get("template", {})
@@ -92,7 +94,7 @@ run gcloud builds submit "$CONTEXT" --config "$ROOT/human_study/deploy/cloudbuil
 # across 6 instances, with 3 warm instances to reduce native-model cold starts.
 run gcloud run deploy "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --image "$IMAGE" \
  --service-account "dtag-study@$GCP_PROJECT.iam.gserviceaccount.com" --allow-unauthenticated \
- --cpu 2 --memory 4Gi --concurrency 2 --max-instances 6 --min-instances 3 --timeout 300 \
+ --cpu 2 --memory 4Gi --concurrency 2 --max-instances 6 --min-instances "${DTAG_MIN_INSTANCES:-3}" --timeout 300 \
  --set-env-vars "DTAG_ENV=$DEPLOY_ENV,DTAG_STUDY_CONFIG=/src/human_study/config/reviewed.yaml,DTAG_GCS_BUCKET=$DTAG_GCS_BUCKET,DTAG_LLM_BACKEND=openai,DTAG_FIRESTORE_DATABASE=${DTAG_FIRESTORE_DATABASE:-(default)},DTAG_PUBLIC_ORIGIN=$DTAG_PUBLIC_ORIGIN" \
  --set-secrets 'DTAG_COOKIE_SECRET=dtag-cookie-secret:latest,OPENAI_API_KEY=dtag-openai-api-key:latest'
 run gcloud run services describe "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format 'value(status.url)'
