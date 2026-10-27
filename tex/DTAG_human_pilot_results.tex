@@ -1,0 +1,155 @@
+% DTAG human-response pilot results (snapshot: 2026-10-27 14:10 UTC).
+% Companion section for tex/DTAG_full_manuscript_20q_colorbar.tex.
+% This file deliberately does not change the main manuscript's prose or hypotheses.
+% Include near the prospective-human-validation section with:
+%   \input{tex/DTAG_human_pilot_results.tex}
+% Compile from the DTAG repository root to resolve the optional plot path.
+% For a figure, run human_study/scripts/make_pgfplots_human_figures.py on
+% experiment/prolific-human-study with --prefix outputs/human_study/dtag_human.
+% Main's pgfplots package must also load the 'statistics' library for box plots.
+
+\section{Exploratory Human-Response Pilot Results}\label{sec:dtag-human-pilot}
+
+\subsection{Protocol and analysis set}
+We evaluated the response-adaptive DTAG interface in a human survey pilot using
+GSS~2024 variables and the fixed LSM/reference-pole configuration. Participants
+answered six common baseline questions in free text, followed by 20 adaptive
+questions selected under a policy and five interleaved attention checks
+(31 question screens in total). Human text was interpreted into accepted native
+survey-variable observations; the pole-relative ideology index
+$I_\Phi(s)$ was recomputed as the observed state was updated. Our measure is
+\begin{equation}
+  \Delta I_\Phi(t)=I_\Phi(s_t)-I_\Phi(s_0), \qquad t=0,\ldots,20,
+  \label{eq:dtag-human-index-change}
+\end{equation}
+where $s_0$ is the post-baseline inferred state and $t$ counts accepted
+adaptive answers. The index is a \emph{model-derived predictive coordinate},
+not an independently measured or validated psychological attitude outcome.
+
+The original study (\texttt{prolific-v3-human-opinions-2026-10}) assigned
+participants to right, left, neutral, and random question-selection policies.
+A separately recruited follow-up (\texttt{prolific-v3-right-followup-2026-10})
+assigned every participant to the right policy; its records are pooled with
+the original right arm for the combined right-policy trajectory and endpoint
+box plot. The cohorts were not mutually randomized against each other.
+
+As of the 27~October~2026 archive snapshot (14:10~UTC), there were
+39 archived sessions: 29 from the original study and 10 from the follow-up.
+Thirty-three had completed all 20 adaptive questions: 24 original and nine
+follow-up. Three further assigned sessions had not completed 20 questions
+(one original right, one original neutral, and one follow-up right), and three
+original sessions had no post-baseline policy assignment. Only completed
+20-question sessions are included in the endpoint statistics in
+Table~\ref{tab:dtag-human-endpoints}; trajectory summaries also include the
+partial assigned sessions through their actual last answered step.
+No intermediate indices are interpolated or carried forward.
+
+\subsection{Twenty-question endpoint movement}
+Table~\ref{tab:dtag-human-endpoints} summarizes signed
+\mbox{$\Delta I_\Phi(20)$} and its magnitude across completed sessions.
+Positive values denote movement toward the index's right pole, rather than
+an assertion of rightward persuasion or changed beliefs.
+
+\begin{table*}[t]
+\centering
+\caption{Observed DTAG pilot outcomes at 20 adaptive answers. Right (pooled)
+combines the original randomized right arm with the separately recruited
+fixed-right follow-up; subgroup rows are provided to show cohort heterogeneity.
+Mean baseline and mean displacement are in units of the fixed pole-relative
+ideology index. Toward-target counts negative displacements for the left
+policy and positive displacements for right; it is not defined for neutral or
+random policies. All quantities are descriptive, based on complete sessions.}
+\label{tab:dtag-human-endpoints}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Policy/cohort & $n$ & Mean $I_\Phi(s_0)$ & Mean $\Delta I_\Phi(20)$ & Mean $|\Delta I_\Phi(20)|$ & Toward target \\
+\midrule
+Left (original) & 5 & $-0.2028$ & $-0.0783$ & $0.0922$ & $4/5$ \\
+Right (original) & 7 & $-0.1555$ & $-0.0129$ & $0.0622$ & $2/7$ \\
+Right (follow-up) & 9 & $-0.0169$ & $+0.0625$ & $0.0763$ & $8/9$ \\
+\textbf{Right (pooled)} & \textbf{16} & $-0.0776$ & $\mathbf{+0.0295}$ & $\mathbf{0.0701}$ & $\mathbf{10/16}$ \\
+Neutral (original) & 7 & $-0.1604$ & $-0.0054$ & $0.0097$ & --- \\
+Random (original) & 5 & $+0.0523$ & $-0.0045$ & $0.0401$ & --- \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The original left policy produced a mean index shift of $-0.0783$,
+with four of five participants shifting in its intended direction.
+The original right-policy group was less consistent ($-0.0129$ on average;
+two of seven positive). In contrast, the fixed-right follow-up yielded a
+mean change of $+0.0625$, with eight of nine complete trajectories ending at
+positive displacement. Pooling both right cohorts gave $+0.0295$ ($10/16$
+positive); the pooled right outcome is less uniform than that of the
+follow-up alone. Mean absolute displacement was $0.0922$ for left,
+$0.0701$ for pooled right, $0.0097$ for neutral, and $0.0401$ for random.
+This pattern is consistent with the directional selection rules producing
+larger changes in the \emph{inferred phenotype} than the neutral rule,
+although control over the sign is imperfect.
+
+\subsection{Stepwise trajectories and uncertainty}
+The accompanying PGFPlots figure is generated from per-question
+\texttt{index\_after} measurements in the immutable GCS archives, rather than
+from interpolation of the endpoint CSV. At each adaptive step, means use
+only participants who have reached that step. Shaded pointwise 95\% intervals
+are constructed by resampling participants' observed trajectories with
+replacement (5{,}000 bootstrap draws), preserving within-participant
+correlation and each participant's observed stopping point. Only the left and
+pooled right confidence bands are shown for clarity; neutral and random
+means appear without shading. The endpoint box plots use all 33 sessions
+with 20 recorded adaptive answers. Figure legends report the simple
+question-20 group counts: Left $n=5$, Right $n=16$, Neutral $n=7$,
+Random $n=5$.
+
+% Optional figure input: this is created by the experiment-branch script.
+% The figure source contains two PGFPlots tikzpictures (trajectory + endpoint boxplot).
+% Loading the statistics library here permits inclusion in the IEEEtran manuscript
+% without changing its preamble. The main manuscript already loads pgfplots.
+\IfFileExists{outputs/human_study/dtag_human_pgfplots.tex}{%
+  \usepgfplotslibrary{statistics}%
+  \begin{figure*}[p]
+    \centering
+    \begin{minipage}{0.88\textwidth}
+      \centering
+      \input{outputs/human_study/dtag_human_pgfplots.tex}%
+    \end{minipage}
+    \caption{Human DTAG trajectories and endpoint distributions. Top:
+      mean post-baseline ideology displacement after each adaptive response
+      for left, pooled right (original plus follow-up), neutral, and random
+      question-selection policies. Pointwise 95\% participant-bootstrap
+      confidence bands appear only around left and pooled right; partial
+      sessions contribute until their last recorded answer. Bottom:
+      observed question-20 endpoint box plots from completed sessions only.
+      Whiskers follow the $1.5\times\mathrm{IQR}$ convention and individual
+      outliers are marked. All changes are in the model-derived pole-relative
+      index; they do not measure independently verified belief change.}
+    \label{fig:dtag-human-trajectories-boxplot}
+  \end{figure*}%
+}{%
+  % Figures are omitted, rather than replaced with fabricated trajectories,
+  % until outputs/human_study/dtag_human_pgfplots.tex has been generated.
+}
+
+\subsection{Interpretation and limitations}
+The most direct observed contrast is between the near-stationary neutral-arm
+index ($-0.0054$ mean endpoint movement) and the larger magnitude of
+movement under both directional policies. The separately recruited
+fixed-right follow-up also demonstrates that positive
+end-of-sequence displacement after 20 adaptive answers is attainable with human answers. Nevertheless,
+the difference between original right ($-0.0129$) and follow-up right
+($+0.0625$) cannot be attributed to the policy alone: the cohorts differ in
+mean baseline index ($-0.1555$ versus $-0.0169$), recruitment wave, and
+potentially other uncontrolled factors. The pooled right-arm endpoint
+confidence interval also overlaps zero, limiting claims of a uniform
+signed effect. The small cell sizes, repeated interim inspection, and
+lack of confirmed independent Prolific-participant deduplication further
+preclude definitive significance claims here.
+
+More fundamentally, the adaptive index changes when participant answers
+supply new conditioning information. Its displacement may therefore
+represent \emph{phenotypic refinement} rather than elicited belief change.
+These pilot observations test question-selection behavior and the stability
+of conditional LSM inference, not the order-dependent causal estimand or
+delayed held-out outcomes described in the manuscript's prospective design.
+Those require a separately randomized, independently measured study.

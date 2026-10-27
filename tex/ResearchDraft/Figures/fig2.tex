@@ -1,0 +1,276 @@
+\noindent\makebox[\textwidth]{%
+  \makebox[.38\textwidth]{\small\bfseries (a) Question identities}%
+  \hfill
+  \makebox[.59\textwidth]{\small\bfseries (b) Fixed-order displacement}%
+}\par\vspace{1mm}
+% Two independent TikZ pictures, side by side. No nested wrappers.
+%\resizebox{\textwidth}{!}{%
+% -------- Figure 2 CSV definitions (one per input table) --------
+\def\DTAGCSVFigureTwoAA{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGCSVFigureTwoAB{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGCSVFigureTwoAC{\DTAGFigureDir/heatmap_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGCSVFigureTwoAD{\DTAGFigureDir/heatmap_cm_rural_alabama_left.csv}
+\def\DTAGCSVFigureTwoAE{\DTAGFigureDir/heatmap_cm_rural_alabama_neutral.csv}
+\def\DTAGCSVFigureTwoAF{\DTAGFigureDir/heatmap_cm_rural_alabama_right.csv}
+\def\DTAGCSVFigureTwoAG{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGCSVFigureTwoAH{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGCSVFigureTwoAI{\DTAGFigureDir/heatmap_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGCSVFigureTwoAJ{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_left.csv}
+\def\DTAGCSVFigureTwoAK{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGCSVFigureTwoAL{\DTAGFigureDir/heatmap_religious_conservative_woman_texas_right.csv}
+\def\DTAGCSVFigureTwoAM{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_left.csv}
+\def\DTAGCSVFigureTwoAN{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGCSVFigureTwoAO{\DTAGFigureDir/heatmap_secular_liberal_man_seattle_right.csv}
+\def\DTAGCSVFigureTwoAP{\DTAGFigureDir/heatmap_wf_new_york_city_left.csv}
+\def\DTAGCSVFigureTwoAQ{\DTAGFigureDir/heatmap_wf_new_york_city_neutral.csv}
+\def\DTAGCSVFigureTwoAR{\DTAGFigureDir/heatmap_wf_new_york_city_right.csv}
+\def\DTAGCSVFigureTwoAS{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_left.csv}
+\def\DTAGCSVFigureTwoAT{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_neutral.csv}
+\def\DTAGCSVFigureTwoAU{\DTAGFigureDir/pub_order_black_churchgoing_woman_atlanta_right.csv}
+\def\DTAGCSVFigureTwoAV{\DTAGFigureDir/pub_order_cm_rural_alabama_left.csv}
+\def\DTAGCSVFigureTwoAW{\DTAGFigureDir/pub_order_cm_rural_alabama_neutral.csv}
+\def\DTAGCSVFigureTwoAX{\DTAGFigureDir/pub_order_cm_rural_alabama_right.csv}
+\def\DTAGCSVFigureTwoAY{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_left.csv}
+\def\DTAGCSVFigureTwoAZ{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_neutral.csv}
+\def\DTAGCSVFigureTwoBA{\DTAGFigureDir/pub_order_hispanic_catholic_man_arizona_right.csv}
+\def\DTAGCSVFigureTwoBB{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_left.csv}
+\def\DTAGCSVFigureTwoBC{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_neutral.csv}
+\def\DTAGCSVFigureTwoBD{\DTAGFigureDir/pub_order_religious_conservative_woman_texas_right.csv}
+\def\DTAGCSVFigureTwoBE{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_left.csv}
+\def\DTAGCSVFigureTwoBF{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_neutral.csv}
+\def\DTAGCSVFigureTwoBG{\DTAGFigureDir/pub_order_secular_liberal_man_seattle_right.csv}
+\def\DTAGCSVFigureTwoBH{\DTAGFigureDir/pub_order_wf_new_york_city_left.csv}
+\def\DTAGCSVFigureTwoBI{\DTAGFigureDir/pub_order_wf_new_york_city_neutral.csv}
+\def\DTAGCSVFigureTwoBJ{\DTAGFigureDir/pub_order_wf_new_york_city_right.csv}
+\begin{tikzpicture}[font=\bf\sffamily\fontsize{9}{9}\selectfont]
+\node[label={90:(a) Question seuences}] (A) at (0,0) {
+\begin{tikzpicture}[anchor=center]
+\tikzpicturedependsonfile{\DTAGMetadataCSV}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAF}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAD}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAE}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAR}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAP}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAQ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAL}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAJ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAK}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAO}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAM}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAN}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAI}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAG}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAH}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAC}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAA}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAB}
+\begin{groupplot}[
+ group style={group size=3 by 6,horizontal sep=.3cm,vertical sep=.3cm},
+ scale only axis,publication axis,
+ width=.9in,height=.9in,xmin=.5,xmax=\DTAGXMax,ymin=.5,ymax=\DTAGYMax,
+ y dir=reverse,axis on top,xtick={1,\DTAGHalfSteps,\DTAGSteps},ytick={1,\DTAGHalfReps,\DTAGReps},
+ xticklabel style={font=\bf\sffamily\fontsize{9}{9}\selectfont},yticklabel style={font=\bf\sffamily\fontsize{9}{9}\selectfont},
+ colormap={questionmap}{
+   rgb255=(178,24,43)
+   rgb255=(239,138,98);
+   rgb255=(253,219,199);
+   rgb255=(247,247,247);
+   rgb255=(209,229,240);
+   rgb255=(103,169,207);
+   rgb255=(33,102,172);
+},
+ point meta min=1,point meta max=\DTAGIdMax
+]
+\nextgroupplot[title={Right push},ylabel={Alabama},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAF};
+\nextgroupplot[title={Left push},yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAD};
+\nextgroupplot[title={Neutral},yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAE};
+\nextgroupplot[ylabel={New York},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAR};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAP};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAQ};
+\nextgroupplot[ylabel={Texas},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAL};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAJ};
+\nextgroupplot[yticklabels={},xticklabels={},
+colorbar,
+colorbar style={
+ at={(1.18,0.5)},anchor=west,height=4in,width=.24cm,
+ title={Question ID},
+ title style={font=\scriptsize\bfseries,text=black,rotate=90, anchor=west},
+ ytick={1,80,\DTAGIdMax},
+ yticklabel style={font=\scriptsize\bfseries,text=black},
+ tick style={draw=black,line width=.8pt},
+ axis line style={draw=black,line width=.9pt},
+ scaled y ticks=false
+}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAK};
+\nextgroupplot[ylabel={Seattle},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAO};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAM};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAN};
+\nextgroupplot[ylabel={Arizona},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAI};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAG};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAH};
+\nextgroupplot[ylabel={Atlanta}%% ,xlabel={Position}
+]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAC};
+\nextgroupplot[yticklabels={},xlabel={Question number}]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAA};
+\nextgroupplot[yticklabels={}%% ,xlabel={Position}
+]
+\addplot[matrix plot*,mesh/cols=\DTAGSteps,point meta=explicit,mark=none,draw=none] table[x=x,y=y,meta=value,col sep=comma]{\DTAGCSVFigureTwoAB};
+\end{groupplot}
+\end{tikzpicture}};%
+\node[anchor=north west,label={90:(b) Question re-ordering effect}] at (A.north east) {
+\begin{tikzpicture}[anchor=center]
+\tikzpicturedependsonfile{\DTAGMetadataCSV}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAX}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAV}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAW}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBJ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBH}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBI}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBD}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBB}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBC}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBG}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBE}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBF}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoBA}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAY}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAZ}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAU}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAS}
+\tikzpicturedependsonfile{\DTAGCSVFigureTwoAT}
+\begin{groupplot}[
+ group style={group size=3 by 6,horizontal sep=.2in,vertical sep=.72cm},
+ publication axis,scale only axis,width=1in,height=.78in,
+ xmin=-\DTAGOrderBound,xmax=\DTAGOrderBound,ymin=.5,ymax=3.5,
+ ytick={1,2,3},yticklabels={Shuffle 2,Shuffle 1,Reverse},
+ %xtick={-.04,-.02,0,.02,.04},
+ xticklabel={\pgfmathprintnumber[fixed,precision=2]{\tick}},
+]
+\nextgroupplot[title={Right-derived},ylabel={Alabama},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAX};
+\nextgroupplot[title={Left-derived},yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAV};
+\nextgroupplot[title={Neutral-derived},yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAW};
+\nextgroupplot[ylabel={New York},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBJ};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBH};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBI};
+\nextgroupplot[ylabel={Texas},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBD};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBB};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBC};
+\nextgroupplot[ylabel={Seattle},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBG};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBE};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBF};
+\nextgroupplot[ylabel={Arizona},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoBA};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAY};
+\nextgroupplot[yticklabels={},xticklabels={}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAZ};
+\nextgroupplot[ylabel={Atlanta},%% xlabel={$I_{20}-I_0$}
+]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAU};
+\nextgroupplot[yticklabels={},xlabel={$I_{20}-I_0$}]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAS};
+\nextgroupplot[yticklabels={}%% ,xlabel={$I_{20}-I_0$}
+]
+\addplot[black!65,line width=.75pt,forget plot] coordinates{(0,.5)(0,3.5)};
+\addplot[black,only marks,mark=*,mark size=2pt,
+ error bars/.cd,x dir=both,x explicit,error bar style={black,line width=.95pt},
+ error mark options={rotate=90,mark size=1.65pt}]
+ table[x=mean,y=y,x error minus=minus,x error plus=plus,col sep=comma]{\DTAGCSVFigureTwoAT};
+\end{groupplot}
+\end{tikzpicture}};%
+\end{tikzpicture}

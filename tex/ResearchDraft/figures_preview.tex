@@ -1,0 +1,37 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=.65in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots,fillbetween}
+\pgfplotsset{compat=1.18}
+\pagestyle{empty}
+\begin{document}
+\begin{center}\Large\bfseries DTAG native publication figure proof\end{center}
+\begin{center}\bfseries Figure A: six-persona policy endpoints and trajectories\end{center}
+\begin{minipage}[t]{.487\textwidth}
+\centering\vspace{0pt}
+\footnotesize\textbf{(a) Final displacements}\par\vspace{1mm}
+\input{../experiments/persona_push/data/figures/fig1_endpoints_pgfplots.tex}
+\end{minipage}\hfill
+\begin{minipage}[t]{.487\textwidth}
+\centering\vspace{0pt}
+\footnotesize\textbf{(b) Question-by-question trajectories}\par\vspace{1mm}
+\input{../experiments/persona_push/data/figures/fig2_trajectories_pgfplots.tex}
+\end{minipage}
+\clearpage
+\noindent\begin{minipage}{\textwidth}
+\centering
+{\Large\bfseries Figure B: all six personas, globally optimized question IDs}\par\vspace{1mm}
+\input{../experiments/persona_push/data/figures/fig3_heatmaps_all_pgfplots.tex}
+\end{minipage}
+\clearpage
+\begin{center}\Large\bfseries Figure C: all six personas, fixed-item order effects\end{center}
+\vspace{1mm}\begin{center}\input{../experiments/persona_push/data/figures/fig4_order_effects_all_pgfplots.tex}\end{center}
+\clearpage
+\begin{center}\Large\bfseries Supplementary comparison: endpoint and movement sign reversal\end{center}
+\vspace{1mm}\begin{center}\input{../experiments/persona_push/data/figures/fig5_sign_reversal_probabilities_pgfplots.tex}\end{center}
+\end{document}
