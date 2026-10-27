@@ -349,9 +349,15 @@ def test_right_only_staging_and_production_draft_are_isolated():
     assert staging.fixed_arm == paid.fixed_arm == "right"
     assert len({original.study_id, staging.study_id, paid.study_id}) == 3
     assert staging.reviewed and not staging.prolific.required
-    assert not paid.reviewed and paid.prolific.required
+    assert paid.prolific.required
     assert paid.exclude_prior_study_ids == (original.study_id,)
-    assert paid.prolific.completion_code.startswith("CHANGEME")
+    if paid.reviewed:
+        # This becomes true after fresh Prolific codes and investigator approval.
+        assert all(not x.startswith("CHANGEME") for x in (
+            paid.prolific.completion_code, paid.prolific.review_code,
+            paid.prolific.no_consent_code))
+    else:
+        assert paid.prolific.completion_code.startswith("CHANGEME")
     assert staging.prolific.completion_code == "SS8S8H33L9"
     assert paid.intervention_steps == staging.intervention_steps == original.intervention_steps == 20
     assert staging.attention_checks == paid.attention_checks == original.attention_checks
