@@ -3,10 +3,13 @@
 
 Merges the original right arm with the right-only follow-up. Each incomplete
 session contributes only its actual answered adaptive steps (no padding).
-Uses pointwise participant-resampled bootstrap 95% intervals.
+Uses pointwise participant-resampled bootstrap 95% intervals, shaded only
+for Left and combined Right by default (all four means are always plotted).
 
 Run from repo root, with authenticated gcloud, numpy and matplotlib:
   python3 human_study/scripts/plot_human_trajectories.py --output dtag_human_trajectories.png
+  python3 human_study/scripts/plot_human_trajectories.py --ci-groups all
+  python3 human_study/scripts/plot_human_trajectories.py --ci-groups none
 
 Saves PNG, PDF, stepwise summary CSV, and anonymized participant-step CSV.
 Reads private GCS objects only. Does not export free-text or Prolific IDs.
@@ -27,6 +30,8 @@ BUCKET = "pkcsaas-01-dtag-study-data"
 ORIGINAL = "prolific-v3-human-opinions-2026-10"
 FOLLOWUP = "prolific-v3-right-followup-2026-10"
 GROUPS = ("Left", "Right (original + follow-up)", "Neutral", "Random")
+CI_GROUP_NAMES = {"left": GROUPS[0], "right": GROUPS[1],
+                  "neutral": GROUPS[2], "random": GROUPS[3]}
 ANSWER_RE = re.compile(r"questions/[a-f0-9]{32}\.json$")
 
 
@@ -185,7 +190,22 @@ def summarize(sessions: list[dict], boots: int = 5000, seed: int = 20261027,
     return out
 
 
-def write_outputs(sessions: list[dict], series: list[dict], output: Path) -> None:
+def parse_ci_groups(value: str) -> frozenset[str]:
+    """Parse 'left,right' (default), 'all', 'none', or another arm subset."""
+    value = value.strip().lower()
+    if value == "all":
+        return frozenset(GROUPS)
+    if value == "none":
+        return frozenset()
+    names = [part.strip() for part in value.split(",")]
+    if not names or any(name not in CI_GROUP_NAMES for name in names):
+        raise argparse.ArgumentTypeError(
+            "CI groups must be comma-separated left,right,neutral,random; or all/none")
+    return frozenset(CI_GROUP_NAMES[name] for name in names)
+
+
+def write_outputs(sessions: list[dict], series: list[dict], output: Path,
+                  ci_groups: frozenset[str] = frozenset(GROUPS[:2])) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -197,8 +217,9 @@ def write_outputs(sessions: list[dict], series: list[dict], output: Path) -> Non
     for item in series:
         label = f'{item["group"]} (n={item["counts"][0]} → {item["counts"][20]})'
         line, = ax.plot(xs, item["mean"], linewidth=2, label=label)
-        ax.fill_between(xs, item["low"], item["high"],
-                        color=line.get_color(), alpha=0.15, linewidth=0)
+        if item["group"] in ci_groups:
+            ax.fill_between(xs, item["low"], item["high"],
+                            color=line.get_color(), alpha=0.15, linewidth=0)
     ax.axhline(0, color="0.4", linewidth=0.8, linestyle="--")
     ax.set(xlim=(0, 20), xlabel="Adaptive question number",
            ylabel="Inferred ideology change from baseline",
@@ -236,6 +257,10 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=Path("dtag_human_trajectories.png"))
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--bootstrap", type=int, default=5000)
+    parser.add_argument("--ci-groups", type=parse_ci_groups,
+                        default=parse_ci_groups("left,right"), metavar="ARMS",
+                        help="Arms with shaded 95%% CI: left,right (default), all, none, "
+                             "or any comma-separated subset")
     parser.add_argument("--complete-only", action="store_true",
                         help="Use only completed 20-question sessions")
     args = parser.parse_args()
@@ -243,14 +268,16 @@ def main() -> None:
         parser.error("workers must be 1..32 and bootstrap >= 100")
     sessions = load_sessions(args.bucket, workers=args.workers)
     series = summarize(sessions, boots=args.bootstrap, complete_only=args.complete_only)
-    write_outputs(sessions, series, args.output)
+    write_outputs(sessions, series, args.output, ci_groups=args.ci_groups)
     print(f"Saved: {args.output}, {args.output.with_suffix('.pdf')}, "
           f"{args.output.stem}_summary.csv, {args.output.stem}_individual.csv")
     for item in series:
         print(f'{item["group"]}: n={item["counts"][0]} → {item["counts"][20]}, '
               f'mean Δ20={item["mean"][20]:+.5f}; '
               f'95% bootstrap CI [{item["low"][20]:+.5f}, {item["high"][20]:+.5f}]')
-    print("95% pointwise participant-bootstrap bands. Partial participants included through their last answered step.")
+    shaded = ", ".join(group for group in GROUPS if group in args.ci_groups) or "none"
+    print(f"95% pointwise participant-bootstrap bands shown for: {shaded}.")
+    print("All arm means and summary CSV intervals retained; partial sessions contribute observed steps only.")
 
 
 if __name__ == "__main__":
