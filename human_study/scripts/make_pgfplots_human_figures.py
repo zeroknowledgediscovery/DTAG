@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Curate DTAG human study data and write reproducible PGFPlots figures.
+r"""Curate DTAG human study data and write reproducible PGFPlots figures.
 
 The source is the same private GCS human-study archive used by
 plot_human_trajectories.py. Right combines original and follow-up participants.
