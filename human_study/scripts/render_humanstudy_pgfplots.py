@@ -48,7 +48,7 @@ def helper_module():
 
 
 def arm_of(name: str) -> str:
-    """Current loader has an internal combined-right label; display only Right."""
+    """Normalize stored right-policy records to the single Right display group."""
     if name.strip().lower().startswith("right"):
         return "Right"
     if name in ("Left", "Neutral", "Random"):
