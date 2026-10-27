@@ -340,6 +340,63 @@ def test_paid_prolific_configuration_matches_registered_codes_and_science():
     assert measure(live) == measure(template)
 
 
+def test_right_only_staging_and_production_draft_are_isolated():
+    original = StudyConfig.load(ROOT / "human_study/config/study.prolific.production.yaml")
+    staging = StudyConfig.load(ROOT / "human_study/config/study.prolific.right_followup.staging.yaml")
+    paid = StudyConfig.load(ROOT / "human_study/config/study.prolific.right_followup.yaml")
+
+    assert original.fixed_arm is None  # old four-arm scientific design unchanged
+    assert staging.fixed_arm == paid.fixed_arm == "right"
+    assert len({original.study_id, staging.study_id, paid.study_id}) == 3
+    assert staging.reviewed and not staging.prolific.required
+    assert not paid.reviewed and paid.prolific.required
+    assert paid.exclude_prior_study_ids == (original.study_id,)
+    assert paid.prolific.completion_code.startswith("CHANGEME")
+    assert staging.prolific.completion_code == "SS8S8H33L9"
+    assert paid.intervention_steps == staging.intervention_steps == original.intervention_steps == 20
+    assert staging.attention_checks == paid.attention_checks == original.attention_checks
+    for item in (staging, paid):
+        assert [(x.item_id, x.original_wording) for x in item.items] == [
+            (x.item_id, x.original_wording) for x in original.items]
+
+
+def test_fixed_right_assignment_and_prior_participant_exclusion(instrument, adapter):
+    # Use the same cross-study repository and cookie-secret HMAC as production.
+    repo = MemoryRepository()
+    archive = MemoryArchive()
+    config = prolific_config(instrument, adapter)
+    old = StudyService(config, adapter, MultiFixtureLLM(), repo, archive, sid_key="z" * 40)
+    previous = old.start(prolific={"prolific_pid": PID})
+    old.consent(previous["session_id"], True, previous["session_version"])
+
+    payload = config.model_dump(mode="json")
+    payload.update(study_id="right-followup-fixture", fixed_arm="right",
+                   exclude_prior_study_ids=[config.study_id])
+    follow = StudyConfig.model_validate(payload)
+    service = StudyService(follow, adapter, MultiFixtureLLM(), repo, archive, sid_key="z" * 40)
+
+    with pytest.raises(ValueError, match="already participated"):
+        service.start(prolific={"prolific_pid": PID})
+    with pytest.raises(ValueError, match="already participated"):
+        service.start(prolific={"prolific_pid": PID}, fresh=True)
+
+    fresh = service.start(prolific={"prolific_pid": "NEWPERSON123"})
+    view = service.consent(fresh["session_id"], True, fresh["session_version"])
+    count = 0
+    while view["phase"] in ("baseline", "attention"):
+        count += 1
+        answer = ("cobalt violet cedar" if view["phase"] == "attention"
+                  else substantive(count))
+        view = service.answer(fresh["session_id"], request(view, answer))["current"]
+    snap = repo.read(fresh["session_id"])
+    assert snap.session["policy"] == "right"
+    assignment_name = (f"studies/{follow.study_id}/sessions/"
+                       f"{fresh['session_id']}/events/assignment.json")
+    assignment = json.loads(archive.objects[assignment_name])
+    assert assignment["policy"] == "right"
+    assert assignment["scheme"] == "fixed-single-arm-right-v1"
+
+
 def test_gcp_test_uses_three_opaque_codes(instrument, adapter):
     test = StudyConfig.load(ROOT / "human_study/config/study.prolific.gcptest.yaml")
     assert test.prolific.required is False
