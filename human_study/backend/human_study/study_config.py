@@ -126,6 +126,8 @@ class StudyConfig(StrictModel):
     # Optional follow-up cohort: one fixed adaptive-selection policy for every
     # enrolled participant. None preserves the original four-arm randomization.
     fixed_arm: Literal["right", "left", "neutral", "random"] | None = None
+    # Previous DTAG study namespaces used to block repeat Prolific participants.
+    exclude_prior_study_ids: tuple[str, ...] = ()
     # V2: generated questions; free-text answers classified to native categories.
     question_mode: Literal["legacy", "llm_required"] = "legacy"
     response_mode: Literal["click", "free_text_llm", "free_text_multi"] = "click"
@@ -148,6 +150,13 @@ class StudyConfig(StrictModel):
 
     @model_validator(mode="after")
     def unique_instrument(self):
+        if self.exclude_prior_study_ids:
+            if self.prolific is None or not self.prolific.required:
+                raise ValueError("prior-study exclusion requires mandatory Prolific IDs")
+            if self.study_id in self.exclude_prior_study_ids or len(set(self.exclude_prior_study_ids)) != len(self.exclude_prior_study_ids):
+                raise ValueError("prior-study exclusions must be distinct and exclude the current study")
+            if any(not re.fullmatch(r"[a-zA-Z0-9_-]{1,60}", x) for x in self.exclude_prior_study_ids):
+                raise ValueError("invalid excluded prior study ID")
         ids = [i.item_id for i in self.items]
         control_ids = [c.check_id for c in self.attention_checks]
         if len(control_ids) != len(set(control_ids)) or set(control_ids) & set(ids):
