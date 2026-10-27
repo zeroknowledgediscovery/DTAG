@@ -7,7 +7,7 @@ schema_version: '1'
 study_id: prolific-v3-right-followup-2026-10
 model_key: gss/gss_2024
 model_release: v0.2.1
-reviewed: false
+reviewed: true
 consent_version: prolific-v3-right-followup-2026-10-v1
 consent_text: >-
   This research study asks for your views on social and political topics.
