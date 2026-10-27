@@ -144,17 +144,12 @@ Google Cloud bucket/database and runtime secrets. `deploy.sh` defaults to
 staging, so explicitly set `DTAG_DEPLOY_ENV=production` for paid recruitment:
 
 ```bash
-export GCP_PROJECT=pkcsaas-01
-export GCP_REGION=us-east1
-export GCP_SERVICE=dtag-human-pilot
-export DTAG_REVIEWED_CONFIG=human_study/config/study.prolific.production.yaml
-export DTAG_DEPLOY_ENV=production
-export DTAG_PUBLIC_ORIGIN="$(gcloud run services describe "$GCP_SERVICE" --project "$GCP_PROJECT" --region "$GCP_REGION" --format='value(status.url)')"
-# The script reuses DTAG_GCS_BUCKET from the currently deployed Cloud Run service.
-# DTAG_FIRESTORE_DATABASE defaults to (default); retain the existing override if used.
-# Check the script's dry-run output before allowing any live participants.
-bash human_study/deploy/deploy.sh
-# After review, run: bash human_study/deploy/deploy.sh --execute
+# The script reuses the existing pkcsaas-01 Cloud Run service, archive bucket,
+# Firestore database and HTTPS origin automatically. No new storage is created.
+# Paid study: select production explicitly (default is still test/staging).
+DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy.sh
+# After review, deploy the frozen paid instrument:
+DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy.sh --execute
 ```
 
 The script builds and deploys a new Cloud Run revision with 2 vCPUs/4 GiB
