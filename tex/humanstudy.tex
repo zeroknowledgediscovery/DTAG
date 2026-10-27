@@ -40,12 +40,28 @@ any waits between responses. All table entries are derived directly
 from immutable completed-session records rather than estimated from
 the number of questions.
 
-\IfFileExists{Figures/humanstudy_table.tex}{%
-  \input{Figures/humanstudy_table.tex}%
-}{%
-  \PackageWarning{humanstudy}{Run render_humanstudy_pgfplots.py to generate
-  the actual participant/timing table; none has been fabricated}%
+\begin{table*}[!t]
+\centering
+\caption{Prospective human study summary by adaptive question-selection policy$^\star$.
 }
+\label{tab:humanstudy-participants}
+\small
+\setlength{\tabcolsep}{11pt}
+\begin{tabular}{lrrrr}
+\toprule
+Policy & Completed $n$ & Baseline $I_\Phi<0$ & Baseline $I_\Phi>0$ & Mean completion (min) \\
+\midrule
+Left & 5 & 5 & 0 & 36.7 \\
+Right & 17 & 11 & 6 & 34.3 \\
+Neutral & 7 & 6 & 1 & 30.8 \\
+Random & 5 & 2 & 3 & 35.3 \\
+\bottomrule
+\end{tabular}
+\flushleft $^\star$Completion time is wall-clock time from session creation to finalization,
+including baseline questions, adaptive questions, and attention checks.
+Baseline signs refer to the LSM-derived ideology coordinate before
+adaptive questioning.
+\end{table*}
 
 \subsection{Question-by-question trajectories and endpoints}
 Figure~\ref{fig:humanstudy-trajectory-endpoints}(a) plots mean
@@ -67,12 +83,32 @@ change relative to baseline. The legend lists only the four policy
 names, and participant counts appear separately in
 Table~\ref{tab:humanstudy-participants}.
 
-\IfFileExists{Figures/humanstudy_table.tex}{%
-  \input{Figures/humanstudy_figures.tex}%
-}{%
-  \PackageWarning{humanstudy}{Run render_humanstudy_pgfplots.py to generate
-  actual human trajectory and endpoint data before plotting}%
-}
+
+
+\begin{figure*}[!ht]
+\centering
+\tikzsetnextfilename{humanstudy}
+\tikzexternalenable
+\input{Figures/humanstudy_figures}
+
+%\includegraphics[width=\textwidth]{Figures/External/humanstudy}
+
+\vspace{-10pt}
+\caption{\textbf{Prospective Human study response trajectories and endpoints.}
+(a) The mean change from baseline in the LSM-derived ideology coordinate as
+adaptive questions are answered, with pointwise 95\% participant-bootstrap
+confidence intervals shaded only for Left and Right. Partial sessions contribute
+only through their last observed step. (b) Endpoint means and 95\% bootstrap
+confidence intervals for all four policies, calculated from participants with
+all 20 adaptive answers. The intervals are descriptive, not a measure of
+persistent attitude change. Arm sample sizes are reported in
+Table~\ref{tab:humanstudy-participants}.}
+\label{fig:humanstudy-trajectory-endpoints}
+
+
+\end{figure*}
+
+
 
 \subsection{Interpretation}
 The directional policies are intended to drive movement in the
