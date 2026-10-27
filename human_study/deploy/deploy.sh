@@ -3,12 +3,31 @@
 set -euo pipefail
 EXECUTE=0
 [[ "${1:-}" != --execute ]] || EXECUTE=1
-: "${GCP_PROJECT:?Set an isolated project ID}"
-: "${DTAG_GCS_BUCKET:?Set private bucket name}"
-: "${DTAG_REVIEWED_CONFIG:?Set a path to the reviewed, native-validated YAML instrument}"
-: "${DTAG_PUBLIC_ORIGIN:?Set the public HTTPS origin from gcloud run services describe dtag-human-pilot --format='value(status.url)'}"
+# Reuse the already provisioned pilot project's Cloud Run configuration.
+GCP_PROJECT="${GCP_PROJECT:-pkcsaas-01}"
 REGION="${GCP_REGION:-us-east1}"
 SERVICE="${GCP_SERVICE:-dtag-human-pilot}"
+# The active Cloud Run service is the source of truth for the existing archive bucket.
+# No new bucket is created; an explicit DTAG_GCS_BUCKET still overrides discovery.
+if [[ -z "${DTAG_GCS_BUCKET:-}" ]]; then
+  DTAG_GCS_BUCKET="$(gcloud run services describe "$SERVICE" --project "$GCP_PROJECT" --region "$REGION" --format=json | python3 -c '
+import json, sys
+service = json.load(sys.stdin)
+template = service.get("spec", {}).get("template", {})
+containers = template.get("spec", {}).get("containers", []) or template.get("containers", [])
+if not containers:
+    containers = service.get("template", {}).get("containers", [])
+for container in containers:
+    for env in container.get("env", []):
+        if env.get("name") == "DTAG_GCS_BUCKET" and env.get("value"):
+            print(env["value"])
+            sys.exit(0)
+raise SystemExit("Existing Cloud Run service has no DTAG_GCS_BUCKET setting")
+')"
+fi
+: "${DTAG_GCS_BUCKET:?Could not reuse existing Cloud Run archive bucket}"
+: "${DTAG_REVIEWED_CONFIG:?Set a path to the reviewed, native-validated YAML instrument}"
+: "${DTAG_PUBLIC_ORIGIN:?Set the public HTTPS origin from gcloud run services describe dtag-human-pilot --format='value(status.url)'}"
 # Default to staging to avoid accidentally recruiting against a test deployment.
 # Explicitly pass DTAG_DEPLOY_ENV=production for the paid Prolific instrument.
 DEPLOY_ENV="${DTAG_DEPLOY_ENV:-staging}"
