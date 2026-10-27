@@ -107,6 +107,63 @@ export PYTHONPATH="$PWD/human_study/backend:$PWD/scripts:$PWD"
 python3 human_study/scripts/audit_completed_session.py /path/to/final.json
 ```
 
+### Paid Prolific study (October 2026)
+
+The paid 20-person first wave has a committed production instrument at
+[`config/study.prolific.production.yaml`](config/study.prolific.production.yaml).
+It is **not** the `study.prolific.gcptest.yaml` test instrument. Its
+`study_id` (`prolific-v3-human-opinions-2026-10`) separates live recruitment
+sessions and archived answers from all test sessions. The consent text states
+an **estimated 20 minutes** and describes the AI-generated questions and AI
+interpretation of free-text responses; the advertised Prolific reward is **USD 8**.
+
+Configured completion paths in the Prolific study (verify the Prolific-side
+processing action before publishing):
+
+| Outcome | Completion code | Prolific-side action |
+| --- | --- | --- |
+| Completed normally | `CTNOTZ30` | Manually review |
+| No consent | `CKZYKTSS` | Request a return |
+| Meets conservative failed-attention review criteria | `C1J2754F` | Manual review; **no automatic rejection** |
+
+For this production configuration, `prolific.required: true`; a participant
+must arrive with Prolific identifiers. Configure **URL parameters** in Prolific
+and set the study link to:
+
+```text
+https://dtag-human-pilot-gp7m2nymma-ue.a.run.app/study?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}
+```
+
+A plain service URL without a `PROLIFIC_PID` no longer starts a participant
+session when the production instrument is active. Preview using Prolific's
+participant flow; do not test with an invented paid participant ID. The
+`/study` and `/` paths serve the same participant interface.
+
+Deploy the committed production instrument using the **existing, verified**
+Google Cloud bucket/database and runtime secrets. `deploy.sh` defaults to
+staging, so explicitly set `DTAG_DEPLOY_ENV=production` for paid recruitment:
+
+```bash
+export GCP_PROJECT=pkcsaas-01
+export GCP_REGION=us-east1
+export GCP_SERVICE=dtag-human-pilot
+export DTAG_REVIEWED_CONFIG=human_study/config/study.prolific.production.yaml
+export DTAG_DEPLOY_ENV=production
+export DTAG_PUBLIC_ORIGIN="$(gcloud run services describe "$GCP_SERVICE" --project "$GCP_PROJECT" --region "$GCP_REGION" --format='value(status.url)')"
+# Also export the EXISTING DTAG_GCS_BUCKET and DTAG_FIRESTORE_DATABASE values.
+# Check the script's dry-run output before allowing any live participants.
+bash human_study/deploy/deploy.sh
+# After review, run: bash human_study/deploy/deploy.sh --execute
+```
+
+The script builds and deploys a new Cloud Run revision with 2 vCPUs/4 GiB
+per instance, concurrency 2, min instances 3 and max instances 6. A deployment
+changes the active instrument for this shared service URL; never redeploy
+while participants are in progress. Before recruitment, verify the production
+consent text, code return paths, ID linkage, model readiness, native/LLM
+performance, data archiving, and ten-participant concurrency. This repository
+change does **not** itself deploy the paid study or authorize recruitment.
+
 ### Prolific deployment ([config/study.prolific.example.yaml](config/study.prolific.example.yaml))
 
 The Prolific configuration is **6 baseline + 20 adaptive + 5 interleaved
