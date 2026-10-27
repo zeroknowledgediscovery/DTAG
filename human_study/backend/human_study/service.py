@@ -158,6 +158,10 @@ class StudyService:
                 return self.current(sid)
         if self.prolific_required and not pid:
             raise ValueError("Please open this study using the link provided on Prolific.")
+        if pid and self.config.exclude_prior_study_ids:
+            # Fail closed if the durable enrollment check is unavailable.
+            if self.repo.has_prior_prolific_consent(pid, self.config.exclude_prior_study_ids, self.sid_key):
+                raise ValueError("You already participated in an earlier DTAG study and cannot take this follow-up.")
         if pid and self.config.prolific is not None and not fresh:
             sid = self.prolific_sid(pid)
             try:
