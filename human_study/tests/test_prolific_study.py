@@ -418,6 +418,9 @@ def test_left_only_staging_and_paid_draft_are_isolated():
     assert staging.reviewed and not staging.prolific.required
     assert paid.reviewed and paid.prolific.required
     assert paid.exclude_prior_study_ids == (original.study_id, right.study_id)
+    assert paid.consent_version == "prolific-v3-left-followup-2026-10-v2"
+    assert "25 minutes" in paid.consent_text
+    assert paid.prolific.reward == "USD 10.00 for the 25-minute left-only study"
     assert (paid.prolific.completion_code, paid.prolific.review_code,
             paid.prolific.no_consent_code) == ("CTNOTZ30", "C1J2754F", "CKZYKTSS")
     assert staging.intervention_steps == paid.intervention_steps == original.intervention_steps == 20
