@@ -125,8 +125,8 @@ DTAG_DEPLOY_ENV=staging bash human_study/deploy/deploy_left_followup.sh --execut
 
 For deployment, smoke checks, paid Prolific setup, and the eventual canonical
 URL, see **[Cloud Run app URLs and deployment runbook](deploy/README.md)**.
-The paid left-only YAML remains non-deployable until new Prolific codes and
-scientific approval are recorded.
+The paid left-only YAML uses the three confirmed completion codes for the
+existing Prolific study and is ready for the production deployment command.
 
 ### Separate right-only DTAG follow-up — independent Cloud Run URL
 
