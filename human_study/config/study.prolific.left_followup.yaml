@@ -7,7 +7,7 @@ study_id: prolific-v3-left-followup-2026-10
 model_key: gss/gss_2024
 model_release: v0.2.1
 reviewed: true
-consent_version: prolific-v3-left-followup-2026-10-v1
+consent_version: prolific-v3-left-followup-2026-10-v2
 consent_text: >-
   This research study asks for your views on social and political topics.
   Questions are written by an AI system, one at a time; please answer each in
@@ -15,7 +15,7 @@ consent_text: >-
   to an AI service to interpret them and are stored for research together with
   your Prolific ID. Do not include names, contact details or other identifying
   information. The study contains a few attention checks; please read every
-  question carefully. The estimated completion time is 20 minutes. Participation is voluntary
+  question carefully. The estimated completion time is 25 minutes. Participation is voluntary
   and you may stop at any time by closing this page. When you finish you will
   receive a Prolific completion code.
 initial_steps: 6
@@ -47,7 +47,7 @@ prolific:
   # In Prolific configure the No consent completion path as 'Request a return'.
   no_consent_code: CKZYKTSS
   attention_fail_threshold: 3  # >=3 valid IMCs, or >=2 with independently documented obvious gibberish
-  reward: USD 8.00 for the 20-minute left-only study
+  reward: USD 10.00 for the 25-minute left-only study
 quality:
   fast_seconds: 4.0
   short_words: 3
