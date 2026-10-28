@@ -118,7 +118,8 @@ def main():
     if args.study and not re.fullmatch(r"[A-Za-z0-9_-]{1,60}", args.study):
         ap.error("invalid --study value")
 
-    prefix = f"gs://{args.bucket}/studies/"
+    prefix = (f"gs://{args.bucket}/studies/{args.study}/sessions/"
+              if args.study else f"gs://{args.bucket}/studies/")
     try:
         listings = gs("ls", "--recursive", prefix).splitlines()
     except RuntimeError as exc:
@@ -163,6 +164,25 @@ def main():
             writer.writeheader()
             writer.writerows({field: row[field] for field in fields} for row in rows)
         print(f"\nSaved CSV: {args.csv}")
+    import statistics
+    directed = [row for row in rows
+                if row["arm"] == "left" and row["adaptive_answers"] > 0
+                and row["change_from_baseline"] is not None]
+    if directed:
+        print("\nObserved LEFT-arm movement (includes partial sessions):")
+        for label, cohort in [
+            ("All with >=1 adaptive answer", directed),
+            ("Partial (1-19 adaptive)", [r for r in directed if r["adaptive_answers"] < 20]),
+            ("Full 20 adaptive answers", [r for r in directed if r["adaptive_answers"] >= 20]),
+        ]:
+            vals = [r["change_from_baseline"] for r in cohort]
+            if not vals:
+                continue
+            print(f"  {label}: n={len(vals)}, mean Δ={statistics.fmean(vals):+.5f}, "
+                  f"median Δ={statistics.median(vals):+.5f}, "
+                  f"left={sum(v < -1e-10 for v in vals)}, "
+                  f"right={sum(v > 1e-10 for v in vals)}, "
+                  f"unchanged={sum(abs(v) <= 1e-10 for v in vals)}")
     print(f"\nReported {len(rows)} sessions. Δ = latest ideology − baseline ideology.")
     print("GCS-only: sessions with no archived objects (Firestore-only) are not included.")
     return 0
