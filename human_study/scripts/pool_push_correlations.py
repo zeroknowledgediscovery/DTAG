@@ -4,14 +4,14 @@
 Read-only: the only cloud actions are gcloud storage ls/cat. Only complete
 20-adaptive-question sessions contribute; partial sessions are excluded from
 endpoint correlations. Original left and later fixed-left are pooled into ONE
-left group. Original right is ONE right group (optional further right CSV).
+left group. Original right and right-only paid follow-up are ONE right group.
 
 Run from the repository root:
     python3 -u human_study/scripts/pool_push_correlations.py
 
 Supply prior local CSVs to avoid re-reading their GCS archives:
     python3 -u human_study/scripts/pool_push_correlations.py \
-      --original-csv original_sessions.csv --left-csv left_sessions.csv
+      --original-csv original_sessions.csv --left-csv left_sessions.csv --right-csv right_sessions.csv
 """
 from __future__ import annotations
 
@@ -27,6 +27,7 @@ import sys
 
 STUDY_ORIGINAL = "prolific-v3-human-opinions-2026-10"
 STUDY_LEFT = "prolific-v3-left-followup-2026-10"
+STUDY_RIGHT = "prolific-v3-right-followup-2026-10"
 BUCKET = "pkcsaas-01-dtag-study-data"
 
 
@@ -140,14 +141,15 @@ def main():
     p.add_argument("--bucket", default=BUCKET)
     p.add_argument("--original-csv", help="Use original four-arm exported session CSV")
     p.add_argument("--left-csv", help="Use left follow-up exported session CSV")
-    p.add_argument("--right-csv", help="Optional *paid* right-only follow-up CSV")
+    p.add_argument("--right-csv", help="Use right-only follow-up session CSV")
     args = p.parse_args()
 
     original = (read_csv(args.original_csv, {"left", "right"})
                 if args.original_csv else archive_rows(STUDY_ORIGINAL, args.bucket))
     new_left = (read_csv(args.left_csv, {"left"})
                 if args.left_csv else archive_rows(STUDY_LEFT, args.bucket))
-    extra_right = read_csv(args.right_csv, {"right"}) if args.right_csv else []
+    extra_right = (read_csv(args.right_csv, {"right"})
+                   if args.right_csv else archive_rows(STUDY_RIGHT, args.bucket))
 
     # Exclude duplicate session records, never count a person twice in a study.
     unique = {}
@@ -160,7 +162,7 @@ def main():
     all_rows = list(unique.values())
     by_arm = {arm: [r for r in all_rows if r[2] == arm] for arm in ("left", "right")}
 
-    print("\\nPooled DTAG human endpoints: original + left follow-up, no separate left cohorts")
+    print("\\nPooled DTAG human endpoints: original + left follow-up + right follow-up")
     print("Completed 20-adaptive-answer sessions only; no partial-index imputation.")
     summarize("ALL LEFT PUSH (pooled)", by_arm["left"])
     summarize("ALL RIGHT PUSH", by_arm["right"])
