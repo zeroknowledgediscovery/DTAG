@@ -416,12 +416,10 @@ def test_left_only_staging_and_paid_draft_are_isolated():
     assert staging.fixed_arm == paid.fixed_arm == "left"
     assert len({original.study_id, right.study_id, staging.study_id, paid.study_id}) == 4
     assert staging.reviewed and not staging.prolific.required
-    assert not paid.reviewed and paid.prolific.required
+    assert paid.reviewed and paid.prolific.required
     assert paid.exclude_prior_study_ids == (original.study_id, right.study_id)
-    assert all(x.startswith("CHANGEME") for x in (
-        paid.prolific.completion_code, paid.prolific.review_code,
-        paid.prolific.no_consent_code
-    ))
+    assert (paid.prolific.completion_code, paid.prolific.review_code,
+            paid.prolific.no_consent_code) == ("CTNOTZ30", "C1J2754F", "CKZYKTSS")
     assert staging.intervention_steps == paid.intervention_steps == original.intervention_steps == 20
     assert staging.initial_steps == paid.initial_steps == original.initial_steps == 6
     assert staging.attention_checks == paid.attention_checks == original.attention_checks
