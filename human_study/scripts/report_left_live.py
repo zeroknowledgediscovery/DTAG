@@ -146,7 +146,7 @@ def summarize(rows, trajectories):
         print("\nMatched adaptive-question horizons (only participants with that step):")
         for step in (1, 3, 5, 10, 15, 20):
             vals = [trace[step - 1] for trace in trajectories.values()
-                    if len(trace) >= step]
+                    if (step - 1) in trace]
             print(f"  step {step:2d}: {describe(vals)}")
         print("\nIMPORTANT: Partial samples have varying follow-up lengths and are")
         print("not a randomized control comparison. Do not interpret a positive")
@@ -162,8 +162,9 @@ def main():
     p.add_argument("--project", default="pkcsaas-01")
     p.add_argument("--database", default="dtag-human-pilot")
     p.add_argument("--study", default="prolific-v3-left-followup-2026-10")
-    p.add_argument("--trajectories", action="store_true",
-                   help="fetch per-question index results for matched progress steps")
+    p.add_argument("--no-trajectories", dest="trajectories", action="store_false",
+                   help="fast session-header report without per-question trajectory reads")
+    p.set_defaults(trajectories=True)
     args = p.parse_args()
     access_token = token()
     root = ("https://firestore.googleapis.com/v1/projects/"
@@ -204,20 +205,19 @@ def main():
             qdocs = list_docs(qurl, access_token,
                               ("status", "phase", "step", "ordinal",
                                "index_result.index_after"))
-            values = []
+            values = {}
             for qdoc in qdocs:
                 q = fields(qdoc)
                 if q.get("phase") == "intervention" and q.get("status") == "answered":
                     val = numeric((q.get("index_result") or {}).get("index_after"))
                     if val is not None:
-                        values.append((q.get("step", q.get("ordinal", 0)), val - baseline))
-            # 'step' is phase-local, exactly 0..19; sort before matched horizons.
-            values.sort(key=lambda row: row[0])
-            trace = [d for _, d in values]
-            if len(trace) != n:
-                print(f"WARNING: {sid[:8]} progress={n}, trajectory records={len(trace)}",
+                        step = q.get("step")
+                        if isinstance(step, int) and 0 <= step < 20:
+                            values[step] = val - baseline
+            if len(values) != n:
+                print(f"WARNING: {sid[:8]} progress={n}, trajectory records={len(values)}",
                       file=sys.stderr, flush=True)
-            trajectories[sid] = trace
+            trajectories[sid] = values
     print("Fetched", len(rows), "session headers.", file=sys.stderr, flush=True)
     summarize(rows, trajectories)
 
