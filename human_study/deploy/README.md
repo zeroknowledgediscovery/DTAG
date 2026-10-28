@@ -1,6 +1,6 @@
 # DTAG participant apps: URLs and deployment
 
-This runbook covers the two DTAG human-study Cloud Run services on
+This runbook covers the DTAG human-study Cloud Run services on
 **GCP project `pkcsaas-01`, region `us-east1`**. Execute commands from the
 root of the DTAG checkout on `lightsabr`, on branch
 `experiment/prolific-human-study`.
@@ -10,10 +10,12 @@ root of the DTAG checkout on `lightsabr`, on branch
 | App | Cloud Run service | Participant URL | Current intended mode |
 | --- | --- | --- | --- |
 | Original, four-arm study | `dtag-human-pilot` | https://dtag-human-pilot-gp7m2nymma-ue.a.run.app/study | Paid Prolific production; `right/left/neutral/random` |
-| Right-arm-only follow-up | `dtag-human-right` | https://dtag-human-right-gp7m2nymma-ue.a.run.app/study | Internal staging/test only, until new Prolific study is configured |
+| Right-arm-only follow-up | `dtag-human-right` | https://dtag-human-right-gp7m2nymma-ue.a.run.app/study | Existing right-only service |
+| Left-arm-only follow-up | `dtag-human-left` | Cloud Run `status.url` after deployment | New staging service; paid study requires Prolific codes |
 
-These are the **canonical URLs returned by Cloud Run's `status.url`** during
-the October 2026 deployments. Do not assume that the alternate
+The two existing URLs are **canonical URLs returned by Cloud Run's `status.url`**
+during the October 2026 deployments. The left-only URL is not active
+until that service is deployed. Do not assume that the alternate
 `...-75214764470.us-east1.run.app` hostname is interchangeable for browser
 requests: the backend enforces **exact** `DTAG_PUBLIC_ORIGIN` on API POST
 requests to prevent cross-origin submissions.
@@ -29,12 +31,64 @@ distinct `study_id` values:
 | Existing four-arm paid study | `prolific-v3-human-opinions-2026-10` | `human_study/config/study.prolific.production.yaml` |
 | New right-only test | `prolific-v3-right-followup-staging-2026-10` | `human_study/config/study.prolific.right_followup.staging.yaml` |
 | New right-only paid follow-up **(draft; NOT yet approved)** | `prolific-v3-right-followup-2026-10` | `human_study/config/study.prolific.right_followup.yaml` |
+| New left-only internal test | `prolific-v3-left-followup-staging-2026-10` | `human_study/config/study.prolific.left_followup.staging.yaml` |
+| New left-only paid follow-up **(not yet approved)** | `prolific-v3-left-followup-2026-10` | `human_study/config/study.prolific.left_followup.yaml` |
 
 The question schedule remains 6 baseline + 20 native-adaptive + 5 interleaved
 attention checks, 31 total. The original study randomizes among four arms. The
 right-only study sets `fixed_arm: right` after the baseline and archives the
 assignment as `fixed-single-arm-right-v1`. No participant already active on
 the original service should be moved to the new one.
+
+## Deploy the left-only app (new, separate service)
+
+The left-only counterpart uses **`dtag-human-left`** in `pkcsaas-01/us-east1`.
+It retains the six baseline questions, 20 adaptive steps, five interleaved
+attention checks, native LSM model and storage infrastructure. After baseline,
+`fixed_arm: left` deterministically archives `fixed-single-arm-left-v1`.
+Neither the original four-arm service nor the right-only service is modified.
+
+From the repository root, deploy **staging** for testing:
+
+```bash
+git switch experiment/prolific-human-study
+git pull --ff-only origin experiment/prolific-human-study
+bash human_study/scripts/check_v3.sh
+DTAG_DEPLOY_ENV=staging bash human_study/deploy/deploy_left_followup.sh
+DTAG_DEPLOY_ENV=staging bash human_study/deploy/deploy_left_followup.sh --execute
+```
+
+The wrapper reads Cloud Run's canonical URL and prints the new participant link.
+You can retrieve and smoke-test that URL at any time:
+
+```bash
+URL="$(gcloud run services describe dtag-human-left --project pkcsaas-01 \
+  --region us-east1 --format='value(status.url)')"
+echo "$URL/study"
+STUDY_URL="$URL" bash human_study/deploy/smoke.sh
+```
+
+**Do not use staging for paid recruitment.** The left-only production YAML is
+initially `reviewed: false`, requires Prolific participant IDs, and carries
+placeholder completion codes. Register three new Prolific codes, exclude prior
+DTAG participants, review the consent/protocol and codes, set `reviewed: true`,
+and commit the approved YAML before using the paid deployment:
+
+```bash
+DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy_left_followup.sh
+DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy_left_followup.sh --execute
+```
+
+Use the real left-only origin in Prolific's external-study URL:
+
+```text
+https://<actual-left-cloud-run-host>/study?PROLIFIC_PID={{%PROLIFIC_PID%}}&STUDY_ID={{%STUDY_ID%}}&SESSION_ID={{%SESSION_ID%}}
+```
+
+Verify actual participant links, normal/review/no-consent completion routes,
+and full-session assignment. The paid left-only backend additionally
+excludes consenting participants from existing four-arm and right-only
+production study namespaces.
 
 ## Refresh checkout and run the checks
 
