@@ -19,14 +19,19 @@ from datetime import datetime
 import json
 import re
 import subprocess
+import sys
 
 
 def configured_database(project: str, region: str, service: str) -> str:
-    output = subprocess.check_output(
-        ["gcloud", "run", "services", "describe", service,
-         "--project", project, "--region", region, "--format=json"],
-        text=True,
-    )
+    print("Checking Cloud Run Firestore database configuration...", file=sys.stderr, flush=True)
+    try:
+        output = subprocess.check_output(
+            ["gcloud", "run", "services", "describe", service,
+             "--project", project, "--region", region, "--format=json"],
+            text=True, timeout=20,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise SystemExit("Cloud Run lookup timed out (20s); retry with --database dtag-human-pilot") from exc
     info = json.loads(output)
     template = info.get("spec", {}).get("template", {})
     containers = template.get("spec", {}).get("containers", []) or template.get("containers", [])
@@ -73,20 +78,26 @@ def main():
     else:
         database = configured_database(args.project, args.region, args.service)
 
+    print("Connecting to Firestore database:", database, file=sys.stderr, flush=True)
     from google.cloud import firestore
+    from google.cloud.firestore_v1.base_query import FieldFilter
 
     client = firestore.Client(project=args.project, database=database)
     root = client.collection("studies").document(args.study).collection("sessions")
-    # The first paid study is small. Scan session headers only, avoiding any
-    # composite-index requirement or disclosure of other participants' data.
     found = {pid: [] for pid in args.pids}
-    for doc in root.stream():
-        session = doc.to_dict() or {}
-        pid = (session.get("prolific") or {}).get("prolific_pid")
-        if pid in found:
-            found[pid].append((doc, session))
+    for pid in args.pids:
+        print("Looking up participant:", pid[:6] + "…" + pid[-4:], file=sys.stderr, flush=True)
+        # Indexed, exact-match lookup. Do not scan all participant sessions.
+        query = root.where(filter=FieldFilter("prolific.prolific_pid", "==", pid)).limit(10)
+        try:
+            for doc in query.stream(timeout=20):
+                session = doc.to_dict() or {}
+                if (session.get("prolific") or {}).get("prolific_pid") == pid:
+                    found[pid].append((doc, session))
+        except Exception as exc:
+            raise SystemExit(f"Firestore lookup failed for {pid[:6]}…{pid[-4:]}: {exc}") from exc
 
-    print("DTAG original-study read-only payment review")
+    print("DTAG original-study read-only payment review", flush=True)
     print("project:", args.project, "database:", database, "study:", args.study)
     for pid in args.pids:
         print("\nParticipant:", pid[:6] + "…" + pid[-4:])
@@ -95,7 +106,8 @@ def main():
             print("  no matching Firestore session (cannot infer participation from timeout alone)")
             continue
         for doc, s in sessions:
-            questions = [q.to_dict() or {} for q in doc.reference.collection("questions").stream()]
+            print("  Reading saved question counts...", flush=True)
+            questions = [q.to_dict() or {} for q in doc.reference.collection("questions").stream(timeout=20)]
             answered = [q for q in questions if q.get("status") == "answered"]
             counts = Counter(q.get("phase", "unknown") for q in answered)
             checks = [q for q in answered if q.get("phase") == "attention"]
