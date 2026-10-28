@@ -47,7 +47,7 @@ prolific:
   # In Prolific configure the No consent completion path as 'Request a return'.
   no_consent_code: CKZYKTSS
   attention_fail_threshold: 3  # >=3 valid IMCs, or >=2 with independently documented obvious gibberish
-  reward: USD 8.00 for the 20-minute left-only study (confirm in Prolific)
+  reward: USD 8.00 for the 20-minute left-only study
 quality:
   fast_seconds: 4.0
   short_words: 3
