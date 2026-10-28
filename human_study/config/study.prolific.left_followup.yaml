@@ -1,13 +1,12 @@
-# PRODUCTION TEMPLATE ONLY: fixed-left DTAG follow-up.
+# PRODUCTION fixed-left DTAG follow-up using existing Prolific study completion paths.
 # Separate Cloud Run service dtag-human-left; original and right services unchanged.
-# Do NOT deploy for paid participants until distinct Prolific completion codes
-# are registered, investigator approval is recorded, and reviewed is true.
+# Uses the completion codes provided for the existing Prolific study.
 # Participants in prior paid DTAG studies should be excluded in Prolific and Firestore.
 schema_version: '1'
 study_id: prolific-v3-left-followup-2026-10
 model_key: gss/gss_2024
 model_release: v0.2.1
-reviewed: false
+reviewed: true
 consent_version: prolific-v3-left-followup-2026-10-v1
 consent_text: >-
   This research study asks for your views on social and political topics.
@@ -40,13 +39,13 @@ ethics_disallowed_ids: []
 prolific:
   required: true
   completion_url: https://app.prolific.com/submissions/complete
-  completion_code: CHANGEMELEFTCOMP
+  completion_code: CTNOTZ30
   # Flagged for potential rejection only under the preregistered IMC and
   # objective-gibberish rules. Configure as Prolific's Failed attention checks
   # path with MANUAL review, not automatic rejection.
-  review_code: CHANGEMELEFTREVIEW
+  review_code: C1J2754F
   # In Prolific configure the No consent completion path as 'Request a return'.
-  no_consent_code: CHANGEMELEFTNOCONSENT
+  no_consent_code: CKZYKTSS
   attention_fail_threshold: 3  # >=3 valid IMCs, or >=2 with independently documented obvious gibberish
   reward: USD 8.00 for the 20-minute left-only study (confirm in Prolific)
 quality:
