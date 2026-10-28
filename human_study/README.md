@@ -108,6 +108,26 @@ export PYTHONPATH="$PWD/human_study/backend:$PWD/scripts:$PWD"
 python3 human_study/scripts/audit_completed_session.py /path/to/final.json
 ```
 
+### Separate left-only DTAG study — independent Cloud Run URL
+
+The new fixed-left study uses a separate Cloud Run service
+(`dtag-human-left`) and is configured with `fixed_arm: left`. It preserves
+the existing 6 baseline + 20 adaptive + 5 attention-check protocol, but
+archives sessions under a new study ID. The URL is printed after the first
+successful deployment. Neither the original four-arm app nor the existing
+right-only app is changed.
+
+Deploy a **staging** URL after pulling the latest branch:
+
+```bash
+DTAG_DEPLOY_ENV=staging bash human_study/deploy/deploy_left_followup.sh --execute
+```
+
+For deployment, smoke checks, paid Prolific setup, and the eventual canonical
+URL, see **[Cloud Run app URLs and deployment runbook](deploy/README.md)**.
+The paid left-only YAML remains non-deployable until new Prolific codes and
+scientific approval are recorded.
+
 ### Separate right-only DTAG follow-up — independent Cloud Run URL
 
 The fixed-right follow-up runs at
