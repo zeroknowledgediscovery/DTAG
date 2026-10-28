@@ -403,6 +403,70 @@ def test_fixed_right_assignment_and_prior_participant_exclusion(instrument, adap
     assert assignment["scheme"] == "fixed-single-arm-right-v1"
 
 
+
+
+def test_left_only_staging_and_paid_draft_are_isolated():
+    original = StudyConfig.load(ROOT / "human_study/config/study.prolific.production.yaml")
+    right = StudyConfig.load(ROOT / "human_study/config/study.prolific.right_followup.yaml")
+    staging = StudyConfig.load(ROOT / "human_study/config/study.prolific.left_followup.staging.yaml")
+    paid = StudyConfig.load(ROOT / "human_study/config/study.prolific.left_followup.yaml")
+
+    assert original.fixed_arm is None  # preserve the original randomized design
+    assert right.fixed_arm == "right"  # existing right-only app stays unchanged
+    assert staging.fixed_arm == paid.fixed_arm == "left"
+    assert len({original.study_id, right.study_id, staging.study_id, paid.study_id}) == 4
+    assert staging.reviewed and not staging.prolific.required
+    assert not paid.reviewed and paid.prolific.required
+    assert paid.exclude_prior_study_ids == (original.study_id, right.study_id)
+    assert all(x.startswith("CHANGEME") for x in (
+        paid.prolific.completion_code, paid.prolific.review_code,
+        paid.prolific.no_consent_code
+    ))
+    assert staging.intervention_steps == paid.intervention_steps == original.intervention_steps == 20
+    assert staging.initial_steps == paid.initial_steps == original.initial_steps == 6
+    assert staging.attention_checks == paid.attention_checks == original.attention_checks
+    for candidate in (staging, paid):
+        assert candidate.model_key == original.model_key
+        assert candidate.model_release == original.model_release
+        assert candidate.candidate_mode == original.candidate_mode == "native_webapp"
+        assert candidate.push_response_mode == original.push_response_mode == "draw"
+        assert [(x.item_id, x.original_wording) for x in candidate.items] == [
+            (x.item_id, x.original_wording) for x in original.items]
+
+
+def test_fixed_left_assignment_and_prior_participant_exclusion(instrument, adapter):
+    repo = MemoryRepository()
+    archive = MemoryArchive()
+    config = prolific_config(instrument, adapter)
+    old = StudyService(config, adapter, MultiFixtureLLM(), repo, archive, sid_key="z" * 40)
+    previous = old.start(prolific={"prolific_pid": PID})
+    old.consent(previous["session_id"], True, previous["session_version"])
+
+    payload = config.model_dump(mode="json")
+    payload.update(study_id="left-followup-fixture", fixed_arm="left",
+                   exclude_prior_study_ids=[config.study_id])
+    follow = StudyConfig.model_validate(payload)
+    service = StudyService(follow, adapter, MultiFixtureLLM(), repo, archive, sid_key="z" * 40)
+    with pytest.raises(ValueError, match="already participated"):
+        service.start(prolific={"prolific_pid": PID})
+
+    fresh = service.start(prolific={"prolific_pid": "FRESHLEFTPERSON123"})
+    view = service.consent(fresh["session_id"], True, fresh["session_version"])
+    count = 0
+    while view["phase"] in ("baseline", "attention"):
+        count += 1
+        answer = ("cobalt violet cedar" if view["phase"] == "attention"
+                  else substantive(count))
+        view = service.answer(fresh["session_id"], request(view, answer))["current"]
+    snap = repo.read(fresh["session_id"])
+    assert snap.session["policy"] == "left"
+    assignment_name = (f"studies/{follow.study_id}/sessions/"
+                       f"{fresh['session_id']}/events/assignment.json")
+    assignment = json.loads(archive.objects[assignment_name])
+    assert assignment["policy"] == "left"
+    assert assignment["scheme"] == "fixed-single-arm-left-v1"
+
+
 def test_gcp_test_uses_three_opaque_codes(instrument, adapter):
     test = StudyConfig.load(ROOT / "human_study/config/study.prolific.gcptest.yaml")
     assert test.prolific.required is False
