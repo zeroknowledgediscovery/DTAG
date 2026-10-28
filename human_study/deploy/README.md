@@ -32,7 +32,7 @@ distinct `study_id` values:
 | New right-only test | `prolific-v3-right-followup-staging-2026-10` | `human_study/config/study.prolific.right_followup.staging.yaml` |
 | New right-only paid follow-up **(draft; NOT yet approved)** | `prolific-v3-right-followup-2026-10` | `human_study/config/study.prolific.right_followup.yaml` |
 | New left-only internal test | `prolific-v3-left-followup-staging-2026-10` | `human_study/config/study.prolific.left_followup.staging.yaml` |
-| New left-only paid follow-up **(not yet approved)** | `prolific-v3-left-followup-2026-10` | `human_study/config/study.prolific.left_followup.yaml` |
+| New left-only paid follow-up **(configured)** | `prolific-v3-left-followup-2026-10` | `human_study/config/study.prolific.left_followup.yaml` |
 
 The question schedule remains 6 baseline + 20 native-adaptive + 5 interleaved
 attention checks, 31 total. The original study randomizes among four arms. The
@@ -69,10 +69,9 @@ STUDY_URL="$URL" bash human_study/deploy/smoke.sh
 ```
 
 **Do not use staging for paid recruitment.** The left-only production YAML is
-initially `reviewed: false`, requires Prolific participant IDs, and carries
-placeholder completion codes. Register three new Prolific codes, exclude prior
-DTAG participants, review the consent/protocol and codes, set `reviewed: true`,
-and commit the approved YAML before using the paid deployment:
+reviewed and configured with the three confirmed Prolific completion codes
+from the existing study. It requires Prolific participant IDs and excludes
+prior DTAG participants. Deploy paid production using:
 
 ```bash
 DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy_left_followup.sh
