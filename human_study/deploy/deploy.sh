@@ -73,8 +73,8 @@ if not c.reviewed:
     raise SystemExit('Deployment requires an explicitly reviewed instrument')
 if c.response_mode == 'click' and not 12 <= len(c.bank('baseline')) <= 15:
     raise SystemExit('Legacy study requires a 12–15-item baseline')
-if c.response_mode in ('free_text_llm', 'free_text_multi') and not 1 <= len(c.bank('baseline')) <= 40:
-    raise SystemExit('V2 needs 1–40 initial questions')
+if c.response_mode in ('free_text_llm', 'free_text_multi') and not 0 <= len(c.bank('baseline')) <= 40:
+    raise SystemExit('V3 needs 0–40 initial questions')
 if c.prolific and any((x or '').upper().startswith('CHANGEME')
                       for x in (c.prolific.completion_code, c.prolific.review_code, c.prolific.no_consent_code)):
     raise SystemExit('Replace the placeholder Prolific completion codes')
