@@ -270,20 +270,20 @@ paid follow-up consults them to exclude prior consenting participants.
 
 ## No-calibration Left/Right studies (independent pilot)
 
-These are NEW services. They do not modify \`dtag-human-left\`,
-\`dtag-human-right\`, or \`dtag-human-pilot\`.
+These are NEW services. They do not modify `dtag-human-left`,
+`dtag-human-right`, or `dtag-human-pilot`.
 
 | Condition | Service | Staging namespace |
 | --- | --- | --- |
-| No-calibration Left | \`dtag-human-nocal-left\` | \`dtag-v3-nocal-left-staging-2026-10\` |
-| No-calibration Right | \`dtag-human-nocal-right\` | \`dtag-v3-nocal-right-staging-2026-10\` |
+| No-calibration Left | `dtag-human-nocal-left` | `dtag-v3-nocal-left-staging-2026-10` |
+| No-calibration Right | `dtag-human-nocal-right` | `dtag-v3-nocal-right-staging-2026-10` |
 
 The new service starts after consent directly with question 1 of 20
 adaptive questions (plus five interleaved attention checks). There are
 **no preliminary calibration questions**, and the six previously used
 pole calibration variables are excluded from both the native question
 selection and multi-variable answer mapping. The baseline index is
-\`adapter.index({})\`: the same unconditioned LSM reference for every
+`adapter.index({})`: the same unconditioned LSM reference for every
 participant, **not** the participant's externally measured ideology.
 The Prolific party-affiliation prescreener belongs to recruitment
 metadata; it is not used to seed the LSM in this design. Compare
@@ -299,7 +299,7 @@ has five checks after adaptive answers 3, 7, 11, 15, and 19.
 
 From the repository root:
 
-\`\`\`bash
+```bash
 git switch experiment/prolific-human-study
 git pull --ff-only origin experiment/prolific-human-study
 PYTHONPATH=human_study/backend:scripts:. python3 -m pytest -q human_study/tests/test_v3_zero_baseline.py
@@ -309,30 +309,30 @@ bash human_study/deploy/deploy_nocal_right.sh
 # Deploy both NEW staging services:
 DTAG_DEPLOY_ENV=staging bash human_study/deploy/deploy_nocal_left.sh --execute
 DTAG_DEPLOY_ENV=staging bash human_study/deploy/deploy_nocal_right.sh --execute
-\`\`\`
+```
 
 Read the actual HTTPS service URLs from Cloud Run; do **not** infer
 hostnames or publish unverified proposed addresses:
 
-\`\`\`bash
+```bash
 for service in dtag-human-nocal-left dtag-human-nocal-right; do
   url="$(gcloud run services describe "$service" --project pkcsaas-01 --region us-east1 --format='value(status.url)')"
   echo "$service: $url/study"
   STUDY_URL="$url" bash human_study/deploy/smoke.sh
 done
-\`\`\`
+```
 
 Live workflow testing must cover consent -> first adaptive question with
-\`phase=intervention\` (no baseline), 20 answered native adaptive steps,
+`phase=intervention` (no baseline), 20 answered native adaptive steps,
 five attention checks, stable policy, a complete archival final.json,
-and an independently verified baseline index \`I({})\`.
+and an independently verified baseline index `I({})`.
 A smoke probe alone does not test answer submission.
 
 For **paid** Prolific recruitment, complete and investigator-review
-\`study.prolific.nocal.left.yaml\` and
-\`study.prolific.nocal.right.yaml\`, including distinct newly issued
+`study.prolific.nocal.left.yaml` and
+`study.prolific.nocal.right.yaml`, including distinct newly issued
 Prolific completion/review/no-consent codes. Production configs are
-deliberately \`reviewed: false\` with \`CHANGEME\` placeholders,
+deliberately `reviewed: false` with `CHANGEME` placeholders,
 so they fail closed until explicitly approved. Exclude prior paid DTAG
 participants and the other new study's paid participants. Do not
 reuse staging URLs or test codes in Prolific. Obtain required ethics
@@ -340,14 +340,14 @@ approval for changes in protocol and consent.
 
 When approved, deploy each independently:
 
-\`\`\`bash
+```bash
 DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy_nocal_left.sh --execute
 DTAG_DEPLOY_ENV=production bash human_study/deploy/deploy_nocal_right.sh --execute
-\`\`\`
+```
 
 The same two links can serve four Prolific recruitment campaigns,
 stratifying Democrats and Republicans externally within each policy.
 Use the standard Prolific external-study link form with its standard
-\`PROLIFIC_PID\`, \`STUDY_ID\`, and \`SESSION_ID\` URL placeholders.
+`PROLIFIC_PID`, `STUDY_ID`, and `SESSION_ID` URL placeholders.
 Separate Prolific campaign IDs and prescreen metadata should be retained
 for analysis; no party label is inferred from the participant's responses.
