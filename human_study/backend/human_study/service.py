@@ -224,6 +224,10 @@ class StudyService:
         s.update(phase="baseline" if accepted else "declined", consent_version=self.config.consent_version,
                  consent_timestamp=now(), consent_accepted=accepted)
         writes = {}
+        if accepted and not self.config.bank("baseline"):
+            # Zero-calibration V3: initialize the empty native state, assign
+            # the fixed policy and archive baseline/index before question 1.
+            self._baseline_completed(snap, writes)
         if accepted:
             # Only consented participants have Prolific identifiers written to
             # the immutable research archive.
