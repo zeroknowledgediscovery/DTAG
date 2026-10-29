@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """CI-marked DTAG human ideology trajectories from private GCS archives.
 
-Merges the original right arm with the right-only follow-up. Each incomplete
-session contributes only its actual answered adaptive steps (no padding).
+Merges original and follow-up left and right cohorts by assigned policy.
+Each incomplete session contributes only actual answered adaptive steps (no padding).
 Uses pointwise participant-resampled bootstrap 95% intervals, shaded only
 for Left and combined Right by default (all four means are always plotted).
 
@@ -28,7 +28,8 @@ from pathlib import Path
 
 BUCKET = "pkcsaas-01-dtag-study-data"
 ORIGINAL = "prolific-v3-human-opinions-2026-10"
-FOLLOWUP = "prolific-v3-right-followup-2026-10"
+LEFT_FOLLOWUP = "prolific-v3-left-followup-2026-10"
+RIGHT_FOLLOWUP = "prolific-v3-right-followup-2026-10"
 GROUPS = ("Left", "Right", "Neutral", "Random")
 CI_GROUP_NAMES = {"left": GROUPS[0], "right": GROUPS[1],
                   "neutral": GROUPS[2], "random": GROUPS[3]}
@@ -91,8 +92,10 @@ def trajectory(study: str, sid: str, data: dict) -> dict | None:
         status = "PARTIAL"
     if arm not in ("left", "right", "neutral", "random") or baseline is None:
         return None
-    if study == FOLLOWUP and arm != "right":
+    if study == RIGHT_FOLLOWUP and arm != "right":
         raise ValueError(f"Unexpected arm in right-only study: {sid} {arm}")
+    if study == LEFT_FOLLOWUP and arm != "left":
+        raise ValueError(f"Unexpected arm in left-only study: {sid} {arm}")
     values = {0: 0.0}
     for q in questions:
         if not isinstance(q, dict) or q.get("phase") != "intervention":
@@ -121,7 +124,7 @@ def trajectory(study: str, sid: str, data: dict) -> dict | None:
 
 def load_sessions(bucket: str, workers: int = 8) -> list[dict]:
     inputs = []
-    for study in (ORIGINAL, FOLLOWUP):
+    for study in (ORIGINAL, LEFT_FOLLOWUP, RIGHT_FOLLOWUP):
         for sid, files in archived_files(bucket, study).items():
             if "final.json" in files:
                 need = [("final", files["final.json"])]
