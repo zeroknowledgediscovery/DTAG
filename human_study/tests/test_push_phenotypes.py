@@ -67,12 +67,33 @@ def test_loo_scores_and_four_class_labels():
 def test_fetches_both_policies_and_validates_index_chain(monkeypatch):
     root = analysis.url("proj", "dtag-human-pilot", "test-study")
 
+    # Mock the Firestore REST wire format, not already-decoded Python values.
+    # report_left_live.fields() deliberately expects typed Firestore fields.
+    def wire(value):
+        if isinstance(value, bool):
+            return {"booleanValue": value}
+        if isinstance(value, int):
+            return {"integerValue": str(value)}
+        if isinstance(value, float):
+            return {"doubleValue": value}
+        if isinstance(value, str):
+            return {"stringValue": value}
+        if isinstance(value, dict):
+            return {"mapValue": {"fields": {k: wire(v) for k, v in value.items()}}}
+        raise TypeError(f"Unexpected Firestore fixture value: {type(value).__name__}")
+
+    def wire_doc(data, *, name=None):
+        result = {"fields": {k: wire(v) for k, v in data.items()}}
+        if name is not None:
+            result["name"] = name
+        return result
+
     def header(sid, policy, last):
-        return {"name": root + "/" + sid, "fields": {
+        return wire_doc({
             "consent_accepted": True, "policy": policy, "next_step": 20,
             "attention_completed": 0,
             "state": {"baseline_index": -0.036, "current_index": last}
-        }}
+        }, name=root + "/" + sid)
 
     def list_fake(url, _cred, _mask):
         if url == root:
@@ -81,10 +102,10 @@ def test_fetches_both_policies_and_validates_index_chain(monkeypatch):
         if url.endswith("/questions"):
             last = -0.06 if url.endswith("/one/questions") else 0.04
             trace = [-0.036] + [(-0.036 + (last+0.036)*k/20) for k in range(1, 21)]
-            return [{"fields": {"status": "answered", "phase": "intervention",
-                                "step": i,
-                                "index_result": {"index_before": trace[i],
-                                                 "index_after": trace[i+1]}}}
+            return [wire_doc({"status": "answered", "phase": "intervention",
+                              "step": i,
+                              "index_result": {"index_before": trace[i],
+                                               "index_after": trace[i+1]}})
                     for i in range(20)]
         return []
 
