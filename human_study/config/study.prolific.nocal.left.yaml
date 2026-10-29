@@ -1,0 +1,165 @@
+# DTAG no-calibration LEFT PRODUCTION instrument.
+# Zero baseline questions: native LSM starts from the empty state.
+# 20 adaptive questions and five attention checks. Never ask or infer six
+# former pole-calibration items. Existing studies remain untouched.
+# PAID PROLIFIC CONFIG TEMPLATE: obtain independent completion codes and investigator approval before deployment.
+schema_version: '1'
+study_id: dtag-v3-nocal-left-2026-10
+model_key: gss/gss_2024
+model_release: v0.2.1
+reviewed: false  # review consent, eligibility and Prolific completion paths before enabling
+consent_version: dtag-v3-nocal-left-2026-10-v1
+consent_text: >-
+  This research study asks for your views on social and political topics.
+  An AI system selects 20 survey questions adaptively, one at a time.
+  Answer each in your own words. Your answers are sent to an AI service
+  for interpretation and archived for research, together with your Prolific participant ID.
+  The study does not ask six preliminary ideology-calibration questions.
+  Five attention checks are interleaved; please read each question carefully.
+  Participation is voluntary and you may stop at any time. Do not include
+  names, contact details or other identifying information in your answers.
+  At completion you will receive your Prolific completion code.
+initial_steps: 0
+intervention_steps: 20
+fixed_arm: left
+question_mode: llm_required
+response_mode: free_text_multi
+candidate_mode: native_webapp
+push_response_mode: draw
+max_response_assignments: 50
+minimum_mapping_confidence: 0.8
+llm_model: gpt-4.1-mini
+prompt_version: dtag-human-v3-evidence-multi-assignments
+# All eligible native opinion items remain available. Incomplete GSS battery
+# labels are made standalone using source-grounded wording contracts.
+excluded_ids: [gunlaw, grass, abany, natfare, natenvir, natarms]
+ethics_disallowed_ids: []
+prolific:
+  required: true  # requires linked Prolific participant
+  completion_url: https://app.prolific.com/submissions/complete
+  completion_code: CHANGEME00
+  # Flagged for potential rejection only under the preregistered IMC and
+  # objective-gibberish rules. Configure as Prolific's Failed attention checks
+  # path with MANUAL review, not automatic rejection.
+  review_code: CHANGEME01
+  # In Prolific configure the No consent completion path as 'Request a return'.
+  no_consent_code: CHANGEME02
+  attention_fail_threshold: 3  # >=3 valid IMCs, or >=2 with independently documented obvious gibberish
+  reward: USD 8.00 for 20 adaptive questions + 5 attention checks (confirm duration and payment in Prolific)
+quality:
+  fast_seconds: 4.0
+  short_words: 3
+  duplicate_similarity: 0.9
+exclude_prior_study_ids:
+- prolific-v3-human-opinions-2026-10
+- prolific-v3-left-followup-2026-10
+- prolific-v3-right-followup-2026-10
+- dtag-v3-nocal-right-2026-10
+attention_checks:
+- check_id: attention_token_cobalt
+  kind: instructed_token
+  render: verbatim
+  instruction: "Attention check: To show that you have read this question, include the exact word cobalt in your answer. You may write that word on its own."
+  expected_token: cobalt
+  after_substantive: 3
+  version: prolific-imc-v2
+- check_id: attention_token_violet
+  kind: instructed_token
+  render: verbatim
+  instruction: "Attention check: To show that you have read this question, include the exact word violet in your answer. You may write that word on its own."
+  expected_token: violet
+  after_substantive: 7
+  version: prolific-imc-v2
+- check_id: attention_token_amber
+  kind: instructed_token
+  render: verbatim
+  instruction: "Attention check: To show that you have read this question, include the exact word amber in your answer. You may write that word on its own."
+  expected_token: amber
+  after_substantive: 11
+  version: prolific-imc-v2
+- check_id: attention_token_marble
+  kind: instructed_token
+  render: verbatim
+  instruction: "Attention check: To show that you have read this question, include the exact word marble in your answer. You may write that word on its own."
+  expected_token: marble
+  after_substantive: 15
+  version: prolific-imc-v2
+- check_id: attention_token_cedar
+  kind: instructed_token
+  render: verbatim
+  instruction: "Attention check: To show that you have read this question, include the exact word cedar in your answer. You may write that word on its own."
+  expected_token: cedar
+  after_substantive: 19
+  version: prolific-imc-v2
+items:
+- item_id: gunlaw
+  original_wording: Would you favor or oppose a law which would require a person to obtain
+    a police permit before he or she could buy a gun?
+  choices:
+  - native_value: oppose
+    display_label: oppose
+  - native_value: favor
+    display_label: favor
+  phase: baseline
+  required: false
+  version: prolific-v3-human-opinions-1
+- item_id: grass
+  original_wording: Do you think the use of marijuana should be made legal or not?
+  choices:
+  - native_value: should not be legal
+    display_label: should not be legal
+  - native_value: should be legal
+    display_label: should be legal
+  phase: baseline
+  required: false
+  version: prolific-v3-human-opinions-1
+- item_id: abany
+  original_wording: Please tell me whether or not you think it should be possible for a
+    pregnant woman to obtain a legal abortion if the woman wants it for any reason?
+  choices:
+  - native_value: 'no'
+    display_label: 'no'
+  - native_value: 'yes'
+    display_label: 'yes'
+  phase: baseline
+  required: false
+  version: prolific-v3-human-opinions-1
+- item_id: natfare
+  original_wording: Are we spending too much, too little, or about the right amount on
+    welfare?
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: baseline
+  required: false
+  version: prolific-v3-human-opinions-1
+- item_id: natenvir
+  original_wording: Are we spending too much, too little, or about the right amount on
+    improving and protecting the environment?
+  choices:
+  - native_value: too much
+    display_label: too much
+  - native_value: about right
+    display_label: about right
+  - native_value: too little
+    display_label: too little
+  phase: baseline
+  required: false
+  version: prolific-v3-human-opinions-1
+- item_id: natarms
+  original_wording: Are we spending too much, too little, or about the right amount on
+    the military, armaments, and defense?
+  choices:
+  - native_value: too little
+    display_label: too little
+  - native_value: about right
+    display_label: about right
+  - native_value: too much
+    display_label: too much
+  phase: baseline
+  required: false
+  version: prolific-v3-human-opinions-1
