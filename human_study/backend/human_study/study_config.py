@@ -122,7 +122,7 @@ class StudyConfig(StrictModel):
     reviewed: bool = False
     consent_version: str = "pilot-draft-1"
     consent_text: str = "This internal pilot asks categorical survey questions. Participation is voluntary. You may stop at any time. Answers are stored for research. This receipt is not a payment code."
-    initial_steps: int | None = Field(default=None, ge=1, le=40)
+    initial_steps: int | None = Field(default=None, ge=0, le=40)
     intervention_steps: int = Field(default=20, ge=1, le=40)
     # Optional follow-up cohort: one fixed adaptive-selection policy for every
     # enrolled participant. None preserves the original four-arm randomization.
@@ -172,6 +172,8 @@ class StudyConfig(StrictModel):
             if position < last_position:
                 raise ValueError("attention checks must be sorted by after_substantive")
             last_position = position
+        if self.initial_steps == 0 and not (self.response_mode == "free_text_multi" and self.candidate_mode == "native_webapp" and self.fixed_arm in ("left", "right")):
+            raise ValueError("zero baseline is only supported for fixed left/right native V3 studies")
         if self.initial_steps is not None and self.initial_steps > sum(
             i.phase == "baseline" for i in self.items
         ):
@@ -179,7 +181,7 @@ class StudyConfig(StrictModel):
         if len(ids) != len(set(ids)):
             raise ValueError("baseline/intervention/outcome/control item sets must be disjoint")
         for phase in ("baseline", "intervention"):
-            if not self.bank(phase) and (phase != "intervention" or self.candidate_mode != "native_webapp"):
+            if not self.bank(phase) and not (phase == "intervention" and self.candidate_mode == "native_webapp") and not (phase == "baseline" and self.initial_steps == 0):
                 raise ValueError(f"missing {phase} bank")
         if self.candidate_mode == "native_webapp" and self.response_mode != "free_text_multi":
             raise ValueError("native_webapp selection requires V3 free-text multi mapping")
@@ -188,8 +190,8 @@ class StudyConfig(StrictModel):
         if self.response_mode in ("free_text_llm", "free_text_multi"):
             if self.question_mode != "llm_required":
                 raise ValueError("free-text V2 requires LLM-generated questions")
-            if not 1 <= len(self.bank("baseline")) <= 40:
-                raise ValueError("V2 requires 1–40 initial questions")
+            if not 0 <= len(self.bank("baseline")) <= 40:
+                raise ValueError("V2 requires 0–40 initial questions")
             if (self.candidate_mode == "instrument" and
                     len(self.bank("intervention")) < self.intervention_steps):
                 raise ValueError("instrument-limited intervention bank is smaller than planned sequence")
