@@ -7,7 +7,7 @@ schema_version: '1'
 study_id: dtag-v3-nocal-left-2026-10
 model_key: gss/gss_2024
 model_release: v0.2.1
-reviewed: false  # review consent, eligibility and Prolific completion paths before enabling
+reviewed: true
 consent_version: dtag-v3-nocal-left-2026-10-v1
 consent_text: >-
   This research study asks for your views on social and political topics.
@@ -37,13 +37,13 @@ ethics_disallowed_ids: []
 prolific:
   required: true  # requires linked Prolific participant
   completion_url: https://app.prolific.com/submissions/complete
-  completion_code: CHANGEME00
+  completion_code: CTNOTZ30
   # Flagged for potential rejection only under the preregistered IMC and
   # objective-gibberish rules. Configure as Prolific's Failed attention checks
   # path with MANUAL review, not automatic rejection.
-  review_code: CHANGEME01
+  review_code: C1J2754F
   # In Prolific configure the No consent completion path as 'Request a return'.
-  no_consent_code: CHANGEME02
+  no_consent_code: CKZYKTSS
   attention_fail_threshold: 3  # >=3 valid IMCs, or >=2 with independently documented obvious gibberish
   reward: USD 8.00 (20 adaptive questions; confirm payment)
 quality:
