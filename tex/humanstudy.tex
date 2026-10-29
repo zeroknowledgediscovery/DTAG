@@ -1,8 +1,8 @@
 % Human DTAG experiment. Four policy groups only: Left, Right, Neutral, Random.
 % Figures/table: python3 human_study/scripts/render_humanstudy_pgfplots.py
 % Include from DTAG_main.tex (which already uses \input{humanstudy}).
-% All numbers and confidence intervals in the figures/table are curated
-% from immutable GCS records, not illustrative or generated synthetically.
+% Manuscript endpoint estimates use 49 completed production sessions (2026-10-28).
+% Rebuild plotted CSVs using render_humanstudy_pgfplots.py against GCS.
 
 \section{Human Response Study}\label{sec:humanstudy}
 
@@ -17,8 +17,10 @@ baseline questions, up to twenty adaptive questions, and five interleaved
 attention checks. Participants responded in natural language; accepted
 survey-variable interpretations were incorporated into the conditional
 LSM state. The policy groups are \emph{Left}, \emph{Right},
-\emph{Neutral}, and \emph{Random}. Each session contributes to exactly
-one of these four groups.
+\emph{Neutral}, and \emph{Random}. The original study randomized
+participants among all four policies. Subsequent cohorts used fixed-Left
+and fixed-Right policies. All results pool sessions by their assigned
+policy, regardless of recruitment wave.
 
 Let $s_0$ denote the conditional state after the six baseline responses
 and $s_t$ the state after $t$ adaptive answers. The outcome at each
@@ -32,37 +34,36 @@ and a negative displacement is leftward. The index measures the inferred survey-
 directional movement comparable across different baseline positions.
 
 \subsection{Participant characteristics and completion}
-Table~\ref{tab:humanstudy-participants} reports, for each of the four
-policies, the number of participants who completed the twenty adaptive
-questions, the number whose baseline index is negative or positive,
-and the mean completion time. Completion time is elapsed wall-clock
-time between the session creation timestamp and archived finalization,
-and includes the baseline, adaptive questions, attention checks, and
-any waits between responses. All table entries are derived directly
-from immutable completed-session records rather than estimated from
-the number of questions.
+Table~\ref{tab:humanstudy-participants} reports the numbers of
+20-question completers, the baseline index signs, and the mean
+question-20 displacement for each policy. The pooled data contain 49
+completed sessions: 20 Left, 17 Right, 7 Neutral, and 5 Random.
+These comprise 24 completers from the original four-arm randomized
+study, 15 fixed-Left follow-up completers, and 10 fixed-Right
+follow-up completers. Endpoints are changes relative to each
+participant's own baseline; the later cohorts were not randomized
+against the earlier Neutral and Random groups.
 
 \begin{table*}[!t]
 \centering
 \caption{Human study summary by adaptive question-selection policy$^\star$.
-}
+Original and follow-up sessions are pooled by policy.}
 \label{tab:humanstudy-participants}
 \small
 \setlength{\tabcolsep}{11pt}
 \begin{tabular}{lrrrr}
 \toprule
-Policy & Completed $n$ & Baseline $I_\Phi<0$ & Baseline $I_\Phi>0$ & Mean completion (min) \\
+Policy & Completed $n$ & Baseline $I_\Phi<0$ & Baseline $I_\Phi>0$ & Mean $\Delta I_\Phi(20)$ \\
 \midrule
-Left & 5 & 5 & 0 & 36.7 \\
-Right & 17 & 11 & 6 & 34.3 \\
-Neutral & 7 & 6 & 1 & 30.8 \\
-Random & 5 & 2 & 3 & 35.3 \\
+Left & 20 & 17 & 3 & $-0.0993$ \\
+Right & 17 & 11 & 6 & $+0.0382$ \\
+Neutral & 7 & 6 & 1 & $-0.0054$ \\
+Random & 5 & 2 & 3 & $-0.0045$ \\
 \bottomrule
 \end{tabular}
-\flushleft $^\star$Completion time is wall-clock time from session creation to finalization,
-including baseline questions, adaptive questions, and attention checks.
-Baseline signs refer to the LSM-derived ideology coordinate before
-adaptive questioning.
+\flushleft $^\star$Baseline signs refer to the inferred ideology
+coordinate before adaptive questioning. The final column is
+the mean observed 20-question change from baseline.
 \end{table*}
 
 \subsection{Question-by-question trajectories and endpoints}
@@ -103,7 +104,8 @@ confidence intervals shaded only for Left and Right. Partial sessions contribute
 only through their last observed step. (b) Endpoint means and 95\% bootstrap
 confidence intervals for all four policies, calculated from participants with
 all 20 adaptive answers. Arm sample sizes are reported in
-Table~\ref{tab:humanstudy-participants}.}
+Table~\ref{tab:humanstudy-participants}; follow-up and original
+sessions are pooled within Left and Right.}
 \label{fig:humanstudy-trajectory-endpoints}
 
 
@@ -112,17 +114,30 @@ Table~\ref{tab:humanstudy-participants}.}
 
 
 \subsection{Interpretation}
-The human results support the directional-steering hypothesis. At
-question 20, Left moved the inferred ideology index by $-0.0783$
-(95\% bootstrap CI $[-0.1130,-0.0195]$), and Right moved it by
-$+0.0382$ (CI $[+0.0012,+0.0748]$). Neutral ($-0.0054$) and
-Random ($-0.0045$) showed substantially smaller mean changes.
-The Right arm included 11 participants with negative and six with
-positive baseline indices; rightward mean movement therefore occurred
-in a cohort spanning both sides of the initial ideology coordinate.
+The pooled human results support directional movement in the
+\emph{model-inferred ideology index}. At question 20, Left ($n=20$)
+had a mean change of $-0.0993$ (95\% participant-bootstrap CI
+$[-0.1214,-0.0748]$); 19 of 20 moved left. Right ($n=17$)
+had a mean change of $+0.0382$ (CI $[+0.0012,+0.0748]$);
+11 of 17 moved right. Neutral ($n=7$, $-0.0054$) and
+Random ($n=5$, $-0.0045$) showed smaller mean changes.
+Left included seventeen negative and three positive baseline
+indices, and Right included eleven negative and six positive baselines.
 
-Together with the native simulations, these human-response results
-demonstrate directional control over the \emph{inferred ideology
-index} through adaptive question selection. Defining displacement
-relative to each participant's own baseline allows this effect to
-be evaluated across heterogeneous starting states.
+Baseline-to-final correlations were high for both policies
+(Left: Pearson $r=0.9518$; Right: $r=0.9734$), consistent with
+substantial preservation of participant ordering under conditioning.
+The correlation between baseline ideology and displacement was
+$r=0.2538$ ($p=0.2803$) for Left and $r=0.7314$
+($p=0.00085$) for Right. These exploratory within-policy
+correlations do not by themselves establish a statistically
+significant difference in baseline dependence across policies.
+
+The observed directional displacements concern conditional
+\emph{inferred survey-response phenotypes}, not independently
+verified changes in participants' underlying political beliefs.
+Adding observations can refine the conditional phenotype without
+persuasion. Comparisons that combine the originally randomized
+arms with separately recruited fixed-policy follow-ups should be
+interpreted descriptively rather than as cross-wave randomized
+causal effects.
