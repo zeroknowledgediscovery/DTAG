@@ -23,6 +23,7 @@ python3 -m pytest -q -rs \
   human_study/tests/test_webapp_parity.py \
   human_study/tests/test_native_webapp_service.py \
   human_study/tests/test_v3_zero_baseline.py \
+  human_study/tests/test_push_phenotypes.py \
   human_study/tests/test_prolific_study.py \
   human_study/tests/test_quality_review.py \
   human_study/tests/test_rejection_eligibility.py
