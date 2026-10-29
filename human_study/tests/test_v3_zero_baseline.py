@@ -117,3 +117,27 @@ def test_zero_baseline_attention_positions_can_be_in_adaptive_phase(instrument):
         ),),
     )
     assert config.attention_position(config.attention_checks[0]) == 2
+
+
+@pytest.mark.parametrize("arm", ["left", "right"])
+def test_committed_no_calibration_instruments(arm):
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[1] / "config"
+    expected_poles = {"gunlaw", "grass", "abany", "natfare", "natenvir", "natarms"}
+    for suffix, reviewed, mandatory in ((".staging", True, False), ("", False, True)):
+        conf = StudyConfig.load(root / f"study.prolific.nocal.{arm}{suffix}.yaml")
+        assert conf.fixed_arm == arm
+        assert conf.initial_steps == 0 and conf.bank("baseline") == []
+        assert conf.intervention_steps == 20
+        assert conf.candidate_mode == "native_webapp"
+        assert conf.push_response_mode == "draw"
+        assert conf.reviewed is reviewed
+        assert conf.prolific is not None and conf.prolific.required is mandatory
+        assert set(conf.excluded_ids) == expected_poles
+        assert [conf.attention_position(c) for c in conf.attention_checks] == [3, 7, 11, 15, 19]
+        assert len(conf.attention_checks) == 5
+        assert len(conf.bank("baseline")) + conf.intervention_steps + len(conf.attention_checks) == 25
+        assert conf.study_id != "prolific-v3-human-opinions-2026-10"
+        if not reviewed:
+            assert conf.prolific.completion_code.startswith("CHANGEME")
+            assert len(conf.exclude_prior_study_ids) == 4
