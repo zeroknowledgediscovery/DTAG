@@ -1,10 +1,13 @@
-% Manuscript human study pooled completion table (2026-10-28).
-% Rebuilt from immutable GCS records by render_humanstudy_pgfplots.py after refresh.
+% Generated from immutable DTAG GCS sessions by render_humanstudy_pgfplots.py.
+% Time is full session wall-clock minutes: created_at to final timestamp.
 \begin{table*}[!t]
 \centering
 \caption{Human DTAG study summary by adaptive question-selection policy.
-Original and fixed-policy follow-up sessions are pooled within Left and Right.
-Only 20-question completers contribute.}
+Only participants who completed 20 adaptive questions are included.
+Left and Right combine original and corresponding follow-up cohorts.
+Values are inferred-ideology displacement after 20 adaptive answers.
+Baseline signs refer to the LSM-derived ideology coordinate before
+adaptive questioning.}
 \label{tab:humanstudy-participants}
 \small
 \setlength{\tabcolsep}{11pt}
@@ -12,10 +15,10 @@ Only 20-question completers contribute.}
 \toprule
 Policy & Completed $n$ & Baseline $I_\Phi<0$ & Baseline $I_\Phi>0$ & Mean $\Delta I_\Phi(20)$ \\
 \midrule
-Left & 20 & 17 & 3 & $-0.0993$ \\
-Right & 17 & 11 & 6 & $+0.0382$ \\
-Neutral & 7 & 6 & 1 & $-0.0054$ \\
-Random & 5 & 2 & 3 & $-0.0045$ \\
+Left & 20 & 17 & 3 & -0.0993 \\
+Right & 17 & 11 & 6 & +0.0382 \\
+Neutral & 7 & 6 & 1 & -0.0054 \\
+Random & 5 & 2 & 3 & -0.0045 \\
 \bottomrule
 \end{tabular}
 \end{table*}

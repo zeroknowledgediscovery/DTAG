@@ -1,7 +1,7 @@
-PWD /home/ishanu/Dropbox/ZED/Research/DTAG/tex
+PWD /home/ishanu/ZED/Research/DTAG/tex
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
-INPUT /home/ishanu/.texlive2021/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT DTAG_main.tex
 OUTPUT DTAG_main.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -1216,7 +1216,7 @@ INPUT ./Figures/External/dtag-fig1.pdf
 INPUT Figures/External/dtag-fig1.pdf
 INPUT ./Figures/External/dtag-fig1.pdf
 INPUT ./Figures/External/dtag-fig1.pdf
-INPUT /usr/share/texlive/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc

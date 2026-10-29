@@ -21,6 +21,17 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{sizemore2024}
+N.~Sizemore, K.~Oliphant, R.~Zheng, C.~R. Martin, E.~C. Claud, and
+  I.~Chattopadhyay, ``A digital twin of the infant microbiome to predict
+  neurodevelopmental deficits,'' \emph{Science Advances}, vol.~10, p. eadj0400,
+  2024.
+
+\bibitem{wu2026emergenet}
+K.~Wu, F.~Li, and I.~Chattopadhyay, ``{Emergenet}: A digital twin of influenza
+  a evolution for vaccine strain forecasting and emergence risk assessment,''
+  \emph{Military Medicine}, p. usag255, 2026, published online 12 June 2026.
+
 \bibitem{converse1964}
 P.~E. Converse, ``The nature of belief systems in mass publics,'' in
   \emph{Ideology and Discontent}, D.~E. Apter, Ed.\hskip 1em plus 0.5em minus
@@ -103,11 +114,6 @@ T.~Hothorn, K.~Hornik, and A.~Zeileis, ``Unbiased recursive partitioning: A
   conditional inference framework,'' \emph{Journal of Computational and
   Graphical Statistics}, vol.~15, no.~3, pp. 651--674, 2006.
 
-\bibitem{sizemore2024}
-N.~Sizemore \emph{et~al.}, ``A digital twin of the infant microbiome to predict
-  neurodevelopmental deficits,'' \emph{Science Advances}, vol.~10, p. eadj0400,
-  2024.
-
 \bibitem{dahal2026}
 H.~Dahal, D.~Young, J.~Evans, and I.~Chattopadhyay, ``The fabric of opinion:
   How interdependent attitudes constrain worldviews, predict behavior, and
@@ -131,6 +137,13 @@ P.~Lewis, E.~Perez, A.~Piktus, F.~Petroni, V.~Karpukhin, N.~Goyal,
   tasks,'' in \emph{Advances in Neural Information Processing Systems},
   vol.~33, 2020, pp. 9459--9474. [Online]. Available:
   \url{https://arxiv.org/abs/2005.11401}
+\BIBentrySTDinterwordspacing
+
+\bibitem{prolificEthics2026}
+\BIBentryALTinterwordspacing
+{Prolific Research}, ``{IRB} applications and ethics approval,'' 2026,
+  researcher Help Center, accessed October 2026. [Online]. Available:
+  \url{https://researcher-help.prolific.com/en/articles/449628-irb-applications-and-ethics-approval}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}
