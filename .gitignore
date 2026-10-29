@@ -64,3 +64,11 @@ experiments/
 
 # Local optimizer working copy (cp configs/optimizer_gss2024_cm_wf_robust.yaml my.yaml)
 /my.yaml
+
+# Local virtual environments
+/.venv-dtag/
+.venv*/
+
+# Private human-study analysis exports
+/left_sessions.csv
+/right_sessions.csv
