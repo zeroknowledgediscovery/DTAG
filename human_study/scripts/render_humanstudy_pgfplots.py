@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Curate the human DTAG archive for the manuscript's four-arm PGFPlots figure.
 
-Reads the immutable GCS sessions using plot_human_trajectories.py.
-Publishes ONLY Left, Right, Neutral, Random. A participant with policy=right
-always contributes to Right; no subgroups are presented in the output.
+Reads original, left-follow-up and right-follow-up immutable GCS sessions
+using plot_human_trajectories.py. Publishes ONLY Left, Right, Neutral, Random,
+pooling by assigned policy without cohort subgroups.
 
 From the DTAG repository root on a gcloud-authenticated workstation:
   python3 human_study/scripts/render_humanstudy_pgfplots.py
@@ -15,6 +15,8 @@ Writes:
   tex/Figures/humanstudy_arm_summary.csv
 
 The PGFPlots source is tex/Figures/humanstudy_figures.tex, committed to git.
+The manuscript table reports endpoint displacement; the analysis CSV retains
+actual completion times from final archives.
 Time to completion = final timestamp - session-created timestamp, including
 baseline, survey delays, and all 31 question screens. Time is taken from the
 reward.created_at and timestamp fields in immutable final.json. This script
@@ -204,8 +206,8 @@ def main():
         "\\centering",
         "\\caption{Human DTAG study summary by adaptive question-selection policy.",
         "Only participants who completed 20 adaptive questions are included.",
-        "Completion time is wall-clock time from session creation to finalization,",
-        "including baseline questions, adaptive questions, and attention checks.",
+        "Left and Right combine original and corresponding follow-up cohorts.",
+        "Values are inferred-ideology displacement after 20 adaptive answers.",
         "Baseline signs refer to the LSM-derived ideology coordinate before",
         "adaptive questioning.}",
         "\\label{tab:humanstudy-participants}",
@@ -213,11 +215,11 @@ def main():
         "\\setlength{\\tabcolsep}{11pt}",
         "\\begin{tabular}{lrrrr}",
         "\\toprule",
-        "Policy & Completed $n$ & Baseline $I_\\Phi<0$ & Baseline $I_\\Phi>0$ & Mean completion (min) \\\\",
+        "Policy & Completed $n$ & Baseline $I_\\Phi<0$ & Baseline $I_\\Phi>0$ & Mean $\\Delta I_\\Phi(20)$ \\\\",
         "\\midrule",
     ]
     for s in stats:
-        table.append(f"{s['arm']} & {s['n']} & {s['n_neg']} & {s['n_pos']} & {s['mean_minutes']:.1f} \\\\")
+        table.append(f"{s['arm']} & {s['n']} & {s['n_neg']} & {s['n_pos']} & {s['mean_change']:+.4f} \\\\")
     table += ["\\bottomrule", "\\end{tabular}", "\\end{table*}", ""]
     (args.output_dir / "humanstudy_table.tex").write_text("\n".join(table), encoding="utf-8")
     print("Wrote four trajectory series, four endpoint CI series, an arm summary, and the LaTeX table.")
