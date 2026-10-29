@@ -45,7 +45,7 @@ prolific:
   # In Prolific configure the No consent completion path as 'Request a return'.
   no_consent_code: CHANGEME02
   attention_fail_threshold: 3  # >=3 valid IMCs, or >=2 with independently documented obvious gibberish
-  reward: USD 8.00 for 20 adaptive questions + 5 attention checks (confirm duration and payment in Prolific)
+  reward: USD 8.00 (20 adaptive questions; confirm payment)
 quality:
   fast_seconds: 4.0
   short_words: 3
