@@ -62,7 +62,7 @@ def configured_service():
         if not config.reviewed or (
             config.response_mode == "click" and not 12 <= len(config.bank("baseline")) <= 15
         ) or (
-            config.response_mode in ("free_text_llm", "free_text_multi") and not 1 <= len(config.bank("baseline")) <= 40
+            config.response_mode in ("free_text_llm", "free_text_multi") and not 0 <= len(config.bank("baseline")) <= 40
         ):
             raise RuntimeError("staging/production requires a reviewed instrument with valid initial question count")
         if config.response_mode in ("free_text_llm", "free_text_multi") and backend != "openai":
