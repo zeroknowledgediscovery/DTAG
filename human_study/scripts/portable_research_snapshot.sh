@@ -98,6 +98,18 @@ assert (int(overall["left_directional_success"]),int(overall["right_directional_
 assert int(overall["right_extended_success"])==38
 print("Scientific totals verified: 102 archived production; calibrated Left 21, Right 38; Q4 extended Right 38/38")
 PY
+  # Verify chain-of-custody between the exact frozen audit, analysis,
+  # and derived trajectories before uploading private source files.
+  python3 - "$audit/PRIVATE_all_sessions.csv" "$analysis/manifest.json" "$traj/trajectory_manifest_PRIVATE.json" <<'PY'
+import hashlib,json,sys
+def sha(path):
+    with open(path,"rb") as f: return hashlib.sha256(f.read()).hexdigest()
+with open(sys.argv[2]) as f: analysis=json.load(f)
+with open(sys.argv[3]) as f: trajectory=json.load(f)
+assert analysis["source_audit_csv_sha256"]==sha(sys.argv[1]), "Analysis provenance does not match this exact audit CSV"
+assert trajectory["source_analysis_manifest_sha256"]==sha(sys.argv[2]), "Trajectory provenance does not match this exact analysis manifest"
+print("Provenance verified: audit -> analysis -> trajectories")
+PY
   # Do not overwrite an existing cloud snapshot.
   if gcloud storage ls "$remote/SHA256SUMS.txt" >/dev/null 2>&1; then
     echo "STOP: snapshot already exists: $remote" >&2; exit 2
