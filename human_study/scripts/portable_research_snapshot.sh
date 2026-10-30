@@ -131,7 +131,8 @@ PY
   cp "$dem" "$staging/snapshot/rosters/democratic_approved_payment.pdf"
   cp "$rep" "$staging/snapshot/rosters/republican_approved_payment.pdf"
   gitroot="$(git rev-parse --show-toplevel)"
-  revision="$(git -C "$gitroot" rev-parse HEAD)"
+  # Pin the published experiment branch, not an arbitrary working branch HEAD.
+  revision="$(git -C "$gitroot" rev-parse refs/remotes/origin/experiment/prolific-human-study)"
   key_sha="$(sha256sum "$key" | cut -d' ' -f1)"
   python3 - "$staging/snapshot" "$revision" "$key_sha" "$snap" <<'PY'
 import json,sys
