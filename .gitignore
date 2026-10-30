@@ -87,3 +87,8 @@ experiments/
 /private_analysis_hmac_key.bin
 /private_analysis_hmac_key.bin.gcs
 /PRIVATE_*.csv
+
+# Derived participant-level trajectory exports are private (even when pseudonymized).
+**/trajectories_*_PRIVATE.csv
+**/trajectory_manifest_PRIVATE.json
+/dtag-trajectories-*/
