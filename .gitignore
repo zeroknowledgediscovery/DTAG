@@ -72,3 +72,8 @@ experiments/
 # Private human-study analysis exports
 /left_sessions.csv
 /right_sessions.csv
+
+# --- git-gcs managed artifacts ---
+# Exact managed file/directory paths are appended below.
+/private_analysis_hmac_key.bin
+!/private_analysis_hmac_key.bin.gcs

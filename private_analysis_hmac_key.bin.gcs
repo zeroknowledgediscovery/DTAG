@@ -1,0 +1,6 @@
+version: 1
+type: file
+uri: gs://git-zeroknowledgediscovery-dtag/private_analysis_hmac_key.bin
+sha256: b2048d3c5ab8f8fb10a72ce64adfa13407a1c1eaa6b9fa54e869e9eb54e55c15
+size_bytes: 32
+source_repo_relpath: private_analysis_hmac_key.bin
