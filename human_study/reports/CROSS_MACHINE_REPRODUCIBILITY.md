@@ -94,8 +94,10 @@ sessions and the Q4 result denominators, and checks the HMAC key. It then:
    It refuses a key mismatch.
 2. Packages the original payment PDFs, full private audit, private analysis
    export, derived individual/group trajectories, and Q4 outputs.
-3. Records exact Git branch commit, the source analysis metadata, and
-   SHA-256 checksums.
+3. Records the exact Git branch commit, **a full source-tree tar archive**
+   (`snapshot/code/DTAG_experiment_source.tar`), source analysis metadata,
+   and SHA-256 checksums. The code archive prevents future branch history
+   rewrites from making the snapshot impossible to recreate.
 4. Uploads create-only to
    `gs://pkcsaas-01-dtag-study-data/private-analysis/reproducibility/2026-10-30-restored-v1/snapshot/`.
    Existing objects cannot be overwritten.
@@ -131,6 +133,11 @@ from Secret Manager with `--out-file` so its bytes are preserved exactly.
 After restoration, use the `git_checkout_commit` in
 `snapshot_provenance.json` to select the exact code revision, rather than
 using whatever is currently at the tip of the branch.
+
+If the recorded Git commit has become unreachable following history cleanup,
+extract the checksum-verified `snapshot/code/DTAG_experiment_source.tar`
+into a new, private working directory. This source archive is a frozen code
+snapshot (without Git history), not a replacement for the public repository.
 
 A simple Q4 replay with the restored inputs is:
 
