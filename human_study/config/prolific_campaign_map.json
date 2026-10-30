@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "description": "Investigator-declared Prolific recruitment cohort labels. Study-level metadata only; no participant identifiers. Cohort labels reflect external Prolific recruitment criteria, not DTAG-inferred ideology.",
+  "dtag_study_id": "dtag-v3-nocal-right-2026-10",
+  "campaigns": {
+    "6ae37b8688d760488b8df1b0": {
+      "cohort": "Democrat",
+      "push_policy": "right",
+      "baseline_questions": 0
+    },
+    "6ae3d74f4c7ff7370986b1e4": {
+      "cohort": "Republican",
+      "push_policy": "right",
+      "baseline_questions": 0
+    }
+  }
+}
