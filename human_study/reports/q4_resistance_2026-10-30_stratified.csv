@@ -1,0 +1,4 @@
+initial_ideology,left_n,left_directional_success,left_directional_success_rate,right_n,right_directional_success,right_directional_success_rate,right_correctly_identified_resistance,right_extended_success,right_extended_success_rate
+initially_left,17,16,0.94117647,29,12,0.41379310,17,29,1.00000000
+initially_right,4,4,1.00000000,9,9,1.00000000,0,9,1.00000000
+overall,21,20,0.95238095,38,21,0.55263158,17,38,1.00000000
