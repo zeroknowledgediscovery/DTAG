@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "result_date": "2026-10-30",
+  "dataset": "Restored private GCS-backed DTAG calibrated analysis export",
+  "source": "Aggregate console output supplied by investigator after running human_study/scripts/score_q4_right_resistance.py",
+  "source_script": "human_study/scripts/score_q4_right_resistance.py",
+  "anonymization": "Only aggregates; no participant IDs, responses, or individual trajectories",
+  "cohort": {
+    "eligibility": "Completed 20/20 adaptive-question sessions with 6 preadaptive baseline questions, assigned Left or Right policy",
+    "studies": [
+      "prolific-v3-human-opinions-2026-10",
+      "prolific-v3-left-followup-2026-10",
+      "prolific-v3-right-followup-2026-10"
+    ],
+    "calibrated_directional_sessions": 59,
+    "left_push_sessions": 21,
+    "right_push_sessions": 38,
+    "excluded_from_scored_table": "Random, Neutral, and zero-calibration Right cohorts"
+  },
+  "definitions": {
+    "initial_left": "I0 < -1e-10",
+    "initial_right": "I0 > 1e-10",
+    "left_directional_success": "I20 - I0 < -1e-10",
+    "right_directional_success": "I20 - I0 > 1e-10",
+    "q4_resistance_flag": "In initially Left-leaning participants assigned Right push, (I4-I0)/4 <= 0 (script tolerance 1e-10)",
+    "right_endpoint_resistance": "I20-I0 <= 1e-10",
+    "right_extended_success": "Right directional success OR (Q4 resistance flagged AND Right endpoint resistance)",
+    "index_interpretation": "Movement of model-inferred survey ideology index, not demonstrated change in beliefs"
+  },
+  "stratified_results": [
+    {
+      "initial_ideology": "initially_left",
+      "left_n": 17,
+      "left_directional_success": 16,
+      "right_n": 29,
+      "right_directional_success": 12,
+      "right_correctly_identified_resistance": 17,
+      "right_extended_success": 29,
+      "left_directional_rate": 0.9411764705882353,
+      "right_directional_rate": 0.41379310344827586,
+      "right_extended_rate": 1
+    },
+    {
+      "initial_ideology": "initially_right",
+      "left_n": 4,
+      "left_directional_success": 4,
+      "right_n": 9,
+      "right_directional_success": 9,
+      "right_correctly_identified_resistance": 0,
+      "right_extended_success": 9,
+      "left_directional_rate": 1,
+      "right_directional_rate": 1,
+      "right_extended_rate": 1
+    },
+    {
+      "initial_ideology": "overall",
+      "left_n": 21,
+      "left_directional_success": 20,
+      "right_n": 38,
+      "right_directional_success": 21,
+      "right_correctly_identified_resistance": 17,
+      "right_extended_success": 38,
+      "left_directional_rate": 0.9523809523809523,
+      "right_directional_rate": 0.5526315789473685,
+      "right_extended_rate": 1
+    }
+  ],
+  "initially_left_right_push_q4_classifier": {
+    "n": 29,
+    "flagged_resistant_q4": 19,
+    "endpoint_resistant_q20": 17,
+    "confusion_matrix": {
+      "tp": 17,
+      "fp": 2,
+      "fn": 0,
+      "tn": 10,
+      "positive_class": "Q20 no net rightward movement from baseline",
+      "prediction_positive": "Q4 nonpositive average rightward displacement"
+    },
+    "metrics": {
+      "precision": 0.8947368421052632,
+      "sensitivity": 1,
+      "specificity": 0.8333333333333334,
+      "accuracy": 0.9310344827586207
+    },
+    "correct_classifications": 27
+  },
+  "reporting_note": "The extended score combines intervention movement with classifier-based identification of failure; it is not an intervention-only success rate."
+}
