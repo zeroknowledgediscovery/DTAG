@@ -253,6 +253,15 @@ def produce(records, approved, objects, getter, key, include_text=False, include
         suid=pseudonym(key,"session",study,sid)
         puid=pseudonym(key,"participant",pid) if pid else pseudonym(key,"missing",study,sid)
         final,questions,source,class_ = get_archives(rec,objects,getter,flag)
+        # A Firestore 'complete' state is not interchangeable with a verified
+        # final.json. Preserve this session in the inventory and flag the
+        # missing GCS evidence instead of treating it as a recovered trajectory.
+        if rec.get("phase") == "complete" and final is None:
+            flag("FIRESTORE_COMPLETE_NO_GCS_FINAL",study,sid,
+                 "Firestore says complete but immutable final.json is missing")
+        if class_ == "no_archive" and integer(rec.get("adaptive_count_firestore")):
+            flag("FIRESTORE_ANSWERS_NOT_RECOVERED",study,sid,
+                 "Firestore records adaptive answers but neither finalized nor individual archived responses were found")
         if final:
             if final.get("study_id") != study or final.get("session_id") != sid:
                 flag("ARCHIVE_ID_MISMATCH",study,sid,"Final archive study/session identifier mismatch")
@@ -355,7 +364,10 @@ def produce(records, approved, objects, getter, key, include_text=False, include
         actual_steps=sorted(step_index)
         if actual_steps and actual_steps != list(range(1,max(actual_steps)+1)):
             flag("TRAJECTORY_STEP_GAP",study,sid,f"Stored steps {actual_steps} are noncontiguous")
-        if baseline is not None:
+        # Do not invent a trajectory baseline from Firestore metadata alone.
+        # 'no_archive' means there are no immutable question observations to
+        # anchor the trajectory. The baseline remains in sessions.csv for audit.
+        if baseline is not None and class_ != "no_archive":
             rows["steps.csv"].append(dict(session_uid=suid,participant_uid=puid,
                 dtag_study_id=study,prolific_campaign_id=campaign,recruitment_cohort=cohort,
                 protocol=protocol,policy=arm,approval_status=status,step=0,index=baseline,
