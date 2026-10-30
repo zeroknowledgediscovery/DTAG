@@ -29,3 +29,13 @@ def test_private_key_is_not_part_of_cloud_snapshot_bundle():
     assert "publicAccessPrevention" in source
     assert "SHA256SUMS.txt" in source
     assert "if [[ -e \"$dest\" ]]" in source
+
+
+def test_roster_pdfs_not_needed_for_portable_snapshot():
+    source = SCRIPT.read_text(encoding="utf-8")
+    assert "DTAG_DEM_PDF" not in source
+    assert "DTAG_REP_PDF" not in source
+    assert "democratic_approved_payment.pdf" not in source
+    assert "republican_approved_payment.pdf" not in source
+    assert '"$audit/PRIVATE_participant_crosswalk.csv"' in source
+    assert "snapshot/audit" in source
