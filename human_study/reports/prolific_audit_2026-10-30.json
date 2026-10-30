@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-10-30",
+  "snapshot_kind": "investigator-reported-audit-stdout",
+  "provenance": {
+    "audit_script": "human_study/scripts/audit_all_dtag_prolific.py",
+    "firestore_project": "pkcsaas-01",
+    "firestore_database": "dtag-human-pilot",
+    "gcs_bucket": "pkcsaas-01-dtag-study-data",
+    "firestore_scan_mode": "FULL_COLLECTION_GROUP",
+    "source_description": "Transcribed from the investigator's terminal audit output on 2026-10-30. This JSON is not a direct copy of the protected summary.json; no live GCP reads were performed when committing.",
+    "pdf_source_sha256": {
+      "DTAG_right_DEM": "43cdbbc1b57cad1780e3f00a033bb9d164349a0bc204ab38b6c483669be9fd64",
+      "DTAG_right_REP": "a09a7f207648b9d6a15c3607798b7dfffa98f71d4615a73c975649ac7aff233c"
+    },
+    "pdf_approved_payment_summary_ids": {
+      "DTAG_right_DEM": "RT6EDQ",
+      "DTAG_right_REP": "J89GOE"
+    },
+    "scope_note": "12 study namespaces were printed in the Firestore study inventory; GCS namespace discovery included additional staging namespaces. Do not treat the displayed study rows as all GCS study prefixes."
+  },
+  "unit_definitions": {
+    "sessions_total": "DTAG Firestore session records, including incomplete or nonconsenting attempts",
+    "unique_consented_pids": "Distinct stored Prolific participant IDs among consented sessions; not necessarily approved submissions",
+    "completed_20_sessions": "Recorded sessions with twenty adaptive responses; not necessarily finalized archives",
+    "gcs_final_20_sessions": "Recorded sessions with twenty adaptive questions in finalized GCS final.json",
+    "approved_unique_pids": "Distinct participant IDs on the specific Prolific approved-payment invoice"
+  },
+  "study_inventory": [
+    {
+      "study_id": "dtag-v3-nocal-left-2026-10",
+      "sessions_total": 0,
+      "unique_consented_pids": 0,
+      "completed_20_sessions": 0,
+      "gcs_final_20_sessions": 0,
+      "observed_policy_distribution": {}
+    },
+    {
+      "study_id": "dtag-v3-nocal-right-2026-10",
+      "sessions_total": 36,
+      "unique_consented_pids": 36,
+      "completed_20_sessions": 31,
+      "gcs_final_20_sessions": 31,
+      "observed_policy_distribution": {
+        "right": 36
+      }
+    },
+    {
+      "study_id": "pilot-001",
+      "sessions_total": 4,
+      "unique_consented_pids": 0,
+      "completed_20_sessions": 0,
+      "gcs_final_20_sessions": 0,
+      "observed_policy_distribution": {
+        "(unset)": 1,
+        "random": 2
+      }
+    },
+    {
+      "study_id": "pilot-v2",
+      "sessions_total": 1,
+      "unique_consented_pids": 0,
+      "completed_20_sessions": 0,
+      "gcs_final_20_sessions": 0,
+      "observed_policy_distribution": {
+        "left": 1
+      }
+    },
+    {
+      "study_id": "pilot-v3",
+      "sessions_total": 2,
+      "unique_consented_pids": 0,
+      "completed_20_sessions": 0,
+      "gcs_final_20_sessions": 0,
+      "observed_policy_distribution": {
+        "left": 1,
+        "right": 1
+      }
+    },
+    {
+      "study_id": "prolific-v3-gcp-full-wording-v1",
+      "sessions_total": 10,
+      "unique_consented_pids": 0,
+      "completed_20_sessions": 0,
+      "gcs_final_20_sessions": 0,
+      "observed_policy_distribution": {
+        "left": 1,
+        "neutral": 3,
+        "random": 2,
+        "right": 2
+      }
+    },
+    {
+      "study_id": "prolific-v3-gcp-imc-eligibility-v1",
+      "sessions_total": 1,
+      "unique_consented_pids": 0,
+      "completed_20_sessions": 0,
+      "gcs_final_20_sessions": 0,
+      "observed_policy_distribution": {
+        "right": 1
+      }
+    },
+    {
+      "study_id": "prolific-v3-gcp-test",
+      "sessions_total": 1,
+      "unique_consented_pids": 0,
+      "completed_20_sessions": 0,
+      "gcs_final_20_sessions": 0,
+      "observed_policy_distribution": {
+        "random": 1
+      }
+    },
+    {
+      "study_id": "prolific-v3-human-opinions-2026-10",
+      "sessions_total": 30,
+      "unique_consented_pids": 30,
+      "completed_20_sessions": 25,
+      "gcs_final_20_sessions": 24,
+      "observed_policy_distribution": {
+        "(unset)": 3,
+        "left": 6,
+        "neutral": 8,
+        "random": 5,
+        "right": 8
+      }
+    },
+    {
+      "study_id": "prolific-v3-left-followup-2026-10",
+      "sessions_total": 18,
+      "unique_consented_pids": 17,
+      "completed_20_sessions": 15,
+      "gcs_final_20_sessions": 15,
+      "observed_policy_distribution": {
+        "(unset)": 2,
+        "left": 16
+      }
+    },
+    {
+      "study_id": "prolific-v3-left-followup-staging-2026-10",
+      "sessions_total": 1,
+      "unique_consented_pids": 0,
+      "completed_20_sessions": 0,
+      "gcs_final_20_sessions": 0,
+      "observed_policy_distribution": {}
+    },
+    {
+      "study_id": "prolific-v3-right-followup-2026-10",
+      "sessions_total": 36,
+      "unique_consented_pids": 35,
+      "completed_20_sessions": 31,
+      "gcs_final_20_sessions": 31,
+      "observed_policy_distribution": {
+        "right": 35
+      }
+    }
+  ],
+  "approved_payment_roster_reconciliation": [
+    {
+      "recruitment_label": "Democratic",
+      "prolific_study_title": "DTAG_right_DEM",
+      "prolific_campaign_id": "6ae37b8688d760488b8df1b0",
+      "dtag_study_id": "dtag-v3-nocal-right-2026-10",
+      "expected_policy": "right",
+      "planned_slots": 15,
+      "approved_unique_pids": 15,
+      "linked_correct_study_and_campaign": 15,
+      "linked_20_answers": 15,
+      "linked_gcs_final_20": 15,
+      "unmatched_approved_pids": 0
+    },
+    {
+      "recruitment_label": "Republican",
+      "prolific_study_title": "DTAG_right_REP",
+      "prolific_campaign_id": "6ae3d74f4c7ff7370986b1e4",
+      "dtag_study_id": "dtag-v3-nocal-right-2026-10",
+      "expected_policy": "right",
+      "planned_slots": 15,
+      "approved_unique_pids": 15,
+      "linked_correct_study_and_campaign": 15,
+      "linked_20_answers": 15,
+      "linked_gcs_final_20": 15,
+      "unmatched_approved_pids": 0
+    }
+  ],
+  "issue_type_counts": {
+    "COMPLETE_NO_GCS_FINAL": 12,
+    "CONSENTED_CAMPAIGN_MISSING": 16,
+    "CONSENTED_PID_MISSING": 16,
+    "DTAG_PID_NOT_APPROVED_IN_PDF": 6,
+    "INVALID_PROGRESS": 5,
+    "MULTIPLE_CONSENTED_SESSIONS_SAME_PID": 4,
+    "PID_IN_MULTIPLE_STORED_CAMPAIGNS": 2
+  },
+  "unresolved": [
+    "One of the 31 zero-calibration right GCS final-20 sessions is outside the 30 approved Democratic and Republican invoice rosters; determine its origin before pooling.",
+    "The original four-arm study has 25 sessions with 20 adaptive answers but only 24 GCS 20-answer finals in this snapshot.",
+    "The audit's global issue counts contain staging/test/older cohorts; inspect protected PRIVATE_issues.csv to attribute them, rather than assuming failures in the 30 paid participants.",
+    "Invoice PDFs do not print the machine-readable Prolific STUDY_ID; declared campaign IDs were matched against Firestore participant records.",
+    "Previous Prolific recruitment campaigns' prescreen/approval status cannot be reconstructed from the two new payment invoices."
+  ],
+  "privacy": "AGGREGATE_ONLY. No Prolific PID, local session ID, Prolific SESSION_ID, free-text response, or PDF is included. Participant-level crosswalk is stored privately in Firestore/GCS and locally generated PRIVATE_*.csv."
+}
