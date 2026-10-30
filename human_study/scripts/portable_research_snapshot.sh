@@ -5,9 +5,8 @@
 # Secret Manager, never into the bucket/repository. Requires gcloud and Python3.
 #
 # BACKUP (once, on the original workstation, after generating trajectories):
-#  export DTAG_DEM_PDF=/absolute/private/path/DEMOCRATIC_recruitment...pdf
-#  export DTAG_REP_PDF=/absolute/private/path/REPUBLICAN_RECRUIOT...pdf
 #  bash human_study/scripts/portable_research_snapshot.sh backup
+# The frozen private audit/crosswalk is included; payment PDFs are not needed.
 #
 # RESTORE (fresh machine, after git clone and gcloud auth login):
 #  bash human_study/scripts/portable_research_snapshot.sh restore
@@ -78,18 +77,14 @@ if [[ "$mode" == backup ]]; then
   analysis="${DTAG_ANALYSIS_DIR:-$home/dtag-analysis-2026-10-30-restored}"
   traj="${DTAG_TRAJECTORIES_DIR:-$home/dtag-trajectories-2026-10-30-restored}"
   q4="${DTAG_Q4_DIR:-$home/dtag-q4-resistance-restored}"
-  dem="${DTAG_DEM_PDF:-}"
-  rep="${DTAG_REP_PDF:-}"
-
-  for path in "$audit/PRIVATE_all_sessions.csv" "$audit/PRIVATE_participant_crosswalk.csv" \
+   for path in "$audit/PRIVATE_all_sessions.csv" "$audit/PRIVATE_participant_crosswalk.csv" \
       "$analysis/sessions.csv" "$analysis/steps.csv" "$analysis/manifest.json" \
       "$traj/trajectories_wide_PRIVATE.csv" "$traj/trajectories_long_PRIVATE.csv" \
       "$traj/trajectory_manifest_PRIVATE.json" \
       "$q4/q4_resistance_table.csv" "$q4/q4_resistance_diagnostics.json" \
-      "$key" "$dem" "$rep"; do
+      "$key"; do
     if [[ -z "$path" || ! -f "$path" || -L "$path" ]]; then
       echo "STOP: missing or symlinked required file: $path" >&2
-      echo "Pass the two private roster PDF paths via DTAG_DEM_PDF/DTAG_REP_PDF." >&2
       exit 2
     fi
   done
@@ -150,13 +145,10 @@ PY
   fi
   staging="$(mktemp -d "$home/.dtag-portable.XXXXXXXX")"
   trap 'rm -rf "$staging"' EXIT
-  mkdir -p "$staging/snapshot/rosters"
   cp -a "$audit" "$staging/snapshot/audit"
   cp -a "$analysis" "$staging/snapshot/analysis"
   cp -a "$traj" "$staging/snapshot/trajectories"
   cp -a "$q4" "$staging/snapshot/q4"
-  cp "$dem" "$staging/snapshot/rosters/democratic_approved_payment.pdf"
-  cp "$rep" "$staging/snapshot/rosters/republican_approved_payment.pdf"
   gitroot="$(git rev-parse --show-toplevel)"
   # Pin the published experiment branch, not an arbitrary working branch HEAD.
   revision="$(git -C "$gitroot" rev-parse refs/remotes/origin/experiment/prolific-human-study)"
@@ -186,7 +178,10 @@ obj={"schema_version":1,"created_utc":datetime.now(timezone.utc).isoformat(),
 PY
   (
     cd "$staging/snapshot"
-    find . -type l | grep . && { echo "STOP: symlink in staged snapshot" >&2; exit 2; } || true
+    if find . -type l | grep -q .; then
+      echo "STOP: symlink in staged snapshot" >&2
+      exit 2
+    fi
     find . -type f ! -name SHA256SUMS.txt -print0 | LC_ALL=C sort -z | xargs -0 sha256sum > SHA256SUMS.txt
     sha256sum -c SHA256SUMS.txt >/dev/null
   )
