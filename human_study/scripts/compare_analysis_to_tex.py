@@ -46,7 +46,7 @@ def number(v):
 def complete(r):
     return r.get("complete_20_archive","").strip().lower()=="true"
 
-def compare(data,tex,steps,verbose=False):
+def compare(data,tex,steps,legacy_trajectories):
     problems=[]
     warnings=[]
     all_completes=[r for r in data if complete(r)]
@@ -134,6 +134,34 @@ def compare(data,tex,steps,verbose=False):
             from_step,from_session,rel_tol=1e-8,abs_tol=1e-8):
             problems.append("Archived final endpoint differs from steps.csv Q20")
     print("\nArchived endpoint-vs-step20 records checked:",len(complete_by_uid))
+    # Stepwise trajectories include partial respondents, unlike the Q20 endpoints.
+    # Compare only the three historically unchanged arms; bootstrap CIs can shift
+    # when another arm's sample size changes in the shared-seed generator.
+    allcalib={r["session_uid"] for r in data if r["dtag_study_id"] in CALIBRATED}
+    stepgroups=defaultdict(list)
+    for row in steps:
+        if row.get("session_uid") not in allcalib:
+            continue
+        arm=row.get("policy","").lower()
+        t=row.get("step")
+        val=number(row.get("delta_from_baseline"))
+        if arm in ("left","neutral","random") and t is not None and val is not None:
+            stepgroups[(arm,int(t))].append(val)
+    print("\nFrozen figure vs current stepwise trajectory (Left/Neutral/Random):")
+    for arm in ("left","neutral","random"):
+        count_errors=mean_errors=0
+        for frozen in legacy_trajectories[arm]:
+            t=int(frozen["step"]); v=stepgroups[(arm,t)]
+            oldn=int(frozen["n"]); oldmean=float(frozen["mean"])
+            if len(v)!=oldn:
+                count_errors+=1
+            if not v or not math.isclose(sum(v)/len(v),oldmean,rel_tol=0,abs_tol=1e-8):
+                mean_errors+=1
+        if count_errors or mean_errors:
+            warnings.append(f"{arm}: frozen figure differs at {count_errors} step counts and {mean_errors} step means (check partial-session membership)")
+            print(f"  {arm}: DIFFERENCES — {count_errors} step counts, {mean_errors} means")
+        else:
+            print(f"  {arm}: all 21 step counts and means MATCH")
     print("\nSTATUS:", "PASS with historical Right cohort unresolved" if not problems else "MISMATCH")
     if warnings:
         print("Warnings:")
@@ -154,7 +182,8 @@ def main():
     return compare(
        csvrows(args.analysis_dir/"sessions.csv"),
        csvrows(args.tex_dir/"humanstudy_arm_summary.csv"),
-       csvrows(args.analysis_dir/"steps.csv"))
+       csvrows(args.analysis_dir/"steps.csv"),
+       {arm:csvrows(args.tex_dir/f"humanstudy_trajectory_{arm}.csv") for arm in ("left","neutral","random")})
 
 if __name__=="__main__":
     raise SystemExit(main())
