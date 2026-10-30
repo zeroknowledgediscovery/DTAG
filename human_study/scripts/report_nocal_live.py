@@ -12,9 +12,22 @@ Example:
 from __future__ import annotations
 
 import argparse
+import json
 from collections import Counter, defaultdict
+from pathlib import Path
 from urllib.parse import quote
 from report_left_live import token, list_docs, fields, numeric, describe
+
+
+def campaign_labels(study_id):
+    """Investigator-declared cohort labels; absent/unknown IDs remain unlabeled."""
+    path = Path(__file__).resolve().parents[1] / "config" / "prolific_campaign_map.json"
+    if not path.is_file():
+        return {}
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("dtag_study_id") != study_id:
+        return {}
+    return {pid: record["cohort"] for pid, record in payload.get("campaigns", {}).items()}
 
 
 def get_rows(root, credential, arm):
@@ -133,11 +146,14 @@ def main():
     rows = get_rows(root, credential, a.arm)
     print("Study:", study, "| Firestore database:", a.database)
     print("Prolific campaign STUDY_ID counts:")
+    labels = campaign_labels(study)
     for key, count in sorted(Counter(r["campaign"] for r in rows).items()):
-        print(" ", key, count)
+        print(" ", key, count, "(" + labels[key] + " recruitment)" if key in labels else "(unlabeled)")
     if a.campaign_id:
         rows = [r for r in rows if r["campaign"] == a.campaign_id]
-        print("Selected Prolific campaign:", a.campaign_id)
+        print("Selected Prolific campaign:", a.campaign_id,
+              "(" + labels[a.campaign_id] + " recruitment)" if a.campaign_id in labels
+              else "(unlabeled)")
     else:
         print("WARNING: Unfiltered: may mix Democrat and Republican campaigns.")
     if not rows:
