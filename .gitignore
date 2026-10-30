@@ -77,3 +77,13 @@ experiments/
 # Exact managed file/directory paths are appended below.
 /private_analysis_hmac_key.bin
 !/private_analysis_hmac_key.bin.gcs
+
+# PRIVATE PARTICIPANT DATA: do not track Prolific payment rosters or keys.
+# This protects future additions; old commits still require history cleanup.
+/DEMOCRATIC_recruitment_right_push_prolific_summary_detailed_*.pdf
+/REPUBLICAN_RECRUIOT_right_push_prolific_summary_detailed_*.pdf
+/REPUBLICAN_recruitment_right_push_prolific_summary_detailed_*.pdf
+*prolific*summary*detailed*.pdf
+/private_analysis_hmac_key.bin
+/private_analysis_hmac_key.bin.gcs
+/PRIVATE_*.csv
