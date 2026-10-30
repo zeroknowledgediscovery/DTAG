@@ -17,7 +17,24 @@
       "DTAG_right_DEM": "RT6EDQ",
       "DTAG_right_REP": "J89GOE"
     },
-    "scope_note": "12 study namespaces were printed in the Firestore study inventory; GCS namespace discovery included additional staging namespaces. Do not treat the displayed study rows as all GCS study prefixes."
+    "scope_note": "12 study namespaces were printed in the Firestore study inventory; GCS namespace discovery included additional staging namespaces. Do not treat the displayed study rows as all GCS study prefixes.",
+    "gcs_archive_study_namespaces_scanned": [
+      "dtag-v3-nocal-left-2026-10",
+      "dtag-v3-nocal-left-staging-2026-10",
+      "dtag-v3-nocal-right-2026-10",
+      "dtag-v3-nocal-right-staging-2026-10",
+      "pilot-001",
+      "pilot-v2",
+      "pilot-v3",
+      "prolific-v3-gcp-full-wording-v1",
+      "prolific-v3-gcp-imc-eligibility-v1",
+      "prolific-v3-gcp-test",
+      "prolific-v3-human-opinions-2026-10",
+      "prolific-v3-left-followup-2026-10",
+      "prolific-v3-left-followup-staging-2026-10",
+      "prolific-v3-right-followup-2026-10",
+      "prolific-v3-right-followup-staging-2026-10"
+    ]
   },
   "unit_definitions": {
     "sessions_total": "DTAG Firestore session records, including incomplete or nonconsenting attempts",
@@ -198,5 +215,12 @@
     "Invoice PDFs do not print the machine-readable Prolific STUDY_ID; declared campaign IDs were matched against Firestore participant records.",
     "Previous Prolific recruitment campaigns' prescreen/approval status cannot be reconstructed from the two new payment invoices."
   ],
-  "privacy": "AGGREGATE_ONLY. No Prolific PID, local session ID, Prolific SESSION_ID, free-text response, or PDF is included. Participant-level crosswalk is stored privately in Firestore/GCS and locally generated PRIVATE_*.csv."
+  "privacy": "AGGREGATE_ONLY. No Prolific PID, local session ID, Prolific SESSION_ID, free-text response, or PDF is included. Participant-level crosswalk is stored privately in Firestore/GCS and locally generated PRIVATE_*.csv.",
+  "production_study_summary": {
+    "scope": "five production study IDs, including zero-session left study",
+    "session_records": 120,
+    "completed_20_sessions": 102,
+    "gcs_final_20_sessions": 101,
+    "warning": "Sums of session records, not global unique participants. Different study IDs may contain overlapping Prolific PIDs. No approval count can be inferred from these sums."
+  }
 }
