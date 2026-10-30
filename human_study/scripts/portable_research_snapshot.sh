@@ -44,16 +44,31 @@ chmod 700 "$home"
 
 check_bucket() {
   local meta
-  meta="$(gcloud storage buckets describe "$bucket" --format=json)"
+  # gcloud's standard describe output often normalizes Cloud Storage API
+  # iamConfiguration fields into top-level snake_case names. --raw requests
+  # the original JSON API representation; accept either to support SDK versions.
+  meta="$(gcloud storage buckets describe "$bucket" --raw --format=json)"
   printf '%s' "$meta" | python3 -c '
-import sys, json
+import json,sys
 d=json.load(sys.stdin)
-iam=d.get("iamConfiguration",{})
-pap=iam.get("publicAccessPrevention")
-uba=iam.get("uniformBucketLevelAccess",{}).get("enabled")
+iam=d.get("iamConfiguration") or d.get("iam_configuration") or {}
+pap=(iam.get("publicAccessPrevention") or iam.get("public_access_prevention")
+     or d.get("public_access_prevention") or d.get("publicAccessPrevention"))
+uba=(iam.get("uniformBucketLevelAccess") or iam.get("uniform_bucket_level_access")
+     or iam.get("bucketPolicyOnly") or d.get("uniform_bucket_level_access")
+     or d.get("uniformBucketLevelAccess") or d.get("bucket_policy_only"))
+if isinstance(uba,dict):
+    uba=uba.get("enabled")
+if isinstance(uba,str):
+    uba=uba.strip().lower()=="true"
+if isinstance(pap,str):
+    pap=pap.strip().lower()
+print("Research bucket security metadata: public_access_prevention=%r, uniform_bucket_level_access=%r"%(pap,uba))
 if pap!="enforced" or uba is not True:
-    raise SystemExit("STOP: Research GCS bucket lacks enforced public-access prevention or uniform bucket-level access")
-print("Research GCS bucket: public access prevention enforced; uniform bucket access enabled")
+    raise SystemExit(
+      "STOP: Cannot verify enforced public access prevention and uniform bucket-level access. "
+      "Inspect the printed values; do not disable this check or upload sensitive files.")
+print("Research bucket security requirements verified.")
 '
 }
 check_bucket
