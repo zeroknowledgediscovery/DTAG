@@ -67,11 +67,12 @@ indices, and reports:
 
 - Number of steps with recorded predictions, including prediction scope.
 - Signed prediction minus observed error, mean absolute error, and sign
-  agreement for **single accepted assignment** separately from all
-  assignments.
+  agreement for **one accepted assignment to the selected target variable** separately
+  from all assignments.
 - Private by-wave/by-scope diagnostics to detect implementation changes.
 - Public five-bin, event-weighted predicted-versus-observed summaries
-  restricted to single-assignment steps, with a participant-cluster
+  restricted to single-assignment steps mapped to the selected target,
+  with a participant-cluster
   bootstrap for interval estimates.
 
 Interpret differences as prediction/observation discrepancies under this
