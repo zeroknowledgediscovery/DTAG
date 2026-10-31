@@ -29,7 +29,7 @@
 \addplot+[ybar,bar width=15pt,draw=dtblue,fill=dtblue!80,
   nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}\%},
   point meta=y,every node near coord/.append style={font=\scriptsize\bfseries},
-  error bars/.cd]
+  line width=.9pt]
  table[x=x,y=percent,col sep=comma]{Figures/humanstudy_new_success_left.csv};
 \addlegendentry{Left push}
 \addplot+[ybar,bar width=15pt,draw=dtred,fill=dtred!80,
