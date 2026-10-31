@@ -140,8 +140,9 @@ def table_two(topics, stages):
         r"\begin{tabularx}{\linewidth}{@{}Xrrrrr@{}}",
         r"\toprule",
         r"Baseline and Q4 response & $n$ & $\overline{\Delta}_{1:4}$"
-        r" & $\overline{\Delta}_{5:20}$ & Civil liberties$_{1:4}$"
-        r" & Religion/culture$_{1:4}$ \\",
+        r" & $\overline{\Delta}_{5:20}$"
+        r" & \shortstack{Civil liberties\\(Q1--4)}"
+        r" & \shortstack{Religion/culture\\(Q1--4)} \\",
         r"\midrule",
     ]
     for key, label, n in GROUPS:
