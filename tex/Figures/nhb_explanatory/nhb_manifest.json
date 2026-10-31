@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "n_sessions": 71,
+  "n_events": 1420,
+  "prediction_available": 1180,
+  "prediction_target_aligned": 861,
+  "curated_answer_values_published": 0,
+  "caveats": [
+    "Cross-wave policy differences are not a single randomized causal effect.",
+    "Q4 groups were defined by observed first-four-question displacement.",
+    "Predicted target-only change is not the same estimand as observed multi-variable full-state change; target-aligned single-assignment steps are reported separately.",
+    "Mapped answer values are joint-step associations, not causal effects of a value.",
+    "Public response-value rows require a reviewed answer allowlist and a disclosure threshold."
+  ],
+  "files": [
+    "nhb_resistance_stage_metrics.csv",
+    "nhb_question_topics.csv",
+    "nhb_target_questions.csv",
+    "nhb_predicted_observed_quintiles.csv",
+    "nhb_right_q4_trajectories.csv",
+    "nhb_curated_answer_categories.csv"
+  ]
+}
