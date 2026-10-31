@@ -91,9 +91,12 @@ displacements ($-0.0054$ and $-0.0045$, respectively).
 
 \begin{figure*}[!t]
 \centering
-% Figure 3 is a pre-rendered PDF, not a live tikzpicture.
-% Do not leave a \tikzsetnextfilename pending for Figure 4.
+% Render the new PGFPlots from their current CSVs, not old external caches.
+\tikzexternalenable
+\tikzsetnextfilename{dtag-fig3}
+
 %\input{Figures/humanstudy_figures_new}
+
 \includegraphics[width=.7\textwidth]{Figures/External/dtag-fig3}
 
 \vspace{-8pt}
