@@ -1,0 +1,221 @@
+% Updated prospective human study (GCS-verified complete 6-baseline cohort).
+% Distinct from frozen historical tex/humanstudy.tex; no private rows embedded.
+% Build current trajectory/endpoint CSVs with:
+% python3 human_study/scripts/render_humanstudy_new_pgfplots.py \
+%   --analysis-dir ~/private/dtag-analysis-2026-10-30-restored
+\subsection{Protocol and outcome}
+We recruited participants through Prolific for the prospective DTAG
+human-response experiment. Each calibrated session comprised six
+baseline questions, twenty adaptive questions, and five interleaved
+attention checks. DTAG selected the adaptive questions from the LSM's
+expected directional effects, as in the native simulations. In contrast
+to those simulations, responses were supplied by human participants
+rather than drawn from the LSM conditional distributions. Participants
+answered in natural language; an LLM-based interface presented the
+questions and mapped each free-text response into one or more accepted
+native survey-variable assignments, which updated the LSM state.
+The LLM did not generate the participants' answers. Four
+question-selection policies were used: Left, Right, Neutral, and Random.
+The original study randomized policies; subsequent cohorts recruited
+participants under fixed Left or Right assignments.
+
+Let $s_0$ be the state after the six baseline questions and $s_t$
+the state following adaptive answer $t$. The index trajectory and
+baseline-relative displacement are
+\begin{equation}
+\Delta I_\Phi(t)=I_\Phi(s_t)-I_\Phi(s_0),
+\qquad t=0,\ldots,20.
+\label{eq:humanstudy-new-delta}
+\end{equation}
+A directional success at the end of the adaptive sequence is
+$\Delta I_\Phi(20)<0$ for Left and $\Delta I_\Phi(20)>0$ for Right.
+The resulting trajectories follow the successive human-supplied
+answers in the LSM predictive geometry.
+
+\subsection{Completed sessions and directional response}
+The calibrated study contains 71 participants who completed
+the 20 adaptive questions: 25 from the original four-policy
+experiment, 15 from the fixed-Left follow-up, and 31 from the
+fixed-Right follow-up. The assigned-policy totals are Left
+($n=21$), Right ($n=38$), Neutral ($n=7$), and Random ($n=5$).
+The separately recruited zero-calibration Right cohort is not
+combined with these participants, since it does not have an
+individually measured six-question baseline.
+
+The archived results show leftward displacement in 20/21
+Left-push participants (95.2\%) and rightward displacement in
+21/38 Right-push participants (55.3\%). Baseline position
+strongly distinguishes the observed Right-push response:
+12/29 initially Left-leaning participants (41.4\%) moved right,
+compared with 9/9 initially Right-leaning participants (100\%).
+For Left push, 16/17 initially Left-leaning participants
+(94.1\%) and 4/4 initially Right-leaning participants (100\%)
+moved left.
+
+\begin{table*}[!t]
+\centering
+\caption{Directional response after the 20 adaptive questions,
+stratified by the sign of the baseline inferred ideology index.
+Success denotes net displacement in the assigned direction.}
+\label{tab:humanstudy-new-stratified}
+\small
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{lrr}
+\toprule
+Initial inferred phenotype & Left push & Right push\\
+\midrule
+Initially Left & 16/17 (94.1\%) & 12/29 (41.4\%)\\
+Initially Right & 4/4 (100\%) & 9/9 (100\%)\\
+\midrule
+Overall & 20/21 (95.2\%) & 21/38 (55.3\%)\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+% The endpoint means/CI were not supplied as aggregates. Regenerate
+% these directly from the 71 archived complete trajectories rather than
+% silently recycling the published 49-session curves.
+\IfFileExists{Figures/humanstudy_new_table.tex}{%
+  \input{Figures/humanstudy_new_table}%
+}{%
+  \PackageError{DTAG}{Current human-study endpoint table not generated}
+  {Run render_humanstudy_new_pgfplots.py on the restored private analysis export.}%
+}
+
+The mean endpoint displacement was $-0.0989$ for Left push
+(95\% participant-bootstrap confidence interval
+$[-0.1200,-0.0741]$) and $+0.0225$ for Right push
+($[+0.0006,+0.0452]$). Neutral and Random showed smaller mean
+displacements ($-0.0054$ and $-0.0045$, respectively).
+
+
+\begin{figure*}[!t]
+\centering
+% Figure 3 is a pre-rendered PDF, not a live tikzpicture.
+% Do not leave a \tikzsetnextfilename pending for Figure 4.
+%\input{Figures/humanstudy_figures_new}
+\includegraphics[width=.7\textwidth]{Figures/External/dtag-fig3}
+
+\vspace{-8pt}
+\caption{\textbf{Updated human-study trajectories and endpoints
+(71 calibrated complete sessions).}
+(a) Mean baseline-relative change after each adaptive question in
+Left, Right, Neutral, and Random policies; the colored 95\%
+participant-bootstrap confidence bands are shown for Left and Right.
+(b) Mean displacement after twenty adaptive questions, with
+95\% participant-bootstrap intervals from complete human-response
+trajectories. (c) Proportion moving in the assigned direction by
+initial phenotype sign and policy: L/L $=16/17$, L/R $=4/4$,
+R/L $=12/29$, and R/R $=9/9$, where the first symbol denotes
+policy and the second denotes baseline sign.
+(d) Classification from the first four questions of baseline-relative
+Right-push nonresponse at the end of the study among initially Left-leaning participants:
+17 true positives (TP), 2 false positives (FP), no false negatives
+(FN), and 10 true negatives (TN).}
+\label{fig:humanstudy-new-trajectory-endpoints}
+\end{figure*}
+
+\subsection{Early identification of Right-push resistance}
+Right-directed questioning produced a weaker response among initially
+Left-leaning participants. We therefore examined whether resistance
+to rightward displacement could be identified from the first four
+adaptive responses. This analysis was restricted to the 29 Right-push
+participants whose baseline inferred ideology index was negative.
+A participant was flagged as resistant if their inferred index had
+not increased relative to their own baseline after four questions.
+We evaluated that early classification against whether the index
+had moved rightward from baseline at the end of the full
+20-question sequence.
+
+Seventeen of these 29 participants showed no net rightward
+displacement at the end of the study. All 17 had been identified
+by the four-question criterion. The criterion also flagged two
+participants who ultimately moved rightward. It therefore
+identified all observed resistant participants (17/17,
+100\% sensitivity), with 89.5\% precision (17/19),
+83.3\% specificity (10/12), and 93.1\% overall
+classification accuracy (27/29).
+
+\begin{table}[!t]
+\centering
+\caption{Early resistance classification among initially Left-leaning
+participants assigned Right push ($n=29$). The classification
+uses the first four adaptive answers; the final outcome is measured
+relative to baseline at the end of the 20-question sequence.}
+\label{tab:humanstudy-q4-confusion}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcc}
+\toprule
+ & \shortstack{No net\\rightward move} & \shortstack{Moved\\rightward}\\
+\midrule
+Flagged resistant & 17 & 2 \\
+Not flagged & 0 & 10 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% Regenerate the Q4-filtered 19-participant Right aggregate from private
+% completed sessions before enabling this figure in a fresh checkout.
+% Never substitute the unfiltered Right curve for the filtered cohort.
+\IfFileExists{Figures/humanstudy_new_trajectory_right_q4_unflagged.csv}{%
+For comparison with Fig.~\ref{fig:humanstudy-new-trajectory-endpoints}(a),
+Fig.~\ref{fig:humanstudy-q4-unflagged-trajectory} repeats the four-policy
+trajectory plot after removing the 19 initially Left-leaning Right-push
+participants flagged as resistant at question four. The remaining
+Right-push group consists of 10 initially Left-leaning participants
+without an early flag and all nine initially Right-leaning participants.
+The Left, Neutral, and Random groups are identical to those in
+Fig.~\ref{fig:humanstudy-new-trajectory-endpoints}(a).
+
+\begin{figure}[!t]
+\centering
+% This panel is always rendered live from participant-bootstrap aggregate CSVs.
+% In particular, do not reuse any of the existing externalized Figure 3 PDFs.
+\tikzexternalenable
+\input{Figures/humanstudy_q4_unflagged_trajectory}
+\vspace{-7pt}
+\caption{\textbf{Adaptive trajectories after early resistance exclusion.}
+The same 20-question baseline-relative trajectories and PGFPlots styling
+as Fig.~\ref{fig:humanstudy-new-trajectory-endpoints}(a) are shown.
+Only the Right-push trajectory is filtered: initially Left-leaning
+participants whose index failed to increase from baseline at question
+four are excluded (19/38), leaving 19 Right-push participants.
+The other groups remain unchanged (Left 21, Neutral 7, Random 5).
+Shaded bands are 95\% participant-bootstrap confidence intervals for
+Left and the Q4-unflagged Right subgroup.}
+\label{fig:humanstudy-q4-unflagged-trajectory}
+\end{figure}
+}{%
+\PackageWarning{DTAG}{Q4-filtered Right-push aggregate CSV missing. Run render_humanstudy_new_pgfplots.py on the private calibrated export to enable the additional trajectory figure}%
+}
+
+%% \begin{figure*}[!t]
+%% \centering
+%% \tikzexternalenable
+%% \input{Figures/humanstudy_resistance_figures_new}
+%% \vspace{-8pt}
+%% \caption{\textbf{Direction-dependent response and early resistance detection.}
+%% (c) Proportion moving in the assigned direction after the study by
+%% initial phenotype sign and policy: L/L $=16/17$, L/R $=4/4$,
+%% R/L $=12/29$, and R/R $=9/9$, where the first symbol denotes
+%% policy and the second denotes baseline sign.
+%% (d) Classification from the first four questions of baseline-relative
+%% Right-push nonresponse at the end of the study among initially Left-leaning participants:
+%% 17 true positives (TP), 2 false positives (FP), no false negatives
+%% (FN), and 10 true negatives (TN).}
+%% \label{fig:humanstudy-new-response-resistance}
+%% \end{figure*}
+
+\subsection{Interpretation}
+The human-response trajectories exhibit a marked directional
+asymmetry. Left-directed questioning moved 20/21 inferred
+phenotypes leftward; Right-directed questioning moved all
+nine initially Right-leaning participants but only 12/29
+initially Left-leaning participants rightward. Among the latter
+group, the first four responses identified all 17 participants
+who ultimately showed no net rightward displacement, with two
+additional early resistance flags. The early trajectory therefore
+provides information about the final direction-specific response
+phenotype in addition to the movement achieved by the adaptive
+selection policy.

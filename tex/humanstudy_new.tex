@@ -175,8 +175,13 @@ Fig.~\ref{fig:humanstudy-new-trajectory-endpoints}(a).
 \centering
 % This panel is always rendered live from participant-bootstrap aggregate CSVs.
 % In particular, do not reuse any of the existing externalized Figure 3 PDFs.
-\tikzexternaldisable
-\input{Figures/humanstudy_q4_unflagged_trajectory}
+\tikzexternalenable
+\tikzsetnextfilename{dtag-fig4}
+
+%\input{Figures/humanstudy_q4_unflagged_trajectory}
+
+\includegraphics[width=.4\textwidth]{Figures/External/dtag-fig4}
+
 \vspace{-7pt}
 \caption{\textbf{Adaptive trajectories after early resistance exclusion.}
 The same 20-question baseline-relative trajectories and PGFPlots styling

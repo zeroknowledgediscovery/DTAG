@@ -1246,6 +1246,12 @@ INPUT ./Figures/External/dtag-fig3.pdf
 INPUT Figures/External/dtag-fig3.pdf
 INPUT ./Figures/External/dtag-fig3.pdf
 INPUT ./Figures/External/dtag-fig3.pdf
+INPUT ./Figures/humanstudy_new_trajectory_right_q4_unflagged.csv
+INPUT Figures/humanstudy_new_trajectory_right_q4_unflagged.csv
+INPUT ./Figures/External/dtag-fig4.pdf
+INPUT Figures/External/dtag-fig4.pdf
+INPUT ./Figures/External/dtag-fig4.pdf
+INPUT ./Figures/External/dtag-fig4.pdf
 INPUT ./dtag_main_new.bbl
 INPUT dtag_main_new.bbl
 INPUT ./dtag_main_new.bbl
