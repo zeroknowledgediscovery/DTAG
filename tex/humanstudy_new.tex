@@ -49,22 +49,20 @@ moved left.
 
 \begin{table*}[!t]
 \centering
-\caption{Baseline-stratified directional outcomes after the full adaptive
-sequence. The last column also includes \emph{correct early identification of resistance}
-for initially Left-leaning participants assigned Right push; it is not
-an intervention-only success rate.}
+\caption{Directional response after the 20 adaptive questions,
+stratified by the sign of the baseline inferred ideology index.
+Success denotes net displacement in the assigned direction.}
 \label{tab:humanstudy-new-stratified}
 \small
-\setlength{\tabcolsep}{6pt}
-\begin{tabular}{lrrr}
+\setlength{\tabcolsep}{8pt}
+\begin{tabular}{lrr}
 \toprule
-Initial inferred phenotype & \shortstack{Left: direction\\achieved} &
-\shortstack{Right: direction\\achieved} & \shortstack{Right: movement or\\correct resistance}\\
+Initial inferred phenotype & Left push & Right push\\
 \midrule
-Initially Left & 16/17 (94.1\%) & 12/29 (41.4\%) & 29/29 (100\%)\\
-Initially Right & 4/4 (100\%) & 9/9 (100\%) & 9/9 (100\%)\\
+Initially Left & 16/17 (94.1\%) & 12/29 (41.4\%)\\
+Initially Right & 4/4 (100\%) & 9/9 (100\%)\\
 \midrule
-Overall & 20/21 (95.2\%) & 21/38 (55.3\%) & 38/38 (100\%)\\
+Overall & 20/21 (95.2\%) & 21/38 (55.3\%)\\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -79,9 +77,17 @@ Overall & 20/21 (95.2\%) & 21/38 (55.3\%) & 38/38 (100\%)\\
   {Run render_humanstudy_new_pgfplots.py on the restored private analysis export.}%
 }
 
+The mean endpoint displacement was $-0.0989$ for Left push
+(95\% participant-bootstrap confidence interval
+$[-0.1200,-0.0741]$) and $+0.0225$ for Right push
+($[+0.0006,+0.0452]$). Neutral and Random showed smaller mean
+displacements ($-0.0054$ and $-0.0045$, respectively).
+
+
 \begin{figure*}[!t]
 \centering
-\DTAGExternalEnable
+% Render the new PGFPlots from their current CSVs, not old external caches.
+\tikzexternaldisable
 \input{Figures/humanstudy_figures_new}
 \vspace{-8pt}
 \caption{\textbf{Updated human-study trajectories and endpoints
@@ -115,7 +121,9 @@ participants who ultimately moved rightward. It therefore
 identified all observed resistant participants (17/17,
 100\% sensitivity), with 89.5\% precision (17/19),
 83.3\% specificity (10/12), and 93.1\% overall
-classification accuracy (27/29).
+classification accuracy (27/29). These are within-sample,
+retrospective classification results; the four-question criterion
+has not yet been tested on an independent cohort.
 
 \begin{table}[!t]
 \centering
@@ -138,6 +146,7 @@ Not flagged & 0 & 10 \\
 
 \begin{figure*}[!t]
 \centering
+\tikzexternaldisable
 \input{Figures/humanstudy_resistance_figures_new}
 \vspace{-8pt}
 \caption{\textbf{Direction-dependent response and early resistance detection.}
@@ -151,14 +160,6 @@ Right-push nonresponse at the end of the study among initially Left-leaning part
 (FN), and 10 true negatives (TN).}
 \label{fig:humanstudy-new-response-resistance}
 \end{figure*}
-
-Rightward displacement or correctly identified endpoint
-nonresponse accounts for all 29 initially Left-leaning Right-push
-participants (12 and 17, respectively); including initially
-Right-leaning participants, the combined outcome is 38/38.
-This is a composite of successful directional response and
-correct early identification of nonresponse, \emph{not} a
-38/38 directional intervention success rate.
 
 \subsection{Interpretation}
 The completed human study shows asymmetric baseline-relative
