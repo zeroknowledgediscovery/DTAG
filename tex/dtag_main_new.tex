@@ -1,0 +1,438 @@
+\PassOptionsToPackage{usenames,x11names,dvipsnames}{xcolor}
+\documentclass[technote,10pt]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,tabularx,array}
+\usepackage{graphicx}
+\usepackage{dblfloatfix}
+\usepackage{microtype}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\thebibliography}{\footnotesize\vskip}{\footnotesize\linespread{0.90}\selectfont\vskip}{}{}
+\makeatother
+\def\IEEEbibitemsep{-0.8pt}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit}
+\usetikzlibrary{external}
+% Cache externalized vector PDFs inside tex/Figures/External.
+% Global opt-out; only selected figures are externalized.
+\tikzexternalize[prefix=Figures/External/]
+% Plain pdflatex: render inline, with no shell-escape requirement.
+% pdflatex -shell-escape: create/reuse external vector PDFs.
+\newif\ifDTAGExternalPDF
+\ifnum\pdfshellescape=1
+  \DTAGExternalPDFtrue
+\else
+  \DTAGExternalPDFfalse
+\fi
+\newcommand{\DTAGExternalEnable}{\ifDTAGExternalPDF\tikzexternalenable\fi}
+\tikzexternaldisable
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots,fillbetween}
+\usepackage{cite}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calX}{\mathcal{X}}
+\newcommand{\JS}{D_{\mathrm{JS}}}
+\newcommand{\Ph}{\Phi}
+\newcommand{\Do}{\operatorname{do}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\KL}{D_{\mathrm{KL}}}
+\definecolor{dtred}{RGB}{133,39,48}
+\definecolor{dtblue}{RGB}{34,68,116}
+\definecolor{dtgray}{RGB}{120,120,124}
+\definecolor{dtmint}{RGB}{224,245,240}
+\definecolor{dtpale}{RGB}{225,237,251}
+\definecolor{dtorange}{RGB}{247,231,207}
+\pgfplotsset{
+  publication axis/.style={
+    axis line style={draw=black,line width=.85pt},
+    tick style={draw=black,line width=.8pt},
+    tick label style={font=\footnotesize\bfseries,text=black},
+    label style={font=\small\bfseries,text=black},
+    title style={font=\small\bfseries,text=black},
+    grid=major,grid style={draw=black!12,line width=.25pt},
+    scaled ticks=false
+  }
+}
+
+\definecolor{modblue}{RGB}{24,70,120}
+\definecolor{modred}{RGB}{162,62,67}
+\definecolor{modteal}{RGB}{22,117,108}
+\title{Digital Twin Anchored Generation: Adaptive Questioning for Directed Movement in Opinion Space}
+\author{Ishanu Chattopadhyay%
+\thanks{Email: ishanu\_ch@uky.edu Working research draft, October 2026. University of Kentucky. Native GSS 2024 computational experiments and human-response study.}}
+
+
+% ###################################
+\newcommand{\mnp}[2]{\begin{minipage}{#1}#2\end{minipage}} 
+\newcommand{\xtitaut}[2]{
+  \noindent\mnp{\textwidth}{
+    \mnp{\textwidth}{\raggedright\Huge \bf \sffamily #1}
+
+    \vskip 1em
+
+    {\bf \sffamily #2}
+  }
+  \vskip 2em
+}
+
+
+
+\begin{document}
+% New human-study means/CIs require running render_humanstudy_new_pgfplots.py.
+% The original 49-session figures are deliberately not reused.
+% Source data are external CSVs (not generated TeX files).
+% The build script links tex/figures to the desired completed experiment.
+% The stable path is required by external TikZ subprocesses.
+\providecommand{\DTAGFigureDir}{Figures}
+\def\DTAGMetadataCSV{\DTAGFigureDir/publication_metadata.csv}
+\pgfplotstableread[col sep=comma]{\DTAGMetadataCSV}\DTAGMetadataTable
+\pgfplotstablegetelem{0}{steps}\of{\DTAGMetadataTable}\xdef\DTAGSteps{\pgfplotsretval}
+\pgfplotstablegetelem{0}{reps}\of{\DTAGMetadataTable}\xdef\DTAGReps{\pgfplotsretval}
+\pgfplotstablegetelem{0}{displayed_questions}\of{\DTAGMetadataTable}\xdef\DTAGIdMax{\pgfplotsretval}
+\pgfplotstablegetelem{0}{total_questions}\of{\DTAGMetadataTable}\xdef\DTAGTotalQuestions{\pgfplotsretval}
+\pgfplotstablegetelem{0}{endpoint_bound}\of{\DTAGMetadataTable}\xdef\DTAGEndpointBound{\pgfplotsretval}
+\pgfplotstablegetelem{0}{trajectory_bound}\of{\DTAGMetadataTable}\xdef\DTAGTrajectoryBound{\pgfplotsretval}
+\pgfplotstablegetelem{0}{order_bound}\of{\DTAGMetadataTable}\xdef\DTAGOrderBound{\pgfplotsretval}
+\pgfmathsetmacro{\DTAGXMax}{\DTAGSteps+0.5}
+\pgfmathsetmacro{\DTAGYMax}{\DTAGReps+0.5}
+\pgfmathtruncatemacro{\DTAGHalfSteps}{round(\DTAGSteps/2)}
+\pgfmathtruncatemacro{\DTAGHalfReps}{round(\DTAGReps/2)}
+
+%\xtitaut{\title}{Ishanu Chattopadhyay}
+\maketitle
+
+
+\begin{abstract}
+Can the selection of survey questions move a respondent's model-inferred ideology coordinate without controlling the answers? Digital Twin Anchored Generation (DTAG) uses Large Science Model (LSM) conditionals to select items maximizing expected displacement in a pole-relative predictive phenotype. In 960 GSS 2024 twenty-question simulations across six personas, directional policies shifted the index without asking any of the 27 pole-defining items; 2,880 fixed-set replays assessed effects of question order. The completed prospective Prolific study comprises 71 calibrated sessions: 21 Left, 38 Right, 7 Neutral, and 5 Random. At Q20, 20/21 Left-push participants (95.2\%) moved left, compared with 21/38 Right-push participants (55.3\%) moving right. Rightward movement depended strongly on the initial inferred position: 12/29 initially Left-leaning participants (41.4\%) and 9/9 initially Right-leaning participants (100\%) moved right. Among the 17 initially Left-leaning Right-push nonresponders, all were flagged as resistant to baseline-relative rightward movement after four adaptive questions (Q4 classifier sensitivity 100\%, accuracy 27/29, 93.1\%). The observed changes concern conditional survey-response phenotypes rather than independently verified changes in political beliefs.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Predictive phenotypes, large science models, conditional response modeling, digital twins, survey methodology, opinion dynamics, adaptive questioning, generative simulation.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Survey questions are usually treated as measurements, but each answer also changes predictions about unanswered items. We ask whether choosing \emph{which questions to pose} can steer a respondent's inferred ideological position. If so, adaptive surveys do more than collect information: their selection policies shape the modeled opinion profile.
+
+Large Science Models (LSMs) provide a new framework for generative digital twins of multivariate systems. They learn interdependent conditional distributions, infer unobserved variables from partial evidence, and compare states through their predictive consequences. Related digital-twin applications include infant microbiome development \cite{sizemore2024} and influenza evolution through Emergenet \cite{wu2026emergenet}. DTAG applies an LSM to survey answers, defining a \emph{predictive phenotype} over unasked items and its position relative to opposing reference opinion profiles. It selects questions to maximize expected signed displacement while respondents supply the answers.
+
+We test this with 960 native GSS 2024 trajectories across six personas (excluding all pole-defining items), 2,880 fixed-set order replays, and 71 completed calibrated human sessions recruited through Prolific. The human results additionally show that baseline-relative Right-push nonresponse among initially Left-leaning participants is identifiable after four adaptive questions.
+\section{Related Work}
+Attitude dependencies need not align on one ideological axis \cite{converse1964,zaller1992}. Partisan sorting and social influence shape these dependencies \cite{baldassarri2008,dellaposta2015}; cognitive consistency, wording, and order can affect reported attitudes \cite{festinger1957,schwarz1999,taber2006}. This motivates separating information revealed by a question from any change induced by asking it.
+
+Opinion-dynamics models often use low-dimensional transitions \cite{degroot1974,friedkin1990,hegselmann2002}, while experiments on exposure and contact report heterogeneous effects \cite{bail2018,kalla2018,broockman2016}. Generative agents and prompted survey personas can produce plausible responses \cite{argyle2023,park2023}. DTAG instead combines learned high-dimensional survey conditionals with an explicit question-selection objective.
+
+\section{Large Science Models and the Predictive Phenotype}
+\subsection{Conditional dependency model}
+Let $X=(X_1,\ldots,X_n)$ be categorical survey responses, with alphabets $\mathcal A_i$ and survey context $c$. An LSM comprises conditionals
+\begin{equation}
+\Ph_c=\{\phi_{i,c}(a\mid x_{-i}) : i=1,\ldots,n\},
+\label{eq:lsm}
+\end{equation}
+estimated by conditional inference trees \cite{hothorn2006,sizemore2024,dahal2026}. Their dependencies are predictive, not causal; the conditionals need not form a coherent joint law \cite{heckerman2000}.
+
+A respondent state $s=\{X_j=a_j:j\in S\}$ holds observed responses. Unanchored variables remain missing in $\widetilde x_{-v}(s)$; each native tree averages over its missing branches. For unasked $v\notin S$,
+\begin{equation}
+p_\Ph(a\mid s,v)=\phi_{v,c}(a\mid\widetilde x_{-v}(s)).
+\label{eq:predict}
+\end{equation}
+The vector
+\begin{equation}
+\calB_\Ph(s)=\bigl(p_\Ph(\cdot\mid s,v)\bigr)_{v\notin S}
+\label{eq:beliefstate}
+\end{equation}
+is the \emph{predictive phenotype}: conditional distributions and uncertainty for unasked responses.
+
+\subsection{Geometry as predictive equivalence}
+Conditional predictions induce a distance between complete or partial states $x,y$:
+\begin{equation}
+\theta_\Ph(x,y)=\frac{1}{n}\sum_{i=1}^n
+\sqrt{\JS\!\left(
+\phi_{i,c}(\cdot\mid x_{-i}),\phi_{i,c}(\cdot\mid y_{-i})
+\right)}.
+\label{eq:metric}
+\end{equation}
+Here $\JS$ denotes Jensen--Shannon divergence. The resulting predictive pseudometric distinguishes states by their conditional consequences.
+
+Prior LSM reconstruction reduced mean distance distortion by 54.9\% (GSS) and 60.9\% (Eurobarometer) with 80\% of responses masked \cite{dahal2026}.
+
+For GSS models with registered left and right reference states $s_L,s_R$, DTAG reports
+\begin{equation}
+I_\Ph(s)=\frac{\theta_\Ph(s_L,s)-\theta_\Ph(s_R,s)}
+{\theta_\Ph(s_L,s_R)}.
+\label{eq:ideology}
+\end{equation}
+The reference poles specify opposing responses on 27 GSS 2024 items covering policy, civil liberties, spending, and religion (Table~\ref{tab:poles}) \cite{dahal2026}. Other coordinates are unspecified; $I_\Ph$ measures predictive position rather than self-reported ideology.
+
+\begin{table*}[!t]
+\centering
+\caption{\textbf{GSS 2024 reference poles.} Twenty-seven paired responses define $s_L,s_R$, with $I_\Phi=-1,+1$; all other coordinates are unspecified. }
+\label{tab:poles}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.02}
+\begin{minipage}[t]{.495\textwidth}
+\begin{tabularx}{\linewidth}{@{}lX>{\raggedright\arraybackslash}p{.70in}>{\raggedright\arraybackslash}p{.70in}@{}}
+\toprule
+\textbf{Item} & \textbf{Survey topic} & \textbf{Left} & \textbf{Right} \\
+\midrule
+\texttt{abany} & Abortion on request & yes & no \\
+\texttt{abdefect} & Abortion: fetal defect & yes & no \\
+\texttt{abnomore} & Abortion: no more children & yes & no \\
+\texttt{abpoor} & Abortion: low income & yes & no \\
+\texttt{abrape} & Abortion after rape & yes & no \\
+\texttt{absingle} & Abortion: unmarried & yes & no \\
+\texttt{bible} & Bible interpretation & ancient book & inspired word \\
+\texttt{colcom} & Communist as college teacher & not fired & yes, fired \\
+\texttt{confed} & Trust in federal government & a great deal & hardly any \\
+\texttt{conlabor} & Trust in organized labor & a great deal & hardly any \\
+\texttt{grass} & Marijuana legalization & should be legal & should not be legal \\
+\texttt{gunlaw} & Permit to purchase gun & favor & oppose \\
+\texttt{libcom} & Communist books in library & not remove & remove \\
+\texttt{libmslm} & Muslim cleric books in library & not remove & remove \\
+\bottomrule
+\end{tabularx}
+\end{minipage}\hfill
+\begin{minipage}[t]{.495\textwidth}
+\begin{tabularx}{\linewidth}{@{}lX>{\raggedright\arraybackslash}p{.70in}>{\raggedright\arraybackslash}p{.70in}@{}}
+\toprule
+\textbf{Item} & \textbf{Survey topic} & \textbf{Left} & \textbf{Right} \\
+\midrule
+\texttt{natarms} & Military spending & too much & about right \\
+\texttt{natenvir} & Environmental spending & too little & about right \\
+\texttt{natfare} & Welfare spending & too little & too much \\
+\texttt{natsoc} & Social Security spending & too little & about right \\
+\texttt{owngun} & Guns in household & no & yes \\
+\texttt{pillok} & Contraception access & strongly agree & disagree \\
+\texttt{polabuse} & Police strike insulting citizen & yes & no \\
+\texttt{pray} & Frequency of prayer & never & several times a day \\
+\texttt{prayer} & Bible prayer in public schools & approve & disapprove \\
+\texttt{reliten} & Personal religiosity & no religion & strong \\
+\texttt{rowngun} & Respondent owns a gun & no & yes \\
+\texttt{shotgun} & Owns a shotgun & no & yes \\
+\texttt{spkcom} & Communist public speech & yes, allowed to speak & not allowed \\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\endgroup
+\end{table*}
+
+\begin{figure*}[!t]
+\centering
+\tikzexternalenable
+\tikzsetnextfilename{dtag-fig1}
+%\input{Figures/fig1}
+\includegraphics[width=\textwidth]{Figures/External/dtag-fig1}
+
+\vspace{-10pt}
+
+\caption{\textbf{DTAG architecture and native adaptive results.}
+(a) LSM-anchored responses and directional question selection; language mapping is a separate interface.
+(b) Mean endpoint displacement across six personas with 95\% bootstrap intervals.
+(c) Mean \DTAGSteps{}-question trajectories over \DTAGReps{} repetitions per persona and policy, with pointwise 95\% intervals (right: red; left: blue; neutral: dashed gray; random: black).}
+\label{fig:arch_adaptive}
+\label{fig:arch}
+\label{fig:persona-endpoints}
+\label{fig:native-trajectories}
+\end{figure*}
+
+\section{Adaptive Question Selection}
+A semantic interface can map a natural-language question $q$ to a survey item $v\in M(q)$ and verbalize its answer. The native experiments use item identifiers directly without the LLM layer. For a selected question, DTAG samples a response and updates the predictive phenotype:
+\begin{align}
+A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\label{eq:draw}\\
+s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
+\calB_{t+1}&=\calB_\Ph(s_{t+1}).\label{eq:posterior}
+\end{align}
+The initial persona anchors remain fixed. The optimizer chooses the question, not its answer (Fig.~\ref{fig:arch_adaptive}).
+
+For candidate item $v$ and answer $a$, define
+\begin{align}
+\Delta_v(a;s)&=I_\Ph(s\cup\{v=a\})-I_\Ph(s),\label{eq:delta}\\
+\mu_v(s)&=\sum_{a\in\mathcal A_v}p_\Ph(a\mid s,v)\Delta_v(a;s),\label{eq:mu}\\
+\sigma_v^2(s)&=\sum_a p_\Ph(a\mid s,v)(\Delta_v(a;s)-\mu_v(s))^2.
+\label{eq:var}
+\end{align}
+Right- and left-seeking policies maximize and minimize $\mu_v(s)$; neutral minimizes $|\mu_v(s)|$, and random samples an eligible item. By construction,
+\begin{equation*}
+\EE[I_\Ph(s_{t+1})-I_\Ph(s_t)\mid s_t,v_t]=\mu_{v_t}(s_t).
+\end{equation*}
+The accumulated displacement depends on successive selected items and sampled answers.
+
+The effect on an unasked item $j$ after observing $(v,a)$ is
+\begin{equation}
+R_j(s;v,a)=\JS\!\bigl(p_\Ph(\cdot\mid s,j),
+p_\Ph(\cdot\mid s\cup\{v=a\},j)\bigr).
+\label{eq:ripple}
+\end{equation}
+A weighted sum $\mathcal P_\Ph(s;v,a)=\sum_{j\notin S\cup\{v\}}w_jR_j(s;v,a)$ measures redistribution across the remaining items. Unlike text retrieval \cite{lewis2020}, DTAG maintains an explicit conditional response state. The public implementation includes a web application (\url{https://github.com/zeroknowledgediscovery/DTAG/tree/main/webapp}).
+
+\section{Refinement and Possible Response Effects}
+Under \emph{phenotypic refinement}, successive answers restrict predictions for unasked items. For held-out responses $Y$, the expected information from asking $v$ is
+\begin{equation}
+\mathcal G(v\mid s)=
+H(Y\mid s)-\EE_{A_v\mid s}[H(Y\mid s,v=A_v)].
+\label{eq:ig}
+\end{equation}
+Under a coherent joint model this is conditional mutual information, distinct from directional displacement $\mu_v(s)$. Held-out response prediction evaluates refinement directly.
+
+\begin{table*}[!t]
+\centering
+\caption{Pinned GSS 2024 synthetic personas and baseline pole-relative index.}
+\label{tab:personas}
+\begingroup
+\small
+\footnotesize
+\renewcommand{\arraystretch}{1.06}
+\begin{tabularx}{\textwidth}{@{}p{.75in}X>{\raggedleft\arraybackslash}p{.90in}@{}}
+\toprule
+\textbf{Persona} & \textbf{Pinned description} & \textbf{Initial $I_\Phi(s_0)$} \\
+\midrule
+Alabama & 45-year-old rural Alabama white man; married, two children; full-time farmer and veteran; high school; conservative, strong Republican; Protestant, weekly attendance; daily newspaper. & $0.075706$ \\
+\addlinespace[2pt]
+New York & 22-year-old New York City white woman; unmarried, no children; full-time retail worker, nonveteran; bachelor's degree; extremely liberal, strong Democrat; nonreligious; daily newspaper. & $-0.163807$ \\
+\addlinespace[2pt]
+Texas & 61-year-old small-town Texas white woman; married, three children; homemaker, high school; extremely conservative, strong Republican; Protestant, attends services several times weekly; daily newspaper. & $0.045379$ \\
+\addlinespace[2pt]
+Seattle & 34-year-old Seattle white man; unmarried, no children; employed full time, graduate degree; liberal, weak Democrat; nonreligious; newspaper several times weekly. & $-0.119639$ \\
+\addlinespace[2pt]
+Arizona & 39-year-old Mexican American man in an Arizona city; married, three children; employed full time, high school; conservative, weak Republican; Catholic, nearly weekly attendance. & $-0.020437$ \\
+\addlinespace[2pt]
+Atlanta & 47-year-old Atlanta Black woman; divorced, two children; employed full time, bachelor's degree; liberal, strong Democrat; Protestant, weekly attendance; daily newspaper. & $-0.030807$ \\
+\bottomrule
+\end{tabularx}
+\endgroup
+\vspace{2pt}
+
+{\footnotesize\raggedright Positive values lie nearer the right reference pole; negative values nearer the left.\par}
+\end{table*}
+
+\begin{figure*}[!ht]
+\centering
+\tikzsetnextfilename{dtag-fig2}
+\tikzexternalenable
+%\input{Figures/fig2}
+
+\includegraphics[width=\textwidth]{Figures/External/dtag-fig2}
+
+\vspace{-10pt}
+
+\caption{\textbf{Selected questions and fixed-set replays.}
+Left: question-ID heatmaps for six personas and three selection policies (\DTAGReps{} runs each); color denotes item identity.
+Right: mean index displacement and 95\% bootstrap intervals for 20-item sets replayed in original, reversed, and two shuffled orders. Right- and left-derived sets retain their direction; neutral sets remain near zero.}
+\label{fig:question-map}
+\label{fig:order-effects}
+\end{figure*}
+\subsection{Possible response effects.}
+Questioning a person may change later reports. A response--transition kernel separates an observed answer from a possible latent-state update:
+\begin{equation}
+K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
+\label{eq:kernel}
+\end{equation}
+Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; shifts in salience or belief can induce nontrivial transitions. A common held-out battery and delayed measurement can investigate these effects.
+
+\subsection{Order dependence.}
+For fixed realized answers, the terminal index is order-independent; sequentially generated answers need not be. A coherent joint distribution satisfies
+\begin{equation}
+P(a\mid s,v)P(b\mid s,v=a,w)
+=P(b\mid s,w)P(a\mid s,w=b,v).
+\label{eq:compat}
+\end{equation}
+Separately fitted LSM conditionals may violate this identity \cite{heckerman2000}. Fixed-set replays evaluate its consequences for native response sequences.
+
+\section{Native GSS 2024 Computational Experiments}
+\label{sec:native}
+
+\subsection{Adaptive questioning from pinned persona states}
+We fixed six initial GSS 2024 persona states (Table~\ref{tab:personas}) and generated 40 independent response sequences per persona and policy (right, left, neutral, random). Each sequence comprised 20 questions with responses sampled from the native LSM; no LLM mapping or verbalization was used. \emph{All 27 pole-defining items were excluded from selection in every policy} (Table~\ref{tab:poles}). Thus 960 adaptive trajectories contain 19,200 non-pole responses; repetitions share initial anchors but have independent sampled answers.
+
+
+
+
+Across all six personas, right- and left-seeking policies moved the index in their intended directions (Fig.~\ref{fig:arch_adaptive}). As pole-defining questions were excluded, the movement results from conditioning on other survey items, not directly asking those used to define the reference index. Neutral and random policies provide comparisons.
+
+\begin{table}[!t]
+\centering
+\caption{Question selection in the native GSS 2024 experiment.}
+\label{tab:question-coverage}
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+\textbf{Selection policy} & \textbf{Distinct} & \textbf{Selections} & \textbf{Pole overlap}\\
+\midrule
+Right-seeking & 100 & 4,800 & 0\\
+Left-seeking & 75 & 4,800 & 0\\
+Neutral & 43 & 4,800 & 0\\
+\midrule
+Three-policy union & 161 & 14,400 & 0\\
+All four policies & 228 & 19,200 & 0\\
+\bottomrule
+\end{tabular}
+\endgroup
+\par\smallskip
+{\footnotesize\raggedright The random policy contributed 4,800 selections; 67 of the 228 distinct items occurred only under random selection.\par}
+\end{table}
+
+\subsection{Question selection as observed paths}
+Question identities are summarized in Table~\ref{tab:question-coverage}. The 18 displayed heatmaps contain 161 distinct items across right, left, and neutral selection (Fig.~\ref{fig:question-map}). A shared categorical ordering approximately minimizes
+\begin{equation}
+\mathcal C(\pi)=\sum_{p,u,t}\sum_{r<r'}
+\big|\pi(v_{purt})-\pi(v_{pur't})\big|,
+\label{eq:question-seriation}
+\end{equation}
+Here $u$ indexes policies. Heatmap colors identify items, not ideological position; 67 further items occurred only in random selection.
+
+
+
+\subsection{Fixed-set replay: robustness to question ordering}
+For each persona and right/left/neutral policy, we froze the 20-item sequence from adaptive replicate zero, giving 18 fixed sets. Each set was replayed in original, reversed, and two shuffled orders with 40 fresh sampled responses per order (2,880 runs). Matched question-specific random variates reduced contrast variance.
+
+The direction persisted across replays (Fig.~\ref{fig:order-effects}): right-derived sets yielded mean displacement $+0.0381$ (original) and $+0.0377$ (reversed); left-derived sets yielded $-0.0399$ and $-0.0410$. In both orders, all six persona-specific 95\% bootstrap intervals excluded zero in the prescribed direction. Shuffles followed the same pattern; neutral sets remained near zero.
+
+All 54 pointwise bootstrap intervals for paired mean between-order contrasts included zero; no systematic mean order effect was detected. Selected question sets therefore retained directional displacement without continuous reoptimization.
+
+In historical ten-question runs, baseline indices differed across environments despite matched persona, map, and pole hashes; native binaries were not compared. Their absolute indices are not combined with the present experiment.
+
+
+\section{Human Response Study}
+The human experiment measures the realized response of the model-inferred
+ideology index under adaptively selected questions. The full 71-session
+calibrated cohort and the baseline-relative Q4 resistance analysis
+are reported below; the experimental protocol and LSM geometry
+are unchanged.
+
+\input{humanstudy_new}
+
+
+\section{Discussion and Conclusion}
+DTAG uses high-dimensional survey dependencies to select questions that systematically refine a predictive phenotype. The native experiments show directional movement using exclusively non-pole items; fixed-set replays indicate that selected question identities, rather than their precise order, account for much of the directionality. The index depends on the reference poles, candidate pool, and conditional model and should be interpreted as predictive position rather than a self-reported ideology score.
+
+The expanded 71-session human-response study shows a strong asymmetry in
+directional responses: 20/21 Left-push sessions moved left, whereas 21/38
+Right-push sessions moved right. Right-push nonresponse was concentrated
+among initially Left-leaning respondents (17/29); every such endpoint
+nonresponder satisfied a simple baseline-relative nonmovement criterion
+after four adaptive questions, with two false-positive resistance flags.
+Thus DTAG's observed directional response depends on the baseline
+predictive phenotype, and early trajectories can identify nonresponse
+to the chosen objective. The inferred shifts do not independently
+demonstrate changes in underlying political beliefs.
+
+\section*{Acknowledgments}
+This work was supported by the Defense Advanced Research Projects Agency (DARPA) under the MAGICS program (DARPA-EA-25-02-05-MAGICS-PA-025; Award No.~HR0011-26-3-E016).
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+% The 10-question supplementary reversal plot is intentionally omitted.
+% Its original data belong to a different experiment.
+\end{document}
