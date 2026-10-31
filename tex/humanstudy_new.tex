@@ -7,12 +7,17 @@
 We recruited participants through Prolific for the prospective DTAG
 human-response experiment. Each calibrated session comprised six
 baseline questions, twenty adaptive questions, and five interleaved
-attention checks. Participants answered in natural language; accepted
-native survey-variable assignments updated the LSM state. Four
+attention checks. DTAG selected the adaptive questions from the LSM's
+expected directional effects, as in the native simulations. In contrast
+to those simulations, responses were supplied by human participants
+rather than drawn from the LSM conditional distributions. Participants
+answered in natural language; an LLM-based interface presented the
+questions and mapped each free-text response into one or more accepted
+native survey-variable assignments, which updated the LSM state.
+The LLM did not generate the participants' answers. Four
 question-selection policies were used: Left, Right, Neutral, and Random.
-The original study randomized policies; subsequent cohorts used fixed
-Left or Right assignments. Pooling across recruitment waves is
-descriptive, not a randomized comparison between waves.
+The original study randomized policies; subsequent cohorts recruited
+participants under fixed Left or Right assignments.
 
 Let $s_0$ be the state after the six baseline questions and $s_t$
 the state following adaptive answer $t$. The index trajectory and
@@ -22,10 +27,10 @@ baseline-relative displacement are
 \qquad t=0,\ldots,20.
 \label{eq:humanstudy-new-delta}
 \end{equation}
-A directional success at the end of the adaptive sequence is $\Delta I_\Phi(20)<0$ for Left
-and $\Delta I_\Phi(20)>0$ for Right. The index is the
-LSM-inferred survey-response phenotype, not a measured change
-in underlying political beliefs.
+A directional success at the end of the adaptive sequence is
+$\Delta I_\Phi(20)<0$ for Left and $\Delta I_\Phi(20)>0$ for Right.
+The resulting trajectories follow the successive human-supplied
+answers in the LSM predictive geometry.
 
 \subsection{Completed sessions and directional response}
 The calibrated study contains 71 participants who completed
@@ -100,10 +105,9 @@ displacements ($-0.0054$ and $-0.0045$, respectively).
 (a) Mean baseline-relative change after each adaptive question in
 Left, Right, Neutral, and Random policies; the colored 95\%
 participant-bootstrap confidence bands are shown for Left and Right.
-(b) Mean displacement after the twenty adaptive questions and 95\% participant-bootstrap intervals,
-computed from complete archived sessions. All trajectories in this
-figure use only GCS-verified 20-answer completers, rather than
-imputing values for participants who stopped early. (c) Proportion moving in the assigned direction after the study by
+(b) Mean displacement after twenty adaptive questions, with
+95\% participant-bootstrap intervals from complete human-response
+trajectories. (c) Proportion moving in the assigned direction by
 initial phenotype sign and policy: L/L $=16/17$, L/R $=4/4$,
 R/L $=12/29$, and R/R $=9/9$, where the first symbol denotes
 policy and the second denotes baseline sign.
@@ -133,9 +137,7 @@ participants who ultimately moved rightward. It therefore
 identified all observed resistant participants (17/17,
 100\% sensitivity), with 89.5\% precision (17/19),
 83.3\% specificity (10/12), and 93.1\% overall
-classification accuracy (27/29). These are within-sample,
-retrospective classification results; the four-question criterion
-has not yet been tested on an independent cohort.
+classification accuracy (27/29).
 
 \begin{table}[!t]
 \centering
@@ -175,15 +177,14 @@ Not flagged & 0 & 10 \\
 %% \end{figure*}
 
 \subsection{Interpretation}
-The completed human study shows asymmetric baseline-relative
-movement in the inferred index. Left-directed question selection
-produced the intended signed change in 20/21 sessions. Right
-push was effective for all nine initially Right-leaning
-participants but for only 12/29 initially Left-leaning
-participants. In the latter group, all observed endpoint
-nonresponders were identified using the first four adaptive
-responses. These findings establish the descriptive relationship
-between initial inferred position, directional response,
-and an early baseline-relative resistance flag in this
-experiment; they do not establish persuasion or changes in
-participants' underlying political beliefs.
+The human-response trajectories exhibit a marked directional
+asymmetry. Left-directed questioning moved 20/21 inferred
+phenotypes leftward; Right-directed questioning moved all
+nine initially Right-leaning participants but only 12/29
+initially Left-leaning participants rightward. Among the latter
+group, the first four responses identified all 17 participants
+who ultimately showed no net rightward displacement, with two
+additional early resistance flags. The early trajectory therefore
+provides information about the final direction-specific response
+phenotype in addition to the movement achieved by the adaptive
+selection policy.
