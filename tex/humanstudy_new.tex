@@ -91,12 +91,9 @@ displacements ($-0.0054$ and $-0.0045$, respectively).
 
 \begin{figure*}[!t]
 \centering
-% Render the new PGFPlots from their current CSVs, not old external caches.
-\tikzexternalenable
-\tikzsetnextfilename{dtag-fig3}
-
+% Figure 3 is a pre-rendered PDF, not a live tikzpicture.
+% Do not leave a \tikzsetnextfilename pending for Figure 4.
 %\input{Figures/humanstudy_figures_new}
-
 \includegraphics[width=.7\textwidth]{Figures/External/dtag-fig3}
 
 \vspace{-8pt}
@@ -157,6 +154,41 @@ Not flagged & 0 & 10 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+% Regenerate the Q4-filtered 19-participant Right aggregate from private
+% completed sessions before enabling this figure in a fresh checkout.
+% Never substitute the unfiltered Right curve for the filtered cohort.
+\IfFileExists{Figures/humanstudy_new_trajectory_right_q4_unflagged.csv}{%
+For comparison with Fig.~\ref{fig:humanstudy-new-trajectory-endpoints}(a),
+Fig.~\ref{fig:humanstudy-q4-unflagged-trajectory} repeats the four-policy
+trajectory plot after removing the 19 initially Left-leaning Right-push
+participants flagged as resistant at question four. The remaining
+Right-push group consists of 10 initially Left-leaning participants
+without an early flag and all nine initially Right-leaning participants.
+The Left, Neutral, and Random groups are identical to those in
+Fig.~\ref{fig:humanstudy-new-trajectory-endpoints}(a).
+
+\begin{figure}[!t]
+\centering
+% This panel is always rendered live from participant-bootstrap aggregate CSVs.
+% In particular, do not reuse any of the existing externalized Figure 3 PDFs.
+\tikzexternaldisable
+\input{Figures/humanstudy_q4_unflagged_trajectory}
+\vspace{-7pt}
+\caption{\textbf{Adaptive trajectories after early resistance exclusion.}
+The same 20-question baseline-relative trajectories and PGFPlots styling
+as Fig.~\ref{fig:humanstudy-new-trajectory-endpoints}(a) are shown.
+Only the Right-push trajectory is filtered: initially Left-leaning
+participants whose index failed to increase from baseline at question
+four are excluded (19/38), leaving 19 Right-push participants.
+The other groups remain unchanged (Left 21, Neutral 7, Random 5).
+Shaded bands are 95\% participant-bootstrap confidence intervals for
+Left and the Q4-unflagged Right subgroup.}
+\label{fig:humanstudy-q4-unflagged-trajectory}
+\end{figure}
+}{%
+\PackageWarning{DTAG}{Q4-filtered Right-push aggregate CSV missing. Run render_humanstudy_new_pgfplots.py on the private calibrated export to enable the additional trajectory figure}%
+}
 
 %% \begin{figure*}[!t]
 %% \centering
