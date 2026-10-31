@@ -1,10 +1,10 @@
 # DTAG manuscript 2: Nature Human Behaviour framing
 
 ## Files and status
-- \`tex/dtag_main2.tex\`: independently written Nature Human Behaviour-oriented ARTICLE draft.
-- \`tex/references_nhb.bib\`: incremental survey-method and opinion-structure citations.
-- Existing \`tex/references.bib\` and pre-rendered figure PDFs are reused.
-- **Nothing in \`dtag_main_new.tex\`, \`humanstudy_new.tex\`, or existing TikZ externalization commands has been changed as part of this draft.**
+- `tex/dtag_main2.tex`: independently written Nature Human Behaviour-oriented ARTICLE draft.
+- `tex/references_nhb.bib`: incremental survey-method and opinion-structure citations.
+- Existing `tex/references.bib` and pre-rendered figure PDFs are reused.
+- **Nothing in `dtag_main_new.tex`, `humanstudy_new.tex`, or existing TikZ externalization commands has been changed as part of this draft.**
 - The manuscript is a scientific draft, not the Nature publisher's LaTeX typesetting template. The full PDF has not been compiled or visually checked in this environment.
 
 ## Distinct thesis
@@ -46,12 +46,12 @@ E. **Question contribution validation**: mapping native answer category to step 
 ## Build
 From DTAG repository root, after fetching the new branch and ensuring existing external figure PDFs exist:
 
-\`\`\`bash
+```bash
 cd tex
 latexmk -pdf -interaction=nonstopmode -halt-on-error dtag_main2.tex
-\`\`\`
+```
 
-The source uses \`natbib\`, \`unsrtnat\` and \`references,references_nhb\`. If the cached \`dtag-fig4.pdf\` is not present, it can be generated from the private analysis export and PGFPlots sources used in the original technical draft. Figure guards leave a visible placeholder instead of substituting false data.
+The source uses `natbib`, `unsrtnat` and `references,references_nhb`. If the cached `dtag-fig4.pdf` is not present, it can be generated from the private analysis export and PGFPlots sources used in the original technical draft. Figure guards leave a visible placeholder instead of substituting false data.
 
 ## Editorial fit
 Nature Human Behaviour's scope includes political behaviour, belief systems, and measurement of individual differences. Its preparing-submission criteria consider conceptual advance, rigor, sample size, analysis transparency and public significance. Editorial guidance warns against titles/abstracts that overstate external validity. The journal does not accept presubmission enquiries for original research articles. Consult its current guidance when preparing final materials.
