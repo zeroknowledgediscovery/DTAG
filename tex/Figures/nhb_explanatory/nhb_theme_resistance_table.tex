@@ -1,0 +1,18 @@
+% Reproducible using python3 human_study/scripts/render_nhb_theme_tables.py
+% Source: committed nhb_question_topics.csv + nhb_resistance_stage_metrics.csv
+\begin{table}[!t]
+\centering
+\caption{\textbf{Early thematic contributions and subsequent displacement under Right-directed questioning.} All values are signed rightward and averaged over participants. Civil-liberties and religion/culture columns are net increments following early questions (1--4) in those themes. The em dash marks a privacy-suppressed aggregate rather than zero. The Q4-flagged distinction is defined by the first four index changes; its early difference is therefore expected by construction, while subsequent movement is observed in a separate question window.}
+\label{tab:nhb-theme-resistance}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrrr@{}}
+\toprule
+Baseline and Q4 response & $n$ & $\overline{\Delta}_{1:4}$ & $\overline{\Delta}_{5:20}$ & Civil liberties$_{1:4}$ & Religion/culture$_{1:4}$ \\
+\midrule
+Initially Left, Q4-flagged & 19 & -0.0429 & +0.0063 & -0.0228 & -0.0213 \\
+Initially Left, Q4-unflagged & 10 & +0.0439 & +0.0197 & +0.0362 & +0.0023 \\
+Initially Right & 9 & +0.0414 & +0.0603 & +0.0337 & --- \\
+\bottomrule
+\end{tabularx}
+\end{table}
