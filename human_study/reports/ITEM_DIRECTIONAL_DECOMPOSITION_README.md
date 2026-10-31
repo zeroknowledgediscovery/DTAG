@@ -4,7 +4,7 @@ This analysis tests which **selected questions** accompany index displacement, u
 
 ## Run
 
-Copy `analyze_item_directional_contributions.py` into `human_study/scripts/` in the DTAG checkout, then run from the repository root:
+The analysis script is committed under `human_study/scripts/`. Run it from the DTAG repository root:
 
 ```bash
 python3 human_study/scripts/analyze_item_directional_contributions.py \
@@ -15,7 +15,7 @@ python3 human_study/scripts/analyze_item_directional_contributions.py \
 
 The `--out` directory must not exist and must be **outside the public repo**. The default requires exactly 71 complete calibrated sessions. For a future or different approved analysis use `--expect-complete N` to override the count. No GCS/Firestore access or LLM inference is performed.
 
-Run the bundled test with `python3 -m unittest test_analyze_item_directional_contributions.py` if both files are together. The test uses synthetic examples only.
+Run the synthetic regression tests from the repository root with `python3 -m unittest discover -s human_study/tests -p 'test_item_directional_contributions.py'`. The tests use fictional records only.
 
 ## Outputs (private)
 
