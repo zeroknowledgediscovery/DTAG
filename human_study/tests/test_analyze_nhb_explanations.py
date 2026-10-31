@@ -106,8 +106,13 @@ def test_end_to_end_release_and_privacy(tmp_path, monkeypatch):
     assert manifest["n_sessions"] == 71
     assert manifest["n_events"] == 1420
     assert manifest["q4_confusion"] == {"TP":17, "FP":2, "FN":0, "TN":10}
-    assert manifest["prediction_available"] == 1420
-    assert manifest["prediction_target_aligned"] < 1420
+    # The 12 Neutral/Random synthetic participants (240 questions) have
+    # no defined directional sign and are excluded from signed prediction
+    # summaries, though they remain in the 1,420 archived question events.
+    assert manifest["prediction_available"] == (21 + 38) * 20 == 1180
+    # Synthetic steps 3, 6, 9, 12, 15, 18 have two assignments;
+    # their joint observed index change is not target-aligned.
+    assert manifest["prediction_target_aligned"] == (21 + 38) * 14 == 826
     stages = read(public / "nhb_resistance_stage_metrics.csv")
     by = {(r["group"],r["stage"]):r for r in stages}
     assert int(by[("right_initially_left_q4_flagged","late")]["n_sessions"]) == 19
