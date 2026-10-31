@@ -55,3 +55,43 @@ The source uses `natbib`, `unsrtnat` and `references,references_nhb`. If the cac
 
 ## Editorial fit
 Nature Human Behaviour's scope includes political behaviour, belief systems, and measurement of individual differences. Its preparing-submission criteria consider conceptual advance, rigor, sample size, analysis transparency and public significance. Editorial guidance warns against titles/abstracts that overstate external validity. The journal does not accept presubmission enquiries for original research articles. Consult its current guidance when preparing final materials.
+
+## New explanatory table (31 October)
+- `tex/Figures/dtag_nhb_top_item_summary.csv` contains **14 aggregate
+  rows**: the top seven positive-leftward target questions for each
+  baseline subgroup of participants assigned Left push (initially Right,
+  n=4; initially Left, n=17). These values were transcribed from the
+  investigator-supplied output of the archived private item analysis,
+  not recomputed from private individual records in this commit.
+- `tex/Figures/dtag_nhb_top_item_table.tex` is the corresponding manuscript
+  Table 1, included by `dtag_main2.tex`. It reports selection counts,
+  total positive leftward displacement, mean positive displacement per
+  selection, and net leftward displacement, with human-readable question
+  topics from the GSS 2024 map. Counts are selections, not the number
+  of unique respondents. Positive movement and net movement can disagree.
+- To update/freeze this table, rerun the existing private exporter
+  `human_study/scripts/analyze_item_directional_contributions.py` and
+  recompute the public aggregate table from
+  `target_questions_PRIVATE.csv`; audit row values and topic labels
+  before regenerating TeX. **Do not commit the private exporter output.**
+- This table addresses `which selected questions accompany Left-directed
+  index changes`. It **does not** explain Right-push resistance, which
+  requires an independent comparison of the early-flagged and unflagged
+  Right-push subgroups.
+
+### Most valuable additional explanatory analysis
+1. For the 29 initially-Left Right-push participants, split by the Q4
+   rule (19 flagged, 10 unflagged), and compare selected question targets,
+   net directional increment per question, and multi-variable mapping
+   frequencies separately for Q1--Q4 and Q5--Q20. Stratify by study wave.
+2. Compare each selected question's LSM-predicted `predicted_target_only_delta`
+   with its actual `observed_step_delta`, noting that the latter can
+   contain several jointly accepted survey-variable assignments. Look for
+   systematic prediction error in the Q4-flagged subgroup.
+3. Examine the accepted native **response values**, not just selected
+   variable names, for high-gain items. Without values, the mechanism
+   cannot distinguish selector choice from the direction of a participant's
+   actual answer. Avoid inferring that a participant changed their belief.
+4. Measure sensitivity of movement to reference-pole choices and assess
+   held-out or independently measured ideology where feasible. This is
+   important for an NHB claim beyond an optimized model-derived index.
