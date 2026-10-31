@@ -138,7 +138,8 @@ def enrich(root, mapping, expect=71, check_q4=True):
                  if r.get("phase") == "intervention"
                  and r.get("adaptive_step") not in ("", None)}
     by_uid = {p["uid"]: dict(p) for p in participants}
-    q4_counter = Counter()
+    # Include explicit zeros for categories absent in a valid cohort.
+    q4_counter = Counter({"TP": 0, "FP": 0, "FN": 0, "TN": 0})
     for uid, p in by_uid.items():
         p["wave"] = study_wave(p["study"])
         s0 = steps[(uid, 0)]
@@ -534,8 +535,8 @@ def run(analysis_dir, private_out, public_out=PUBLIC, gss_map=None,
     print("Verified calibrated sessions:", len(p), "adaptive questions:", len(e))
     print("Q4 confusion:", dict(confusion), "Right groups:",
           {g: len(ids) for g, ids in gp.items() if g.startswith("right_")})
-    print("Predictions available:", manifest["prediction_available"],
-          "single-assignment predictions:", manifest["prediction_target_aligned"])
+    print("Directional step predictions available:", manifest["prediction_available"],
+          "target-aligned single-assignment predictions:", manifest["prediction_target_aligned"])
     print("Private detailed outputs:", private_out)
     print("Public aggregate outputs (REVIEW before git add):", public_out)
     print("No participant identifiers or native answer values appear in public outputs.")
