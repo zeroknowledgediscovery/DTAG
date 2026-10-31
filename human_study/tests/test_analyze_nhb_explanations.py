@@ -107,7 +107,7 @@ def test_end_to_end_release_and_privacy(tmp_path, monkeypatch):
     assert manifest["n_events"] == 1420
     assert manifest["q4_confusion"] == {"TP":17, "FP":2, "FN":0, "TN":10}
     assert manifest["prediction_available"] == 1420
-    assert manifest["prediction_single"] < 1420
+    assert manifest["prediction_target_aligned"] < 1420
     stages = read(public / "nhb_resistance_stage_metrics.csv")
     by = {(r["group"],r["stage"]):r for r in stages}
     assert int(by[("right_initially_left_q4_flagged","late")]["n_sessions"]) == 19
