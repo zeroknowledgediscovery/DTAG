@@ -1,0 +1,104 @@
+% NEW 71-completer six-calibration cohort. Do not use old humanstudy CSVs here.
+% Human DTAG empirical panels. All coordinates are read from regenerated 71-session calibrated aggregate CSVs.
+% Generated data: python3 human_study/scripts/render_humanstudy_new_pgfplots.py
+% Compile from within tex/ using dtag_main_new.tex.
+% Styles follow DTAG figures 1--2: publication axis, bold labels and strong ticks.
+%% {\small\sffamily\bfseries (a) Adaptive response trajectories}\par\vspace{1.0mm}
+\begin{tikzpicture}[font=\bf\sffamily\fontsize{9}{9}\selectfont]
+  \node[] (A) at (0,0) {
+    \begin{tikzpicture}[anchor=center]
+\begin{axis}[
+  publication axis,
+  width=2.2in, height=2in,
+  scale only axis=true,
+  xmin=0, xmax=20,
+  %xtick={0,5,10,15,20},
+  xlabel={Adaptive questions answered},
+  ylabel={Change in inferred ideology index},
+  axis line style={black,line width=1pt},
+  tick style={black,line width=.95pt},
+  tick label style={font=\footnotesize\bfseries},
+  label style={font=\small\bfseries},
+  title style={font=\small\bfseries},
+  legend style={draw=none,fill=none,at={(0.0,.77)},anchor=south west},
+  legend cell align=left, legend columns=2,
+  ymajorgrids, grid style={black!12,line width=.3pt},title={(a) Adaptive response trajectories},
+]
+\addplot[black!45,densely dashed,thin,forget plot] coordinates {(0,0) (20,0)};
+% Participant-level 95% confidence bands only for Left and Right.
+\addplot[name path=hsleftlo,draw=none,forget plot]
+  table[x=step,y=ci_low,col sep=comma]{Figures/humanstudy_new_trajectory_left.csv};
+\addplot[name path=hslefthi,draw=none,forget plot]
+  table[x=step,y=ci_high,col sep=comma]{Figures/humanstudy_new_trajectory_left.csv};
+\addplot[fill=dtblue,fill opacity=.14,draw=none,forget plot]
+  fill between[of=hsleftlo and hslefthi];
+\addplot[name path=hsrightlo,draw=none,forget plot]
+  table[x=step,y=ci_low,col sep=comma]{Figures/humanstudy_new_trajectory_right.csv};
+\addplot[name path=hsrighthi,draw=none,forget plot]
+  table[x=step,y=ci_high,col sep=comma]{Figures/humanstudy_new_trajectory_right.csv};
+\addplot[fill=dtred,fill opacity=.14,draw=none,forget plot]
+  fill between[of=hsrightlo and hsrighthi];
+\addplot[dtblue,ultra thick]
+  table[x=step,y=mean,col sep=comma]{Figures/humanstudy_new_trajectory_left.csv};
+\addlegendentry{Left}
+\addplot[dtred,ultra thick]
+  table[x=step,y=mean,col sep=comma]{Figures/humanstudy_new_trajectory_right.csv};
+\addlegendentry{Right}
+\addplot[black!75,ultra thick,densely dashed]
+  table[x=step,y=mean,col sep=comma]{Figures/humanstudy_new_trajectory_neutral.csv};
+\addlegendentry{Neutral}
+\addplot[modteal,ultra thick]
+  table[x=step,y=mean,col sep=comma]{Figures/humanstudy_new_trajectory_random.csv};
+\addlegendentry{Random}
+\end{axis}
+\end{tikzpicture}};
+%% \end{minipage} 
+%% \hfill
+%% \begin{minipage}[t]{0.365\textwidth}
+%% \centering
+%% {\small\sffamily\bfseries (b) Twenty-question endpoints}\par\vspace{1.0mm}
+\node[anchor=south west] (B) at (A.south east) {\begin{tikzpicture}[anchor=center]
+\begin{axis}[
+  publication axis,
+  width=2in, height=2.2in,
+  scale only axis=true,
+  xmin=.45, xmax=4.55,
+  xtick={1,2,3,4},
+  xticklabels={Left,Right,Neutral,Random},
+  x tick label style={rotate=0},
+  ylabel={Mean endpoint $\Delta$ (95\% CI)},
+  axis line style={black,line width=1pt},
+  tick style={black,line width=.95pt},
+  tick label style={font=\footnotesize\bfseries},
+  label style={font=\small\bfseries},
+  title style={font=\small\bfseries},
+  label style={},
+  scaled ticks=false,
+  ymajorgrids, grid style={black!12,line width=.3pt},title={(b) Twenty-question endpoints}
+]
+\addplot[black!45,densely dashed,thin,forget plot] coordinates {(.5,0) (4.5,0)};
+% Mean +/- participant-bootstrap 95% CI for each of all four arms.
+\addplot+[only marks,mark=*,mark size=2.5pt,color=dtblue,
+  error bars/.cd,y dir=both,y explicit,error bar style={line width=1.05pt},
+  error mark options={mark size=2pt,line width=1.05pt, rotate=90}]
+  table[x=x,y=mean,y error minus=err_minus,y error plus=err_plus,col sep=comma]
+    {Figures/humanstudy_new_endpoint_left.csv};
+\addplot+[only marks,mark=*,mark size=2.5pt,color=dtred,
+  error bars/.cd,y dir=both,y explicit,error bar style={line width=1.05pt},
+  error mark options={mark size=2pt,line width=1.05pt, rotate=90}]
+  table[x=x,y=mean,y error minus=err_minus,y error plus=err_plus,col sep=comma]
+    {Figures/humanstudy_new_endpoint_right.csv};
+\addplot+[only marks,mark=*,mark size=2.5pt,color=black!75,
+  error bars/.cd,y dir=both,y explicit,error bar style={line width=1.05pt},
+  error mark options={mark size=2pt,line width=1.05pt, rotate=90}]
+  table[x=x,y=mean,y error minus=err_minus,y error plus=err_plus,col sep=comma]
+    {Figures/humanstudy_new_endpoint_neutral.csv};
+\addplot+[only marks,mark=*,mark size=2.5pt,color=modteal,
+  error bars/.cd,y dir=both,y explicit,error bar style={line width=1.05pt},
+  error mark options={mark size=2pt,line width=1.05pt, rotate=90}]
+  table[x=x,y=mean,y error minus=err_minus,y error plus=err_plus,col sep=comma]
+    {Figures/humanstudy_new_endpoint_random.csv};
+\end{axis}
+\end{tikzpicture}};
+\end{tikzpicture}
+
