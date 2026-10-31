@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex dtag_main_new"] 1793413138.6326 "dtag_main_new.aux" "dtag_main_new.bbl" "dtag_main_new" 1793413140.57298 0
+["bibtex dtag_main_new"] 1793413939.07216 "dtag_main_new.aux" "dtag_main_new.bbl" "dtag_main_new" 1793413940.85012 0
   "./references.bib" 1793290841.38231 8270 bb3d2bf7b12c766280d04889a02d6b44 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "dtag_main_new.aux" 1793413140.1166 14711 5127e706c9631ddf57513285a92cab73 "pdflatex"
+  "dtag_main_new.aux" 1793413940.32767 14388 00c9b46a3387781cea820f2296c9a0c0 "pdflatex"
   (generated)
   "dtag_main_new.bbl"
   "dtag_main_new.blg"
   (rewritten before read)
-["pdflatex"] 1793413138.76545 "dtag_main_new.tex" "dtag_main_new.pdf" "dtag_main_new" 1793413140.57324 0
+["pdflatex"] 1793413939.2154 "dtag_main_new.tex" "dtag_main_new.pdf" "dtag_main_new" 1793413940.85038 0
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -45,7 +45,6 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri7.tfm" 1254269338 17168 78a37e395d0470967cfda94332b0716a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri8.tfm" 1254269338 17152 c8240fef851c4991afefdae37a539ee1 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmri9.tfm" 1254269338 17148 ca1ae65757b004f470b8cd636199f6fc ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm" 1254269338 11168 06d87f5698fd1b642d96449b7c8d90b0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmtt8.tfm" 1254269338 1380 64228d979098ac090aa3f98d5aa8ad3e ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy10.tfm" 1148093231 1300 2df9da0fc09d4a8c772b3dd386a47c6a ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy5.tfm" 1148093231 1304 2ff0a255ae754422adbc0e6519ed2658 ""
@@ -278,7 +277,6 @@
   "/usr/share/texlive/texmf-dist/tex/latex/lm/omxlmex.fd" 1616454256 568 a5494d810f2680caf10205cd1226c76c ""
   "/usr/share/texlive/texmf-dist/tex/latex/lm/ot1lmr.fd" 1616454256 1882 28c08db1407ebff35a658fd141753d16 ""
   "/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmr.fd" 1616454256 1867 996fe743d88a01aca041ed22cc10e1bb ""
-  "/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmss.fd" 1616454256 1641 f48673bce41ac279099d0c9523459753 ""
   "/usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd" 1616454256 2682 555da1faa2e266801e4b221d01a42cb5 ""
   "/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty" 1656621545 62269 5c1837a5bc5db4c0d255eedc225ca44b ""
   "/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty" 1616101747 5582 a43dedf8e5ec418356f1e9dfe5d29fc3 ""
@@ -317,19 +315,17 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1745342538 7755187 15bcdef2d1e2fe4b930078ee119bdd13 ""
   "Figures/External/dtag-fig1.pdf" 1793290841.36431 161351 b095d4179deed471f7e3c5e80684653f ""
   "Figures/External/dtag-fig2.pdf" 1793412991.45894 326773 98f54a67665eb2e900ce6d4f1d4bbc2c ""
-  "Figures/External/dtag-fig3.pdf" 1793413055.74123 85703 fb7250937bea321fd81fbeb8dc6e8f3e ""
-  "Figures/humanstudy_new_q4_correct.csv" 1793412047.97556 14 afb63acaf20be8100030ab74fb0e4170 ""
-  "Figures/humanstudy_new_q4_errors.csv" 1793412047.97556 12 65adcf60379e783f36294012a2870dae ""
-  "Figures/humanstudy_new_success_left.csv" 1793412047.97556 50 e586684d02bb78e92b0fadd1f42325ef ""
-  "Figures/humanstudy_new_success_right.csv" 1793412047.97556 50 f9f4da90a54f3c988e2b7907e079432b ""
+  "Figures/External/dtag-fig3.dpth" 1793413902.39847 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "Figures/External/dtag-fig3.md5" 1793413901.42813 62 bb9701cc0083c4121577e09d082b2664 ""
+  "Figures/External/dtag-fig3.pdf" 1793413903.12347 112247 c9298f046049c745cce63cc6e761ee03 ""
+  "Figures/humanstudy_figures_new.tex" 1793413899.69445 7689 b814d874106a01d44de1076e7e043b08 ""
   "Figures/humanstudy_new_table.tex" 1793412165.41992 861 8ec8cf9a0d28cc3f7d700521cbdd3abe ""
-  "Figures/humanstudy_resistance_figures_new.tex" 1793412047.97556 2848 f97c75628ac4d9771924729a376db723 ""
   "Figures/publication_metadata.csv" 1793290841.38131 125 8770103e7d52628180f5dc89d7290110 ""
-  "dtag_main_new.aux" 1793413140.1166 14711 5127e706c9631ddf57513285a92cab73 "pdflatex"
-  "dtag_main_new.bbl" 1793413138.7576 6076 e2ee4a0d31ef0dd5ce2b6e918e86a17c "bibtex dtag_main_new"
-  "dtag_main_new.out" 1793413140.1176 4160 2cfa239410380b9b238466439f97d31f "pdflatex"
+  "dtag_main_new.aux" 1793413940.32767 14388 00c9b46a3387781cea820f2296c9a0c0 "pdflatex"
+  "dtag_main_new.bbl" 1793413939.20467 6076 e2ee4a0d31ef0dd5ce2b6e918e86a17c "bibtex dtag_main_new"
+  "dtag_main_new.out" 1793413940.32867 4160 2cfa239410380b9b238466439f97d31f "pdflatex"
   "dtag_main_new.tex" 1793413079.56533 25504 2af37d9f99a6d8ee66f2a969d2280d9c ""
-  "humanstudy_new.tex" 1793413136.60159 8057 07a717d07a78a595cce010aca1965f6c ""
+  "humanstudy_new.tex" 1793413935.44865 8599 09fc2a398e10f957e827f53043ebf2f8 ""
   (generated)
   "dtag_main_new.aux"
   "dtag_main_new.auxlock"

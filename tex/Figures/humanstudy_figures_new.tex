@@ -100,5 +100,70 @@
     {Figures/humanstudy_new_endpoint_random.csv};
 \end{axis}
 \end{tikzpicture}};
+
+
+\node[anchor=north west] (C) at (A.south west) {
+\begin{tikzpicture}
+\begin{axis}[
+  publication axis,
+  width=2.2in,height=1.5in,scale only axis=true,
+  xmin=.5,xmax=4.5,ymin=0,ymax=115,
+  xtick={1,2,3,4},
+  xticklabels={L/L,L/R,R/L,R/R},
+  tick label style={font=\footnotesize\bfseries},
+  x tick label style={font=\footnotesize\bfseries},
+  label style={font=\small\bfseries},
+  title style={font=\small\bfseries},
+  ylabel={Directional response (\%)},
+  xlabel={Push / initial phenotype},
+  ytick={0,25,50,75,100},
+  title={(c) Directional response by baseline},
+  axis line style={black,line width=1pt},
+  tick style={black,line width=.95pt},
+  ymajorgrids,grid style={black!12,line width=.3pt}
+]
+\addplot+[ybar,mark=none,bar width=15pt,draw=dtblue,fill=dtblue!80,
+  nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}\%},
+  point meta=y,every node near coord/.append style={font=\scriptsize\bfseries},
+  line width=.9pt]
+ table[x=x,y=percent,col sep=comma]{Figures/humanstudy_new_success_left.csv};
+\addplot+[ybar,mark=none,bar width=15pt,draw=dtred,fill=dtred!80,
+  nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}\%},
+  point meta=y,every node near coord/.append style={font=\scriptsize\bfseries}]
+ table[x=x,y=percent,col sep=comma]{Figures/humanstudy_new_success_right.csv};
+\end{axis}
+\end{tikzpicture}};
+\node[anchor=south west] (D) at ([xshift=8mm]C.south east) {
+\begin{tikzpicture}
+\begin{axis}[
+  publication axis,
+  width=2.2in,height=1.5in,scale only axis=true,
+  xmin=.5,xmax=4.5,ymin=0,ymax=20,
+  xtick={1,2,3,4},
+  xticklabels={TP,FP,FN,TN},
+  tick label style={font=\footnotesize\bfseries},
+  label style={font=\small\bfseries},
+  title style={font=\small\bfseries},
+  ylabel={Participants},
+  xlabel={Early flag vs. final response},
+  ytick={0,5,10,15,20},
+  title={(d) Early resistance classification},
+  axis line style={black,line width=1pt},
+  tick style={black,line width=.95pt},
+  ymajorgrids,grid style={black!12,line width=.3pt}
+]
+\addplot+[ybar,mark=none,bar width=15pt,draw=modteal,fill=modteal!75,
+  nodes near coords,point meta=y,
+  every node near coord/.append style={font=\footnotesize\bfseries}]
+ table[x=x,y=n,col sep=comma]{Figures/humanstudy_new_q4_correct.csv};
+\addplot+[ybar,mark=none,bar width=15pt,draw=dtred,fill=dtred!75,
+  nodes near coords,point meta=y,
+  every node near coord/.append style={font=\footnotesize\bfseries}]
+ table[x=x,y=n,col sep=comma]{Figures/humanstudy_new_q4_errors.csv};
+\end{axis}
+\end{tikzpicture}};
+
+
+
 \end{tikzpicture}
 
