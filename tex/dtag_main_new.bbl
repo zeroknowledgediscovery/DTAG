@@ -120,15 +120,6 @@ H.~Dahal, D.~Young, J.~Evans, and I.~Chattopadhyay, ``The fabric of opinion:
   evolve over time,'' 2026, research manuscript, preliminary and not yet
   independently published at the time of this draft.
 
-\bibitem{heckerman2000}
-\BIBentryALTinterwordspacing
-D.~Heckerman, D.~M. Chickering, C.~Meek, R.~Rounthwaite, and C.~Kadie,
-  ``Dependency networks for inference, collaborative filtering, and data
-  visualization,'' \emph{Journal of Machine Learning Research}, vol.~1, pp.
-  49--75, 2000. [Online]. Available:
-  \url{https://www.jmlr.org/papers/v1/heckerman00a.html}
-\BIBentrySTDinterwordspacing
-
 \bibitem{lewis2020}
 \BIBentryALTinterwordspacing
 P.~Lewis, E.~Perez, A.~Piktus, F.~Petroni, V.~Karpukhin, N.~Goyal,
@@ -137,6 +128,15 @@ P.~Lewis, E.~Perez, A.~Piktus, F.~Petroni, V.~Karpukhin, N.~Goyal,
   tasks,'' in \emph{Advances in Neural Information Processing Systems},
   vol.~33, 2020, pp. 9459--9474. [Online]. Available:
   \url{https://arxiv.org/abs/2005.11401}
+\BIBentrySTDinterwordspacing
+
+\bibitem{heckerman2000}
+\BIBentryALTinterwordspacing
+D.~Heckerman, D.~M. Chickering, C.~Meek, R.~Rounthwaite, and C.~Kadie,
+  ``Dependency networks for inference, collaborative filtering, and data
+  visualization,'' \emph{Journal of Machine Learning Research}, vol.~1, pp.
+  49--75, 2000. [Online]. Available:
+  \url{https://www.jmlr.org/papers/v1/heckerman00a.html}
 \BIBentrySTDinterwordspacing
 
 \end{thebibliography}
