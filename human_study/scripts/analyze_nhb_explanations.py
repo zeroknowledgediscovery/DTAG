@@ -149,7 +149,7 @@ def enrich(root, mapping, expect=71, check_q4=True):
         delta20 = float(s20["index"]) - baseline
         if p["policy"] == "right":
             if p["phenotype"] == "initially_left":
-                flag = delta4 <= EPS
+                flag = (delta4 / 4) <= EPS
                 p["subgroup"] = "right_initially_left_q4_flagged" if flag else "right_initially_left_q4_unflagged"
                 outcome = delta20 <= EPS
                 q4_counter["TP" if flag and outcome else "FP" if flag else
@@ -229,9 +229,9 @@ def stage_metrics(group, stage, ids, events, participants, boots, seed):
         if not xs:
             return (None, None, None, None)
         err = [e["signed"] - e["predicted_signed"] for e in xs]
-        matches = [abs(e["signed"]) <= EPS and abs(e["predicted_signed"]) <= EPS or
-                   e["signed"] * e["predicted_signed"] > EPS
-                   for e in xs]
+        def sign(v):
+            return 1 if v > EPS else -1 if v < -EPS else 0
+        matches = [sign(e["signed"]) == sign(e["predicted_signed"]) for e in xs]
         return (mean(err), mean([abs(x) for x in err]), mean(matches),
                 mean([e["predicted_signed"] for e in xs]))
     bias, mae, sign_match, pred_mean = paired_metrics(comparable)
@@ -269,7 +269,9 @@ def topic_records(events, gp, public):
                     retained.append((cat, rs))
                 else:
                     suppressed.extend(rs)
-            if public and suppressed:
+            if public and suppressed and (
+                    len({x["session_uid"] for x in suppressed}) >= PUBLIC_MIN_PEOPLE
+                    and len(suppressed) >= PUBLIC_MIN_EVENTS):
                 retained.append(("other_or_suppressed", suppressed))
             for cat, rs in retained:
                 if not rs:
@@ -297,7 +299,8 @@ def target_records(events, gp, public):
                     count[e["target"]].append(e)
             for target, rs in sorted(count.items()):
                 people = len({e["session_uid"] for e in rs})
-                if public and (people < PUBLIC_MIN_PEOPLE or len(rs) < PUBLIC_MIN_EVENTS):
+                if public and (people < PUBLIC_MIN_PEOPLE or len(rs) < PUBLIC_MIN_EVENTS
+                               or re.fullmatch(r"[a-z][a-z0-9_]{1,35}", target) is None):
                     continue
                 rows.append(dict(group=group, stage=stage, target_variable=target,
                                  n_sessions=people, n_selections=len(rs),
@@ -373,15 +376,22 @@ def binned_predictions(events, gp, boots, seed):
                 by_person[e["session_uid"]].append(e)
             if len(subset) < PUBLIC_MIN_EVENTS or len(by_person) < PUBLIC_MIN_PEOPLE:
                 continue
-            observed_person = [mean([e["signed"] for e in es])
-                               for _, es in sorted(by_person.items())]
-            v, lo, hi = bootstrap_person_mean(observed_person, seed + j, boots)
+            # Participant-cluster bootstrap for the *event-weighted* mean:
+            # resample participants (and all their events) as intact clusters.
+            clusters = [(sum(e["signed"] for e in es), len(es))
+                        for _, es in sorted(by_person.items())]
+            rng = random.Random(seed + j)
+            draws = []
+            for _ in range(boots):
+                sampled = [clusters[rng.randrange(len(clusters))]
+                           for _ in range(len(clusters))]
+                draws.append(sum(x for x, _ in sampled) / sum(n for _, n in sampled))
             out.append(dict(group=group, bin=j+1,
                             n_events=len(subset), n_sessions=len(by_person),
                             mean_predicted_signed=mean([e["predicted_signed"] for e in subset]),
                             mean_observed_signed=mean([e["signed"] for e in subset]),
-                            ci95_low_session_equal=v if lo is None else lo,
-                            ci95_high_session_equal=v if hi is None else hi))
+                            ci95_low=qtile(draws, .025),
+                            ci95_high=qtile(draws, .975)))
     return out
 
 
@@ -484,7 +494,7 @@ def run(analysis_dir, private_out, public_out=PUBLIC, gss_map=None,
     write_csv(public_out/"nhb_target_questions.csv", targets, targets_public)
     write_csv(public_out/"nhb_predicted_observed_quintiles.csv",
               ("group","bin","n_events","n_sessions","mean_predicted_signed",
-               "mean_observed_signed","ci95_low_session_equal","ci95_high_session_equal"), bin_public)
+               "mean_observed_signed","ci95_low","ci95_high"), bin_public)
     write_csv(public_out/"nhb_right_q4_trajectories.csv",
               ("group","step","n_sessions","mean_delta","ci95_low","ci95_high"), traj_public)
     write_csv(public_out/"nhb_curated_answer_categories.csv",
