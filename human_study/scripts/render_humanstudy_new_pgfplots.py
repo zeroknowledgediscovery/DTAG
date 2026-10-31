@@ -7,6 +7,11 @@ From the DTAG root:
 
 Uses only GCS-finalized six-baseline cohorts, only 20/20 completions:
 Left 21, Right 38, Neutral 7, Random 5. Does not expose any individual rows.
+Also creates humanstudy_new_trajectory_right_q4_unflagged.csv for an
+additional PGFPlots figure: 19 Right-push participants remaining after
+excluding the 19 initially-Left Right-push participants with no positive
+baseline-relative displacement after question four (17 TP + 2 FP).
+The Left/Neutral/Random trajectories remain unfiltered.
 Preserves all old 49-session tex/Figures/humanstudy_* assets unchanged.
 """
 from __future__ import annotations
@@ -103,6 +108,30 @@ def build(arms,out,boots,seed):
           "FN" if failed else "TN"]+=1
     if tuple(m[k] for k in ("TP","FP","FN","TN"))!=(17,2,0,10):
         raise ValueError(f"Q4 results mismatch: {dict(m)}")
+    # Same cohort and plotting statistic as Fig. 3(a), with only the
+    # initially-Left Right-push sessions flagged at Q4 excluded.
+    # In the calibrated archives: TP=17, FP=2 excluded; TN=10 plus
+    # 9 initially-Right sessions retained. No filtering on Q20 outcome.
+    right_q4_unflagged=[
+        p for p in arms["right"]
+        if p["base"] >= -EPS or (p["index"][4]-p["base"])/4 > EPS
+    ]
+    remaining_left=sum(p["base"] < -EPS for p in right_q4_unflagged)
+    remaining_right=sum(p["base"] > EPS for p in right_q4_unflagged)
+    if (len(right_q4_unflagged),remaining_left,remaining_right)!=(19,10,9):
+        raise ValueError("Q4-filtered Right cohort mismatch")
+    filtered=np.asarray([p["delta"] for p in right_q4_unflagged],dtype=float)
+    rng=np.random.default_rng(seed+29)
+    drawn=filtered[rng.integers(len(filtered),size=(boots,len(filtered)))]
+    filtered_mean=filtered.mean(axis=0)
+    filtered_lo,filtered_hi=np.percentile(drawn.mean(axis=1),(2.5,97.5),axis=0)
+    save(out/"humanstudy_new_trajectory_right_q4_unflagged.csv",
+         ("step","n","mean","ci_low","ci_high"),
+         ((t,len(filtered),filtered_mean[t],filtered_lo[t],filtered_hi[t])
+          for t in range(21)))
+    print("Right after Q4 resistance exclusion: n=19 "
+          "(10 initially Left unflagged + 9 initially Right); "
+          f"mean endpoint delta={filtered_mean[20]:+.6f}")
     save(out/"humanstudy_new_arm_summary.csv",
          ("arm","n_completed","n_baseline_negative","n_baseline_positive",
           "n_directional_success","mean_endpoint_change","endpoint_ci95_low","endpoint_ci95_high"),
