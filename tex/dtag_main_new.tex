@@ -110,7 +110,7 @@
 
 
 \begin{abstract}
-Can the selection of survey questions move a respondent's model-inferred ideology coordinate without controlling the answers? Digital Twin Anchored Generation (DTAG) uses Large Science Model (LSM) conditionals to select items maximizing expected displacement in a pole-relative predictive phenotype. In 960 GSS 2024 twenty-question simulations across six personas, directional policies shifted the index without asking any of the 27 pole-defining items; 2,880 fixed-set replays assessed effects of question order. The completed prospective Prolific study comprises 71 calibrated sessions: 21 Left, 38 Right, 7 Neutral, and 5 Random. At the end of the adaptive sequence, 20/21 Left-push participants (95.2\%) moved left, compared with 21/38 Right-push participants (55.3\%) moving right. Rightward movement depended strongly on the initial inferred position: 12/29 initially Left-leaning participants (41.4\%) and 9/9 initially Right-leaning participants (100\%) moved right. Among the 17 initially Left-leaning Right-push nonresponders, all were flagged as resistant to baseline-relative rightward movement after four adaptive questions (sensitivity 100\%, accuracy 27/29, 93.1\%). The observed changes concern conditional survey-response phenotypes rather than independently verified changes in political beliefs.
+Digital Twin Anchored Generation (DTAG) selects survey questions using the conditional response structure learned by a Large Science Model (LSM) to direct movement in a pole-relative predictive phenotype. We evaluate this procedure in two response regimes. In the computational experiments, six specified GSS 2024 personas provide the initial states; DTAG chooses each subsequent question and draws its answer from the LSM conditional distribution, without generating persona responses using an LLM. Across 960 twenty-question simulated trajectories, directional policies produced the intended displacement without selecting any of the 27 pole-defining items; 2,880 fixed-set replays assessed the effect of question order. In the prospective human experiment, DTAG again uses LSM-based question selection, but actual participants answer the questions rather than sampling responses from the model. Natural-language answers are mapped to survey variables to update the predictive phenotype. Among 71 completed calibrated human sessions (21 Left, 38 Right, 7 Neutral, 5 Random), 20/21 Left-push participants (95.2\%) moved leftward and 21/38 Right-push participants (55.3\%) moved rightward. Rightward displacement occurred in 12/29 initially Left-leaning participants (41.4\%) and 9/9 initially Right-leaning participants (100\%). All 17 initially Left-leaning Right-push nonresponders were identified from their first four adaptive answers, with two additional participants flagged (accuracy 27/29, 93.1\%). These results show that adaptive inquiry can produce directional movement in an inferred survey-response phenotype and reveal direction-specific resistance early in the questioning sequence.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -122,7 +122,7 @@ Survey questions are usually treated as measurements, but each answer also chang
 
 Large Science Models (LSMs) provide a new framework for generative digital twins of multivariate systems. They learn interdependent conditional distributions, infer unobserved variables from partial evidence, and compare states through their predictive consequences. Related digital-twin applications include infant microbiome development \cite{sizemore2024} and influenza evolution through Emergenet \cite{wu2026emergenet}. DTAG applies an LSM to survey answers, defining a \emph{predictive phenotype} over unasked items and its position relative to opposing reference opinion profiles. It selects questions to maximize expected signed displacement while respondents supply the answers.
 
-We test this with 960 native GSS 2024 trajectories across six personas (excluding all pole-defining items), 2,880 fixed-set order replays, and 71 completed calibrated human sessions recruited through Prolific. The human results additionally show that baseline-relative Right-push nonresponse among initially Left-leaning participants is identifiable after four adaptive questions.
+We test DTAG first in 960 native GSS 2024 simulations seeded by six stated personas, with answers sampled entirely from the LSM, followed by 2,880 fixed-set LSM replays. We then replace the simulated respondents with human participants: the adaptive questions remain LSM-directed, but the answers come from 71 Prolific participants and update the same conditional-survey phenotype through native-variable mappings. The human trajectories also reveal baseline-dependent Right-push resistance detectable from the first four responses.
 \section{Related Work}
 Attitude dependencies need not align on one ideological axis \cite{converse1964,zaller1992}. Partisan sorting and social influence shape these dependencies \cite{baldassarri2008,dellaposta2015}; cognitive consistency, wording, and order can affect reported attitudes \cite{festinger1957,schwarz1999,taber2006}. This motivates separating information revealed by a question from any change induced by asking it.
 
@@ -135,7 +135,7 @@ Let $X=(X_1,\ldots,X_n)$ be categorical survey responses, with alphabets $\mathc
 \Ph_c=\{\phi_{i,c}(a\mid x_{-i}) : i=1,\ldots,n\},
 \label{eq:lsm}
 \end{equation}
-estimated by conditional inference trees \cite{hothorn2006,sizemore2024,dahal2026}. Their dependencies are predictive, not causal; the conditionals need not form a coherent joint law \cite{heckerman2000}.
+estimated by conditional inference trees \cite{hothorn2006,sizemore2024,dahal2026}. The learned conditionals supply both the question-selection objective and the updated predictive phenotype.
 
 A respondent state $s=\{X_j=a_j:j\in S\}$ holds observed responses. Unanchored variables remain missing in $\widetilde x_{-v}(s)$; each native tree averages over its missing branches. For unasked $v\notin S$,
 \begin{equation}
@@ -168,7 +168,7 @@ I_\Ph(s)=\frac{\theta_\Ph(s_L,s)-\theta_\Ph(s_R,s)}
 {\theta_\Ph(s_L,s_R)}.
 \label{eq:ideology}
 \end{equation}
-The reference poles specify opposing responses on 27 GSS 2024 items covering policy, civil liberties, spending, and religion (Table~\ref{tab:poles}) \cite{dahal2026}. Other coordinates are unspecified; $I_\Ph$ measures predictive position rather than self-reported ideology.
+The reference poles specify opposing responses on 27 GSS 2024 items covering policy, civil liberties, spending, and religion (Table~\ref{tab:poles}) \cite{dahal2026}. Other coordinates are unspecified; $I_\Ph$ measures position in the predictive geometry induced by the LSM.
 
 \begin{table*}[!t]
 \centering
@@ -246,13 +246,13 @@ The reference poles specify opposing responses on 27 GSS 2024 items covering pol
 \end{figure*}
 
 \section{Adaptive Question Selection}
-A semantic interface can map a natural-language question $q$ to a survey item $v\in M(q)$ and verbalize its answer. The native experiments use item identifiers directly without the LLM layer. For a selected question, DTAG samples a response and updates the predictive phenotype:
+DTAG separates \emph{question selection} from the \emph{source of the answer}. The LSM conditionals determine the expected geometric effect of each candidate question. In the native simulations, a fixed initial persona anchors the state, the optimizer chooses survey item $v_t$, and the answer is drawn directly from the LSM:
 \begin{align}
 A_t&\sim p_\Ph(\cdot\mid s_t,v_t),\label{eq:draw}\\
 s_{t+1}&=s_t\cup\{v_t=A_t\},\label{eq:update}\\
 \calB_{t+1}&=\calB_\Ph(s_{t+1}).\label{eq:posterior}
 \end{align}
-The initial persona anchors remain fixed. The optimizer chooses the question, not its answer (Fig.~\ref{fig:arch_adaptive}).
+These native trajectories use no LLM to generate respondents' answers. In the human experiment, the LSM still supplies the directional selection criterion, but the selected question is presented to a participant, whose \emph{observed answer replaces the LSM draw}. A language-model interface renders questions and interprets free-text responses as one or more native survey-variable assignments; these accepted assignments update the conditional state. Thus the displayed single-item update describes the native simulation exactly, while the human implementation can incorporate multiple assignments from one answer. In neither regime does the question-selection algorithm prescribe the answer.
 
 For candidate item $v$ and answer $a$, define
 \begin{align}
@@ -265,7 +265,7 @@ Right- and left-seeking policies maximize and minimize $\mu_v(s)$; neutral minim
 \begin{equation*}
 \EE[I_\Ph(s_{t+1})-I_\Ph(s_t)\mid s_t,v_t]=\mu_{v_t}(s_t).
 \end{equation*}
-The accumulated displacement depends on successive selected items and sampled answers.
+Accumulated displacement follows successive selected items and their realized answers, which are LSM draws in simulation and participant responses in the human experiment.
 
 The effect on an unasked item $j$ after observing $(v,a)$ is
 \begin{equation}
@@ -339,7 +339,7 @@ Questioning a person may change later reports. A response--transition kernel sep
 K_q(a,z'\mid z)=O_q(a\mid z)\,T_q(z'\mid z,a).
 \label{eq:kernel}
 \end{equation}
-Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; shifts in salience or belief can induce nontrivial transitions. A common held-out battery and delayed measurement can investigate these effects.
+Passive observation has $T_q(z'\mid z,a)=\delta_z(z')$; shifts in salience or belief can induce nontrivial transitions. This transition model distinguishes the measurement process from possible response-dependent state transitions.
 
 \subsection{Order dependence.}
 For fixed realized answers, the terminal index is order-independent; sequentially generated answers need not be. A coherent joint distribution satisfies
@@ -354,7 +354,7 @@ Separately fitted LSM conditionals may violate this identity \cite{heckerman2000
 \label{sec:native}
 
 \subsection{Adaptive questioning from pinned persona states}
-We fixed six initial GSS 2024 persona states (Table~\ref{tab:personas}) and generated 40 independent response sequences per persona and policy (right, left, neutral, random). Each sequence comprised 20 questions with responses sampled from the native LSM; no LLM mapping or verbalization was used. \emph{All 27 pole-defining items were excluded from selection in every policy} (Table~\ref{tab:poles}). Thus 960 adaptive trajectories contain 19,200 non-pole responses; repetitions share initial anchors but have independent sampled answers.
+We initialized the LSM with six explicitly specified GSS 2024 persona states (Table~\ref{tab:personas}) and generated 40 independent trajectories per persona and question-selection policy (right, left, neutral, random). At each of twenty steps the directional policy selected a survey item from the LSM's predicted effects, then a response was \emph{sampled from that item's LSM conditional distribution} and incorporated into the state. This is an LSM-driven simulation, not an LLM-generated persona dialogue. \emph{All 27 pole-defining items were excluded from question selection} (Table~\ref{tab:poles}). The 960 trajectories therefore comprise 19,200 responses to non-pole items, with pinned starting states and independently sampled answers.
 
 
 
@@ -398,40 +398,60 @@ Here $u$ indexes policies. Heatmap colors identify items, not ideological positi
 
 
 \subsection{Fixed-set replay: robustness to question ordering}
-For each persona and right/left/neutral policy, we froze the 20-item sequence from adaptive replicate zero, giving 18 fixed sets. Each set was replayed in original, reversed, and two shuffled orders with 40 fresh sampled responses per order (2,880 runs). Matched question-specific random variates reduced contrast variance.
+For each persona and right/left/neutral policy, we froze the 20-item sequence from adaptive replicate zero, giving 18 fixed sets. Each set was replayed in original, reversed, and two shuffled orders, drawing 40 fresh response sequences per order directly from the LSM (2,880 runs). Matched question-specific random variates reduced contrast variance.
 
 The direction persisted across replays (Fig.~\ref{fig:order-effects}): right-derived sets yielded mean displacement $+0.0381$ (original) and $+0.0377$ (reversed); left-derived sets yielded $-0.0399$ and $-0.0410$. In both orders, all six persona-specific 95\% bootstrap intervals excluded zero in the prescribed direction. Shuffles followed the same pattern; neutral sets remained near zero.
 
 All 54 pointwise bootstrap intervals for paired mean between-order contrasts included zero; no systematic mean order effect was detected. Selected question sets therefore retained directional displacement without continuous reoptimization.
 
-In historical ten-question runs, baseline indices differed across environments despite matched persona, map, and pole hashes; native binaries were not compared. Their absolute indices are not combined with the present experiment.
-
-
 \section{Human Response Study}
-The human experiment measures the realized response of the model-inferred
-ideology index under adaptively selected questions. The 71 completed
-calibrated sessions and the four-question resistance result
-are reported below; the experimental protocol and LSM geometry
-are unchanged.
+The human experiment applies the LSM-based directional question-selection
+procedure to actual participants instead of simulated respondents.
+Questions are selected using the learned conditionals, but the participant's
+own answer---interpreted as native survey assignments---determines the
+next state. The 71 completed calibrated sessions and the early
+Right-push resistance result are reported below.
 
 \input{humanstudy_new}
 
 
 \section{Discussion and Conclusion}
-DTAG uses high-dimensional survey dependencies to select questions that systematically refine a predictive phenotype. The native experiments show directional movement using exclusively non-pole items; fixed-set replays indicate that selected question identities, rather than their precise order, account for much of the directionality. The index depends on the reference poles, candidate pool, and conditional model and should be interpreted as predictive position rather than a self-reported ideology score.
+DTAG uses high-dimensional survey dependencies to select questions
+according to their expected effect on an LSM-defined predictive phenotype.
+The native experiments establish this behavior in a fully model-generated
+response setting: the initial state is fixed by a specified persona, each
+question is selected by the directional policy, and the response is sampled
+from the LSM. Fixed-set replays show that the selected questions preserve
+the intended displacement across the tested orderings.
 
-The expanded 71-session human-response study shows a strong asymmetry in
-directional responses: 20/21 Left-push sessions moved left, whereas 21/38
-Right-push sessions moved right. Among initially Left-leaning respondents assigned Right push, 17/29
-showed no net rightward movement from baseline after the full sequence.
-All 17 were identified from their first four responses, with two
-additional participants incorrectly flagged as resistant.
-Thus DTAG's observed directional response depends on the baseline
-predictive phenotype, and the first four responses retrospectively distinguish endpoint
-nonresponse within this sample. Independent validation is required
-before treating the four-question rule as a predictive classifier.
-The inferred shifts do not independently demonstrate changes in
-underlying political beliefs.
+The human experiment replaces simulated answers with participants'
+responses while retaining LSM-directed selection. The 71 completed
+sessions exhibit a marked directional asymmetry: 20/21 Left-push
+participants moved left, whereas 21/38 Right-push participants moved
+right. Among initially Left-leaning participants assigned Right push,
+17/29 showed no net rightward movement at the end of the sequence.
+All 17 were identified by their first four answers, with two additional
+participants flagged. Together, the simulations and human experiment
+show both directional refinement of an inferred worldview and early
+identification of a direction-specific resistant response phenotype.
+
+\section{Scope and Limitations}
+The index measures an LSM-inferred survey-response phenotype, not an
+independent change in underlying political beliefs. LSM conditionals
+encode learned predictive dependencies, not causal effects, and
+separately estimated conditionals need not define a coherent joint
+distribution \cite{heckerman2000}. Accordingly, the human results
+describe changes in inferred position as answers are elicited; a
+held-out or delayed response battery would be needed to isolate
+changes in beliefs from changes in inference. The original four-policy
+human cohort was randomized, whereas subsequent fixed-policy cohorts
+were recruited separately, so pooled arm comparisons do not constitute
+a single randomized causal contrast. The early resistance rule was
+evaluated retrospectively in the same 29 initially Left-leaning
+Right-push participants and requires validation in an independent cohort.
+The fixed-set replay results show no detected systematic mean ordering
+effect in the tested sequences rather than establishing general order
+invariance.
 
 \section*{Acknowledgments}
 This work was supported by the Defense Advanced Research Projects Agency (DARPA) under the MAGICS program (DARPA-EA-25-02-05-MAGICS-PA-025; Award No.~HR0011-26-3-E016).
