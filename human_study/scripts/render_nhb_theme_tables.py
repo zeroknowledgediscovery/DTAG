@@ -107,7 +107,11 @@ def table_one(topics, stages):
                  f" & {count(right, 38)} & {fmt(number(right,'sum_signed')/38)}" + r" \\")
     p.extend([
         r"\midrule",
-        r"\textbf{Total} & 420 (100\%) & +0.0989 & 760 (100\%) & +0.0225 \\",
+        (r"\\textbf{Total} & 420 (100\\%) & "
+         + fmt(number(stages[("left_all", "all")], "mean_signed_displacement"))
+         + r" & 760 (100\\%) & "
+         + fmt(number(stages[("right_all", "all")], "mean_signed_displacement"))
+         + r" \\\\"),
         r"\bottomrule",
         r"\end{tabularx}",
         r"\end{table}",
