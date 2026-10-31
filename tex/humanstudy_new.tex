@@ -22,7 +22,7 @@ baseline-relative displacement are
 \qquad t=0,\ldots,20.
 \label{eq:humanstudy-new-delta}
 \end{equation}
-A directional success at Q20 is $\Delta I_\Phi(20)<0$ for Left
+A directional success at the end of the adaptive sequence is $\Delta I_\Phi(20)<0$ for Left
 and $\Delta I_\Phi(20)>0$ for Right. The index is the
 LSM-inferred survey-response phenotype, not a measured change
 in underlying political beliefs.
@@ -49,8 +49,8 @@ moved left.
 
 \begin{table*}[!t]
 \centering
-\caption{Baseline-stratified directional outcomes at Q20. The last
-column also credits \emph{correct Q4 identification of endpoint resistance}
+\caption{Baseline-stratified directional outcomes after the full adaptive
+sequence. The last column also includes \emph{correct early identification of resistance}
 for initially Left-leaning participants assigned Right push; it is not
 an intervention-only success rate.}
 \label{tab:humanstudy-new-stratified}
@@ -85,11 +85,11 @@ Overall & 20/21 (95.2\%) & 21/38 (55.3\%) & 38/38 (100\%)\\
 \input{Figures/humanstudy_figures_new}
 \vspace{-8pt}
 \caption{\textbf{Updated human-study trajectories and endpoints
-(71 calibrated 20/20 completions).}
+(71 calibrated complete sessions).}
 (a) Mean baseline-relative change after each adaptive question in
 Left, Right, Neutral, and Random policies; the colored 95\%
 participant-bootstrap confidence bands are shown for Left and Right.
-(b) Mean Q20 displacement and 95\% participant-bootstrap intervals,
+(b) Mean displacement after the twenty adaptive questions and 95\% participant-bootstrap intervals,
 computed from complete archived sessions. All trajectories in this
 figure use only GCS-verified 20-answer completers, rather than
 imputing values for participants who stopped early.}
@@ -97,47 +97,41 @@ imputing values for participants who stopped early.}
 \end{figure*}
 
 \subsection{Early identification of Right-push resistance}
-The lower Right-push response rate is concentrated among
-initially Left-leaning participants. We evaluated whether
-their endpoint nonresponse could be detected after the first
-four adaptive questions. In this subgroup only
-($I_\Phi(s_0)<0$, Right policy, $n=29$), define
-\begin{equation}
-R_4=\mathbf 1\left\{
-\frac{I_\Phi(s_4)-I_\Phi(s_0)}{4}\le 0
-\right\},
-\quad
-Y_{20}=\mathbf 1\left\{
-I_\Phi(s_{20})-I_\Phi(s_0)\le 0
-\right\}.
-\label{eq:humanstudy-q4-resistance}
-\end{equation}
-Here $R_4$ is the Q4 resistance flag, and $Y_{20}$
-denotes failure to move right relative to the same baseline
-by Q20. The threshold is operational and uses no information
-from later responses.
+Right-directed questioning produced a weaker response among initially
+Left-leaning participants. We therefore examined whether resistance
+to rightward displacement could be identified from the first four
+adaptive responses. This analysis was restricted to the 29 Right-push
+participants whose baseline inferred ideology index was negative.
+A participant was flagged as resistant if their inferred index had
+not increased relative to their own baseline after four questions.
+We evaluated that early classification against whether the index
+had moved rightward from baseline at the end of the full
+20-question sequence.
 
-Of the 29 initially Left-leaning Right-push participants,
-17 exhibited baseline-relative nonresponse at Q20.
-All 17 were flagged by Q4; two additional participants were
-flagged at Q4 but moved rightward by Q20. Thus, Q4 detection
-achieved sensitivity 17/17 (100\%), precision 17/19 (89.5\%),
-specificity 10/12 (83.3\%), and accuracy 27/29 (93.1\%).
+Seventeen of these 29 participants showed no net rightward
+displacement at the end of the study. All 17 had been identified
+by the four-question criterion. The criterion also flagged two
+participants who ultimately moved rightward. It therefore
+identified all observed resistant participants (17/17,
+100\% sensitivity), with 89.5\% precision (17/19),
+83.3\% specificity (10/12), and 93.1\% overall
+classification accuracy (27/29).
 
 \begin{table}[!t]
 \centering
-\caption{Q4 classification of baseline-relative Right-push
-nonresponse in the initially Left-leaning subgroup ($n=29$).
-Positive denotes no net rightward movement from baseline by Q20.}
+\caption{Early resistance classification among initially Left-leaning
+participants assigned Right push ($n=29$). The early classification
+uses the first four adaptive questions; the outcome is net movement
+relative to baseline at the end of the 20-question study.}
 \label{tab:humanstudy-q4-confusion}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcc}
 \toprule
- & \shortstack{Q20\\nonresponse} & \shortstack{Q20\\moved right}\\
+ & \shortstack{No net\\rightward move} & \shortstack{Moved\\rightward}\\
 \midrule
-Q4 flagged resistant & 17 & 2 \\
-Q4 not flagged & 0 & 10 \\
+Flagged resistant & 17 & 2 \\
+Not flagged & 0 & 10 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -147,12 +141,12 @@ Q4 not flagged & 0 & 10 \\
 \input{Figures/humanstudy_resistance_figures_new}
 \vspace{-8pt}
 \caption{\textbf{Direction-dependent response and early resistance detection.}
-(c) Proportion moving in the assigned direction at Q20 by
+(c) Proportion moving in the assigned direction after the study by
 initial phenotype sign and policy: L/L $=16/17$, L/R $=4/4$,
 R/L $=12/29$, and R/R $=9/9$, where the first symbol denotes
 policy and the second denotes baseline sign.
-(d) The Q4 resistance flag predicts baseline-relative Q20
-Right-push nonresponse among initially Left-leaning participants:
+(d) Classification from the first four questions of baseline-relative
+Right-push nonresponse at the end of the study among initially Left-leaning participants:
 17 true positives (TP), 2 false positives (FP), no false negatives
 (FN), and 10 true negatives (TN).}
 \label{fig:humanstudy-new-response-resistance}
