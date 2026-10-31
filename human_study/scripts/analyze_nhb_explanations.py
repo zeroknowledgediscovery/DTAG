@@ -199,6 +199,9 @@ def enrich(root, mapping, expect=71, check_q4=True):
                  predicted_scope=(record.get("predicted_scope") or question.get("predicted_scope") or "unrecorded"),
                  observed_scope=(record.get("observed_scope") or question.get("observed_scope") or "unrecorded"),
                  is_single=(event["n_assignments"] == 1),
+                 is_target_aligned=(event["n_assignments"] == 1
+                                    and len(event["mapped_values"]) == 1
+                                    and event["mapped_values"][0][0] == event["target"]),
                  stage=("early" if step <= 4 else "late"))
         enhanced.append(e)
     return by_uid, enhanced, q4_counter
@@ -224,7 +227,7 @@ def stage_metrics(group, stage, ids, events, participants, boots, seed):
                 for e in by_person[uid]) for uid in sorted(ids)]
     value, ci_lo, ci_hi = bootstrap_person_mean(sums, seed, boots)
     paired = [e for e in ev if e["predicted_signed"] is not None]
-    comparable = [e for e in paired if e["is_single"]]
+    comparable = [e for e in paired if e["is_target_aligned"]]
     def paired_metrics(xs):
         if not xs:
             return (None, None, None, None)
@@ -239,12 +242,12 @@ def stage_metrics(group, stage, ids, events, participants, boots, seed):
     return dict(group=group, stage=stage, n_sessions=len(ids), n_events=len(ev),
                 mean_signed_displacement=value, ci95_low=ci_lo, ci95_high=ci_hi,
                 n_steps_predicted=len(paired),
-                n_steps_single_prediction=len(comparable),
+                n_steps_target_aligned_prediction=len(comparable),
                 n_steps_multi=sum(e["n_assignments"] > 1 for e in ev),
                 n_steps_no_assignment=sum(e["n_assignments"] == 0 for e in ev),
-                mean_predicted_signed_single=pred_mean,
-                mean_error_signed_single=bias,
-                mae_single=mae, sign_agreement_single=sign_match,
+                mean_predicted_signed_target_aligned=pred_mean,
+                mean_error_signed_target_aligned=bias,
+                mae_target_aligned=mae, sign_agreement_target_aligned=sign_match,
                 mean_predicted_signed_all=pred_all,
                 mean_error_signed_all=bias_all, mae_all=mae_all,
                 sign_agreement_all=match_all)
@@ -365,7 +368,7 @@ def binned_predictions(events, gp, boots, seed):
         ids = set(gp[group])
         selected = sorted((e for e in events
                            if e["session_uid"] in ids and e["predicted_signed"] is not None
-                           and e["is_single"]),
+                           and e["is_target_aligned"]),
                           key=lambda e: e["predicted_signed"])
         if len(selected) < 5 * PUBLIC_MIN_EVENTS:
             continue
@@ -446,10 +449,10 @@ def run(analysis_dir, private_out, public_out=PUBLIC, gss_map=None,
     private_out.mkdir(parents=True, mode=0o700)
     os.chmod(private_out, 0o700)
     stages = ("group","stage","n_sessions","n_events","mean_signed_displacement",
-              "ci95_low","ci95_high","n_steps_predicted","n_steps_single_prediction",
+              "ci95_low","ci95_high","n_steps_predicted","n_steps_target_aligned_prediction",
               "n_steps_multi","n_steps_no_assignment",
-              "mean_predicted_signed_single","mean_error_signed_single",
-              "mae_single","sign_agreement_single","mean_predicted_signed_all",
+              "mean_predicted_signed_target_aligned","mean_error_signed_target_aligned",
+              "mae_target_aligned","sign_agreement_target_aligned","mean_predicted_signed_all",
               "mean_error_signed_all","mae_all","sign_agreement_all")
     topics = ("group","stage","topic","n_sessions_with_topic","n_selections",
               "exposure_share","mean_signed_per_selection","sum_positive",
@@ -476,14 +479,14 @@ def run(analysis_dir, private_out, public_out=PUBLIC, gss_map=None,
             wave_rows.append(dict(wave=wave, policy=policy, subgroup=sub, predicted_scope=scope,
                                   n_sessions=len({x["session_uid"] for x in rr}),
                                   n_steps=len(rr), n_prediction=len(paired),
-                                  n_single=sum(x["is_single"] for x in paired),
+                                  n_target_aligned=sum(x["is_target_aligned"] for x in paired),
                                   mean_signed=mean([x["signed"] for x in rr]),
                                   mean_predicted=mean([x["predicted_signed"] for x in paired]),
                                   mean_prediction_minus_observed=mean([
                                       x["predicted_signed"]-x["signed"] for x in paired])))
     write_csv(private_out/"prediction_by_wave_and_scope_PRIVATE.csv",
               ("wave","policy","subgroup","predicted_scope","n_sessions",
-               "n_steps","n_prediction","n_single","mean_signed",
+               "n_steps","n_prediction","n_target_aligned","mean_signed",
                "mean_predicted","mean_prediction_minus_observed"), wave_rows, True)
     # Public-safe release: no raw answer values, individual rows, or tiny
     # target/topic cells. The private results must NEVER be git added.
@@ -505,14 +508,14 @@ def run(analysis_dir, private_out, public_out=PUBLIC, gss_map=None,
                     q4_confusion=dict(confusion),
                     group_counts={g: len(ids) for g, ids in gp.items()},
                     prediction_available=sum(x["predicted_signed"] is not None for x in e),
-                    prediction_single=sum(x["predicted_signed"] is not None and x["is_single"] for x in e),
+                    prediction_target_aligned=sum(x["predicted_signed"] is not None and x["is_target_aligned"] for x in e),
                     prediction_scope_counts=dict(Counter(x["predicted_scope"] for x in e)),
                     curated_answer_values_published=len(answer_public),
                     topic_definition="Exploratory GSS code/topic-word heuristics; inspect code before interpretation",
                     caveats=[
                         "Cross-wave policy differences are not a single randomized causal effect.",
                         "Q4 groups were defined by observed first-four-question displacement.",
-                        "Predicted target-only change is not the same estimand as observed multi-variable full-state change.",
+                        "Predicted target-only change is not the same estimand as observed multi-variable full-state change; target-aligned single-assignment steps are reported separately.",
                         "Mapped answer values are joint-step associations, not causal effects of a value.",
                         "Public response-value rows require a reviewed answer allowlist and a disclosure threshold.",
                     ])
@@ -521,7 +524,7 @@ def run(analysis_dir, private_out, public_out=PUBLIC, gss_map=None,
     # Public manifest intentionally omits scope strings, private wave details
     # and participant identifiers. Existing published subgroup totals known.
     release = {k: manifest[k] for k in ("schema_version", "n_sessions", "n_events",
-                                         "prediction_available", "prediction_single",
+                                         "prediction_available", "prediction_target_aligned",
                                          "curated_answer_values_published", "caveats")}
     release["files"] = [
         "nhb_resistance_stage_metrics.csv", "nhb_question_topics.csv",
@@ -532,7 +535,7 @@ def run(analysis_dir, private_out, public_out=PUBLIC, gss_map=None,
     print("Q4 confusion:", dict(confusion), "Right groups:",
           {g: len(ids) for g, ids in gp.items() if g.startswith("right_")})
     print("Predictions available:", manifest["prediction_available"],
-          "single-assignment predictions:", manifest["prediction_single"])
+          "single-assignment predictions:", manifest["prediction_target_aligned"])
     print("Private detailed outputs:", private_out)
     print("Public aggregate outputs (REVIEW before git add):", public_out)
     print("No participant identifiers or native answer values appear in public outputs.")
