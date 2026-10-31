@@ -114,3 +114,50 @@ The manuscript should be updated with quantitative statements and
 additional panels **after** the investigator runs, verifies and commits
 the actual aggregates. No explanation results are inferred from the
 absence of data.
+
+## Theme-level explanation (31 October revision)
+
+The NHB Results section now prioritizes **question themes and their
+direction-signed observed contributions**, rather than individual
+question rankings:
+
+- Main text Table 1: `tex/Figures/nhb_explanatory/nhb_theme_policy_table.tex`.
+  Its seven exhaustive themes cover all 420 Left-push and 760 Right-push
+  observed question events. The per-person signed contributions exactly
+  reproduce the arm-level mean endpoint changes.
+- Main text Table 2: `tex/Figures/nhb_explanatory/nhb_theme_resistance_table.tex`.
+  It reports Right-push Q4-flagged (19), Q4-unflagged (10), and
+  initially Right (9) cohorts, their early vs later displacement,
+  and the civil-liberties/religion contributions from the first four
+  questions. A suppressed category is not treated as zero.
+- The previously emphasized top-seven-individual-question table is
+  retained in Extended Data for transparency, but it no longer forms
+  the primary mechanism argument.
+- Deterministic table generator:
+  `human_study/scripts/render_nhb_theme_tables.py`.
+- Synthetic regression tests:
+  `human_study/tests/test_render_nhb_theme_tables.py`.
+
+Run from the DTAG root:
+
+```bash
+python3 -m pytest -q human_study/tests/test_render_nhb_theme_tables.py
+python3 human_study/scripts/render_nhb_theme_tables.py
+git diff -- tex/Figures/nhb_explanatory/nhb_theme_*_table.tex
+```
+
+**Important scientific distinction.** The current tables partition
+`I(after) - I(before)` by the *selected question's theme*, so they
+quantify which themes accompany conditional index updates but do not
+measure links between distinct themes. The revised Methods define
+the cross-theme conditional JS-change matrix and leave-one-theme-out
+fixed-answer re-evaluation needed to test interdependencies and
+high-leverage robustness properly. Neither analysis has been run or
+represented as an observed result.
+
+Two limitations are especially important: (i) Q4-flagged versus
+Q4-unflagged early movement is partly determined by the group definition;
+(ii) Right-push participants often show slightly positive later movement
+even after an early counter-directional state, so the operational
+`resistance` description should not imply continuous opposition to
+the requested direction or intrinsic ideological rigidity.
