@@ -1,0 +1,59 @@
+% Additional human trajectory figure using Q4 nonresistant Right-push subgroup.
+% Rebuild its right-hand data from the private restored archive:
+% python3 human_study/scripts/render_humanstudy_new_pgfplots.py \
+%   --analysis-dir ~/private/dtag-analysis-2026-10-30-restored
+% All four line series share the original Fig. 3(a) PGFPlots styling.
+% The Right series contains n=19 after excluding Q4-flagged Right push
+% participants who were initially Left (17 endpoint nonresponders + 2 FP).
+% No observed individual-level data or plot coordinates are embedded.
+\begin{tikzpicture}[font=\bf\sffamily\fontsize{9}{9}\selectfont]
+\begin{axis}[
+  publication axis,
+  width=2.65in, height=2.15in,
+  scale only axis=true,
+  xmin=0, xmax=20,
+  xlabel={Adaptive questions answered},
+  ylabel={Change in inferred ideology index},
+  axis line style={black,line width=1pt},
+  tick style={black,line width=.95pt},
+  tick label style={font=\footnotesize\bfseries},
+  label style={font=\small\bfseries},
+  title style={font=\small\bfseries},
+  legend style={draw=none,fill=none,at={(0.0,.77)},anchor=south west},
+  legend cell align=left, legend columns=2,
+  ymajorgrids,grid style={black!12,line width=.3pt},
+  title={Adaptive response trajectories}
+]
+\addplot[black!45,densely dashed,thin,forget plot]
+  coordinates {(0,0) (20,0)};
+% Original Left trajectory and participant-bootstrap 95% interval (n=21).
+\addplot[name path=q4leftlo,draw=none,forget plot]
+  table[x=step,y=ci_low,col sep=comma]{Figures/humanstudy_new_trajectory_left.csv};
+\addplot[name path=q4lefthi,draw=none,forget plot]
+  table[x=step,y=ci_high,col sep=comma]{Figures/humanstudy_new_trajectory_left.csv};
+\addplot[fill=dtblue,fill opacity=.14,draw=none,forget plot]
+  fill between[of=q4leftlo and q4lefthi];
+% Right n=19 after Q4 early resistance exclusion, with new bootstrap interval.
+\addplot[name path=q4rightlo,draw=none,forget plot]
+  table[x=step,y=ci_low,col sep=comma]
+    {Figures/humanstudy_new_trajectory_right_q4_unflagged.csv};
+\addplot[name path=q4righthi,draw=none,forget plot]
+  table[x=step,y=ci_high,col sep=comma]
+    {Figures/humanstudy_new_trajectory_right_q4_unflagged.csv};
+\addplot[fill=dtred,fill opacity=.14,draw=none,forget plot]
+  fill between[of=q4rightlo and q4righthi];
+\addplot[dtblue,ultra thick]
+  table[x=step,y=mean,col sep=comma]{Figures/humanstudy_new_trajectory_left.csv};
+\addlegendentry{Left}
+\addplot[dtred,ultra thick]
+  table[x=step,y=mean,col sep=comma]
+    {Figures/humanstudy_new_trajectory_right_q4_unflagged.csv};
+\addlegendentry{Right (Q4-unflagged)}
+\addplot[black!75,ultra thick,densely dashed]
+  table[x=step,y=mean,col sep=comma]{Figures/humanstudy_new_trajectory_neutral.csv};
+\addlegendentry{Neutral}
+\addplot[modteal,ultra thick]
+  table[x=step,y=mean,col sep=comma]{Figures/humanstudy_new_trajectory_random.csv};
+\addlegendentry{Random}
+\end{axis}
+\end{tikzpicture}
