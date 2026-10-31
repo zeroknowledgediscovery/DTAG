@@ -226,8 +226,8 @@ The reference poles specify opposing responses on 27 GSS 2024 items covering pol
 
 \begin{figure*}[!t]
 \centering
-\tikzexternalenable
-\tikzsetnextfilename{dtag-fig1}
+% Pre-rendered native panel: do not leave a TikZ external filename pending.
+\tikzexternaldisable
 %\input{Figures/fig1}
 \includegraphics[width=\textwidth]{Figures/External/dtag-fig1}
 
@@ -315,8 +315,9 @@ Atlanta & 47-year-old Atlanta Black woman; divorced, two children; employed full
 
 \begin{figure*}[!ht]
 \centering
-\tikzsetnextfilename{dtag-fig2}
-\tikzexternalenable
+% Figure 2 is already a pre-rendered PDF. Assigning a TikZ output name
+% here causes the *next* TikZ figure to reuse dtag-fig2.pdf.
+\tikzexternaldisable
 %\input{Figures/fig2}
 
 \includegraphics[width=\textwidth]{Figures/External/dtag-fig2}
@@ -423,9 +424,11 @@ showed no net rightward movement from baseline after the full sequence.
 All 17 were identified from their first four responses, with two
 additional participants incorrectly flagged as resistant.
 Thus DTAG's observed directional response depends on the baseline
-predictive phenotype, and early trajectories can identify nonresponse
-to the chosen objective. The inferred shifts do not independently
-demonstrate changes in underlying political beliefs.
+predictive phenotype, and the first four responses retrospectively distinguish endpoint
+nonresponse within this sample. Independent validation is required
+before treating the four-question rule as a predictive classifier.
+The inferred shifts do not independently demonstrate changes in
+underlying political beliefs.
 
 \section*{Acknowledgments}
 This work was supported by the Defense Advanced Research Projects Agency (DARPA) under the MAGICS program (DARPA-EA-25-02-05-MAGICS-PA-025; Award No.~HR0011-26-3-E016).
