@@ -227,7 +227,9 @@ The reference poles specify opposing responses on 27 GSS 2024 items covering pol
 \begin{figure*}[!t]
 \centering
 % Pre-rendered native panel: do not leave a TikZ external filename pending.
-\tikzexternaldisable
+\tikzexternalenable
+\tikzsetnextfilename{dtag-fig1}
+
 %\input{Figures/fig1}
 \includegraphics[width=\textwidth]{Figures/External/dtag-fig1}
 
@@ -317,7 +319,8 @@ Atlanta & 47-year-old Atlanta Black woman; divorced, two children; employed full
 \centering
 % Figure 2 is already a pre-rendered PDF. Assigning a TikZ output name
 % here causes the *next* TikZ figure to reuse dtag-fig2.pdf.
-\tikzexternaldisable
+\tikzexternalenable
+\tikzsetnextfilename{dtag-fig2}
 %\input{Figures/fig2}
 
 \includegraphics[width=\textwidth]{Figures/External/dtag-fig2}

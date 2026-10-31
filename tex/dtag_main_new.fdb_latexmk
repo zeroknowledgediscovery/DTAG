@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex dtag_main_new"] 1793412221.97847 "dtag_main_new.aux" "dtag_main_new.bbl" "dtag_main_new" 1793412223.88894 0
+["bibtex dtag_main_new"] 1793413138.6326 "dtag_main_new.aux" "dtag_main_new.bbl" "dtag_main_new" 1793413140.57298 0
   "./references.bib" 1793290841.38231 8270 bb3d2bf7b12c766280d04889a02d6b44 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "dtag_main_new.aux" 1793412223.43839 15200 307e7b7dede1627296ef8f3d43c16581 "pdflatex"
+  "dtag_main_new.aux" 1793413140.1166 14711 5127e706c9631ddf57513285a92cab73 "pdflatex"
   (generated)
   "dtag_main_new.bbl"
   "dtag_main_new.blg"
   (rewritten before read)
-["pdflatex"] 1793412222.11017 "dtag_main_new.tex" "dtag_main_new.pdf" "dtag_main_new" 1793412223.88929 0
+["pdflatex"] 1793413138.76545 "dtag_main_new.tex" "dtag_main_new.pdf" "dtag_main_new" 1793413140.57324 0
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -33,7 +33,6 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmbx9.tfm" 1254269338 12080 8da3d5e88196e4de175949ad7749b42f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmbxi10.tfm" 1254269338 17180 a5723008921cdcb0c5f4ebe997919b73 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmcsc10.tfm" 1254269338 11276 116dd5bea6621ce4a1999f96d876084c ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmcsco10.tfm" 1254269338 11472 e5c8608304186156458f9c842126e43e ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmr10.tfm" 1254269338 12056 7e13df7fe4cbce21b072ba7c4f4deb6e ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmr12.tfm" 1254269338 12092 7b1546e2d096cfd5dcbd4049b0b1ec2e ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm" 1254269338 12156 ca1ae6a3c8564e89597f1f993fba1608 ""
@@ -86,7 +85,6 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx9.pfb" 1255129361 126646 439622e6fd57f388c9979d39c4fce535 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb" 1255129361 112766 bdd4fa8b13a0d7dd137624085bd31d40 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb" 1255129361 116427 4a5b1ccaa7cce719091920a86b58608d ""
-  "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb" 1255129361 134348 4b43a75c3065bc180ee6edf7645b1e76 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb" 1254269338 23055 2e5b42921de910eaa97b85df04ca4891 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb" 1254269338 30388 702fae6a5f0e6e9c48a1d872b442ffcf ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi5.pfb" 1254269338 31443 ba2241b179aa231f73e052863720cb42 ""
@@ -108,6 +106,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb" 1254269338 28109 6d61305ed3d0eb794ebe36f15cf44aa0 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy7.pfb" 1254269338 27941 d1f5d03f61a46c3fcc3a2ba904ddda52 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb" 1254269338 27802 5c876bb2c4040caaf035d60bd74a86bd ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy9.pfb" 1254269338 27835 16c2fa83351d4ef8cf5aebfab8a44bc1 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt8.pfb" 1255129361 115291 2ae7034c644e971beb573b1e6606f863 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1714953600 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
@@ -317,10 +316,8 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1731393377.41435 4602016 72a039a3c4aea0fa25b5d35d65138f54 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1745342538 7755187 15bcdef2d1e2fe4b930078ee119bdd13 ""
   "Figures/External/dtag-fig1.pdf" 1793290841.36431 161351 b095d4179deed471f7e3c5e80684653f ""
-  "Figures/External/dtag-fig2.dpth" 1793412218.55737 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "Figures/External/dtag-fig2.md5" 1793412217.62962 62 dad831c66fa87e3e3a9e06a4ccda45f5 ""
-  "Figures/External/dtag-fig2.pdf" 1793412219.27737 85699 8d71a3bf03298c13417fe8bfa432d2aa ""
-  "Figures/humanstudy_figures_new.tex" 1793412047.97556 5098 b71c64b047fb6bff48cde655a7350b9d ""
+  "Figures/External/dtag-fig2.pdf" 1793412991.45894 326773 98f54a67665eb2e900ce6d4f1d4bbc2c ""
+  "Figures/External/dtag-fig3.pdf" 1793413055.74123 85703 fb7250937bea321fd81fbeb8dc6e8f3e ""
   "Figures/humanstudy_new_q4_correct.csv" 1793412047.97556 14 afb63acaf20be8100030ab74fb0e4170 ""
   "Figures/humanstudy_new_q4_errors.csv" 1793412047.97556 12 65adcf60379e783f36294012a2870dae ""
   "Figures/humanstudy_new_success_left.csv" 1793412047.97556 50 e586684d02bb78e92b0fadd1f42325ef ""
@@ -328,11 +325,11 @@
   "Figures/humanstudy_new_table.tex" 1793412165.41992 861 8ec8cf9a0d28cc3f7d700521cbdd3abe ""
   "Figures/humanstudy_resistance_figures_new.tex" 1793412047.97556 2848 f97c75628ac4d9771924729a376db723 ""
   "Figures/publication_metadata.csv" 1793290841.38131 125 8770103e7d52628180f5dc89d7290110 ""
-  "dtag_main_new.aux" 1793412223.43839 15200 307e7b7dede1627296ef8f3d43c16581 "pdflatex"
-  "dtag_main_new.bbl" 1793412222.09939 6076 e2ee4a0d31ef0dd5ce2b6e918e86a17c "bibtex dtag_main_new"
-  "dtag_main_new.out" 1793412223.44039 4160 2cfa239410380b9b238466439f97d31f "pdflatex"
-  "dtag_main_new.tex" 1793412047.97652 25168 5662d1a6ad645c315fc2857847fce435 ""
-  "humanstudy_new.tex" 1793412047.97652 8078 090c37b728e268cae95628742911c4ab ""
+  "dtag_main_new.aux" 1793413140.1166 14711 5127e706c9631ddf57513285a92cab73 "pdflatex"
+  "dtag_main_new.bbl" 1793413138.7576 6076 e2ee4a0d31ef0dd5ce2b6e918e86a17c "bibtex dtag_main_new"
+  "dtag_main_new.out" 1793413140.1176 4160 2cfa239410380b9b238466439f97d31f "pdflatex"
+  "dtag_main_new.tex" 1793413079.56533 25504 2af37d9f99a6d8ee66f2a969d2280d9c ""
+  "humanstudy_new.tex" 1793413136.60159 8057 07a717d07a78a595cce010aca1965f6c ""
   (generated)
   "dtag_main_new.aux"
   "dtag_main_new.auxlock"

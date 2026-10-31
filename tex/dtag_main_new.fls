@@ -1225,7 +1225,6 @@ INPUT humanstudy_new.tex
 INPUT ./humanstudy_new.tex
 INPUT ./humanstudy_new.tex
 INPUT humanstudy_new.tex
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/ec-lmcsco10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/rm-lmr9.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmmi9.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmsy9.tfm
@@ -1243,18 +1242,10 @@ INPUT Figures/humanstudy_new_table.tex
 INPUT ./Figures/humanstudy_new_table.tex
 INPUT ./Figures/humanstudy_new_table.tex
 INPUT Figures/humanstudy_new_table.tex
-INPUT ./Figures/humanstudy_figures_new.tex
-INPUT ./Figures/humanstudy_figures_new.tex
-INPUT ./Figures/humanstudy_figures_new.tex
-INPUT Figures/humanstudy_figures_new.tex
-INPUT ./Figures/humanstudy_figures_new.tex
-INPUT ./Figures/humanstudy_figures_new.tex
-INPUT Figures/humanstudy_figures_new.tex
-INPUT Figures/External/dtag-fig2.md5
-INPUT Figures/External/dtag-fig2.pdf
-INPUT Figures/External/dtag-fig2.dpth
-INPUT Figures/External/dtag-fig2.pdf
-INPUT ./Figures/External/dtag-fig2.pdf
+INPUT ./Figures/External/dtag-fig3.pdf
+INPUT Figures/External/dtag-fig3.pdf
+INPUT ./Figures/External/dtag-fig3.pdf
+INPUT ./Figures/External/dtag-fig3.pdf
 INPUT ./Figures/humanstudy_resistance_figures_new.tex
 INPUT ./Figures/humanstudy_resistance_figures_new.tex
 INPUT ./Figures/humanstudy_resistance_figures_new.tex
@@ -1287,7 +1278,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx9.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb
-INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmcsco10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi5.pfb
@@ -1309,5 +1299,6 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy5.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy9.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
