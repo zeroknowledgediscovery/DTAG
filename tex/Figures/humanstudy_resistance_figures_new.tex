@@ -1,0 +1,71 @@
+% Updated DTAG human-study response/resistance panels, 2026-10-30.
+% Aggregate inputs only; no participant trajectories or identifiers.
+% Both panels preserve the manuscript's thick axes, bold labels and ticks,
+% dtblue/dtred palette and restrained grid lines.
+\begin{tikzpicture}[font=\bf\sffamily\fontsize{9}{9}\selectfont]
+\node (A) at (0,0) {
+\begin{tikzpicture}
+\begin{axis}[
+  publication axis,
+  width=2.9in,height=2.15in,scale only axis=true,
+  xmin=.5,xmax=4.5,ymin=0,ymax=115,
+  xtick={1,2,3,4},
+  xticklabels={L/L,L/R,R/L,R/R},
+  tick label style={font=\footnotesize\bfseries},
+  x tick label style={font=\footnotesize\bfseries},
+  label style={font=\small\bfseries},
+  title style={font=\small\bfseries},
+  ylabel={Directional response (\%)},
+  xlabel={Push / initial phenotype},
+  ytick={0,25,50,75,100},
+  title={(c) Directional movement by baseline},
+  axis line style={black,line width=1pt},
+  tick style={black,line width=.95pt},
+  ymajorgrids,grid style={black!12,line width=.3pt},
+  legend style={draw=none,fill=none,at={(.02,.98)},anchor=north west,
+                font=\footnotesize\bfseries},
+  legend cell align=left
+]
+\addplot+[ybar,bar width=15pt,draw=dtblue,fill=dtblue!80,
+  nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}\%},
+  point meta=y,every node near coord/.append style={font=\scriptsize\bfseries},
+  error bars/.cd]
+ table[x=x,y=percent,col sep=comma]{Figures/humanstudy_new_success_left.csv};
+\addlegendentry{Left push}
+\addplot+[ybar,bar width=15pt,draw=dtred,fill=dtred!80,
+  nodes near coords={\pgfmathprintnumber[fixed,precision=1]{\pgfplotspointmeta}\%},
+  point meta=y,every node near coord/.append style={font=\scriptsize\bfseries}]
+ table[x=x,y=percent,col sep=comma]{Figures/humanstudy_new_success_right.csv};
+\addlegendentry{Right push}
+\end{axis}
+\end{tikzpicture}};
+\node[anchor=south west] (B) at ([xshift=8mm]A.south east) {
+\begin{tikzpicture}
+\begin{axis}[
+  publication axis,
+  width=2.85in,height=2.15in,scale only axis=true,
+  xmin=.5,xmax=4.5,ymin=0,ymax=20,
+  xtick={1,2,3,4},
+  xticklabels={TP,FP,FN,TN},
+  tick label style={font=\footnotesize\bfseries},
+  label style={font=\small\bfseries},
+  title style={font=\small\bfseries},
+  ylabel={Participants},
+  xlabel={Q4 prediction versus Q20 outcome},
+  ytick={0,5,10,15,20},
+  title={(d) Q4 Right-resistance classification},
+  axis line style={black,line width=1pt},
+  tick style={black,line width=.95pt},
+  ymajorgrids,grid style={black!12,line width=.3pt}
+]
+\addplot+[ybar,bar width=15pt,draw=modteal,fill=modteal!75,
+  nodes near coords,point meta=y,
+  every node near coord/.append style={font=\footnotesize\bfseries}]
+ table[x=x,y=n,col sep=comma]{Figures/humanstudy_new_q4_correct.csv};
+\addplot+[ybar,bar width=15pt,draw=dtred,fill=dtred!75,
+  nodes near coords,point meta=y,
+  every node near coord/.append style={font=\footnotesize\bfseries}]
+ table[x=x,y=n,col sep=comma]{Figures/humanstudy_new_q4_errors.csv};
+\end{axis}
+\end{tikzpicture}};
+\end{tikzpicture}
