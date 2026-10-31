@@ -95,3 +95,22 @@ Nature Human Behaviour's scope includes political behaviour, belief systems, and
 4. Measure sensitivity of movement to reference-pole choices and assess
    held-out or independently measured ideology where feasible. This is
    important for an NHB claim beyond an optimized model-derived index.
+
+## Reproducible explanatory pipeline
+
+The new post-processing script
+`human_study/scripts/analyze_nhb_explanations.py` analyzes the existing
+71 calibrated complete human sessions without additional recruitment or
+model inference. It produces private item/answer-by-wave diagnostics and
+disclosure-checked, figure-ready aggregates in
+`tex/Figures/nhb_explanatory/`.
+
+Run instructions, the three analyses, privacy restrictions, curated
+native-answer allowlist and Git push procedure are in
+`human_study/reports/NHB_EXPLANATORY_ANALYSIS_README.md`.
+Synthetic regression tests are in
+`human_study/tests/test_analyze_nhb_explanations.py`.
+The manuscript should be updated with quantitative statements and
+additional panels **after** the investigator runs, verifies and commits
+the actual aggregates. No explanation results are inferred from the
+absence of data.
