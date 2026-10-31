@@ -1,0 +1,26 @@
+% Reproducible using python3 human_study/scripts/render_nhb_theme_tables.py
+% Source: committed nhb_question_topics.csv + nhb_resistance_stage_metrics.csv
+\begin{table}[!t]
+\centering
+\caption{\textbf{Thematic composition of human directional index updates.} Question targets are grouped into seven mutually exclusive exploratory themes. For each policy, the number (percentage) of selected questions and the net directional index increment per participant are reported. Positive increments are in the policy's intended direction; negative increments oppose it. Net increments, unlike positive gains alone, telescope to the observed mean displacement. These are descriptive ordered associations, not causal effects of themes or measured cross-theme propagation.}
+\label{tab:nhb-theme-policy}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{Left ($n=21$)} & \multicolumn{2}{c}{Right ($n=38$)} \\
+\cmidrule(lr){2-3}\cmidrule(l){4-5}
+Theme & Selections & Mean signed & Selections & Mean signed \\
+\midrule
+Civil liberties & 74 (17.6\%) & +0.0236 & 93 (12.2\%) & +0.0029 \\
+Religion and culture & 30 (7.1\%) & +0.0195 & 87 (11.4\%) & -0.0108 \\
+Sexual and reproductive attitudes & 77 (18.3\%) & +0.0304 & 32 (4.2\%) & -0.0050 \\
+Public spending and programs & 36 (8.6\%) & +0.0085 & 73 (9.6\%) & +0.0039 \\
+Institutional confidence & 47 (11.2\%) & +0.0013 & 66 (8.7\%) & +0.0077 \\
+Political evaluations & 30 (7.1\%) & +0.0081 & 49 (6.4\%) & +0.0049 \\
+Other questions & 126 (30.0\%) & +0.0075 & 360 (47.4\%) & +0.0189 \\
+\midrule
+\textbf{Total} & 420 (100\%) & +0.0989 & 760 (100\%) & +0.0225 \\
+\bottomrule
+\end{tabularx}
+\end{table}
