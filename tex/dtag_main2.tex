@@ -207,10 +207,40 @@ A Left-direction success was defined as $\Delta I_{\Ph,k}(20)<-10^{-10}$; Right-
 \subsection*{Early resistance definition}
 For initially Left-leaning Right-push participants, endpoint nonresponse was defined by $\Delta I_{\Ph,k}(20)\leq10^{-10}$. The early nonmovement flag was assigned when $(\Iidx(s_{k,4})-\Iidx(s_{k,0}))/4\leq10^{-10}$, equivalent in sign to nonpositive Q4 displacement. The confusion matrix was evaluated against Q20 endpoint outcomes in these same 29 participants. The Q4-unflagged aggregate trajectory retains all nine initially Right-leaning Right-push participants and the ten initially Left-leaning Right-push participants whose Q4 displacement was positive; only the 19 initially Left-leaning flagged participants were removed. It is a conditional visualization, not a prospectively evaluated classifier.
 
-\subsection*{Exploratory question-level decomposition}
-Archived question-level before/after indices, target-question identities and accepted survey-variable assignments were joined by session and adaptive step. For question $t$, the observed increment was $g_t=\Iidx(s_t)-\Iidx(s_{t-1})$, with telescoping identity $\sum_{t=1}^{20}g_t=\Delt(20)$. For Left policy, positive gain was $\max(-g_t,0)$; this records leftward increment magnitude while allowing opposing increments elsewhere in the sequence. Group summaries associated those increments with the question's native target variable. If a single response yielded multiple accepted assignments, the full index increment was attributed to the \emph{question event} and could not be uniquely partitioned among those assignments without further model evaluation.
+\subsection*{Theme-level directional accounting}
+Archived question-level before/after indices, selected target-question identities and accepted native assignments were joined by session and adaptive step. For respondent $k$ in policy $\pi$, set $\epsilon_\pi=-1$ for Left and $+1$ for Right. The direction-signed increment after adaptive question $t$ is
+\begin{equation}
+g_{kt}^{(\pi)}=\epsilon_\pi\left[\Iidx(s_{kt})-\Iidx(s_{k,t-1})\right].
+\end{equation}
+The selected question's \emph{target variable} determined its thematic assignment, not any secondary variables extracted by the natural-language interface. A fixed exploratory dictionary assigned seven mutually exclusive themes: civil liberties, religion/culture, sexual/reproductive attitudes, public spending/programmes, institutional confidence, political evaluations, and other. Exact GSS code overrides and wording matches are specified in the accompanying analysis script \texttt{human\_study/scripts/analyze\_nhb\_explanations.py}. This is not a validated thematic factor model, and the residual \emph{other} category contains heterogeneous questions.
 
-The spending/program category was specified as native GSS questions in the national-spending \texttt{nat*} family or questions whose catalog wording matched a fixed public-spending/program expression. Among Left-push participants, mean participant-level exposure shares and the fraction of each participant's total positive leftward gain associated with these questions were compared by initial index sign. Exact permutation $P$ values enumerated all $\binom{21}{4}=5,985$ assignments of four participants to the initially Right group. These analyses characterize association within the observed sample and were conducted after inspecting the human study findings.
+For target theme $A$ and policy $\pi$ with $N_\pi$ participants, the observed net theme-associated increment per participant is
+\begin{equation}
+C_{\pi,A}=\frac{1}{N_\pi}\sum_{k:\pi_k=\pi}
+\sum_{t=1}^{20}\mathbf{1}\{T(v_{kt})=A\}\,g_{kt}^{(\pi)}.
+\end{equation}
+By telescoping, the sum across themes obeys
+\begin{equation}
+\sum_A C_{\pi,A}=\frac1{N_\pi}\sum_{k:\pi_k=\pi}
+\epsilon_\pi\left[\Iidx(s_{k,20})-\Iidx(s_{k,0})\right].
+\end{equation}
+Thus the themed increments reproduce the mean observed directional displacement without double-counting question events. Even when one free-text answer produces several accepted native assignments, the entire observed index change is assigned to the one \emph{selected target question event}, not to each mapped variable separately. A theme-associated increment can reflect changes in predictions across the entire LSM, and is neither a causal effect of the selected topic nor a measurement of cross-theme propagation. Exposure share counts selected targets in that theme divided by $20N_\pi$. The source is the archived, complete human trajectories and the generated, committed \texttt{nhb\_question\_topics.csv}; the seven category totals exhaust all 420 Left-push and 760 Right-push adaptive question events.
+
+For the exploratory early-resistance analysis, the Q4 flag was defined as in the preceding Methods subsection. The same signed index increments were then computed for Q1--4 and Q5--20 separately. Confidence intervals for mean group displacement were obtained by participant bootstrap. The Q4-defined group difference during the early window is partially definitional, and confidence intervals in the later window do not constitute prospective validation of a resistance classifier.
+
+\subsection*{Proposed conditional theme-propagation and ablation analyses}
+A direct test of the \emph{interdependent selective-revelation} explanation requires the LSM to be evaluated on the individual archived answer states. Let $U_B(s)$ be the unasked native variables assigned to theme $B$ at state $s$. For an observed answer set $a$ to a selected question in theme $A$, define an unsigned cross-theme update magnitude by
+\begin{equation}
+R_{A\to B}(s,a)=\frac{1}{|U_B(s)|}
+\sum_{j\in U_B(s)}
+\sqrt{\JS\!\left[p_\Ph(\cdot\mid s,j),p_\Ph(\cdot\mid s\cup a,j)\right]},
+\end{equation}
+omitting cases where $U_B(s)$ is empty. Averaging this quantity by origin theme, destination theme, policy and baseline inferred phenotype would yield a theme-to-theme predictive-propagation matrix. Since Jensen--Shannon divergence is unsigned, a complementary analysis must establish the signed change in reference-pole position to assess whether propagation favors Left or Right.
+
+A leave-theme-$A$-out \emph{fixed-answer} re-evaluation would omit the entire set of accepted native assignments from each question selected within theme $A$, retain other accepted human answers in their original order, and recompute the resulting final LSM index using frozen model weights and unchanged reference poles. Compare its baseline-relative displacement with that obtained from the complete answer sequence, and repeat across themes and selected individual questions. Unlike removing a theme's observed increments from the original trajectory, this procedure recalculates downstream conditional changes and can reveal nonlinear cross-theme interactions. It does not recreate the answers the participant would have given if different questions had been asked, nor estimate the psychological causal effect of questioning. \emph{These LSM re-evaluations have not been performed; the existing results establish only observed theme-associated movements.}
+
+\subsection*{Earlier exploratory spending comparison}
+The prior public-spending/programme analysis used GSS \texttt{nat*} items and a fixed question-wording expression for spending and government assistance. Among Left-push participants, initially Right-leaning individuals received spending questions more often (13.75\% versus 7.35\%, exact two-sided label permutation $P=0.0894$), but spending questions accounted for a similar share of positive leftward increments (8.06\% versus 7.36\%; $P=0.8932$). The tests enumerated all $\binom{21}{4}=5,985$ label combinations; they are post-hoc and exploratory rather than evidence of a distinct ideological mechanism.
 
 \subsection*{Ethics, data and code availability}
 \textbf{Ethics and informed consent.} The study system archived consent acceptance before adaptive responses. \pending{Insert the exact institutional review determination, approval or exemption number, date, informed-consent language, compensation, and relevant data protection arrangements. Do not submit without verification.}
@@ -225,6 +255,9 @@ The spending/program category was specified as native GSS questions in the natio
 
 \clearpage
 \section*{Extended Data}
+
+% Transparency on item-level associations, not an item-specific explanation.
+\input{Figures/dtag_nhb_top_item_table.tex}
 
 \begin{figure}[!ht]
 \centering
