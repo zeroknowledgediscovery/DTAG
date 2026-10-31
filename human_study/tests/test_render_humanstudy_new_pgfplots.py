@@ -54,6 +54,22 @@ def test_regenerate_new_aggregates(tmp_path):
     table=(tmp_path/"humanstudy_new_table.tex").read_text()
     assert "21" in table and "38" in table
     assert "95" in table
+    # Additional figure keeps all 9 initially Right + 10 Q4-unflagged
+    # initially Left, excluding 17 TP and 2 FP based only on Q4.
+    filtered=tmp_path/"humanstudy_new_trajectory_right_q4_unflagged.csv"
+    with filtered.open(newline="") as f:
+        q4rows=list(csv.DictReader(f))
+    assert [int(r["step"]) for r in q4rows]==list(range(21))
+    assert {int(r["n"]) for r in q4rows}=={19}
+    assert float(q4rows[0]["mean"])==0
+    assert abs(float(q4rows[-1]["mean"])-0.04)<1e-9
+    assert float(q4rows[-1]["ci_low"])>0
+    # The original Right-push line remains unfiltered (n=38).
+    with (tmp_path/"humanstudy_new_trajectory_right.csv").open(newline="") as f:
+        right_rows=list(csv.DictReader(f))
+    assert int(right_rows[-1]["n"])==38
+    assert abs(float(right_rows[-1]["mean"])-float(q4rows[-1]["mean"]))>1e-6
+
 
 def test_abort_on_wrong_cohort(tmp_path):
     arms=synthetic()
