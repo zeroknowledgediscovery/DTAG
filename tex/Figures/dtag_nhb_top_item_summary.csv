@@ -1,0 +1,15 @@
+initial_phenotype,target_variable,topic,n_questions,sum_positive,sum_signed
+initially_right,colath,"Allow antireligious college teacher",4,0.09768,0.09768
+initially_right,religinf,"Religion's influence on the country",3,0.05509,0.04564
+initially_right,premarsx,"Moral acceptability of premarital sex",3,0.05031,0.04397
+initially_right,suicide1,"Right to die with an incurable disease",4,0.03922,0.03553
+initially_right,contv,"Confidence in television",2,0.03212,0.03212
+initially_right,abhlth,"Abortion when woman's health is endangered",3,0.03116,0.03116
+initially_right,marsame,"Same-sex couples' right to marry",3,0.02859,-0.00118
+initially_left,colath,"Allow antireligious college teacher",17,0.38915,0.36412
+initially_left,sprtprsn,"Self-reported spirituality",17,0.29115,0.23326
+initially_left,ratechall224,"Rating of Kamala Harris",17,0.19423,0.15077
+initially_left,relpersn,"Self-reported religiosity",7,0.19089,0.19089
+initially_left,homosex,"Moral acceptability of same-sex relations",9,0.13701,0.11984
+initially_left,premarsx,"Moral acceptability of premarital sex",15,0.12962,0.12962
+initially_left,suicide1,"Right to die with an incurable disease",12,0.11371,0.11371
